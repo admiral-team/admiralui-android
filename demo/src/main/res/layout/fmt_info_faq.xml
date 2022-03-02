@@ -1,0 +1,198 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:text="@string/info_faq"
+        app:admiralTextStyle="largetitle1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar"/>
+
+    <androidx.core.widget.NestedScrollView
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <com.admiral.uikit.layout.LinearLayout
+            android:id="@+id/container"
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:orientation="vertical"
+            android:layout_marginTop="@dimen/module_x4">
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable6"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable8"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable9"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable10"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+            <com.skydoves.expandablelayout.ExpandableLayout
+                android:id="@+id/expandable11"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:expandable_showSpinner="true"
+                app:expandable_spinner="@drawable/admiral_ic_chevron_down_outline"
+                app:expandable_spinner_gravity="end"
+                app:expandable_spinner_color="#21242C"
+                app:expandable_animation="normal"
+                app:expandable_duration="300"
+                app:expandable_isExpanded="false"
+                app:expandable_parentLayout="@layout/item_faq_title"
+                app:expandable_secondLayout="@layout/item_faq_text" />
+
+        </com.admiral.uikit.layout.LinearLayout>
+
+    </androidx.core.widget.NestedScrollView>
+
+</com.admiral.uikit.layout.ConstraintLayout>

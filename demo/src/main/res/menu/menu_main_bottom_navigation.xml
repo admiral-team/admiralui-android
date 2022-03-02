@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/mainMenuHome"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_star_solid"
+        android:title="@string/main_menu_home"/>
+    <item
+        android:id="@+id/mainMenuInfo"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_mobile_solid"
+        android:title="@string/main_menu_info"/>
+    <item
+        android:id="@+id/mainMenuFeedback"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_comment_solid"
+        android:title="@string/main_menu_feedback"/>
+    <item
+        android:id="@+id/mainMenuSettings"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_settings_solid"
+        android:title="@string/main_menu_settings"/>
+</menu>

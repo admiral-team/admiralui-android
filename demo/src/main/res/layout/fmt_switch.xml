@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:text="@string/switcher_title"
+        app:admiralTextStyle="largetitle1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <com.admiral.uikit.components.tabs.StandardTabs
+        android:id="@+id/tabs"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x4"
+        app:checkedId="@id/defaultTab"
+        app:layout_constraintTop_toBottomOf="@id/title">
+
+        <com.admiral.uikit.components.tabs.StandardTab
+            android:id="@+id/defaultTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabs_default" />
+
+        <com.admiral.uikit.components.tabs.StandardTab
+            android:id="@+id/disabledTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabs_disabled" />
+    </com.admiral.uikit.components.tabs.StandardTabs>
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/tvDefault"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x9"
+        android:text="@string/switcher_on"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tabs" />
+
+    <com.admiral.uikit.components.switcher.Switcher
+        android:id="@+id/switchOn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x3"
+        android:checked="true"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvDefault" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/tvSelected"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x9"
+        android:text="@string/switcher_off"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/switchOn" />
+
+    <com.admiral.uikit.components.switcher.Switcher
+        android:id="@+id/switchOff"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x3"
+        android:orientation="horizontal"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/tvSelected" />
+
+</com.admiral.uikit.layout.ConstraintLayout>

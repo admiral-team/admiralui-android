@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/page_control_circle"
+            app:admiralTextStyle="largetitle1" />
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            android:scrollbars="none">
+
+            <com.admiral.uikit.components.tabs.OutlineSliderTabs
+                android:id="@+id/tabs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:checkedId="@+id/one">
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_two"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_three"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/four"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_four"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/five"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_five"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/six"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_six"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/seven"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_seven"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/eight"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_eight"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/nine"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_nine"
+                    app:admiralUnderlinePadding="2dp" />
+            </com.admiral.uikit.components.tabs.OutlineSliderTabs>
+        </HorizontalScrollView>
+
+        <com.admiral.uikit.components.control.CirclePageControl
+            android:id="@+id/pageControl"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/module_x20" />
+    </com.admiral.uikit.layout.LinearLayout>
+</ScrollView>

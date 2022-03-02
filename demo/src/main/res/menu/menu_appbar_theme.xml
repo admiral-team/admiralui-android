@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/themeDelete"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_delete_outline"
+        android:title="@string/themes_creates_delete"
+        app:iconTint="@color/blue_60"
+        app:showAsAction="ifRoom" />
+</menu>

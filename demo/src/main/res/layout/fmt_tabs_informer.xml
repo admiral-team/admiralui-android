@@ -1,0 +1,154 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/module_x4">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/tabs_informer_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabsState"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            app:checkedId="@+id/defaultTab">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/defaultTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_default" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/disabledTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_disabled" />
+
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x9"
+            android:text="@string/tabs_two_controls"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.tabs.InformerTabLayout
+            android:id="@+id/informerTabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:admiralIsPolygonVisible="true">
+
+            <com.admiral.uikit.components.tabs.InformerTabs
+                android:id="@+id/tabsTwo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x4"
+                app:checkedId="@+id/one2">
+
+                <com.admiral.uikit.components.tabs.InformerTab
+                    android:id="@+id/one2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralSubtitleText="@string/tabs_example_informer_tab_subtitle"
+                    app:admiralTitleText="@string/tabs_example_informer_tab_title" />
+
+                <com.admiral.uikit.components.tabs.InformerTab
+                    android:id="@+id/two2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralSubtitleText="@string/tabs_example_informer_tab_subtitle"
+                    app:admiralTitleText="@string/tabs_example_informer_tab_title" />
+
+            </com.admiral.uikit.components.tabs.InformerTabs>
+
+            <com.admiral.uikit.components.tabs.InformerTabContent
+                android:id="@+id/informer"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:admiralIconDrawable="@drawable/admiral_ic_question_solid"
+                app:admiralSubtitleText="@string/tabs_informer_example_subtitle"
+                app:admiralSummText="@string/tabs_informer_example_summ"
+                app:admiralTitleText="@string/tabs_informer_example_title" />
+
+        </com.admiral.uikit.components.tabs.InformerTabLayout>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x9"
+            android:text="@string/tabs_three_controls"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.tabs.InformerTabLayout
+            android:id="@+id/informerTabLayout2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:admiralIsPolygonVisible="true">
+
+            <com.admiral.uikit.components.tabs.InformerTabs
+                android:id="@+id/tabsThree"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x4"
+                app:checkedId="@+id/one">
+
+                <com.admiral.uikit.components.tabs.InformerTab
+                    android:id="@+id/one"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralSubtitleText="@string/tabs_example_informer_tab_subtitle"
+                    app:admiralTitleText="@string/tabs_example_informer_tab_title" />
+
+                <com.admiral.uikit.components.tabs.InformerTab
+                    android:id="@+id/two"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralSubtitleText="@string/tabs_example_informer_tab_subtitle"
+                    app:admiralTitleText="@string/tabs_example_informer_tab_title" />
+
+                <com.admiral.uikit.components.tabs.InformerTab
+                    android:id="@+id/three"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralSubtitleText="@string/tabs_example_informer_tab_subtitle"
+                    app:admiralTitleText="@string/tabs_example_informer_tab_title" />
+
+            </com.admiral.uikit.components.tabs.InformerTabs>
+
+            <com.admiral.uikit.components.tabs.InformerTabContent
+                android:id="@+id/informer2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                app:admiralIconDrawable="@drawable/admiral_ic_question_solid"
+                app:admiralSubtitleText="@string/tabs_informer_example_subtitle"
+                app:admiralSummText="@string/tabs_informer_example_summ"
+                app:admiralTitleText="@string/tabs_informer_example_title" />
+
+        </com.admiral.uikit.components.tabs.InformerTabLayout>
+
+    </com.admiral.uikit.layout.LinearLayout>
+
+</ScrollView>

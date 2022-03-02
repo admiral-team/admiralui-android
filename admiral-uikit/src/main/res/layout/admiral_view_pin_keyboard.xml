@@ -1,0 +1,194 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    tools:parentTag="com.admiral.uikit.layout.ConstraintLayout">
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/oneButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        android:text="@string/ui_digit_1"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toStartOf="@+id/twoButton"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/twoButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:gravity="center"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        android:text="@string/ui_digit_2"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toStartOf="@+id/threeButton"
+        app:layout_constraintStart_toEndOf="@+id/oneButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/threeButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        android:text="@string/ui_digit_3"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/twoButton"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/fourButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        android:gravity="center"
+        android:text="@string/ui_digit_4"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toStartOf="@+id/fiveButton"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/oneButton" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/fiveButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        android:gravity="center"
+        android:text="@string/ui_digit_5"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toStartOf="@+id/sixButton"
+        app:layout_constraintStart_toEndOf="@+id/fourButton"
+        app:layout_constraintTop_toBottomOf="@+id/oneButton" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/sixButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ui_digit_6"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/fiveButton"
+        app:layout_constraintTop_toBottomOf="@+id/oneButton" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/sevenButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        android:gravity="center"
+        android:text="@string/ui_digit_7"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toStartOf="@+id/eightButton"
+        app:layout_constraintHorizontal_chainStyle="packed"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/fourButton" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/eightButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="40dp"
+        android:layout_marginEnd="40dp"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        android:gravity="center"
+        android:text="@string/ui_digit_8"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toStartOf="@+id/nineButton"
+        app:layout_constraintStart_toEndOf="@+id/sevenButton"
+        app:layout_constraintTop_toBottomOf="@+id/fourButton" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/nineButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:text="@string/ui_digit_9"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/eightButton"
+        app:layout_constraintTop_toBottomOf="@+id/fourButton" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/zeroButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:paddingStart="26dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="26dp"
+        android:paddingBottom="11dp"
+        android:text="@string/ui_digit_0"
+        app:admiralTextStyle="pinNum"
+        app:layout_constraintEnd_toEndOf="@+id/eightButton"
+        app:layout_constraintStart_toStartOf="@+id/eightButton"
+        app:layout_constraintTop_toBottomOf="@+id/eightButton" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/additionalLeftButton"
+        android:layout_width="@dimen/module_x18"
+        android:layout_height="@dimen/module_x18"
+        android:gravity="center"
+        android:text="@string/ui_digit_9"
+        android:visibility="gone"
+        app:admiralTextStyle="subtitle3"
+        app:layout_constraintEnd_toEndOf="@+id/sevenButton"
+        app:layout_constraintStart_toStartOf="@+id/sevenButton"
+        app:layout_constraintTop_toBottomOf="@+id/sevenButton"
+        tools:text="Не могу войти"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/additionalRightButton"
+        android:layout_width="@dimen/module_x18"
+        android:layout_height="@dimen/module_x18"
+        android:paddingStart="@dimen/module_x5"
+        android:paddingTop="@dimen/module_x1"
+        android:paddingEnd="@dimen/module_x5"
+        app:layout_constraintEnd_toEndOf="@+id/nineButton"
+        app:layout_constraintStart_toStartOf="@+id/nineButton"
+        app:layout_constraintTop_toBottomOf="@+id/nineButton"
+        tools:srcCompat="@drawable/admiral_ic_fingerprint_outline" />
+
+</merge>

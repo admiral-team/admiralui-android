@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="CellUnit" parent="GlobalAttrDeclare">
+        <attr name="admiralCellUnitType" format="enum">
+            <enum name="leading" value="0" />
+            <enum name="leadingText" value="1" />
+            <enum name="trailing" value="2" />
+        </attr>
+        <attr name="admiralIcon" />
+    </declare-styleable>
+
+    <declare-styleable name="BaseCell" parent="CellUnit">
+        <attr name="admiralRadius" />
+    </declare-styleable>
+
+    <declare-styleable name="IconCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+        <attr name="admiralIcon" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorPressed" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+
+        <attr name="admiralIconColorNormalEnabledPalette" />
+    </declare-styleable>
+
+    <declare-styleable name="IconBackgroundCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+        <attr name="admiralIcon" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorPressed" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+
+        <attr name="admiralIconBackgroundColorNormalEnabled" />
+        <attr name="admiralIconBackgroundColorPressed" />
+        <attr name="admiralIconBackgroundColorNormalDisabled" />
+
+        <attr name="admiralIconColorNormalEnabledPalette" />
+    </declare-styleable>
+
+    <declare-styleable name="LabelCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+        <attr name="admiralIcon" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorPressed" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="TextLabelCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorPressed" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorPressed" />
+        <attr name="admiralTextColorNormalDisabled" />
+
+        <attr name="admiralText" />
+        <attr name="admiralTextStyle" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralTitleText" />
+        <attr name="admiralTitleTextStyle" />
+
+        <attr name="admiralTitleColorNormalEnabled" />
+        <attr name="admiralTitleColorNormalDisabled" />
+        <attr name="admiralTitleColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="TextCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralText" />
+        <attr name="admiralTextColorNormalEnabledPalette" />
+        <attr name="android:textColor" />
+
+        <attr name="admiralTextStyle" />
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="TextTitleCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralText" />
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="TextTitleChooserCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralText" />
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorPressed" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="TextSecondaryCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralText" />
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="TextButtonCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralText" />
+        <attr name="admiralTextStyle" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="TextButtonChooserCellUnit" parent="TextButtonCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorPressed" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorPressed" />
+
+        <attr name="admiralIcon" />
+
+        <attr name="admiralText" />
+        <attr name="admiralTextStyle" />
+    </declare-styleable>
+
+    <declare-styleable name="SubtitleCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralSubtitleText" format="reference|string" />
+        <attr name="admiralSubtitleTextStyle" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="DoubleSubtitleCellUnit" parent="CellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralSubtitleText" />
+        <attr name="admiralSubtitleTextSecond" format="reference|string" />
+
+        <attr name="admiralSubtitleTextStyle" />
+        <attr name="admiralSubtitleSecondTextStyle" />
+
+        <attr name="admiralSubtitleColorNormalEnabled" />
+        <attr name="admiralSubtitleColorNormalDisabled" />
+        <attr name="admiralSubtitleColorPressed" />
+
+        <attr name="admiralTitleColorNormalEnabled" />
+        <attr name="admiralTitleColorNormalDisabled" />
+        <attr name="admiralTitleColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleSubtitleCellUnit" parent="TitleCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralTitleText" />
+        <attr name="admiralSubtitleText" />
+
+        <attr name="admiralTitleTextStyle" />
+        <attr name="admiralSubtitleTextStyle" />
+
+        <attr name="admiralTitleColorNormalEnabled" />
+        <attr name="admiralTitleColorNormalDisabled" />
+        <attr name="admiralTitleColorPressed" />
+
+        <attr name="admiralSubtitleColorNormalEnabled" />
+        <attr name="admiralSubtitleColorNormalDisabled" />
+        <attr name="admiralSubtitleColorPressed" />
+
+        <attr name="admiralTitleMaxLines" format="integer" />
+    </declare-styleable>
+
+    <declare-styleable name="SubtitleTitleCellUnit" parent="TitleCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralTitleText" />
+        <attr name="admiralSubtitleText" />
+
+        <attr name="admiralTitleTextStyle" />
+        <attr name="admiralSubtitleTextStyle" />
+
+        <attr name="admiralTitleColorNormalEnabled" />
+        <attr name="admiralTitleColorNormalDisabled" />
+        <attr name="admiralTitleColorPressed" />
+
+        <attr name="admiralSubtitleColorNormalEnabled" />
+        <attr name="admiralSubtitleColorNormalDisabled" />
+        <attr name="admiralSubtitleColorPressed" />
+
+        <attr name="admiralTitleMaxLines" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleSummSubtitleCellUnit" parent="TitleSubtitleCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralTitleText" />
+        <attr name="admiralSubtitleText" />
+
+        <attr name="admiralSummText" format="reference|string" />
+        <attr name="admiralPercentText" format="reference|string" />
+        <attr name="admiralTitleMoreText" format="reference|string" />
+        <attr name="admiralSummMoreText" format="reference|string" />
+        <attr name="admiralSummMoreIcon" format="reference" />
+
+        <attr name="admiralTitleColorNormalEnabled" />
+        <attr name="admiralTitleColorNormalDisabled" />
+        <attr name="admiralTitleColorPressed" />
+
+        <attr name="admiralTitleMoreColorNormalEnabled" />
+        <attr name="admiralTitleMoreColorNormalDisabled" />
+        <attr name="admiralTitleMoreColorPressed" />
+
+        <attr name="admiralSummColorNormalEnabled" />
+        <attr name="admiralSummColorNormalDisabled" />
+        <attr name="admiralSummColorPressed" />
+
+        <attr name="admiralSummMoreColorNormalEnabled" />
+        <attr name="admiralSummMoreColorNormalDisabled" />
+        <attr name="admiralSummMoreColorPressed" />
+
+        <attr name="admiralSummMoreIconColorNormalEnabled" />
+        <attr name="admiralSummMoreIconColorNormalDisabled" />
+        <attr name="admiralSummMoreIconColorPressed" />
+
+        <attr name="admiralSubtitleColorNormalEnabled" />
+        <attr name="admiralSubtitleColorNormalDisabled" />
+        <attr name="admiralSubtitleColorPressed" />
+
+        <attr name="admiralPercentColorNormalEnabled" />
+        <attr name="admiralPercentColorNormalDisabled" />
+        <attr name="admiralPercentColorPressed" />
+
+        <attr name="admiralPercentBackgroundColorNormalEnabled" />
+        <attr name="admiralPercentBackgroundColorNormalDisabled" />
+        <attr name="admiralPercentBackgroundColorPressed" />
+
+        <attr name="admiralTitleMaxLines" />
+    </declare-styleable>
+
+    <declare-styleable name="TitleSubtitleTextbuttonCellUnit" parent="TitleSummSubtitleCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralTitleText" />
+        <attr name="admiralSubtitleText" />
+        <attr name="admiralPercentText" />
+        <attr name="admiralSubtitleSecondText" format="reference|string" />
+        <attr name="admiralButtonText" format="reference|string" />
+
+        <attr name="admiralTitleColorNormalEnabled" />
+        <attr name="admiralTitleColorNormalDisabled" />
+        <attr name="admiralTitleColorPressed" />
+
+        <attr name="admiralSubtitleColorNormalEnabled" />
+        <attr name="admiralSubtitleColorNormalDisabled" />
+        <attr name="admiralSubtitleColorPressed" />
+
+        <attr name="admiralSubtitleSecondColorNormalEnabled" format="string|reference" />
+        <attr name="admiralSubtitleSecondColorNormalDisabled" format="string|reference" />
+        <attr name="admiralSubtitleSecondColorPressed" format="string|reference" />
+
+        <attr name="admiralButtonTextColorNormalEnabled" format="string|reference" />
+        <attr name="admiralButtonTextColorNormalDisabled" format="string|reference" />
+        <attr name="admiralButtonTextColorPressed" format="string|reference" />
+
+        <attr name="admiralPercentColorNormalEnabled" format="string|reference" />
+        <attr name="admiralPercentColorNormalDisabled" format="string|reference" />
+        <attr name="admiralPercentColorPressed" format="string|reference" />
+
+        <attr name="admiralPercentBackgroundColorNormalEnabled" format="string|reference" />
+        <attr name="admiralPercentBackgroundColorNormalDisabled" format="string|reference" />
+        <attr name="admiralPercentBackgroundColorPressed" format="string|reference" />
+
+        <attr name="admiralTitleMaxLines" />
+    </declare-styleable>
+
+    <declare-styleable name="TextMessageCellUnit" parent="TitleSummSubtitleCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralTitleText" />
+        <attr name="admiralTitleMoreText" />
+        <attr name="admiralSummText" />
+        <attr name="admiralSummMoreText" />
+        <attr name="admiralSummMoreIcon" />
+
+        <attr name="admiralMessageText" format="reference|string" />
+
+        <attr name="admiralTitleColorNormalEnabled" />
+        <attr name="admiralTitleColorNormalDisabled" />
+        <attr name="admiralTitleColorPressed" />
+
+        <attr name="admiralTitleMoreColorNormalEnabled" format="string|reference" />
+        <attr name="admiralTitleMoreColorNormalDisabled" format="string|reference" />
+        <attr name="admiralTitleMoreColorPressed" format="string|reference" />
+
+        <attr name="admiralSummColorNormalEnabled" format="string|reference" />
+        <attr name="admiralSummColorNormalDisabled" format="string|reference" />
+        <attr name="admiralSummColorPressed" format="string|reference" />
+
+        <attr name="admiralSummMoreColorNormalEnabled" format="string|reference" />
+        <attr name="admiralSummMoreColorNormalDisabled" format="string|reference" />
+        <attr name="admiralSummMoreColorPressed" format="string|reference" />
+
+        <attr name="admiralSummMoreIconColorNormalEnabled" format="string|reference" />
+        <attr name="admiralSummMoreIconColorNormalDisabled" format="string|reference" />
+        <attr name="admiralSummMoreIconColorPressed" format="string|reference" />
+
+        <attr name="admiralMessageColorNormalEnabled" format="string|reference" />
+        <attr name="admiralMessageColorNormalDisabled" format="string|reference" />
+        <attr name="admiralMessageColorPressed" format="string|reference" />
+
+        <attr name="admiralMessageBackgroundColorNormalEnabled" format="string|reference" />
+        <attr name="admiralMessageBackgroundColorNormalDisabled" format="string|reference" />
+        <attr name="admiralMessageBackgroundColorPressed" format="string|reference" />
+
+        <attr name="admiralTitleMaxLines" />
+    </declare-styleable>
+
+    <declare-styleable name="SubtitlePaymentCellUnit" parent="SubtitleCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralSubtitleText" />
+        <attr name="admiralSubtitleTextStyle" />
+
+        <attr name="admiralIcon" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="ShimmerListCellUnit">
+        <attr name="admiralCellUnitType" />
+        <attr name="admiralViewsCount" format="integer" />
+        <attr name="admiralShimmerColor" />
+    </declare-styleable>
+
+    <declare-styleable name="ShimmerCellUnit">
+        <attr name="admiralCellUnitType" />
+        <attr name="admiralShimmerColor" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="RadioButtonCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralIsError" />
+
+        <attr name="admiralButtonTintColorNormalEnabled" />
+        <attr name="admiralButtonTintColorNormalDisabled" />
+        <attr name="admiralButtonTintColorCheckedEnabled" />
+        <attr name="admiralButtonTintColorCheckedDisabled" />
+        <attr name="admiralButtonTintColorErrorEnabled" />
+        <attr name="admiralButtonTintColorErrorDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+        <attr name="admiralTextColorErrorEnabled" />
+        <attr name="admiralTextColorErrorDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="SwitcherCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralThumbTintColorNormalEnabled" />
+        <attr name="admiralThumbTintColorNormalDisabled" />
+        <attr name="admiralThumbTintColorCheckedEnabled" />
+        <attr name="admiralThumbTintColorCheckedDisabled" />
+        <attr name="admiralTrackTintColorNormalEnabled" />
+        <attr name="admiralTrackTintColorNormalDisabled" />
+        <attr name="admiralTrackTintColorCheckedEnabled" />
+        <attr name="admiralTrackTintColorCheckedDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="CheckboxCellUnit">
+        <attr name="admiralCellUnitType" />
+
+        <attr name="admiralIsError" />
+
+        <attr name="admiralButtonTintColorNormalEnabled" />
+        <attr name="admiralButtonTintColorNormalDisabled" />
+        <attr name="admiralButtonTintColorCheckedEnabled" />
+        <attr name="admiralButtonTintColorCheckedDisabled" />
+        <attr name="admiralButtonTintColorErrorEnabled" />
+        <attr name="admiralButtonTintColorErrorDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+        <attr name="admiralTextColorErrorEnabled" />
+        <attr name="admiralTextColorErrorDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="CellUnitContainer">
+        <attr name="admiralCellUnitType" />
+    </declare-styleable>
+</resources>

@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.google.android.material.chip.Chip
+        android:id="@+id/admiralChip"
+        android:layout_width="wrap_content"
+        android:layout_height="36dp"
+        android:maxWidth="300dp"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:stateListAnimator="@null"
+        app:chipEndPadding="@dimen/module_x4"
+        app:chipMinTouchTargetSize="0dp"
+        app:chipStartPadding="@dimen/module_x4"
+        app:closeIconEndPadding="0dp"
+        app:closeIconStartPadding="@dimen/module_x2"
+        app:iconEndPadding="@dimen/module_x2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:textEndPadding="0dp"
+        app:textStartPadding="0dp" />
+
+</merge>

@@ -1,0 +1,283 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/admiral_bg_rectangle_16dp"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.handle.HandleView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="8dp"
+            android:layout_gravity="center_horizontal" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x5"
+            android:layout_marginEnd="@dimen/module_x4"
+            android:layout_marginBottom="@dimen/module_x5"
+            android:text="@string/bottom_sheet_dialog_title"
+            app:admiralTextStyle="title1"
+            app:drawableEndCompat="@drawable/admiral_ic_close_outline" />
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/baseCell1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/iconCell1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIcon="@drawable/test_ic_card" />
+
+            <com.admiral.uikit.components.cell.unit.TitleSummSubtitleCellUnit
+                android:id="@+id/subtitleTitleCellUnit1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralSummText="56 000.00 ₽"
+                app:admiralTitleText="Зарплатная карта" />
+
+            <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
+                android:id="@+id/checkBoxCellUnit1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/baseCell2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/iconCell2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIcon="@drawable/test_ic_card" />
+
+            <com.admiral.uikit.components.cell.unit.TitleSummSubtitleCellUnit
+                android:id="@+id/subtitleTitleCellUnit2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralSummText="5 000.00₽"
+                app:admiralTitleText="Карта" />
+
+            <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
+                android:id="@+id/checkBoxCellUnit2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/baseCell3"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/iconCell3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIcon="@drawable/test_ic_card" />
+
+            <com.admiral.uikit.components.cell.unit.TitleSummSubtitleCellUnit
+                android:id="@+id/subtitleTitleCellUnit3"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralSummText="200 000.00₽"
+                app:admiralTitleText="Новая карта" />
+
+            <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
+                android:id="@+id/checkBoxCellUnit3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/baseCell4"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/iconCell4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIcon="@drawable/test_ic_card" />
+
+            <com.admiral.uikit.components.cell.unit.TitleSummSubtitleCellUnit
+                android:id="@+id/subtitleTitleCellUnit4"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralSummText="2 000.00₽"
+                app:admiralTitleMoreText="• 6554"
+                app:admiralTitleText="Мультикарта" />
+
+            <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
+                android:id="@+id/checkBoxCellUnit4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/baseCell5"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/iconCell5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIcon="@drawable/test_ic_card" />
+
+            <com.admiral.uikit.components.cell.unit.TitleSummSubtitleCellUnit
+                android:id="@+id/subtitleTitleCellUnit5"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralSummText="11 000.00₽"
+                app:admiralTitleMoreText="• 5544"
+                app:admiralTitleText="Мультикарта" />
+
+            <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
+                android:id="@+id/checkBoxCellUnit5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/baseCell6"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/iconCell6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIcon="@drawable/test_ic_card" />
+
+            <com.admiral.uikit.components.cell.unit.TitleSummSubtitleCellUnit
+                android:id="@+id/subtitleTitleCellUnit6"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralSummText="1 000.00₽"
+                app:admiralTitleText="Карта" />
+
+            <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
+                android:id="@+id/checkBoxCellUnit6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3"
+            android:text="@string/cells_lorem_ipsum"
+            app:admiralTextStyle="body2" />
+
+        <com.admiral.uikit.layout.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/admiral_bg_rectangle_16dp"
+            android:orientation="horizontal">
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btn_choose_all_cards"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x3"
+                android:layout_marginBottom="@dimen/module_x5"
+                android:text="@string/bottom_sheet_dialog_button_additional"
+                app:admiralButtonSize="small"
+                app:admiralButtonStyle="ghost"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btn_ready"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x3"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:layout_marginBottom="@dimen/module_x5"
+                android:text="@string/bottom_sheet_dialog_action"
+                app:admiralButtonSize="small"
+                app:admiralButtonStyle="ghost"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+        </com.admiral.uikit.layout.ConstraintLayout>
+
+    </com.admiral.uikit.layout.LinearLayout>
+
+</androidx.core.widget.NestedScrollView>

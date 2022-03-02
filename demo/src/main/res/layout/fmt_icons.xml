@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:id="@+id/linear"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:admiralTitleText="Icons"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.admiral.uikit.components.textfield.TextFieldSearch
+            android:id="@+id/search"
+            style="@style/Widget.AppCompat.EditText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginEnd="@dimen/module_x4"
+            android:hint="Поиск" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x6"
+            app:checkedId="@id/tabOutline">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabOutline"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Outline" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabSolid"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Solid" />
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/rvIcons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:clipToPadding="false"
+            android:columnCount="5"
+            android:nestedScrollingEnabled="true"
+            android:overScrollMode="never"
+            android:paddingStart="10dp"
+            android:paddingTop="@dimen/module_x4"
+            android:paddingEnd="10dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/textTitle" />
+    </com.admiral.uikit.layout.LinearLayout>
+
+    <com.admiral.uikit.components.informer.InformerSmall
+        android:id="@+id/informer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone" />
+</FrameLayout>

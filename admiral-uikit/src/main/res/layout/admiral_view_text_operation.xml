@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@drawable/admiral_bg_message_chat"
+    tools:backgroundTint="@color/red_10"
+    tools:layout_height="wrap_content"
+    tools:layout_width="@dimen/admiral_chat_text_operation_width"
+    tools:paddingBottom="@dimen/module_x2"
+    tools:paddingEnd="@dimen/module_x3"
+    tools:paddingStart="@dimen/module_x3"
+    tools:paddingTop="@dimen/module_x2"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/title"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:admiralTextStyle="subhead1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Счёт ***6789 заблокирован"
+        tools:visibility="visible" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/message"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x1"
+        android:visibility="gone"
+        app:admiralTextStyle="subhead3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title"
+        tools:text="Оплатите задолженность"
+        tools:visibility="visible" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/dateTime"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x2"
+        android:visibility="gone"
+        app:admiralTextStyle="caption1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/message"
+        tools:text="13 мая 14:15"
+        tools:visibility="visible" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/time"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x1"
+        android:layout_marginEnd="@dimen/module_x1"
+        android:gravity="end"
+        android:visibility="gone"
+        app:admiralTextColorNormalEnabledPalette="textSecondary"
+        app:admiralTextStyle="caption1"
+        app:layout_constraintEnd_toStartOf="@+id/statusIcon"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTime"
+        tools:text="14:52"
+        tools:visibility="visible" />
+
+    <com.admiral.uikit.components.imageview.ImageView
+        android:id="@+id/statusIcon"
+        android:layout_width="@dimen/module_x4"
+        android:layout_height="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dateTime"
+        tools:src="@drawable/admiral_ic_status_one_outline" />
+
+</merge>

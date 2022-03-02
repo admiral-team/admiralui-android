@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.appcompat.widget.LinearLayoutCompat xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/custom_toast_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/admiral_bg_rectangle_8dp"
+    android:orientation="horizontal"
+    android:paddingTop="@dimen/module_x3"
+    android:paddingBottom="@dimen/module_x3">
+
+    <com.admiral.uikit.components.imageview.ImageView
+        android:id="@+id/admiralIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x5"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.LinearLayoutCompat
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:layout_weight="1"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/admiralToastTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralTextStyle="body2"
+            app:layout_goneMarginEnd="@dimen/module_x4"
+            tools:text="At breakpoint boundaries, mini units divide the screen into a fixed master grid." />
+
+        <com.admiral.uikit.components.links.Link
+            android:id="@+id/admiralLinkTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x2"
+            android:visibility="gone"
+            tools:text="Link text" />
+    </androidx.appcompat.widget.LinearLayoutCompat>
+
+    <com.admiral.uikit.components.imageview.ImageView
+        android:id="@+id/admiralCloseIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x5"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/admiral_ic_close_outline" />
+
+</androidx.appcompat.widget.LinearLayoutCompat>

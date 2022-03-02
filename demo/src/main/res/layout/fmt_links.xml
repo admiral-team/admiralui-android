@@ -1,0 +1,160 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:text="@string/links_title"
+        app:admiralTextStyle="largetitle1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+    <com.admiral.uikit.components.tabs.StandardTabs
+        android:id="@+id/tabsState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x4"
+        app:checkedId="@+id/defaultTab"
+        app:layout_constraintTop_toBottomOf="@+id/admiralTextView">
+
+        <com.admiral.uikit.components.tabs.StandardTab
+            android:id="@+id/defaultTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabs_default" />
+
+        <com.admiral.uikit.components.tabs.StandardTab
+            android:id="@+id/disabledTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabs_disabled" />
+
+    </com.admiral.uikit.components.tabs.StandardTabs>
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralTextView2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x13"
+        android:text="@string/links_size_big"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="headline"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/tabsState" />
+
+    <HorizontalScrollView
+        android:id="@+id/rootFirst"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x4"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/module_x4"
+        android:paddingEnd="@dimen/module_x4"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admiralTextView2">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.admiral.uikit.components.links.Link
+                android:id="@+id/admiralLink"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralText="@string/links_title"
+                app:drawableStartCompat="@drawable/admiral_ic_arrow_left_outline" />
+
+            <com.admiral.uikit.components.links.Link
+                android:id="@+id/admiralLink2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x10"
+                app:admiralText="@string/links_title"
+                app:drawableEndCompat="@drawable/admiral_ic_arrow_right_outline" />
+
+            <com.admiral.uikit.components.links.Link
+                android:id="@+id/admiralLink5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x10"
+                app:admiralText="@string/links_title" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralTextView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x10"
+        android:text="@string/links_size_small"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="headline"
+        app:layout_constraintStart_toStartOf="@+id/rootFirst"
+        app:layout_constraintTop_toBottomOf="@+id/rootFirst" />
+
+    <HorizontalScrollView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x4"
+        android:clipToPadding="false"
+        android:paddingStart="@dimen/module_x4"
+        android:paddingEnd="@dimen/module_x4"
+        android:scrollbars="none"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/admiralTextView3">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+
+            <com.admiral.uikit.components.links.Link
+                android:id="@+id/admiralLink3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralLinkSize="small"
+                app:admiralText="@string/links_title"
+                app:drawableStartCompat="@drawable/long_arrow_left"
+                app:layout_constraintVertical_bias="0.0" />
+
+            <com.admiral.uikit.components.links.Link
+                android:id="@+id/admiralLink4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x10"
+                app:admiralLinkSize="small"
+                app:admiralText="@string/links_title"
+                app:drawableEndCompat="@drawable/long_arrow_right" />
+
+            <com.admiral.uikit.components.links.Link
+                android:id="@+id/admiralLink6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x10"
+                app:admiralLinkSize="small"
+                app:admiralText="@string/links_title" />
+
+        </LinearLayout>
+
+    </HorizontalScrollView>
+
+</com.admiral.uikit.layout.ConstraintLayout>

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.textfield.TextField
+            android:id="@+id/textField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x4"
+            android:layout_marginEnd="@dimen/module_x4"
+            android:imeOptions="actionDone"
+            app:admiralIcon="@drawable/admiral_ic_edit_solid"
+            app:admiralTextOptional="@string/themes_creates_hint"
+            app:admiralTextPlaceholder="@string/themes_creates_hint"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admiralTextView5" />
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnColors"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/standardTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/colors_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/standardTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnTypography"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/logoTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/typography_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/logoTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+    </com.admiral.uikit.layout.LinearLayout>
+
+    <com.admiral.uikit.components.button.Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/module_x4"
+        android:text="@string/themes_creates_apply"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</com.admiral.uikit.layout.ConstraintLayout>

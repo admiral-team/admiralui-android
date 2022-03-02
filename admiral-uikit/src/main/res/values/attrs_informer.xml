@@ -1,0 +1,100 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Informer" parent="GlobalAttrDeclare">
+        <attr name="admiralInformerStyle" format="enum">
+            <enum name="info" value="0" />
+            <enum name="attention" value="1" />
+            <enum name="success" value="2" />
+            <enum name="error" value="3" />
+        </attr>
+
+        <attr name="admiralHeadlineText" format="reference|string" />
+        <attr name="admiralInfoText" format="reference|string" />
+        <attr name="admiralLinkText" format="reference|string" />
+
+        <attr name="admiralPointerBias" format="float" />
+    </declare-styleable>
+
+    <declare-styleable name="InformerBig" parent="GlobalAttrDeclare">
+        <attr name="admiralInformerStyle" />
+        <attr name="admiralPointerBias" />
+        <attr name="enabled" />
+
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorPressed" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorPressed" />
+        <attr name="admiralTextColorNormalDisabled" />
+
+        <attr name="admiralLinkColorNormal" />
+        <attr name="admiralLinkColorPressed" />
+        <attr name="admiralLinkColorDisabled" />
+
+        <attr name="admiralHeadlineText" />
+        <attr name="admiralInfoText" />
+        <attr name="admiralLinkText" />
+    </declare-styleable>
+
+    <declare-styleable name="InformerSmall" parent="GlobalAttrDeclare">
+        <attr name="admiralInformerStyle" />
+        <attr name="enabled" />
+
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorPressed" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorPressed" />
+        <attr name="admiralTextColorNormalDisabled" />
+
+        <attr name="admiralInfoText" />
+
+        <attr name="admiralPointerBias" />
+        <attr name="admiralPointerGravity" format="enum">
+            <enum name="top" value="0" />
+            <enum name="bottom" value="1" />
+        </attr>
+
+        <attr name="admiralRadius" />
+    </declare-styleable>
+
+    <declare-styleable name="StaticNotification" parent="GlobalAttrDeclare">
+        <attr name="admiralNotificationStyle" format="enum">
+            <enum name="info" value="0" />
+            <enum name="attention" value="1" />
+            <enum name="success" value="2" />
+            <enum name="error" value="3" />
+        </attr>
+
+        <attr name="enabled" />
+
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorPressed" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorPressed" />
+        <attr name="admiralTextColorNormalDisabled" />
+
+        <attr name="admiralLinkColorNormal" />
+        <attr name="admiralLinkColorPressed" />
+        <attr name="admiralLinkColorDisabled" />
+
+        <attr name="admiralHeadlineText" />
+        <attr name="admiralText" />
+        <attr name="admiralLinkText" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorPressed" />
+
+        <attr name="admiralIcon" />
+
+        <attr name="admiralIsBackgroundDefault" format="boolean" />
+
+        <attr name="admiralIsIconVisible" format="boolean" />
+        <attr name="admiralIsCloseIconVisible" format="boolean" />
+    </declare-styleable>
+</resources>

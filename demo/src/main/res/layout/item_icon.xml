@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/module_x3"
+    android:layout_marginEnd="@dimen/module_x3"
+    android:layout_marginBottom="@dimen/module_x6"
+    android:gravity="center"
+    android:orientation="vertical">
+
+    <ImageView
+        android:id="@+id/icon"
+        android:layout_width="@dimen/module_x6"
+        android:layout_height="@dimen/module_x6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/tvIconName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x1"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="subhead3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon"
+        tools:text="#312244" />
+</com.admiral.uikit.layout.LinearLayout>

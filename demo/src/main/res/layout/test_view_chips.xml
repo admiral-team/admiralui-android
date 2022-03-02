@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.chip.ChipGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/chips"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.AdmiralUIAndroid.Launcher">
+
+    <com.admiral.uikit.components.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralText="@string/tags_chips_chip"
+        app:chipIcon="@drawable/admiral_ic_car_solid"
+        app:closeIconEnabled="true" />
+
+    <com.admiral.uikit.components.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralText="@string/tags_chips_chip"
+        app:closeIconEnabled="true" />
+
+    <com.admiral.uikit.components.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralText="@string/tags_chips_icons"
+        app:chipIcon="@drawable/admiral_ic_car_solid" />
+
+    <com.admiral.uikit.components.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:chipIcon="@drawable/admiral_ic_car_solid" />
+
+    <com.admiral.uikit.components.chip.Chip
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralText="@string/tags_chips_emoji" />
+
+</com.admiral.uikit.components.chip.ChipGroup>

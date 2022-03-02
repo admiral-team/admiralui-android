@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true">
+
+    <com.admiral.uikit.layout.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="@dimen/module_x4"
+            android:text="@string/bottom_sheet_title"
+            app:admiralTextStyle="largetitle1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/hint"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x6"
+            android:layout_marginEnd="@dimen/module_x4"
+            android:text="@string/bottom_sheet_hint"
+            app:admiralTextStyle="body2"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/title" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/hintOpenDialog"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x4"
+            android:layout_marginBottom="@dimen/module_x4"
+            android:drawablePadding="@dimen/module_x1"
+            android:text="@string/bottom_sheet_action"
+            app:admiralTextStyle="body2"
+            app:drawableEndCompat="@drawable/admiral_ic_arrow_down_outline"
+            app:drawableTint="@color/blue_60"
+            app:layout_constraintBottom_toTopOf="@+id/buttonShowBottomSheet"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/hint"
+            app:layout_constraintVertical_bias="0" />
+
+        <com.admiral.uikit.components.button.Button
+            android:id="@+id/buttonShowBottomSheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x1"
+            android:layout_marginEnd="@dimen/module_x4"
+            android:text="@string/bottom_sheet_button"
+            app:admiralButtonStyle="ghost"
+            app:layout_constraintTop_toBottomOf="@+id/hintOpenDialog" />
+
+    </com.admiral.uikit.layout.ConstraintLayout>
+</ScrollView>
+
