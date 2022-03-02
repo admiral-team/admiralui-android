@@ -1,0 +1,34 @@
+image: jangrewe/gitlab-ci-android:28
+
+before_script:
+  - export GRADLE_USER_HOME=$(pwd)/.gradle
+  - chmod +x ./gradlew
+
+cache:
+  key: ${CI_PROJECT_ID}
+  paths:
+    - .gradle/
+
+stages:
+  - code_quality
+  - build
+
+detektAll:
+  stage: code_quality
+  script:
+    - ./gradlew detektAll
+  artifacts:
+    when: on_failure
+    name: "detektAll_${CI_COMMIT_REF_NAME}"
+    expire_in: 1 days
+    paths:
+      - build/reports/detekt/detekt.html
+  only:
+    - merge_requests
+
+build:
+  stage: build
+  script:
+    - ./gradlew :demo:assembleDebug
+  only:
+    - merge_requests

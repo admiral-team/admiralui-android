@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <View
+        android:id="@+id/backgroundViewColor"
+        android:layout_width="@dimen/module_x11"
+        android:layout_height="@dimen/module_x11"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x3"
+        android:layout_marginBottom="@dimen/module_x3"
+        android:background="@drawable/admiral_bg_round"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/backgroundViewColorBorder"
+        android:layout_width="@dimen/module_x11"
+        android:layout_height="@dimen/module_x11"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x3"
+        android:layout_marginBottom="@dimen/module_x3"
+        android:background="@drawable/admiral_bg_ring"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/tvColorName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x3"
+        android:text="Background"
+        app:admiralTextStyle="body1"
+        app:layout_constraintStart_toEndOf="@id/backgroundViewColor"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/tvColorHex"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x1"
+        android:text="#312244"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="subhead3"
+        app:layout_constraintStart_toEndOf="@id/backgroundViewColor"
+        app:layout_constraintTop_toBottomOf="@id/tvColorName" />
+
+    <ImageView
+        android:id="@+id/imageViewChevron"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/backgroundViewColor"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/backgroundViewColor"
+        app:srcCompat="@drawable/admiral_ic_chevron_right_outline" />
+
+</com.admiral.uikit.layout.ConstraintLayout>

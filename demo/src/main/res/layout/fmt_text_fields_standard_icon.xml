@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/text_fields_standard_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            android:scrollbars="none">
+
+            <com.admiral.uikit.components.tabs.OutlineSliderTabs
+                android:id="@+id/tabs"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:checkedId="@+id/defaultTab">
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/defaultTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_fields_default"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/read"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_fields_read_only"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/error"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_fields_error"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/disabled"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/text_fields_disabled"
+                    app:admiralUnderlinePadding="2dp" />
+
+            </com.admiral.uikit.components.tabs.OutlineSliderTabs>
+
+        </HorizontalScrollView>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x9"
+            android:text="@string/text_fields_basic"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.textfield.TextField
+            android:id="@+id/textField"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x2"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            app:admiralTextAdditional="@string/text_fields_example_slider_additional"
+            app:admiralTextOptional="@string/text_fields_optional_label" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x9"
+            android:text="@string/text_fields_masked"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.textfield.TextField
+            android:id="@+id/textFieldMasked"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x2"
+            android:inputType="textPassword"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            app:admiralIsShowPasswordIconEnabled="true"
+            app:admiralTextAdditional="@string/text_fields_example_slider_additional"
+            app:admiralTextOptional="@string/text_fields_optional_label" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x9"
+            android:text="@string/text_fields_multiline"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.textfield.TextField
+            android:id="@+id/textFieldMultiline"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x2"
+            android:inputType="textMultiLine"
+            android:paddingStart="16dp"
+            android:paddingTop="8dp"
+            android:paddingEnd="16dp"
+            app:admiralTextAdditional="@string/text_fields_example_slider_additional"
+            app:admiralTextOptional="@string/text_fields_optional_label" />
+
+    </com.admiral.uikit.layout.LinearLayout>
+
+</ScrollView>

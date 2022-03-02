@@ -1,0 +1,155 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="84dp"
+    android:orientation="vertical"
+    android:paddingStart="16dp"
+    android:paddingTop="8dp"
+    android:paddingEnd="16dp"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.admiral.uikit.components.textfield.TextFieldInputLayout
+        android:id="@+id/inputLayoutFrom"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        app:prefixText="@string/admiral_slider_from"
+        app:prefixTextAppearance="@style/AdmiralTextAppearance.Body1"
+        app:hintTextAppearance="@style/AdmiralTextAppearance.Subhead2"
+        app:layout_constraintEnd_toStartOf="@+id/inputLayoutTo"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@null"
+            android:inputType="number"
+            android:paddingTop="@dimen/module_x2"
+            android:textAppearance="@style/AdmiralTextAppearance.Body1"
+            android:textCursorDrawable="@null"
+            tools:text="от 10"
+            tools:textColor="@color/grey_40" />
+
+    </com.admiral.uikit.components.textfield.TextFieldInputLayout>
+
+    <com.admiral.uikit.components.textfield.TextFieldInputLayout
+        android:id="@+id/inputLayoutTo"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        app:prefixText="@string/admiral_slider_to"
+        app:prefixTextAppearance="@style/AdmiralTextAppearance.Body1"
+        app:hintTextAppearance="@style/AdmiralTextAppearance.Subhead2"
+        app:layout_constraintEnd_toStartOf="@id/iconImageView"
+        app:layout_constraintTop_toTopOf="parent"
+        app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editTextTo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@null"
+            android:inputType="number"
+            android:paddingTop="@dimen/module_x2"
+            android:textAppearance="@style/AdmiralTextAppearance.Body1"
+            android:textCursorDrawable="@null"
+            tools:text="до 10000"
+            tools:textColor="@color/grey_40" />
+
+    </com.admiral.uikit.components.textfield.TextFieldInputLayout>
+
+    <com.admiral.uikit.components.imageview.ImageView
+        android:id="@+id/iconImageView"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginBottom="@dimen/module_x1"
+        android:background="@drawable/admiral_bg_round"
+        android:backgroundTint="@color/transparent"
+        android:baselineAlignBottom="true"
+        android:scaleType="centerInside"
+        android:src="@drawable/admiral_ic_archive_solid"
+        android:visibility="gone"
+        app:layout_constraintBottom_toTopOf="@+id/rangeSlider"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:admiralIconColorNormalEnabledPalette="elementPrimary"
+        tools:visibility="visible"/>
+
+    <com.admiral.uikit.components.informer.InformerSmall
+        android:id="@+id/admiralSliderInformer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/module_x1"
+        android:visibility="gone"
+        app:admiralInfoText="Text Informer"
+        app:admiralPointerBias="0.95"
+        app:layout_constraintEnd_toEndOf="@id/iconImageView"
+        app:layout_constraintTop_toBottomOf="@id/iconImageView"
+        tools:visibility="visible"
+        tools:alpha="0.4"/>
+
+    <com.google.android.material.slider.RangeSlider
+        android:id="@+id/rangeSlider"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingStart="@dimen/admiral_slider_padding"
+        android:paddingEnd="@dimen/admiral_slider_padding"
+        android:saveEnabled="false"
+        android:valueFrom="0"
+        android:valueTo="10000"
+        app:labelBehavior="gone"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/inputLayoutFrom"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/leftTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="subhead2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rangeSlider"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="10" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/rightTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="subhead2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/rangeSlider"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="10000" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/additionalTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x3"
+        android:ellipsize="end"
+        android:maxLines="1"
+        app:admiralTextColorNormalEnabled="@color/grey_40"
+        app:admiralTextStyle="subhead2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/leftTextView"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Additional text" />
+
+</merge>

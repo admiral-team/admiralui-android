@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="module_x1">4dp</dimen>
+    <dimen name="module_x2">8dp</dimen>
+    <dimen name="module_x3">12dp</dimen>
+    <dimen name="module_x4">16dp</dimen>
+    <dimen name="module_x5">20dp</dimen>
+    <dimen name="module_x6">24dp</dimen>
+    <dimen name="module_x7">28dp</dimen>
+    <dimen name="module_x8">32dp</dimen>
+    <dimen name="module_x9">36dp</dimen>
+    <dimen name="module_x10">40dp</dimen>
+    <dimen name="module_x11">44dp</dimen>
+    <dimen name="module_x12">48dp</dimen>
+    <dimen name="module_x13">52dp</dimen>
+    <dimen name="module_x14">56dp</dimen>
+    <dimen name="module_x15">60dp</dimen>
+    <dimen name="module_x16">64dp</dimen>
+    <dimen name="module_x17">68dp</dimen>
+    <dimen name="module_x18">72dp</dimen>
+    <dimen name="module_x19">76dp</dimen>
+    <dimen name="module_x20">80dp</dimen>
+    <dimen name="module_x21">84dp</dimen>
+    <dimen name="module_x22">88dp</dimen>
+    <dimen name="module_x23">92dp</dimen>
+    <dimen name="module_x24">96dp</dimen>
+    <dimen name="module_x25">100dp</dimen>
+    <dimen name="module_x45">180dp</dimen>
+</resources>

@@ -1,0 +1,330 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.ConstraintLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/admiralTextView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/badges_normal_title"
+            app:admiralTextStyle="largetitle1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabs"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            app:checkedId="@+id/defaultTab"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/admiralTextView">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/defaultTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_default" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/disabledTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_disabled" />
+
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumber"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x7"
+            android:layout_marginEnd="@dimen/module_x4"
+            app:admiralInputMinValue="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/tabs" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/textView"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/badges_additional"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber"
+            app:layout_constraintEnd_toStartOf="@+id/inputNumber"
+            app:layout_constraintStart_toEndOf="@+id/iconBackgroundCellUnit"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber" />
+
+        <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
+            android:id="@+id/iconBackgroundCellUnit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            app:admiralIcon="@drawable/admiral_ic_bonus_solid"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber" />
+
+        <com.admiral.uikit.components.badge.Badge
+            android:id="@+id/admiralBadge"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x7"
+            android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeStyle="additional"
+            app:admiralText="@string/badges_example_start"
+            app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit"
+            app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumber1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x7"
+            android:layout_marginEnd="@dimen/module_x4"
+            app:admiralInputMinValue="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputNumber" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/textView1"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/badges_neutral"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber1"
+            app:layout_constraintEnd_toStartOf="@+id/inputNumber1"
+            app:layout_constraintHorizontal_bias="0"
+            app:layout_constraintStart_toEndOf="@+id/iconBackgroundCellUnit1"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber1" />
+
+        <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
+            android:id="@+id/iconBackgroundCellUnit1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            app:admiralIcon="@drawable/admiral_ic_bonus_solid"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber1" />
+
+        <com.admiral.uikit.components.badge.Badge
+            android:id="@+id/admiralBadge1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x7"
+            android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeStyle="neutral"
+            app:admiralText="@string/badges_example_start"
+            app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit1"
+            app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit1" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumber2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x7"
+            android:layout_marginEnd="@dimen/module_x4"
+            app:admiralInputMinValue="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputNumber1" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/textView2"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/badges_default"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber2"
+            app:layout_constraintEnd_toStartOf="@+id/inputNumber2"
+            app:layout_constraintStart_toEndOf="@+id/iconBackgroundCellUnit2"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber2" />
+
+        <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
+            android:id="@+id/iconBackgroundCellUnit2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            app:admiralIcon="@drawable/admiral_ic_bonus_solid"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber2"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber2" />
+
+        <com.admiral.uikit.components.badge.Badge
+            android:id="@+id/admiralBadge2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x7"
+            android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeStyle="normal"
+            app:admiralText="@string/badges_example_start"
+            app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit2"
+            app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit2" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumber3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x7"
+            android:layout_marginEnd="@dimen/module_x4"
+            app:admiralInputMinValue="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputNumber2" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/textView3"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/badges_success"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber3"
+            app:layout_constraintEnd_toStartOf="@+id/inputNumber3"
+            app:layout_constraintStart_toEndOf="@+id/iconBackgroundCellUnit3"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber3" />
+
+        <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
+            android:id="@+id/iconBackgroundCellUnit3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            app:admiralIcon="@drawable/admiral_ic_bonus_solid"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber3"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber3" />
+
+        <com.admiral.uikit.components.badge.Badge
+            android:id="@+id/admiralBadge3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x7"
+            android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeStyle="success"
+            app:admiralText="@string/badges_example_start"
+            app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit3"
+            app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit3" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumber4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x7"
+            android:layout_marginEnd="@dimen/module_x4"
+            app:admiralInputMinValue="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputNumber3" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/textView4"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/badges_error"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber4"
+            app:layout_constraintEnd_toStartOf="@+id/inputNumber4"
+            app:layout_constraintStart_toEndOf="@+id/iconBackgroundCellUnit4"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber4" />
+
+        <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
+            android:id="@+id/iconBackgroundCellUnit4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            app:admiralIcon="@drawable/admiral_ic_bonus_solid"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber4"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber4" />
+
+        <com.admiral.uikit.components.badge.Badge
+            android:id="@+id/admiralBadge4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x7"
+            android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeStyle="error"
+            app:admiralText="@string/badges_example_start"
+            app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit4"
+            app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit4" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumber5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x7"
+            android:layout_marginEnd="@dimen/module_x4"
+            app:admiralInputMinValue="0"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/inputNumber4" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/textView5"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:text="@string/badges_attention"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber5"
+            app:layout_constraintEnd_toStartOf="@+id/inputNumber5"
+            app:layout_constraintStart_toEndOf="@+id/iconBackgroundCellUnit5"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber5" />
+
+        <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
+            android:id="@+id/iconBackgroundCellUnit5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            app:admiralIcon="@drawable/admiral_ic_bonus_solid"
+            app:layout_constraintBottom_toBottomOf="@+id/inputNumber5"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="@+id/inputNumber5" />
+
+        <com.admiral.uikit.components.badge.Badge
+            android:id="@+id/admiralBadge5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x7"
+            android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeStyle="attention"
+            app:admiralText="@string/badges_example_start"
+            app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit5"
+            app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit5" />
+
+    </com.admiral.uikit.layout.ConstraintLayout>
+
+</ScrollView>

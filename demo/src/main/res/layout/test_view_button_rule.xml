@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.button.ButtonRule xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/buttonRule"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingStart="@dimen/module_x4"
+    android:paddingEnd="@dimen/module_x4"
+    android:theme="@style/Theme.AdmiralUIAndroid.Launcher"
+    app:admiralRuleText="@string/buttons_example_rule"
+    app:admiralTextAction="@string/buttons_example_rules_action"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />

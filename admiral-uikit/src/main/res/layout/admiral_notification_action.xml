@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/custom_toast_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="@drawable/admiral_bg_rectangle_8dp"
+    android:orientation="horizontal">
+
+    <FrameLayout
+        android:id="@+id/admiralTimer"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginStart="18dp"
+        android:layout_marginTop="@dimen/module_x3"
+        android:layout_marginBottom="@dimen/module_x3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ProgressBar
+            android:id="@+id/admiralProgressTimer"
+            style="?android:attr/progressBarStyleHorizontal"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:indeterminate="false"
+            android:max="100"
+            android:progress="75"
+            android:progressDrawable="@drawable/admiral_progress_bar"
+            android:scaleX="-1"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/admiralTextTimer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center"
+            app:admiralTextStyle="subhead3"
+            tools:text="5" />
+    </FrameLayout>
+
+    <com.admiral.uikit.components.links.Link
+        android:id="@+id/admiralTextCancel"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/module_x4"
+        app:admiralText="Отмена"
+        app:admiralTextStyle="body2"
+        app:layout_constraintBottom_toBottomOf="@+id/admiralActionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/admiralActionTextView" />
+
+    <ImageView
+        android:id="@+id/admiralNotificationActionImageCanel"
+        android:layout_width="28dp"
+        android:layout_height="28dp"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/admiralActionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/admiralActionTextView"
+        tools:visibility="visible" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralActionTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        app:admiralTextStyle="body2"
+        app:layout_constraintBottom_toBottomOf="@+id/admiralTimer"
+        app:layout_constraintEnd_toStartOf="@id/admiralTextCancel"
+        app:layout_constraintStart_toEndOf="@id/admiralTimer"
+        app:layout_constraintTop_toTopOf="@+id/admiralTimer"
+        app:layout_goneMarginEnd="@dimen/module_x4"
+        tools:text="en into a fixed master grid." />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="@dimen/module_x3"
+        app:layout_constraintTop_toBottomOf="@id/admiralActionTextView" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

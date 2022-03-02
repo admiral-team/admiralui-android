@@ -1,0 +1,119 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.chip.ChipGroup xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tags"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:theme="@style/Theme.AdmiralUIAndroid.Launcher">
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="blue"
+        app:admiralText="@string/tags_chips_chip"
+        app:chipIcon="@drawable/admiral_ic_car_solid"
+        app:isIconColored="true" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="blue"
+        app:admiralText="@string/tags_chips_emoji" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralIconPosition="right"
+        app:admiralTagColor="blue"
+        app:admiralText="@string/tags_chips_flag"
+        app:chipIcon="@drawable/test_ic_france" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="gray"
+        app:admiralText="@string/tags_chips_chip"
+        app:chipIcon="@drawable/admiral_ic_car_solid"
+        app:isIconColored="true" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="gray"
+        app:admiralText="@string/tags_chips_emoji" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralIconPosition="right"
+        app:admiralTagColor="gray"
+        app:admiralText="@string/tags_chips_flag"
+        app:chipIcon="@drawable/test_ic_france" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="green"
+        app:admiralText="@string/tags_chips_chip"
+        app:chipIcon="@drawable/admiral_ic_car_solid"
+        app:isIconColored="true" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="green"
+        app:admiralText="@string/tags_chips_emoji" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralIconPosition="right"
+        app:admiralTagColor="green"
+        app:admiralText="@string/tags_chips_flag"
+        app:chipIcon="@drawable/test_ic_france" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="orange"
+        app:admiralText="@string/tags_chips_chip"
+        app:chipIcon="@drawable/admiral_ic_car_solid"
+        app:isIconColored="true" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="orange"
+        app:admiralText="@string/tags_chips_emoji" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralIconPosition="right"
+        app:admiralTagColor="orange"
+        app:admiralText="@string/tags_chips_flag"
+        app:chipIcon="@drawable/test_ic_france" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="red"
+        app:admiralText="@string/tags_chips_chip"
+        app:chipIcon="@drawable/admiral_ic_car_solid"
+        app:isIconColored="true" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralTagColor="red"
+        app:admiralText="@string/tags_chips_emoji" />
+
+    <com.admiral.uikit.components.tag.Tag
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralIconPosition="right"
+        app:admiralTagColor="red"
+        app:admiralText="@string/tags_chips_flag"
+        app:chipIcon="@drawable/test_ic_france" />
+
+</com.admiral.uikit.components.chip.ChipGroup>

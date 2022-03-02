@@ -1,0 +1,302 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/cells_trailing_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            app:checkedId="@id/defaultTab"
+            app:layout_constraintTop_toBottomOf="@id/title">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/defaultTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_default" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/disabledTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_disabled" />
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/iconCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/leadingIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralIcon="@drawable/test_ic_card_start" />
+
+            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+                android:id="@+id/title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x2"
+                app:admiralCellUnitType="leadingText"
+                app:admiralTitleText="@string/cell_title" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/iconTrailing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x2"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/radioButtonCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/leadingRadioButton"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralIcon="@drawable/test_ic_card_start" />
+
+            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+                android:id="@+id/title2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x1"
+                app:admiralCellUnitType="leadingText"
+                app:admiralTitleText="@string/cell_title" />
+
+            <com.admiral.uikit.components.cell.unit.RadioButtonCellUnit
+                android:id="@+id/radioButtonCellUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/checkBoxCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/leadingCheckBox"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralIcon="@drawable/test_ic_card_start" />
+
+            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+                android:id="@+id/title3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x1"
+                app:admiralCellUnitType="leadingText"
+                app:admiralTitleText="@string/cell_title" />
+
+            <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
+                android:id="@+id/checkBoxCellUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/switchCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/leadingSwitcher"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralIcon="@drawable/test_ic_card_start" />
+
+            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+                android:id="@+id/title4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x4"
+                app:admiralCellUnitType="leadingText"
+                app:admiralTitleText="@string/cell_title" />
+
+            <com.admiral.uikit.components.cell.unit.SwitcherCellUnit
+                android:id="@+id/switcherCellUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/test_ic_card" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/labelCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/leadingLabel"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralIcon="@drawable/test_ic_card_start" />
+
+            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+                android:id="@+id/subtitleTitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x1"
+                app:admiralCellUnitType="leadingText"
+                app:admiralTitleText="@string/cell_title" />
+
+            <com.admiral.uikit.components.cell.unit.LabelCellUnit
+                android:id="@+id/labelTrailing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:srcCompat="@drawable/test_ic_label" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/cardCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/leadingCard"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralIcon="@drawable/test_ic_card_start" />
+
+            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+                android:id="@+id/titleSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x2"
+                app:admiralCellUnitType="leadingText"
+                app:admiralTitleText="@string/cell_title" />
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/cardTrailing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/test_ic_card" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/doubleSubtitleCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/leadingDoubleSubtitle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralIcon="@drawable/test_ic_card_start" />
+
+            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+                android:id="@+id/textMessageIconCellUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x2"
+                app:admiralCellUnitType="leadingText"
+                app:admiralTitleText="@string/cell_title" />
+
+            <com.admiral.uikit.components.cell.unit.DoubleSubtitleCellUnit
+                android:id="@+id/doubleSubtitleCellUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralSubtitleText="@string/cell_date"
+                app:admiralSubtitleTextSecond="@string/cell_percent" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/subtitlePaymentCell"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.cell.unit.CardCellUnit
+                android:id="@+id/leadingSubtitlePayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralIcon="@drawable/test_ic_card_start" />
+
+            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+                android:id="@+id/titleSummSubtitleCellUnit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x1"
+                app:admiralCellUnitType="leadingText"
+                app:admiralTitleText="@string/cell_title" />
+
+            <com.admiral.uikit.components.cell.unit.SubtitlePaymentCellUnit
+                android:id="@+id/subtitlePayment"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/test_ic_visa"
+                app:admiralSubtitleText="@string/cell_payment" />
+        </com.admiral.uikit.components.cell.BaseCell>
+    </com.admiral.uikit.layout.LinearLayout>
+</ScrollView>

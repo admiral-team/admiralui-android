@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/informers_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnInformersBig"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x6"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/bigInformersText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/informers_big_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/bigInformersTextIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnInformersSmall"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/smallInformersText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/informers_small_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/smallInformersIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+    </com.admiral.uikit.layout.LinearLayout>
+</ScrollView>

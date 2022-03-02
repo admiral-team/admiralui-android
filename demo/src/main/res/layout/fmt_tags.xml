@@ -1,0 +1,271 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/tags_chips_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            app:checkedId="@id/defaultTab"
+            app:layout_constraintTop_toBottomOf="@id/title">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/defaultTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_default" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/disabledTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_disabled" />
+
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+            android:id="@+id/textSecondaryCellUnitSwitch"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x13"
+            app:admiralCellUnitType="leading"
+            app:admiralText="@string/tags_chips_default" />
+
+        <HorizontalScrollView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x6"
+            android:clipToPadding="false"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4"
+            android:scrollbars="none">
+
+            <com.admiral.uikit.components.chip.ChipGroup
+                android:id="@+id/chips"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <com.admiral.uikit.components.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralText="@string/tags_chips_chip"
+                    app:chipIcon="@drawable/admiral_ic_car_solid"
+                    app:closeIconEnabled="true" />
+
+                <com.admiral.uikit.components.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralText="@string/tags_chips_chip"
+                    app:closeIconEnabled="true" />
+
+                <com.admiral.uikit.components.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralText="@string/tags_chips_icons"
+                    app:chipIcon="@drawable/admiral_ic_car_solid" />
+
+                <com.admiral.uikit.components.chip.Chip
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:chipIcon="@drawable/admiral_ic_car_solid" />
+
+                <com.admiral.uikit.components.tag.Tag
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralText="@string/tags_chips_emoji" />
+
+                <com.admiral.uikit.components.tag.Tag
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralText="@string/tags_chips_flag"
+                    app:chipIcon="@drawable/test_ic_france" />
+
+            </com.admiral.uikit.components.chip.ChipGroup>
+
+        </HorizontalScrollView>
+
+        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x11"
+            app:admiralCellUnitType="leading"
+            app:admiralText="@string/tags_chips_additional" />
+
+        <com.admiral.uikit.components.chip.ChipGroup
+            android:id="@+id/gray"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x6"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralTagColor="gray"
+                app:admiralText="@string/tags_chips_chip"
+                app:chipIcon="@drawable/admiral_ic_car_solid"
+                app:isIconColored="true" />
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralTagColor="gray"
+                app:admiralText="@string/tags_chips_emoji" />
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIconPosition="right"
+                app:admiralTagColor="gray"
+                app:admiralText="@string/tags_chips_flag"
+                app:chipIcon="@drawable/test_ic_france" />
+
+        </com.admiral.uikit.components.chip.ChipGroup>
+
+        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x11"
+            app:admiralCellUnitType="leading"
+            app:admiralText="@string/tags_chips_success" />
+
+        <com.admiral.uikit.components.chip.ChipGroup
+            android:id="@+id/green"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x6"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralTagColor="green"
+                app:admiralText="@string/tags_chips_chip"
+                app:chipIcon="@drawable/admiral_ic_car_solid"
+                app:isIconColored="true" />
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralTagColor="green"
+                app:admiralText="@string/tags_chips_emoji" />
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIconPosition="right"
+                app:admiralTagColor="green"
+                app:admiralText="@string/tags_chips_flag"
+                app:chipIcon="@drawable/test_ic_france" />
+
+        </com.admiral.uikit.components.chip.ChipGroup>
+
+        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x11"
+            app:admiralCellUnitType="leading"
+            app:admiralText="@string/tags_chips_error" />
+
+        <com.admiral.uikit.components.chip.ChipGroup
+            android:id="@+id/red"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x6"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralTagColor="red"
+                app:admiralText="@string/tags_chips_chip"
+                app:chipIcon="@drawable/admiral_ic_car_solid"
+                app:isIconColored="true" />
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralTagColor="red"
+                app:admiralText="@string/tags_chips_emoji" />
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIconPosition="right"
+                app:admiralTagColor="red"
+                app:admiralText="@string/tags_chips_flag"
+                app:chipIcon="@drawable/test_ic_france" />
+
+        </com.admiral.uikit.components.chip.ChipGroup>
+
+        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x11"
+            app:admiralCellUnitType="leading"
+            app:admiralText="@string/tags_chips_attention" />
+
+        <com.admiral.uikit.components.chip.ChipGroup
+            android:id="@+id/yellow"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x6"
+            android:layout_marginBottom="@dimen/module_x11"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingEnd="@dimen/module_x4">
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralTagColor="orange"
+                app:admiralText="@string/tags_chips_chip"
+                app:chipIcon="@drawable/admiral_ic_car_solid"
+                app:isIconColored="true" />
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralTagColor="orange"
+                app:admiralText="@string/tags_chips_emoji" />
+
+            <com.admiral.uikit.components.tag.Tag
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIconPosition="right"
+                app:admiralTagColor="orange"
+                app:admiralText="@string/tags_chips_flag"
+                app:chipIcon="@drawable/test_ic_france" />
+
+        </com.admiral.uikit.components.chip.ChipGroup>
+
+    </com.admiral.uikit.layout.LinearLayout>
+
+</ScrollView>

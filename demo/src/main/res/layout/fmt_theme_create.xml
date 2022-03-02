@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:admiralTitleText="@string/themes_creates_new"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralTextView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x8"
+        android:text="@string/themes_creates_input"
+        app:admiralTextStyle="body2"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <com.admiral.uikit.components.textfield.TextField
+        android:id="@+id/textField"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x4"
+        android:imeOptions="actionDone"
+        android:paddingStart="@dimen/module_x4"
+        android:paddingTop="@dimen/module_x2"
+        android:paddingEnd="@dimen/module_x4"
+        app:admiralTextOptional="@string/themes_creates_hint"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/admiralTextView5" />
+
+    <com.admiral.uikit.components.button.Button
+        android:id="@+id/button"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="@dimen/module_x4"
+        android:text="@string/themes_creates_next"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+</com.admiral.uikit.layout.ConstraintLayout>
