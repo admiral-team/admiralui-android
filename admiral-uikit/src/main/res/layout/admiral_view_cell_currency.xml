@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralCurrencyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:drawablePadding="@dimen/module_x3"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="RUB" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralSellTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/module_x2"
+        android:drawablePadding="@dimen/module_x2"
+        app:layout_constraintBottom_toBottomOf="@+id/admiralCurrencySellImage"
+        app:layout_constraintEnd_toStartOf="@id/admiralCurrencySellImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="RUB" />
+
+    <ImageView
+        android:id="@+id/admiralCurrencySellImage"
+        android:layout_width="@dimen/module_x6"
+        android:layout_height="@dimen/module_x6"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralBuyTextView"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/module_x2"
+        app:layout_constraintBottom_toBottomOf="@+id/admiralCurrencyBuyImage"
+        app:layout_constraintEnd_toStartOf="@id/admiralCurrencyBuyImage"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="68,44" />
+
+    <ImageView
+        android:id="@+id/admiralCurrencyBuyImage"
+        android:layout_width="@dimen/module_x6"
+        android:layout_height="@dimen/module_x6"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.65" />
+
+</merge>

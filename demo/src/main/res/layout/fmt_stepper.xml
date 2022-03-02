@@ -1,0 +1,145 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.admiral.uikit.layout.LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:text="@string/home_section_stepper_title"
+                app:admiralTextStyle="largetitle1" />
+
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:scrollbars="none">
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTabs
+                    android:id="@+id/tabs"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/module_x4"
+                    app:checkedId="@id/tabCompleted">
+
+                    <com.admiral.uikit.components.tabs.OutlineSliderTab
+                        android:id="@+id/tabCompleted"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stepper_completed" />
+
+                    <com.admiral.uikit.components.tabs.OutlineSliderTab
+                        android:id="@+id/tabCurrent"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stepper_current" />
+
+                    <com.admiral.uikit.components.tabs.OutlineSliderTab
+                        android:id="@+id/tabNext"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stepper_next" />
+
+                    <com.admiral.uikit.components.tabs.OutlineSliderTab
+                        android:id="@+id/tabError"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stepper_error" />
+
+                    <com.admiral.uikit.components.tabs.OutlineSliderTab
+                        android:id="@+id/tabDisabled"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/stepper_disabled" />
+                </com.admiral.uikit.components.tabs.OutlineSliderTabs>
+            </HorizontalScrollView>
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:text="@string/stepper_one_step"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.components.stepper.Stepper
+                android:id="@+id/stepper"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                app:admiralIsStepFirst="true"
+                app:admiralLinkText="@string/stepper_example_link"
+                app:admiralStepperStyle="done"
+                app:admiralSubtitleText="@string/stepper_example_subtitle"
+                app:admiralTitleText="@string/stepper_example_title" />
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:text="@string/home_section_stepper_title"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.components.stepper.Stepper
+                android:id="@+id/stepper1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                app:admiralIsStepFirst="true"
+                app:admiralLinkText="@string/stepper_example_link"
+                app:admiralStepperStyle="done"
+                app:admiralSubtitleText="@string/stepper_example_subtitle"
+                app:admiralTitleText="@string/stepper_example_title" />
+
+            <com.admiral.uikit.components.stepper.Stepper
+                android:id="@+id/stepper2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                app:admiralLinkText="@string/stepper_example_link"
+                app:admiralStepperStyle="current"
+                app:admiralSubtitleText="@string/stepper_example_subtitle"
+                app:admiralTitleText="@string/stepper_example_title" />
+
+            <com.admiral.uikit.components.stepper.Stepper
+                android:id="@+id/stepper3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:alpha="0.7"
+                app:admiralLinkText="@string/stepper_example_link"
+                app:admiralStepperStyle="next"
+                app:admiralSubtitleText="@string/stepper_example_subtitle"
+                app:admiralTitleText="@string/stepper_example_title" />
+
+            <com.admiral.uikit.components.stepper.Stepper
+                android:id="@+id/stepper4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:alpha="0.5"
+                app:admiralLinkText="@string/stepper_example_link"
+                app:admiralStepperStyle="next"
+                app:admiralSubtitleText="@string/stepper_example_subtitle"
+                app:admiralTitleText="@string/stepper_example_title" />
+        </com.admiral.uikit.layout.LinearLayout>
+    </ScrollView>
+</com.admiral.uikit.layout.LinearLayout>

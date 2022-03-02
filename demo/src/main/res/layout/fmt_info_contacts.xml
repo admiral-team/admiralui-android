@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:text="@string/info_contacts"
+        app:admiralTextStyle="largetitle1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/supportTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x10"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:text="@string/info_contacts_support_title"
+        app:admiralTextStyle="body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/title" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/supportText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x1"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:text="@string/info_contacts_support_text"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/supportTitle" />
+
+    <com.admiral.uikit.components.links.Link
+        android:id="@+id/supportLink"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/supportText" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/wantTitle"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:text="@string/info_contacts_want_title"
+        app:admiralTextStyle="body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/supportLink" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/wantText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x1"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:text="@string/info_contacts_want_text"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wantTitle" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/f1"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        app:admiralTextStyle="body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/wantText" />
+
+    <com.admiral.uikit.components.links.Link
+        android:id="@+id/f2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x2"
+        android:layout_marginEnd="@dimen/module_x4"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/f1" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/f3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        app:admiralTextStyle="body1"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/f2" />
+
+    <com.admiral.uikit.components.links.Link
+        android:id="@+id/f4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x2"
+        android:layout_marginEnd="@dimen/module_x4"
+        app:layout_constrainedWidth="true"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/f3" />
+
+</com.admiral.uikit.layout.ConstraintLayout>

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <com.admiral.uikit.view.checkable.CheckableImageView
+        android:id="@+id/admiralIcon"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        app:admiralIcon="@drawable/admiral_ic_car_solid" />
+
+    <com.admiral.uikit.view.checkable.CheckableTextView
+        android:id="@+id/admiralText"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x2"
+        app:admiralTextStyle="subhead3"
+        tools:text="2 900 ₽" />
+
+</merge>

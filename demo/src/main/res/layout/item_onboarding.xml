@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <androidx.appcompat.widget.AppCompatImageView
+        android:id="@+id/admiralOnboardingImage"
+        android:layout_width="200dp"
+        android:layout_height="200dp"
+        android:layout_gravity="center"
+        android:layout_marginTop="@dimen/module_x8" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralOnboardingTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="48dp"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:gravity="center"
+        app:admiralTextStyle="largetitle1"
+        tools:text="Добро\nпожаловать!" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralOnboardintDescription"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginTop="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:gravity="center"
+        app:admiralTextStyle="body2"
+        tools:text="Приветствуем вас в нашем мобильном приложении.  Это приложение служит удобным инструментом для участников любых команд!" />
+
+</com.admiral.uikit.layout.LinearLayout>

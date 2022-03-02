@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:minHeight="44dp"
+    android:orientation="vertical"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <View
+        android:id="@+id/admiralInputViewBackground"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:background="@drawable/admiral_bg_rectangle_8dp"
+        app:layout_constraintBottom_toBottomOf="@id/admiralInputTextFieldSearch"
+        app:layout_constraintEnd_toEndOf="@id/admiralInputTextFieldSearch"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.cell.unit.IconCellUnit
+        android:id="@+id/inputLayoutImageStart"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x2"
+        android:layout_marginBottom="@dimen/module_x2"
+        android:clickable="true"
+        android:focusable="true"
+        app:admiralIcon="@drawable/admiral_ic_attach_file_outline"
+        app:layout_constraintBottom_toBottomOf="@id/admiralInputTextFieldSearch"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <com.admiral.uikit.components.textfield.TextFieldSearch
+        android:id="@+id/admiralInputTextFieldSearch"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="@dimen/module_x2"
+        android:background="@color/green_50"
+        android:inputType="textMultiLine"
+        android:maxLines="5"
+        android:minHeight="44dp"
+        android:paddingStart="42dp"
+        android:scrollbars="none"
+        app:admiralBackgroundColorNormalDisabled="@color/transparent"
+        app:admiralBackgroundColorNormalEnabled="@color/transparent"
+        app:admiralBackgroundColorPressed="@color/transparent"
+        app:admiralIsDrawableStartVisible="false"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@+id/admiralInputButton"
+        app:layout_constraintStart_toEndOf="@id/inputLayoutImageStart"
+        app:layout_constraintVertical_chainStyle="packed" />
+
+    <com.admiral.uikit.components.button.Button
+        android:id="@+id/admiralInputButton"
+        android:layout_width="44dp"
+        android:layout_height="44dp"
+        app:admiralButtonSize="small"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
+
+</merge>

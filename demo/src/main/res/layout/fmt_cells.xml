@@ -1,0 +1,200 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/cells_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnBaseCells"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:layout_marginTop="@dimen/module_x6"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/standardTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/cells_base_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/standardTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnBaseCellsLable"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/logoTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/cells_base_label_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/logoTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnTextCells"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/informerTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/cells_text_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/informerTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnTitleCells"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/outlineTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/cells_title_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/outlineTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnActionBar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/underlineTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/cells_actionbar_title"
+                app:admiralTextStyle="body1"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="24dp" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/underlineTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnActionBar2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/underlineTabText2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/cells_actionbar2_title"
+                app:admiralTextStyle="body1"
+                tools:layout_editor_absoluteX="16dp"
+                tools:layout_editor_absoluteY="24dp" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/underlineTabIcon2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+    </com.admiral.uikit.layout.LinearLayout>
+
+</ScrollView>

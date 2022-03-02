@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mainMenuHome"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_download_outline"
+        android:title="@string/menu_toolbar_pay"
+        app:iconTint="@color/blue_60"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mainMenuInfo"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_search_outline"
+        android:title="@string/menu_toolbar_fill"
+        app:iconTint="@color/blue_60"
+        app:showAsAction="ifRoom" />
+    <item
+        android:id="@+id/mainMenuFeedback"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_more_outline"
+        android:title="@string/menu_toolbar_more"
+        app:iconTint="@color/blue_60"
+        app:showAsAction="ifRoom" />
+</menu>

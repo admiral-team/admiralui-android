@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/text_fields_feedback_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            app:checkedId="@+id/defaultTab">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/defaultTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_fields_default" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/disabledTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_fields_disabled" />
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.select.Feedback
+            android:id="@+id/textField"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x8"
+            app:admiralTextOptional="Optional label" />
+    </com.admiral.uikit.layout.LinearLayout>
+</ScrollView>

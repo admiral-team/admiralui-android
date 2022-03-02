@@ -1,0 +1,183 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:clipToPadding="false">
+
+        <com.admiral.uikit.layout.LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/module_x4">
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:text="@string/notifications_static_title"
+                app:admiralTextStyle="largetitle1" />
+
+            <com.admiral.uikit.components.tabs.StandardTabs
+                android:id="@+id/tabsState"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/module_x4"
+                app:checkedId="@+id/defaultTab">
+
+                <com.admiral.uikit.components.tabs.StandardTab
+                    android:id="@+id/defaultTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_default" />
+
+                <com.admiral.uikit.components.tabs.StandardTab
+                    android:id="@+id/disabledTab"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_disabled" />
+
+            </com.admiral.uikit.components.tabs.StandardTabs>
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x13"
+                android:text="@string/informers_default"
+                app:admiralTextColorNormalEnabled="@color/grey_40"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.components.notifications.fixed.StaticNotification
+                android:id="@+id/notificationDefault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsBackgroundDefault="true"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="info"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.components.notifications.fixed.StaticNotification
+                android:id="@+id/notificationDefaultColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="info"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x9"
+                android:text="@string/informers_success"
+                app:admiralTextColorNormalEnabled="@color/grey_40"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.components.notifications.fixed.StaticNotification
+                android:id="@+id/notificationSuccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsBackgroundDefault="true"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="success"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.components.notifications.fixed.StaticNotification
+                android:id="@+id/notificationSuccessColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="success"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x9"
+                android:text="@string/informers_attention"
+                app:admiralTextColorNormalEnabled="@color/grey_40"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.components.notifications.fixed.StaticNotification
+                android:id="@+id/notificationAttention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsBackgroundDefault="true"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="attention"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.components.notifications.fixed.StaticNotification
+                android:id="@+id/notificationAttentionColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="attention"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x9"
+                android:text="@string/informers_error"
+                app:admiralTextColorNormalEnabled="@color/grey_40"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.components.notifications.fixed.StaticNotification
+                android:id="@+id/notificationError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsBackgroundDefault="true"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="error"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.components.notifications.fixed.StaticNotification
+                android:id="@+id/notificationErrorColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="error"
+                app:admiralText="@string/informers_example_info" />
+
+        </com.admiral.uikit.layout.LinearLayout>
+    </ScrollView>
+
+</com.admiral.uikit.layout.LinearLayout>

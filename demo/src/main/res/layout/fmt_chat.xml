@@ -1,0 +1,144 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fillViewport="true"
+    android:paddingStart="@dimen/module_x4"
+    android:paddingEnd="@dimen/module_x4"
+    android:scrollbars="none">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/chat_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x6"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/chat_input_title" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/chat_text_message_title" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/textOperation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/chat_text_operation_title" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/uploadingPhoto"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/chat_uploading_photo_title" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/uploadingFiles"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leading"
+                app:admiralText="@string/chat_uploading_file_title" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+    </com.admiral.uikit.layout.LinearLayout>
+
+</ScrollView>

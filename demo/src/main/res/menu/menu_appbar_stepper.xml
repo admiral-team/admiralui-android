@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <item
+        android:id="@+id/mainMenuHome"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_close_outline"
+        android:title="@string/menu_toolbar_pay"
+        app:iconTint="@color/blue_60"
+        app:showAsAction="ifRoom" />
+</menu>

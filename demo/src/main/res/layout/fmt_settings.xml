@@ -1,0 +1,72 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:admiralIsBackButtonEnabled="false"
+        app:admiralTitleText="@string/main_menu_settings"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.cell.BaseCell
+        android:id="@+id/iconsButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x8"
+        android:paddingStart="@dimen/module_x4"
+        android:paddingEnd="@dimen/module_x4"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.admiral.uikit.components.cell.unit.IconCellUnit
+            android:id="@+id/icCompose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralIcon="@drawable/admiral_ic_settings_solid" />
+
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
+            android:id="@+id/textCompose"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leadingText"
+            app:admiralText="@string/settings_compose_switcher" />
+
+        <com.admiral.uikit.components.cell.unit.SwitcherCellUnit
+            android:id="@+id/switchCompose"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="trailing" />
+    </com.admiral.uikit.components.cell.BaseCell>
+
+    <com.admiral.uikit.components.cell.BaseCell
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x8"
+        android:paddingStart="@dimen/module_x4"
+        android:paddingEnd="@dimen/module_x4"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.admiral.uikit.components.cell.unit.IconCellUnit
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralIcon="@drawable/admiral_ic_settings_solid" />
+
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leadingText"
+            app:admiralText="@string/settings_theme_switcher" />
+
+        <com.admiral.uikit.components.cell.unit.SwitcherCellUnit
+            android:id="@+id/switchTheme"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="trailing" />
+    </com.admiral.uikit.components.cell.BaseCell>
+
+</com.admiral.uikit.layout.LinearLayout>

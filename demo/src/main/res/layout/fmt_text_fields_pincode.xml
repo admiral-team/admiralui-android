@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:text="@string/text_fields_pincode_title"
+            app:admiralTextStyle="largetitle1" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            app:checkedId="@+id/defaultTab">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/defaultTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_fields_default" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/successTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Success" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/error"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_fields_error" />
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x8"
+            app:admiralInputMaxValue="8"
+            app:admiralInputMinValue="2"
+            app:admiralInputValue="6"
+            app:admiralTextOptional="@string/text_fields_optional_label" />
+
+        <com.admiral.uikit.components.pincode.PinCodeView
+            android:id="@+id/pinCodeView"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x16"
+            app:admiralDotCount="6"
+            app:admiralTextOptional="@string/text_fields_optional_label" />
+
+        <com.admiral.uikit.components.keyboard.PinKeyboard
+            android:id="@+id/pinKeyboard"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_horizontal"
+            android:layout_marginTop="@dimen/module_x6" />
+
+    </com.admiral.uikit.layout.LinearLayout>
+</ScrollView>
