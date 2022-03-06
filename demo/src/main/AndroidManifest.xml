@@ -3,6 +3,8 @@
     package="com.admiral.demo"
     android:sharedUserId="com.admiral.demo.uid">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:name="com.admiral.demo.app.App"
         android:allowBackup="false"
@@ -10,7 +12,8 @@
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/Theme.AdmiralUIAndroid.Launcher">
+        android:theme="@style/Theme.AdmiralUIAndroid.Launcher"
+        android:networkSecurityConfig="@xml/network_security_config">
 
         <activity
             android:name="com.admiral.demo.app.AppActivity"

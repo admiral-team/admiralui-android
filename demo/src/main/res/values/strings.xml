@@ -411,4 +411,9 @@
 
     <string name="settings_theme_switcher">Автоматическое переключение темы</string>
     <string name="settings_compose_switcher">Переключить на Compose</string>
+
+    <string name="gun_title">Admiral Gun</string>
+    <string name="gun_description">Загрузка шаблонов</string>
+    <string name="gun_template_id_hint">Template id..</string>
+
 </resources>

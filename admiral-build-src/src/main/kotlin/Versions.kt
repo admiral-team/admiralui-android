@@ -7,6 +7,8 @@ object Versions {
     val expandableLayout = "1.0.7"
     val junit = "4.13.2"
     val mockito = "3.0.0"
+    val retrofit = "2.9.0"
+    val okhttp3 = "4.9.3"
 
     object Sdk {
         val compileSdk = 31
@@ -35,6 +37,7 @@ object Versions {
         val appcompat = "1.4.0"
         val coreKtx = "1.7.0"
         val constraintLayout = "2.1.2"
+        val swipeRefreshLayout = "1.1.0"
         val lifecycle = "2.4.1"
         val recyclerView = "1.2.1"
         val fragment = "1.4.0"

@@ -90,6 +90,7 @@ android {
 }
 
 dependencies {
+    implementation(project(Modules.network))
     implementation(project(Modules.Admiral.UiKit.uikit))
     implementation(project(Modules.Admiral.UiKit.compose))
 
@@ -103,6 +104,8 @@ dependencies {
     implementation(Libs.AndroidX.fragmentKtx)
     implementation(Libs.AndroidX.appcompat)
     implementation(Libs.AndroidX.constraintLayout)
+    implementation(Libs.AndroidX.swipeRefreshLayout)
+    implementation(Libs.AndroidX.Lifecycle.lifecycleRuntimeKtx)
     implementation(Libs.AndroidX.Activity.compose)
     implementation(Libs.AndroidX.Compose.foundation)
     implementation(Libs.AndroidX.Compose.material)
@@ -113,6 +116,8 @@ dependencies {
     implementation(Libs.viewBinding)
     implementation(Libs.colorPickerView)
     implementation(Libs.expandableLayout)
+
+    implementation(Libs.Retrofit.retrofit2)
 
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.mockito)

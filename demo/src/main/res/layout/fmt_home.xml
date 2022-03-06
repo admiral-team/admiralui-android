@@ -823,6 +823,36 @@
 
             </com.admiral.uikit.components.cell.BaseCell>
 
+            <com.admiral.uikit.components.cell.BaseCell
+                android:id="@+id/gunButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
+                android:paddingStart="@dimen/module_x4"
+                android:paddingEnd="@dimen/module_x4">
+
+                <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralIcon="@drawable/admiral_ic_loader_solid" />
+
+                <com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralCellUnitType="leadingText"
+                    app:admiralSubtitleText="@string/gun_description"
+                    app:admiralTitleText="@string/gun_title" />
+
+                <com.admiral.uikit.components.cell.unit.IconCellUnit
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    app:admiralCellUnitType="trailing"
+                    app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+            </com.admiral.uikit.components.cell.BaseCell>
+
         </com.admiral.uikit.layout.LinearLayout>
 
     </androidx.core.widget.NestedScrollView>

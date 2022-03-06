@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/gunOpenSearchTemplate"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_search_outline"
+        android:title="@string/menu_toolbar_more"
+        app:showAsAction="ifRoom" />
+
+    <item
+        android:id="@+id/gunSubmitSearchTemplate"
+        android:enabled="true"
+        android:icon="@drawable/admiral_ic_check_outline"
+        android:title="@string/menu_toolbar_more"
+        app:showAsAction="ifRoom" />
+
+</menu>

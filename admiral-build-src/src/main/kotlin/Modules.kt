@@ -2,6 +2,7 @@
 
 object Modules {
     val demo = ":demo"
+    val network = ":network"
 
     object Admiral {
         val platform = ":admiral-platform"

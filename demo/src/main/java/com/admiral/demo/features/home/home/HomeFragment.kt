@@ -21,6 +21,7 @@ import com.admiral.demo.screen.CellsScreen
 import com.admiral.demo.screen.ChatScreen
 import com.admiral.demo.screen.CheckBoxScreen
 import com.admiral.demo.screen.CurrencyScreen
+import com.admiral.demo.screen.GunScreen
 import com.admiral.demo.screen.IconsScreen
 import com.admiral.demo.screen.InformersNotificationsScreen
 import com.admiral.demo.screen.LinksScreen
@@ -164,6 +165,10 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
 
         binding.currencyButton.setOnClickListener {
             navigationViewModel.open(CurrencyScreen())
+        }
+
+        binding.gunButton.setOnClickListener {
+            navigationViewModel.open(GunScreen())
         }
     }
 

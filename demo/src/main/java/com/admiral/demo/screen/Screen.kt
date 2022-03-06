@@ -53,6 +53,7 @@ import com.admiral.demo.features.home.currency.CurrencyFragment
 import com.admiral.demo.features.home.currency.CurrencyIconsFlagsFragment
 import com.admiral.demo.features.home.currency.CurrencyIconsFragment
 import com.admiral.demo.features.home.dialog.BottomSheetFragment
+import com.admiral.demo.features.home.gun.presentation.GunFragment
 import com.admiral.demo.features.home.home.HomeFragment
 import com.admiral.demo.features.home.icons.IconsFragment
 import com.admiral.demo.features.home.informers.InformersBigFragment
@@ -529,4 +530,9 @@ class ChatFilesScreen : Screen() {
 @Parcelize
 class ChatTextOperationScreen : Screen() {
     override fun getFragment() = ChatTextOperationFragment()
+}
+
+@Parcelize
+class GunScreen : Screen() {
+    override fun getFragment() = GunFragment()
 }

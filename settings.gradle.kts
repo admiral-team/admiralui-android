@@ -30,3 +30,4 @@ include(
     ":admiral-uikit-common",
     ":demo"
 )
+include(":network")

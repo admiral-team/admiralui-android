@@ -41,6 +41,7 @@ object Libs {
         val constraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
         val recyclerView = "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerView}"
+        val swipeRefreshLayout = "androidx.swiperefreshlayout:swiperefreshlayout:${Versions.AndroidX.swipeRefreshLayout}"
 
         object Activity {
             val compose = "androidx.activity:activity-compose:${Versions.AndroidX.activityCompose}"
@@ -74,5 +75,15 @@ object Libs {
                     "androidx.test.espresso:espresso-intents:${Versions.AndroidX.espresso}"
             }
         }
+    }
+
+    object Retrofit {
+        val retrofit2 = "com.squareup.retrofit2:retrofit:${Versions.retrofit}"
+        val converterGson ="com.squareup.retrofit2:converter-gson:${Versions.retrofit}"
+    }
+
+    object Okhttp3 {
+        val urlconnection = "com.squareup.okhttp3:okhttp-urlconnection:${Versions.okhttp3}"
+        val loggingInterceptor ="com.squareup.okhttp3:logging-interceptor:${Versions.okhttp3}"
     }
 }
