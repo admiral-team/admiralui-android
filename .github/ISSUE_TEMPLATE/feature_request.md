@@ -2,7 +2,7 @@
 name: Feature request
 about: Создание задачи на новую функциональность или доработку
 title: "[Feature]"
-labels: ''
+labels: enhancement
 assignees: ''
 
 ---
