@@ -53,12 +53,12 @@ android {
         ) {
             val keystorePropertiesFile = rootProject.file(propertiesFilePath)
             if (keystorePropertiesFile.exists().not()) {
-                println("File ${Keystore.Files.Debug.properties} doesn't exist")
+                println("File $propertiesFilePath doesn't exist")
             }
 
             val keystoreFile = rootProject.file(keystoreFilePath)
             if (keystoreFile.exists().not()) {
-                println("File ${Keystore.Files.Debug.keystore} doesn't exist")
+                println("File $keystoreFilePath doesn't exist")
             }
 
             if (keystorePropertiesFile.exists() && keystoreFile.exists()) {
