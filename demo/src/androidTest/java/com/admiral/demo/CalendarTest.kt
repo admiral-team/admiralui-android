@@ -5,6 +5,7 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.withId
+import androidx.test.platform.app.InstrumentationRegistry.getInstrumentation
 import com.karumi.shot.ScreenshotTest
 import com.admiral.demo.app.AppActivity
 import com.admiral.demo.app.AppActivity.Companion.KEY_IS_TEST
@@ -28,6 +29,7 @@ class CalendarTest : ScreenshotTest {
         onView(withId(R.id.calendarButton)).perform(BetterScrollTo(), ViewActions.click())
         onView(withId(R.id.btnVertical)).perform(BetterScrollTo(), ViewActions.click())
 
+        getInstrumentation().waitForIdleSync()
         compareScreenshot(activity)
     }
 
@@ -42,6 +44,7 @@ class CalendarTest : ScreenshotTest {
         onView(withId(R.id.calendarButton)).perform(BetterScrollTo(), ViewActions.click())
         onView(withId(R.id.btnHorizontal)).perform(BetterScrollTo(), ViewActions.click())
 
+        getInstrumentation().waitForIdleSync()
         compareScreenshot(activity)
     }
 }
