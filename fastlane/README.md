@@ -15,16 +15,6 @@ Install _fastlane_ using
 or alternatively using `brew install fastlane`
 
 # Available Actions
-### detekt
-```
-fastlane detekt
-```
-
-### build_artifacts
-```
-fastlane build_artifacts
-```
-
 ### upload_nexus_lib
 ```
 fastlane upload_nexus_lib

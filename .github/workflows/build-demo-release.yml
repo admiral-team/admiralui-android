@@ -1,5 +1,7 @@
 name: Build Demo Release APK
 on:
+  push:
+    branches: [ 'main' ]
   pull_request:
     types: [ 'opened', 'synchronize', 'reopened', 'edited' ]
     branches: [ 'main', 'develop', 'rc/**' ]
@@ -39,7 +41,18 @@ jobs:
             chmod +x gradlew
             ./gradlew executeScreenshotTests
 
-      - name: Build Demo Release APK
+      - name: Build demo release apk
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease
+
+      - name: Setup fastlane environment
+        run: bundle install
+
+      - name: Upload develop release apk to App Center
+        if: ${{ github.event_name == 'pull_request' }}
+        run: bundle exec fastlane deploy_appcenter_dev pull_request_url:"${{ github.event.pull_request.html_url }}" branch_name:"${{ github.head_ref }}"
+
+      - name: Upload prod release apk to App Center
+        if: ${{ github.event_name == 'push' }}
+        run: bundle exec fastlane deploy_appcenter_prod branch_name:"${{ github.head_ref }}"
