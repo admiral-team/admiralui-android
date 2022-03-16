@@ -6,6 +6,8 @@ on:
 jobs:
   Build-Demo-Release:
     runs-on: [ self-hosted, main ]
+#    env:
+#      APPCENTER_API_TOKEN_DEV: $APPCENTER_API_TOKEN_DEV
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -17,29 +19,53 @@ jobs:
           java-version: 11.0.13
           cache: gradle
 
-      - name: Prepare keystore files
+      - name: Prepare secret files
         run: |
           cp $GITHUB_WORKSPACE/../../keystore/keystore_release.properties $GITHUB_WORKSPACE/keystore_release.properties
           cp $GITHUB_WORKSPACE/../../keystore/release.keystore $GITHUB_WORKSPACE/release.keystore
+          cp $GITHUB_WORKSPACE/../../fastlane/.env.secret $GITHUB_WORKSPACE/.env.secret
 
-      - name: Run detekt
-        run: |
-          chmod +x gradlew
-          ./gradlew detekt
-
-      - name: Run snapshot tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 24
-          force-avd-creation: false
-          avd-name: Pixel_4_API_24
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
-          disable-animations: true
-          script: |
-            chmod +x gradlew
-            ./gradlew executeScreenshotTests
-
-      - name: Build Demo Release APK
+#      - name: Run detekt
+#        run: |
+#          chmod +x gradlew
+#          ./gradlew detekt
+#
+#      - name: Run snapshot tests
+#        uses: reactivecircus/android-emulator-runner@v2
+#        with:
+#          api-level: 24
+#          force-avd-creation: false
+#          avd-name: Pixel_4_API_24
+#          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
+#          disable-animations: true
+#          script: |
+#            chmod +x gradlew
+#            ./gradlew executeScreenshotTests
+#
+      - name: Build demo release apk
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease
+
+      - name: Setup fastlane environment
+        run: bundle install
+
+      - name: Upload release apk to App Center
+        run: bundle exec fastlane deploy_appcenter_dev
+
+#      - name: Upload release apk to App Center
+#        uses: testappio/github-action@v4
+#        with:
+#          api_token: ${{secrets.APPCENTER_API_TOKEN_DEV}}
+#          app_id: AdmiralUI-Android-Dev
+#          file: demo/build/outputs/apk/release/demo-release.apk
+#          release_notes: "Uploading by github actions"
+#          git_release_notes: true
+#          include_git_commit_id: false
+#          notify: false
+
+#      - name: Upload release apk to App Center
+#        uses: joabalea/App-Center-action@v1.0.2
+#        with:
+#          command: appcenter distribute release --group Collaborators -f demo/build/outputs/apk/release/demo-release.apk
+#          token: $APPCENTER_API_TOKEN_DEV
