@@ -21,8 +21,6 @@ import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.common.util.ComponentsRadius
 import com.admiral.uikit.components.spinner.Spinner
 import com.admiral.uikit.components.text.TextView
-import com.admiral.uikit.ext.colorStateList
-import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
@@ -174,6 +172,8 @@ class Button @JvmOverloads constructor(
 
             actionTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
             additionalTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
+
+            actionTextView.compoundDrawablePadding = pixels(R.dimen.module_x3)
 
             val drawableStartId = it.getResourceId(R.styleable.Button_android_drawableStart, 0)
             val drawableEndId = it.getResourceId(R.styleable.Button_android_drawableEnd, 0)
@@ -338,25 +338,28 @@ class Button @JvmOverloads constructor(
 
     private fun invalidateDrawableColors() {
         val colorState = when (buttonStyle) {
-            ButtonStyle.Primary -> colorStateList(
-                enabled = drawableTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                disabled = drawableTintColor?.normalDisabled
+            ButtonStyle.Primary -> ColorState(
+                normalEnabled = drawableTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
+                normalDisabled = drawableTintColor?.normalDisabled
                     ?: ThemeManager.theme.palette.elementStaticWhite.withAlpha(),
                 pressed = drawableTintColor?.pressed ?: ThemeManager.theme.palette.elementStaticWhite
             )
-            ButtonStyle.Secondary, ButtonStyle.Ghost -> colorStateList(
-                enabled = drawableTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-                disabled = drawableTintColor?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+            ButtonStyle.Secondary, ButtonStyle.Ghost -> ColorState(
+                normalEnabled = drawableTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
+                normalDisabled = drawableTintColor?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
                 pressed = drawableTintColor?.pressed ?: ThemeManager.theme.palette.elementAccent
             )
         }
 
-        actionTextView.setCompoundDrawablesWithIntrinsicBounds(
-            drawableStart?.colored(colorState),
-            null,
-            drawableEnd?.colored(colorState),
-            null
-        )
+        actionTextView.apply {
+            compoundDrawablesColorState = colorState
+            setCompoundDrawablesWithIntrinsicBounds(
+                drawableStart,
+                null,
+                drawableEnd,
+                null
+            )
+        }
     }
 
     private fun invalidateSpinnerStyle() {

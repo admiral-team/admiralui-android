@@ -130,7 +130,7 @@ class OutlineSliderTabs @JvmOverloads constructor(
             super.onPageSelected(position)
 
             getChildAt(position)?.id?.let {
-                check(id)
+                check(it)
             }
         }
     }
