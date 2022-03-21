@@ -57,7 +57,6 @@ class ViewPagerFragment : BaseFragment(R.layout.fmt_view_pager_container) {
                 tab.text = fragments[position].first
             }
 
-
             btn.setOnClickListener {
                 adapter.add(Pair((adapter.itemCount + 1).toString(), ViewPagerFragment().apply {
                     arguments = bundleOf(Pair("TEXT", (adapter.itemCount + 1).toString()))

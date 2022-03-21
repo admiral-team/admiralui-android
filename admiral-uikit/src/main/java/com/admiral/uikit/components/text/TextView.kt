@@ -84,6 +84,17 @@ open class TextView @JvmOverloads constructor(
         }
 
     /**
+     * Color state for CompoundDrawables.
+     * States: normal, disabled, pressed.
+     * In case state is null, the selected color theme will be used.
+     */
+    var compoundDrawablesColorState: ColorState? = null
+        set(value) {
+            field = value
+            invalidateTextColor()
+        }
+
+    /**
      * CompoundDrawables color for the normal enabled state from palette.
      */
     var compoundDrawablesNormalEnabledPalette: ColorPaletteEnum? = null
@@ -153,17 +164,30 @@ open class TextView @JvmOverloads constructor(
         invalidateCompoundDrawablesColor()
     }
 
+    override fun setCompoundDrawablesWithIntrinsicBounds(
+        left: Drawable?,
+        top: Drawable?,
+        right: Drawable?,
+        bottom: Drawable?
+    ) {
+        super.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
+        invalidateCompoundDrawablesColor()
+    }
+
     private fun invalidateCompoundDrawablesColor() {
         doOnLayout {
             compoundDrawables.forEach {
                 it?.setTintList(
                     colorStateList(
-                        enabled = compoundDrawablesNormalEnabledPalette?.colorResToToken()
+                        enabled = compoundDrawablesColorState?.normalEnabled
+                            ?: compoundDrawablesNormalEnabledPalette?.colorResToToken()
                             ?: ThemeManager.theme.palette.elementPrimary,
-                        disabled = compoundDrawablesNormalEnabledPalette?.colorResToToken()
+                        disabled = compoundDrawablesColorState?.normalDisabled
+                            ?: compoundDrawablesNormalEnabledPalette?.colorResToToken()
                             ?.withAlpha()
                             ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
-                        pressed = compoundDrawablesPressedPalette?.colorResToToken()
+                        pressed = compoundDrawablesColorState?.pressed
+                            ?: compoundDrawablesPressedPalette?.colorResToToken()
                             ?: compoundDrawablesNormalEnabledPalette?.colorResToToken()
                             ?: ThemeManager.theme.palette.elementPrimary
                     )

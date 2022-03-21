@@ -142,13 +142,13 @@ lane :generate_colors do
   figma_generate_styles(
     styles: styles.to_json,
     template_file: Dir.pwd + "/../Templates/ColorPalette.liquid",
-    output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/vtb/admiral/themes/ColorPalette.kt"
+    output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/admiral/themes/ColorPalette.kt"
   )
 
   figma_generate_styles(
     styles: styles.to_json,
     template_file: Dir.pwd + "/../Templates/ColorPaletteExt.liquid",
-    output_file: Dir.pwd + "/../demo/src/main/java/com/vtb/admiral/demo/features/home/colors/ColorPaletteExt.kt"
+    output_file: Dir.pwd + "/../demo/src/main/java/com/admiral/demo/features/home/colors/ColorPaletteExt.kt"
   )
 
   figma_generate_styles(
@@ -166,7 +166,7 @@ lane :generate_colors do
   figma_generate_styles(
     styles: styles.to_json,
     template_file: Dir.pwd + "/../Templates/ColorPaletteEnum.liquid",
-      output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/vtb/admiral/themes/ColorPaletteEnum.kt"
+      output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/admiral/themes/ColorPaletteEnum.kt"
   )
 end
 
@@ -188,7 +188,7 @@ lane :generate_fonts do
   figma_generate_styles(
     styles: styles.to_json,
     template_file: Dir.pwd + "/../Templates/Typography.liquid",
-    output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/vtb/admiral/themes/Typography.kt"
+    output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/admiral/themes/Typography.kt"
   )
 
   figma_generate_styles(
