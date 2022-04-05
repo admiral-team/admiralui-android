@@ -1,0 +1,11 @@
+# These owners will be the default owners for everything in
+# the repo. Unless a later match takes precedence,
+# these teams will be requested for
+# review when someone opens a pull request.
+@admiral-team/admiralui-android-core-team
+@admiral-team/admiral-test-team
+
+# Core team owns any files in the .github/workflows
+# directory at the root of the repository and any of its
+# subdirectories.
+.github/workflows @admiral-team/admiralui-android-core-team
