@@ -2,11 +2,20 @@ package com.admiral.uikit.components.calendar.day
 
 import java.time.LocalDate
 
-internal sealed class BaseDayModel {
+sealed class BaseDayModel {
     object Unknown : BaseDayModel()
 
+    /**
+     * Calendar day model
+     */
     sealed class DayModel(
+        /**
+         * Local date of this day
+         */
         open val localDate: LocalDate,
+        /**
+         * It means that day has special point mark
+         */
         open val isMarked: Boolean
     ) : BaseDayModel() {
 
