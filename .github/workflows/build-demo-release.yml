@@ -56,3 +56,12 @@ jobs:
       - name: Upload prod release apk to App Center
         if: ${{ github.event_name == 'push' }}
         run: bundle exec fastlane deploy_appcenter_prod branch_name:"${{ github.head_ref }}"
+
+      - name: Upload release artifacts to Github Packages
+        if: ${{ github.event_name == 'push' }}
+        env:
+          CI_GITHUB_USERNAME: ${{ secrets.CI_GITHUB_USERNAME }}
+          CI_GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+        run: |
+          chmod +x gradlew
+          ./gradlew publish
