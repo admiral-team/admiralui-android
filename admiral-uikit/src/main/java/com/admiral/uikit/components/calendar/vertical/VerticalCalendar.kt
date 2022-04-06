@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.admiral.uikit.R
 import com.admiral.uikit.components.calendar.common.CalendarState
 import com.admiral.uikit.components.calendar.common.IMonthsGenerator
+import com.admiral.uikit.components.calendar.day.BaseDayModel
 import com.admiral.uikit.components.calendar.vertical.recycler.VerticalMonthsSpacingDecorator
 import com.admiral.uikit.components.calendar.vertical.recycler.VerticalMonthsAdapter
 import com.admiral.uikit.databinding.AdmiralViewCalendarVerticalBinding
@@ -19,6 +20,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 
@@ -85,6 +87,17 @@ class VerticalCalendar @JvmOverloads constructor(
             viewModel.updateCalendarState(value)
         }
 
+    /**
+     * StateFlow for calendar state changes
+     */
+    val calendarStateFlow: StateFlow<CalendarState>
+        get() = viewModel.calendarStateFlow
+
+    /**
+     * Callback for click on a day events
+     */
+    var onDayClicked: ((BaseDayModel.DayModel) -> Unit)? = null
+
     init {
         initRecycler()
     }
@@ -94,6 +107,7 @@ class VerticalCalendar @JvmOverloads constructor(
             layoutManager = LinearLayoutManager(context)
             adapter = VerticalMonthsAdapter(context) { clickedDate ->
                 viewModel.handleDayClickedAction(clickedDate)
+                onDayClicked?.invoke(clickedDate)
             }
             setRecycledViewPool(RecyclerView.RecycledViewPool())
             addOnScrollListener(onScrollListener)
