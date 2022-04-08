@@ -13,18 +13,21 @@ import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.isGone
+import androidx.core.view.updateLayoutParams
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.coloredDrawable
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import kotlin.math.abs
+import kotlin.math.max
 
 class InputNumber @JvmOverloads constructor(
     context: Context,
@@ -55,33 +58,27 @@ class InputNumber @JvmOverloads constructor(
     /**
      * Max value of input number.
      */
-    var maxValue: Int = MAX_VALUE
+    var maxValue: Int = DEFAULT_MAX_VALUE
         set(maxValue) {
-            if (maxValue > MAX_VALUE) {
-                throw IllegalArgumentException("The value must be less or equal then MAX_VALUE: $MAX_VALUE")
-            }
-
             field = maxValue
 
             if (maxValue < value) {
                 value = maxValue
             }
+            setupValueTextViewWidth()
         }
 
     /**
      * Min value of input number.
      */
-    var minValue: Int = MIN_VALUE
+    var minValue: Int = DEFAULT_MIN_VALUE
         set(minValue) {
-            if (minValue < MIN_VALUE) {
-                throw IllegalArgumentException("The value must be greater or equal then MIN_VALUE: $MIN_VALUE")
-            }
-
             field = minValue
 
             if (minValue > value) {
                 value = minValue
             }
+            setupValueTextViewWidth()
         }
 
     /**
@@ -185,17 +182,11 @@ class InputNumber @JvmOverloads constructor(
         enableDecrementImageView(value != minValue)
     }
 
-    /**
-     * Subscribe for theme change.
-     */
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         ThemeManager.subscribe(this)
     }
 
-    /**
-     * Unsubscribe for theme change.
-     */
     override fun onDetachedFromWindow() {
         ThemeManager.unsubscribe(this)
         super.onDetachedFromWindow()
@@ -213,6 +204,15 @@ class InputNumber @JvmOverloads constructor(
         invalidateTextColors()
         invalidateIconBackgroundColors()
         invalidateIconTintColors()
+    }
+
+    private fun setupValueTextViewWidth() {
+        val max = -max(abs(minValue), abs(maxValue))
+
+        val textWidth = valueTextView.paint.measureText(max.toString())
+        valueTextView.updateLayoutParams {
+            this.width = textWidth.toInt()
+        }
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -385,8 +385,8 @@ class InputNumber @JvmOverloads constructor(
     private fun parseTexts(a: TypedArray) {
         optionalText = a.getString(R.styleable.InputNumber_admiralTextOptional)
         value = a.getInt(R.styleable.InputNumber_admiralInputValue, 0)
-        minValue = a.getInt(R.styleable.InputNumber_admiralInputMinValue, MIN_VALUE)
-        maxValue = a.getInt(R.styleable.InputNumber_admiralInputMaxValue, MAX_VALUE)
+        minValue = a.getInt(R.styleable.InputNumber_admiralInputMinValue, DEFAULT_MIN_VALUE)
+        maxValue = a.getInt(R.styleable.InputNumber_admiralInputMaxValue, DEFAULT_MAX_VALUE)
     }
 
     private fun parseTextColors(a: TypedArray) {
@@ -447,8 +447,8 @@ class InputNumber @JvmOverloads constructor(
 
     private companion object {
         private const val DELAY = 300L
-        private const val MIN_VALUE = -9999
-        private const val MAX_VALUE = 99999
+        private const val DEFAULT_MIN_VALUE = -99999
+        private const val DEFAULT_MAX_VALUE = 99999
         private const val DEFAULT_MODIFIER = 1
         private const val DEFAULT_MULTIPLIER = 10
         private const val RIPPLE_ALPHA = 0.1f
