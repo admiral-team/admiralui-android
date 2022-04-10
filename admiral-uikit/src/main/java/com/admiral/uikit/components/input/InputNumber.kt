@@ -26,6 +26,12 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.ripple
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.cancel
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -50,9 +56,24 @@ class InputNumber @JvmOverloads constructor(
      */
     var value: Int = 0
         set(value) {
-            onValueChange?.invoke(field, value)
-            field = value
-            valueTextView.text = value.toString()
+            fun updateValue() {
+                field = value
+                onValueChange?.invoke(field, value)
+                valueTextView.text = value.toString()
+                updateIncrementDecrementEnablingState()
+            }
+
+            when {
+                value in minValue..maxValue -> {
+                    updateValue()
+                }
+                value > maxValue -> {
+                    autoIncrement = false
+                }
+                value < minValue -> {
+                    autoDecrement = false
+                }
+            }
         }
 
     /**
@@ -118,7 +139,9 @@ class InputNumber @JvmOverloads constructor(
     var incrementIcon: Drawable? = null
         set(value) {
             field = value
-            incrementImageView.setImageDrawable(value ?: context.drawable(R.drawable.admiral_ic_plus_outline))
+            incrementImageView.setImageDrawable(
+                value ?: context.drawable(R.drawable.admiral_ic_plus_outline)
+            )
         }
 
     /**
@@ -127,7 +150,9 @@ class InputNumber @JvmOverloads constructor(
     var decrementIcon: Drawable? = null
         set(value) {
             field = value
-            decrementImageView.setImageDrawable(value ?: context.drawable(R.drawable.admiral_ic_minus_outline))
+            decrementImageView.setImageDrawable(
+                value ?: context.drawable(R.drawable.admiral_ic_minus_outline)
+            )
         }
 
     /**
@@ -141,26 +166,19 @@ class InputNumber @JvmOverloads constructor(
     private val decrementImageView: ImageView by lazy { findViewById(R.id.decrementImageView) }
     private val incrementImageView: ImageView by lazy { findViewById(R.id.incrementImageView) }
 
+    private var coroutineScope: CoroutineScope? = null
+
     private var autoIncrement = false
+        set(value) {
+            field = value
+            updateIncrementDecrementEnablingState()
+        }
+
     private var autoDecrement = false
-
-    private val incrementRunnable: Runnable = object : Runnable {
-        override fun run() {
-            if (autoIncrement) {
-                increment()
-                handler?.postDelayed(this, DELAY)
-            }
+        set(value) {
+            field = value
+            updateIncrementDecrementEnablingState()
         }
-    }
-
-    private val decrementRunnable: Runnable = object : Runnable {
-        override fun run() {
-            if (autoDecrement) {
-                decrement()
-                handler?.postDelayed(this, DELAY)
-            }
-        }
-    }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_input_number, this)
@@ -177,25 +195,26 @@ class InputNumber @JvmOverloads constructor(
 
         setupIncrementView()
         setupDecrementView()
-
-        enableIncrementImageView(value != maxValue)
-        enableDecrementImageView(value != minValue)
     }
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         ThemeManager.subscribe(this)
+        coroutineScope = CoroutineScope(SupervisorJob() + Dispatchers.Main).also {
+            it.setupAutoIncrement()
+        }
     }
 
     override fun onDetachedFromWindow() {
         ThemeManager.unsubscribe(this)
         super.onDetachedFromWindow()
+        coroutineScope?.cancel()
+        coroutineScope = null
     }
 
     override fun setEnabled(enabled: Boolean) {
         super.setEnabled(enabled)
-        enableIncrementImageView(enabled && value != maxValue)
-        enableDecrementImageView(enabled && value != minValue)
+        updateIncrementDecrementEnablingState()
         optionalLabelTextView.isEnabled = enabled
         valueTextView.isEnabled = enabled
     }
@@ -204,6 +223,16 @@ class InputNumber @JvmOverloads constructor(
         invalidateTextColors()
         invalidateIconBackgroundColors()
         invalidateIconTintColors()
+    }
+
+    private fun CoroutineScope.setupAutoIncrement() = launch {
+        while (true) {
+            delay(DELAY)
+            when {
+                autoIncrement -> increment(isSingleTap = false)
+                autoDecrement -> decrement(isSingleTap = false)
+            }
+        }
     }
 
     private fun setupValueTextViewWidth() {
@@ -223,18 +252,13 @@ class InputNumber @JvmOverloads constructor(
 
         incrementImageView.setOnLongClickListener {
             autoIncrement = true
-            enableDecrementImageView(false)
-            handler.postDelayed(incrementRunnable, DELAY)
-
             return@setOnLongClickListener true
         }
 
         incrementImageView.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP && autoIncrement) {
-                enableDecrementImageView(true)
                 autoIncrement = false
             }
-
             return@setOnTouchListener false
         }
     }
@@ -247,18 +271,13 @@ class InputNumber @JvmOverloads constructor(
 
         decrementImageView.setOnLongClickListener {
             autoDecrement = true
-            enableIncrementImageView(false)
-            handler.postDelayed(decrementRunnable, DELAY)
-
             return@setOnLongClickListener true
         }
 
         decrementImageView.setOnTouchListener { _, event ->
             if (event.action == MotionEvent.ACTION_UP && autoDecrement) {
-                enableIncrementImageView(true)
                 autoDecrement = false
             }
-
             return@setOnTouchListener false
         }
     }
@@ -277,36 +296,33 @@ class InputNumber @JvmOverloads constructor(
         return modifier
     }
 
+    private fun updateIncrementDecrementEnablingState() {
+        enableIncrementImageView(isEnabled && value != maxValue && !autoDecrement)
+        enableDecrementImageView(isEnabled && value != minValue && !autoIncrement)
+    }
+
     private fun increment(isSingleTap: Boolean = false) {
         val newValue = value + calculateModifier(isSingleTap)
-
-        if (newValue <= maxValue) {
-            value = newValue
-        }
-
-        enableIncrementImageView(value != maxValue)
-        enableDecrementImageView(value != minValue)
+        value = newValue
     }
 
     private fun decrement(isSingleTap: Boolean = false) {
         val newValue = value - calculateModifier(isSingleTap)
-
-        if (newValue >= minValue) {
-            value = newValue
-        }
-
-        enableIncrementImageView(value != maxValue)
-        enableDecrementImageView(value != minValue)
+        value = newValue
     }
 
     private fun enableDecrementImageView(isEnabled: Boolean) {
-        val tintNormalColor = iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
+        val tintNormalColor =
+            iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
         val backgroundNormalColor =
-            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne
+            iconBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne
 
-        val tintDisabledColor = iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+        val tintDisabledColor =
+            iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
         val backgroundDisabledColor =
-            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
+            iconBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
 
         val tintColorState: ColorStateList
         val backgroundColorState: ColorStateList
@@ -325,13 +341,17 @@ class InputNumber @JvmOverloads constructor(
     }
 
     private fun enableIncrementImageView(isEnabled: Boolean) {
-        val tintNormalColor = iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
+        val tintNormalColor =
+            iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
         val backgroundNormalColor =
-            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne
+            iconBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne
 
-        val tintDisabledColor = iconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+        val tintDisabledColor =
+            iconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
         val backgroundDisabledColor =
-            iconBackgroundColors?.normalDisabled ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
+            iconBackgroundColors?.normalDisabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
 
         val tintColorState: ColorStateList
         val backgroundColorState: ColorStateList
@@ -406,7 +426,8 @@ class InputNumber @JvmOverloads constructor(
     private fun invalidateTextColors() {
         val textColorStateList = colorStateList(
             enabled = textColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-            disabled = textColors?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            disabled = textColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = textColors?.pressed ?: ThemeManager.theme.palette.textPrimary
         )
 
@@ -415,15 +436,18 @@ class InputNumber @JvmOverloads constructor(
     }
 
     private fun invalidateIconBackgroundColors() {
-        val rippleColor = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
-            RIPPLE_ALPHA
-        )
+        val rippleColor =
+            iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
+                RIPPLE_ALPHA
+            )
         val mask = context.drawable(R.drawable.admiral_bg_round)
         val contentStateList = colorStateList(
-            enabled = iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            enabled = iconBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
             disabled = iconBackgroundColors?.normalDisabled
                 ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha(),
-            pressed = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.backgroundAdditionalOne
+            pressed = iconBackgroundColors?.pressed
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne
         )
         val content = context.coloredDrawable(R.drawable.admiral_bg_round, contentStateList)
 
@@ -437,7 +461,8 @@ class InputNumber @JvmOverloads constructor(
     private fun invalidateIconTintColors() {
         val iconTintColorStateList = colorStateList(
             enabled = iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
-            disabled = iconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
+            disabled = iconTintColors?.normalDisabled
+                ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
             pressed = iconTintColors?.pressed ?: ThemeManager.theme.palette.elementPrimary
         )
 
