@@ -28,7 +28,13 @@
 <details>
     <summary>Инструкция</summary>
 
-1. Добавить в `settings.gradle` путь к репозиторию + логин и токен пользователя от Github:
+1. Зайти в аккаунт на Github и сгенерировать токен https://github.com/settings/tokens (из доступов выбрать `read:packages`)
+2. Добавить в файл `local.properties` логин от Github и сгенерированный токен (без кавычек):
+```
+GITHUB_USERNAME=...
+GITHUB_TOKEN=...
+```
+3. Добавить в `settings.gradle` путь к репозиторию + логин и токен пользователя от Github:
 ```
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -58,12 +64,6 @@ dependencyResolutionManagement {
     }
 }
 ```
-2. Залогиниться на Github и сгенерировать токен https://github.com/settings/tokens (из доступов выбрать `read:packages`)
-3. Добавить в файл `local.properties` логин от Github и сгенерированный токен (без кавычек):
-```
-GITHUB_USERNAME=...
-GITHUB_TOKEN=...
-```
 4. Добавить необходимые зависимости в `build.gradle`
 ```
 dependencies {
@@ -80,7 +80,7 @@ dependencies {
 </details>
 
 ### Подключение локального репозитория
-Этот способ можно использовать для подключения develop версий библиотеки.
+Этот способ можно использовать для подключения develop версий библиотеки
 <details>
     <summary>Инструкция</summary>
 
@@ -115,7 +115,7 @@ dependencies {
 ```
 **NB**: Следует учитывать что Gradle кэширует зависимости и если пересобрать артефакты для дев сборки, по умолчанию будут
 использоваться закешированные версии. Следует выполнить команду `./gradlew build --refresh-dependencies` или просто удалить папку
-с кешем для Gradle.
+с кешем для Gradle
 </details>
 
 ## Использование компонентов:
