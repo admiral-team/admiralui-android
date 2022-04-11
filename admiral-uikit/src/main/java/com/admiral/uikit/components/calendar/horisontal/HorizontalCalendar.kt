@@ -282,7 +282,7 @@ class HorizontalCalendar @JvmOverloads constructor(
 
     private companion object {
         const val ITEMS_GENERATOR_THRESHOLD = 2
-        const val TITLE_STATE_CHANGES_DEBOUNCE_IN_MILLISECONDS = 150L
+        const val TITLE_STATE_CHANGES_DEBOUNCE_IN_MILLISECONDS = 250L
         const val DATE_PICKER_SMOOTHNESS_DELAY = 250L
     }
 }
