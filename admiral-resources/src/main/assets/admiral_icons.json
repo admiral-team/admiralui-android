@@ -1315,19 +1315,9 @@
     "type": "System"
   },
   {
-    "id": "admiral_ic_chart_bar_outline",
-    "name": "Chart Bar Outline",
-    "type": "Redact"
-  },
-  {
     "id": "admiral_ic_money_outline",
     "name": "Money Outline",
     "type": "Finance"
-  },
-  {
-    "id": "admiral_ic_chart_trending_outline",
-    "name": "Chart Trending Outline",
-    "type": "Redact"
   },
   {
     "id": "admiral_ic_finance_outline",
