@@ -56,7 +56,6 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -64,7 +63,6 @@
                 android:id="@+id/iconTrailing"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
         </com.admiral.uikit.components.cell.BaseCell>
@@ -90,7 +88,6 @@
                 android:id="@+id/iconTrailing2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
         </com.admiral.uikit.components.cell.BaseCell>
@@ -116,7 +113,6 @@
                 android:id="@+id/iconTrailing3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
         </com.admiral.uikit.components.cell.BaseCell>
@@ -126,6 +122,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            app:admiralTrailingElementGravity="top"
             android:focusable="true"
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
@@ -147,7 +144,6 @@
                 android:id="@+id/iconTrailing5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
         </com.admiral.uikit.components.cell.BaseCell>
@@ -157,6 +153,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:clickable="true"
+            app:admiralTrailingElementGravity="top"
             android:focusable="true"
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
@@ -175,7 +172,6 @@
                 android:id="@+id/iconTrailing6"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
         </com.admiral.uikit.components.cell.BaseCell>

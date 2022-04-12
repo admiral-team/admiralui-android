@@ -21,6 +21,7 @@
         android:id="@+id/subtitleTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x1"
         android:ellipsize="end"
         app:admiralTextStyle="subhead3"
         app:layout_constraintStart_toStartOf="@id/titleTextView"
