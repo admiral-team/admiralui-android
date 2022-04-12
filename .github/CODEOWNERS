@@ -6,7 +6,7 @@
 @admiral-team/admiral-test-team
 
 # Default reviewers
-* @timbaton @Samuel-Unknown @Evgeniy-93
+@timbaton @Samuel-Unknown @Evgeniy-93
 
 # Core team owns any files in the .github/workflows
 # directory at the root of the repository and any of its
