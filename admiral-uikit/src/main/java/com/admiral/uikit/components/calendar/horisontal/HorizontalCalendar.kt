@@ -17,6 +17,7 @@ import com.admiral.uikit.components.calendar.common.CalendarState
 import com.admiral.uikit.components.calendar.common.IMonthsGenerator
 import com.admiral.uikit.components.calendar.common.calculateHeightOfMothView
 import com.admiral.uikit.components.calendar.common.getTitle
+import com.admiral.uikit.components.calendar.day.BaseDayModel
 import com.admiral.uikit.components.calendar.horisontal.recycler.HorizontalMonthsAdapter
 import com.admiral.uikit.databinding.AdmiralViewCalendarHorizontalBinding
 import com.admiral.uikit.ext.drawable
@@ -27,6 +28,7 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
@@ -112,6 +114,17 @@ class HorizontalCalendar @JvmOverloads constructor(
             field = value
             viewModel.updateCalendarState(value)
         }
+
+    /**
+     * StateFlow for calendar state changes
+     */
+    val calendarStateFlow: StateFlow<CalendarState>
+        get() = viewModel.calendarStateFlow
+
+    /**
+     * Callback for click on a day events
+     */
+    var onDayClicked: ((BaseDayModel.DayModel) -> Unit)? = null
 
     init {
         initRecycler()
@@ -208,6 +221,7 @@ class HorizontalCalendar @JvmOverloads constructor(
                 .also { it.orientation = LinearLayoutManager.HORIZONTAL }
             adapter = HorizontalMonthsAdapter(context) { clickedDate ->
                 viewModel.handleDayClickedAction(clickedDate)
+                onDayClicked?.invoke(clickedDate)
             }
             snapHelper.attachToRecyclerView(this)
 
@@ -268,7 +282,7 @@ class HorizontalCalendar @JvmOverloads constructor(
 
     private companion object {
         const val ITEMS_GENERATOR_THRESHOLD = 2
-        const val TITLE_STATE_CHANGES_DEBOUNCE_IN_MILLISECONDS = 150L
+        const val TITLE_STATE_CHANGES_DEBOUNCE_IN_MILLISECONDS = 250L
         const val DATE_PICKER_SMOOTHNESS_DELAY = 250L
     }
 }

@@ -28,8 +28,6 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import androidx.core.widget.doOnTextChanged
-import com.google.android.material.textfield.TextInputEditText
-import com.google.android.material.textfield.TextInputLayout
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -47,12 +45,15 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.ext.setMargins
 import com.admiral.uikit.ext.showKeyboard
+import com.admiral.uikit.layout.ConstraintLayout
 import com.admiral.uikit.layout.LinearLayout
+import com.google.android.material.textfield.TextInputEditText
+import com.google.android.material.textfield.TextInputLayout
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.parcelize.Parcelize
+import android.widget.LinearLayout.LayoutParams as LinearLayoutParams
 
 /**
  * Replacement of TextFieldInputLayout and TextInputEditText.
@@ -61,7 +62,7 @@ class TextField @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : LinearLayout(context, attrs, defStyleAttr), ThemeObserver {
+) : ConstraintLayout(context, attrs, defStyleAttr), ThemeObserver {
 
     /**
      * Color state for hint text color.
@@ -370,7 +371,7 @@ class TextField @JvmOverloads constructor(
     @Deprecated("If you need any method - contact @tim_baton, please")
     val editText: TextInputEditText by lazy { findViewById(R.id.editText) }
 
-    private val mainContentContainer: LinearLayout by lazy { findViewById(R.id.admiralTextFieldMainContentLinear) }
+    private val mainContentContainer: LinearLayout by lazy { findViewById(R.id.admiralViewTextFieldRightViews) }
 
     private val iconImageView: ImageView by lazy { findViewById(R.id.iconImageView) }
     private val iconCloseImageView: ImageView by lazy { findViewById(R.id.iconCloseImageView) }
@@ -381,10 +382,10 @@ class TextField @JvmOverloads constructor(
     private var isNowFocused = false
 
     private var currentUnderlineDrawable: Drawable? = null
+    private var additionalRightView: View? = null
 
     init {
         isBackgroundTransparent = true
-        orientation = VERTICAL
         LayoutInflater.from(context).inflate(R.layout.admiral_view_text_field, this)
 
         parseAttrs(attrs, R.styleable.TextField).use {
@@ -504,15 +505,15 @@ class TextField @JvmOverloads constructor(
     }
 
     fun addEndView(view: View) {
-        val a = LayoutParams(
+        val params = LayoutParams(
             LayoutParams.WRAP_CONTENT,
             LayoutParams.WRAP_CONTENT
         )
-        a.gravity = Gravity.BOTTOM
-        view.layoutParams = a
-        view.setMargins(bottom = 3)
+        view.layoutParams = params
 
+        additionalRightView = view
         mainContentContainer.addView(view, mainContentContainer.childCount)
+        invalidateIcon()
     }
 
     private fun parseTexts(a: TypedArray) {
@@ -609,6 +610,7 @@ class TextField @JvmOverloads constructor(
             editText.ellipsize = null
         }
         invalidateStyle()
+        invalidateColors()
     }
 
     private fun invalidateTextHidden() {
@@ -740,11 +742,11 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun invalidateIcon() {
-        val bottomMargin = pixels(
+        val topMargin = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.admiral_text_field_icon_bottom_margin
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.admiral_text_field_icon_bottom_margin
-                else -> R.dimen.module_x2
+                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x4
+                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x5
+                else -> R.dimen.module_x5
             }
         )
 
@@ -756,16 +758,23 @@ class TextField @JvmOverloads constructor(
             }
         )
 
-        iconImageView.updateLayoutParams<LayoutParams> {
+        iconImageView.updateLayoutParams<LinearLayoutParams> {
             width = size
             height = size
-            setMargins(0, 0, 0, bottomMargin)
         }
 
-        iconCloseImageView.updateLayoutParams<LayoutParams> {
+        iconCloseImageView.updateLayoutParams<LinearLayoutParams> {
             width = size
             height = size
-            setMargins(0, 0, 0, bottomMargin)
+        }
+
+        additionalRightView?.updateLayoutParams<LinearLayoutParams> {
+            width = size
+            height = size
+        }
+
+        mainContentContainer.updateLayoutParams<LayoutParams> {
+            setMargins(0, topMargin, 0, 0)
         }
     }
 

@@ -124,7 +124,7 @@ class UnderlineSliderTabs @JvmOverloads constructor(
             super.onPageSelected(position)
 
             getChildAt(position)?.id?.let {
-                check(id)
+                check(it)
             }
         }
     }

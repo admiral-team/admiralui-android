@@ -7,30 +7,6 @@ before_all do
   Dotenv.overload('.env', '.env.secret')
 end
 
-lane :detekt do
-  gradle(
-    tasks: "detekt"
-  )
-end
-
-# Artifacts Methods
-
-lane :build_artifacts do |options|
-  gradle(task: "clean")
-  gradle(task: "cleanArtifacts")
-  gradle(task: "assembleDebug")
-  gradle(task: "addSourcesToAar")
-
-  copy_artifacts(
-    target_path: "artifacts",
-    artifacts: [
-      "admiral-resources/build/outputs/aar/admiral-resources-debug.aar",
-      "admiral-themes/build/outputs/aar/admiral-themes-debug.aar",
-      "admiral-uikit-common/build/outputs/aar/admiral-uikit-common-debug.aar",
-    ]
-  )
-end
-
 def add_unreleased_version
   jira_add_version(
     version_attrs: {
@@ -57,31 +33,10 @@ end
 # Deploy Methods
 
 lane :deploy_appcenter_dev do |options|
-  skip_archive = options[:skip_archive] || false
-  skip_jira_comment = options[:skip_jira_comment] || false
+  pull_request_url = options[:pull_request_url] || ""
+  branch_name = options[:branch_name] || ""
 
-  puts "skip_archive: #{skip_archive}"
-  puts "skip_jira_comment: #{skip_jira_comment}"
-
-  branch_name = git_branch()
-  project_name = ENV['JIRA_PROJECT_NAME']
-  issue_name = options[:issue_name]
-
-  extracted_issue_name = jira_extract_issue_name(
-      text: issue_name || git_branch,
-      project_prefix: ENV['JIRA_PROJECT_NAME']
-    ) rescue nil
-
-  issue_name = extracted_issue_name if issue_name.nil?
-  release_notes = "**Issue:** #{issue_name}\n\n**Branch:** #{branch_name}"
-
-  if !skip_archive
-    gradle(task: "clean")
-
-    gradle(
-      task: "assembleDebug"
-    )
-  end
+  release_notes = "**Pull request url:** #{pull_request_url}\n\n**Branch:** #{branch_name}"
 
   puts release_notes
 
@@ -90,99 +45,69 @@ lane :deploy_appcenter_dev do |options|
     owner_name: ENV['APPCENTER_OWNER_NAME'],
     owner_type: ENV['APPCENTER_OWNER_TYPE'],
     app_name: ENV['APPCENTER_APP_NAME_DEV'],
-    file: "demo/build/outputs/apk/debug/demo-debug.apk",
+    file: "demo/build/outputs/apk/release/demo-release.apk",
     destinations: ENV['APPCENTER_DESTINATIONS_DEV'],
     destination_type: "group",
     release_notes: release_notes,
     notify_testers: true
   )
 
-  build_info_hash = lane_context[SharedValues::APPCENTER_BUILD_INFORMATION]
-  build_info = BuildInfo.from_hash(build_info_hash)
-  build_info.branch_name = branch_name
-  build_info.build_url = appcenter_build_dev_url(build_id: build_info.build_id)
-  build_info.issue = issue_name
-  build_info.internal_version = current_lib_internal_version
+#   build_info_hash = lane_context[SharedValues::APPCENTER_BUILD_INFORMATION]
+#   build_info = BuildInfo.from_hash(build_info_hash)
+#   build_info.branch_name = branch_name
+#   build_info.build_url = appcenter_build_dev_url(build_id: build_info.build_id)
+#   build_info.issue = issue_name
+#   build_info.internal_version = current_lib_internal_version
 
-  if !skip_jira_comment && !extracted_issue_name.nil?
-    attachment_file = "qr-#{build_info.build_id}.png"
-    attachment_path = File.join(Dir.pwd, 'cache', attachment_file)
-
-    generate_qr_code(
-      file: attachment_path,
-      link: build_info.build_url
-    )
-
-    comment_body = formatted_build_info_jira(build_info: build_info)
-    comment_body += "\n\n!#{attachment_file}!"
-
-    jira_add_comment(
-      issue: extracted_issue_name,
-      comment_body: comment_body,
-      attachment: attachment_path
-    )
-  end
-
-  puts "\n#{formatted_build_info(build_info: build_info)}"
-
-  chat_id = ENV['TELEGRAM_DEV_CHAT_ID']
-  send_message(build_info: build_info, chat_ids: [chat_id])
-
-  gradle(
-    task: "clean"
-  )
+#   puts "\n#{formatted_build_info(build_info: build_info)}"
+#
+#   chat_id = ENV['TELEGRAM_DEV_CHAT_ID']
+#   send_message(build_info: build_info, chat_ids: [chat_id])
 end
 
 lane :deploy_appcenter_prod do |options|
-  check_release_issues(
-    fix_version: unreleased_version,
-    project: ENV['JIRA_PROJECT_NAME'],
-    close_status: "ВЫПОЛНЕНО"
-  )
+#   check_release_issues(
+#     fix_version: unreleased_version,
+#     project: ENV['JIRA_PROJECT_NAME'],
+#     close_status: "ВЫПОЛНЕНО"
+#   )
+#
+#   skip_archive = options[:skip_archive] || false
+#   release_jira_version = options[:release_jira_version] || false
 
-  skip_archive = options[:skip_archive] || false
-  release_jira_version = options[:release_jira_version] || false
+#   issues = jira_get_done_issues(fix_version: unreleased_version)
+#   issues_string = issues.map { |i| "* #{i.summary.gsub('[', '\[').gsub(']', '\]')}" }.join("\n")
+  branch_name = options[:branch_name] || ""
 
-  branch_name = git_branch()
-  issues = jira_get_done_issues(fix_version: unreleased_version)
-  issues_string = issues.map { |i| "* #{i.summary.gsub('[', '\[').gsub(']', '\]')}" }.join("\n")
-  release_notes = "**Release:** #{current_lib_full_version}\n\n**Branch name:** #{branch_name}\n\n**Release notes:**\n#{issues_string}"
-
-  if !skip_archive
-    gradle(task: "clean")
-
-    gradle(
-      task: "assembleDebug"
-    )
-  end
+  release_notes = "**Release:** #{current_lib_full_version}\n\n**Branch:** #{branch_name}"
 
   appcenter_upload(
     api_token: ENV['APPCENTER_API_TOKEN'],
     owner_name: ENV['APPCENTER_OWNER_NAME'],
     owner_type: ENV['APPCENTER_OWNER_TYPE'],
     app_name: ENV['APPCENTER_APP_NAME'],
-    file: "demo/build/outputs/apk/debug/demo-debug.apk",
+    file: "demo/build/outputs/apk/release/demo-release.apk",
     destinations: ENV['APPCENTER_DESTINATIONS_PROD'],
     destination_type: "group",
     release_notes: release_notes,
     notify_testers: true
   )
 
-  build_info_hash = lane_context[SharedValues::APPCENTER_BUILD_INFORMATION]
-  build_info = BuildInfo.from_hash(build_info_hash)
-  build_info.branch_name = branch_name
-  build_info.build_url = appcenter_build_prod_url
-  build_info.internal_version = current_lib_internal_version
-
-  puts "\n#{formatted_build_info(build_info: build_info)}"
-
-  if release_jira_version
-      replace_version_jira
-  end
-
-  chat_id = ENV['TELEGRAM_PROD_CHAT_ID']
-  team_chat_id = ENV['TELEGRAM_ADMIRAL_DEV_CHAT_ID']
-  send_message(build_info: build_info, chat_ids: [chat_id, team_chat_id])
+#   build_info_hash = lane_context[SharedValues::APPCENTER_BUILD_INFORMATION]
+#   build_info = BuildInfo.from_hash(build_info_hash)
+#   build_info.branch_name = branch_name
+#   build_info.build_url = appcenter_build_prod_url
+#   build_info.internal_version = current_lib_internal_version
+#
+#   puts "\n#{formatted_build_info(build_info: build_info)}"
+#
+#   if release_jira_version
+#       replace_version_jira
+#   end
+#
+#   chat_id = ENV['TELEGRAM_PROD_CHAT_ID']
+#   team_chat_id = ENV['TELEGRAM_ADMIRAL_DEV_CHAT_ID']
+#   send_message(build_info: build_info, chat_ids: [chat_id, team_chat_id])
 end
 
 def replace_version_jira
@@ -217,13 +142,13 @@ lane :generate_colors do
   figma_generate_styles(
     styles: styles.to_json,
     template_file: Dir.pwd + "/../Templates/ColorPalette.liquid",
-    output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/vtb/admiral/themes/ColorPalette.kt"
+    output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/admiral/themes/ColorPalette.kt"
   )
 
   figma_generate_styles(
     styles: styles.to_json,
     template_file: Dir.pwd + "/../Templates/ColorPaletteExt.liquid",
-    output_file: Dir.pwd + "/../demo/src/main/java/com/vtb/admiral/demo/features/home/colors/ColorPaletteExt.kt"
+    output_file: Dir.pwd + "/../demo/src/main/java/com/admiral/demo/features/home/colors/ColorPaletteExt.kt"
   )
 
   figma_generate_styles(
@@ -241,7 +166,7 @@ lane :generate_colors do
   figma_generate_styles(
     styles: styles.to_json,
     template_file: Dir.pwd + "/../Templates/ColorPaletteEnum.liquid",
-      output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/vtb/admiral/themes/ColorPaletteEnum.kt"
+      output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/admiral/themes/ColorPaletteEnum.kt"
   )
 end
 
@@ -263,7 +188,7 @@ lane :generate_fonts do
   figma_generate_styles(
     styles: styles.to_json,
     template_file: Dir.pwd + "/../Templates/Typography.liquid",
-    output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/vtb/admiral/themes/Typography.kt"
+    output_file: Dir.pwd + "/../admiral-themes/src/main/java/com/admiral/themes/Typography.kt"
   )
 
   figma_generate_styles(

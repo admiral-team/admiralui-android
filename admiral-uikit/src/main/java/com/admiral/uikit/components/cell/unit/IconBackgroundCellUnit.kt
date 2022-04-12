@@ -72,14 +72,14 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
             field = value
             imageView.setImageDrawable(icon)
             if (icon == null) {
-                imageView.layoutParams = MarginLayoutParams(
+                imageView.layoutParams = LayoutParams(
                     DEFAULT_SIZE_IMAGE.dpToPx(context),
                     DEFAULT_SIZE_IMAGE.dpToPx(context)
                 )
             } else {
-                imageView.layoutParams = MarginLayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
+                imageView.layoutParams = LayoutParams(
+                    LayoutParams.WRAP_CONTENT,
+                    LayoutParams.WRAP_CONTENT
                 )
             }
         }

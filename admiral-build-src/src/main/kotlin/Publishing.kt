@@ -19,9 +19,9 @@ object Publishing {
         val description = "Библиотека визуальных компонентов"
     }
 
-    object NexusRepository {
-        val name = "todo"
-        val url = "todo"
+    object GithubRepository {
+        val name = "GitHubPackages"
+        val url = "https://maven.pkg.github.com/admiral-team/admiralui-android"
     }
 }
 

@@ -84,12 +84,29 @@ open class TextView @JvmOverloads constructor(
         }
 
     /**
+     * Color state for CompoundDrawables.
+     * States: normal, disabled, pressed.
+     * In case state is null, the selected color theme will be used.
+     */
+    var compoundDrawablesColorState: ColorState? = null
+        set(value) {
+            field = value
+            if (value != null) {
+                isCompoundDrawableColored = true
+                invalidateCompoundDrawablesColor()
+            }
+        }
+
+    /**
      * CompoundDrawables color for the normal enabled state from palette.
      */
     var compoundDrawablesNormalEnabledPalette: ColorPaletteEnum? = null
         set(value) {
             field = value
-            invalidateCompoundDrawablesColor()
+            if (value != null) {
+                isCompoundDrawableColored = true
+                invalidateCompoundDrawablesColor()
+            }
         }
 
     /**
@@ -98,8 +115,17 @@ open class TextView @JvmOverloads constructor(
     var compoundDrawablesPressedPalette: ColorPaletteEnum? = null
         set(value) {
             field = value
-            invalidateCompoundDrawablesColor()
+            if (value != null) {
+                isCompoundDrawableColored = true
+                invalidateCompoundDrawablesColor()
+            }
         }
+
+    /**
+     * If the value is true, all the CompoundDrawables will be colored.
+     * Otherwise they will have default drawable's color.
+     */
+    var isCompoundDrawableColored: Boolean = false
 
     init {
         parseAttrs(attrs, R.styleable.TextView).use {
@@ -153,21 +179,36 @@ open class TextView @JvmOverloads constructor(
         invalidateCompoundDrawablesColor()
     }
 
+    override fun setCompoundDrawablesWithIntrinsicBounds(
+        left: Drawable?,
+        top: Drawable?,
+        right: Drawable?,
+        bottom: Drawable?
+    ) {
+        super.setCompoundDrawablesWithIntrinsicBounds(left, top, right, bottom)
+        invalidateCompoundDrawablesColor()
+    }
+
     private fun invalidateCompoundDrawablesColor() {
         doOnLayout {
             compoundDrawables.forEach {
-                it?.setTintList(
-                    colorStateList(
-                        enabled = compoundDrawablesNormalEnabledPalette?.colorResToToken()
-                            ?: ThemeManager.theme.palette.elementPrimary,
-                        disabled = compoundDrawablesNormalEnabledPalette?.colorResToToken()
-                            ?.withAlpha()
-                            ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
-                        pressed = compoundDrawablesPressedPalette?.colorResToToken()
-                            ?: compoundDrawablesNormalEnabledPalette?.colorResToToken()
-                            ?: ThemeManager.theme.palette.elementPrimary
+                if (isCompoundDrawableColored) {
+                    it?.setTintList(
+                        colorStateList(
+                            enabled = compoundDrawablesColorState?.normalEnabled
+                                ?: compoundDrawablesNormalEnabledPalette?.colorResToToken()
+                                ?: ThemeManager.theme.palette.elementPrimary,
+                            disabled = compoundDrawablesColorState?.normalDisabled
+                                ?: compoundDrawablesNormalEnabledPalette?.colorResToToken()
+                                    ?.withAlpha()
+                                ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
+                            pressed = compoundDrawablesColorState?.pressed
+                                ?: compoundDrawablesPressedPalette?.colorResToToken()
+                                ?: compoundDrawablesNormalEnabledPalette?.colorResToToken()
+                                ?: ThemeManager.theme.palette.elementPrimary
+                        )
                     )
-                )
+                }
             }
         }
     }

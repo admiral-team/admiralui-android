@@ -40,11 +40,11 @@ fun Project.publishing(
 
         repositories {
             maven {
-                name = Publishing.NexusRepository.name
-                url = uri(Publishing.NexusRepository.url)
+                name = Publishing.GithubRepository.name
+                url = uri(Publishing.GithubRepository.url)
                 credentials {
-                    username = System.getenv("NEXUS_USERNAME")
-                    password = System.getenv("NEXUS_PASSWORD")
+                    username = System.getenv("CI_GITHUB_USERNAME")
+                    password = System.getenv("CI_GITHUB_TOKEN")
                 }
             }
         }
