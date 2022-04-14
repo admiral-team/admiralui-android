@@ -57,8 +57,8 @@ class InputNumber @JvmOverloads constructor(
     var value: Int = 0
         set(value) {
             fun updateValue() {
-                field = value
                 onValueChange?.invoke(field, value)
+                field = value
                 valueTextView.text = value.toString()
                 updateIncrementDecrementEnablingState()
             }

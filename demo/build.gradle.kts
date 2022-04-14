@@ -106,7 +106,7 @@ android {
         }
 
         release {
-            isMinifyEnabled = true
+            isMinifyEnabled = false // because we want to use icons by admiral_icons.json file
             signingConfig = signingConfigs.getByName("release")
             setProguard()
         }
