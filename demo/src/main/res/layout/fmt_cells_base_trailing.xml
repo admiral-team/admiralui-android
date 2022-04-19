@@ -55,7 +55,6 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -81,7 +80,6 @@
                 android:id="@+id/title2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x1"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -105,7 +103,6 @@
                 android:id="@+id/title3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x1"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -129,7 +126,6 @@
                 android:id="@+id/title4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x4"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -154,7 +150,6 @@
                 android:id="@+id/subtitleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x1"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -179,7 +174,6 @@
                 android:id="@+id/titleSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -204,7 +198,6 @@
                 android:id="@+id/textMessageIconCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -230,7 +223,6 @@
                 android:id="@+id/titleSummSubtitleCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x1"
                 app:admiralCellUnitType="leading"
                 app:admiralTitleText="@string/cell_title" />
 

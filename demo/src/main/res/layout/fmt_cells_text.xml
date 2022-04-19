@@ -98,6 +98,7 @@
             android:id="@+id/cellTextIcon"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            app:admiralTrailingElementGravity="top"
             android:clickable="true"
             android:focusable="true"
             android:paddingStart="@dimen/module_x4"
