@@ -40,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_disabled" />
+
         </com.admiral.uikit.components.tabs.StandardTabs>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -56,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x2"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
@@ -66,6 +67,7 @@
                 android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -82,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x1"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.RadioButtonCellUnit
@@ -90,6 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -106,7 +109,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x1"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
@@ -114,6 +117,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -130,7 +134,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x4"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.SwitcherCellUnit
@@ -139,6 +143,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/test_ic_card" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -155,7 +160,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x1"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.LabelCellUnit
@@ -163,7 +168,8 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
-                app:srcCompat="@drawable/test_ic_label" />
+                app:admiralIcon="@drawable/test_ic_label" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -180,7 +186,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x2"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.CardCellUnit
@@ -189,6 +195,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/test_ic_card" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -205,7 +212,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x2"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.DoubleSubtitleCellUnit
@@ -215,6 +222,7 @@
                 app:admiralCellUnitType="trailing"
                 app:admiralSubtitleText="@string/cell_date"
                 app:admiralSubtitleTextSecond="@string/cell_percent" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -231,7 +239,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x1"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.SubtitlePaymentCellUnit
@@ -241,6 +249,9 @@
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/test_ic_visa"
                 app:admiralSubtitleText="@string/cell_payment" />
+
         </com.admiral.uikit.components.cell.BaseCell>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>

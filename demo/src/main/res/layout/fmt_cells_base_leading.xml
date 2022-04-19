@@ -57,7 +57,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="@dimen/module_x2"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
@@ -82,7 +82,7 @@
                 android:id="@+id/titleSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralSubtitleText="@string/cell_subtitle"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -108,7 +108,7 @@
                 android:id="@+id/subtitleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralSubtitleText="@string/cell_subtitle"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -134,7 +134,7 @@
                 android:id="@+id/textMessageCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralMessageText="@string/cell_message"
                 app:admiralSubtitleText="@string/cell_subtitle"
                 app:admiralSummMoreIcon="@drawable/test_ic_info"
@@ -165,6 +165,7 @@
                 android:id="@+id/textMessageIconCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
                 app:admiralButtonText="@string/cell_button"
                 app:admiralPercentText="@string/cell_percent"
                 app:admiralSubtitleSecondText="@string/cell_subtitle_second"
@@ -178,6 +179,9 @@
                 android:layout_marginTop="@dimen/module_x2"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>

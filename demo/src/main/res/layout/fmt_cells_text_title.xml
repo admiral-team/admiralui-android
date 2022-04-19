@@ -37,7 +37,7 @@
                 android:id="@+id/standardTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/cells_primary_title"
                 app:admiralTextStyle="body1" />
 
@@ -47,6 +47,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -64,7 +65,7 @@
                 android:id="@+id/logoTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/cells_secondary_title"
                 app:admiralTextStyle="body1" />
 
@@ -74,6 +75,9 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>

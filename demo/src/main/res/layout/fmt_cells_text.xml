@@ -40,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_disabled" />
+
         </com.admiral.uikit.components.tabs.StandardTabs>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -55,8 +56,9 @@
                 android:id="@+id/textSecondaryCellUnitSwitch"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/cells_text_title" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -72,9 +74,10 @@
                 android:id="@+id/textCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/cells_lorem_ipsum"
                 app:admiralTextStyle="body2" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -90,8 +93,9 @@
                 android:id="@+id/tittleCellVsIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/cells_cell_vs_icon_title" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -107,7 +111,7 @@
                 android:id="@+id/textIcon"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/cells_lorem_ipsum"
                 app:admiralTextStyle="body2" />
 
@@ -118,6 +122,7 @@
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline"
                 app:admiralIconColorNormalEnabledPalette="elementPrimary" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
     </com.admiral.uikit.layout.LinearLayout>

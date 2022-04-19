@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <com.admiral.uikit.components.cell.BaseCell
+        android:id="@+id/baseCell"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.cell.BaseCell
+        android:id="@+id/baseCell2"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/baseCell">
+
+        <com.admiral.uikit.components.cell.unit.IconCellUnit
+            android:id="@+id/l2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leading"
+            app:admiralIcon="@drawable/admiral_ic_diamond_outline" />
+
+        <com.admiral.uikit.components.cell.unit.SubtitleTitleCellUnit
+            android:id="@+id/c2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leadingText"
+            app:admiralSubtitleText="SubtitleTitleCellUnit"
+            app:admiralTitleText="TitleCellUnit" />
+
+        <com.admiral.uikit.components.cell.unit.CardCellUnit
+            android:id="@+id/t2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="trailing"
+            app:admiralIcon="@drawable/test_ic_card_start" />
+
+    </com.admiral.uikit.components.cell.BaseCell>
+
+    <com.admiral.uikit.components.cell.BaseCell
+        android:id="@+id/baseCell3"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/baseCell2">
+
+        <com.admiral.uikit.components.cell.unit.IconCellUnit
+            android:id="@+id/l3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leading"
+            app:admiralIcon="@drawable/admiral_ic_diamond_outline" />
+
+        <com.admiral.uikit.components.cell.unit.SubtitleTitleCellUnit
+            android:id="@+id/c3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leadingText"
+            app:admiralSubtitleText="SubtitleTitleCellUnit"
+            app:admiralTitleText="TitleCellUnit" />
+
+    </com.admiral.uikit.components.cell.BaseCell>
+
+    <com.admiral.uikit.components.cell.BaseCell
+        android:id="@+id/baseCell4"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/baseCell3">
+
+        <com.admiral.uikit.components.cell.unit.SubtitleTitleCellUnit
+            android:id="@+id/c4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leadingText"
+            app:admiralSubtitleText="SubtitleTitleCellUnit"
+            app:admiralTitleText="TitleCellUnit" />
+
+        <com.admiral.uikit.components.cell.unit.CardCellUnit
+            android:id="@+id/t4"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="trailing"
+            app:admiralIcon="@drawable/test_ic_card_start" />
+
+    </com.admiral.uikit.components.cell.BaseCell>
+
+    <com.admiral.uikit.components.cell.BaseCell
+        android:id="@+id/baseCell5"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:paddingHorizontal="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/baseCell4">
+
+        <com.admiral.uikit.components.cell.unit.SubtitleTitleCellUnit
+            android:id="@+id/c5"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leadingText"
+            app:admiralSubtitleText="SubtitleTitleCellUnit"
+            app:admiralTitleText="TitleCellUnit" />
+
+    </com.admiral.uikit.components.cell.BaseCell>
+
+<!--    <View-->
+<!--        android:id="@+id/leading"-->
+<!--        android:layout_width="24dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:background="@color/green_60"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/center"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        app:layout_constraintHorizontal_chainStyle="spread_inside" />-->
+
+<!--    <View-->
+<!--        android:id="@+id/center"-->
+<!--        android:layout_width="0dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:background="@color/blue_60"-->
+<!--        app:layout_constraintEnd_toStartOf="@+id/trailing"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/leading"-->
+<!--        app:layout_constraintHorizontal_chainStyle="spread_inside" />-->
+
+<!--    <View-->
+<!--        android:id="@+id/trailing"-->
+<!--        android:layout_width="24dp"-->
+<!--        android:layout_height="40dp"-->
+<!--        android:background="@color/red_60"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintHorizontal_bias="0.5"-->
+<!--        app:layout_constraintStart_toEndOf="@+id/center"-->
+<!--        app:layout_constraintHorizontal_chainStyle="spread_inside" />-->
+
+<!--        <View-->
+<!--            android:id="@+id/center"-->
+<!--            android:layout_width="0dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:background="@color/blue_60"-->
+<!--            app:layout_constraintEnd_toStartOf="@+id/trailing"-->
+<!--            app:layout_constraintStart_toStartOf="parent"-->
+<!--            app:layout_constraintHorizontal_chainStyle="spread_inside" />-->
+
+<!--        <View-->
+<!--            android:id="@+id/trailing"-->
+<!--            android:layout_width="24dp"-->
+<!--            android:layout_height="40dp"-->
+<!--            android:background="@color/red_60"-->
+<!--            app:layout_constraintEnd_toEndOf="parent"-->
+<!--            app:layout_constraintStart_toEndOf="@+id/center"-->
+<!--            app:layout_constraintHorizontal_chainStyle="spread_inside" />-->
+
+</androidx.constraintlayout.widget.ConstraintLayout>
