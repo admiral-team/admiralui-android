@@ -14,7 +14,6 @@ import com.admiral.demo.features.home.SpinnerFragment
 import com.admiral.demo.features.home.StepperFragment
 import com.admiral.demo.features.home.SwitchFragment
 import com.admiral.demo.features.home.TagsFragment
-import com.admiral.demo.features.home.TestFragment
 import com.admiral.demo.features.home.ToolbarFragment
 import com.admiral.demo.features.home.alert.PopUpFragment
 import com.admiral.demo.features.home.badges.BadgesFragment
@@ -124,7 +123,7 @@ class HomeScreen : Screen() {
 
 @Parcelize
 class ButtonsScreen : Screen() {
-    override fun getFragment() = TestFragment() //ButtonsFragment()
+    override fun getFragment() = ButtonsFragment()
 }
 
 @Parcelize

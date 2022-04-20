@@ -1,15 +1,11 @@
 package com.admiral.demo.views
 
 import android.view.View
-import android.view.ViewGroup
-import android.view.ViewGroup.LayoutParams.MATCH_PARENT
-import android.view.ViewGroup.LayoutParams.WRAP_CONTENT
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.test.platform.app.InstrumentationRegistry
 import com.admiral.demo.R
-import com.admiral.demo.ext.measureUnspecified
 import com.admiral.demo.ext.measureUnspecifiedHeight
 import com.admiral.uikit.common.components.cell.base.CellUnitType
 import com.admiral.uikit.components.badge.BadgeSize
@@ -360,23 +356,6 @@ class CellsTest : ScreenshotTest {
     fun checkProgrammaticallyLeadingCentralTrailingCellDisabled() {
         checkProgrammaticallyLeadingCentralTrailingCell(isEnabled = false)
     }
-
-//    @Test
-//    fun checkTextCellUnitProgrammatically2() {
-//        // leading + central + trailing
-//        leadingViews.forEach { leadingView ->
-//            centerViews.forEach { centerView ->
-//                trailingViews.forEach { trailingView ->
-//                    checkCellProgrammatically(
-//                        isEnabled = true,
-//                        leadingCell = leadingView,
-//                        centerCell = centerView,
-//                        trailingCell = trailingView
-//                    )
-//                }
-//            }
-//        }
-//    }
 
     data class CellData(
         val view: View,

@@ -2,6 +2,7 @@ package com.admiral.uikit.components.cell
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.View
 import androidx.constraintlayout.widget.Barrier
 import androidx.constraintlayout.widget.ConstraintSet
@@ -15,6 +16,7 @@ import com.admiral.uikit.common.components.cell.base.CellUnitType
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.common.util.ComponentsRadius
+import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
@@ -29,6 +31,8 @@ class BaseCell @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr) {
 
     private val baseCellElements = HashMap<CellUnitType, CellUnit>()
+    private var leadingGravity = Gravity.CENTER_HORIZONTAL
+    private var trailingGravity = Gravity.CENTER_HORIZONTAL
 
     /**
      * Sets the radius to the view. By default the radius is 0. You can use admiralRadius attribute from xml.
@@ -42,6 +46,8 @@ class BaseCell @JvmOverloads constructor(
     init {
         parseAttrs(attrs, R.styleable.BaseCell).use {
             radius = ComponentsRadius.from(it.getInt(R.styleable.BaseCell_admiralRadius, 0))
+            leadingGravity = it.getInt(R.styleable.BaseCell_admiralLeadingElementGravity, Gravity.CENTER_HORIZONTAL)
+            trailingGravity = it.getInt(R.styleable.BaseCell_admiralTrailingElementGravity, Gravity.CENTER_HORIZONTAL)
         }
 
         this.setPadding(
@@ -50,6 +56,8 @@ class BaseCell @JvmOverloads constructor(
             paddingRight,
             paddingBottom + pixels(R.dimen.module_x3)
         )
+
+        minHeight = MIN_HEIGHT.dpToPx(context)
     }
 
     // TODO add lint rule that user must use addViews instead of addView
@@ -129,12 +137,20 @@ class BaseCell @JvmOverloads constructor(
         val trailingView = (baseCellElements[CellUnitType.TRAILING] as? View)
         trailingView?.apply {
             set.connect(id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+
+            if (trailingGravity == Gravity.CENTER_HORIZONTAL) {
+                set.connect(id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+            }
         }
 
         // Leading
         val leadingView = (baseCellElements[CellUnitType.LEADING] as? View)
         leadingView?.apply {
             set.connect(id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+
+            if (leadingGravity == Gravity.CENTER_HORIZONTAL) {
+                set.connect(id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+            }
         }
 
         // LeadingText
@@ -225,5 +241,6 @@ class BaseCell @JvmOverloads constructor(
 
     companion object {
         const val RIPPLE_ALPHA = 0.1F
+        const val MIN_HEIGHT = 72
     }
 }
