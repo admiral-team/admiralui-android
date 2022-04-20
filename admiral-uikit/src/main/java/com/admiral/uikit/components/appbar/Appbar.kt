@@ -3,6 +3,7 @@ package com.admiral.uikit.components.appbar
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
+import android.text.TextUtils
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.Menu
@@ -70,7 +71,9 @@ class Appbar @JvmOverloads constructor(
     /**
      * TextView shown at the middle of the app bar.
      */
-    private val textViewTitle = TextView(context)
+    private val textViewTitle = TextView(context).apply {
+        ellipsize = TextUtils.TruncateAt.END
+    }
 
     /**
      * TextView shown at the right of the app bar.
@@ -110,6 +113,12 @@ class Appbar @JvmOverloads constructor(
         }
         get() {
             return textViewTitle.text.toString()
+        }
+
+    var titleMaxLines: Int = Int.MAX_VALUE
+        set(value) {
+            field = value
+            textViewTitle.maxLines = titleMaxLines
         }
 
     @ColorRes
@@ -296,9 +305,9 @@ class Appbar @JvmOverloads constructor(
             iconStart.icon = it.getDrawable(R.styleable.Appbar_admiralIconStart)
             iconEnd.icon = it.getDrawable(R.styleable.Appbar_admiralIconEnd)
             parseIconsColors(it)
-        }
 
-        textViewTitle.isSingleLine = false
+            titleMaxLines = it.getInt(R.styleable.Appbar_admiralTitleMaxLines, Int.MAX_VALUE)
+        }
 
         normalContainer.addView(textViewTitle)
         normalContainer.addView(textViewMenu)
