@@ -1,14 +1,22 @@
 package com.admiral.demo.views
 
+import android.view.LayoutInflater
 import android.view.View
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.test.platform.app.InstrumentationRegistry
+import androidx.viewbinding.ViewBinding
 import com.admiral.demo.R
+import com.admiral.demo.databinding.TestViewButtonGooglePlayBinding
+import com.admiral.demo.databinding.TestViewCellsCentralBinding
+import com.admiral.demo.databinding.TestViewCellsCentralTrailingBinding
+import com.admiral.demo.databinding.TestViewCellsLeadingCentralBinding
+import com.admiral.demo.databinding.TestViewCellsLeadingCentralTrailingBinding
 import com.admiral.demo.ext.measureUnspecifiedHeight
 import com.admiral.uikit.common.components.cell.base.CellUnitType
 import com.admiral.uikit.components.badge.BadgeSize
+import com.admiral.uikit.components.button.ButtonGooglePay
 import com.admiral.uikit.components.cell.BaseCell
 import com.admiral.uikit.components.cell.unit.CardCellUnit
 import com.admiral.uikit.components.cell.unit.CheckboxCellUnit
@@ -29,10 +37,18 @@ import com.karumi.shot.ScreenshotTest
 import org.junit.Test
 
 class CellsTest : ScreenshotTest {
-
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val wrappedContext =
-        ContextThemeWrapper(context, R.style.Theme_AdmiralUIAndroid_Launcher)
+    private val wrappedContext = ContextThemeWrapper(
+        context,
+        R.style.Theme_AdmiralUIAndroid_Launcher
+    )
+
+    private val layoutInflater = LayoutInflater.from(wrappedContext)
+
+    private val centralBinding = TestViewCellsCentralBinding.inflate(layoutInflater)
+    private val leadingCentralBinding = TestViewCellsLeadingCentralBinding.inflate(layoutInflater)
+    private val centralTrailingBinding = TestViewCellsCentralTrailingBinding.inflate(layoutInflater)
+    private val leadingCentralTrailingBinding = TestViewCellsLeadingCentralTrailingBinding.inflate(layoutInflater)
 
     private val leadingViews = listOf(
         CellData(
@@ -227,7 +243,7 @@ class CellsTest : ScreenshotTest {
         ),
     )
 
-    private fun BaseCell.check(testName: String) {
+    private fun BaseCell.check(testName: String? = null) {
         measureUnspecifiedHeight()
         compareScreenshot(
             view = this,
@@ -237,6 +253,83 @@ class CellsTest : ScreenshotTest {
         )
     }
 
+    // region check by inflation
+    private fun checkCellByInflation(
+        viewBinding: ViewBinding,
+        isEnabled: Boolean
+    ) {
+        with(viewBinding.root as BaseCell) {
+            this.isEnabled = isEnabled
+            check()
+        }
+    }
+
+    @Test
+    fun checkByInflationCentralEnabledState() {
+        checkCellByInflation(
+            viewBinding = centralBinding,
+            isEnabled = true
+        )
+    }
+
+    @Test
+    fun checkByInflationCentralDisabledState() {
+        checkCellByInflation(
+            viewBinding = centralBinding,
+            isEnabled = false
+        )
+    }
+
+    @Test
+    fun checkByInflationLeadingCentralEnabledState() {
+        checkCellByInflation(
+            viewBinding = leadingCentralBinding,
+            isEnabled = true
+        )
+    }
+
+    @Test
+    fun checkByInflationLeadingCentralDisabledState() {
+        checkCellByInflation(
+            viewBinding = leadingCentralBinding,
+            isEnabled = false
+        )
+    }
+
+    @Test
+    fun checkByInflationCentralTrailingEnabledState() {
+        checkCellByInflation(
+            viewBinding = centralTrailingBinding,
+            isEnabled = true
+        )
+    }
+
+    @Test
+    fun checkByInflationCentralTrailingDisabledState() {
+        checkCellByInflation(
+            viewBinding = centralTrailingBinding,
+            isEnabled = false
+        )
+    }
+
+    @Test
+    fun checkByInflationLeadingCentralTrailingEnabledState() {
+        checkCellByInflation(
+            viewBinding = leadingCentralTrailingBinding,
+            isEnabled = true
+        )
+    }
+
+    @Test
+    fun checkByInflationLeadingCentralTrailingDisabledState() {
+        checkCellByInflation(
+            viewBinding = leadingCentralTrailingBinding,
+            isEnabled = false
+        )
+    }
+    // endregion
+
+    // region check programmatically
     private fun checkCellProgrammatically(
         isEnabled: Boolean,
         leadingCell: CellData?,
@@ -356,6 +449,7 @@ class CellsTest : ScreenshotTest {
     fun checkProgrammaticallyLeadingCentralTrailingCellDisabled() {
         checkProgrammaticallyLeadingCentralTrailingCell(isEnabled = false)
     }
+    // endregion
 
     data class CellData(
         val view: View,

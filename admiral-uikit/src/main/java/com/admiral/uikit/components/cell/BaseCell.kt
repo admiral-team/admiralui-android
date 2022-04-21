@@ -129,6 +129,7 @@ class BaseCell @JvmOverloads constructor(
      * LEADING – connects to the start and to the top of the parent, and to the start of the TRAILING.
      * LEADING_TEXT – connects to the end of the LEADING and to the start of the TRAILING.
      */
+    @Suppress("LongMethod")
     private fun setConstraints() {
         val set = ConstraintSet()
         set.clone(this)
