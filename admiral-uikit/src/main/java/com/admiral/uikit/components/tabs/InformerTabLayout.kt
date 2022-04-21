@@ -13,11 +13,11 @@ import androidx.core.view.isVisible
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.ext.colorStateListForChecked
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
-import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.layout.LinearLayout
 import com.admiral.uikit.view.checkable.CheckableGroup
 
@@ -63,12 +63,18 @@ class InformerTabLayout @JvmOverloads constructor(
         }
     }
 
+    override fun addView(child: View?) {
+        super.addView(child)
+        onFinishInflate()
+    }
+
     override fun onFinishInflate() {
         super.onFinishInflate()
         addPolygonView()
     }
 
     private fun addPolygonView() {
+        removeView(polygonView)
         addView(polygonView, 1)
 
         // initialize polygon if there is a selected tab.

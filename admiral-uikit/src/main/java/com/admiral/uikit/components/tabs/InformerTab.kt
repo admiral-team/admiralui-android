@@ -6,11 +6,14 @@ import android.util.AttributeSet
 import android.view.Gravity.CENTER
 import android.view.LayoutInflater
 import androidx.core.content.res.use
+import androidx.core.view.isVisible
 import androidx.core.view.updatePadding
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.ext.colorStateListUnion
 import com.admiral.uikit.ext.coloredDrawable
 import com.admiral.uikit.ext.drawable
@@ -18,8 +21,6 @@ import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.view.checkable.CheckableLinearLayout
 import com.admiral.uikit.view.checkable.CheckableTextView
 
@@ -62,6 +63,28 @@ class InformerTab @JvmOverloads constructor(
             invalidateSubtitleColors()
         }
 
+    /**
+     * Top text.
+     * Gone if text is null or empty.
+     */
+    var titleText: String? = null
+        set(value) {
+            field = value
+            title.text = value
+            title.isVisible = value?.isNotEmpty() == true
+        }
+
+    /**
+     * Bottom text.
+     * Gone if text is null or empty.
+     */
+    var subtitleText: String? = null
+        set(value) {
+            field = value
+            subtitle.text = value
+            subtitle.isVisible = value?.isNotEmpty() == true
+        }
+
     private val title: CheckableTextView by lazy { findViewById(R.id.admiralTextTitle) }
     private val subtitle: CheckableTextView by lazy { findViewById(R.id.admiralTextSubtitle) }
 
@@ -69,8 +92,8 @@ class InformerTab @JvmOverloads constructor(
         LayoutInflater.from(context).inflate(R.layout.admiral_view_tab_informer, this)
 
         parseAttrs(attrs, R.styleable.InformerTab).use {
-            title.text = it.getString(R.styleable.InformerTab_admiralTitleText)
-            subtitle.text = it.getString(R.styleable.InformerTab_admiralSubtitleText)
+            titleText = it.getString(R.styleable.InformerTab_admiralTitleText)
+            subtitleText = it.getString(R.styleable.InformerTab_admiralSubtitleText)
             isEnabled = it.getBoolean(R.styleable.InformerTab_android_enabled, true)
 
             parseStrokeColors(it)
