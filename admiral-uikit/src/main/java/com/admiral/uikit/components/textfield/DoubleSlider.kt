@@ -12,22 +12,22 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.doOnLayout
 import androidx.core.view.isGone
-import com.google.android.material.slider.RangeSlider
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
+import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.databinding.AdmiralViewSliderDoubleBinding
+import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.showKeyboard
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.databinding.AdmiralViewSliderDoubleBinding
-import com.admiral.uikit.ext.applyStyle
+import com.google.android.material.slider.RangeSlider
 
 /**
  * Slider view with two inputs.
@@ -61,6 +61,18 @@ class DoubleSlider @JvmOverloads constructor(
         set(value) {
             field = value
             invalidateValueFrom()
+        }
+
+    /**
+     * The variable holds current range' values.
+     */
+    var values: List<Float> = listOf(0f, 0f)
+        set(value) {
+            field = value
+            binding.rangeSlider.values = values
+        }
+        get() {
+            return binding.rangeSlider.values
         }
 
     /**
@@ -387,13 +399,13 @@ class DoubleSlider @JvmOverloads constructor(
         }
         val placeholderTextColorStateList = ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
 
-        binding.inputLayoutFrom.apply{
+        binding.inputLayoutFrom.apply {
             defaultHintTextColor = ColorStateList.valueOf(defaultColor)
             doOnLayout {
                 placeholderTextColor = placeholderTextColorStateList
             }
         }
-        binding.inputLayoutTo.apply{
+        binding.inputLayoutTo.apply {
             defaultHintTextColor = ColorStateList.valueOf(defaultColor)
             doOnLayout {
                 placeholderTextColor = placeholderTextColorStateList

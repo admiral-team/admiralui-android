@@ -122,6 +122,8 @@
     <string name="text_fields_error">Error</string>
     <string name="text_fields_disabled">Disabled</string>
     <string name="text_fields_text">Text</string>
+    <string name="text_fields_sms_text">67653</string>
+    <string name="text_fields_number_text">1111 2222 3333 4444</string>
     <string name="text_fields_feedback_title">Feedback</string>
     <string name="text_fields_optional_label">label</string>
     <string name="text_fields_slider_optional_label">Optional label</string>

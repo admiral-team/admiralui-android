@@ -5,6 +5,8 @@ import android.content.res.ColorStateList
 import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
@@ -32,7 +34,6 @@ import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.showKeyboard
 import com.google.android.material.slider.Slider as MaterialSlider
-
 
 /**
  * Slider view with input.
@@ -67,6 +68,23 @@ class Slider @JvmOverloads constructor(
         set(value) {
             field = value
             invalidateValueFrom()
+        }
+
+    /**
+     * The variable holds current value of the slider.
+     */
+    var value: Float = 0f
+        set(value) {
+            field = value
+            if (value < valueFrom) {
+                field = valueFrom
+            }
+            if (value > valueTo) {
+                field = valueTo
+            }
+
+            binding.materialSlider.value = field
+            updateEditTextValue()
         }
 
     /**
@@ -306,10 +324,14 @@ class Slider @JvmOverloads constructor(
     override fun setEnabled(enabled: Boolean) {
         super.setEnabled(enabled)
         with(binding) {
-            inputLayout.isEnabled = enabled
-            editText.isEnabled = enabled
-            additionalTextView.isEnabled = enabled
-            iconImageView.isEnabled = enabled
+            Handler(Looper.getMainLooper()).post {
+                iconImageView.isEnabled = enabled
+                additionalTextView.isEnabled = enabled
+                inputLayout.isEnabled = enabled
+                editText.isEnabled = enabled
+                leftTextView.isEnabled = enabled
+                rightTextView.isEnabled = enabled
+            }
             invalidateColors()
             if (enabled) {
                 materialSlider.alpha = ALPHA_ENABLED
@@ -353,7 +375,10 @@ class Slider @JvmOverloads constructor(
     private fun updateEditTextValue() {
         val value = binding.materialSlider.value.toInt().toString()
         if (editText.text.toString() != value) {
-            editText.setText(value)
+            Handler(Looper.getMainLooper()).post {
+                editText.setText(value)
+                editText.requestFocus()
+            }
         }
     }
 
@@ -401,26 +426,44 @@ class Slider @JvmOverloads constructor(
     }
 
     private fun invalidateColors() {
-        val editTextColorState = colorStateList(
-            enabled = inputTextColor ?: ThemeManager.theme.palette.textPrimary,
-            disabled = inputTextColor?.withAlpha() ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
-            pressed = inputTextColor ?: ThemeManager.theme.palette.textPrimary
-        )
-        binding.editText.setTextColor(editTextColorState)
+        invalidateEditTextColor()
+        invalidateRangeTextsColor()
+        invalidateHintTextColor()
+        invalidateAdditionalTextColor()
+        invalidateSliderTextColor()
+    }
 
-        val colorStateList: ColorStateList = ColorStateList.valueOf(
-            (textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary)
-                .let { if (isEnabled) it else it.withAlpha() }
-        )
+    private fun invalidateSliderTextColor() {
+        binding.materialSlider.apply {
+            thumbRadius = THUMB_RADIUS.dpToPx(context)
+            thumbStrokeWidth = THUMB_STROKE_WIDTH.dpToPx(context).toFloat()
+            thumbStrokeColor = ColorStateList.valueOf(ThemeManager.theme.palette.elementAccent)
+            thumbTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementStaticWhite)
+            trackHeight = TRACK_HEIGHT.dpToPx(context)
+            trackActiveTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementAccent)
+            trackInactiveTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementPrimary)
+        }
+    }
 
-        binding.leftTextView.setTextColor(colorStateList)
-        binding.rightTextView.setTextColor(colorStateList)
+    private fun invalidateAdditionalTextColor() {
+        val additionalTextColor: Int = when {
+            isError -> errorColor ?: ThemeManager.theme.palette.textError
+            !isEnabled -> textColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+            else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
+        }
+        binding.additionalTextView.textColor = ColorState(additionalTextColor)
+    }
 
-        val defaultColor: Int = when {
+    private fun invalidateHintTextColor() {
+        var defaultColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> textColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
+        }
+
+        if (isError && !isEnabled) {
+            defaultColor = errorColor?.withAlpha() ?: ThemeManager.theme.palette.textError.withAlpha()
         }
 
         binding.inputLayout.apply {
@@ -429,25 +472,25 @@ class Slider @JvmOverloads constructor(
                 placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
             }
         }
+    }
 
-        val additionalTextColor: Int = when {
-            isError -> errorColor ?: ThemeManager.theme.palette.textError
-            !isEnabled -> textColors?.normalDisabled
-                ?: ThemeManager.theme.palette.textSecondary.withAlpha()
-            else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
-        }
-        binding.additionalTextView.setTextColor(additionalTextColor)
+    private fun invalidateRangeTextsColor() {
+        val colorStateList: ColorStateList = ColorStateList.valueOf(
+            (textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary)
+                .let { if (isEnabled) it else it.withAlpha() }
+        )
 
-        binding.materialSlider.apply {
-            thumbRadius = THUMB_RADIUS.dpToPx(context)
-            thumbStrokeWidth = THUMB_STROKE_WIDTH.dpToPx(context).toFloat()
-            thumbStrokeColor = ColorStateList.valueOf(ThemeManager.theme.palette.elementAccent)
-            thumbTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementStaticWhite)
+        binding.leftTextView.setTextColor(colorStateList)
+        binding.rightTextView.setTextColor(colorStateList)
+    }
 
-            trackHeight = TRACK_HEIGHT.dpToPx(context)
-            trackActiveTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementAccent)
-            trackInactiveTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementPrimary)
-        }
+    private fun invalidateEditTextColor() {
+        val editTextColorState = colorStateList(
+            enabled = inputTextColor ?: ThemeManager.theme.palette.textPrimary,
+            disabled = inputTextColor?.withAlpha() ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            pressed = inputTextColor ?: ThemeManager.theme.palette.textPrimary
+        )
+        binding.editText.setTextColor(editTextColorState)
     }
 
     private fun invalidateTextHint() {
@@ -459,13 +502,17 @@ class Slider @JvmOverloads constructor(
     }
 
     private fun invalidateValueFrom() {
-        binding.materialSlider.value = valueFrom
+        if (binding.materialSlider.value < valueFrom) {
+            binding.materialSlider.value = valueFrom
+        }
         binding.materialSlider.valueFrom = valueFrom
         leftText = valueFrom.toInt().toString()
     }
 
     private fun invalidateValueTo() {
-        binding.materialSlider.value = valueFrom
+        if (binding.materialSlider.value > valueTo) {
+            binding.materialSlider.value = valueFrom
+        }
         binding.materialSlider.valueTo = valueTo
         rightText = valueTo.toInt().toString()
     }
