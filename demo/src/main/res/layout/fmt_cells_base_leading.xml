@@ -40,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_disabled" />
+
         </com.admiral.uikit.components.tabs.StandardTabs>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -56,7 +57,7 @@
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralTitleText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
@@ -65,6 +66,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -80,7 +82,7 @@
                 android:id="@+id/titleSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralSubtitleText="@string/cell_subtitle"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -90,6 +92,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -105,7 +108,7 @@
                 android:id="@+id/subtitleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralSubtitleText="@string/cell_subtitle"
                 app:admiralTitleText="@string/cell_title" />
 
@@ -115,6 +118,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -131,7 +135,7 @@
                 android:id="@+id/textMessageCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralMessageText="@string/cell_message"
                 app:admiralSubtitleText="@string/cell_subtitle"
                 app:admiralSummMoreIcon="@drawable/test_ic_info"
@@ -146,6 +150,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -162,6 +167,7 @@
                 android:id="@+id/textMessageIconCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
                 app:admiralButtonText="@string/cell_button"
                 app:admiralPercentText="@string/cell_percent"
                 app:admiralSubtitleSecondText="@string/cell_subtitle_second"
@@ -174,6 +180,9 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
         </com.admiral.uikit.components.cell.BaseCell>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>
