@@ -255,6 +255,8 @@
     <string name="badges_error">Error</string>
     <string name="badges_attention">Attention</string>
     <string name="badges_example_start">0</string>
+    <string name="badges_example">6</string>
+    <string name="badges_example_big_text">123</string>
     <string name="badges_subtitle">Количественные зачения</string>
 
     <string name="page_control_title">Page Controls</string>
