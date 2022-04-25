@@ -40,6 +40,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_disabled" />
+
         </com.admiral.uikit.components.tabs.StandardTabs>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -54,7 +55,7 @@
                 android:id="@+id/textTitleChooser"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.TextButtonChooserCellUnit
@@ -63,6 +64,9 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralText="@string/cell_button" />
+
         </com.admiral.uikit.components.cell.BaseCell>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>
