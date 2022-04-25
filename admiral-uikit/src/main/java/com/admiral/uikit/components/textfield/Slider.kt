@@ -467,7 +467,10 @@ class Slider @JvmOverloads constructor(
         }
 
         binding.inputLayout.apply {
-            defaultHintTextColor = ColorStateList.valueOf(defaultColor)
+            Handler(Looper.getMainLooper()).post {
+                defaultHintTextColor = ColorStateList.valueOf(defaultColor)
+            }
+
             doOnLayout {
                 placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
             }

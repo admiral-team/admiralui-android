@@ -42,9 +42,11 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="trailing"
+                app:admiralCellUnitType="leadingText"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline"
-                app:admiralText="Button" />
+                app:admiralText="Button"
+                android:textAlignment="textEnd" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.currency.CurrencyCell
@@ -106,4 +108,5 @@
             app:admiralSellText="67,88" />
 
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>

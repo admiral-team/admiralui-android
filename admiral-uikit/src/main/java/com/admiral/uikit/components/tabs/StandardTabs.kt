@@ -2,6 +2,7 @@ package com.admiral.uikit.components.tabs
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import androidx.core.view.children
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
@@ -31,6 +32,12 @@ class StandardTabs @JvmOverloads constructor(
         orientation = HORIZONTAL
 
         onThemeChanged(ThemeManager.theme)
+    }
+
+    override fun addView(child: View) {
+        super.addView(child)
+
+        onFinishInflate()
     }
 
     override fun onFinishInflate() {

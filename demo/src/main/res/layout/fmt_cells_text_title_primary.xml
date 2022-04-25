@@ -61,8 +61,12 @@
                 android:id="@+id/textButton"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="trailing"
+                app:admiralCellUnitType="leadingText"
+                android:textAlignment="textEnd"
                 app:admiralText="@string/cell_button" />
+
         </com.admiral.uikit.components.cell.BaseCell>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>

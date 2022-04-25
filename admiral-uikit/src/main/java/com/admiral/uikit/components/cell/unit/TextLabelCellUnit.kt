@@ -60,6 +60,15 @@ class TextLabelCellUnit @JvmOverloads constructor(
             invalidateBackgroundColors()
         }
 
+    /**
+     * Text for this cell
+     */
+    var text: String?
+        get() = textLabelTextView.text?.toString()
+        set(value) {
+            textLabelTextView.text = value
+        }
+
     private val textLabelTextView: TextView by lazy { findViewById(R.id.textLabelTextView) }
 
     init {
@@ -71,7 +80,7 @@ class TextLabelCellUnit @JvmOverloads constructor(
             parseTextColors(it)
             parseBackgroundColors(it)
 
-            textLabelTextView.text = it.getText(R.styleable.TextLabelCellUnit_admiralText)
+            text = it.getText(R.styleable.TextLabelCellUnit_admiralText)?.toString()
             textStyle = Typography.getStyleById(it.getInt(R.styleable.TextLabelCellUnit_admiralTextStyle, subhead1))
 
             unitType = CellUnitType.from(it.getInt(R.styleable.TextLabelCellUnit_admiralCellUnitType, 0))

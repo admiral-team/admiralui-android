@@ -51,7 +51,7 @@ class LogoTab @JvmOverloads constructor(
             invalidateIcon()
         }
 
-    var isRightDividerVisible: Boolean = false
+    internal var isRightDividerVisible: Boolean = false
         set(value) {
             field = value
             invalidateDivider()
