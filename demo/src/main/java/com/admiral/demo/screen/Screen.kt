@@ -22,8 +22,8 @@ import com.admiral.demo.features.home.badges.BadgesSmallFragment
 import com.admiral.demo.features.home.calendar.CalendarFragment
 import com.admiral.demo.features.home.calendar.CalendarHorizontalFragment
 import com.admiral.demo.features.home.calendar.CalendarVerticalFragment
-import com.admiral.demo.features.home.cell.ActionBarSecondaryFragment
 import com.admiral.demo.features.home.cell.ActionBarFragment
+import com.admiral.demo.features.home.cell.ActionBarSecondaryFragment
 import com.admiral.demo.features.home.cell.BaseCellsFragment
 import com.admiral.demo.features.home.cell.BaseCellsLeadingFragment
 import com.admiral.demo.features.home.cell.BaseCellsTrailingFragment
