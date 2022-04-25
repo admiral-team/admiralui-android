@@ -36,7 +36,7 @@
                 android:id="@+id/standardTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/calendar_horizontal"
                 app:admiralTextStyle="body1" />
 
@@ -62,7 +62,7 @@
                 android:id="@+id/logoTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/calendar_vertical"
                 app:admiralTextStyle="body1" />
 
