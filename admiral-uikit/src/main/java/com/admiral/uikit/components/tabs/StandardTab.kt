@@ -12,6 +12,8 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.ext.colorStateListForChecked
 import com.admiral.uikit.ext.colorStateListUnion
 import com.admiral.uikit.ext.colored
@@ -21,8 +23,6 @@ import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.view.checkable.CheckableTextView
 import com.admiral.uikit.view.checkable.CheckableView
 
@@ -54,7 +54,7 @@ class StandardTab @JvmOverloads constructor(
             invalidateTextColors()
         }
 
-    var isRightDividerVisible: Boolean = false
+    internal var isRightDividerVisible: Boolean = false
         set(value) {
             field = value
             invalidateDivider()

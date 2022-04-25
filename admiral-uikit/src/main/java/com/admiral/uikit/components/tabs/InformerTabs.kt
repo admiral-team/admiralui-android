@@ -2,6 +2,7 @@ package com.admiral.uikit.components.tabs
 
 import android.content.Context
 import android.util.AttributeSet
+import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.core.view.updateLayoutParams
@@ -27,6 +28,11 @@ class InformerTabs @JvmOverloads constructor(
         orientation = HORIZONTAL
         showDividers = SHOW_DIVIDER_MIDDLE
         dividerDrawable = ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_8dp)
+    }
+
+    override fun addView(child: View) {
+        super.addView(child)
+        onFinishInflate()
     }
 
     override fun onFinishInflate() {
