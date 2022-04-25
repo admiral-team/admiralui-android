@@ -37,7 +37,7 @@
             <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/chat_input_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
@@ -59,7 +59,7 @@
             <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/chat_text_message_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
@@ -82,7 +82,7 @@
             <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/chat_text_operation_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
@@ -105,7 +105,7 @@
             <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/chat_uploading_photo_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
@@ -128,7 +128,7 @@
             <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralText="@string/chat_uploading_file_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit

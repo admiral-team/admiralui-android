@@ -60,17 +60,17 @@ class BaseCell @JvmOverloads constructor(
         minHeight = MIN_HEIGHT.dpToPx(context)
     }
 
-    override fun addView(child: View?) {
-        super.addView(child)
+    // TODO add lint rule that user must use addViews instead of addView
+    /**
+     * Method for adding children views. Do not use [addView]! It's necessary for calculating
+     */
+    fun addViews(children: List<View>) {
+        children.forEach { super.addView(it) }
         initViews()
     }
 
-    /*
-    * Set children' position
-    */
     override fun onFinishInflate() {
         initViews()
-
         super.onFinishInflate()
     }
 
@@ -82,10 +82,12 @@ class BaseCell @JvmOverloads constructor(
     }
 
     private fun invalidateBackgroundColor() {
-        val rippleColor = backgroundColors?.pressed ?: theme.palette.textPrimary.withAlpha(RIPPLE_ALPHA)
+        val rippleColor =
+            backgroundColors?.pressed ?: theme.palette.textPrimary.withAlpha(RIPPLE_ALPHA)
         val colorState = ColorState(
             normalEnabled = backgroundColors?.normalEnabled ?: theme.palette.backgroundBasic,
-            normalDisabled = backgroundColors?.normalDisabled ?: theme.palette.backgroundBasic.withAlpha(),
+            normalDisabled = backgroundColors?.normalDisabled
+                ?: theme.palette.backgroundBasic.withAlpha(),
             pressed = backgroundColors?.pressed ?: theme.palette.backgroundBasic
         )
 
@@ -95,10 +97,10 @@ class BaseCell @JvmOverloads constructor(
         background = ripple(rippleColor, content, mask)
     }
 
-    /*
-    * Initialize views:
-    * There must be at most one element of each type. There can't be elements with a different type.
-    */
+    /**
+     * Initialize views:
+     * There must be at most one element of each type. There can't be elements with a different type.
+     */
     private fun initViews() {
         baseCellElements.clear()
         children.forEach { cellUnit ->
@@ -121,69 +123,119 @@ class BaseCell @JvmOverloads constructor(
         setConstraints()
     }
 
-    /*
-    * Initialize proper position for the elements:
-    * TRAILING  – connects to the end and to the top of the parent.
-    * LEADING – connects to the start and to the top of the parent, and to the start of the TRAILING.
-    * LEADING_TEXT – connects to the end of the LEADING and to the start of the TRAILING.
-    */
+    /**
+     * Initialize proper position for the elements:
+     * TRAILING  – connects to the end and to the top of the parent.
+     * LEADING – connects to the start and to the top of the parent, and to the start of the TRAILING.
+     * LEADING_TEXT – connects to the end of the LEADING and to the start of the TRAILING.
+     */
+    @Suppress("LongMethod")
     private fun setConstraints() {
         val set = ConstraintSet()
         set.clone(this)
 
         // Trailing
-        val trailingViewId = (baseCellElements[CellUnitType.TRAILING] as? View)?.id
-        trailingViewId?.let {
-            set.connect(it, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
-            set.connect(it, ConstraintSet.END, ConstraintSet.PARENT_ID, ConstraintSet.END)
+        val trailingView = (baseCellElements[CellUnitType.TRAILING] as? View)
+        trailingView?.apply {
+            set.connect(id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
 
             if (trailingGravity == Gravity.CENTER_HORIZONTAL) {
-                set.connect(it, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+                set.connect(id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
             }
         }
 
         // Leading
-        val leadingViewId = (baseCellElements[CellUnitType.LEADING] as? View)?.id
-        leadingViewId?.let {
-            set.connect(it, ConstraintSet.START, ConstraintSet.PARENT_ID, ConstraintSet.START)
-            set.connect(it, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+        val leadingView = (baseCellElements[CellUnitType.LEADING] as? View)
+        leadingView?.apply {
+            set.connect(id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+
             if (leadingGravity == Gravity.CENTER_HORIZONTAL) {
-                set.connect(it, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+                set.connect(id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
             }
-
-            if (trailingViewId != null) {
-                set.connect(it, ConstraintSet.END, trailingViewId, ConstraintSet.START)
-            }
-
-            set.setHorizontalBias(leadingViewId, 0.0f)
-            set.constrainDefaultWidth(leadingViewId, ConstraintSet.MATCH_CONSTRAINT_WRAP)
         }
 
         // LeadingText
-        val leadingTextViewId = (baseCellElements[CellUnitType.LEADING_TEXT] as? View)?.id
-        leadingTextViewId?.let {
-            if (leadingViewId != null) {
-                set.connect(
-                    it,
-                    ConstraintSet.START,
-                    leadingViewId,
-                    ConstraintSet.END,
-                    pixels(R.dimen.module_x4) + ((baseCellElements[CellUnitType.LEADING_TEXT] as? View)?.marginStart
-                        ?: 0)
-                )
-            }
-
-            if (trailingViewId != null) {
-                set.connect(
-                    it, ConstraintSet.END, trailingViewId, ConstraintSet.START, pixels(R.dimen.module_x4)
-                )
-            }
-
-            set.connect(it, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
-            set.connect(it, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
-
-            set.setHorizontalBias(it, 0f)
+        val leadingTextView = (baseCellElements[CellUnitType.LEADING_TEXT] as? View)
+        leadingTextView?.apply {
+            set.connect(id, ConstraintSet.TOP, ConstraintSet.PARENT_ID, ConstraintSet.TOP)
+            set.connect(id, ConstraintSet.BOTTOM, ConstraintSet.PARENT_ID, ConstraintSet.BOTTOM)
+            set.constrainWidth(id, 0)
         }
+
+        when {
+            leadingView != null && trailingView != null && leadingTextView != null -> {
+                set.createHorizontalChain(
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.LEFT,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.RIGHT,
+                    listOfNotNull(leadingView.id, leadingTextView.id, trailingView.id).toIntArray(),
+                    null,
+                    ConstraintSet.CHAIN_SPREAD_INSIDE
+                )
+                set.setMargin(
+                    leadingTextView.id,
+                    ConstraintSet.START,
+                    pixels(R.dimen.module_x4) + this.marginStart
+                )
+                set.setMargin(
+                    leadingTextView.id,
+                    ConstraintSet.END,
+                    pixels(R.dimen.module_x4)
+                )
+            }
+            leadingView != null && leadingTextView != null -> {
+                set.createHorizontalChain(
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.LEFT,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.RIGHT,
+                    listOfNotNull(leadingView.id, leadingTextView.id).toIntArray(),
+                    null,
+                    ConstraintSet.CHAIN_SPREAD_INSIDE
+                )
+                set.setMargin(
+                    leadingTextView.id,
+                    ConstraintSet.START,
+                    pixels(R.dimen.module_x4) + this.marginStart
+                )
+            }
+            trailingView != null && leadingTextView != null -> {
+                set.createHorizontalChain(
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.LEFT,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.RIGHT,
+                    listOfNotNull(leadingTextView.id, trailingView.id).toIntArray(),
+                    null,
+                    ConstraintSet.CHAIN_SPREAD_INSIDE
+                )
+                set.setMargin(
+                    leadingTextView.id,
+                    ConstraintSet.END,
+                    pixels(R.dimen.module_x4)
+                )
+            }
+            leadingTextView != null -> {
+                set.connect(
+                    leadingTextView.id,
+                    ConstraintSet.START,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.START
+                )
+                set.connect(
+                    leadingTextView.id,
+                    ConstraintSet.END,
+                    ConstraintSet.PARENT_ID,
+                    ConstraintSet.END
+                )
+            }
+        }
+
+        // NB: Unavailable combinations
+        // 1) LeadingView + TrailingView
+        // 2) Only LeadingView
+        // 3) Only TrailingView
 
         set.applyTo(this)
     }

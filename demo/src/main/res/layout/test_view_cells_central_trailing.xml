@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.cell.BaseCell xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/btnCurrency"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <com.admiral.uikit.components.cell.unit.TitleCellUnit
+        android:id="@+id/title3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralCellUnitType="leadingText"
+        app:admiralTitleText="@string/cell_title" />
+
+    <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
+        android:id="@+id/checkBoxCellUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralCellUnitType="trailing" />
+
+</com.admiral.uikit.components.cell.BaseCell>
