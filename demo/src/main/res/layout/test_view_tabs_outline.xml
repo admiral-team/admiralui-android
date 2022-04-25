@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.tabs.OutlineSliderTabs xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/tabsTwo"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:checkedId="@+id/one2">
+
+    <com.admiral.uikit.components.tabs.OutlineSliderTab
+        android:id="@+id/one2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tabs_one" />
+
+    <com.admiral.uikit.components.tabs.OutlineSliderTab
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tabs_two" />
+
+    <com.admiral.uikit.components.tabs.OutlineSliderTab
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/tabs_three" />
+</com.admiral.uikit.components.tabs.OutlineSliderTabs>

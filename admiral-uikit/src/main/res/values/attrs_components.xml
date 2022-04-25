@@ -275,6 +275,8 @@
             <enum name="normal" value="0" />
             <enum name="search" value="1" />
         </attr>
+
+        <attr name="admiralTitleMaxLines" />
     </declare-styleable>
 
     <declare-styleable name="AppbarTitleSubtitle">

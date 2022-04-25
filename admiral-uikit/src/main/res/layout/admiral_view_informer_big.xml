@@ -36,6 +36,7 @@
             android:id="@+id/headlineTextView"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:ellipsize="end"
             app:admiralTextStyle="subtitle2"
             tools:text="Headline" />
 
@@ -44,6 +45,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="8dp"
+            android:ellipsize="end"
             app:admiralTextStyle="body2"
             tools:text="At breakpoint boundaries, mini units divide the screen into a fixed master grid, and multiples of mini units map to fluid grid column widths and row heights." />
 
@@ -52,9 +54,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
+            android:ellipsize="end"
             app:admiralTextStyle="body2"
             tools:text="Link" />
-
     </LinearLayout>
-
 </merge>

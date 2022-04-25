@@ -96,9 +96,9 @@ class TextMessageCellUnit @JvmOverloads constructor(
             invalidateTitleColors()
         }
 
-    /*
-    * Max lines for the titleTextView.
-    * */
+    /**
+     * Max lines for the titleTextView.
+     */
     var titleMaxLines: Int = Int.MAX_VALUE
         set(value) {
             field = value

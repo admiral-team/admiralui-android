@@ -15,6 +15,8 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.links.Link
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colorStateList
@@ -22,8 +24,6 @@ import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
 
 class InformerBig @JvmOverloads constructor(
     context: Context,
@@ -98,6 +98,15 @@ class InformerBig @JvmOverloads constructor(
         }
 
     /**
+     * Max lines for the [headline] text.
+     */
+    var headlineMaxLines: Int = Int.MAX_VALUE
+        set(value) {
+            field = value
+            headlineTextView.maxLines = field
+        }
+
+    /**
      * Central text.
      * Gone if text is null or empty.
      */
@@ -106,6 +115,15 @@ class InformerBig @JvmOverloads constructor(
             field = value
             infoTextView.text = value
             infoTextView.isVisible = value?.isNotEmpty() == true
+        }
+
+    /**
+     * Max lines for the [info] text.
+     */
+    var infoMaxLines: Int = Int.MAX_VALUE
+        set(value) {
+            field = value
+            infoTextView.maxLines = field
         }
 
     /**
@@ -118,6 +136,15 @@ class InformerBig @JvmOverloads constructor(
             field = value
             linkTextView.text = value
             linkTextView.isVisible = value?.isNotEmpty() == true
+        }
+
+    /**
+     * Max lines for the [link] text.
+     */
+    var linkMaxLines: Int = Int.MAX_VALUE
+        set(value) {
+            field = value
+            linkTextView.maxLines = field
         }
 
     private val headlineTextView: TextView by lazy { findViewById(R.id.headlineTextView) }
@@ -144,6 +171,10 @@ class InformerBig @JvmOverloads constructor(
             info = it.getString(R.styleable.InformerBig_admiralInfoText)
             link = it.getString(R.styleable.InformerBig_admiralLinkText)
             pointerBias = it.getFloat(R.styleable.InformerBig_admiralPointerBias, 1.0f)
+
+            infoMaxLines = it.getInt(R.styleable.InformerBig_admiralInfoMaxLines, Int.MAX_VALUE)
+            linkMaxLines = it.getInt(R.styleable.InformerBig_admiralInfoMaxLines, Int.MAX_VALUE)
+            headlineMaxLines = it.getInt(R.styleable.InformerBig_admiralInfoMaxLines, Int.MAX_VALUE)
         }
     }
 

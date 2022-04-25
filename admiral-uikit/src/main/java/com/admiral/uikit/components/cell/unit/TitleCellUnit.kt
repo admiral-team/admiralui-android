@@ -39,7 +39,7 @@ class TitleCellUnit @JvmOverloads constructor(
 
     init {
         textStyle = ThemeManager.theme.typography.body1
-        gravity = Gravity.CENTER
+        gravity = Gravity.START
 
         parseAttrs(attrs, R.styleable.TitleCellUnit).use {
             text = it.getText(R.styleable.TitleCellUnit_admiralTitleText)

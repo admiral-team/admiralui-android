@@ -1,0 +1,33 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.cell.BaseCell xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/radioButtonCell"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:clickable="true"
+    android:focusable="true"
+    android:paddingStart="@dimen/module_x4"
+    android:paddingEnd="@dimen/module_x4">
+
+    <com.admiral.uikit.components.cell.unit.CardCellUnit
+        android:id="@+id/leadingRadioButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralCellUnitType="leading"
+        app:admiralIcon="@drawable/test_ic_card_start" />
+
+    <com.admiral.uikit.components.cell.unit.TitleCellUnit
+        android:id="@+id/title2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x1"
+        app:admiralCellUnitType="leadingText"
+        app:admiralTitleText="@string/cell_title" />
+
+    <com.admiral.uikit.components.cell.unit.RadioButtonCellUnit
+        android:id="@+id/radioButtonCellUnit"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:admiralCellUnitType="trailing" />
+
+</com.admiral.uikit.components.cell.BaseCell>
