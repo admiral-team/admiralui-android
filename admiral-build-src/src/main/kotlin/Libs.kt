@@ -13,6 +13,8 @@ object Libs {
         val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.Kotlin.stdLib}"
         val coroutines =
             "org.jetbrains.kotlinx:kotlinx-coroutines-android:${Versions.Kotlin.coroutines}"
+
+        val coroutinesTest = "org.jetbrains.kotlinx:kotlinx-coroutines-test:${Versions.Kotlin.coroutinesTest}"
     }
 
     object Google {
@@ -65,6 +67,7 @@ object Libs {
         object Test {
             val runner = "androidx.test:runner:${Versions.AndroidX.test}"
             val rules = "androidx.test:rules:${Versions.AndroidX.test}"
+            val fragment = "androidx.fragment:fragment-testing:${Versions.AndroidX.fragment}"
 
             object Espresso {
                 val core = "androidx.test.espresso:espresso-core:${Versions.AndroidX.espresso}"
