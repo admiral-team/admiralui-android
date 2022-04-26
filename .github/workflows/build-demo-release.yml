@@ -51,10 +51,14 @@ jobs:
 
       - name: Upload develop release apk to App Center
         if: ${{ github.event_name == 'pull_request' }}
+        env:
+          APPCENTER_API_TOKEN_DEV: ${{ secrets.APPCENTER_API_TOKEN_DEV }}
         run: bundle exec fastlane deploy_appcenter_dev pull_request_url:"${{ github.event.pull_request.html_url }}" branch_name:"${{ github.head_ref }}"
 
       - name: Upload prod release apk to App Center
         if: ${{ github.event_name == 'push' }}
+        env:
+          APPCENTER_API_TOKEN: ${{ secrets.APPCENTER_API_TOKEN }}
         run: bundle exec fastlane deploy_appcenter_prod branch_name:"${{ github.head_ref }}"
 
       - name: Upload release artifacts to Github Packages
@@ -62,6 +66,9 @@ jobs:
         env:
           CI_GITHUB_USERNAME: ${{ secrets.CI_GITHUB_USERNAME }}
           CI_GITHUB_TOKEN: ${{ secrets.CI_GITHUB_TOKEN }}
+          NEXUS_URL: ${{ secrets.NEXUS_URL }}
+          NEXUS_USERNAME: ${{ secrets.NEXUS_USERNAME }}
+          NEXUS_PASSWORD: ${{ secrets.NEXUS_PASSWORD }}
         run: |
           chmod +x gradlew
           ./gradlew publish
