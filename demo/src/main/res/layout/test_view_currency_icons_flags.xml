@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.currency.CurrencyCell xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:admiralBuyIconType="up"
+    app:admiralBuyText="68,65"
+    app:admiralCurrencyDrawable="@drawable/ic_flag_united_states_of_america"
+    app:admiralCurrencyText="USD"
+    app:admiralSellIconType="down"
+    app:admiralSellText="67,88" />
