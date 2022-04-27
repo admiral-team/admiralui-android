@@ -12,6 +12,7 @@ import kotlinx.coroutines.flow.asStateFlow
 import kotlinx.coroutines.flow.collectLatest
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import java.time.Clock
 import java.time.LocalDate
 
 internal abstract class CalendarVm : ViewModel() {
@@ -30,10 +31,11 @@ internal abstract class CalendarVm : ViewModel() {
     private lateinit var monthsGenerator: IMonthsGenerator
     protected lateinit var resources: Resources
 
-    fun init(resources: Resources) {
+    fun init(resources: Resources, clock: Clock) {
         this.resources = resources
         this.monthsGenerator = MonthsGenerator(
             resources = resources,
+            clock = clock,
             initialYearMonthProvider = { calendarStateFlow.value.initialYearMonth },
             selectionProvider = { calendarStateFlow.value.selection },
             markedDaysProvider = { calendarStateFlow.value.markedDays },
@@ -45,7 +47,7 @@ internal abstract class CalendarVm : ViewModel() {
                 val months = if (monthsStateFlow.value.isEmpty()) {
                     createInitialItems()
                 } else {
-                    getUpdatedMonths(it)
+                    getUpdatedMonths(it, clock)
                 }
                 mutableMonthsStateFlow.value = months
             }
@@ -61,11 +63,13 @@ internal abstract class CalendarVm : ViewModel() {
     }
 
     private suspend fun getUpdatedMonths(
-        calendarState: CalendarState
+        calendarState: CalendarState,
+        clock: Clock
     ) = withContext(Dispatchers.IO) {
         return@withContext monthsStateFlow.value.map {
             it.yearMonth.toCalendarMonthModel(
                 resources = resources,
+                clock = clock,
                 selection = calendarState.selection,
                 markedDays = calendarState.markedDays,
                 disabledDaysInfo = calendarState.disabledDaysInfo

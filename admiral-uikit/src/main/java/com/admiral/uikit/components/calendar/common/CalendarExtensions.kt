@@ -4,6 +4,7 @@ import android.content.res.Resources
 import com.admiral.uikit.R
 import com.admiral.uikit.components.calendar.day.BaseDayModel
 import com.admiral.uikit.components.calendar.month.MonthModel
+import java.time.Clock
 import java.time.LocalDate
 import java.time.Month
 import java.time.YearMonth
@@ -35,11 +36,12 @@ internal fun YearMonth.getTitle(resources: Resources): String {
 
 internal fun YearMonth.toCalendarMonthModel(
     resources: Resources,
+    clock: Clock,
     selection: Selection,
     markedDays: List<LocalDate>,
     disabledDaysInfo: DisabledDaysInfo
 ): MonthModel {
-    val currentLocalDate = LocalDate.now()
+    val currentLocalDate = LocalDate.now(clock)
 
     val days = (1..this.lengthOfMonth()).map { day ->
         val localDate = LocalDate.of(this.year, this.month, day)

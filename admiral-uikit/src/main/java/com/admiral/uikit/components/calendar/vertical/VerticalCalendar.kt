@@ -3,6 +3,8 @@ package com.admiral.uikit.components.calendar.vertical
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import androidx.annotation.VisibleForTesting
+import androidx.core.view.doOnLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -23,6 +25,7 @@ import kotlinx.coroutines.cancel
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+import java.time.Clock
 
 /**
  * Vertical calendar view
@@ -48,7 +51,7 @@ class VerticalCalendar @JvmOverloads constructor(
         findViewTreeViewModelStoreOwner().let { owner ->
             owner ?: throw IllegalStateException()
             ViewModelProvider(owner)[VerticalCalendarVm::class.java].also {
-                it.init(resources = resources)
+                it.init(resources = resources, clock = clock)
             }
         }
     }
@@ -76,14 +79,16 @@ class VerticalCalendar @JvmOverloads constructor(
         }
     }
 
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    var clock: Clock = Clock.systemDefaultZone()
+
     /**
      * Calendar state.
      * You can use it to set/get initial YearMonth, selection, marked and disabled days.
      */
-    var calendarState: CalendarState = CalendarState()
+    var calendarState: CalendarState
         get() = viewModel.calendarStateFlow.value
-        set(value) {
-            field = value
+        set(value) = doOnLayout {
             viewModel.updateCalendarState(value)
         }
 
