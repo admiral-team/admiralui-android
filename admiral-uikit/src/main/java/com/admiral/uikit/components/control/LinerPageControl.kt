@@ -9,15 +9,15 @@ import android.view.View
 import androidx.core.content.res.use
 import androidx.core.view.ViewCompat
 import androidx.viewpager.widget.ViewPager
-import com.google.android.material.tabs.TabLayout
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.common.foundation.ColorState
+import com.google.android.material.tabs.TabLayout
 
 class LinerPageControl @JvmOverloads constructor(
     context: Context,
@@ -54,6 +54,9 @@ class LinerPageControl @JvmOverloads constructor(
                 normalEnabled = it.getColorOrNull(R.styleable.LinerPageControl_admiralBackgroundColorNormalEnabled),
                 normalDisabled = it.getColorOrNull(R.styleable.LinerPageControl_admiralBackgroundColorNormalDisabled)
             )
+
+            val tabsCount = it.getInt(R.styleable.LinerPageControl_admiralTabsCount, 0)
+            setTabsCount(tabsCount)
         }
     }
 

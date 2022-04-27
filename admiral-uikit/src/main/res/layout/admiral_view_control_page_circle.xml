@@ -9,14 +9,12 @@
         android:layout_height="match_parent"
         android:progressDrawable="@drawable/admiral_bg_progress" />
 
-    <ImageView
+    <com.admiral.uikit.components.imageview.ImageView
         android:id="@+id/imageArrow"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_gravity="center"
         android:layout_margin="12dp"
-        android:background="@drawable/admiral_bg_round_clickable"
-        android:foregroundTint="@color/white"
         android:scaleType="centerInside"
         app:srcCompat="@drawable/admiral_ic_arrow_right_outline"
         app:tint="@color/white" />

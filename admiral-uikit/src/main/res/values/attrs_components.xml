@@ -316,14 +316,16 @@
     </declare-styleable>
 
     <declare-styleable name="CirclePageControl">
-        <attr name="admiralBackgroundColorNormalEnabled" />
-        <attr name="admiralBackgroundColorNormalDisabled" />
-        <attr name="admiralBackgroundColorPressed" />
+        <attr name="admiralProgress" format="integer" />
+
+        <attr name="admiralIsAnimationEnabled" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="LinerPageControl">
         <attr name="admiralBackgroundColorNormalEnabled" />
         <attr name="admiralBackgroundColorNormalDisabled" />
+
+        <attr name="admiralTabsCount" />
     </declare-styleable>
 
     <declare-styleable name="PinKeyboard">
