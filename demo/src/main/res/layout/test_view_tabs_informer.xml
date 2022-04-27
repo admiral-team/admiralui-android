@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.tabs.InformerTabLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/informerTabLayout2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    app:admiralIsPolygonVisible="true">
+
+    <com.admiral.uikit.components.tabs.InformerTabs
+        android:id="@+id/tabsThree"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:checkedId="@+id/one">
+
+        <com.admiral.uikit.components.tabs.InformerTab
+            android:id="@+id/one"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralSubtitleText="@string/tabs_example_informer_tab_subtitle"
+            app:admiralTitleText="@string/tabs_example_informer_tab_title" />
+
+        <com.admiral.uikit.components.tabs.InformerTab
+            android:id="@+id/two"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralSubtitleText="@string/tabs_example_informer_tab_subtitle"
+            app:admiralTitleText="@string/tabs_example_informer_tab_title" />
+
+        <com.admiral.uikit.components.tabs.InformerTab
+            android:id="@+id/three"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralSubtitleText="@string/tabs_example_informer_tab_subtitle"
+            app:admiralTitleText="@string/tabs_example_informer_tab_title" />
+
+    </com.admiral.uikit.components.tabs.InformerTabs>
+
+    <com.admiral.uikit.components.tabs.InformerTabContent
+        android:id="@+id/informer2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:admiralIconDrawable="@drawable/admiral_ic_question_solid"
+        app:admiralSubtitleText="@string/tabs_informer_example_subtitle"
+        app:admiralSummText="@string/tabs_informer_example_summ"
+        app:admiralTitleText="@string/tabs_informer_example_title" />
+
+</com.admiral.uikit.components.tabs.InformerTabLayout>

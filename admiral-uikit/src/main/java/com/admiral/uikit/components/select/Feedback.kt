@@ -15,12 +15,12 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.ext.animatePulse
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
 
 /**
  * Replacement for Rating Bar
@@ -55,6 +55,11 @@ class Feedback @JvmOverloads constructor(
      */
     var currentRating: Int = 0
         private set
+
+    /**
+     * If the value is true, changing [currentRating] will be animated.
+     */
+    var isAnimationEnabled: Boolean = true
 
     private val stars: List<ImageView> by lazy {
         listOf(
@@ -118,25 +123,29 @@ class Feedback @JvmOverloads constructor(
 
         if (currentRating < chosenRating) {
             for (i in currentRating until chosenRating) {
-                animateStar(stars[i], delay++, i, chosenRating)
+                changeViewsColor(stars[i], delay++, i, chosenRating)
             }
         } else {
             for (i in currentRating downTo chosenRating) {
-                animateStar(stars[i - 1], delay++, i, chosenRating)
+                changeViewsColor(stars[i - 1], delay++, i, chosenRating)
             }
         }
 
         currentRating = chosenRating
     }
 
-    private fun animateStar(view: ImageView, delay: Long, viewRating: Int, chosenRating: Int) {
+    private fun changeViewsColor(view: ImageView, delay: Long, viewRating: Int, chosenRating: Int) {
         val color = if (viewRating > chosenRating) {
             iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAdditional
         } else {
             iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent
         }
 
-        view.animatePulse(startDelay = delay * ANIMATION_DELAY, color = color).start()
+        if (isAnimationEnabled) {
+            view.animatePulse(startDelay = delay * ANIMATION_DELAY, color = color).start()
+        } else {
+            view.imageTintList = ColorStateList.valueOf(color)
+        }
     }
 
     private fun parseRating(a: TypedArray) {

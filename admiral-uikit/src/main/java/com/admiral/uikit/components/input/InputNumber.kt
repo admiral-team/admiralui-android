@@ -32,6 +32,8 @@ import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.cancel
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import java.text.DecimalFormat
+import java.text.DecimalFormatSymbols
 import kotlin.math.abs
 import kotlin.math.max
 
@@ -59,7 +61,10 @@ class InputNumber @JvmOverloads constructor(
             fun updateValue() {
                 onValueChange?.invoke(field, value)
                 field = value
-                valueTextView.text = value.toString()
+                val dfs = DecimalFormatSymbols()
+                dfs.groupingSeparator = ' '
+                val df = DecimalFormat("###,###", dfs)
+                valueTextView.text = df.format(value)
                 updateIncrementDecrementEnablingState()
             }
 

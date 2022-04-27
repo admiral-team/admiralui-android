@@ -35,6 +35,10 @@
         <attr name="admiralHeadlineText" />
         <attr name="admiralInfoText" />
         <attr name="admiralLinkText" />
+
+        <attr name="admiralInfoMaxLines" format="integer" />
+        <attr name="admiralLinkMaxLines" format="integer" />
+        <attr name="admiralHeadlineMaxLines" format="integer" />
     </declare-styleable>
 
     <declare-styleable name="InformerSmall" parent="GlobalAttrDeclare">

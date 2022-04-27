@@ -47,5 +47,7 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x8"
             app:admiralTextOptional="Optional label" />
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>

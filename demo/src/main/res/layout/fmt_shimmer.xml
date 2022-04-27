@@ -50,6 +50,7 @@
                 android:layout_height="16dp"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/test_ic_visa" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -80,6 +81,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/test_ic_visa" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -110,6 +112,7 @@
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
                 app:admiralIcon="@drawable/test_ic_visa" />
+
         </com.admiral.uikit.components.cell.BaseCell>
 
         <com.admiral.uikit.components.cell.BaseCell
@@ -124,8 +127,11 @@
                 android:id="@+id/cardWidth"
                 android:layout_width="wrap_content"
                 android:layout_height="@dimen/module_x13"
-                app:admiralCellUnitType="leading"
+                app:admiralCellUnitType="leadingText"
                 app:admiralIcon="@drawable/test_ic_card_start" />
+
         </com.admiral.uikit.components.cell.BaseCell>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>
