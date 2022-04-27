@@ -23,5 +23,10 @@ object Publishing {
         val name = "GitHubPackages"
         val url = "https://maven.pkg.github.com/admiral-team/admiralui-android"
     }
+
+    object NexusRepository {
+        val name = "pfom-maven-lib"
+        // NB: url is a secret on GitHub
+    }
 }
 

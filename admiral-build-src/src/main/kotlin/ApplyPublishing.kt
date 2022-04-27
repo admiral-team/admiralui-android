@@ -47,6 +47,15 @@ fun Project.publishing(
                     password = System.getenv("CI_GITHUB_TOKEN")
                 }
             }
+//            TODO: it doesn't work! Remove later
+//            maven {
+//                name = Publishing.NexusRepository.name
+//                url = uri(System.getenv("NEXUS_URL") ?: "")
+//                credentials {
+//                    username = System.getenv("NEXUS_USERNAME")
+//                    password = System.getenv("NEXUS_PASSWORD")
+//                }
+//            }
         }
     }
 }
