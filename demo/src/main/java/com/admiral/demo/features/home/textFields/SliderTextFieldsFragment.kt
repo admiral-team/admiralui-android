@@ -80,6 +80,7 @@ class SliderTextFieldsFragment : BaseFragment(R.layout.fmt_text_fields_slider) {
                 valueFrom = MIN_VALUE
                 valueTo = MAX_VALUE
                 placeholderText = MIN_VALUE.toInt().toString()
+                placeholderTextTo = MAX_VALUE.toInt().toString()
             }
         }
     }

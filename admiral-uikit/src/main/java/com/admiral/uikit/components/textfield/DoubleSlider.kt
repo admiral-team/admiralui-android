@@ -66,14 +66,11 @@ class DoubleSlider @JvmOverloads constructor(
     /**
      * The variable holds current range' values.
      */
-    var values: List<Float> = listOf(0f, 0f)
+    var values: List<Float>
         set(value) {
-            field = value
-            binding.rangeSlider.values = values
+            binding.rangeSlider.values = value
         }
-        get() {
-            return binding.rangeSlider.values
-        }
+        get() = binding.rangeSlider.values
 
     /**
      * Color state for all text elements in [DoubleSlider] except color of input text and error color.
@@ -125,6 +122,17 @@ class DoubleSlider @JvmOverloads constructor(
         set(value) {
             field = value
             binding.inputLayoutFrom.placeholderText = value
+            invalidateTextHint()
+        }
+
+    /**
+     * Placeholder text to that will be displayed in the input area when the [optionalText] is collapsed
+     * before text is entered or when the [optionalText] is null or empty.
+     */
+    var placeholderTextTo: String? = null
+        set(value) {
+            field = value
+            //binding.inputLayoutTo.placeholderText = value
             invalidateTextHint()
         }
 
@@ -303,6 +311,12 @@ class DoubleSlider @JvmOverloads constructor(
                     }
                     false
                 }
+
+                setOnFocusChangeListener { _, hasFocus ->
+                    if (!hasFocus) {
+                        updateEditTextValues()
+                    }
+                }
             }
 
             editTextTo.apply {
@@ -323,6 +337,12 @@ class DoubleSlider @JvmOverloads constructor(
                         }
                     }
                     false
+                }
+
+                setOnFocusChangeListener { _, hasFocus ->
+                    if (!hasFocus) {
+                        updateEditTextValues()
+                    }
                 }
             }
         }
@@ -438,6 +458,12 @@ class DoubleSlider @JvmOverloads constructor(
             hint = optionalText
         }
         editText.hint = if (optionalText == null) placeholderText else null
+
+//        binding.inputLayoutTo.apply {
+//            isHintEnabled = !placeholderTextTo.isNullOrEmpty()
+//            hint = placeholderTextTo
+//        }
+        editTextTo.hint = placeholderTextTo
     }
 
     private fun invalidateValueFrom() {
