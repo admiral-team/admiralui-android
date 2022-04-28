@@ -3,6 +3,8 @@ package com.admiral.uikit.components.calendar.horisontal
 import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import androidx.annotation.VisibleForTesting
+import androidx.core.view.doOnLayout
 import androidx.core.view.isGone
 import androidx.core.view.isInvisible
 import androidx.core.view.isVisible
@@ -32,6 +34,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
+import java.time.Clock
 import java.time.YearMonth
 
 /**
@@ -65,14 +68,20 @@ class HorizontalCalendar @JvmOverloads constructor(
 
     private val snapHelper = PagerSnapHelper()
 
-    private val viewModel by lazy(LazyThreadSafetyMode.NONE) {
+    private val viewModel by lazy {
         findViewTreeViewModelStoreOwner().let { owner ->
             owner ?: throw IllegalStateException()
             ViewModelProvider(owner)[HorizontalCalendarVm::class.java].also {
-                it.init(resources = resources)
+                it.init(resources = resources, clock = clock)
             }
         }
     }
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    var clock: Clock = Clock.systemDefaultZone()
+
+    @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
+    var isDebounceEnabled: Boolean = true
 
     private val onScrollListener = object : RecyclerView.OnScrollListener() {
         @Suppress("ReturnCount")
@@ -108,10 +117,9 @@ class HorizontalCalendar @JvmOverloads constructor(
      * Calendar state.
      * You can use it to set/get initial YearMonth, selection, marked and disabled days.
      */
-    var calendarState: CalendarState = CalendarState()
+    var calendarState: CalendarState
         get() = viewModel.calendarStateFlow.value
-        set(value) {
-            field = value
+        set(value) = doOnLayout {
             viewModel.updateCalendarState(value)
         }
 
@@ -217,8 +225,9 @@ class HorizontalCalendar @JvmOverloads constructor(
 
     private fun initRecycler() = with(binding) {
         monthsRecycler.apply {
-            layoutManager = LinearLayoutManager(context)
-                .also { it.orientation = LinearLayoutManager.HORIZONTAL }
+            layoutManager = LinearLayoutManager(context).apply {
+                orientation = LinearLayoutManager.HORIZONTAL
+            }
             adapter = HorizontalMonthsAdapter(context) { clickedDate ->
                 viewModel.handleDayClickedAction(clickedDate)
                 onDayClicked?.invoke(clickedDate)
@@ -246,13 +255,18 @@ class HorizontalCalendar @JvmOverloads constructor(
             }
         }
         coroutineScope.launch {
-            viewModel.yearMonthStateFlow
-                .debounce(TITLE_STATE_CHANGES_DEBOUNCE_IN_MILLISECONDS)
-                .collect {
-                    binding.calendarTitle.text = it.getTitle(resources)
-                    updateCalendarTitleDrawable(isUpIcon = binding.datePicker.isVisible)
-                    updateRecyclerViewHeight(it)
-                }
+            val flow = if (isDebounceEnabled) {
+                viewModel.yearMonthStateFlow
+                    .debounce(TITLE_STATE_CHANGES_DEBOUNCE_IN_MILLISECONDS)
+            } else {
+                viewModel.yearMonthStateFlow
+            }
+
+            flow.collect {
+                binding.calendarTitle.text = it.getTitle(resources)
+                updateCalendarTitleDrawable(isUpIcon = binding.datePicker.isVisible)
+                updateRecyclerViewHeight(it)
+            }
         }
     }
 

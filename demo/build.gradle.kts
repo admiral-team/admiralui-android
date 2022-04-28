@@ -146,6 +146,9 @@ dependencies {
     implementation(Libs.colorPickerView)
     implementation(Libs.expandableLayout)
 
+    testImplementation(Libs.Kotlin.coroutinesTest)
+    androidTestImplementation(Libs.Kotlin.coroutinesTest)
+
     testImplementation(Libs.junit)
     androidTestImplementation(Libs.mockito)
 
@@ -154,4 +157,6 @@ dependencies {
     androidTestImplementation(Libs.AndroidX.Test.Espresso.core)
     androidTestImplementation(Libs.AndroidX.Test.Espresso.contrib)
     androidTestImplementation(Libs.AndroidX.Test.Espresso.intents)
+
+    debugImplementation(Libs.AndroidX.Test.fragment)
 }

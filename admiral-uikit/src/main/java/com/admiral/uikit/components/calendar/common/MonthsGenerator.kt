@@ -4,6 +4,7 @@ import android.content.res.Resources
 import com.admiral.uikit.components.calendar.month.MonthModel
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.withContext
+import java.time.Clock
 import java.time.LocalDate
 import java.time.YearMonth
 
@@ -19,6 +20,7 @@ internal interface IMonthsGenerator {
 
 internal class MonthsGenerator(
     private val resources: Resources,
+    private val clock: Clock,
     private val initialYearMonthProvider: () -> YearMonth,
     private val selectionProvider: () -> Selection,
     private val markedDaysProvider: () -> List<LocalDate>,
@@ -32,6 +34,7 @@ internal class MonthsGenerator(
             ?.minusMonths(MONTHS_OFFSET) ?: initialYearMonthProvider())
             .toCalendarMonthModel(
                 resources = resources,
+                clock = clock,
                 selection = selectionProvider(),
                 markedDays = markedDaysProvider(),
                 disabledDaysInfo = disabledDaysInfoProvider(),
@@ -46,6 +49,7 @@ internal class MonthsGenerator(
             ?.plusMonths(MONTHS_OFFSET) ?: initialYearMonthProvider())
             .toCalendarMonthModel(
                 resources = resources,
+                clock = clock,
                 selection = selectionProvider(),
                 markedDays = markedDaysProvider(),
                 disabledDaysInfo = disabledDaysInfoProvider(),

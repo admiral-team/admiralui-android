@@ -5,58 +5,59 @@ import android.graphics.drawable.LayerDrawable
 import android.os.Build
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.FrameLayout
-import android.widget.ImageView
 import android.widget.ProgressBar
 import androidx.core.content.res.use
 import androidx.core.graphics.BlendModeColorFilterCompat
 import androidx.core.graphics.BlendModeCompat
+import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
-import com.admiral.uikit.common.components.cell.base.CellUnit
-import com.admiral.uikit.common.components.cell.base.CellUnitType
 import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.ext.colorStateList
-import com.admiral.uikit.ext.getColorOrNull
+import com.admiral.uikit.ext.coloredDrawable
+import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.uikit.ext.ripple
+import com.admiral.uikit.layout.FrameLayout
 
 class CirclePageControl @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr), ThemeObserver, CellUnit {
-
-    override lateinit var unitType: CellUnitType
+) : FrameLayout(context, attrs, defStyleAttr), ThemeObserver {
 
     /**
-     * In case tint color is null, the selected color theme will be used.
-     * States: normal, disabled, pressed.
+     * If the value is true, changing [setProgress] will be animated.
      */
-    var backgroundColors: ColorState? = null
+    var isAnimationEnabled: Boolean = true
+
+    /**
+     * Handles color of the icon and progress bar.
+     */
+    var isContrast: Boolean = false
         set(value) {
             field = value
-            invalidateBackgroundColors()
+            invalidateBackgroundColor()
             invalidateProgressColors()
+            invalidateIconColors()
         }
 
-    private val progressBar: ProgressBar by lazy { findViewById<ProgressBar>(R.id.progressBar) }
-    private val icon: ImageView by lazy { findViewById<ImageView>(R.id.imageArrow) }
+    private val progressBar: ProgressBar by lazy { findViewById(R.id.progressBar) }
+    private val icon: ImageView by lazy { findViewById(R.id.imageArrow) }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_control_page_circle, this)
+        isBackgroundTransparent = true
         isClickable = true
         isFocusable = true
 
         parseAttrs(attrs, R.styleable.CirclePageControl).use {
-            backgroundColors = ColorState(
-                normalEnabled = it.getColorOrNull(R.styleable.CirclePageControl_admiralBackgroundColorNormalEnabled),
-                normalDisabled = it.getColorOrNull(R.styleable.CirclePageControl_admiralBackgroundColorNormalDisabled),
-                pressed = it.getColorOrNull(R.styleable.CirclePageControl_admiralBackgroundColorPressed),
-            )
+            isAnimationEnabled = it.getBoolean(R.styleable.CirclePageControl_admiralIsAnimationEnabled, true)
+            setProgress(it.getInt(R.styleable.CirclePageControl_admiralProgress, 0))
         }
     }
 
@@ -82,33 +83,14 @@ class CirclePageControl @JvmOverloads constructor(
     }
 
     override fun onThemeChanged(theme: Theme) {
-        invalidateBackgroundColors()
         invalidateProgressColors()
-    }
-
-    private fun invalidateBackgroundColors() {
-        icon.background.setTintList(
-            colorStateList(
-                enabled = backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
-                disabled = backgroundColors?.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
-                pressed = backgroundColors?.pressed ?: ThemeManager.theme.palette.backgroundAccent
-            )
-        )
-    }
-
-    private fun invalidateProgressColors() {
-        val progressBarDrawable = progressBar.progressDrawable as LayerDrawable
-        val progressDrawable = progressBarDrawable.getDrawable(0)
-
-        progressDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-            backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
-            BlendModeCompat.SRC_ATOP
-        )
+        invalidateBackgroundColor()
+        invalidateIconColors()
     }
 
     fun setProgress(progress: Int) {
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.N) {
-            progressBar.setProgress(progress, true)
+            progressBar.setProgress(progress, isAnimationEnabled)
         } else {
             progressBar.progress = progress
         }
@@ -116,5 +98,60 @@ class CirclePageControl @JvmOverloads constructor(
 
     fun getProgress(): Int {
         return progressBar.progress
+    }
+
+    private fun invalidateProgressColors() {
+        val progressBarDrawable = progressBar.progressDrawable as LayerDrawable
+        val progressDrawable = progressBarDrawable.getDrawable(0)
+
+        if (isContrast) {
+            progressDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
+                BlendModeCompat.SRC_ATOP
+            )
+        } else {
+            progressDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
+                BlendModeCompat.SRC_ATOP
+            )
+        }
+    }
+
+    private fun invalidateBackgroundColor() {
+        if (isContrast) {
+            val rippleColor = ThemeManager.theme.palette.elementAccent
+
+            val mask = context.drawable(R.drawable.admiral_bg_circle_mask)
+            val contentStateList = colorStateList(
+                enabled = ThemeManager.theme.palette.elementStaticWhite,
+                disabled = ThemeManager.theme.palette.elementStaticWhite.withAlpha(),
+                pressed = ThemeManager.theme.palette.elementStaticWhite
+            )
+            val content = context.coloredDrawable(R.drawable.admiral_bg_circle_mask, contentStateList)
+
+
+            icon.background = ripple(rippleColor, content, mask)
+        } else {
+            val rippleColor = ThemeManager.theme.palette.elementStaticWhite
+
+            val mask = context.drawable(R.drawable.admiral_bg_circle_mask)
+            val contentStateList = colorStateList(
+                enabled = ThemeManager.theme.palette.elementAccent,
+                disabled = ThemeManager.theme.palette.elementAccent.withAlpha(),
+                pressed = ThemeManager.theme.palette.elementAccent
+            )
+            val content = context.coloredDrawable(R.drawable.admiral_bg_circle_mask, contentStateList)
+
+
+            icon.background = ripple(rippleColor, content, mask)
+        }
+    }
+
+    private fun invalidateIconColors() {
+        if (isContrast) {
+            icon.imageColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_ACCENT
+        } else {
+            icon.imageColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_STATIC_WHITE
+        }
     }
 }

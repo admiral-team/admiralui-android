@@ -29,7 +29,7 @@ class ContactsFragment : BaseFragment(R.layout.fmt_info_contacts) {
         binding.f1.text = "Алырщикова Дарья"
         binding.f2.text = "alyrchshikova@gmail.com"
         binding.f3.text = "Поляков Антон"
-        binding.f4.text = "ANPolyakov@innotechnum.com"
+        binding.f4.text = "tonwork252@gmail.com"
 
         binding.supportLink.setOnClickListener {
             val intent = Intent(Intent.ACTION_VIEW, Uri.parse("tg://resolve?domain=digitalframeworks_mobilebot"))
