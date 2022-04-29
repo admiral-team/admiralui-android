@@ -16,13 +16,13 @@ import com.admiral.uikit.databinding.AdmiralViewMessageFileBinding
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.layout.FrameLayout
+import com.admiral.uikit.layout.ConstraintLayout
 
 class FileMessage @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr), ThemeObserver {
+) : ConstraintLayout(context, attrs, defStyleAttr), ThemeObserver {
 
     private val binding = AdmiralViewMessageFileBinding
         .inflate(LayoutInflater.from(context), this)
@@ -72,7 +72,7 @@ class FileMessage @JvmOverloads constructor(
         }
 
     /**
-     * Container of [ChatFileView] shown at the GridLayout.
+     * Container of [ChatFileView] shown at the LinearLayout.
      */
     val views = mutableListOf<ChatFileView>()
 
@@ -93,6 +93,7 @@ class FileMessage @JvmOverloads constructor(
 
         background = drawable(R.drawable.admiral_bg_rectangle_12dp)
             ?.colored(ThemeManager.theme.palette.backgroundAccent)
+        invalidateIcon()
     }
 
     /**

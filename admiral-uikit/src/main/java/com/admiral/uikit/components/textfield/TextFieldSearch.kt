@@ -30,7 +30,7 @@ import com.admiral.uikit.ext.pixels
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-internal class TextFieldSearch @JvmOverloads constructor(
+class TextFieldSearch @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
@@ -133,17 +133,10 @@ internal class TextFieldSearch @JvmOverloads constructor(
             parseTextColors(it)
             parseBackgroundColors(it)
             parseDrawableStart(it)
-            parseInputOptions(it)
         }
 
         binding.editText.doAfterTextChanged { text ->
             textFlowField.value = text.toString()
-        }
-
-        doOnPreDraw {
-            updateLayoutParams {
-                height = pixels(R.dimen.admiral_text_field_search_max_height)
-            }
         }
     }
 
@@ -183,19 +176,6 @@ internal class TextFieldSearch @JvmOverloads constructor(
             R.styleable.TextFieldSearch_admiralIsDrawableStartVisible,
             true
         )
-    }
-
-    private fun parseInputOptions(a: TypedArray) {
-        binding.editText.apply {
-            inputType = a.getInt(
-                R.styleable.TextFieldSearch_android_inputType,
-                EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES
-            )
-            imeOptions = a.getInt(
-                R.styleable.TextFieldSearch_android_imeOptions,
-                EditorInfo.IME_ACTION_SEARCH
-            )
-        }
     }
 
     private fun parseTextColors(a: TypedArray) {

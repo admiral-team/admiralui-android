@@ -6,8 +6,7 @@
     android:layout_height="wrap_content"
     android:background="@drawable/admiral_bg_message"
     android:maxWidth="@dimen/admiral_chat_text_message_max_width"
-    android:orientation="vertical"
-    tools:parentTag="android.widget.FrameLayout">
+    tools:parentTag="com.admiral.uikit.layout.ConstraintLayout">
 
     <com.admiral.uikit.layout.LinearLayout
         android:id="@+id/admiralFileMessageLinear"
@@ -16,31 +15,29 @@
         android:gravity="end"
         android:orientation="vertical"
         android:scrollbars="vertical"
-        app:admiralBackgroundIsTransparent="true" />
+        app:admiralBackgroundIsTransparent="true"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <com.admiral.uikit.layout.LinearLayout
-        android:layout_width="match_parent"
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralFileMessageTimeTextView"
+        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_gravity="end|bottom"
+        android:layout_marginEnd="@dimen/module_x1"
         android:layout_marginBottom="@dimen/module_x2"
-        app:admiralBackgroundIsTransparent="true">
+        app:admiralTextStyle="caption1"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toStartOf="@id/admiralFileMessageIconImageView"
+        app:layout_goneMarginEnd="@dimen/module_x3"
+        tools:text="Subtitle" />
 
-        <com.admiral.uikit.components.text.TextView
-            android:id="@+id/admiralFileMessageTimeTextView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginEnd="@dimen/module_x1"
-            app:admiralTextStyle="caption1"
-            app:layout_goneMarginEnd="@dimen/module_x3"
-            tools:text="Subtitle" />
-
-        <com.admiral.uikit.components.imageview.ImageView
-            android:id="@+id/admiralFileMessageIconImageView"
-            android:layout_width="@dimen/module_x4"
-            android:layout_height="@dimen/module_x4"
-            android:layout_marginEnd="@dimen/module_x3"
-            tools:src="@drawable/admiral_ic_check_outline" />
-
-    </com.admiral.uikit.layout.LinearLayout>
+    <com.admiral.uikit.components.imageview.ImageView
+        android:id="@+id/admiralFileMessageIconImageView"
+        android:layout_width="@dimen/module_x4"
+        android:layout_height="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x3"
+        app:layout_constraintBottom_toBottomOf="@id/admiralFileMessageTimeTextView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="@id/admiralFileMessageTimeTextView"
+        tools:src="@drawable/admiral_ic_check_outline" />
 
 </merge>
