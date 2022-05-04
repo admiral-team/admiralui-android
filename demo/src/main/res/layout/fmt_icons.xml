@@ -17,14 +17,11 @@
             app:admiralTitleText="Icons"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.admiral.uikit.components.textfield.TextFieldSearch
+        <com.admiral.uikit.components.appbar.AppbarSearch
             android:id="@+id/search"
-            style="@style/Widget.AppCompat.EditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginEnd="@dimen/module_x4"
-            android:hint="Поиск" />
+            app:admiralHintText="@string/icons_search_hint" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabLayout"
@@ -37,13 +34,14 @@
                 android:id="@+id/tabOutline"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Outline" />
+                android:text="@string/icons_search_outline_tab" />
 
             <com.admiral.uikit.components.tabs.StandardTab
                 android:id="@+id/tabSolid"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Solid" />
+                android:text="@string/icons_search_solid_tab" />
+
         </com.admiral.uikit.components.tabs.StandardTabs>
 
         <androidx.recyclerview.widget.RecyclerView
@@ -60,6 +58,7 @@
             android:paddingEnd="10dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textTitle" />
+
     </com.admiral.uikit.layout.LinearLayout>
 
     <com.admiral.uikit.components.informer.InformerSmall
@@ -67,4 +66,5 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone" />
+
 </FrameLayout>

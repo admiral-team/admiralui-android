@@ -23,16 +23,11 @@
                 app:admiralIsBackButtonEnabled="false"
                 app:admiralTitleText="Дизайн-система «Адмирал»" />
 
-            <com.admiral.uikit.components.textfield.TextFieldSearch
+            <com.admiral.uikit.components.appbar.AppbarSearch
                 android:id="@+id/search"
-                style="@style/Widget.AppCompat.EditText"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="@dimen/module_x4"
-                android:layout_marginTop="@dimen/module_x4"
-                android:layout_marginEnd="@dimen/module_x4"
-                android:layout_marginBottom="@dimen/module_x6"
-                android:hint="Поиск" />
+                app:admiralHintText="@string/home_search_hint" />
 
             <com.admiral.uikit.components.cell.BaseCell
                 android:id="@+id/themeButton"

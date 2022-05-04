@@ -60,10 +60,13 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
                 if (filter != null) {
                     binding.rootList.children.forEach { view ->
                         if (view is BaseCell) {
-                            view.isVisible =
-                                !((view[1] as? TitleSubtitleCellUnit)?.title?.contains(filter.toString()) == false &&
-                                        (view[1] as? TitleSubtitleCellUnit)
-                                            ?.subtitle?.contains(filter.toString()) == false)
+                            val cellUnit = (view[1] as? TitleSubtitleCellUnit) ?: return@forEach
+                            val isTitleContains = cellUnit.title
+                                ?.contains(filter.toString(), ignoreCase = true) ?: false
+                            val isSubtitleContains = cellUnit.subtitle
+                                ?.contains(filter.toString(), ignoreCase = true) ?: false
+
+                            view.isVisible = isTitleContains || isSubtitleContains
                         }
                     }
                 }

@@ -3,28 +3,26 @@ package com.admiral.uikit.components.textfield
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
+import android.os.Build
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
-import android.util.TypedValue
-import android.view.MotionEvent
-import android.view.View.OnTouchListener
+import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.ColorRes
-import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.res.use
-import androidx.core.widget.doOnTextChanged
+import androidx.core.view.doOnPreDraw
+import androidx.core.view.updateLayoutParams
+import androidx.core.widget.doAfterTextChanged
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
-import com.admiral.themes.Typography
 import com.admiral.uikit.R
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.ext.applyStyle
+import com.admiral.uikit.databinding.AdmiralViewTextFieldSearchBinding
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
-import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
@@ -32,15 +30,18 @@ import com.admiral.uikit.ext.pixels
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
-class TextFieldSearch @JvmOverloads constructor(
+internal class TextFieldSearch @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : androidx.appcompat.widget.AppCompatEditText(
-    ContextThemeWrapper(context, R.style.Widget_AppCompat_EditText),
+) : TextFieldInputLayout(
+    context,
     attrs,
     defStyleAttr
 ), ThemeObserver {
+
+    private val binding = AdmiralViewTextFieldSearchBinding
+        .inflate(LayoutInflater.from(context), this)
 
     private var textFlowField = MutableStateFlow<String?>(null)
 
@@ -79,14 +80,15 @@ class TextFieldSearch @JvmOverloads constructor(
             invalidateTextColors()
         }
 
+    // region Drawable start
     /**
      * In case tint color is null, the selected color theme will be used.
      */
     @ColorRes
-    var iconTintColor: Int? = null
+    var drawableStartTintColor: Int? = null
         set(value) {
             field = value
-            invalidateIconColors()
+            invalidateDrawableStart()
         }
 
     /**
@@ -95,14 +97,18 @@ class TextFieldSearch @JvmOverloads constructor(
     var drawableStart: Drawable? = null
         set(value) {
             field = value
-            invalidateIcon()
+            invalidateDrawableStart()
         }
 
+    /**
+     * This property is responsible for visibility of [drawableStart]
+     */
     var isDrawableStartVisible: Boolean = true
         set(value) {
             field = value
-            invalidateIcon()
+            invalidateDrawableStart()
         }
+    // endregion
 
     /**
      * Listener to detect text changing.
@@ -113,54 +119,39 @@ class TextFieldSearch @JvmOverloads constructor(
             setTextChangedListener()
         }
 
-    private val drawableClose =
-        drawable(R.drawable.admiral_ic_close_outline)?.colored(
-            iconTintColor ?: ThemeManager.theme.palette.elementPrimary
-        )
-
     init {
         background = drawable(R.drawable.admiral_bg_rectangle_10dp)
-        setPadding(PADDING_START.dpToPx(context), 0, PADDING_END.dpToPx(context), 0)
-        setTextSize(TypedValue.COMPLEX_UNIT_SP, TEXT_SIZE)
+        endIconMode = END_ICON_CLEAR_TEXT
+        endIconDrawable = drawable(R.drawable.admiral_ic_close_outline)?.colored(
+            drawableStartTintColor ?: ThemeManager.theme.palette.elementPrimary
+        )
+        isHintEnabled = false
+
+        setPadding(0, 0, 0, 0)
 
         parseAttrs(attrs, R.styleable.TextFieldSearch).use {
             parseTextColors(it)
             parseBackgroundColors(it)
-            parseIcon(it)
-            parseIconColors(it)
-
-            inputType = it.getInt(R.styleable.TextFieldSearch_android_inputType, EditorInfo.TYPE_CLASS_TEXT)
-            imeOptions = it.getInt(R.styleable.TextFieldSearch_android_imeOptions, EditorInfo.IME_ACTION_SEARCH)
-            isDrawableStartVisible = it.getBoolean(R.styleable.TextFieldSearch_admiralIsDrawableStartVisible, true)
+            parseDrawableStart(it)
+            parseInputOptions(it)
         }
 
-        setupClearButtonWithAction()
-
-        setPadding(
-            paddingStart,
-            paddingTop + pixels(R.dimen.module_x2),
-            paddingEnd,
-            paddingBottom + pixels(R.dimen.module_x2)
-        )
-
-        applyStyle(Typography.getStyle(ThemeManager.theme.typography.body2))
-
-        doOnTextChanged { text, _, _, _ ->
+        binding.editText.doAfterTextChanged { text ->
             textFlowField.value = text.toString()
+        }
+
+        doOnPreDraw {
+            updateLayoutParams {
+                height = pixels(R.dimen.admiral_text_field_search_max_height)
+            }
         }
     }
 
-    /**
-     * Subscribe for theme change.
-     */
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         ThemeManager.subscribe(this)
     }
 
-    /**
-     * Unsubscribe for theme change.
-     */
     override fun onDetachedFromWindow() {
         ThemeManager.unsubscribe(this)
         super.onDetachedFromWindow()
@@ -168,18 +159,43 @@ class TextFieldSearch @JvmOverloads constructor(
 
     override fun onThemeChanged(theme: Theme) {
         invalidateHintColors()
-        invalidateIconColors()
+        invalidateDrawableStart()
         invalidateBackgroundColors()
         invalidateTextColors()
+        invalidateCursorColor()
     }
 
-    private fun parseIcon(a: TypedArray) {
-        drawableStart =
-            a.getDrawable(R.styleable.TextFieldSearch_admiralIcon) ?: drawable(R.drawable.admiral_ic_search_outline)
+    override fun setHint(hint: CharSequence?) {
+        isHintEnabled = true
+        super.setHint(hint)
+        isHintEnabled = false
     }
 
-    private fun parseIconColors(a: TypedArray) {
-        iconTintColor = a.getColorOrNull(R.styleable.TextFieldSearch_admiralIconTintColorNormalEnabled)
+    private fun parseDrawableStart(a: TypedArray) {
+        drawableStart = a.getDrawable(R.styleable.TextFieldSearch_admiralIcon)
+            ?: drawable(R.drawable.admiral_ic_search_outline)
+
+        drawableStartTintColor = a.getColorOrNull(
+            R.styleable.TextFieldSearch_admiralIconTintColorNormalEnabled
+        )
+
+        isDrawableStartVisible = a.getBoolean(
+            R.styleable.TextFieldSearch_admiralIsDrawableStartVisible,
+            true
+        )
+    }
+
+    private fun parseInputOptions(a: TypedArray) {
+        binding.editText.apply {
+            inputType = a.getInt(
+                R.styleable.TextFieldSearch_android_inputType,
+                EditorInfo.TYPE_CLASS_TEXT or EditorInfo.TYPE_TEXT_FLAG_CAP_SENTENCES
+            )
+            imeOptions = a.getInt(
+                R.styleable.TextFieldSearch_android_imeOptions,
+                EditorInfo.IME_ACTION_SEARCH
+            )
+        }
     }
 
     private fun parseTextColors(a: TypedArray) {
@@ -205,95 +221,79 @@ class TextFieldSearch @JvmOverloads constructor(
     }
 
     private fun invalidateHintColors() {
-        setHintTextColor(
+        binding.editText.setHintTextColor(
             colorStateList(
                 enabled = hintTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary,
                 pressed = hintTextColors?.pressed ?: ThemeManager.theme.palette.textSecondary,
-                disabled = hintTextColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+                disabled = hintTextColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.textSecondary.withAlpha()
             )
         )
     }
 
     private fun invalidateTextColors() {
-        setTextColor(
+        binding.editText.setTextColor(
             colorStateList(
                 enabled = inputTextColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
                 pressed = inputTextColors?.pressed ?: ThemeManager.theme.palette.textPrimary,
-                disabled = inputTextColors?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha()
+                disabled = inputTextColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha()
             )
         )
     }
 
     private fun invalidateBackgroundColors() {
         backgroundTintList = colorStateList(
-            enabled = backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
-            pressed = backgroundColors?.pressed ?: ThemeManager.theme.palette.backgroundAdditionalOnePressed,
+            enabled = backgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            pressed = backgroundColors?.pressed
+                ?: ThemeManager.theme.palette.backgroundAdditionalOnePressed,
             disabled = backgroundColors?.normalDisabled
                 ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
         )
     }
 
-    private fun invalidateIconColors() {
-        if (isDrawableStartVisible) {
-            drawableStart?.colored(iconTintColor ?: ThemeManager.theme.palette.elementPrimary)
-            setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, null, null)
-        } else {
-            setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
-        }
-    }
-
-    private fun invalidateIcon() {
-        if (isDrawableStartVisible) {
-            compoundDrawablePadding = pixels(R.dimen.module_x2)
-            drawableStart?.colored(iconTintColor ?: ThemeManager.theme.palette.elementPrimary)
-            setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, null, null)
-        } else {
-            setCompoundDrawablesWithIntrinsicBounds(null, null, null, null)
-        }
-    }
-
-    private fun setupClearButtonWithAction() {
-        setTextChangedListener()
-
-        setOnTouchListener(OnTouchListener { _, event ->
-            if (event.action == MotionEvent.ACTION_UP) {
-                if (event.rawX >= (this.right - this.compoundPaddingRight)) {
-                    this.setText("")
-                    this.clearFocus()
-                    return@OnTouchListener true
-                }
-            }
-            return@OnTouchListener false
-        })
+    private fun invalidateDrawableStart() {
+        startIconDrawable = if (isDrawableStartVisible) {
+            drawableStart?.colored(
+                drawableStartTintColor ?: ThemeManager.theme.palette.elementPrimary
+            )
+        } else null
     }
 
     private fun setTextChangedListener() {
-        addTextChangedListener(object : TextWatcher {
-            override fun afterTextChanged(editable: Editable?) {
-                if (editable?.isNotEmpty() == true) {
-                    if (isDrawableStartVisible) {
-                        setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, drawableClose, null)
-                    } else {
-                        setCompoundDrawablesWithIntrinsicBounds(null, null, drawableClose, null)
-                    }
-                } else {
-                    if (isDrawableStartVisible) {
-                        setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, null, null)
-                    }
-                }
-            }
+        with(binding.editText) {
+            addTextChangedListener(
+                object : TextWatcher {
+                    override fun afterTextChanged(editable: Editable?) = Unit
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
-            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                onTextChangeListener?.onTextChanged(s, start, before, count)
-            }
-        })
+                    override fun beforeTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        count: Int,
+                        after: Int
+                    ) = Unit
+
+                    override fun onTextChanged(
+                        s: CharSequence?,
+                        start: Int,
+                        before: Int,
+                        count: Int
+                    ) {
+                        onTextChangeListener?.onTextChanged(s, start, before, count)
+                    }
+                })
+        }
     }
 
-    private companion object {
-        const val PADDING_START = 12
-        const val PADDING_END = 12
-        const val TEXT_SIZE = 16F
+    private fun invalidateCursorColor() {
+        binding.editText.apply {
+            highlightColor = ThemeManager.theme.palette.backgroundAccent.withAlpha()
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
+                textCursorDrawable = drawable(R.drawable.admiral_img_cursor_drawable)
+                    ?.colored(ThemeManager.theme.palette.elementAccent)
+            }
+        }
     }
 
     interface OnTextChangeListener {

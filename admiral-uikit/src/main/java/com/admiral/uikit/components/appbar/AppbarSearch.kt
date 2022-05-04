@@ -22,6 +22,7 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
+import kotlinx.coroutines.flow.StateFlow
 
 class AppbarSearch @JvmOverloads constructor(
     context: Context,
@@ -39,7 +40,7 @@ class AppbarSearch @JvmOverloads constructor(
     /**
      * [TextFieldSearch] shown at the middle of the app bar.
      */
-    val editText = TextFieldSearch(context).apply {
+    private val textFieldSearch = TextFieldSearch(context).apply {
         layoutParams = LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1f)
         setMargins(0, MARGIN, 0, 0)
     }
@@ -61,12 +62,12 @@ class AppbarSearch @JvmOverloads constructor(
     }
 
     /**
-     * [Drawable] shown inside of the [editText], at the left side.
+     * [Drawable] shown inside of the [textFieldSearch], at the left side.
      */
     var editTextDrawableStart: Drawable? = null
         set(value) {
             field = value
-            editText.drawableStart = value
+            textFieldSearch.drawableStart = value
         }
 
     /**
@@ -76,14 +77,14 @@ class AppbarSearch @JvmOverloads constructor(
         set(value) {
             field = value
             if (value) {
-                editText.drawableStart = editTextDrawableStart
+                textFieldSearch.drawableStart = editTextDrawableStart
             } else {
-                editText.drawableStart = null
+                textFieldSearch.drawableStart = null
             }
         }
 
     /**
-     * InputTextColors of the [editText]
+     * InputTextColors of the [textFieldSearch]
      */
     @ColorRes
     var textColor: Int? = null
@@ -93,7 +94,7 @@ class AppbarSearch @JvmOverloads constructor(
         }
 
     /**
-     * HintTextColors of the [editText]
+     * HintTextColors of the [textFieldSearch]
      */
     @ColorRes
     var hintTextColor: Int? = null
@@ -103,40 +104,60 @@ class AppbarSearch @JvmOverloads constructor(
         }
 
     /**
-     * Text of the [editText].
+     * Text of the [textFieldSearch].
      */
     var text: String? = null
         set(value) {
             field = value
-            editText.setText(value)
+            textFieldSearch.editText?.setText(value)
         }
         get() {
-            if (editText.editableText.isNullOrEmpty()) {
+            if (textFieldSearch.editText?.editableText.isNullOrEmpty()) {
                 return ""
             }
-            return editText.text.toString()
+            return textFieldSearch.editText?.text.toString()
         }
 
     /**
-     * Hint text of the [editText].
+     * Hint text of the [textFieldSearch].
      */
     var hintText: String? = null
         set(value) {
             field = value
-            editText.hint = value
+            textFieldSearch.hint = value
         }
         get() {
-            return editText.hint.toString()
+            return textFieldSearch.hint.toString()
         }
 
     /**
      * Listener to detect text changing.
      */
-    var onTextChangeListener: TextFieldSearch.OnTextChangeListener? = null
+    var onTextChangeListener: OnTextChangeListener? = null
         set(value) {
             field = value
-            editText.onTextChangeListener = value
+            textFieldSearch.onTextChangeListener = object : TextFieldSearch.OnTextChangeListener {
+                override fun onTextChanged(
+                    text: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    value?.onTextChanged(
+                        text = text,
+                        start = start,
+                        before = before,
+                        count = count
+                    )
+                }
+            }
         }
+
+    /**
+     * StateFlow for text input changes
+     */
+    val textFlow: StateFlow<String?>
+        get() = textFieldSearch.textFlow
 
     /**
      * Color state for icons.
@@ -167,7 +188,7 @@ class AppbarSearch @JvmOverloads constructor(
         }
 
         linearLayout.addView(iconStart)
-        linearLayout.addView(editText)
+        linearLayout.addView(textFieldSearch)
         linearLayout.addView(iconEnd)
         addView(linearLayout)
     }
@@ -208,13 +229,13 @@ class AppbarSearch @JvmOverloads constructor(
     }
 
     private fun initTextsColor() {
-        editText.inputTextColors = ColorState(
+        textFieldSearch.inputTextColors = ColorState(
             normalEnabled = textColor ?: ThemeManager.theme.palette.textPrimary,
             normalDisabled = textColor?.withAlpha() ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = textColor ?: ThemeManager.theme.palette.textPrimary
         )
 
-        editText.hintTextColors = ColorState(
+        textFieldSearch.hintTextColors = ColorState(
             normalEnabled = hintTextColor ?: ThemeManager.theme.palette.textSecondary,
             normalDisabled = hintTextColor?.withAlpha() ?: ThemeManager.theme.palette.textSecondary.withAlpha(),
             pressed = hintTextColor ?: ThemeManager.theme.palette.textSecondary
@@ -224,6 +245,10 @@ class AppbarSearch @JvmOverloads constructor(
     private fun invalidateIconsColors() {
         iconStart.iconTintColors = iconsTintColor
         iconEnd.iconTintColors = iconsTintColor
+    }
+
+    interface OnTextChangeListener {
+        fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int)
     }
 
     private companion object {
