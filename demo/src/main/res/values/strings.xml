@@ -64,15 +64,20 @@
     <string name="bottom_sheet_dialog_action">Готово</string>
 
     <string name="tabs_title">Tabs</string>
+    <string name="tabs_underline_title">Underline Tabs</string>
+    <string name="tabs_slider_title">Slider</string>
+    <string name="tabs_center_title">Center</string>
     <string name="tabs_standard_title">Standard Tabs</string>
     <string name="tabs_logo_title">Logo Tabs</string>
     <string name="tabs_informer_title">Informer Tabs</string>
     <string name="tabs_outline_title">Outline Slider Tabs</string>
-    <string name="tabs_underline_title">Underline Slider Tabs</string>
+    <string name="tabs_underline_slider_title">Underline Slider Tabs</string>
+    <string name="tabs_underline_center_title">Underline Center Tabs</string>
     <string name="tabs_informer_example_title">то получу в страховом случае</string>
     <string name="tabs_informer_example_summ">до 1 500 000 ₽</string>
     <string name="tabs_informer_example_subtitle">Выгодный вариант для двухкомнатной квартиры или дачного дома</string>
     <string name="tabs_slider_control">Slider controls</string>
+    <string name="tabs_notifications">Notifications</string>
     <string name="tabs_example_one">One</string>
     <string name="tabs_example_two">Two</string>
     <string name="tabs_example_three">Three</string>
@@ -86,6 +91,8 @@
     <string name="tabs_disabled">Disabled</string>
     <string name="tabs_two_controls">Two controls</string>
     <string name="tabs_three_controls">Three controls</string>
+    <string name="tabs_four_controls">Four controls</string>
+    <string name="tabs_five_controls">Five controls</string>
     <string name="tabs_one">One</string>
     <string name="tabs_two">Two</string>
     <string name="tabs_three">Three</string>

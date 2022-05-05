@@ -21,143 +21,58 @@
             android:text="@string/tabs_underline_title"
             app:admiralTextStyle="largetitle1" />
 
-        <com.admiral.uikit.components.tabs.StandardTabs
-            android:id="@+id/tabsState"
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/sliderTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/defaultTab">
+            android:layout_marginTop="@dimen/module_x6"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
 
-            <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/defaultTab"
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/standardTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tabs_default" />
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/tabs_slider_title"
+                app:admiralTextStyle="body1" />
 
-            <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/disabledTab"
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/standardTabIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="@string/tabs_disabled" />
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
 
-        </com.admiral.uikit.components.tabs.StandardTabs>
+        </com.admiral.uikit.components.cell.BaseCell>
 
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
-            android:text="@string/tabs_two_controls"
-            app:admiralTextColorNormalEnabledPalette="textSecondary"
-            app:admiralTextStyle="headline" />
-
-        <com.admiral.uikit.components.tabs.UnderlineSliderTabs
-            android:id="@+id/tabsTwo"
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/centerTabs"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/one2">
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
 
-            <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                android:id="@+id/one2"
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/logoTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralText="@string/tabs_example_one"
-                app:admiralUnderlinePadding="2dp" />
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/tabs_center_title"
+                app:admiralTextStyle="body1" />
 
-            <com.admiral.uikit.components.tabs.UnderlineSliderTab
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/logoTabIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralText="@string/tabs_example_two"
-                app:admiralUnderlinePadding="2dp" />
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
 
-            <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                app:admiralText="@string/tabs_example_three"
-                app:admiralUnderlinePadding="2dp" />
-        </com.admiral.uikit.components.tabs.UnderlineSliderTabs>
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
-            android:text="@string/tabs_slider_control"
-            app:admiralTextColorNormalEnabledPalette="textSecondary"
-            app:admiralTextStyle="headline" />
-
-        <HorizontalScrollView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x4"
-            android:scrollbars="none">
-
-            <com.admiral.uikit.components.tabs.UnderlineSliderTabs
-                android:id="@+id/tabsThree"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/module_x4"
-                app:checkedId="@+id/one">
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:id="@+id/one"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_one"
-                    app:admiralUnderlinePadding="2dp" />
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_two"
-                    app:admiralUnderlinePadding="2dp" />
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_three"
-                    app:admiralUnderlinePadding="2dp" />
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_four"
-                    app:admiralUnderlinePadding="2dp" />
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_five"
-                    app:admiralUnderlinePadding="2dp" />
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_six"
-                    app:admiralUnderlinePadding="2dp" />
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_seven"
-                    app:admiralUnderlinePadding="2dp" />
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_eight"
-                    app:admiralUnderlinePadding="2dp" />
-
-                <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralText="@string/tabs_example_nine"
-                    app:admiralUnderlinePadding="2dp" />
-
-            </com.admiral.uikit.components.tabs.UnderlineSliderTabs>
-
-        </HorizontalScrollView>
+        </com.admiral.uikit.components.cell.BaseCell>
 
     </com.admiral.uikit.layout.LinearLayout>
 

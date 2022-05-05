@@ -10,7 +10,8 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtTabsUnderlineBinding
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.demo.screen.UnderlineCenterTabsScreen
+import com.admiral.demo.screen.UnderlineSliderTabsScreen
 
 class UnderlineTabsFragment : BaseFragment(R.layout.fmt_tabs_underline) {
 
@@ -21,19 +22,12 @@ class UnderlineTabsFragment : BaseFragment(R.layout.fmt_tabs_underline) {
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
-        binding.tabsState.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
-                when (checkedId) {
-                    R.id.defaultTab -> {
-                        binding.tabsThree.isEnabled = true
-                        binding.tabsTwo.isEnabled = true
-                    }
-                    R.id.disabledTab -> {
-                        binding.tabsThree.isEnabled = false
-                        binding.tabsTwo.isEnabled = false
-                    }
-                }
-            }
+        binding.sliderTabs.setOnClickListener {
+            navigationViewModel.open(UnderlineSliderTabsScreen())
+        }
+
+        binding.centerTabs.setOnClickListener {
+            navigationViewModel.open(UnderlineCenterTabsScreen())
         }
     }
 
