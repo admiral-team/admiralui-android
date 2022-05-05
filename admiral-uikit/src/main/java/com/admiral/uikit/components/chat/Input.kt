@@ -74,13 +74,13 @@ class Input @JvmOverloads constructor(
     var text: String = ""
         set(value) {
             field = value
-            textFieldSearch.setText(value)
+            textFieldSearch.editText?.setText(value)
         }
         get() {
-            if (textFieldSearch.editableText.isNullOrEmpty()) {
+            if (textFieldSearch.editText?.editableText.isNullOrEmpty()) {
                 return ""
             }
-            return textFieldSearch.text.toString()
+            return textFieldSearch.editText?.text.toString()
         }
 
     /**
@@ -99,7 +99,7 @@ class Input @JvmOverloads constructor(
             textFieldSearch.hint = value
         }
         get() {
-            if (textFieldSearch.editableText.isNullOrEmpty()) {
+            if (textFieldSearch.editText?.editableText.isNullOrEmpty()) {
                 return ""
             }
             return textFieldSearch.hint.toString()

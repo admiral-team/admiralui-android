@@ -19,7 +19,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.core.view.children
 import androidx.core.view.isVisible
-import androidx.core.widget.doOnTextChanged
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -37,7 +36,6 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
-import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
 class Appbar @JvmOverloads constructor(
@@ -46,10 +44,6 @@ class Appbar @JvmOverloads constructor(
     defStyleAttr: Int = 0
 ) : Toolbar(ContextThemeWrapper(context, R.style.Widget_AppCompat_Toolbar), attrs, defStyleAttr),
     ThemeObserver {
-
-    private var textFlowField = MutableStateFlow<String?>(null)
-
-    val textFlow: StateFlow<String?> = textFlowField
 
     /**
      * Container fot the title text and menu text.
@@ -60,7 +54,7 @@ class Appbar @JvmOverloads constructor(
     }
 
     /**
-     *Container fot the edit text and icons.
+     * Container fot the edit text and icons.
      */
     private val searchContainer: LinearLayout = LinearLayout(context).apply {
         layoutParams =
@@ -189,7 +183,7 @@ class Appbar @JvmOverloads constructor(
     /**
      * Edit text shown at the middle of the app bar.
      */
-    private val editText = TextFieldSearch(context).apply {
+    private val textFieldSearch = TextFieldSearch(context).apply {
         layoutParams = LinearLayout.LayoutParams(0, EDIT_TEXT_HEIGHT.dpToPx(context), 1f)
         setMargins(0, EDIT_TEXT_MARGIN, 0, 0)
     }
@@ -213,7 +207,7 @@ class Appbar @JvmOverloads constructor(
     var editTextDrawableStart: Drawable? = null
         set(value) {
             field = value
-            editText.drawableStart = value
+            textFieldSearch.drawableStart = value
         }
 
     @ColorRes
@@ -233,29 +227,49 @@ class Appbar @JvmOverloads constructor(
     var editTextText: String? = null
         set(value) {
             field = value
-            editText.setText(value)
+            textFieldSearch.editText?.setText(value)
         }
         get() {
-            return editText.editableText.toString()
+            return textFieldSearch.editText?.editableText.toString()
         }
 
     var hintText: String? = null
         set(value) {
             field = value
-            editText.hint = value
+            textFieldSearch.hint = value
         }
         get() {
-            return editText.hint.toString()
+            return textFieldSearch.hint.toString()
         }
 
     /**
      * Listener to detect text changing.
      */
-    var onTextChangeListener: TextFieldSearch.OnTextChangeListener? = null
+    var onTextChangeListener: OnTextChangeListener? = null
         set(value) {
             field = value
-            editText.onTextChangeListener = value
+            textFieldSearch.onTextChangeListener = object : TextFieldSearch.OnTextChangeListener {
+                override fun onTextChanged(
+                    text: CharSequence?,
+                    start: Int,
+                    before: Int,
+                    count: Int
+                ) {
+                    value?.onTextChanged(
+                        text = text,
+                        start = start,
+                        before = before,
+                        count = count
+                    )
+                }
+            }
         }
+
+    /**
+     * StateFlow for text input changes
+     */
+    val textFlow: StateFlow<String?>
+        get() = textFieldSearch.textFlow
 
     /**
      * Color state for icons.
@@ -314,13 +328,9 @@ class Appbar @JvmOverloads constructor(
         addView(normalContainer)
 
         searchContainer.addView(iconStart)
-        searchContainer.addView(editText)
+        searchContainer.addView(textFieldSearch)
         searchContainer.addView(iconEnd)
         addView(searchContainer)
-
-        editText.doOnTextChanged { text, _, _, _ ->
-            textFlowField.value = text.toString()
-        }
     }
 
     /**
@@ -409,14 +419,14 @@ class Appbar @JvmOverloads constructor(
     }
 
     private fun invalidateEditTextColors() {
-        editText.inputTextColors = ColorState(
+        textFieldSearch.inputTextColors = ColorState(
             normalEnabled = editTextTextColor ?: ThemeManager.theme.palette.textPrimary,
             normalDisabled = editTextTextColor?.withAlpha()
                 ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = editTextTextColor ?: ThemeManager.theme.palette.textPrimary
         )
 
-        editText.hintTextColors = ColorState(
+        textFieldSearch.hintTextColors = ColorState(
             normalEnabled = hintTextColor ?: ThemeManager.theme.palette.textSecondary,
             normalDisabled = hintTextColor?.withAlpha()
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha(),
@@ -461,6 +471,10 @@ class Appbar @JvmOverloads constructor(
         menu.children.iterator().forEach { menuItem ->
             menuItem.icon?.setTintList(colorState)
         }
+    }
+
+    interface OnTextChangeListener {
+        fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int)
     }
 
     private companion object {

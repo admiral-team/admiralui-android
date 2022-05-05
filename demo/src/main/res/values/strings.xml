@@ -415,4 +415,11 @@
 
     <string name="settings_theme_switcher">Автоматическое переключение темы</string>
     <string name="settings_compose_switcher">Переключить на Compose</string>
+
+    <string name="home_search_hint">Поиск</string>
+
+    <string name="icons_search_hint">Поиск</string>
+    <string name="icons_search_outline_tab">Outline</string>
+    <string name="icons_search_solid_tab">Solid</string>
+
 </resources>

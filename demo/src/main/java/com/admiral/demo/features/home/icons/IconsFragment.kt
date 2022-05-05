@@ -28,6 +28,7 @@ import com.admiral.uikit.ext.spToPx
 import com.admiral.uikit.view.checkable.CheckableGroup
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
+import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.flow.launchIn
 import kotlinx.coroutines.flow.onEach
 import java.io.InputStreamReader
@@ -53,31 +54,35 @@ class IconsFragment : BaseFragment(R.layout.fmt_icons), ThemeObserver {
         var drawableResources = getIconsFiltered()
         adapter.submitList(drawableResources)
 
-        binding.tabLayout.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
-                iconsMode = when (checkedId) {
-                    R.id.tabOutline -> {
-                        IconsMode.OUTLINE
+        binding.tabLayout.onCheckedChangeListener =
+            object : CheckableGroup.OnCheckedChangeListener {
+                override fun onCheckedChanged(
+                    radioButton: View?,
+                    isChecked: Boolean,
+                    checkedId: Int
+                ) {
+                    iconsMode = when (checkedId) {
+                        R.id.tabOutline -> {
+                            IconsMode.OUTLINE
+                        }
+                        R.id.tabSolid -> {
+                            IconsMode.SOLID
+                        }
+                        else -> IconsMode.OUTLINE
                     }
-                    R.id.tabSolid -> {
-                        IconsMode.SOLID
-                    }
-                    else -> IconsMode.OUTLINE
-                }
 
-                drawableResources = getIconsFiltered()
-                adapter.submitList(drawableResources)
-            }
-        }
-
-        binding.search.textFlow.debounce(DEBOUNCE_TIME)
-            .distinctUntilChanged()
-            .onEach {
-                it?.let {
-                    filter = it.toString()
                     drawableResources = getIconsFiltered()
                     adapter.submitList(drawableResources)
                 }
+            }
+
+        binding.search.textFlow.debounce(DEBOUNCE_TIME)
+            .distinctUntilChanged()
+            .filterNotNull()
+            .onEach { text ->
+                filter = text
+                drawableResources = getIconsFiltered()
+                adapter.submitList(drawableResources)
             }
             .launchIn(lifecycleScope)
     }
@@ -99,9 +104,9 @@ class IconsFragment : BaseFragment(R.layout.fmt_icons), ThemeObserver {
                 val iconsFiltered: MutableList<BaseItem> = mutableListOf()
                 for (icon in it.value) {
                     val name = icon.id
-                    if (name.contains(ADMIRAL_ICONS_PREFIX) &&
-                        name.contains(iconsMode.modeName) &&
-                        name.contains(filter)
+                    if (name.contains(ADMIRAL_ICONS_PREFIX, ignoreCase = true) &&
+                        name.contains(iconsMode.modeName, ignoreCase = true) &&
+                        name.contains(filter, ignoreCase = true)
                     ) {
                         iconsFiltered.add(IconListItem(icon))
                     }

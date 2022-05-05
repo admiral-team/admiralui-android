@@ -24,4 +24,6 @@
     <dimen name="admiral_calendar_month_max_height">304dp</dimen>
     <dimen name="admiral_calendar_month_horizontal_spacing_between_days">10dp</dimen>
     <dimen name="admiral_vertical_calendar_spacing_between_months">24dp</dimen>
+
+    <dimen name="admiral_text_field_search_max_height">36dp</dimen>
 </resources>
