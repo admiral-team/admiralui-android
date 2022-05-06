@@ -73,16 +73,18 @@ class TextFieldDoubleTest : ScreenshotTest {
     }
 
     private fun checkTextFieldProgrammatically(
-        isEnabled: Boolean,
+        isEnabled: Boolean = true,
         isReadonly: Boolean? = null,
         isError: Boolean? = null,
-        @StringRes textResId: Int? = null
+        isAdditionalTextSingle: Boolean = true,
+        @StringRes textResId: Int? = null,
+        @StringRes additionalText: Int = R.string.text_fields_example_slider_additional
     ) {
         val textField = DoubleTextField(wrappedContext).apply {
             disableInputLayoutAnimation()
             this.leftTextField.optionalText = context.getString(R.string.text_fields_optional_label)
             this.rightTextField.optionalText = context.getString(R.string.text_fields_optional_label)
-            this.additionalText = context.getString(R.string.text_fields_example_slider_additional)
+            this.additionalText = context.getString(additionalText)
             this.isEnabled = isEnabled
             textResId?.let {
                 this.leftTextField.inputText = context.getString(it)
@@ -93,6 +95,9 @@ class TextFieldDoubleTest : ScreenshotTest {
                 rightTextField.isEditEnabled = isReadonly.not()
             }
             isError?.let { this.isError = isError }
+            this.isAdditionalTextSingle = isAdditionalTextSingle
+            this.leftTextField.errorText = "error text first"
+            this.rightTextField.errorText = "error text second"
         }
 
         textField.check()
@@ -180,11 +185,29 @@ class TextFieldDoubleTest : ScreenshotTest {
     }
 
     @Test
-    fun checkProgrammaticallyTextFieldDoubleErrorWithTextDisabledState() {
+    fun checkProgrammaticallyTextFieldDoubleSingleErrorWithTextDisabledState() {
         checkTextFieldProgrammatically(
             isEnabled = false,
             isError = true,
             textResId = R.string.text_fields_text,
+        )
+    }
+
+    @Test
+    fun checkProgrammaticallyTextFieldDoubleSingeErrorWithLargeTextEnabledState() {
+        checkTextFieldProgrammatically(
+            isError = true,
+            textResId = R.string.text_fields_text,
+            additionalText = R.string.cell_lorem_ipsum,
+        )
+    }
+
+    @Test
+    fun checkProgrammaticallyTextFieldDoubleBothErrorWithTextEnabledState() {
+        checkTextFieldProgrammatically(
+            isError = true,
+            textResId = R.string.text_fields_text,
+            isAdditionalTextSingle = false,
         )
     }
 
