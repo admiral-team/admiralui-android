@@ -69,6 +69,8 @@ import com.admiral.demo.features.home.tabs.LogoTabsFragment
 import com.admiral.demo.features.home.tabs.OutlineTabsFragment
 import com.admiral.demo.features.home.tabs.StandardTabsFragment
 import com.admiral.demo.features.home.tabs.TabsFragment
+import com.admiral.demo.features.home.tabs.UnderlineCenterTabsFragment
+import com.admiral.demo.features.home.tabs.UnderlineSliderTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineTabsFragment
 import com.admiral.demo.features.home.textFields.DoubleTextFieldsFragment
 import com.admiral.demo.features.home.textFields.FeedbackTextFieldsFragment
@@ -179,6 +181,16 @@ class OutlineTabsScreen : Screen() {
 @Parcelize
 class UnderlineTabsScreen : Screen() {
     override fun getFragment() = UnderlineTabsFragment()
+}
+
+@Parcelize
+class UnderlineSliderTabsScreen : Screen() {
+    override fun getFragment() = UnderlineSliderTabsFragment()
+}
+
+@Parcelize
+class UnderlineCenterTabsScreen : Screen() {
+    override fun getFragment() = UnderlineCenterTabsFragment()
 }
 
 @Parcelize

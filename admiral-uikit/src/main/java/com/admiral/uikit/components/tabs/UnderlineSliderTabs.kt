@@ -190,10 +190,11 @@ class UnderlineSliderTabs @JvmOverloads constructor(
         tabConfigurationStrategy: TabConfigurationStrategy?,
         i: Int
     ) {
-        val lp =
-            LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT)
-        lp.weight = 1f
-        layoutParams = lp
+        layoutParams = LayoutParams(
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            ViewGroup.LayoutParams.WRAP_CONTENT,
+            1f
+        )
 
         setOnClickListener {
             onClick(it)
