@@ -72,7 +72,7 @@ def formatted_build_info(build_info:)
   result_string += "Internal Version: #{build_info.internal_version}\n" unless build_info.internal_version.nil?
   result_string += "Short Version: #{build_info.short_version}\n" unless build_info.short_version.nil?
   result_string += "Branch Name: #{build_info.branch_name}\n" unless build_info.branch_name.nil?
-  result_string += "*Install URL* [URL|#{build_info.build_url}]" unless build_info.build_url.nil?
+  result_string += "Install URL: #{build_info.build_url}" unless build_info.build_url.nil?
   result_string.strip
 end
 
