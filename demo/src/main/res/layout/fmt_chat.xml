@@ -26,6 +26,7 @@
             app:admiralTextStyle="largetitle1" />
 
         <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/bcInput"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x6"

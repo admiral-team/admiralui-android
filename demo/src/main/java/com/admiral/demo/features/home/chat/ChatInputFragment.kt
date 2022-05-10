@@ -8,16 +8,13 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
-import com.admiral.demo.databinding.FmtChatBinding
+import com.admiral.demo.databinding.FmtChatInputBinding
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.demo.screen.ChatFilesScreen
-import com.admiral.demo.screen.ChatImagesScreen
-import com.admiral.demo.screen.ChatInputScreen
-import com.admiral.demo.screen.ChatTextOperationScreen
+import com.admiral.uikit.view.checkable.CheckableGroup
 
-class ChatFragment : BaseFragment(R.layout.fmt_chat) {
+class ChatInputFragment : BaseFragment(R.layout.fmt_chat_input) {
 
-    private val binding by viewBinding(FmtChatBinding::bind)
+    private val binding by viewBinding(FmtChatInputBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -25,17 +22,10 @@ class ChatFragment : BaseFragment(R.layout.fmt_chat) {
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
         with(binding) {
-            bcInput.setOnClickListener {
-                navigationViewModel.open(ChatInputScreen())
-            }
-            uploadingPhoto.setOnClickListener {
-                navigationViewModel.open(ChatImagesScreen())
-            }
-            uploadingFiles.setOnClickListener {
-                navigationViewModel.open(ChatFilesScreen())
-            }
-            textOperation.setOnClickListener {
-                navigationViewModel.open(ChatTextOperationScreen())
+            tabsState.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
+                override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
+                    input.isEnabled = checkedId == R.id.defaultTab
+                }
             }
         }
     }

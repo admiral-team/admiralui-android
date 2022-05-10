@@ -13,7 +13,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/module_x2"
-        android:gravity="end"
         android:maxWidth="@dimen/admiral_chat_text_message_max_width"
         android:paddingStart="@dimen/module_x3"
         android:paddingEnd="@dimen/module_x3"

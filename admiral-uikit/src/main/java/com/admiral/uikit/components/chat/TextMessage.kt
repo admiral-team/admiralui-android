@@ -80,15 +80,10 @@ class TextMessage @JvmOverloads constructor(
     /**
      * Determines gravity of the message.
      */
-    var messageGravity: TextMessageGravity = TextMessageGravity.END
+    var messageGravity: Int = Gravity.FILL_HORIZONTAL
         set(value) {
             field = value
-
-            textMessageTextView.gravity = when (value) {
-                TextMessageGravity.START -> Gravity.START
-                TextMessageGravity.CENTER -> Gravity.CENTER
-                TextMessageGravity.END -> Gravity.END
-            }
+            textMessageTextView.gravity = field
 
             invalidate()
         }
@@ -113,12 +108,7 @@ class TextMessage @JvmOverloads constructor(
                     MessageStatus.NONE.ordinal
                 )
             )
-            messageGravity = TextMessageGravity.from(
-                it.getInt(
-                    R.styleable.TextMessage_admiralMessageGravity,
-                    TextMessageGravity.END.ordinal
-                )
-            )
+            messageGravity = it.getInt(R.styleable.TextMessage_admiralMessageGravity, Gravity.FILL_HORIZONTAL)
         }
 
         background = drawable(R.drawable.admiral_bg_rectangle_12dp)

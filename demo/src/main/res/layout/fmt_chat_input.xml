@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:text="@string/chat_input_title"
+        app:admiralTextStyle="largetitle1" />
+
+    <com.admiral.uikit.components.tabs.StandardTabs
+        android:id="@+id/tabsState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x4"
+        app:checkedId="@+id/defaultTab">
+
+        <com.admiral.uikit.components.tabs.StandardTab
+            android:id="@+id/defaultTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabs_default" />
+
+        <com.admiral.uikit.components.tabs.StandardTab
+            android:id="@+id/loadingTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabs_disabled" />
+
+    </com.admiral.uikit.components.tabs.StandardTabs>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:animateLayoutChanges="true"
+        android:fillViewport="true"
+        android:isScrollContainer="false"
+        android:orientation="vertical"
+        android:scrollbars="none">
+
+        <com.admiral.uikit.layout.LinearLayout
+            android:id="@+id/linearLayout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:animateLayoutChanges="true"
+            android:fitsSystemWindows="true"
+            android:orientation="vertical">
+
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x3"
+                android:text="@string/chat_name"
+                app:admiralTextColorNormalEnabledPalette="textSecondary"
+                app:admiralTextStyle="caption1" />
+
+            <com.admiral.uikit.components.chat.TextMessage
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x1"
+                app:admiralText="@string/chat_text_message_mid_size"
+                app:admiralTimeText="@string/chat_example_time" />
+
+            <com.admiral.uikit.components.chat.TextMessage
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x1"
+                app:admiralText="@string/chat_text_message_title"
+                app:admiralTimeText="@string/chat_example_time" />
+
+            <com.admiral.uikit.components.chat.TextMessage
+                android:id="@+id/fileMessageOutgoing"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="end"
+                android:layout_marginTop="@dimen/module_x2"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsOutgoing="true"
+                app:admiralMessageStatus="sending"
+                app:admiralText="@string/informers_example_info"
+                app:admiralTimeText="@string/chat_example_time" />
+
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
+            <com.admiral.uikit.components.chat.Input
+                android:id="@+id/input"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="@dimen/module_x16"
+                android:padding="@dimen/module_x3"
+                app:admiralIconStart="@drawable/admiral_ic_attach_file_outline" />
+        </com.admiral.uikit.layout.LinearLayout>
+    </ScrollView>
+</com.admiral.uikit.layout.LinearLayout>

@@ -386,6 +386,7 @@
     <string name="chat_uploading_photo_six">Six Files</string>
     <string name="chat_uploading_file_title">Uploading File</string>
     <string name="chat_text_message_title">Text Message</string>
+    <string name="chat_text_message_mid_size">At breakpoint boundaries, mini units divide</string>
     <string name="chat_input_title">Input</string>
     <string name="chat_text_operation_title">Text Operation</string>
     <string name="chat_text_operation_default">Default</string>

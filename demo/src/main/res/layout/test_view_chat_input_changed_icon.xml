@@ -4,4 +4,5 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     app:admiralButtonIcon="@drawable/ic_arrow_down"
-    app:admiralHintText="@string/chat_input_message" />
+    app:admiralHintText="@string/chat_input_message"
+    app:admiralIconStart="@drawable/admiral_ic_attach_file_outline" />

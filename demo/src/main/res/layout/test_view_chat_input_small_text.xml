@@ -3,4 +3,5 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    app:admiralIconStart="@drawable/admiral_ic_attach_file_outline"
     app:admiralText="@string/chat_input_message_text" />
