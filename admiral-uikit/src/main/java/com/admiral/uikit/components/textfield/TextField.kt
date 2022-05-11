@@ -167,6 +167,10 @@ class TextField @JvmOverloads constructor(
      * Error text which is placed under divider when the view is in a Error state.
      */
     var errorText: String? = null
+        set(value) {
+            field = value
+            invalidateError()
+        }
 
     /**
      * Gravity of input text.

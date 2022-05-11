@@ -127,12 +127,15 @@
         <attr name="admiralRightTextAdditional" format="reference|string" />
 
         <attr name="admiralTextAdditional" />
+        <attr name="admiralTextAdditionalMaxLines" format="integer" />
 
         <attr name="admiralRatio" format="flags">
             <flag name="equal" value="5" />
             <flag name="bigLeft" value="7" />
             <flag name="bigRight" value="3" />
         </attr>
+
+        <attr name="admiralIsAdditionalTextViewSingle" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="InputNumber" parent="GlobalAttrDeclare">
