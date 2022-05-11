@@ -3,6 +3,8 @@ package com.admiral.uikit.components.chat
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.View
@@ -74,7 +76,9 @@ class Input @JvmOverloads constructor(
     var text: String = ""
         set(value) {
             field = value
-            textFieldSearch.editText?.setText(value)
+            Handler(Looper.getMainLooper()).post {
+                textFieldSearch.editText?.setText(value)
+            }
         }
         get() {
             if (textFieldSearch.editText?.editableText.isNullOrEmpty()) {

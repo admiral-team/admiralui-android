@@ -94,7 +94,7 @@ class ImageMessage @JvmOverloads constructor(
     private val imagesContainer = GridLayout(context)
 
     init {
-        backgroundColorNormalEnabledPalette = ColorPaletteEnum.BACKGROUND_BASIC
+        isBackgroundTransparent = true
 
         parseAttrs(attrs, R.styleable.ImageMessage).use {
             time = it.getString(R.styleable.ImageMessage_admiralTimeText)

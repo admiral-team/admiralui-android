@@ -403,6 +403,7 @@
     <string name="chat_text_operation_success_message">@string/chat_text_operation_default_message</string>
     <string name="chat_text_operation_error_message">Оплатите задолженность</string>
 
+    <string name="chat_file">File.pdf</string>
     <string name="chat_file_first">File 1.pdf</string>
     <string name="chat_file_size">65,6 МБ</string>
     <string name="chat_file_second">File 2.pdf</string>
@@ -411,6 +412,9 @@
     <string name="chat_file_fith">File 5.pdf</string>
     <string name="chat_file_sixth">File 6.pdf</string>
     <string name="chat_name">Name</string>
+
+    <string name="chat_input_message">Введите сообщение</string>
+    <string name="chat_input_message_text">Text</string>
 
     <string name="timepicker_title">Time Picker</string>
     <string name="timepicker_time">Время</string>

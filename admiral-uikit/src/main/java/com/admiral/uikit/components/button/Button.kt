@@ -173,8 +173,6 @@ class Button @JvmOverloads constructor(
             actionTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
             additionalTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
 
-            actionTextView.compoundDrawablePadding = pixels(R.dimen.module_x3)
-
             val drawableStartId = it.getResourceId(R.styleable.Button_android_drawableStart, 0)
             val drawableEndId = it.getResourceId(R.styleable.Button_android_drawableEnd, 0)
 
