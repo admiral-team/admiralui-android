@@ -5,7 +5,6 @@ import android.content.res.TypedArray
 import android.graphics.Color
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.constraintlayout.widget.ConstraintSet
 import androidx.core.content.res.use
@@ -14,10 +13,11 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
-import com.admiral.uikit.ext.getColorOrNull
-import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.ext.getColorOrNull
+import com.admiral.uikit.ext.parseAttrs
 
 class DoubleTextField @JvmOverloads constructor(
     context: Context,
@@ -41,6 +41,15 @@ class DoubleTextField @JvmOverloads constructor(
         }
 
     /**
+     * Max lines for the [additionalTextView].
+     */
+    var additionalTextViewMaxLines: Int = Int.MAX_VALUE
+        set(value) {
+            field = value
+            additionalTextView.maxLines = value
+        }
+
+    /**
      * Error text which is placed under divider when the view is in a Error state.
      */
     var errorText: String? = null
@@ -51,6 +60,9 @@ class DoubleTextField @JvmOverloads constructor(
             }
         }
 
+    /**
+     * Handles visibility of the [additionalTextView].
+     */
     var isAdditionalTextVisible: Boolean = true
         set(value) {
             field = value
@@ -77,10 +89,16 @@ class DoubleTextField @JvmOverloads constructor(
             invalidateRatio(value)
         }
 
-    val leftTextField: TextField by lazy { findViewById<TextField>(R.id.leftTextField) }
-    val rightTextField: TextField by lazy { findViewById<TextField>(R.id.rightTextField) }
+    var isAdditionalTextSingle: Boolean = true
+        set(value) {
+            field = value
+            invalidateAdditionalTextViews()
+        }
 
-    private val additionalTextView: TextView by lazy { findViewById<TextView>(R.id.additionalTextView) }
+    val leftTextField: TextField by lazy { findViewById(R.id.leftTextField) }
+    val rightTextField: TextField by lazy { findViewById(R.id.rightTextField) }
+
+    private val additionalTextView: TextView by lazy { findViewById(R.id.doubleSliderAdditionalTextView) }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_double_text_field, this)
@@ -93,6 +111,9 @@ class DoubleTextField @JvmOverloads constructor(
             invalidateRatio(it.getInt(R.styleable.DoubleTextField_admiralRatio, RATIO_EQUAL))
 
             isEnabled = it.getBoolean(R.styleable.DoubleTextField_enabled, true)
+            additionalTextViewMaxLines =
+                it.getInt(R.styleable.DoubleTextField_admiralTextAdditionalMaxLines, Int.MAX_VALUE)
+            isAdditionalTextSingle = it.getBoolean(R.styleable.DoubleTextField_admiralIsAdditionalTextViewSingle, true)
         }
     }
 
@@ -116,10 +137,17 @@ class DoubleTextField @JvmOverloads constructor(
         super.setEnabled(enabled)
         leftTextField.isEnabled = enabled
         rightTextField.isEnabled = enabled
+        invalidateColors()
     }
 
     override fun onThemeChanged(theme: Theme) {
         invalidateColors()
+    }
+
+    private fun invalidateAdditionalTextViews() {
+        leftTextField.isAdditionalTextVisible = !isAdditionalTextSingle
+        rightTextField.isAdditionalTextVisible = !isAdditionalTextSingle
+        additionalTextView.isGone = !isAdditionalTextSingle
     }
 
     private fun invalidateColors() {
@@ -127,9 +155,9 @@ class DoubleTextField @JvmOverloads constructor(
             isError -> leftTextField.errorColor ?: ThemeManager.theme.palette.textError
             !isEnabled -> leftTextField.additionalTextColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
-            else -> leftTextField.additionalTextColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary
+            else -> leftTextField.additionalTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
-        additionalTextView.setTextColor(additionalTextColor)
+        additionalTextView.textColor = ColorState(additionalTextColor)
     }
 
     private fun invalidateError() {
@@ -147,6 +175,7 @@ class DoubleTextField @JvmOverloads constructor(
         }
 
         additionalTextView.text = text
+        invalidateColors()
     }
 
     private fun invalidateRatio(ratio: Int) {

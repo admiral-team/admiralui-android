@@ -368,6 +368,12 @@ class Slider @JvmOverloads constructor(
                     }
                     false
                 }
+
+                setOnFocusChangeListener { _, hasFocus ->
+                    if (!hasFocus) {
+                        updateEditTextValue()
+                    }
+                }
             }
         }
     }

@@ -16,7 +16,6 @@ import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.chat.MessageStatus
 import com.admiral.uikit.components.chat.setMessageStatusIcon
-import com.admiral.uikit.components.chat.setTimeTextColors
 import com.admiral.uikit.databinding.AdmiralViewTextOperationBinding
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
@@ -256,7 +255,11 @@ class TextOperation @JvmOverloads constructor(
     }
 
     private fun invalidateTimeTextColors() {
-        binding.time.setTimeTextColors(isOutgoing)
+        binding.time.textColor = ColorState(
+            normalEnabled = ThemeManager.theme.palette.textSecondary,
+            normalDisabled = ThemeManager.theme.palette.textSecondary.withAlpha(),
+            pressed = ThemeManager.theme.palette.textSecondary
+        )
     }
 
     private fun invalidateIcon() {

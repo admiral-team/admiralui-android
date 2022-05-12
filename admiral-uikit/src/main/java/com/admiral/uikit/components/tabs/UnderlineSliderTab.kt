@@ -111,14 +111,17 @@ class UnderlineSliderTab @JvmOverloads constructor(
     init {
         parseAttrs(attrs, R.styleable.UnderlineSliderTab).use {
             text = it.getString(R.styleable.UnderlineSliderTab_admiralText) ?: ""
-            underlinePadding = it.getDimension(R.styleable.UnderlineSliderTab_admiralUnderlinePadding, 0f).toInt()
+            underlinePadding =
+                it.getDimension(R.styleable.UnderlineSliderTab_admiralUnderlinePadding, 0f).toInt()
             isEnabled = it.getBoolean(R.styleable.UnderlineSliderTab_android_enabled, true)
 
             parseStrokeColors(it)
             parseTextColors(it)
 
-            isBadgeVisible = it.getBoolean(R.styleable.UnderlineSliderTab_admiralIsBadgeVisible, false)
-            isBadgeEnabled = it.getBoolean(R.styleable.UnderlineSliderTab_admiralIsBadgeEnabled, true)
+            isBadgeVisible =
+                it.getBoolean(R.styleable.UnderlineSliderTab_admiralIsBadgeVisible, false)
+            isBadgeEnabled =
+                it.getBoolean(R.styleable.UnderlineSliderTab_admiralIsBadgeEnabled, true)
         }
 
         binding.admiralUnderlineSliderTabText.textStyle = ThemeManager.theme.typography.body2
@@ -147,38 +150,35 @@ class UnderlineSliderTab @JvmOverloads constructor(
         )
     }
 
-    /**
-     * We should save our first calculation of the width to prevent shifting when style is changing
-     */
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         super.onMeasure(widthMeasureSpec, heightMeasureSpec)
 
-        if (measuredWidthSaved == null && !isBadgeVisible) {
-            measuredWidthSaved = measuredWidth
-        }
+        // NB: We should save our first calculation of the width to prevent
+        // shifting when the style is changing but we do it only if the weight is 0
+        // otherwise, we need to stretch the view
 
-        if (measuredWidthSavedWithBadge == null && isBadgeVisible) {
-            measuredWidthSavedWithBadge = measuredWidth
-        }
+        if ((layoutParams as LayoutParams).weight == 0f) {
+            if (measuredWidthSaved == null && !isBadgeVisible) {
+                measuredWidthSaved = measuredWidth
+            }
 
-        if (isBadgeVisible) {
-            setMeasuredDimension(measuredWidthSavedWithBadge ?: measuredWidth, measuredHeight)
-        } else {
-            setMeasuredDimension(measuredWidthSaved ?: measuredWidth, measuredHeight)
+            if (measuredWidthSavedWithBadge == null && isBadgeVisible) {
+                measuredWidthSavedWithBadge = measuredWidth
+            }
+
+            if (isBadgeVisible) {
+                setMeasuredDimension(measuredWidthSavedWithBadge ?: measuredWidth, measuredHeight)
+            } else {
+                setMeasuredDimension(measuredWidthSaved ?: measuredWidth, measuredHeight)
+            }
         }
     }
 
-    /**
-     * Subscribe for theme change.
-     */
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         ThemeManager.subscribe(this)
     }
 
-    /**
-     * Unsubscribe for theme change.
-     */
     override fun onDetachedFromWindow() {
         ThemeManager.unsubscribe(this)
         super.onDetachedFromWindow()
@@ -234,7 +234,12 @@ class UnderlineSliderTab @JvmOverloads constructor(
     private fun invalidateBadge() {
         binding.admiralUnderlineSliderTabBadge.isVisible = isBadgeVisible
         if (isBadgeVisible) {
-            binding.admiralUnderlineSliderTabText.setMargins(0, MARGIN_WITH_BADGE, 0, MARGIN_WITH_BADGE)
+            binding.admiralUnderlineSliderTabText.setMargins(
+                0,
+                MARGIN_WITH_BADGE,
+                0,
+                MARGIN_WITH_BADGE
+            )
         } else {
             binding.admiralUnderlineSliderTabText.setMargins(0, 0, 0, 0)
             binding.admiralUnderlineSliderTabText.layoutParams = FrameLayout.LayoutParams(
@@ -248,10 +253,14 @@ class UnderlineSliderTab @JvmOverloads constructor(
 
     private fun invalidateStrokeColors() {
         binding.admiralUnderline.imageTintList = colorStateListForChecked(
-            checkedEnabled = textColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            checkedDisabled = textColorState?.checkedDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-            normalEnabled = textColorState?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-            normalDisabled = textColorState?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+            checkedEnabled = textColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent,
+            checkedDisabled = textColorState?.checkedDisabled
+                ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+            normalEnabled = textColorState?.normalEnabled
+                ?: ThemeManager.theme.palette.elementAccent,
+            normalDisabled = textColorState?.normalDisabled
+                ?: ThemeManager.theme.palette.elementAccent.withAlpha()
         )
 
         val color = textColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent
@@ -262,10 +271,13 @@ class UnderlineSliderTab @JvmOverloads constructor(
 
     private fun invalidateTextColors() {
         binding.admiralUnderlineSliderTabText.textColor = ColorState(
-            checkedEnabled = textColorState?.checkedEnabled ?: ThemeManager.theme.palette.textPrimary,
-            checkedDisabled = textColorState?.checkedDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            checkedEnabled = textColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
+            checkedDisabled = textColorState?.checkedDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             normalEnabled = textColorState?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-            normalDisabled = textColorState?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha()
+            normalDisabled = textColorState?.normalDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha()
         )
     }
 

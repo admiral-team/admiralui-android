@@ -134,7 +134,7 @@ class TabsTest : ScreenshotTest {
     }
 
     @Test
-    fun checkUnderlineTabsEnabled() {
+    fun checkUnderlineSliderTabsEnabled() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -143,12 +143,13 @@ class TabsTest : ScreenshotTest {
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.tabsButton)).perform(BetterScrollTo(), ViewActions.click())
         onView(withId(R.id.btnUnderlineTabs)).perform(ViewActions.click())
+        onView(withId(R.id.sliderTabs)).perform(ViewActions.click())
 
         compareScreenshot(activity)
     }
 
     @Test
-    fun checkUnderlineTabsDisabled() {
+    fun checkUnderlineSliderTabsDisabled() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -157,6 +158,38 @@ class TabsTest : ScreenshotTest {
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.tabsButton)).perform(BetterScrollTo(), ViewActions.click())
         onView(withId(R.id.btnUnderlineTabs)).perform(ViewActions.click())
+        onView(withId(R.id.sliderTabs)).perform(ViewActions.click())
+        onView(withId(R.id.disabledTab)).perform(ViewActions.click())
+
+        compareScreenshot(activity)
+    }
+
+    @Test
+    fun checkUnderlineCenterTabsEnabled() {
+        val intent = Intent().apply {
+            putExtra(KEY_IS_TEST, true)
+        }
+        val activity = activityRule.launchActivity(intent)
+
+        onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
+        onView(withId(R.id.tabsButton)).perform(BetterScrollTo(), ViewActions.click())
+        onView(withId(R.id.btnUnderlineTabs)).perform(ViewActions.click())
+        onView(withId(R.id.centerTabs)).perform(ViewActions.click())
+
+        compareScreenshot(activity)
+    }
+
+    @Test
+    fun checkUnderlineCenterTabsDisabled() {
+        val intent = Intent().apply {
+            putExtra(KEY_IS_TEST, true)
+        }
+        val activity = activityRule.launchActivity(intent)
+
+        onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
+        onView(withId(R.id.tabsButton)).perform(BetterScrollTo(), ViewActions.click())
+        onView(withId(R.id.btnUnderlineTabs)).perform(ViewActions.click())
+        onView(withId(R.id.centerTabs)).perform(ViewActions.click())
         onView(withId(R.id.disabledTab)).perform(ViewActions.click())
 
         compareScreenshot(activity)

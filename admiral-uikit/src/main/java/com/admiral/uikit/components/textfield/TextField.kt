@@ -167,6 +167,10 @@ class TextField @JvmOverloads constructor(
      * Error text which is placed under divider when the view is in a Error state.
      */
     var errorText: String? = null
+        set(value) {
+            field = value
+            invalidateError()
+        }
 
     /**
      * Gravity of input text.
@@ -401,13 +405,14 @@ class TextField @JvmOverloads constructor(
 
             isEnabled = it.getBoolean(R.styleable.TextField_enabled, true)
 
-            maxLength = it.getInt(R.styleable.TextField_android_maxLength, Int.MAX_VALUE)
-            maxLines = it.getInt(R.styleable.TextField_android_maxLines, Int.MAX_VALUE)
             bottomTextMaxLines = it.getInt(R.styleable.TextField_admiralBottomTextMaxLines, Int.MAX_VALUE)
             isError = it.getBoolean(R.styleable.TextField_admiralIsError, false)
 
             inputType = it.getInt(R.styleable.TextField_android_inputType, EditorInfo.TYPE_CLASS_TEXT)
             imeOptions = it.getInt(R.styleable.TextField_android_imeOptions, EditorInfo.IME_ACTION_NEXT)
+
+            maxLines = it.getInt(R.styleable.TextField_android_maxLines, Int.MAX_VALUE)
+            maxLength = it.getInt(R.styleable.TextField_android_maxLength, Int.MAX_VALUE)
         }
 
         isTextHidden = editText.transformationMethod == PasswordTransformationMethod.getInstance()

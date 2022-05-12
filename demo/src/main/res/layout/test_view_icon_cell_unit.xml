@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.components.cell.unit.IconCellUnit xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/inputLayoutImageStart"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="@dimen/module_x2"
+    android:layout_marginBottom="@dimen/module_x2"
+    android:clickable="true"
+    android:focusable="true"
+    app:admiralIcon="@drawable/admiral_ic_attach_file_outline" />

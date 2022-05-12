@@ -64,15 +64,20 @@
     <string name="bottom_sheet_dialog_action">Готово</string>
 
     <string name="tabs_title">Tabs</string>
+    <string name="tabs_underline_title">Underline Tabs</string>
+    <string name="tabs_slider_title">Slider</string>
+    <string name="tabs_center_title">Center</string>
     <string name="tabs_standard_title">Standard Tabs</string>
     <string name="tabs_logo_title">Logo Tabs</string>
     <string name="tabs_informer_title">Informer Tabs</string>
     <string name="tabs_outline_title">Outline Slider Tabs</string>
-    <string name="tabs_underline_title">Underline Slider Tabs</string>
+    <string name="tabs_underline_slider_title">Underline Slider Tabs</string>
+    <string name="tabs_underline_center_title">Underline Center Tabs</string>
     <string name="tabs_informer_example_title">то получу в страховом случае</string>
     <string name="tabs_informer_example_summ">до 1 500 000 ₽</string>
     <string name="tabs_informer_example_subtitle">Выгодный вариант для двухкомнатной квартиры или дачного дома</string>
     <string name="tabs_slider_control">Slider controls</string>
+    <string name="tabs_notifications">Notifications</string>
     <string name="tabs_example_one">One</string>
     <string name="tabs_example_two">Two</string>
     <string name="tabs_example_three">Three</string>
@@ -86,6 +91,8 @@
     <string name="tabs_disabled">Disabled</string>
     <string name="tabs_two_controls">Two controls</string>
     <string name="tabs_three_controls">Three controls</string>
+    <string name="tabs_four_controls">Four controls</string>
+    <string name="tabs_five_controls">Five controls</string>
     <string name="tabs_one">One</string>
     <string name="tabs_two">Two</string>
     <string name="tabs_three">Three</string>
@@ -255,6 +262,8 @@
     <string name="badges_error">Error</string>
     <string name="badges_attention">Attention</string>
     <string name="badges_example_start">0</string>
+    <string name="badges_example">6</string>
+    <string name="badges_example_big_text">123</string>
     <string name="badges_subtitle">Количественные зачения</string>
 
     <string name="page_control_title">Page Controls</string>
@@ -394,6 +403,7 @@
     <string name="chat_text_operation_success_message">@string/chat_text_operation_default_message</string>
     <string name="chat_text_operation_error_message">Оплатите задолженность</string>
 
+    <string name="chat_file">File.pdf</string>
     <string name="chat_file_first">File 1.pdf</string>
     <string name="chat_file_size">65,6 МБ</string>
     <string name="chat_file_second">File 2.pdf</string>
@@ -402,6 +412,9 @@
     <string name="chat_file_fith">File 5.pdf</string>
     <string name="chat_file_sixth">File 6.pdf</string>
     <string name="chat_name">Name</string>
+
+    <string name="chat_input_message">Введите сообщение</string>
+    <string name="chat_input_message_text">Text</string>
 
     <string name="timepicker_title">Time Picker</string>
     <string name="timepicker_time">Время</string>
@@ -413,4 +426,11 @@
 
     <string name="settings_theme_switcher">Автоматическое переключение темы</string>
     <string name="settings_compose_switcher">Переключить на Compose</string>
+
+    <string name="home_search_hint">Поиск</string>
+
+    <string name="icons_search_hint">Поиск</string>
+    <string name="icons_search_outline_tab">Outline</string>
+    <string name="icons_search_solid_tab">Solid</string>
+
 </resources>
