@@ -1,7 +1,10 @@
 package com.admiral.demo.views
 
+import android.view.LayoutInflater
 import com.karumi.shot.ScreenshotTest
 import androidx.test.platform.app.InstrumentationRegistry
+import com.admiral.demo.databinding.TestViewButtonGooglePlayBinding
+import com.admiral.demo.databinding.TestViewInformerSmallBinding
 import com.admiral.demo.ext.measureUnspecified
 import com.admiral.uikit.components.informer.InformerSmall
 import com.admiral.uikit.components.informer.InformerStyle
@@ -9,6 +12,8 @@ import org.junit.Test
 
 class InformerSmallTest : ScreenshotTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
+    private val layoutInflater = LayoutInflater.from(context)
+    private val binding = TestViewInformerSmallBinding.inflate(layoutInflater)
 
     private fun InformerSmall.check() {
         measureUnspecified()
@@ -34,10 +39,12 @@ class InformerSmallTest : ScreenshotTest {
     fun checkProgrammaticallyInformerSmallEnabledAttentionState() {
         checkInformerSmallProgrammatically(isEnabled = true, style = InformerStyle.Attention)
     }
+
     @Test
     fun checkProgrammaticallyInformerSmallEnabledSuccessState() {
         checkInformerSmallProgrammatically(isEnabled = true, style = InformerStyle.Success)
     }
+
     @Test
     fun checkProgrammaticallyInformerSmallEnabledErrorState() {
         checkInformerSmallProgrammatically(isEnabled = true, style = InformerStyle.Error)
