@@ -91,14 +91,14 @@ class CellsTest : ScreenshotTest {
         CellData(
             view = LabelCellUnit(wrappedContext).apply {
                 unitType = CellUnitType.LEADING
-                icon = ContextCompat.getDrawable(context, R.drawable.test_ic_label)
+                icon = ContextCompat.getDrawable(context, R.drawable.ic_rnb_one)
             },
             name = LabelCellUnit::class.java.simpleName
         ),
         CellData(
             view = LabelCellUnit(wrappedContext).apply {
                 unitType = CellUnitType.LEADING
-                icon = ContextCompat.getDrawable(context, R.drawable.test_ic_label)
+                icon = ContextCompat.getDrawable(context, R.drawable.ic_rnb_one)
                 badge.apply {
                     isVisible = true
                     badgeSize = BadgeSize.SMALL
@@ -109,7 +109,7 @@ class CellsTest : ScreenshotTest {
         CellData(
             view = LabelCellUnit(wrappedContext).apply {
                 unitType = CellUnitType.LEADING
-                icon = ContextCompat.getDrawable(context, R.drawable.test_ic_label)
+                icon = ContextCompat.getDrawable(context, R.drawable.ic_rnb_one)
                 badge.apply {
                     isVisible = true
                     badgeSize = BadgeSize.NORMAL
@@ -214,7 +214,7 @@ class CellsTest : ScreenshotTest {
         CellData(
             view = LabelCellUnit(wrappedContext).apply {
                 unitType = CellUnitType.TRAILING
-                icon = ContextCompat.getDrawable(context, R.drawable.test_ic_label)
+                icon = ContextCompat.getDrawable(context, R.drawable.ic_rnb_one)
             },
             name = LabelCellUnit::class.java.simpleName
         ),

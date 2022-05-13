@@ -8,14 +8,14 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
-import com.admiral.demo.databinding.FmtCellsLabelLeadingBinding
+import com.admiral.demo.databinding.FmtCellsBaseCenterBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class CellsLabelLeadingFragment : BaseFragment(R.layout.fmt_cells_label_leading) {
+class BaseCellsCenterFragment : BaseFragment(R.layout.fmt_cells_base_center) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
-    private val binding by viewBinding(FmtCellsLabelLeadingBinding::bind)
+    private val binding by viewBinding(FmtCellsBaseCenterBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -25,23 +25,19 @@ class CellsLabelLeadingFragment : BaseFragment(R.layout.fmt_cells_label_leading)
             override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
                 when (checkedId) {
                     binding.defaultTab.id -> {
-                        binding.subtitleTitleCell.isEnabled = true
-                        binding.textMessageCell.isEnabled = true
                         binding.titleCell.isEnabled = true
+                        binding.subtitleTitleCell.isEnabled = true
                         binding.titleSubtitleCell.isEnabled = true
+                        binding.textMessageCell.isEnabled = true
                         binding.titleSubtitleTextButtonCell.isEnabled = true
-                        binding.textMessageCellUnit.isEnabled = true
-                        binding.textMessageIconCellUnit.isEnabled = true
                     }
 
                     binding.disabledTab.id -> {
-                        binding.subtitleTitleCell.isEnabled = false
-                        binding.textMessageCell.isEnabled = false
                         binding.titleCell.isEnabled = false
+                        binding.subtitleTitleCell.isEnabled = false
                         binding.titleSubtitleCell.isEnabled = false
+                        binding.textMessageCell.isEnabled = false
                         binding.titleSubtitleTextButtonCell.isEnabled = false
-                        binding.textMessageCellUnit.isEnabled = false
-                        binding.textMessageIconCellUnit.isEnabled = false
                     }
                 }
             }

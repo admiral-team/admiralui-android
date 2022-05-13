@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Admiral UI Android</string>
 
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
@@ -34,9 +36,8 @@
     <string name="cell_button">Button</string>
     <string name="cell_percent">Percent</string>
     <string name="cell_date">Date</string>
-    <string name="cell_subtitle_second">Subtitle second</string>
+    <string name="cell_subtitle_second">Subtitle 2</string>
     <string name="cell_summ">Summ</string>
-    <string name="cell_payment">payment</string>
     <string name="cell_more">More</string>
     <string name="cell_message">Message hello</string>
     <string name="cell_action">Действие</string>
@@ -155,14 +156,10 @@
 
     <string name="cells_title">Cells</string>
     <string name="cells_base_title">Base Cells</string>
-    <string name="cells_base_label_title">Base Cells vs Lable</string>
-    <string name="cells_text_title">Text Cells</string>
-    <string name="cells_title_title">Title Cells</string>
-    <string name="cells_actionbar_title">Actionbar - Type one</string>
-    <string name="cells_actionbar2_title">Actionbar - Type two</string>
     <string name="cells_subtitle">Ячейки и списки</string>
     <string name="cells_base_cells_title">Base Cells</string>
     <string name="cells_leading_title">Leading elements</string>
+    <string name="cells_center_title">Center elements</string>
     <string name="cells_trailing_title">Trailing elements</string>
     <string name="cells_label_title">Label</string>
     <string name="cells_card_place">Card Place</string>
@@ -173,11 +170,8 @@
     <string name="cells_secondary_title">Secondary</string>
     <string name="title_cells_title">Title Cells</string>
     <string name="cells_primary_title">Primary</string>
-    <string name="cells_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
-    <string name="cells_cell_vs_icon_title">Text Cell vs Icon</string>
 
-    <string name="actionbar_title">Actionbar - Type one</string>
-    <string name="actionbar2_title">Actionbar - Type two</string>
+    <string name="actionbar_title">Actionbar</string>
     <string name="actionbar_more_clicked">More clicked</string>
     <string name="actionbar_email">Email</string>
     <string name="actionbar_star">Star</string>
@@ -187,6 +181,8 @@
     <string name="actionbar_edit_clicked">Edit clicked</string>
     <string name="actionbar_swipe">Swipe</string>
     <string name="actionbar_money_amount">50 000.00 ₽</string>
+    <string name="actionbar_default_title">Default</string>
+    <string name="actionbar_secondary_title">Secondary</string>
 
     <string name="buttons_title">Buttons</string>
     <string name="buttons_primary">Primary</string>
