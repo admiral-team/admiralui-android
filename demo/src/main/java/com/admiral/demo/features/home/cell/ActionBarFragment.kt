@@ -12,6 +12,7 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtCellsActionbarBinding
 import com.admiral.demo.features.main.NavigationViewModel
+import com.admiral.themes.ColorPaletteEnum
 import com.admiral.uikit.components.actionbar.ActionBarOnSwipeTouchListener
 import com.admiral.uikit.view.checkable.CheckableGroup
 
@@ -25,7 +26,8 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
         initTabs()
-        initActionBar()
+        initActionBarDefault()
+        initActionBarSecondary()
         initTitleCell()
     }
 
@@ -39,16 +41,18 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
                 when (checkedId) {
                     binding.defaultTab.id -> {
                         binding.actionBar.isEnabled = true
+                        binding.actionBar2.isEnabled = true
                     }
                     binding.disabledTab.id -> {
                         binding.actionBar.isEnabled = false
+                        binding.actionBar2.isEnabled = false
                     }
                 }
             }
         }
     }
 
-    private fun initActionBar() {
+    private fun initActionBarDefault() {
         with(binding.actionBar) {
             initDefaultViews()
             dots.setOnClickListener {
@@ -57,10 +61,48 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
         }
     }
 
+    private fun initActionBarSecondary() {
+        binding.actionBar2.apply {
+            addAction(
+                icon = R.drawable.admiral_ic_email_outline,
+                description = getString(R.string.actionbar_email),
+                backgroundColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_ACCENT,
+                backgroundColorPressedPalette = ColorPaletteEnum.ELEMENT_ACCENT_PRESSED,
+                descriptionColorNormalEnabledPalette = ColorPaletteEnum.TEXT_STATIC_WHITE,
+                descriptionColorPressedPalette = ColorPaletteEnum.TEXT_STATIC_WHITE
+            ) {
+                showToast(getString(R.string.actionbar_email_clicked))
+            }
+            addAction(
+                icon = R.drawable.admiral_ic_star_outline,
+                description = getString(R.string.actionbar_star),
+                backgroundColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_SUCCESS,
+                backgroundColorPressedPalette = ColorPaletteEnum.ELEMENT_SUCCESS_PRESSED,
+                descriptionColorNormalEnabledPalette = ColorPaletteEnum.TEXT_STATIC_WHITE,
+                descriptionColorPressedPalette = ColorPaletteEnum.TEXT_STATIC_WHITE
+            ) {
+                showToast(getString(R.string.actionbar_star_clicked))
+            }
+            addAction(
+                icon = R.drawable.admiral_ic_edit_outline,
+                description = getString(R.string.actionbar_edit),
+                backgroundColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_ATTENTION,
+                backgroundColorPressedPalette = ColorPaletteEnum.ELEMENT_ATTENTION_PRESSED,
+                descriptionColorNormalEnabledPalette = ColorPaletteEnum.TEXT_STATIC_WHITE,
+                descriptionColorPressedPalette = ColorPaletteEnum.TEXT_STATIC_WHITE
+            ) {
+                showToast(getString(R.string.actionbar_edit_clicked))
+            }
+        }
+    }
+
     @SuppressLint("ClickableViewAccessibility")
     private fun initTitleCell() {
         binding.titleCell.setOnTouchListener(
             object : ActionBarOnSwipeTouchListener(binding.titleCell, binding.actionBar) {}
+        )
+        binding.titleCell2.setOnTouchListener(
+            object : ActionBarOnSwipeTouchListener(binding.titleCell2, binding.actionBar2) {}
         )
     }
 

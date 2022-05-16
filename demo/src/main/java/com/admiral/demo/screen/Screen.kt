@@ -23,19 +23,11 @@ import com.admiral.demo.features.home.calendar.CalendarFragment
 import com.admiral.demo.features.home.calendar.CalendarHorizontalFragment
 import com.admiral.demo.features.home.calendar.CalendarVerticalFragment
 import com.admiral.demo.features.home.cell.ActionBarFragment
-import com.admiral.demo.features.home.cell.ActionBarSecondaryFragment
+import com.admiral.demo.features.home.cell.BaseCellsCenterFragment
 import com.admiral.demo.features.home.cell.BaseCellsFragment
 import com.admiral.demo.features.home.cell.BaseCellsLeadingFragment
 import com.admiral.demo.features.home.cell.BaseCellsTrailingFragment
 import com.admiral.demo.features.home.cell.CellsFragment
-import com.admiral.demo.features.home.cell.CellsLabelBaseFragment
-import com.admiral.demo.features.home.cell.CellsLabelFragment
-import com.admiral.demo.features.home.cell.CellsLabelLeadingFragment
-import com.admiral.demo.features.home.cell.CellsLabelTrailingFragment
-import com.admiral.demo.features.home.cell.CellsTextFragment
-import com.admiral.demo.features.home.cell.CellsTextTitleFragment
-import com.admiral.demo.features.home.cell.CellsTextTitlePrimaryFragment
-import com.admiral.demo.features.home.cell.CellsTextTitleSecondaryFragment
 import com.admiral.demo.features.home.chat.ChatFilesFragment
 import com.admiral.demo.features.home.chat.ChatFragment
 import com.admiral.demo.features.home.chat.ChatImagesFragment
@@ -239,48 +231,13 @@ class BaseCellsLeadingScreen : Screen() {
 }
 
 @Parcelize
+class BaseCellsCenterScreen : Screen() {
+    override fun getFragment() = BaseCellsCenterFragment()
+}
+
+@Parcelize
 class BaseCellsTrailingScreen : Screen() {
     override fun getFragment() = BaseCellsTrailingFragment()
-}
-
-@Parcelize
-class BaseLabelCellsScreen : Screen() {
-    override fun getFragment() = CellsLabelBaseFragment()
-}
-
-@Parcelize
-class CellsLabelScreen : Screen() {
-    override fun getFragment() = CellsLabelFragment()
-}
-
-@Parcelize
-class CellsLabelLeadingScreen : Screen() {
-    override fun getFragment() = CellsLabelLeadingFragment()
-}
-
-@Parcelize
-class CellsLabelTrailingScreen : Screen() {
-    override fun getFragment() = CellsLabelTrailingFragment()
-}
-
-@Parcelize
-class CellsTextScreen : Screen() {
-    override fun getFragment() = CellsTextFragment()
-}
-
-@Parcelize
-class CellsTextTitleScreen : Screen() {
-    override fun getFragment() = CellsTextTitleFragment()
-}
-
-@Parcelize
-class CellsTextTitlePrimaryScreen : Screen() {
-    override fun getFragment() = CellsTextTitlePrimaryFragment()
-}
-
-@Parcelize
-class CellsTextTitleSecondaryScreen : Screen() {
-    override fun getFragment() = CellsTextTitleSecondaryFragment()
 }
 
 @Parcelize
@@ -336,11 +293,6 @@ class StandardSmsTextFieldsScreen : Screen() {
 @Parcelize
 class ActionBarScreen : Screen() {
     override fun getFragment() = ActionBarFragment()
-}
-
-@Parcelize
-class ActionBar2Screen : Screen() {
-    override fun getFragment() = ActionBarSecondaryFragment()
 }
 
 @Parcelize

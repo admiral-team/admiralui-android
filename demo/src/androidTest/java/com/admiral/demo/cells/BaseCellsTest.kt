@@ -50,6 +50,37 @@ class BaseCellsTest : ScreenshotTest {
     }
 
     @Test
+    fun checkBaseCellsCenterEnabled() {
+        val intent = Intent().apply {
+            putExtra(KEY_IS_TEST, true)
+        }
+        val activity = activityRule.launchActivity(intent)
+
+        onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
+        onView(withId(R.id.cellsButton)).perform(BetterScrollTo(), ViewActions.click())
+        onView(withId(R.id.btnBaseCells)).perform(ViewActions.click())
+        onView(withId(R.id.btnCenter)).perform(ViewActions.click())
+
+        compareScreenshot(activity)
+    }
+
+    @Test
+    fun checkBaseCellsCenterDisabled() {
+        val intent = Intent().apply {
+            putExtra(KEY_IS_TEST, true)
+        }
+        val activity = activityRule.launchActivity(intent)
+
+        onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
+        onView(withId(R.id.cellsButton)).perform(BetterScrollTo(), ViewActions.click())
+        onView(withId(R.id.btnBaseCells)).perform(ViewActions.click())
+        onView(withId(R.id.btnCenter)).perform(ViewActions.click())
+        onView(withId(R.id.disabledTab)).perform(ViewActions.click())
+
+        compareScreenshot(activity)
+    }
+
+    @Test
     fun checkBaseCellsTrailingEnabled() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)

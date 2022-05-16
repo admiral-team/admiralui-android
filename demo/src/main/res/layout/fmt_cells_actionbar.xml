@@ -12,14 +12,10 @@
         <com.admiral.uikit.components.appbar.Appbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:text="@string/actionbar_title"
-            app:admiralTextStyle="largetitle1" />
+            app:contentInsetStartWithNavigation="0dp"
+            app:admiralTitleTextGravity="center"
+            app:admiralTitleText="@string/actionbar_title" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabs"
@@ -43,9 +39,20 @@
 
         </com.admiral.uikit.components.tabs.StandardTabs>
 
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginEnd="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x11"
+            android:text="@string/actionbar_default_title"
+            app:admiralTextColorNormalEnabledPalette="textSecondary"
+            app:admiralTextStyle="headline" />
+
         <FrameLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x5">
 
             <com.admiral.uikit.components.actionbar.ActionBar
                 android:id="@+id/actionBar"
@@ -83,6 +90,69 @@
 
                 <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
                     android:id="@+id/iconTrailing"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="@dimen/module_x2"
+                    android:drawableEnd="@drawable/admiral_ic_arrow_left_outline"
+                    android:drawablePadding="@dimen/module_x1"
+                    app:admiralCellUnitType="trailing"
+                    app:admiralText="@string/actionbar_swipe"
+                    app:admiralTextColorNormalEnabled="#999EA9"
+                    app:drawableTint="#999EA9" />
+
+            </com.admiral.uikit.components.cell.BaseCell>
+
+        </FrameLayout>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x10"
+            android:layout_marginEnd="@dimen/module_x4"
+            android:text="@string/actionbar_secondary_title"
+            app:admiralTextColorNormalEnabledPalette="textSecondary"
+            app:admiralTextStyle="headline" />
+
+        <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x5">
+
+            <com.admiral.uikit.components.actionbar.ActionBarSecondary
+                android:id="@+id/actionBar2"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                android:layout_gravity="end|center_vertical"
+                android:gravity="center_vertical"/>
+
+            <com.admiral.uikit.components.cell.BaseCell
+                android:id="@+id/titleCell2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingStart="@dimen/module_x4"
+                android:paddingEnd="@dimen/module_x4"
+                android:paddingBottom="@dimen/module_x1"
+                android:clickable="true"
+                android:focusable="true">
+
+                <com.admiral.uikit.components.cell.unit.CardCellUnit
+                    android:id="@+id/leadingTitle2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralCellUnitType="leading"
+                    app:admiralIcon="@drawable/test_ic_card_start" />
+
+                <com.admiral.uikit.components.cell.unit.TitleSummSubtitleCellUnit
+                    android:id="@+id/title2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:admiralCellUnitType="leadingText"
+                    app:admiralSummText="@string/actionbar_money_amount"
+                    app:admiralTitleText="@string/cell_title" />
+
+                <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+                    android:id="@+id/iconTrailing2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="@dimen/module_x2"
