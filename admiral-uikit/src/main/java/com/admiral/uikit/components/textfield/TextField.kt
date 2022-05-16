@@ -370,9 +370,8 @@ class TextField @JvmOverloads constructor(
     val textFlow: StateFlow<String?> = textFlowField
 
     /**
-     * Standard [AppCompatTextView] for settings filters, formatter, etc.
+     * Standard [TextInputEditText]. It's better to use it only for settings filters, formatter, etc.
      */
-    @Deprecated("If you need any method - contact @tim_baton, please")
     val editText: TextInputEditText by lazy { findViewById(R.id.editText) }
 
     private val mainContentContainer: LinearLayout by lazy { findViewById(R.id.admiralViewTextFieldRightViews) }
