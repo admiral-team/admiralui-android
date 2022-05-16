@@ -41,7 +41,7 @@ class InformerSmallTest : ScreenshotTest {
         val informerSmall = InformerSmall(context).apply {
             this.isEnabled = isEnabled
             this.informerStyle = style
-            this.info = "Text informer"
+            this.info = "Text Informer"
             this.pointerBias = 0.9f
         }
         informerSmall.check()
