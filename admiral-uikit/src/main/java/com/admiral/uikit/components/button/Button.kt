@@ -153,6 +153,7 @@ class Button @JvmOverloads constructor(
     private val actionTextView: TextView by lazy { findViewById(R.id.actionTextView) }
     private val additionalTextView: TextView by lazy { findViewById(R.id.additionalTextView) }
     private val spinner: Spinner by lazy { findViewById(R.id.admiralButtonSpinner) }
+    private val buttonView: ConstraintLayout by lazy { findViewById(R.id.admiralButton) }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_button, this)
@@ -207,6 +208,7 @@ class Button @JvmOverloads constructor(
     override fun setEnabled(enabled: Boolean) {
         actionTextView.isEnabled = enabled
         additionalTextView.isEnabled = enabled
+        buttonView.isEnabled = enabled
 
         super.setEnabled(enabled)
     }
@@ -222,8 +224,8 @@ class Button @JvmOverloads constructor(
     }
 
     private fun invalidateSize() {
-        setPadding(pixels(buttonSize.padding))
-        minWidth = pixels(buttonSize.defaultWidth)
+        buttonView.setPadding(pixels(buttonSize.padding))
+        buttonView.minWidth = pixels(buttonSize.defaultWidth)
     }
 
     private fun parseSize(a: TypedArray) {
@@ -299,7 +301,18 @@ class Button @JvmOverloads constructor(
             pressed = backgroundColor?.pressed ?: ThemeManager.theme.palette.backgroundAccent
         )
 
-        background = when (buttonStyle) {
+        background = if (buttonStyle == ButtonStyle.Primary) {
+            roundedColoredRectangle(
+                radius, ColorState(
+                    normalEnabled = ThemeManager.theme.palette.backgroundBasic,
+                    normalDisabled = ThemeManager.theme.palette.backgroundBasic
+                )
+            )
+        } else {
+            null
+        }
+
+        buttonView.background = when (buttonStyle) {
             ButtonStyle.Primary -> {
                 val content = roundedColoredRectangle(radius, colorState)
 
@@ -344,7 +357,8 @@ class Button @JvmOverloads constructor(
             )
             ButtonStyle.Secondary, ButtonStyle.Ghost -> ColorState(
                 normalEnabled = drawableTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-                normalDisabled = drawableTintColor?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+                normalDisabled = drawableTintColor?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
                 pressed = drawableTintColor?.pressed ?: ThemeManager.theme.palette.elementAccent
             )
         }
