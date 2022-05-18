@@ -20,8 +20,8 @@ jobs:
 
       - name: Prepare keystore files
         run: |
-          cp $GITHUB_WORKSPACE/../../keystore/keystore_release.properties $GITHUB_WORKSPACE/keystore_release.properties
-          cp $GITHUB_WORKSPACE/../../keystore/release.keystore $GITHUB_WORKSPACE/release.keystore
+          cp $GITHUB_WORKSPACE/../../setup_files/keystore/keystore_release.properties $GITHUB_WORKSPACE/keystore_release.properties
+          cp $GITHUB_WORKSPACE/../../setup_files/keystore/release.keystore $GITHUB_WORKSPACE/release.keystore
 
       - name: Run detekt
         run: |
