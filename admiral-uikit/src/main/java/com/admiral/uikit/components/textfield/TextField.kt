@@ -11,6 +11,7 @@ import android.os.Parcelable
 import android.text.InputFilter
 import android.text.TextUtils
 import android.text.TextWatcher
+import android.text.method.DigitsKeyListener
 import android.text.method.HideReturnsTransformationMethod
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
@@ -355,6 +356,15 @@ class TextField @JvmOverloads constructor(
         }
 
     /**
+     * [DigitsKeyListener] for the EditText.
+     */
+    var keyListener: DigitsKeyListener? = null
+        set(value) {
+            field = value
+            editText.keyListener = keyListener
+        }
+
+    /**
      * When an object of this type is attached to an Editable, its methods will be called when the text is changed.
      */
     var textWatcher: TextWatcher? = null
@@ -423,17 +433,11 @@ class TextField @JvmOverloads constructor(
         isSaveEnabled = true
     }
 
-    /**
-     * Subscribe for theme change.
-     */
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         ThemeManager.subscribe(this)
     }
 
-    /**
-     * Unsubscribe for theme change.
-     */
     override fun onDetachedFromWindow() {
         ThemeManager.unsubscribe(this)
         super.onDetachedFromWindow()
@@ -606,12 +610,13 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun ellipsize(enabled: Boolean) {
-        if (!enabled) {
+        if (enabled) {
+            editText.inputType = inputType
+            editText.keyListener = keyListener
+            editText.ellipsize = null
+        } else {
             editText.keyListener = null
             editText.ellipsize = TextUtils.TruncateAt.END
-        } else {
-            editText.inputType = inputType
-            editText.ellipsize = null
         }
         invalidateStyle()
         invalidateColors()
@@ -661,7 +666,7 @@ class TextField @JvmOverloads constructor(
         We need to place this hack-line because placeholder wouldn't change
         color as there is the check: "if (this.placeholderTextColor != placeholderTextColor)".
         But when we put font style to the placeholder, it changes the color and we need to get it back.
-        * */
+        */
         inputLayout.placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textAccent)
         inputLayout.placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
     }

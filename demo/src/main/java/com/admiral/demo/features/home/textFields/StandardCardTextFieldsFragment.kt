@@ -58,13 +58,12 @@ class StandardCardTextFieldsFragment : BaseFragment(R.layout.fmt_text_fields_sta
             textField.apply {
                 placeholderText = getString(R.string.text_fields_bank_card_placeholder)
                 textFieldStyle = TextFieldStyle.Clipped
-
+                inputType = InputType.TYPE_CLASS_NUMBER
+                keyListener = DigitsKeyListener.getInstance(AVAILABLE_DIGITS)
                 MaskedTextChangedListener.Companion.installOn(
-                    textField.editText,
+                    editText,
                     BANK_CARD_MASK
                 )
-                editText.inputType = InputType.TYPE_CLASS_NUMBER
-                editText.keyListener = DigitsKeyListener.getInstance(AVAILABLE_DIGITS)
             }
         }
     }
