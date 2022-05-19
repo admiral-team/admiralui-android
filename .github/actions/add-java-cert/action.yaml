@@ -1,0 +1,24 @@
+name: Add Java Cert
+description: 'Add cert to JDK'
+inputs:
+  cert_file:
+    required: true
+    description: 'The cert file that will be added'
+  alias:
+    required: true
+    description: 'The alias name for the cert'
+  certs_store_pass:
+    required: true
+    description: 'The certs store pass'
+runs:
+  using: 'composite'
+  steps:
+    - name: Try to delete cert if exists
+      shell: bash
+      run: |
+        keytool -delete -trustcacerts -cacerts -storepass ${{ inputs.certs_store_pass }} -alias ${{ inputs.alias }} || true
+
+    - name: Try to import cert
+      shell: bash
+      run: |
+        keytool -import -trustcacerts -cacerts -storepass ${{ inputs.certs_store_pass }} -noprompt -alias ${{ inputs.alias }} -file ${{ inputs.cert_file }}

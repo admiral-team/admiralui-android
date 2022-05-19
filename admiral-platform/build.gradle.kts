@@ -16,10 +16,12 @@ dependencies {
 }
 
 val artifactIdSuffix: String? by project
+val repositoryType: String? by project
 
 publishing(
     artifactId = Publishing.ArtifactIds.platform,
     artifactIdSuffix = artifactIdSuffix,
+    repositoryType = repositoryType,
     sourcesJar = null,
     componentName = "javaPlatform"
 )

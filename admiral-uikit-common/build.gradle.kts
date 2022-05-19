@@ -27,9 +27,11 @@ val sourcesJar by tasks.registering(Jar::class) {
 }
 
 val artifactIdSuffix: String? by project
+val repositoryType: String? by project
 
 publishing(
     artifactId = Publishing.ArtifactIds.uiKitCommon,
     artifactIdSuffix = artifactIdSuffix,
+    repositoryType = repositoryType,
     sourcesJar = sourcesJar
 )

@@ -1,5 +1,6 @@
 @file:Suppress("MayBeConstant", "unused")
 
+import Publishing.Repository.Companion.toRepository
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
@@ -10,6 +11,7 @@ import org.gradle.kotlin.dsl.get
 fun Project.publishing(
     artifactId: String,
     artifactIdSuffix: String?,
+    repositoryType: String?,
     sourcesJar: Any?,
     componentName: String = "release"
 ) = afterEvaluate {
@@ -39,23 +41,28 @@ fun Project.publishing(
         }
 
         repositories {
-            maven {
-                name = Publishing.GithubRepository.name
-                url = uri(Publishing.GithubRepository.url)
-                credentials {
-                    username = System.getenv("CI_GITHUB_USERNAME")
-                    password = System.getenv("CI_GITHUB_TOKEN")
+            when (val repository = repositoryType?.toRepository()) {
+                is Publishing.Repository.Github -> {
+                    maven {
+                        name = repository.name
+                        url = uri(repository.url)
+                        credentials {
+                            username = System.getenv("CI_GITHUB_USERNAME")
+                            password = System.getenv("CI_GITHUB_TOKEN")
+                        }
+                    }
+                }
+                Publishing.Repository.Nexus -> {
+                    maven {
+                        name = repository.name
+                        url = uri(System.getenv("NEXUS_URL") ?: "")
+                        credentials {
+                            username = System.getenv("NEXUS_USERNAME")
+                            password = System.getenv("NEXUS_PASSWORD")
+                        }
+                    }
                 }
             }
-//            TODO: it doesn't work! Remove later
-//            maven {
-//                name = Publishing.NexusRepository.name
-//                url = uri(System.getenv("NEXUS_URL") ?: "")
-//                credentials {
-//                    username = System.getenv("NEXUS_USERNAME")
-//                    password = System.getenv("NEXUS_PASSWORD")
-//                }
-//            }
         }
     }
 }
