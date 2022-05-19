@@ -18,203 +18,134 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x5"
             android:text="@string/buttons_title"
             app:admiralTextStyle="largetitle1" />
 
-        <com.admiral.uikit.components.tabs.StandardTabs
-            android:id="@+id/tabsState"
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnPrimaryButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/defaultTab">
-
-            <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/defaultTab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tabs_default" />
-
-            <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/disabledTab"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="@string/tabs_disabled" />
-        </com.admiral.uikit.components.tabs.StandardTabs>
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
-            android:text="@string/buttons_primary"
-            app:admiralTextColorNormalEnabled="@color/grey_40"
-            app:admiralTextStyle="headline" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnPrimaryAddition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x6"
-            android:layout_marginEnd="@dimen/module_x4"
-            android:text="@string/buttons_example_chose"
-            app:admiralButtonSize="big"
-            app:admiralButtonStyle="primary"
-            app:admiralTextAdditional="@string/buttons_example_date" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnPrimaryBig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x6"
-            android:layout_marginEnd="@dimen/module_x4"
-            android:text="@string/buttons_example_big"
-            app:admiralButtonSize="big"
-            app:admiralButtonStyle="primary" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnPrimaryMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x6"
-            android:text="@string/buttons_example_medium"
-            app:admiralButtonSize="medium"
-            app:admiralButtonStyle="primary" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnPrimarySmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x6"
-            android:text="@string/buttons_example_small"
-            app:admiralButtonSize="small"
-            app:admiralButtonStyle="primary" />
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
-            android:text="@string/buttons_secondary"
-            app:admiralTextColorNormalEnabled="@color/grey_40"
-            app:admiralTextStyle="headline" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnSecondaryBig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x6"
-            android:layout_marginEnd="@dimen/module_x4"
-            android:text="@string/buttons_example_big"
-            app:admiralButtonSize="big"
-            app:admiralButtonStyle="secondary" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnSecondaryMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x4"
-            android:text="@string/buttons_example_medium"
-            app:admiralButtonSize="medium"
-            app:admiralButtonStyle="secondary" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnSecondarySmall"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x4"
-            android:text="@string/buttons_example_small"
-            app:admiralButtonSize="small"
-            app:admiralButtonStyle="secondary" />
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
-            android:text="@string/buttons_ghost"
-            app:admiralTextColorNormalEnabled="@color/grey_40"
-            app:admiralTextStyle="headline" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnGhostAddition"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x6"
-            android:layout_marginEnd="@dimen/module_x4"
-            android:text="@string/buttons_example_done"
-            app:admiralButtonSize="big"
-            app:admiralButtonStyle="ghost"
-            app:admiralTextAdditional="@string/buttons_example_chose_card" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnGhostBig"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_gravity="center_horizontal"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x4"
-            android:layout_marginEnd="@dimen/module_x4"
-            android:text="@string/buttons_example_big"
-            app:admiralButtonSize="big"
-            app:admiralButtonStyle="ghost" />
-
-        <com.admiral.uikit.components.button.Button
-            android:id="@+id/btnGhostMedium"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x4"
-            android:text="@string/buttons_example_small"
-            app:admiralButtonSize="small"
-            app:admiralButtonStyle="ghost" />
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x16"
-            android:text="@string/buttons_rules"
-            app:admiralTextColorNormalEnabled="@color/grey_40"
-            app:admiralTextStyle="headline" />
-
-        <com.admiral.uikit.components.button.ButtonRule
-            android:id="@+id/rule"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x11"
             android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
             android:paddingEnd="@dimen/module_x4"
-            app:admiralRuleText="@string/buttons_example_rule"
-            app:admiralTextAction="@string/buttons_example_rules_action" />
+            android:paddingBottom="@dimen/module_x3">
 
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x10"
-            android:text="@string/buttons_other"
-            app:admiralTextColorNormalEnabled="@color/grey_40"
-            app:admiralTextStyle="headline" />
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/standardTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/buttons_primary_title"
+                app:admiralTextStyle="body1" />
 
-        <com.admiral.uikit.components.button.ButtonGooglePay
-            android:id="@+id/btnGoogle"
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/standardTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnSecondaryButtons"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x8"
-            android:layout_marginEnd="@dimen/module_x4"
-            android:layout_marginBottom="@dimen/module_x10" />
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/logoTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/buttons_secondary_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/logoTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnGhostButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/informerTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/buttons_ghost_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/informerTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnRules"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/outlineTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/buttons_rules"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/outlineTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnOtherButtons"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/underlineTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/buttons_other_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/underlineTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+        </com.admiral.uikit.components.cell.BaseCell>
     </com.admiral.uikit.layout.LinearLayout>
 </ScrollView>

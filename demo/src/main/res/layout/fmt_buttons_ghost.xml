@@ -1,0 +1,184 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:admiralTitleText="@string/buttons_ghost_title"
+        app:admiralTitleTextGravity="center"
+        app:contentInsetStartWithNavigation="0dp" />
+
+    <com.admiral.uikit.components.tabs.StandardTabs
+        android:id="@+id/tabsState"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x4"
+        app:checkedId="@+id/defaultTab">
+
+        <com.admiral.uikit.components.tabs.StandardTab
+            android:id="@+id/defaultTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabs_default" />
+
+        <com.admiral.uikit.components.tabs.StandardTab
+            android:id="@+id/disabledTab"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/tabs_disabled" />
+    </com.admiral.uikit.components.tabs.StandardTabs>
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <com.admiral.uikit.layout.LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/module_x4">
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnAddition"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_chose"
+                app:admiralButtonSize="big"
+                app:admiralButtonStyle="ghost"
+                app:admiralTextAdditional="@string/buttons_example_date" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnBigIconStart"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawableStart="@drawable/admiral_ic_heart_outline"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_big"
+                app:admiralButtonSize="big"
+                app:admiralButtonStyle="ghost" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnBigIconEnd"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawableEnd="@drawable/admiral_ic_maintenance_solid"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_big"
+                app:admiralButtonSize="big"
+                app:admiralButtonStyle="ghost" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnBig"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_big"
+                app:admiralButtonSize="big"
+                app:admiralButtonStyle="ghost" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnMediumIconStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawableStart="@drawable/admiral_ic_heart_outline"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_medium"
+                app:admiralButtonSize="medium"
+                app:admiralButtonStyle="ghost" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnMediumIconEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawableEnd="@drawable/admiral_ic_maintenance_solid"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_medium"
+                app:admiralButtonSize="medium"
+                app:admiralButtonStyle="ghost" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnMedium"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_medium"
+                app:admiralButtonSize="medium"
+                app:admiralButtonStyle="ghost" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnSmallIconStart"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawableStart="@drawable/admiral_ic_heart_outline"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_small"
+                app:admiralButtonSize="small"
+                app:admiralButtonStyle="ghost" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnSmallIconEnd"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawableEnd="@drawable/admiral_ic_maintenance_solid"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_small"
+                app:admiralButtonSize="small"
+                app:admiralButtonStyle="ghost" />
+
+            <com.admiral.uikit.components.button.Button
+                android:id="@+id/btnSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="start"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x6"
+                android:layout_marginEnd="@dimen/module_x4"
+                android:drawablePadding="@dimen/module_x3"
+                android:text="@string/buttons_example_small"
+                app:admiralButtonSize="small"
+                app:admiralButtonStyle="ghost" />
+        </com.admiral.uikit.layout.LinearLayout>
+    </ScrollView>
+</com.admiral.uikit.layout.LinearLayout>

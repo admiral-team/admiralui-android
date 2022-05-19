@@ -13,9 +13,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentInsetStartWithNavigation="0dp"
+            app:admiralTitleText="@string/cells_leading_title"
             app:admiralTitleTextGravity="center"
-            app:admiralTitleText="@string/cells_leading_title" />
+            app:contentInsetStartWithNavigation="0dp" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabs"

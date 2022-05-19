@@ -14,13 +14,13 @@ sealed class ButtonSize(
 ) {
 
     object Big : ButtonSize(
-        padding = R.dimen.module_x3,
+        padding = R.dimen.module_x4,
         minWidth = R.dimen.admiral_btn_big_default_width,
         defaultWidth = R.dimen.admiral_btn_big_default_width
     )
 
     object Medium : ButtonSize(
-        padding = R.dimen.module_x3,
+        padding = R.dimen.module_x4,
         minWidth = R.dimen.admiral_btn_medium_default_width,
         defaultWidth = R.dimen.admiral_btn_medium_default_width
     )
