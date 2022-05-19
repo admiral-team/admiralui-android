@@ -14,7 +14,6 @@ import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.commitNow
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.google.android.material.chip.Chip
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtMainBinding
@@ -36,6 +35,7 @@ import com.admiral.themes.Typography
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.themes.darkTheme
 import com.admiral.themes.lightTheme
+import com.google.android.material.chip.Chip
 
 class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwitcher, ThemeSwitcher {
 

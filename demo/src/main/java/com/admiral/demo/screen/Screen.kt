@@ -31,6 +31,7 @@ import com.admiral.demo.features.home.cell.CellsFragment
 import com.admiral.demo.features.home.chat.ChatFilesFragment
 import com.admiral.demo.features.home.chat.ChatFragment
 import com.admiral.demo.features.home.chat.ChatImagesFragment
+import com.admiral.demo.features.home.chat.ChatInputFragment
 import com.admiral.demo.features.home.chat.ChatTextOperationFragment
 import com.admiral.demo.features.home.colors.ColorModel
 import com.admiral.demo.features.home.colors.ColorPickerFragment
@@ -478,6 +479,11 @@ class CurrencyIconsFlagsScreen : Screen() {
 @Parcelize
 class ChatScreen : Screen() {
     override fun getFragment() = ChatFragment()
+}
+
+@Parcelize
+class ChatInputScreen : Screen() {
+    override fun getFragment() = ChatInputFragment()
 }
 
 @Parcelize

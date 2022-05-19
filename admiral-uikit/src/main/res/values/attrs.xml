@@ -260,6 +260,9 @@
         <attr name="android:imeOptions" />
 
         <attr name="admiralIsDrawableStartVisible" format="boolean" />
+
+        <attr name="admiralText" />
+        <attr name="admiralTextPlaceholder" />
     </declare-styleable>
 
     <declare-styleable name="Button" parent="GlobalAttrDeclare">

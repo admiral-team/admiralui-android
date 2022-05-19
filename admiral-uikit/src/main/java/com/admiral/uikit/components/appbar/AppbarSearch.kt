@@ -18,6 +18,7 @@ import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.cell.unit.IconCellUnit
 import com.admiral.uikit.components.textfield.TextFieldSearch
+import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
@@ -41,7 +42,8 @@ class AppbarSearch @JvmOverloads constructor(
      * [TextFieldSearch] shown at the middle of the app bar.
      */
     private val textFieldSearch = TextFieldSearch(context).apply {
-        layoutParams = LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT, 1f)
+        layoutParams =
+            LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, TEXT_FIELD_SEARCH_HEIGHT.dpToPx(context), 1f)
         setMargins(0, MARGIN, 0, 0)
     }
 
@@ -253,5 +255,6 @@ class AppbarSearch @JvmOverloads constructor(
 
     private companion object {
         const val MARGIN = 16
+        const val TEXT_FIELD_SEARCH_HEIGHT = 36
     }
 }
