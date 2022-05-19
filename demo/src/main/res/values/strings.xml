@@ -153,6 +153,7 @@
     <string name="text_fields_basic">Basic</string>
     <string name="text_fields_masked">Masked</string>
     <string name="text_fields_multiline">Multiline</string>
+    <string name="text_fields_bank_card_placeholder">1111 2222 3333 4444</string>
 
     <string name="cells_title">Cells</string>
     <string name="cells_base_title">Base Cells</string>
