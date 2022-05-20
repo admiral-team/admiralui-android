@@ -220,11 +220,15 @@
     <string name="informers_example_text">Text Informer</string>
 
     <string name="notifications_title">Notifications</string>
-    <string name="notifications_toast_title">Toast</string>
-    <string name="notifications_static_title">Static</string>
     <string name="notifications_action_title">Action</string>
-    <string name="notification_toast_text">Компонент появляется в верхней части страницы на мобильных девайсах и справа в верхней части страницы на планшетах только внутри приложения, автоматически исчезает по таймауту, по свайпу вверх или по нажатию на иконку закрытия если она присутствует.\n\nКомпонентов на странице может быть несколько, если они приходят одновременно наслаиваясь друг на друга и исчезают по собственному таймауту. При тапу на группу таких уведомлений они раскрываются в список.</string>
-    <string name="notification_action_text">Компонент используется для отмены совершенного действия, появляется внизу экрана поверх контента с обратным отсчетом времени в 5 секунд сразу после совершения какого-либо действия. \n\nКомпонентов на странице может быть несколько, если они приходят одновременно наслаиваясь друг на друга и исчезают по собственному таймауту. При тапу на группу таких уведомлений они раскрываются в список.</string>
+    <string name="notifications_action_text">Компонент используется для отмены совершенного действия, появляется внизу экрана поверх контента с обратным отсчетом времени в 5 секунд сразу после совершения какого-либо действия.</string>
+    <string name="notifications_action_show_action">Показать Action</string>
+    <string name="notifications_action_show_toast">Показать Toast</string>
+    <string name="notifications_action_action_text">Сообщение будет удалено</string>
+    <string name="notifications_action_cancel_text">Отмена</string>
+    <string name="notifications_static_title">Static</string>
+    <string name="notifications_toast_title">Toast</string>
+    <string name="notifications_toast_text">Компонент появляется в верхней части страницы на мобильных девайсах и справа в верхней части страницы на планшетах только внутри приложения, автоматически исчезает по таймауту, по свайпу вверх или по нажатию на иконку закрытия если она присутствует.\n\nКомпонентов на странице может быть несколько, если они приходят одновременно наслаиваясь друг на друга и исчезают по собственному таймауту. При тапу на группу таких уведомлений они раскрываются в список.</string>
 
     <string name="tags_chips_title">Tags &amp; Chips</string>
     <string name="tags_chips_subtitle">Теги и чипсы</string>
