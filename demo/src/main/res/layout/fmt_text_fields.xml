@@ -58,7 +58,7 @@
             android:paddingBottom="@dimen/module_x3">
 
             <com.admiral.uikit.components.cell.unit.TextCellUnit
-                android:id="@+id/logoTabText"
+                android:id="@+id/doubleTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
@@ -66,7 +66,7 @@
                 app:admiralTextStyle="body1" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
-                android:id="@+id/logoTabIcon"
+                android:id="@+id/doubleTabIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
@@ -84,7 +84,7 @@
             android:paddingBottom="@dimen/module_x3">
 
             <com.admiral.uikit.components.cell.unit.TextCellUnit
-                android:id="@+id/informerTabText"
+                android:id="@+id/sliderTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
@@ -92,7 +92,59 @@
                 app:admiralTextStyle="body1" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
-                android:id="@+id/informerTabIcon"
+                android:id="@+id/sliderTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnCardNumber"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/cardNumberTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/text_fields_card_number_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/cardNumberTabIcon"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="trailing"
+                app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+
+        </com.admiral.uikit.components.cell.BaseCell>
+
+        <com.admiral.uikit.components.cell.BaseCell
+            android:id="@+id/btnSmsCode"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingStart="@dimen/module_x4"
+            android:paddingTop="@dimen/module_x3"
+            android:paddingEnd="@dimen/module_x4"
+            android:paddingBottom="@dimen/module_x3">
+
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
+                android:id="@+id/smsTabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralCellUnitType="leadingText"
+                app:admiralText="@string/text_fields_sms_title"
+                app:admiralTextStyle="body1" />
+
+            <com.admiral.uikit.components.cell.unit.IconCellUnit
+                android:id="@+id/smsTabIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
@@ -110,7 +162,7 @@
             android:paddingBottom="@dimen/module_x3">
 
             <com.admiral.uikit.components.cell.unit.TextCellUnit
-                android:id="@+id/outlineTabText"
+                android:id="@+id/numberTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
@@ -118,7 +170,7 @@
                 app:admiralTextStyle="body1" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
-                android:id="@+id/outlineTabIcon"
+                android:id="@+id/numberTabIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
@@ -136,7 +188,7 @@
             android:paddingBottom="@dimen/module_x3">
 
             <com.admiral.uikit.components.cell.unit.TextCellUnit
-                android:id="@+id/underlineTabText"
+                android:id="@+id/feedbackTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
@@ -144,7 +196,7 @@
                 app:admiralTextStyle="body1" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
-                android:id="@+id/underlineTabIcon"
+                android:id="@+id/feedbackTabIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"
@@ -162,7 +214,7 @@
             android:paddingBottom="@dimen/module_x3">
 
             <com.admiral.uikit.components.cell.unit.TextCellUnit
-                android:id="@+id/iconTabText"
+                android:id="@+id/pincodeTabText"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
@@ -170,7 +222,7 @@
                 app:admiralTextStyle="body1" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
-                android:id="@+id/iconTabIcon"
+                android:id="@+id/pincodeTabIcon"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="trailing"

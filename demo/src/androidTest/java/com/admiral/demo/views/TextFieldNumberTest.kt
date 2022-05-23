@@ -62,7 +62,7 @@ class TextFieldNumberTest : ScreenshotTest {
             isError?.let { this.isError = isError }
             textResId?.let { this.inputText = context.getString(it) }
             textFieldStyle = TextFieldStyle.Clipped
-            this.optionalText = context.getString(R.string.text_fields_number_text)
+            this.optionalText = context.getString(R.string.text_fields_card_number_text)
             icon = ContextCompat.getDrawable(context, R.drawable.admiral_ic_camera_outline)
             check()
         }
@@ -76,7 +76,7 @@ class TextFieldNumberTest : ScreenshotTest {
     ) {
         val textField = TextField(wrappedContext).apply {
             disableInputLayoutAnimation()
-            this.optionalText = context.getString(R.string.text_fields_number_text)
+            this.optionalText = context.getString(R.string.text_fields_card_number_text)
             this.additionalText = context.getString(R.string.text_fields_example_slider_additional)
             this.isEnabled = isEnabled
 
@@ -96,7 +96,7 @@ class TextFieldNumberTest : ScreenshotTest {
     fun checkByInflationTextFieldNumberWithTextEnabledState() {
         checkTextFieldByInflation(
             isEnabled = true,
-            textResId = R.string.text_fields_number_text
+            textResId = R.string.text_fields_card_number_text
         )
     }
 
@@ -104,7 +104,7 @@ class TextFieldNumberTest : ScreenshotTest {
     fun checkByInflationTextFieldNumberNumberWithTextDisabledState() {
         checkTextFieldByInflation(
             isEnabled = false,
-            textResId = R.string.text_fields_number_text
+            textResId = R.string.text_fields_card_number_text
         )
     }
 
@@ -113,7 +113,7 @@ class TextFieldNumberTest : ScreenshotTest {
         checkTextFieldByInflation(
             isEnabled = true,
             isError = true,
-            textResId = R.string.text_fields_number_text
+            textResId = R.string.text_fields_card_number_text
         )
     }
 
@@ -122,7 +122,7 @@ class TextFieldNumberTest : ScreenshotTest {
         checkTextFieldByInflation(
             isEnabled = false,
             isError = true,
-            textResId = R.string.text_fields_number_text
+            textResId = R.string.text_fields_card_number_text
         )
     }
 
@@ -131,7 +131,7 @@ class TextFieldNumberTest : ScreenshotTest {
         checkTextFieldByInflation(
             isEnabled = true,
             isReadonly = true,
-            textResId = R.string.text_fields_number_text
+            textResId = R.string.text_fields_card_number_text
         )
     }
 
@@ -140,7 +140,7 @@ class TextFieldNumberTest : ScreenshotTest {
         checkTextFieldByInflation(
             isEnabled = false,
             isReadonly = true,
-            textResId = R.string.text_fields_number_text
+            textResId = R.string.text_fields_card_number_text
         )
     }
     // endregion
@@ -150,7 +150,7 @@ class TextFieldNumberTest : ScreenshotTest {
     fun checkProgrammaticallyTextFieldNumberWithTextEnabledState() {
         checkTextFieldProgrammatically(
             isEnabled = true,
-            textResId = R.string.text_fields_number_text,
+            textResId = R.string.text_fields_card_number_text,
         )
     }
 
@@ -158,7 +158,7 @@ class TextFieldNumberTest : ScreenshotTest {
     fun checkProgrammaticallyTextFieldNumberWithTextDisabledState() {
         checkTextFieldProgrammatically(
             isEnabled = false,
-            textResId = R.string.text_fields_number_text,
+            textResId = R.string.text_fields_card_number_text,
         )
     }
 
@@ -167,7 +167,7 @@ class TextFieldNumberTest : ScreenshotTest {
         checkTextFieldProgrammatically(
             isEnabled = true,
             isError = true,
-            textResId = R.string.text_fields_number_text,
+            textResId = R.string.text_fields_card_number_text,
         )
     }
 
@@ -176,7 +176,7 @@ class TextFieldNumberTest : ScreenshotTest {
         checkTextFieldProgrammatically(
             isEnabled = false,
             isError = true,
-            textResId = R.string.text_fields_number_text,
+            textResId = R.string.text_fields_card_number_text,
         )
     }
 
@@ -185,7 +185,7 @@ class TextFieldNumberTest : ScreenshotTest {
         checkTextFieldProgrammatically(
             isEnabled = true,
             isReadonly = true,
-            textResId = R.string.text_fields_number_text,
+            textResId = R.string.text_fields_card_number_text,
         )
     }
 
@@ -194,7 +194,7 @@ class TextFieldNumberTest : ScreenshotTest {
         checkTextFieldProgrammatically(
             isEnabled = false,
             isReadonly = true,
-            textResId = R.string.text_fields_number_text,
+            textResId = R.string.text_fields_card_number_text,
         )
     }
     // endregion

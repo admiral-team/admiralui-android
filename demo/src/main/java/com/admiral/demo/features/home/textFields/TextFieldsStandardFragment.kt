@@ -10,14 +10,14 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
-import com.admiral.demo.databinding.FmtTextFieldsDoubleBinding
+import com.admiral.demo.databinding.FmtTextFieldsStandardBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class DoubleTextFieldsFragment : BaseFragment(R.layout.fmt_text_fields_double) {
+class TextFieldsStandardFragment : BaseFragment(R.layout.fmt_text_fields_standard) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
-    private val binding by viewBinding(FmtTextFieldsDoubleBinding::bind)
+    private val binding by viewBinding(FmtTextFieldsStandardBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -29,46 +29,54 @@ class DoubleTextFieldsFragment : BaseFragment(R.layout.fmt_text_fields_double) {
                     binding.defaultTab.id -> {
                         binding.textField.isError = false
                         binding.textField.isEnabled = true
-                        binding.textField.leftTextField.isEditEnabled = true
-                        binding.textField.rightTextField.isEditEnabled = true
+                        binding.textField.isEditEnabled = true
 
-                        binding.textFieldSecond.isError = false
-                        binding.textFieldSecond.isEnabled = true
-                        binding.textFieldSecond.leftTextField.isEditEnabled = true
-                        binding.textFieldSecond.rightTextField.isEditEnabled = true
+                        binding.textFieldMasked.isError = false
+                        binding.textFieldMasked.isEnabled = true
+                        binding.textFieldMasked.isEditEnabled = true
+
+                        binding.textFieldMultiline.isError = false
+                        binding.textFieldMultiline.isEnabled = true
+                        binding.textFieldMultiline.isEditEnabled = true
                     }
                     binding.disabled.id -> {
                         binding.textField.isError = false
                         binding.textField.isEnabled = false
-                        binding.textField.leftTextField.isEditEnabled = true
-                        binding.textField.rightTextField.isEditEnabled = true
+                        binding.textField.isEditEnabled = true
 
-                        binding.textFieldSecond.leftTextField.isEditEnabled = true
-                        binding.textFieldSecond.rightTextField.isEditEnabled = true
-                        binding.textFieldSecond.isError = false
-                        binding.textFieldSecond.isEnabled = false
+                        binding.textFieldMasked.isError = false
+                        binding.textFieldMasked.isEnabled = false
+                        binding.textFieldMasked.isEditEnabled = true
+
+                        binding.textFieldMultiline.isError = false
+                        binding.textFieldMultiline.isEnabled = false
+                        binding.textFieldMultiline.isEditEnabled = true
                     }
                     binding.error.id -> {
                         binding.textField.isError = true
                         binding.textField.isEnabled = true
-                        binding.textField.leftTextField.isEditEnabled = true
-                        binding.textField.rightTextField.isEditEnabled = true
+                        binding.textField.isEditEnabled = true
 
-                        binding.textFieldSecond.isError = true
-                        binding.textFieldSecond.isEnabled = true
-                        binding.textFieldSecond.leftTextField.isEditEnabled = true
-                        binding.textFieldSecond.rightTextField.isEditEnabled = true
+                        binding.textFieldMasked.isError = true
+                        binding.textFieldMasked.isEnabled = true
+                        binding.textFieldMasked.isEditEnabled = true
+
+                        binding.textFieldMultiline.isError = true
+                        binding.textFieldMultiline.isEnabled = true
+                        binding.textFieldMultiline.isEditEnabled = true
                     }
                     binding.read.id -> {
                         binding.textField.isError = false
                         binding.textField.isEnabled = true
-                        binding.textField.leftTextField.isEditEnabled = false
-                        binding.textField.rightTextField.isEditEnabled = false
+                        binding.textField.isEditEnabled = false
 
-                        binding.textFieldSecond.isError = false
-                        binding.textFieldSecond.isEnabled = true
-                        binding.textFieldSecond.leftTextField.isEditEnabled = false
-                        binding.textFieldSecond.rightTextField.isEditEnabled = false
+                        binding.textFieldMasked.isError = false
+                        binding.textFieldMasked.isEnabled = true
+                        binding.textFieldMasked.isEditEnabled = false
+
+                        binding.textFieldMultiline.isError = false
+                        binding.textFieldMultiline.isEnabled = true
+                        binding.textFieldMultiline.isEditEnabled = false
 
                         val imm: InputMethodManager =
                             requireContext().getSystemService(Activity.INPUT_METHOD_SERVICE) as InputMethodManager
