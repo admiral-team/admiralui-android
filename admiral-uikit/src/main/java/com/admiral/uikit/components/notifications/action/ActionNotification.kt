@@ -6,62 +6,56 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
 import android.view.Gravity
+import android.view.LayoutInflater
 import android.view.View
-import android.view.View.TEXT_ALIGNMENT_CENTER
 import android.view.ViewGroup
 import android.widget.FrameLayout
-import android.widget.LinearLayout
-import android.widget.ProgressBar
 import androidx.annotation.ColorInt
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
-import androidx.core.graphics.BlendModeColorFilterCompat
-import androidx.core.graphics.BlendModeCompat
 import androidx.core.view.isVisible
+import androidx.core.view.updateLayoutParams
 import com.google.android.material.snackbar.Snackbar
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.components.imageview.ImageView
-import com.admiral.uikit.components.links.Link
-import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.databinding.AdmiralNotificationActionBinding
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.dpToPx
-import com.admiral.uikit.ext.drawable
 
 class ActionNotification {
 
-    private lateinit var snackBarInstance: Snackbar
+    lateinit var snackBarInstance: Snackbar
     private lateinit var builder: Builder
 
-    fun show() {
+    /**
+     * Show action notification
+     */
+    fun show(isTimerEnabled: Boolean = true) {
         snackBarInstance.show()
-        builder.startTimer()
+        builder.startTimer(isTimerEnabled)
     }
 
+    /**
+     * Hide action notification
+     */
     fun hide() {
         snackBarInstance.dismiss()
         builder.stopTimer()
     }
 
-    class Builder(context: Context, parentRootView: View) {
+    /**
+     * Builder for [ActionNotification]
+     */
+    class Builder(context: Context, private val parentRootView: View) {
         private var totalTime: Long = TIME_SHORT_MILLISECONDS
         private var timer: CountDownTimer? = null
 
         private var actionNotification: ActionNotification = ActionNotification()
-        private var parentRootView: View? = null
 
-        private val toastView: View = createViewLayout(context)
-
-        private var cancelButtonImage =
-            toastView.findViewById<ImageView>(R.id.admiralNotificationActionImageCanel)
-        private var cancelButtonText = toastView.findViewById<Link>(R.id.admiralTextCancel)
-        private var actionTextView = toastView.findViewById<TextView>(R.id.admiralActionTextView)
-        private var timerView = toastView.findViewById<FrameLayout>(R.id.admiralTimer)
-        private var progressTextView = toastView.findViewById<TextView>(R.id.admiralTextTimer)
-        private var progressProgressBar =
-            toastView.findViewById<ProgressBar>(R.id.admiralProgressTimer)
+        private val layoutInflater = LayoutInflater.from(context)
+        private val binding = AdmiralNotificationActionBinding.inflate(layoutInflater)
 
         /**
          * Listener to detect cancel icon clicked.
@@ -69,24 +63,32 @@ class ActionNotification {
         private var onCancelClickListener: View.OnClickListener? = null
             set(value) {
                 field = value
-                cancelButtonText.setOnClickListener {
+                binding.cancelText.setOnClickListener {
                     value?.onClick(it)
                     actionNotification.hide()
                 }
-                cancelButtonImage.setOnClickListener {
+                binding.cancelImage.setOnClickListener {
                     value?.onClick(it)
                     actionNotification.hide()
                 }
             }
 
         init {
-            actionNotification.snackBarInstance =
-                Snackbar.make(parentRootView, "", Snackbar.LENGTH_LONG)
+            actionNotification.snackBarInstance = Snackbar.make(
+                parentRootView,
+                "",
+                Snackbar.LENGTH_LONG
+            )
+
             val layout = actionNotification.snackBarInstance.view as Snackbar.SnackbarLayout
 
             layout.setBackgroundColor(Color.TRANSPARENT)
             layout.setPadding(0, 0, 0, 0)
-            layout.addView(toastView, 0)
+            layout.addView(binding.root, 0)
+
+            binding.root.updateLayoutParams {
+                width = CONTAINER_WIDTH.dpToPx(context)
+            }
 
             this.setMargins()
             this.setGravity()
@@ -96,25 +98,28 @@ class ActionNotification {
             this.setProgressColorState()
             this.setCloseButtonIcon()
 
-            cancelButtonText.setOnClickListener {
-                actionNotification.hide()
-            }
-
-            cancelButtonImage.setOnClickListener {
-                actionNotification.hide()
-            }
+            onCancelClickListener = null
         }
 
+        /**
+         * Set text
+         */
         fun setText(message: CharSequence): Builder {
-            actionTextView.text = message
+            binding.message.text = message
             return this
         }
 
+        /**
+         * Set text color
+         */
         fun setTextColor(colorState: ColorState): Builder {
-            actionTextView.textColor = colorState
+            binding.message.textColor = colorState
             return this
         }
 
+        /**
+         * Set close button color
+         */
         fun setCloseButtonColor(
             @ColorInt color: Int = ThemeManager.theme.palette.elementAccent
         ): Builder {
@@ -124,65 +129,87 @@ class ActionNotification {
                 pressed = color
             )
 
-            cancelButtonText.textColorState = colorState
-            cancelButtonImage.imageTintColorState = colorState
+            binding.cancelText.textColorState = colorState
+            binding.cancelImage.imageTintColorState = colorState
             return this
         }
 
+        /**
+         * Set close button text
+         */
         fun setCloseButtonText(text: String = "Отмена"): Builder {
-            cancelButtonText.text = text
+            binding.cancelText.text = text
             return this
         }
 
+        /**
+         * Set close button visibility
+         */
         fun setCloseTextButtonVisible(isVisible: Boolean = true): Builder {
-            cancelButtonText.isVisible = isVisible
+            binding.cancelText.isVisible = isVisible
             return this
         }
 
+        /**
+         * Set close icon visibility
+         */
         fun setCloseIconButtonVisible(isVisible: Boolean = true): Builder {
-            cancelButtonImage.isVisible = isVisible
+            binding.cancelImage.isVisible = isVisible
             return this
         }
 
+        /**
+         * Set close button type [ActionNotificationCloseType]
+         */
         fun setCloseButtonType(
             closeButtonType: ActionNotificationCloseType = ActionNotificationCloseType.TEXT
         ): Builder {
             when (closeButtonType) {
                 ActionNotificationCloseType.ICON -> {
-                    cancelButtonText.isVisible = false
-                    cancelButtonImage.isVisible = true
+                    binding.cancelText.isVisible = false
+                    binding.cancelImage.isVisible = true
                 }
 
                 ActionNotificationCloseType.TEXT -> {
-                    cancelButtonText.isVisible = true
-                    cancelButtonImage.isVisible = false
+                    binding.cancelText.isVisible = true
+                    binding.cancelImage.isVisible = false
                 }
             }
-
             return this
         }
 
+        /**
+         * Set close button icon
+         * @param icon icon [Drawable]
+         */
         fun setCloseButtonIcon(icon: Drawable? = null): Builder {
             val context = actionNotification.snackBarInstance.view.context
             val iconSet = icon ?: ContextCompat.getDrawable(
                 context, R.drawable.admiral_ic_back_outline
             )
-            cancelButtonImage.setImageDrawable(iconSet)
-
+            binding.cancelImage.setImageDrawable(iconSet)
             return this
         }
 
+        /**
+         * Set close button click listener
+         * @param onClickListener click listener [View.OnClickListener]
+         */
         fun setCancelButtonClickListener(onClickListener: View.OnClickListener): Builder {
             onCancelClickListener = onClickListener
             return this
         }
 
+        /**
+         * Set progress color state
+         * @param progressColorState progress color state [ColorState]
+         */
         fun setProgressColorState(
             progressColorState: ColorState = ColorState(
                 normalEnabled = ThemeManager.theme.palette.elementAccent
             )
         ): Builder {
-            progressProgressBar.progressTintList = parentRootView?.colorStateList(
+            binding.timerProgressBar.progressTintList = parentRootView.colorStateList(
                 enabled = progressColorState.normalEnabled
                     ?: ThemeManager.theme.palette.elementAccent,
                 disabled = progressColorState.normalDisabled
@@ -190,10 +217,14 @@ class ActionNotification {
                 pressed = progressColorState.pressed
                     ?: ThemeManager.theme.palette.elementAccent
             )
-            progressTextView.textColor = progressColorState
+            binding.timerText.textColor = progressColorState
             return this
         }
 
+        /**
+         * Set gravity
+         * @param gravity [Gravity]
+         */
         fun setGravity(gravity: Int = Gravity.BOTTOM): Builder {
             val view: View = actionNotification.snackBarInstance.view
             return if (view.layoutParams is CoordinatorLayout.LayoutParams) {
@@ -215,12 +246,20 @@ class ActionNotification {
             }
         }
 
+        /**
+         * Update gravity value
+         */
         fun <T : ViewGroup> updateGravity(action: (ViewGroup) -> ViewGroup.LayoutParams): Builder {
             val rootViewGroup: ViewGroup = actionNotification.snackBarInstance.view as ViewGroup
             rootViewGroup.layoutParams = action.invoke(rootViewGroup)
             return this
         }
 
+        /**
+         * Set top and bottom margins
+         * @param top top margin in Dp
+         * @param bottom bottom margin in Dp
+         */
         fun setMargins(top: Int = 0, bottom: Int = DEFAULT_MARGIN_BOTTOM): Builder {
             val snackBarView = actionNotification.snackBarInstance.view
             snackBarView.translationY = top
@@ -233,19 +272,30 @@ class ActionNotification {
             return this
         }
 
+        /**
+         * Set background color
+         * @param color - color [Int] value
+         */
         fun setBackgroundColor(
-            color: Int = ThemeManager.theme.palette.backgroundAdditionalOne
+            @ColorInt color: Int = ThemeManager.theme.palette.backgroundAdditionalOne
         ): Builder {
-            toastView.backgroundTintList = ColorStateList.valueOf(color)
+            binding.root.backgroundTintList = ColorStateList.valueOf(color)
             return this
         }
 
+        /**
+         * Set timer visibility
+         * @param isVisible - if true timer will be visible
+         */
         fun setTimerVisibility(isVisible: Boolean): Builder {
-            timerView.isVisible = isVisible
-
+            binding.timerContainer.isVisible = isVisible
             return this
         }
 
+        /**
+         * Set timer duration
+         * @param duration - in milliseconds
+         */
         fun setDuration(duration: Int = Snackbar.LENGTH_LONG): Builder {
             actionNotification.snackBarInstance.duration = duration
 
@@ -261,144 +311,53 @@ class ActionNotification {
             return this
         }
 
-        fun apply(): ActionNotification {
+        /**
+         * Build [ActionNotification]
+         */
+        @Deprecated("Use `build()` instead", ReplaceWith("build()"))
+        fun apply(): ActionNotification = build()
+
+        /**
+         * Build [ActionNotification]
+         */
+        fun build(): ActionNotification {
             actionNotification.builder = this
             return actionNotification
         }
 
-        fun startTimer() {
+        /**
+         * Start timer
+         */
+        fun startTimer(isTimerEnabled: Boolean) {
+            if (isTimerEnabled.not()) return
+
             timer = object : CountDownTimer(totalTime, COUNT_DOWN_INTERVAL) {
                 override fun onTick(millisUntilFinished: Long) {
                     val secondsToShow =
                         ((millisUntilFinished / MILLISECONDS_TO_SECONDS) + 1).toInt()
-                    progressTextView.text = "$secondsToShow"
+                    binding.timerText.text = "$secondsToShow"
 
                     val progressBarValue =
                         (PROGRESS_BAR_TOTAL * (millisUntilFinished.toFloat() / totalTime)).toInt()
 
                     if (android.os.Build.VERSION.SDK_INT >= android.os.Build.VERSION_CODES.N) {
-                        progressProgressBar.setProgress(progressBarValue, true)
+                        binding.timerProgressBar.setProgress(progressBarValue, true)
                     } else {
-                        progressProgressBar.progress = progressBarValue
+                        binding.timerProgressBar.progress = progressBarValue
                     }
                 }
 
                 override fun onFinish() {}
             }
-
             timer?.start()
         }
 
+        /**
+         * Stop timer
+         */
         fun stopTimer() {
             timer?.cancel()
         }
-
-        private fun createViewLayout(context: Context) =
-            LinearLayout(context).apply {
-                val params =
-                    LinearLayout.LayoutParams(
-                        CONTAINER_WIDTH.dpToPx(context),
-                        LinearLayout.LayoutParams.WRAP_CONTENT
-                    )
-                layoutParams = params
-
-                background = context.drawable(R.drawable.admiral_bg_rectangle_8dp)
-                backgroundTintList = ColorStateList.valueOf(
-                    ThemeManager.theme.palette.backgroundAdditionalOne
-                )
-                setPadding(
-                    CONTAINER_PADDING_HORIZONTAL.dpToPx(context),
-                    CONTAINER_PADDING_VERTICAL.dpToPx(context),
-                    CONTAINER_PADDING_HORIZONTAL.dpToPx(context),
-                    CONTAINER_PADDING_VERTICAL.dpToPx(context)
-                )
-
-                addView(createTimer(context))
-                addView(createTextsCenter(context))
-                addView(createIconClose(context))
-                addView(createTextClose(context))
-            }
-
-        private fun createTimer(context: Context) =
-            FrameLayout(context).apply {
-                id = R.id.admiralTimer
-                layoutParams = LinearLayout.LayoutParams(
-                    TIMER_VIEW_SIZE.dpToPx(context),
-                    TIMER_VIEW_SIZE.dpToPx(context)
-                )
-
-                addView(
-                    ProgressBar(
-                        context,
-                        null,
-                        0,
-                        android.R.style.Widget_Material_ProgressBar_Horizontal
-                    ).apply {
-                        id = R.id.admiralProgressTimer
-                        isIndeterminate = false
-                        max = PROGRESS_MAX_VALUE
-                        progressDrawable = drawable(R.drawable.admiral_progress_bar)
-                        scaleX = -1f
-                        progressDrawable.colorFilter = BlendModeColorFilterCompat
-                            .createBlendModeColorFilterCompat(
-                                ThemeManager.theme.palette.elementAccent,
-                                BlendModeCompat.SRC_ATOP
-                            )
-                    })
-
-                addView(TextView(context).apply {
-                    gravity = Gravity.CENTER
-                    id = R.id.admiralTextTimer
-                    textAlignment = TEXT_ALIGNMENT_CENTER
-                    textStyle = ThemeManager.theme.typography.subhead3
-                })
-            }
-
-        private fun createTextsCenter(context: Context) =
-            TextView(context).apply {
-                id = R.id.admiralActionTextView
-                this.layoutParams = LinearLayout.LayoutParams(
-                    0,
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    1f
-                ).apply {
-                    setMargins(TEXT_MARGIN_START.dpToPx(context), 0, 0, 0)
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                textStyle = ThemeManager.theme.typography.body2
-            }
-
-        private fun createIconClose(context: Context) =
-            ImageView(context).apply {
-                id = R.id.admiralNotificationActionImageCanel
-                layoutParams = LinearLayout.LayoutParams(
-                    IMAGE_VIEW_SIZE.dpToPx(context),
-                    IMAGE_VIEW_SIZE.dpToPx(context)
-                )
-                imageTintColorState = ColorState(
-                    normalEnabled = ThemeManager.theme.palette.elementPrimary
-                )
-                isFocusable = true
-                isClickable = true
-                isVisible = false
-            }
-
-        private fun createTextClose(context: Context) =
-            Link(context).apply {
-                id = R.id.admiralTextCancel
-                layoutParams = LinearLayout.LayoutParams(
-                    LinearLayout.LayoutParams.WRAP_CONTENT,
-                    LinearLayout.LayoutParams.WRAP_CONTENT
-                ).apply {
-                    gravity = Gravity.CENTER_VERTICAL
-                }
-                text = "Отмена"
-                textStyle = ThemeManager.theme.typography.body2
-
-                isFocusable = true
-                isClickable = true
-                isVisible = false
-            }
     }
 
     private companion object {
@@ -410,13 +369,5 @@ class ActionNotification {
         const val MILLISECONDS_TO_SECONDS = 1000
 
         const val CONTAINER_WIDTH = 328
-        const val CONTAINER_PADDING_VERTICAL = 12
-        const val CONTAINER_PADDING_HORIZONTAL = 16
-
-        const val IMAGE_VIEW_SIZE = 28
-        const val TIMER_VIEW_SIZE = 28
-        const val TEXT_MARGIN_START = 16
-
-        const val PROGRESS_MAX_VALUE = 100
     }
 }
