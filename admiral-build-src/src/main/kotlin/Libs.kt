@@ -69,6 +69,7 @@ object Libs {
             val runner = "androidx.test:runner:${Versions.AndroidX.test}"
             val rules = "androidx.test:rules:${Versions.AndroidX.test}"
             val fragment = "androidx.fragment:fragment-testing:${Versions.AndroidX.fragment}"
+            val junit = "androidx.test.ext:junit-ktx:${Versions.AndroidX.junit}"
 
             object Espresso {
                 val core = "androidx.test.espresso:espresso-core:${Versions.AndroidX.espresso}"
