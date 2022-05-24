@@ -12,7 +12,6 @@ import com.admiral.demo.app.AppActivity
 import com.admiral.demo.app.AppActivity.Companion.KEY_IS_TEST
 import com.admiral.demo.ext.BetterScrollTo
 import com.admiral.demo.ext.waitUntilShown
-import com.admiral.demo.views.CalendarTest
 import com.admiral.uikit.components.calendar.horisontal.HorizontalCalendar
 import org.junit.Rule
 import org.junit.Test

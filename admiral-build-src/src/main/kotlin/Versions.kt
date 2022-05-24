@@ -2,7 +2,7 @@
 
 object Versions {
     val timber = "4.7.1"
-    val viewBinding = "1.5.3"
+    val viewBinding = "1.5.6"
     val colorPickerView = "2.2.4"
     val expandableLayout = "1.0.7"
     val junit = "4.13.2"
@@ -43,6 +43,7 @@ object Versions {
         val activityCompose = "1.4.0"
         val compose = "1.2.0-alpha01"
         val test = "1.4.0"
+        val junit = "1.1.3"
         val espresso = "3.4.0"
     }
 }
