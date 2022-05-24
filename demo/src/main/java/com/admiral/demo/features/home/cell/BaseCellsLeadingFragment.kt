@@ -25,19 +25,19 @@ class BaseCellsLeadingFragment : BaseFragment(R.layout.fmt_cells_base_leading) {
             override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
                 when (checkedId) {
                     binding.defaultTab.id -> {
-                        binding.subtitleTitleCell.isEnabled = true
-                        binding.titleCell.isEnabled = true
-                        binding.titleSubtitleCell.isEnabled = true
-                        binding.textMessageCell.isEnabled = true
-                        binding.titleSubtitleTextButtonCell.isEnabled = true
+                        binding.cellCard.isEnabled = true
+                        binding.cellLabel.isEnabled = true
+                        binding.cellIcon.isEnabled = true
+                        binding.cellIconBackground.isEnabled = true
+                        binding.cellIconPlace.isEnabled = true
                     }
 
                     binding.disabledTab.id -> {
-                        binding.subtitleTitleCell.isEnabled = false
-                        binding.titleCell.isEnabled = false
-                        binding.titleSubtitleCell.isEnabled = false
-                        binding.textMessageCell.isEnabled = false
-                        binding.titleSubtitleTextButtonCell.isEnabled = false
+                        binding.cellCard.isEnabled = false
+                        binding.cellLabel.isEnabled = false
+                        binding.cellIcon.isEnabled = false
+                        binding.cellIconBackground.isEnabled = false
+                        binding.cellIconPlace.isEnabled = false
                     }
                 }
             }

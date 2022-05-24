@@ -12,6 +12,7 @@ import android.text.InputFilter
 import android.text.TextUtils
 import android.text.TextWatcher
 import android.text.method.HideReturnsTransformationMethod
+import android.text.method.KeyListener
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.util.SparseArray
@@ -21,7 +22,6 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.ColorInt
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.core.view.isGone
@@ -355,6 +355,15 @@ class TextField @JvmOverloads constructor(
         }
 
     /**
+     * [KeyListener] for the EditText.
+     */
+    var keyListener: KeyListener? = null
+        set(value) {
+            field = value
+            editText.keyListener = keyListener
+        }
+
+    /**
      * When an object of this type is attached to an Editable, its methods will be called when the text is changed.
      */
     var textWatcher: TextWatcher? = null
@@ -370,9 +379,8 @@ class TextField @JvmOverloads constructor(
     val textFlow: StateFlow<String?> = textFlowField
 
     /**
-     * Standard [AppCompatTextView] for settings filters, formatter, etc.
+     * Standard [TextInputEditText]. It's better to use it only for settings filters, formatter, etc.
      */
-    @Deprecated("If you need any method - contact @tim_baton, please")
     val editText: TextInputEditText by lazy { findViewById(R.id.editText) }
 
     private val mainContentContainer: LinearLayout by lazy { findViewById(R.id.admiralViewTextFieldRightViews) }
@@ -415,6 +423,7 @@ class TextField @JvmOverloads constructor(
             maxLength = it.getInt(R.styleable.TextField_android_maxLength, Int.MAX_VALUE)
         }
 
+        keyListener = editText.keyListener
         isTextHidden = editText.transformationMethod == PasswordTransformationMethod.getInstance()
 
         enableInput()
@@ -424,17 +433,11 @@ class TextField @JvmOverloads constructor(
         isSaveEnabled = true
     }
 
-    /**
-     * Subscribe for theme change.
-     */
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
         ThemeManager.subscribe(this)
     }
 
-    /**
-     * Unsubscribe for theme change.
-     */
     override fun onDetachedFromWindow() {
         ThemeManager.unsubscribe(this)
         super.onDetachedFromWindow()
@@ -607,12 +610,13 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun ellipsize(enabled: Boolean) {
-        if (!enabled) {
+        if (enabled) {
+            editText.inputType = inputType
+            editText.keyListener = keyListener
+            editText.ellipsize = null
+        } else {
             editText.keyListener = null
             editText.ellipsize = TextUtils.TruncateAt.END
-        } else {
-            editText.inputType = inputType
-            editText.ellipsize = null
         }
         invalidateStyle()
         invalidateColors()
@@ -662,7 +666,7 @@ class TextField @JvmOverloads constructor(
         We need to place this hack-line because placeholder wouldn't change
         color as there is the check: "if (this.placeholderTextColor != placeholderTextColor)".
         But when we put font style to the placeholder, it changes the color and we need to get it back.
-        * */
+        */
         inputLayout.placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textAccent)
         inputLayout.placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
     }

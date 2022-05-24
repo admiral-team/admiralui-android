@@ -38,25 +38,25 @@ class ChatInputTest : ScreenshotTest {
     private fun checkByInflation(
         binding: ViewBinding = inputDefaultBinding
     ) {
-        //        TODO: uncomment when fix TextFieldSearch component
-//        with(binding.root as Input) {
-//            check()
-//        }
+        with(binding.root as Input) {
+            check()
+        }
     }
 
     private fun checkProgrammatically(
+        isEnabled: Boolean = true,
         text: String? = null,
         buttonIcon: Drawable? = ContextCompat.getDrawable(context, R.drawable.admiral_ic_arrow_down_outline)
     ) {
-//        TODO: uncomment when fix TextFieldSearch component
-//        val view = Input(wrappedContext).apply {
-//            this.text = text ?: ""
-//            this.hintText = "Введите сообщение"
-////            this.button.drawableEnd = buttonIcon
-//            this.iconStart = ContextCompat.getDrawable(context, R.drawable.admiral_ic_attach_file_outline)
-//        }
-//
-//        view.check()
+        val view = Input(wrappedContext).apply {
+            this.isEnabled = isEnabled
+            this.text = text ?: ""
+            this.hintText = "Введите сообщение"
+            this.button.drawableEnd = buttonIcon
+            this.iconStart = ContextCompat.getDrawable(context, R.drawable.admiral_ic_attach_file_outline)
+        }
+
+        view.check()
     }
 
     // region check programmatically
@@ -75,6 +75,14 @@ class ChatInputTest : ScreenshotTest {
     @Test
     fun checkProgrammaticallySmallTextState() {
         checkProgrammatically(
+            text = "Text"
+        )
+    }
+
+    @Test
+    fun checkProgrammaticallySmallTextDisabledState() {
+        checkProgrammatically(
+            isEnabled = false,
             text = "Text"
         )
     }

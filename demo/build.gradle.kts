@@ -145,6 +145,7 @@ dependencies {
     implementation(Libs.viewBinding)
     implementation(Libs.colorPickerView)
     implementation(Libs.expandableLayout)
+    implementation(Libs.inputMask)
 
     testImplementation(Libs.Kotlin.coroutinesTest)
     androidTestImplementation(Libs.Kotlin.coroutinesTest)

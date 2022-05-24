@@ -7,6 +7,7 @@ object Versions {
     val expandableLayout = "1.0.7"
     val junit = "4.13.2"
     val mockito = "3.0.0"
+    val inputMask = "6.1.0"
 
     object Sdk {
         val compileSdk = 31

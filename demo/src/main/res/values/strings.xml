@@ -1,6 +1,8 @@
 <resources>
     <string name="app_name">Admiral UI Android</string>
 
+    <string name="lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+
     <string name="yes">Да</string>
     <string name="no">Нет</string>
 
@@ -34,9 +36,8 @@
     <string name="cell_button">Button</string>
     <string name="cell_percent">Percent</string>
     <string name="cell_date">Date</string>
-    <string name="cell_subtitle_second">Subtitle second</string>
+    <string name="cell_subtitle_second">Subtitle 2</string>
     <string name="cell_summ">Summ</string>
-    <string name="cell_payment">payment</string>
     <string name="cell_more">More</string>
     <string name="cell_message">Message hello</string>
     <string name="cell_action">Действие</string>
@@ -69,6 +70,7 @@
     <string name="tabs_center_title">Center</string>
     <string name="tabs_standard_title">Standard Tabs</string>
     <string name="tabs_logo_title">Logo Tabs</string>
+    <string name="tabs_icon_title">Icon Tabs</string>
     <string name="tabs_informer_title">Informer Tabs</string>
     <string name="tabs_outline_title">Outline Slider Tabs</string>
     <string name="tabs_underline_slider_title">Underline Slider Tabs</string>
@@ -152,17 +154,14 @@
     <string name="text_fields_basic">Basic</string>
     <string name="text_fields_masked">Masked</string>
     <string name="text_fields_multiline">Multiline</string>
+    <string name="text_fields_bank_card_placeholder">1111 2222 3333 4444</string>
 
     <string name="cells_title">Cells</string>
     <string name="cells_base_title">Base Cells</string>
-    <string name="cells_base_label_title">Base Cells vs Lable</string>
-    <string name="cells_text_title">Text Cells</string>
-    <string name="cells_title_title">Title Cells</string>
-    <string name="cells_actionbar_title">Actionbar - Type one</string>
-    <string name="cells_actionbar2_title">Actionbar - Type two</string>
     <string name="cells_subtitle">Ячейки и списки</string>
     <string name="cells_base_cells_title">Base Cells</string>
     <string name="cells_leading_title">Leading elements</string>
+    <string name="cells_center_title">Center elements</string>
     <string name="cells_trailing_title">Trailing elements</string>
     <string name="cells_label_title">Label</string>
     <string name="cells_card_place">Card Place</string>
@@ -173,11 +172,8 @@
     <string name="cells_secondary_title">Secondary</string>
     <string name="title_cells_title">Title Cells</string>
     <string name="cells_primary_title">Primary</string>
-    <string name="cells_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
-    <string name="cells_cell_vs_icon_title">Text Cell vs Icon</string>
 
-    <string name="actionbar_title">Actionbar - Type one</string>
-    <string name="actionbar2_title">Actionbar - Type two</string>
+    <string name="actionbar_title">Actionbar</string>
     <string name="actionbar_more_clicked">More clicked</string>
     <string name="actionbar_email">Email</string>
     <string name="actionbar_star">Star</string>
@@ -187,6 +183,8 @@
     <string name="actionbar_edit_clicked">Edit clicked</string>
     <string name="actionbar_swipe">Swipe</string>
     <string name="actionbar_money_amount">50 000.00 ₽</string>
+    <string name="actionbar_default_title">Default</string>
+    <string name="actionbar_secondary_title">Secondary</string>
 
     <string name="buttons_title">Buttons</string>
     <string name="buttons_primary">Primary</string>
@@ -223,11 +221,15 @@
     <string name="informers_example_text">Text Informer</string>
 
     <string name="notifications_title">Notifications</string>
-    <string name="notifications_toast_title">Toast</string>
-    <string name="notifications_static_title">Static</string>
     <string name="notifications_action_title">Action</string>
-    <string name="notification_toast_text">Компонент появляется в верхней части страницы на мобильных девайсах и справа в верхней части страницы на планшетах только внутри приложения, автоматически исчезает по таймауту, по свайпу вверх или по нажатию на иконку закрытия если она присутствует.\n\nКомпонентов на странице может быть несколько, если они приходят одновременно наслаиваясь друг на друга и исчезают по собственному таймауту. При тапу на группу таких уведомлений они раскрываются в список.</string>
-    <string name="notification_action_text">Компонент используется для отмены совершенного действия, появляется внизу экрана поверх контента с обратным отсчетом времени в 5 секунд сразу после совершения какого-либо действия. \n\nКомпонентов на странице может быть несколько, если они приходят одновременно наслаиваясь друг на друга и исчезают по собственному таймауту. При тапу на группу таких уведомлений они раскрываются в список.</string>
+    <string name="notifications_action_text">Компонент используется для отмены совершенного действия, появляется внизу экрана поверх контента с обратным отсчетом времени в 5 секунд сразу после совершения какого-либо действия.</string>
+    <string name="notifications_action_show_action">Показать Action</string>
+    <string name="notifications_action_show_toast">Показать Toast</string>
+    <string name="notifications_action_action_text">Сообщение будет удалено</string>
+    <string name="notifications_action_cancel_text">Отмена</string>
+    <string name="notifications_static_title">Static</string>
+    <string name="notifications_toast_title">Toast</string>
+    <string name="notifications_toast_text">Компонент появляется в верхней части страницы на мобильных девайсах и справа в верхней части страницы на планшетах только внутри приложения, автоматически исчезает по таймауту, по свайпу вверх или по нажатию на иконку закрытия если она присутствует.\n\nКомпонентов на странице может быть несколько, если они приходят одновременно наслаиваясь друг на друга и исчезают по собственному таймауту. При тапу на группу таких уведомлений они раскрываются в список.</string>
 
     <string name="tags_chips_title">Tags &amp; Chips</string>
     <string name="tags_chips_subtitle">Теги и чипсы</string>
@@ -390,6 +392,7 @@
     <string name="chat_uploading_photo_six">Six Files</string>
     <string name="chat_uploading_file_title">Uploading File</string>
     <string name="chat_text_message_title">Text Message</string>
+    <string name="chat_text_message_mid_size">At breakpoint boundaries, mini units divide</string>
     <string name="chat_input_title">Input</string>
     <string name="chat_text_operation_title">Text Operation</string>
     <string name="chat_text_operation_default">Default</string>

@@ -1,0 +1,43 @@
+name: Add Nexus Publishing Certs
+description: 'Add all needed for nexus publishing certs to JDK'
+inputs:
+  certs_store_pass:
+    required: true
+    description: 'The certs store pass'
+runs:
+  using: 'composite'
+  steps:
+    - name: Add nexus cert
+      uses: ./.github/actions/add-java-cert
+      with:
+        cert_file: $GITHUB_WORKSPACE/../../setup_files/certs/nexus.pem
+        alias: 'nexus'
+        certs_store_pass: ${{ inputs.certs_store_pass }}
+
+    - name: Add sonar cert
+      uses: ./.github/actions/add-java-cert
+      with:
+        cert_file: $GITHUB_WORKSPACE/../../setup_files/certs/sonar.pem
+        alias: 'sonar'
+        certs_store_pass: ${{ inputs.certs_store_pass }}
+
+    - name: Add group_ca_2 cert
+      uses: ./.github/actions/add-java-cert
+      with:
+        cert_file: $GITHUB_WORKSPACE/../../setup_files/certs/Group_CA_2.pem
+        alias: 'group_ca_2'
+        certs_store_pass: ${{ inputs.certs_store_pass }}
+
+    - name: Add group_dso_ca_7 cert
+      uses: ./.github/actions/add-java-cert
+      with:
+        cert_file: $GITHUB_WORKSPACE/../../setup_files/certs/Group_DSO_CA_7.pem
+        alias: 'group_dso_ca_7'
+        certs_store_pass: ${{ inputs.certs_store_pass }}
+
+    - name: Add group_pki_root cert
+      uses: ./.github/actions/add-java-cert
+      with:
+        cert_file: $GITHUB_WORKSPACE/../../setup_files/certs/Group_PKI_Root.pem
+        alias: 'group_pki_root'
+        certs_store_pass: ${{ inputs.certs_store_pass }}

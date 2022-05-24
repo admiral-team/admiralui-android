@@ -4,15 +4,14 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.text.Editable
 import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.view.inputmethod.EditorInfo
 import androidx.annotation.ColorRes
 import androidx.core.content.res.use
-import androidx.core.view.doOnPreDraw
-import androidx.core.view.updateLayoutParams
 import androidx.core.widget.doAfterTextChanged
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
@@ -26,7 +25,6 @@ import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.ext.pixels
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
 
@@ -119,6 +117,22 @@ class TextFieldSearch @JvmOverloads constructor(
             setTextChangedListener()
         }
 
+    /**
+     * Displayed text in input.
+     */
+    var inputText: String
+        set(value) {
+            Handler(Looper.getMainLooper()).post {
+                editText?.setText(value) ?: Unit
+            }
+        }
+        get() {
+            if (editText?.text.isNullOrEmpty()) {
+                return ""
+            }
+            return editText?.text.toString()
+        }
+
     init {
         background = drawable(R.drawable.admiral_bg_rectangle_10dp)
         endIconMode = END_ICON_CLEAR_TEXT
@@ -133,6 +147,7 @@ class TextFieldSearch @JvmOverloads constructor(
             parseTextColors(it)
             parseBackgroundColors(it)
             parseDrawableStart(it)
+            parseTexts(it)
         }
 
         binding.editText.doAfterTextChanged { text ->
@@ -162,6 +177,11 @@ class TextFieldSearch @JvmOverloads constructor(
         isHintEnabled = true
         super.setHint(hint)
         isHintEnabled = false
+    }
+
+    private fun parseTexts(a: TypedArray) {
+        inputText = a.getString(R.styleable.TextFieldSearch_admiralText) ?: ""
+        placeholderText = a.getString(R.styleable.TextFieldSearch_admiralTextPlaceholder)
     }
 
     private fun parseDrawableStart(a: TypedArray) {

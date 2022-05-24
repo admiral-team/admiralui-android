@@ -12,14 +12,10 @@
         <com.admiral.uikit.components.appbar.Appbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:text="@string/tabs_logo_title"
-            app:admiralTextStyle="largetitle1" />
+            app:contentInsetStartWithNavigation="0dp"
+            app:admiralTitleTextGravity="center"
+            app:admiralTitleText="@string/tabs_icon_title" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabsState"

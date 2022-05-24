@@ -12,6 +12,7 @@ import com.admiral.demo.databinding.FmtChatBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.ChatFilesScreen
 import com.admiral.demo.screen.ChatImagesScreen
+import com.admiral.demo.screen.ChatInputScreen
 import com.admiral.demo.screen.ChatTextOperationScreen
 
 class ChatFragment : BaseFragment(R.layout.fmt_chat) {
@@ -23,14 +24,19 @@ class ChatFragment : BaseFragment(R.layout.fmt_chat) {
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
-        binding.uploadingPhoto.setOnClickListener {
-            navigationViewModel.open(ChatImagesScreen())
-        }
-        binding.uploadingFiles.setOnClickListener {
-            navigationViewModel.open(ChatFilesScreen())
-        }
-        binding.textOperation.setOnClickListener {
-            navigationViewModel.open(ChatTextOperationScreen())
+        with(binding) {
+            bcInput.setOnClickListener {
+                navigationViewModel.open(ChatInputScreen())
+            }
+            uploadingPhoto.setOnClickListener {
+                navigationViewModel.open(ChatImagesScreen())
+            }
+            uploadingFiles.setOnClickListener {
+                navigationViewModel.open(ChatFilesScreen())
+            }
+            textOperation.setOnClickListener {
+                navigationViewModel.open(ChatTextOperationScreen())
+            }
         }
     }
 

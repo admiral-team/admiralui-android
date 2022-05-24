@@ -10,6 +10,7 @@ import android.view.LayoutInflater
 import android.view.View
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
+import androidx.core.view.children
 import androidx.core.view.isVisible
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
@@ -19,7 +20,7 @@ import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.cell.unit.IconCellUnit
-import com.admiral.uikit.components.textfield.TextFieldSearch
+import com.admiral.uikit.components.textfield.TextFieldSearchOld
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
@@ -77,14 +78,14 @@ class Input @JvmOverloads constructor(
         set(value) {
             field = value
             Handler(Looper.getMainLooper()).post {
-                textFieldSearch.editText?.setText(value)
+                textFieldSearch.setText(value)
             }
         }
         get() {
-            if (textFieldSearch.editText?.editableText.isNullOrEmpty()) {
+            if (textFieldSearch.editableText.isNullOrEmpty()) {
                 return ""
             }
-            return textFieldSearch.editText?.text.toString()
+            return textFieldSearch.text.toString()
         }
 
     /**
@@ -103,7 +104,7 @@ class Input @JvmOverloads constructor(
             textFieldSearch.hint = value
         }
         get() {
-            if (textFieldSearch.editText?.editableText.isNullOrEmpty()) {
+            if (textFieldSearch.editableText.isNullOrEmpty()) {
                 return ""
             }
             return textFieldSearch.hint.toString()
@@ -118,7 +119,7 @@ class Input @JvmOverloads constructor(
     val textFlow: StateFlow<String?>
         get() = textFieldSearch.textFlow
 
-    private val textFieldSearch: TextFieldSearch by lazy { findViewById(R.id.admiralInputTextFieldSearch) }
+    private val textFieldSearch: TextFieldSearchOld by lazy { findViewById(R.id.admiralInputTextFieldSearch) }
     private val inputViewBackground: View by lazy { findViewById(R.id.admiralInputViewBackground) }
 
     init {
@@ -150,6 +151,13 @@ class Input @JvmOverloads constructor(
     override fun onDetachedFromWindow() {
         ThemeManager.unsubscribe(this)
         super.onDetachedFromWindow()
+    }
+
+    override fun setEnabled(enabled: Boolean) {
+        super.setEnabled(enabled)
+        children.forEach {
+            it.isEnabled = enabled
+        }
     }
 
     override fun onThemeChanged(theme: Theme) {
@@ -193,7 +201,8 @@ class Input @JvmOverloads constructor(
         iconStartCellUnit.iconTintColors =
             ColorState(
                 normalEnabled = iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
-                normalDisabled = iconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary,
+                normalDisabled = iconTintColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
                 pressed = iconTintColors?.pressed ?: ThemeManager.theme.palette.elementPrimary
             )
     }

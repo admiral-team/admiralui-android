@@ -10,12 +10,8 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtCellsBinding
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.demo.screen.ActionBar2Screen
 import com.admiral.demo.screen.ActionBarScreen
 import com.admiral.demo.screen.BaseCellsScreen
-import com.admiral.demo.screen.BaseLabelCellsScreen
-import com.admiral.demo.screen.CellsTextScreen
-import com.admiral.demo.screen.CellsTextTitleScreen
 
 class CellsFragment : BaseFragment(R.layout.fmt_cells) {
 
@@ -30,24 +26,8 @@ class CellsFragment : BaseFragment(R.layout.fmt_cells) {
             navigationViewModel.open(BaseCellsScreen())
         }
 
-        binding.btnBaseCellsLable.setOnClickListener {
-            navigationViewModel.open(BaseLabelCellsScreen())
-        }
-
-        binding.btnTextCells.setOnClickListener {
-            navigationViewModel.open(CellsTextScreen())
-        }
-
-        binding.btnTitleCells.setOnClickListener {
-            navigationViewModel.open(CellsTextTitleScreen())
-        }
-
         binding.btnActionBar.setOnClickListener {
             navigationViewModel.open(ActionBarScreen())
-        }
-
-        binding.btnActionBar2.setOnClickListener {
-            navigationViewModel.open(ActionBar2Screen())
         }
     }
 

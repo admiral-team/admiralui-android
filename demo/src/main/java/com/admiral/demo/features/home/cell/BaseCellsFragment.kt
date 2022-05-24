@@ -10,6 +10,7 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtCellsBaseBinding
 import com.admiral.demo.features.main.NavigationViewModel
+import com.admiral.demo.screen.BaseCellsCenterScreen
 import com.admiral.demo.screen.BaseCellsLeadingScreen
 import com.admiral.demo.screen.BaseCellsTrailingScreen
 
@@ -24,6 +25,10 @@ class BaseCellsFragment : BaseFragment(R.layout.fmt_cells_base) {
 
         binding.btnLeading.setOnClickListener {
             navigationViewModel.open(BaseCellsLeadingScreen())
+        }
+
+        binding.btnCenter.setOnClickListener {
+            navigationViewModel.open(BaseCellsCenterScreen())
         }
 
         binding.btnTrailing.setOnClickListener {
