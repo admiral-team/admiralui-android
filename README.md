@@ -1,8 +1,12 @@
-# Admiral UIKit
+# Admiral UI-Kit
 
 Библиотека визуальных компонентов для Android
 
 ![version](https://img.shields.io/badge/dynamic/json.svg?label=release&url=https://raw.githubusercontent.com/admiral-team/admiralui-android/main/version.json&query=$.external_version)
+
+<p align="center">
+<img src="/docs/readme-preview.png?raw=true" align="middle">
+</p>
 
 ## Общие сведения
 - Основной язык разработки `Kotlin`
