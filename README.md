@@ -1,5 +1,3 @@
-
-
 # Admiral UI Kit ![version](https://img.shields.io/badge/dynamic/json.svg?label=release&url=https://raw.githubusercontent.com/admiral-team/admiralui-android/main/version.json&query=$.external_version)
 
 Библиотека визуальных компонентов для `Android`
@@ -44,3 +42,13 @@
 
 ## Контрибьютерам
 Мы рады любой помощи, и вы можете помочь нам с развитием этого проекта. Подробности в [wiki](https://github.com/admiral-team/admiralui-android/wiki/%D0%9A%D0%BE%D0%BD%D1%82%D1%80%D0%B8%D0%B1%D1%8C%D1%8E%D1%82%D0%B5%D1%80%D0%B0%D0%BC)
+
+## Команда проекта
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/ton252"><img src="https://avatars.githubusercontent.com/u/13065321?v=4" width="80px;" alt="" /><br /><sub><b>Поляков Антон</b></sub></a><br /><a href="https://github.com/admiral-team/admiralui-android/commits?author=ton252" title="Code">👑</a></td>
+    <td align="center"><a href="https://github.com/timbaton"><img src="https://avatars.githubusercontent.com/u/20974161?v=4" width="80px;" alt="" /><br /><sub><b>Бадретдинов Тимур</b></sub></a><br /><a href="https://github.com/admiral-team/admiralui-android/commits?author=timbaton" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Samuel-Unknown"><img src="https://avatars.githubusercontent.com/u/4298267?v=4" width="80px;" alt="" /><br /><sub><b>Бабакаев Семён</b></sub></a><br /><a href="https://github.com/admiral-team/admiralui-android/commits?author=Samuel-Unknown" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Evgeniy-93"><img src="https://avatars.githubusercontent.com/u/101252323?v=4" width="80px;" alt="" /><br /><sub><b>Круцкий Евгений</b></sub></a><br /><a href="https://github.com/admiral-team/admiralui-android/commits?author=Evgeniy-93" title="Code">🛠</a></td>
+  </tr>
+</table>
