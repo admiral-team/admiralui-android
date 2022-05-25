@@ -1,12 +1,31 @@
-# Admiral UI-Kit
 
-Библиотека визуальных компонентов для Android
 
-![version](https://img.shields.io/badge/dynamic/json.svg?label=release&url=https://raw.githubusercontent.com/admiral-team/admiralui-android/main/version.json&query=$.external_version)
+# Admiral UI-KIT ![version](https://img.shields.io/badge/dynamic/json.svg?label=release&url=https://raw.githubusercontent.com/admiral-team/admiralui-android/main/version.json&query=$.external_version)
+
+Библиотека визуальных компонентов для `Android`
 
 <p align="center">
 <img src="/docs/readme-preview.png?raw=true" align="middle">
 </p>
+
+## Что такое UI-KIT?
+
+`UI-KIT` - это готовый набор элементов пользовательского интерфейса. Он
+- Позволяет придерживаться единого визуального стиля и интерфейсных решений
+- Ускоряет прототипирование
+- Экономит время дизайнеров и разработчиков
+
+## Почему Admiral UI-KIT?
+
+- **Множество готовых компонентов** - 30+ компонентов на базе `Android View` от кнопок и тектовых полей до таймпикера и календаря. *Компоненты на базе `Compose` находятся в разработке.
+- **Кастомизируемость** - компоненты имеют множество настраиваемых свойств.
+- **Темизация** - поддержка разных цветовых палитр, возможность создания собственных и мгновенное переключение между ними.
+- **Поддержка** - релизы выходят раз в две недели.
+- **Единый стиль на разных платформах** - есть библиотека под [iOS](https://github.com/admiral-team/admiralui-ios)
+- **Лицензия** - ...
+
+## Демо приложение
+Живым примером использования библиотеки `Admiral UI-KIT` является наше демо-приложение. С ним вы сможете оценить все реализованные в библиотеке компоненты в разных состояниях, с возможностью переключения встроенных цветовых тем и созданию собственных.
 
 ## Общие сведения
 - Основной язык разработки `Kotlin`
@@ -15,12 +34,12 @@
 ### Структура проекта
 Библиотека состоит из следующих основных модулей:
 
-- `admiral-resources` - иконки, шритфы
-- `admiral-themes` - механизм темизации на базе Android Views / XML
-- `admiral-themes-compose` - механизм темизации для Compose
-- `admiral-uikit` - UI компоненты на базе Android Views / XML
-- `admiral-uikit-compose` - UI компоненты для Compose
-- `admiral-uikit-common` - классы и extension методы общие для модулей admiral-uikit и admiral-uikit-compose
+- `admiral-resources` - иконки и шритфы
+- `admiral-themes` - механизм темизации на базе `Android View` / `XML`
+- `admiral-themes-compose` - механизм темизации для `Compose`
+- `admiral-uikit` - UI компоненты на базе `Android View` / `XML`
+- `admiral-uikit-compose` - UI компоненты для `Compose`
+- `admiral-uikit-common` - классы и extension-методы общие для модулей `admiral-uikit` и `admiral-uikit-compose`
 
 ## Подключение
 Подключение можно осуществить двумя способами:
@@ -38,7 +57,7 @@
 GITHUB_USERNAME=...
 GITHUB_TOKEN=...
 ```
-3. Добавить в `settings.gradle` путь к репозиторию + логин и токен пользователя от Github:
+3. Добавить зависимость от репозитория. Например это можно сделать в `settings.gradle` прописав путь к репозиторию + логин и токен Github-пользователя:
 ```
 dependencyResolutionManagement {
     repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
@@ -68,10 +87,10 @@ dependencyResolutionManagement {
     }
 }
 ```
-4. Добавить необходимые зависимости в `build.gradle`
+4. Добавить необходимые зависимости в `build.gradle`. Релизные версии можно посмотреть [тут](https://github.com/admiral-team/admiralui-android/releases)
 ```
 dependencies {
-    def admiralui_version = "2.0.0"
+    def admiralui_version = "4.1.0"
     implementation "admiralui-android:admiral-uikit:$admiralui_version"
     implementation "admiralui-android:admiral-uikit-compose:$admiralui_version"
  // implementation "admiralui-android:admiral-resources:$admiralui_version"
@@ -88,7 +107,7 @@ dependencies {
 <details>
     <summary>Инструкция</summary>
 
-1. Скачать репозиторий этого проекта и переключиться develop ветку
+1. Скачать репозиторий этого проекта и переключиться на develop ветку
 2. Собрать артефакты для локального репозитория. Для этого запустить в терминале студии команду
 ```
 ./gradlew publishToMavenLocal -PartifactIdSuffix="-develop"
@@ -122,8 +141,13 @@ dependencies {
 с кешем для Gradle
 </details>
 
-## Использование компонентов:
+## Использование компонентов
 Дополнительная инструкция по использованию компонентов [Readme](docs/COMPONENTS_USAGE.md)
 
-## Генерация документации:
-Сгенерировать документацию можно с помощью плагина [Dokka](https://github.com/Kotlin/dokka)
+## Генерация документации 
+Сгенерировать документацию к коду можно с помощью плагина [Dokka](https://github.com/Kotlin/dokka)
+
+## Контрибьютерам
+Мы рады любой помощи, и вы можете помочь нам с развитием этого проекта.
+Что бы завести issue пожалуйста используйте готовые [шаблоны](https://github.com/admiral-team/admiralui-android/issues/new/choose).
+А для создания Pull Request необходимо создать fork, внести изменения в код и создать Pull Request в этот проект.
