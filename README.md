@@ -46,7 +46,7 @@
 - `admiral-uikit-common` - классы и extension-методы общие для модулей `admiral-uikit` и `admiral-uikit-compose`
 
 ## Использование компонентов
-Дополнительная инструкция по использованию компонентов [Readme](docs/COMPONENTS_USAGE.md)
+Дополнительная инструкция по использованию компонентов [readme](docs/COMPONENTS_USAGE.md)
 
 ## Генерация документации 
 Сгенерировать документацию к коду можно с помощью плагина [Dokka](https://github.com/Kotlin/dokka)
