@@ -35,16 +35,6 @@
 - Основной язык разработки `Kotlin`
 - Минимально поддерживаемая версия Android: `API 21`
 
-## Структура проекта
-Библиотека состоит из следующих основных модулей:
-
-- `admiral-resources` - иконки и шритфы
-- `admiral-themes` - механизм темизации на базе `Android View` / `XML`
-- `admiral-themes-compose` - механизм темизации для `Compose`
-- `admiral-uikit` - UI компоненты на базе `Android View` / `XML`
-- `admiral-uikit-compose` - UI компоненты для `Compose`
-- `admiral-uikit-common` - классы и extension-методы общие для модулей `admiral-uikit` и `admiral-uikit-compose`
-
 ## Использование компонентов
 Дополнительная инструкция по использованию компонентов [readme](docs/COMPONENTS_USAGE.md)
 
