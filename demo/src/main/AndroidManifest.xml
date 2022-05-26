@@ -3,6 +3,9 @@
     package="com.admiral.demo"
     android:sharedUserId="com.admiral.demo.uid">
 
+    <uses-feature android:name="android.hardware.camera.any" />
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name="com.admiral.demo.app.App"
         android:allowBackup="false"

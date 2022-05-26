@@ -12,6 +12,8 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtTextFieldsCardNumberBinding
 import com.admiral.demo.features.main.NavigationViewModel
+import com.admiral.demo.screen.CameraScreen
+import com.admiral.uikit.components.textfield.TextField
 import com.admiral.uikit.components.textfield.TextFieldStyle
 import com.admiral.uikit.view.checkable.CheckableGroup
 import com.redmadrobot.inputmask.MaskedTextChangedListener
@@ -64,6 +66,12 @@ class TextFieldsCardNumberFragment : BaseFragment(R.layout.fmt_text_fields_card_
                     editText,
                     BANK_CARD_MASK
                 )
+
+                onIconClickListener = object : TextField.OnIconClickListener {
+                    override fun onClick() {
+                        navigationViewModel.open(CameraScreen())
+                    }
+                }
             }
         }
     }
