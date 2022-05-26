@@ -11,8 +11,8 @@ import android.os.Parcelable
 import android.text.InputFilter
 import android.text.TextUtils
 import android.text.TextWatcher
-import android.text.method.DigitsKeyListener
 import android.text.method.HideReturnsTransformationMethod
+import android.text.method.KeyListener
 import android.text.method.PasswordTransformationMethod
 import android.util.AttributeSet
 import android.util.SparseArray
@@ -22,7 +22,6 @@ import android.view.View
 import android.view.View.OnFocusChangeListener
 import android.view.inputmethod.EditorInfo
 import androidx.annotation.ColorInt
-import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.core.view.isGone
@@ -356,9 +355,9 @@ class TextField @JvmOverloads constructor(
         }
 
     /**
-     * [DigitsKeyListener] for the EditText.
+     * [KeyListener] for the EditText.
      */
-    var keyListener: DigitsKeyListener? = null
+    var keyListener: KeyListener? = null
         set(value) {
             field = value
             editText.keyListener = keyListener
@@ -424,6 +423,7 @@ class TextField @JvmOverloads constructor(
             maxLength = it.getInt(R.styleable.TextField_android_maxLength, Int.MAX_VALUE)
         }
 
+        keyListener = editText.keyListener
         isTextHidden = editText.transformationMethod == PasswordTransformationMethod.getInstance()
 
         enableInput()
