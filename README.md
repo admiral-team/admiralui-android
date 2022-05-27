@@ -60,7 +60,7 @@ See the [readme](docs/COMPONENTS_USAGE.md) for more instructions on using compon
 All public methods and classes are documented. You can also generate code documentation using the [Dokka](https://github.com/Kotlin/dokka) plugin.
 
 ## Contributors
-We welcome any help, and you can help us with the development of this project. Details in [wiki](https://github.com/admiral-team/admiralui-android/wiki/Contributors).
+We welcome any help, and you can help us with the development of this project. Details in the [wiki](https://github.com/admiral-team/admiralui-android/wiki/Contributors).
 
 ## Project team
 <table>
