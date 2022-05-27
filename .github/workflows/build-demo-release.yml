@@ -38,7 +38,7 @@ jobs:
           disable-animations: true
           script: |
             chmod +x gradlew
-            ./gradlew executeScreenshotTests
+            ./gradlew demo:connectedAndroidTest -Pandroid.testInstrumentationRunnerArguments.filter=com.admiral.demo.filters.ScreenShotTestFilter
 
       - name: Build demo release apk
         run: |

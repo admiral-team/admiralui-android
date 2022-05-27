@@ -10,12 +10,14 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtTextFieldsBinding
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.demo.screen.StandardDoubleTextFieldsScreen
-import com.admiral.demo.screen.StandardFeedbackTextFieldsScreen
-import com.admiral.demo.screen.StandardNumberTextFieldsScreen
-import com.admiral.demo.screen.StandardPincodeTextFieldsScreen
-import com.admiral.demo.screen.StandardSliderTextFieldsScreen
-import com.admiral.demo.screen.StandardTextFieldsScreen
+import com.admiral.demo.screen.TextFieldsCardNumberScreen
+import com.admiral.demo.screen.TextFieldsDoubleScreen
+import com.admiral.demo.screen.TextFieldsFeedbackScreen
+import com.admiral.demo.screen.TextFieldsStandardScreen
+import com.admiral.demo.screen.TextFieldsNumberScreen
+import com.admiral.demo.screen.TextFieldsPincodeScreen
+import com.admiral.demo.screen.TextFieldsSliderScreen
+import com.admiral.demo.screen.TextFieldsSmsScreen
 
 class TextFieldsFragment : BaseFragment(R.layout.fmt_text_fields) {
 
@@ -27,27 +29,35 @@ class TextFieldsFragment : BaseFragment(R.layout.fmt_text_fields) {
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
         binding.btnStandard.setOnClickListener {
-            navigationViewModel.open(StandardTextFieldsScreen())
+            navigationViewModel.open(TextFieldsStandardScreen())
         }
 
         binding.btnDouble.setOnClickListener {
-            navigationViewModel.open(StandardDoubleTextFieldsScreen())
+            navigationViewModel.open(TextFieldsDoubleScreen())
         }
 
         binding.btnSlider.setOnClickListener {
-            navigationViewModel.open(StandardSliderTextFieldsScreen())
+            navigationViewModel.open(TextFieldsSliderScreen())
+        }
+
+        binding.btnCardNumber.setOnClickListener {
+            navigationViewModel.open(TextFieldsCardNumberScreen())
+        }
+
+        binding.btnSmsCode.setOnClickListener {
+            navigationViewModel.open(TextFieldsSmsScreen())
         }
 
         binding.btnNumber.setOnClickListener {
-            navigationViewModel.open(StandardNumberTextFieldsScreen())
+            navigationViewModel.open(TextFieldsNumberScreen())
         }
 
         binding.btnFeedback.setOnClickListener {
-            navigationViewModel.open(StandardFeedbackTextFieldsScreen())
+            navigationViewModel.open(TextFieldsFeedbackScreen())
         }
 
         binding.btnPincode.setOnClickListener {
-            navigationViewModel.open(StandardPincodeTextFieldsScreen())
+            navigationViewModel.open(TextFieldsPincodeScreen())
         }
     }
 
