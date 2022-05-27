@@ -15,7 +15,7 @@ import com.admiral.uikit.components.keyboard.KeyboardNum
 import com.admiral.uikit.components.pincode.PinCodeState
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class PincodeTextFieldsFragment : BaseFragment(R.layout.fmt_text_fields_pincode) {
+class TextFieldsPincodeFragment : BaseFragment(R.layout.fmt_text_fields_pincode) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTextFieldsPincodeBinding::bind)

@@ -8,6 +8,7 @@ import androidx.test.espresso.matcher.ViewMatchers
 import com.karumi.shot.ScreenshotTest
 import com.admiral.demo.app.AppActivity
 import com.admiral.demo.app.AppActivity.Companion.KEY_IS_TEST
+import com.admiral.demo.ext.BetterScrollTo
 import org.junit.Rule
 import org.junit.Test
 
@@ -17,7 +18,7 @@ class TextFieldsTest : ScreenshotTest {
     var activityRule: IntentsTestRule<AppActivity> = IntentsTestRule(AppActivity::class.java, true, false)
 
     @Test
-    fun checkTextFieldStandardStandardDefault() {
+    fun checkTextFieldStandardDefault() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -26,14 +27,13 @@ class TextFieldsTest : ScreenshotTest {
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandardIcon)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.defaultTab)).perform(ViewActions.click())
 
         compareScreenshot(activity)
     }
 
     @Test
-    fun checkTextFieldStandardStandardReadOnly() {
+    fun checkTextFieldStandardReadOnly() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -42,14 +42,13 @@ class TextFieldsTest : ScreenshotTest {
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandardIcon)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.read)).perform(ViewActions.click())
 
         compareScreenshot(activity)
     }
 
     @Test
-    fun checkTextFieldStandardStandardError() {
+    fun checkTextFieldStandardError() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -58,14 +57,13 @@ class TextFieldsTest : ScreenshotTest {
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandardIcon)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.error)).perform(ViewActions.click())
 
         compareScreenshot(activity)
     }
 
     @Test
-    fun checkTextFieldStandardStandardDisabled() {
+    fun checkTextFieldStandardDisabled() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -74,14 +72,13 @@ class TextFieldsTest : ScreenshotTest {
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandardIcon)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.disabled)).perform(ViewActions.click())
 
         compareScreenshot(activity)
     }
 
     @Test
-    fun checkTextFieldStandardCardNumberDefault() {
+    fun checkTextFieldCardNumberDefault() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -89,7 +86,6 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnCardNumber)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.defaultTab)).perform(ViewActions.click())
 
@@ -97,7 +93,7 @@ class TextFieldsTest : ScreenshotTest {
     }
 
     @Test
-    fun checkTextFieldStandardCardNumberError() {
+    fun checkTextFieldCardNumberError() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -105,7 +101,6 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnCardNumber)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.error)).perform(ViewActions.click())
 
@@ -113,7 +108,7 @@ class TextFieldsTest : ScreenshotTest {
     }
 
     @Test
-    fun checkTextFieldStandardCardNumberDisabled() {
+    fun checkTextFieldCardNumberDisabled() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -121,7 +116,6 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnCardNumber)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.disabled)).perform(ViewActions.click())
 
@@ -129,7 +123,7 @@ class TextFieldsTest : ScreenshotTest {
     }
 
     @Test
-    fun checkTextFieldStandardSmsCodeDefault() {
+    fun checkTextFieldSmsCodeDefault() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -137,7 +131,6 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnSmsCode)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.defaultTab)).perform(ViewActions.click())
 
@@ -145,7 +138,7 @@ class TextFieldsTest : ScreenshotTest {
     }
 
     @Test
-    fun checkTextFieldStandardSmsCodeError() {
+    fun checkTextFieldSmsCodeError() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -153,7 +146,6 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnSmsCode)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.error)).perform(ViewActions.click())
 
@@ -161,7 +153,7 @@ class TextFieldsTest : ScreenshotTest {
     }
 
     @Test
-    fun checkTextFieldStandardSmsCodeDisabled() {
+    fun checkTextFieldSmsCodeDisabled() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
@@ -169,7 +161,6 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
-        Espresso.onView(ViewMatchers.withId(R.id.btnStandard)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.btnSmsCode)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.disabled)).perform(ViewActions.click())
 
@@ -350,6 +341,7 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.btnPincode)).perform(BetterScrollTo())
         Espresso.onView(ViewMatchers.withId(R.id.btnPincode)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.defaultTab)).perform(ViewActions.click())
 
@@ -365,6 +357,7 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.btnPincode)).perform(BetterScrollTo())
         Espresso.onView(ViewMatchers.withId(R.id.btnPincode)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.successTab)).perform(ViewActions.click())
 
@@ -380,6 +373,7 @@ class TextFieldsTest : ScreenshotTest {
 
         Espresso.onView(ViewMatchers.withId(R.id.mainMenuHome)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.textFieldsButton)).perform(ViewActions.click())
+        Espresso.onView(ViewMatchers.withId(R.id.btnPincode)).perform(BetterScrollTo())
         Espresso.onView(ViewMatchers.withId(R.id.btnPincode)).perform(ViewActions.click())
         Espresso.onView(ViewMatchers.withId(R.id.error)).perform(ViewActions.click())
 

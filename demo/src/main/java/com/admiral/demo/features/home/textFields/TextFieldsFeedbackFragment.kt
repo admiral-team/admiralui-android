@@ -8,31 +8,30 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
-import com.admiral.demo.databinding.FmtTextFieldsStandardBinding
+import com.admiral.demo.databinding.FmtTextFieldsFeedbackBinding
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.demo.screen.StandardCardTextFieldsScreen
-import com.admiral.demo.screen.StandardIconTextFieldsScreen
-import com.admiral.demo.screen.StandardSmsTextFieldsScreen
+import com.admiral.uikit.view.checkable.CheckableGroup
 
-class StandardTextFieldsFragment : BaseFragment(R.layout.fmt_text_fields_standard) {
+class TextFieldsFeedbackFragment : BaseFragment(R.layout.fmt_text_fields_feedback) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
-    private val binding by viewBinding(FmtTextFieldsStandardBinding::bind)
+    private val binding by viewBinding(FmtTextFieldsFeedbackBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
-        binding.btnStandardIcon.setOnClickListener {
-            navigationViewModel.open(StandardIconTextFieldsScreen())
-        }
-
-        binding.btnCardNumber.setOnClickListener {
-            navigationViewModel.open(StandardCardTextFieldsScreen())
-        }
-
-        binding.btnSmsCode.setOnClickListener {
-            navigationViewModel.open(StandardSmsTextFieldsScreen())
+        binding.tabs.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
+            override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
+                when (checkedId) {
+                    binding.defaultTab.id -> {
+                        binding.textField.isEnabled = true
+                    }
+                    binding.disabledTab.id -> {
+                        binding.textField.isEnabled = false
+                    }
+                }
+            }
         }
     }
 
