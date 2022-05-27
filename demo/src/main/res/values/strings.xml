@@ -129,12 +129,15 @@
     <string name="text_fields_default">Default</string>
     <string name="text_fields_read_only">Read Only</string>
     <string name="text_fields_error">Error</string>
+    <string name="text_fields_success">Success</string>
     <string name="text_fields_disabled">Disabled</string>
     <string name="text_fields_text">Text</string>
     <string name="text_fields_sms_text">67653</string>
-    <string name="text_fields_number_text">1111 2222 3333 4444</string>
+    <string name="text_fields_card_number_text">1111 2222 3333 4444</string>
+    <string name="text_fields_number_optional_label">Optional label</string>
     <string name="text_fields_feedback_title">Feedback</string>
     <string name="text_fields_optional_label">label</string>
+    <string name="text_fields_digits_count">Количество знаков</string>
     <string name="text_fields_slider_optional_label">Optional label</string>
     <string name="text_fields_example_slider_left">100</string>
     <string name="text_fields_example_slider_right">10 000</string>
