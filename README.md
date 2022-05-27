@@ -3,7 +3,7 @@
 Библиотека визуальных компонентов для `Android`
 
 <p align="center">
-<img src="/docs/readme-preview.png?raw=true" align="middle">
+<img src="/docs/readme-preview.gif?raw=true" align="middle">
 </p>
 
 ## Что такое UI Kit?
