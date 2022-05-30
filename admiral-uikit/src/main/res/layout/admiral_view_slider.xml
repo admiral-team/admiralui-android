@@ -23,7 +23,7 @@
         app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1">
 
         <com.google.android.material.textfield.TextInputEditText
-            android:id="@+id/editText"
+            android:id="@+id/textFieldSearchEditText"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"

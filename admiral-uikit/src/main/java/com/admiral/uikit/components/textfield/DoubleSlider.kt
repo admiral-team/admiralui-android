@@ -185,7 +185,7 @@ class DoubleSlider @JvmOverloads constructor(
      * Standard [EditText] for settings filters, formatter, etc.
      */
     val editText: EditText
-        get() = binding.editText
+        get() = binding.textFieldSearchEditText
 
     /**
      * Standard [EditText] for settings filters, formatter, etc.

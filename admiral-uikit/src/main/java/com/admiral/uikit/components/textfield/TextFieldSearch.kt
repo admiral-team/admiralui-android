@@ -150,7 +150,7 @@ class TextFieldSearch @JvmOverloads constructor(
             parseTexts(it)
         }
 
-        binding.editText.doAfterTextChanged { text ->
+        binding.textFieldSearchEditText.doAfterTextChanged { text ->
             textFlowField.value = text.toString()
         }
     }
@@ -221,7 +221,7 @@ class TextFieldSearch @JvmOverloads constructor(
     }
 
     private fun invalidateHintColors() {
-        binding.editText.setHintTextColor(
+        binding.textFieldSearchEditText.setHintTextColor(
             colorStateList(
                 enabled = hintTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary,
                 pressed = hintTextColors?.pressed ?: ThemeManager.theme.palette.textSecondary,
@@ -232,7 +232,7 @@ class TextFieldSearch @JvmOverloads constructor(
     }
 
     private fun invalidateTextColors() {
-        binding.editText.setTextColor(
+        binding.textFieldSearchEditText.setTextColor(
             colorStateList(
                 enabled = inputTextColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
                 pressed = inputTextColors?.pressed ?: ThemeManager.theme.palette.textPrimary,
@@ -262,7 +262,7 @@ class TextFieldSearch @JvmOverloads constructor(
     }
 
     private fun setTextChangedListener() {
-        with(binding.editText) {
+        with(binding.textFieldSearchEditText) {
             addTextChangedListener(
                 object : TextWatcher {
                     override fun afterTextChanged(editable: Editable?) = Unit
@@ -287,7 +287,7 @@ class TextFieldSearch @JvmOverloads constructor(
     }
 
     private fun invalidateCursorColor() {
-        binding.editText.apply {
+        binding.textFieldSearchEditText.apply {
             highlightColor = ThemeManager.theme.palette.backgroundAccent.withAlpha()
             if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.Q) {
                 textCursorDrawable = drawable(R.drawable.admiral_img_cursor_drawable)

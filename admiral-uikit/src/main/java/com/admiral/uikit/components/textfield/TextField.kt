@@ -381,7 +381,7 @@ class TextField @JvmOverloads constructor(
     /**
      * Standard [TextInputEditText]. It's better to use it only for settings filters, formatter, etc.
      */
-    val editText: TextInputEditText by lazy { findViewById(R.id.editText) }
+    val editText: TextInputEditText by lazy { findViewById(R.id.textFieldSearchEditText) }
 
     private val mainContentContainer: LinearLayout by lazy { findViewById(R.id.admiralViewTextFieldRightViews) }
 

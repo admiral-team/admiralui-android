@@ -211,7 +211,7 @@ class Slider @JvmOverloads constructor(
      * Standard [EditText] for settings filters, formatter, etc.
      */
     val editText: EditText
-        get() = binding.editText
+        get() = binding.textFieldSearchEditText
 
     /**
      * Listener for the slider. Called every time the value is changed.
@@ -499,7 +499,7 @@ class Slider @JvmOverloads constructor(
             disabled = inputTextColor?.withAlpha() ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = inputTextColor ?: ThemeManager.theme.palette.textPrimary
         )
-        binding.editText.setTextColor(editTextColorState)
+        binding.textFieldSearchEditText.setTextColor(editTextColorState)
     }
 
     private fun invalidateTextHint() {
