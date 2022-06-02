@@ -53,7 +53,7 @@
             app:checkedId="@+id/tab2">
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                android:id="@+id/tab2"
+                android:id="@+id/tabOne2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -61,6 +61,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabTwo2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -86,7 +87,7 @@
             app:checkedId="@+id/tab3">
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                android:id="@+id/tab3"
+                android:id="@+id/tabOne3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -94,6 +95,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabTwo3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -101,6 +103,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabThree3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -126,7 +129,7 @@
             app:checkedId="@+id/tab4">
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                android:id="@+id/tab4"
+                android:id="@+id/tabOne4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -134,6 +137,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabTwo4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -141,6 +145,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabThree4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -148,6 +153,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabFour4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -173,7 +179,7 @@
             app:checkedId="@+id/tab5">
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
-                android:id="@+id/tab5"
+                android:id="@+id/tabOne5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -181,6 +187,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabTwo5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -188,6 +195,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabThree5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -195,6 +203,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabFour5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -202,6 +211,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabFive5"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
@@ -236,6 +246,7 @@
                 app:admiralUnderlinePadding="2dp" />
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
+                android:id="@+id/tabNotification2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
