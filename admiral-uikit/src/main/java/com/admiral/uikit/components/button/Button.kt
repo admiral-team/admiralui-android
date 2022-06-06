@@ -120,7 +120,7 @@ class Button @JvmOverloads constructor(
     var drawableTintColor: ColorState? = null
         set(value) {
             field = value
-            invalidateDrawableColors()
+            invalidateDrawable()
         }
 
     /**
@@ -129,7 +129,7 @@ class Button @JvmOverloads constructor(
     var drawableEnd: Drawable? = null
         set(value) {
             field = value
-            invalidateDrawableColors()
+            invalidateDrawable()
         }
 
     /**
@@ -138,7 +138,13 @@ class Button @JvmOverloads constructor(
     var drawableStart: Drawable? = null
         set(value) {
             field = value
-            invalidateDrawableColors()
+            invalidateDrawable()
+        }
+
+    var drawablePadding: Float = 0f
+        set(value) {
+            field = value
+            invalidateDrawable()
         }
 
     /**
@@ -173,6 +179,7 @@ class Button @JvmOverloads constructor(
 
             actionTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
             additionalTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
+            drawablePadding = it.getDimension(R.styleable.Button_android_drawablePadding, 0f)
 
             val drawableStartId = it.getResourceId(R.styleable.Button_android_drawableStart, 0)
             val drawableEndId = it.getResourceId(R.styleable.Button_android_drawableEnd, 0)
@@ -347,7 +354,7 @@ class Button @JvmOverloads constructor(
         actionTextView.textColor = colorState
     }
 
-    private fun invalidateDrawableColors() {
+    private fun invalidateDrawable() {
         val colorState = when (buttonStyle) {
             ButtonStyle.Primary -> ColorState(
                 normalEnabled = drawableTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
@@ -371,6 +378,7 @@ class Button @JvmOverloads constructor(
                 drawableEnd,
                 null
             )
+            compoundDrawablePadding = drawablePadding.toInt()
         }
     }
 

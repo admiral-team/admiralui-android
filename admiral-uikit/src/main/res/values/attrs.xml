@@ -294,6 +294,7 @@
         <attr name="android:textAllCaps" />
         <attr name="android:drawableStart" />
         <attr name="android:drawableEnd" />
+        <attr name="android:drawablePadding" />
 
         <attr name="admiralIconTintColorNormalEnabled" />
         <attr name="admiralIconTintColorNormalDisabled" />

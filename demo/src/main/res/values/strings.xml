@@ -191,6 +191,10 @@
 
     <string name="buttons_title">Buttons</string>
     <string name="buttons_primary">Primary</string>
+    <string name="buttons_primary_title">Primary buttons</string>
+    <string name="buttons_secondary_title">Secondary buttons</string>
+    <string name="buttons_ghost_title">Ghost buttons</string>
+    <string name="buttons_other_title">Other buttons</string>
     <string name="buttons_example_chose">Выбрать</string>
     <string name="buttons_example_date">08.06.20 — 14.08.20</string>
     <string name="buttons_example_big">Big Button</string>

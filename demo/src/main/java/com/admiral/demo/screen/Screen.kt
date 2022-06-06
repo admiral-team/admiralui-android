@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import com.admiral.demo.ext.putEnumExtra
 import com.admiral.demo.ext.withArgs
 import com.admiral.demo.features.feedback.FeedbackFragment
-import com.admiral.demo.features.home.ButtonsFragment
 import com.admiral.demo.features.home.CheckBoxFragment
 import com.admiral.demo.features.home.LinksFragment
 import com.admiral.demo.features.home.RadioButtonFragment
@@ -19,6 +18,12 @@ import com.admiral.demo.features.home.alert.PopUpFragment
 import com.admiral.demo.features.home.badges.BadgesFragment
 import com.admiral.demo.features.home.badges.BadgesNormalFragment
 import com.admiral.demo.features.home.badges.BadgesSmallFragment
+import com.admiral.demo.features.home.buttons.ButtonsFragment
+import com.admiral.demo.features.home.buttons.GhostButtonsFragment
+import com.admiral.demo.features.home.buttons.OtherButtonsFragment
+import com.admiral.demo.features.home.buttons.PrimaryButtonsFragment
+import com.admiral.demo.features.home.buttons.RulesButtonsFragment
+import com.admiral.demo.features.home.buttons.SecondaryButtonsFragment
 import com.admiral.demo.features.home.calendar.CalendarFragment
 import com.admiral.demo.features.home.calendar.CalendarHorizontalFragment
 import com.admiral.demo.features.home.calendar.CalendarVerticalFragment
@@ -493,4 +498,29 @@ class ChatFilesScreen : Screen() {
 @Parcelize
 class ChatTextOperationScreen : Screen() {
     override fun getFragment() = ChatTextOperationFragment()
+}
+
+@Parcelize
+class PrimaryButtonsScreen : Screen() {
+    override fun getFragment() = PrimaryButtonsFragment()
+}
+
+@Parcelize
+class SecondaryButtonsScreen : Screen() {
+    override fun getFragment() = SecondaryButtonsFragment()
+}
+
+@Parcelize
+class GhostButtonsScreen : Screen() {
+    override fun getFragment() = GhostButtonsFragment()
+}
+
+@Parcelize
+class RulesButtonsScreen : Screen() {
+    override fun getFragment() = RulesButtonsFragment()
+}
+
+@Parcelize
+class OtherButtonsScreen : Screen() {
+    override fun getFragment() = OtherButtonsFragment()
 }
