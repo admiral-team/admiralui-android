@@ -5,7 +5,6 @@ import androidx.fragment.app.Fragment
 import com.admiral.demo.ext.putEnumExtra
 import com.admiral.demo.ext.withArgs
 import com.admiral.demo.features.feedback.FeedbackFragment
-import com.admiral.demo.features.home.ButtonsFragment
 import com.admiral.demo.features.home.CheckBoxFragment
 import com.admiral.demo.features.home.LinksFragment
 import com.admiral.demo.features.home.RadioButtonFragment
@@ -19,6 +18,12 @@ import com.admiral.demo.features.home.alert.PopUpFragment
 import com.admiral.demo.features.home.badges.BadgesFragment
 import com.admiral.demo.features.home.badges.BadgesNormalFragment
 import com.admiral.demo.features.home.badges.BadgesSmallFragment
+import com.admiral.demo.features.home.buttons.ButtonsFragment
+import com.admiral.demo.features.home.buttons.GhostButtonsFragment
+import com.admiral.demo.features.home.buttons.OtherButtonsFragment
+import com.admiral.demo.features.home.buttons.PrimaryButtonsFragment
+import com.admiral.demo.features.home.buttons.RulesButtonsFragment
+import com.admiral.demo.features.home.buttons.SecondaryButtonsFragment
 import com.admiral.demo.features.home.calendar.CalendarFragment
 import com.admiral.demo.features.home.calendar.CalendarHorizontalFragment
 import com.admiral.demo.features.home.calendar.CalendarVerticalFragment
@@ -65,15 +70,14 @@ import com.admiral.demo.features.home.tabs.TabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineCenterTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineSliderTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineTabsFragment
-import com.admiral.demo.features.home.textFields.DoubleTextFieldsFragment
-import com.admiral.demo.features.home.textFields.FeedbackTextFieldsFragment
-import com.admiral.demo.features.home.textFields.NumberTextFieldsFragment
-import com.admiral.demo.features.home.textFields.PincodeTextFieldsFragment
-import com.admiral.demo.features.home.textFields.SliderTextFieldsFragment
-import com.admiral.demo.features.home.textFields.StandardCardTextFieldsFragment
-import com.admiral.demo.features.home.textFields.StandardIconTextFieldsFragment
-import com.admiral.demo.features.home.textFields.StandardSmsTextFieldsFragment
-import com.admiral.demo.features.home.textFields.StandardTextFieldsFragment
+import com.admiral.demo.features.home.textFields.TextFieldsDoubleFragment
+import com.admiral.demo.features.home.textFields.TextFieldsFeedbackFragment
+import com.admiral.demo.features.home.textFields.TextFieldsNumberFragment
+import com.admiral.demo.features.home.textFields.TextFieldsPincodeFragment
+import com.admiral.demo.features.home.textFields.TextFieldsSliderFragment
+import com.admiral.demo.features.home.textFields.TextFieldsCardNumberFragment
+import com.admiral.demo.features.home.textFields.TextFieldsStandardFragment
+import com.admiral.demo.features.home.textFields.TextFieldsSmsFragment
 import com.admiral.demo.features.home.textFields.TextFieldsFragment
 import com.admiral.demo.features.home.theme.ThemeCreateFragment
 import com.admiral.demo.features.home.theme.ThemeFragment
@@ -247,48 +251,43 @@ class TextFieldsScreen : Screen() {
 }
 
 @Parcelize
-class StandardTextFieldsScreen : Screen() {
-    override fun getFragment() = StandardTextFieldsFragment()
+class TextFieldsStandardScreen : Screen() {
+    override fun getFragment() = TextFieldsStandardFragment()
 }
 
 @Parcelize
-class StandardIconTextFieldsScreen : Screen() {
-    override fun getFragment() = StandardIconTextFieldsFragment()
+class TextFieldsDoubleScreen : Screen() {
+    override fun getFragment() = TextFieldsDoubleFragment()
 }
 
 @Parcelize
-class StandardDoubleTextFieldsScreen : Screen() {
-    override fun getFragment() = DoubleTextFieldsFragment()
+class TextFieldsSliderScreen : Screen() {
+    override fun getFragment() = TextFieldsSliderFragment()
 }
 
 @Parcelize
-class StandardSliderTextFieldsScreen : Screen() {
-    override fun getFragment() = SliderTextFieldsFragment()
+class TextFieldsNumberScreen : Screen() {
+    override fun getFragment() = TextFieldsNumberFragment()
 }
 
 @Parcelize
-class StandardNumberTextFieldsScreen : Screen() {
-    override fun getFragment() = NumberTextFieldsFragment()
+class TextFieldsFeedbackScreen : Screen() {
+    override fun getFragment() = TextFieldsFeedbackFragment()
 }
 
 @Parcelize
-class StandardFeedbackTextFieldsScreen : Screen() {
-    override fun getFragment() = FeedbackTextFieldsFragment()
+class TextFieldsPincodeScreen : Screen() {
+    override fun getFragment() = TextFieldsPincodeFragment()
 }
 
 @Parcelize
-class StandardPincodeTextFieldsScreen : Screen() {
-    override fun getFragment() = PincodeTextFieldsFragment()
+class TextFieldsCardNumberScreen : Screen() {
+    override fun getFragment() = TextFieldsCardNumberFragment()
 }
 
 @Parcelize
-class StandardCardTextFieldsScreen : Screen() {
-    override fun getFragment() = StandardCardTextFieldsFragment()
-}
-
-@Parcelize
-class StandardSmsTextFieldsScreen : Screen() {
-    override fun getFragment() = StandardSmsTextFieldsFragment()
+class TextFieldsSmsScreen : Screen() {
+    override fun getFragment() = TextFieldsSmsFragment()
 }
 
 @Parcelize
@@ -499,4 +498,29 @@ class ChatFilesScreen : Screen() {
 @Parcelize
 class ChatTextOperationScreen : Screen() {
     override fun getFragment() = ChatTextOperationFragment()
+}
+
+@Parcelize
+class PrimaryButtonsScreen : Screen() {
+    override fun getFragment() = PrimaryButtonsFragment()
+}
+
+@Parcelize
+class SecondaryButtonsScreen : Screen() {
+    override fun getFragment() = SecondaryButtonsFragment()
+}
+
+@Parcelize
+class GhostButtonsScreen : Screen() {
+    override fun getFragment() = GhostButtonsFragment()
+}
+
+@Parcelize
+class RulesButtonsScreen : Screen() {
+    override fun getFragment() = RulesButtonsFragment()
+}
+
+@Parcelize
+class OtherButtonsScreen : Screen() {
+    override fun getFragment() = OtherButtonsFragment()
 }

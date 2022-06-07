@@ -5,10 +5,9 @@ import androidx.test.espresso.Espresso.onView
 import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.intent.rule.IntentsTestRule
 import androidx.test.espresso.matcher.ViewMatchers.withId
-import com.karumi.shot.ScreenshotTest
 import com.admiral.demo.app.AppActivity
 import com.admiral.demo.app.AppActivity.Companion.KEY_IS_TEST
-import com.admiral.demo.ext.BetterScrollTo
+import com.karumi.shot.ScreenshotTest
 import org.junit.Rule
 import org.junit.Test
 
@@ -26,8 +25,8 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnPrimaryButtons)).perform(ViewActions.click())
 
-        onView(withId(R.id.btnPrimarySmall)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -40,9 +39,9 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnPrimaryButtons)).perform(ViewActions.click())
         onView(withId(R.id.disabledTab)).perform(ViewActions.click())
 
-        onView(withId(R.id.btnPrimarySmall)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -55,8 +54,8 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnSecondaryButtons)).perform(ViewActions.click())
 
-        onView(withId(R.id.btnSecondarySmall)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -69,9 +68,9 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnSecondaryButtons)).perform(ViewActions.click())
         onView(withId(R.id.disabledTab)).perform(ViewActions.click())
 
-        onView(withId(R.id.btnSecondarySmall)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -84,8 +83,8 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnGhostButtons)).perform(ViewActions.click())
 
-        onView(withId(R.id.btnGhostMedium)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -98,9 +97,9 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnGhostButtons)).perform(ViewActions.click())
         onView(withId(R.id.disabledTab)).perform(ViewActions.click())
 
-        onView(withId(R.id.btnGhostMedium)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -113,8 +112,8 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnRules)).perform(ViewActions.click())
 
-        onView(withId(R.id.rule)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -127,9 +126,9 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnRules)).perform(ViewActions.click())
         onView(withId(R.id.disabledTab)).perform(ViewActions.click())
 
-        onView(withId(R.id.rule)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -142,8 +141,8 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnOtherButtons)).perform(ViewActions.click())
 
-        onView(withId(R.id.btnGoogle)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 
@@ -156,9 +155,9 @@ class ButtonsTest : ScreenshotTest {
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
         onView(withId(R.id.buttonsButton)).perform(ViewActions.click())
+        onView(withId(R.id.btnOtherButtons)).perform(ViewActions.click())
         onView(withId(R.id.disabledTab)).perform(ViewActions.click())
 
-        onView(withId(R.id.btnGoogle)).perform(BetterScrollTo())
         compareScreenshot(activity)
     }
 }

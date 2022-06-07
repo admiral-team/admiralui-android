@@ -1,125 +1,73 @@
-# Admiral UIKit
+# Admiral UI Kit ![version](https://img.shields.io/badge/dynamic/json.svg?label=release&url=https://raw.githubusercontent.com/admiral-team/admiralui-android/main/version.json&query=$.external_version)
 
-Библиотека визуальных компонентов для Android
+Visual components library for `Android`
 
-![version](https://img.shields.io/badge/dynamic/json.svg?label=release&url=https://raw.githubusercontent.com/admiral-team/admiralui-android/main/version.json&query=$.external_version)
+<p align="center">
+<img src="/docs/readme-preview.gif?raw=true" align="middle">
+</p>
 
-## Общие сведения
-- Основной язык разработки `Kotlin`
-- Минимально поддерживаемая версия Android: `API 21`
+## What is UI Kit?
+**UI Kit** - is a set of user interface elements.
 
-### Структура проекта
-Библиотека состоит из следующих основных модулей:
+### Pros of using UI Kit:
+- Allows you to adhere to a single visual style and interface solutions
+- Speeds up prototyping
+- Saves time for designers and developers
 
-- `admiral-resources` - иконки, шритфы
-- `admiral-themes` - механизм темизации на базе Android Views / XML
-- `admiral-themes-compose` - механизм темизации для Compose
-- `admiral-uikit` - UI компоненты на базе Android Views / XML
-- `admiral-uikit-compose` - UI компоненты для Compose
-- `admiral-uikit-common` - классы и extension методы общие для модулей admiral-uikit и admiral-uikit-compose
+## Why Admiral UI Kit?
 
-## Подключение
-Подключение можно осуществить двумя способами:
-1) Подключив зависимость от репозитория GitHubPackages
-2) Локально развернуть репозиторий с артефактами нужной версии
+- 💎 **Lots of components** - 30+ components based on `Android View` from buttons and text fields to timepicker and calendar. *Components based on `Compose` are under development.*
+- 🛠 **Customizable** - components have many customizable properties.
+- 🎨 **Theming** - support for different color palettes, the ability to create your own and instantly switch between them.
+- 🏗 **Maintained** - releases come out every two weeks.
+- 📱 **Single style across platforms** - there is a library for [iOS](https://github.com/admiral-team/admiralui-ios)
+- 📄 **License** - *TODO..*
 
-### Подключение репозитория GitHubPackages
-Этот способ предпочтителен для подключения релизных версий библиотеки
-<details>
-    <summary>Инструкция</summary>
+## Demo app
+A live example of using the `Admiral UI Kit` library is our demo application. With it, you can evaluate all the components implemented in the library in different states, with the ability to switch built-in color themes and create your own.
 
-1. Зайти в аккаунт на Github и сгенерировать токен https://github.com/settings/tokens (из доступов выбрать `read:packages`)
-2. Добавить в файл `local.properties` логин от Github и сгенерированный токен (без кавычек):
+#### Run demo app
+- Clone the `git@github.com:admiral-team/admiralui-android.git` repository
+- Switch to the `main` branch
+- In Android Studio, run the demo on an emulator or on a real device
+
+## Language and API version
+- Main development language `Kotlin`
+- Minimum supported Android version: `API 21`
+
+## Download
+There are two ways to include the library: `GitHubPackages` and `MavenLocal`.
+Read details in the [wiki](https://github.com/admiral-team/admiralui-android/wiki/Download).
+
+## Using components
+
+### Adding a button component
 ```
-GITHUB_USERNAME=...
-GITHUB_TOKEN=...
+<com.admiral.uikit.components.button.Button
+   android:id="@+id/btnPrimaryBig"
+   android:layout_width="match_parent"
+   android:layout_height="wrap_content"
+   android:text="Big primary button"
+   app:admiralButtonSize="big"
+   app:admiralButtonStyle="primary" />
 ```
-3. Добавить в `settings.gradle` путь к репозиторию + логин и токен пользователя от Github:
-```
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
 
-        repositories {
-            maven {
-                name = "GitHubPackages"
-                url = uri("https://maven.pkg.github.com/admiral-team/admiralui-android")
+Examples of using all other components can be found in the [source](https://github.com/admiral-team/admiralui-android/tree/develop/demo) application demo.
 
-                credentials {
-                    def versionPropsFile = file('local.properties')
-                    Properties versionProps = new Properties()
-                    
-                    if (versionPropsFile.canRead()) {
-                        versionProps.load(new FileInputStream(versionPropsFile))
-                    }
-                    def gitHubUsername = versionProps['GITHUB_USERNAME']
-                    def gitHubToken = versionProps['GITHUB_TOKEN']
-                    username = gitHubUsername
-                    password = gitHubToken
-                }
-            }
-        }
-    }
-}
-```
-4. Добавить необходимые зависимости в `build.gradle`
-```
-dependencies {
-    def admiralui_version = "2.0.0"
-    implementation "admiralui-android:admiral-uikit:$admiralui_version"
-    implementation "admiralui-android:admiral-uikit-compose:$admiralui_version"
- // implementation "admiralui-android:admiral-resources:$admiralui_version"
- // implementation "admiralui-android:admiral-uikit-common:$admiralui_version"
- // implementation "admiralui-android:admiral-themes:$admiralui_version"
- // implementation "admiralui-android:admiral-themes-compose:$admiralui_version"
-}
+See the [readme](docs/COMPONENTS_USAGE.md) for more instructions on using components.
 
-```
-</details>
+## Generation of documentation
+All public methods and classes are documented. You can also generate code documentation using the [Dokka](https://github.com/Kotlin/dokka) plugin.
 
-### Подключение локального репозитория
-Этот способ можно использовать для подключения develop версий библиотеки
-<details>
-    <summary>Инструкция</summary>
+## Contributors
+We welcome any help, and you can help us with the development of this project. Details in the [wiki](https://github.com/admiral-team/admiralui-android/wiki/Contributors).
 
-1. Скачать репозиторий этого проекта и переключиться develop ветку
-2. Собрать артефакты для локального репозитория. Для этого запустить в терминале студии команду
-```
-./gradlew publishToMavenLocal -PartifactIdSuffix="-develop"
-```
-3. В проекте в котором необходимо подключить библиотеку добавить зависимость от локального репозитория `mavenLocal`. Файл `settings.gradle`:
-```
-dependencyResolutionManagement {
-    repositoriesMode.set(RepositoriesMode.FAIL_ON_PROJECT_REPOS)
-    repositories {
-        google()
-        mavenCentral()
-        mavenLocal()
-    }
-}
-```
-4. Добавить необходимые зависимости. У зависимостей develop сбороки есть суффикс `-develop` и версия всегда `0.0.0`
-```
-dependencies {
-    def admiralui_develop_version = "0.0.0"
-    implementation "admiralui-android:admiral-uikit-develop:$admiralui_develop_version"
-    implementation "admiralui-android:admiral-uikit-compose-develop:$admiralui_develop_version"
- // implementation "admiralui-android:admiral-resources-develop:$admiralui_develop_version"
- // implementation "admiralui-android:admiral-uikit-common-develop:$admiralui_develop_version"
- // implementation "admiralui-android:admiral-themes-develop:$admiralui_develop_version"
- // implementation "admiralui-android:admiral-themes-compose-develop:$admiralui_develop_version"
-}
-
-```
-**NB**: Следует учитывать что Gradle кэширует зависимости и если пересобрать артефакты для дев сборки, по умолчанию будут
-использоваться закешированные версии. Следует выполнить команду `./gradlew build --refresh-dependencies` или просто удалить папку
-с кешем для Gradle
-</details>
-
-## Использование компонентов:
-Дополнительная инструкция по использованию компонентов [Readme](docs/COMPONENTS_USAGE.md)
-
-## Генерация документации:
-Сгенерировать документацию можно с помощью плагина [Dokka](https://github.com/Kotlin/dokka)
+## Project team
+<table>
+  <tr>
+    <td align="center"><a href="https://github.com/ton252"><img src="https://avatars.githubusercontent.com/u/13065321?v=4" width="80px;" alt="" /><br /><sub><b>Anton Polyakov</b></sub></a><br /><a href="https://github.com/admiral-team/admiralui-android/commits?author=ton252" title="Code">👑</a></td>
+    <td align="center"><a href="https://github.com/timbaton"><img src="https://avatars.githubusercontent.com/u/20974161?v=4" width="80px;" alt="" /><br /><sub><b>Timur Badretdinov </b></sub></a><br /><a href="https://github.com/admiral-team/admiralui-android/commits?author=timbaton" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Samuel-Unknown"><img src="https://avatars.githubusercontent.com/u/4298267?v=4" width="80px;" alt="" /><br /><sub><b>Semyon Babakaev</b></sub></a><br /><a href="https://github.com/admiral-team/admiralui-android/commits?author=Samuel-Unknown" title="Code">💻</a></td>
+    <td align="center"><a href="https://github.com/Evgeniy-93"><img src="https://avatars.githubusercontent.com/u/101252323?v=4" width="80px;" alt="" /><br /><sub><b>Evgeny Krutsky</b></sub></a><br /><a href="https://github.com/admiral-team/admiralui-android/commits?author=Evgeniy-93" title="Code">🛠</a></td>
+  </tr>
+</table>
