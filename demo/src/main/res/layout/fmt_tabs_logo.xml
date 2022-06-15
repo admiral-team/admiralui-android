@@ -7,19 +7,16 @@
     <com.admiral.uikit.layout.LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/module_x18">
 
         <com.admiral.uikit.components.appbar.Appbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:text="@string/tabs_logo_title"
-            app:admiralTextStyle="largetitle1" />
+            app:contentInsetStartWithNavigation="0dp"
+            app:admiralTitleTextGravity="center"
+            app:admiralTitleText="@string/tabs_logo_title" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabsState"
@@ -46,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
+            android:layout_marginTop="@dimen/module_x10"
             android:text="@string/tabs_two_controls"
             app:admiralTextColorNormalEnabled="@color/grey_40"
             app:admiralTextStyle="headline" />
@@ -55,27 +52,28 @@
             android:id="@+id/tabsTwo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/one2">
+            android:layout_marginTop="@dimen/module_x5"
+            app:checkedId="@+id/tabsTwoLogoTabOne">
 
             <com.admiral.uikit.components.tabs.LogoTab
-                android:id="@+id/one2"
+                android:id="@+id/tabsTwoLogoTabOne"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/test_ic_visa" />
+                app:srcCompat="@drawable/ic_visa_64x32" />
 
             <com.admiral.uikit.components.tabs.LogoTab
-                android:id="@+id/two2"
+                android:id="@+id/tabsTwoLogoTabTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/test_ic_master_card" />
+                app:srcCompat="@drawable/ic_master_card_64x32" />
+
         </com.admiral.uikit.components.tabs.LogoTabs>
 
         <com.admiral.uikit.components.text.TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
+            android:layout_marginTop="@dimen/module_x10"
             android:text="@string/tabs_three_controls"
             app:admiralTextColorNormalEnabled="@color/grey_40"
             app:admiralTextStyle="headline" />
@@ -84,27 +82,119 @@
             android:id="@+id/tabsThree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/one">
+            android:layout_marginTop="@dimen/module_x5"
+            app:checkedId="@+id/tabsThreeLogoTabOne">
 
             <com.admiral.uikit.components.tabs.LogoTab
-                android:id="@+id/one"
+                android:id="@+id/tabsThreeLogoTabOne"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/test_ic_visa" />
+                app:srcCompat="@drawable/ic_visa_64x32" />
 
             <com.admiral.uikit.components.tabs.LogoTab
-                android:id="@+id/two"
+                android:id="@+id/tabsThreeLogoTabTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/test_ic_master_card" />
+                app:srcCompat="@drawable/ic_master_card_64x32" />
 
             <com.admiral.uikit.components.tabs.LogoTab
-                android:id="@+id/three"
+                android:id="@+id/tabsThreeLogoTabThree"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/test_ic_mir" />
+                app:srcCompat="@drawable/ic_mir_64x32" />
 
         </com.admiral.uikit.components.tabs.LogoTabs>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x10"
+            android:text="@string/tabs_four_controls"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.tabs.LogoTabs
+            android:id="@+id/tabsFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x5"
+            app:checkedId="@+id/tabsFourLogoTabOne">
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFourLogoTabOne"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_visa_64x32" />
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFourLogoTabTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_master_card_64x32" />
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFourLogoTabThree"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_mir_64x32" />
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFourLogoTabFour"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_apple_pay_64x32" />
+
+        </com.admiral.uikit.components.tabs.LogoTabs>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x10"
+            android:text="@string/tabs_five_controls"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.tabs.LogoTabs
+            android:id="@+id/tabsFive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x5"
+            app:checkedId="@+id/tabsFiveLogoTabOne">
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFiveLogoTabOne"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_visa_64x32" />
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFiveLogoTabTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_master_card_64x32" />
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFiveLogoTabThree"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_mir_64x32" />
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFiveLogoTabFour"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_apple_pay_64x32" />
+
+            <com.admiral.uikit.components.tabs.LogoTab
+                android:id="@+id/tabsFiveLogoTabFive"
+                android:layout_width="wrap_content"
+                android:layout_height="match_parent"
+                app:srcCompat="@drawable/ic_google_pay_64x32" />
+
+        </com.admiral.uikit.components.tabs.LogoTabs>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>
