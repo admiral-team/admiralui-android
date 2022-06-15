@@ -11,6 +11,7 @@ import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtTextFieldsCardNumberBinding
+import com.admiral.demo.features.home.camera.CameraResultContainer
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.CameraScreen
 import com.admiral.uikit.components.textfield.TextField
@@ -74,6 +75,11 @@ class TextFieldsCardNumberFragment : BaseFragment(R.layout.fmt_text_fields_card_
                 }
             }
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        binding.textField.inputText = CameraResultContainer.result
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

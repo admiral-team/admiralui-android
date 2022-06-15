@@ -130,6 +130,7 @@ dependencies {
 
     implementation(Libs.Google.gson)
     implementation(Libs.Google.Android.material)
+    implementation(Libs.Google.Android.mlKitTextRecognition)
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.fragmentKtx)
@@ -144,7 +145,6 @@ dependencies {
     implementation(Libs.AndroidX.Camera.camera2)
     implementation(Libs.AndroidX.Camera.cameraView)
     implementation(Libs.AndroidX.Camera.cameraLifecycle)
-    implementation(Libs.AndroidX.Camera.cameraMlKit)
 
     implementation(Libs.timber)
     implementation(Libs.viewBinding)

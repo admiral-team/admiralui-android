@@ -26,6 +26,7 @@ object Versions {
         val gson = "2.8.6"
         object Android {
             val material = "1.4.0"
+            val mlKitTextRecognition = "18.0.0"
         }
     }
 
