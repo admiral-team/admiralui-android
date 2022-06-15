@@ -98,6 +98,8 @@
     <string name="tabs_one">One</string>
     <string name="tabs_two">Two</string>
     <string name="tabs_three">Three</string>
+    <string name="tabs_four">Four</string>
+    <string name="tabs_five">Five</string>
     <string name="tabs_example_informer_tab_subtitle">в месяц</string>
     <string name="tabs_example_informer_tab_title">2 900 ₽</string>
     <string name="tabs_loading">Loading</string>
