@@ -25,12 +25,16 @@ class StandardTabsFragment : BaseFragment(R.layout.fmt_tabs_standard) {
             override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
                 when (checkedId) {
                     R.id.defaultTab -> {
-                        binding.tabsThree.isEnabled = true
                         binding.tabsTwo.isEnabled = true
+                        binding.tabsThree.isEnabled = true
+                        binding.tabsFour.isEnabled = true
+                        binding.tabsFive.isEnabled = true
                     }
                     R.id.disabledTab -> {
-                        binding.tabsThree.isEnabled = false
                         binding.tabsTwo.isEnabled = false
+                        binding.tabsThree.isEnabled = false
+                        binding.tabsFour.isEnabled = false
+                        binding.tabsFive.isEnabled = false
                     }
                 }
             }
