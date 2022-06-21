@@ -94,7 +94,10 @@ class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
                 if (it != null && theme.name != it.toString()) {
                     newThemeName = it.toString()
                     themeChanged = true
-                    binding.button.text = getString(R.string.themes_creates_save)
+                    binding.button.apply {
+                        text = getString(R.string.themes_creates_save)
+                        isEnabled = it.isNotBlank()
+                    }
                 }
             }
         }
