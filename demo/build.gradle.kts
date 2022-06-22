@@ -1,7 +1,7 @@
-import java.util.Properties
-import java.io.FileReader
 import com.android.build.api.dsl.ApkSigningConfig
 import com.android.build.api.dsl.ApplicationBuildType
+import java.io.FileReader
+import java.util.*
 
 plugins {
     id("com.android.application")
@@ -146,6 +146,7 @@ dependencies {
     implementation(Libs.colorPickerView)
     implementation(Libs.expandableLayout)
     implementation(Libs.inputMask)
+    implementation(Libs.pdfViewer)
 
     testImplementation(Libs.Kotlin.coroutinesTest)
     androidTestImplementation(Libs.Kotlin.coroutinesTest)

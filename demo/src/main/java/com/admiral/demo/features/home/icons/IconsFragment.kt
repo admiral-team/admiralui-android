@@ -80,7 +80,7 @@ class IconsFragment : BaseFragment(R.layout.fmt_icons), ThemeObserver {
             .distinctUntilChanged()
             .filterNotNull()
             .onEach { text ->
-                filter = text
+                filter = text.replace(" ",  "_")
                 drawableResources = getIconsFiltered()
                 adapter.submitList(drawableResources)
             }

@@ -65,11 +65,13 @@
                 android:text="@string/tabs_one" />
 
             <com.admiral.uikit.components.tabs.OutlineSliderTab
+                android:id="@+id/two2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_two" />
 
             <com.admiral.uikit.components.tabs.OutlineSliderTab
+                android:id="@+id/three2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_three" />
@@ -105,18 +107,21 @@
                     app:admiralUnderlinePadding="2dp" />
 
                 <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/two"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tabs_example_two"
                     app:admiralUnderlinePadding="2dp" />
 
                 <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/three"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tabs_example_three"
                     app:admiralUnderlinePadding="2dp" />
 
                 <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/four"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="@string/tabs_example_four"

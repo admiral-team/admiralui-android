@@ -24,12 +24,14 @@
     <string name="home_section_tabs">Tabs</string>
     <string name="home_section_bottom_sheet_subtitle">Информационная панель</string>
     <string name="home_section_bottom_sheet_title">Bottom-sheets</string>
-    <string name="home_section_toolbar_subtitle">Subtitle</string>
+    <string name="home_section_toolbar_subtitle">Меню</string>
     <string name="home_section_toolbar_title">Toolbar</string>
     <string name="home_section_stepper_subtitle">Набор шагов</string>
     <string name="home_section_stepper_title">Stepper</string>
     <string name="home_section_pin_keyboard_subtitle">Клавиатура для ввода пинкода</string>
     <string name="home_section_pin_keyboard_title">Pin Keyboard</string>
+    <string name="home_section_chat_title">Chat</string>
+    <string name="home_section_chat_subtitle">Элементы чата</string>
 
     <string name="cell_title">Title</string>
     <string name="cell_subtitle">Subtitle</string>
@@ -98,6 +100,8 @@
     <string name="tabs_one">One</string>
     <string name="tabs_two">Two</string>
     <string name="tabs_three">Three</string>
+    <string name="tabs_four">Four</string>
+    <string name="tabs_five">Five</string>
     <string name="tabs_example_informer_tab_subtitle">в месяц</string>
     <string name="tabs_example_informer_tab_title">2 900 ₽</string>
     <string name="tabs_loading">Loading</string>
@@ -276,7 +280,7 @@
     <string name="badges_subtitle">Количественные зачения</string>
 
     <string name="page_control_title">Page Controls</string>
-    <string name="page_control_subtitle">Прогесс просмотра страниц</string>
+    <string name="page_control_subtitle">Прогресс просмотра страниц</string>
     <string name="page_control_liner">Liner</string>
     <string name="page_control_circle">Circle</string>
     <string name="page_control_next">Next ➔</string>
@@ -342,6 +346,7 @@
     <string name="info_contacts_want_title">Хотите использовать дизайн-систему?</string>
     <string name="info_contacts_want_text">Для того, чтобы использовать дизайн-систему в сврем проекте, стоит написать на рабочую почту или при желании назначить встречу:</string>
     <string name="info_faq">FAQ</string>
+    <string name="info_documentation">Документация</string>
     <string name="info_chat">Уже совсем скоро мы сможем\nпереписываться!</string>
     <string name="info_settings">Раздел в разработке</string>
     <string name="info_description">
@@ -386,7 +391,6 @@
     <string name="currency_icons_flags_title">Icons &amp; Flags</string>
 
     <string name="chat_title">Chat</string>
-    <string name="chat_subtitle">Элементы чата</string>
     <string name="chat_example_text">hello this is text</string>
     <string name="chat_example_text_small">:)</string>
     <string name="chat_example_time">14:52</string>

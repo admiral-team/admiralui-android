@@ -142,4 +142,34 @@
 
     </com.admiral.uikit.components.cell.BaseCell>
 
+    <com.admiral.uikit.components.cell.BaseCell
+        android:id="@+id/documentationButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:clickable="true"
+        android:focusable="true"
+        android:paddingStart="@dimen/module_x4"
+        android:paddingEnd="@dimen/module_x4"
+        app:layout_constraintTop_toBottomOf="@+id/faqButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.admiral.uikit.components.cell.unit.IconCellUnit
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralIcon="@drawable/admiral_ic_docs_solid" />
+
+        <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:admiralCellUnitType="leadingText"
+            app:admiralTitleText="@string/info_documentation" />
+
+        <com.admiral.uikit.components.cell.unit.IconCellUnit
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            app:admiralCellUnitType="trailing"
+            app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
+    </com.admiral.uikit.components.cell.BaseCell>
 </com.admiral.uikit.layout.ConstraintLayout>

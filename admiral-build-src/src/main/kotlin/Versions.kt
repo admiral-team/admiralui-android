@@ -8,6 +8,7 @@ object Versions {
     val junit = "4.13.2"
     val mockito = "3.0.0"
     val inputMask = "6.1.0"
+    val pdfViewer = "3.2.0-beta.1"
 
     object Sdk {
         val compileSdk = 31
