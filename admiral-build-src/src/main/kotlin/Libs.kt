@@ -9,6 +9,7 @@ object Libs {
     val viewBinding =
         "com.github.kirich1409:viewbindingpropertydelegate-noreflection:${Versions.viewBinding}"
     val inputMask = "com.github.RedMadRobot:input-mask-android:${Versions.inputMask}"
+    val pdfViewer = "com.github.barteksc:android-pdf-viewer:${Versions.pdfViewer}"
 
     object Kotlin {
         val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.Kotlin.stdLib}"

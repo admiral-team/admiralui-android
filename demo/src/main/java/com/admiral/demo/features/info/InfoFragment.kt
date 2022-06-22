@@ -10,6 +10,7 @@ import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtInfoBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.ContactsScreen
+import com.admiral.demo.screen.DocumentationScreen
 import com.admiral.demo.screen.FaqScreen
 import com.admiral.demo.screen.InfoMoreScreen
 
@@ -22,18 +23,25 @@ class InfoFragment : BaseFragment(R.layout.fmt_info) {
         super.onViewCreated(view, savedInstanceState)
 
         val version = "Версия ${BuildConfig.VERSION_NAME}"
-        binding.versionTextView.text = version
 
-        binding.infoButton.setOnClickListener {
-            navigationViewModel.open(InfoMoreScreen())
-        }
+        with(binding) {
+            versionTextView.text = version
 
-        binding.contactsButton.setOnClickListener {
-            navigationViewModel.open(ContactsScreen())
-        }
+            infoButton.setOnClickListener {
+                navigationViewModel.open(InfoMoreScreen())
+            }
 
-        binding.faqButton.setOnClickListener {
-            navigationViewModel.open(FaqScreen())
+            contactsButton.setOnClickListener {
+                navigationViewModel.open(ContactsScreen())
+            }
+
+            faqButton.setOnClickListener {
+                navigationViewModel.open(FaqScreen())
+            }
+
+            documentationButton.setOnClickListener {
+                navigationViewModel.open(DocumentationScreen())
+            }
         }
     }
 }

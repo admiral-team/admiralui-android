@@ -87,6 +87,7 @@ import com.admiral.demo.features.home.theme.ThemeListMode
 import com.admiral.demo.features.home.timepicker.TimePickerFragment
 import com.admiral.demo.features.home.typography.TypographyFragment
 import com.admiral.demo.features.info.ContactsFragment
+import com.admiral.demo.features.info.DocumentationFragment
 import com.admiral.demo.features.info.FaqFragment
 import com.admiral.demo.features.info.InfoFragment
 import com.admiral.demo.features.info.InfoMoreFragment
@@ -523,4 +524,9 @@ class RulesButtonsScreen : Screen() {
 @Parcelize
 class OtherButtonsScreen : Screen() {
     override fun getFragment() = OtherButtonsFragment()
+}
+
+@Parcelize
+class DocumentationScreen : Screen() {
+    override fun getFragment() = DocumentationFragment()
 }
