@@ -17,7 +17,9 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.ColorPickerScreen
 import com.admiral.demo.screen.KEY_THEME
 import com.admiral.themes.THEME_DARK
+import com.admiral.themes.THEME_DARK_SME
 import com.admiral.themes.THEME_LIGHT
+import com.admiral.themes.THEME_LIGHT_SME
 import com.admiral.themes.changeColor
 import com.admiral.themes.copy
 
@@ -35,7 +37,8 @@ class ColorsFragment : BaseFragment(R.layout.fmt_colors) {
 
         theme = requireArguments().getParcelable(KEY_THEME)!!
 
-        val isEditable = theme.name != THEME_LIGHT && theme.name != THEME_DARK
+        val isEditable = theme.name != THEME_LIGHT && theme.name != THEME_DARK &&
+                theme.name != THEME_DARK_SME && theme.name != THEME_LIGHT_SME
 
         adapter = ColorsListAdapter(isEditable) {
             navigationViewModel.open(ColorPickerScreen(it))

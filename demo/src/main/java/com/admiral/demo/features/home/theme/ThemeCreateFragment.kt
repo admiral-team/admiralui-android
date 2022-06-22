@@ -40,7 +40,7 @@ class ThemeCreateFragment : BaseFragment(R.layout.fmt_theme_create) {
                 .debounce(DEBOUNCE_TIME)
                 .distinctUntilChanged()
                 .onEach {
-                    binding.button.isEnabled = it?.isNotEmpty() ?: false
+                    binding.button.isEnabled = it?.isNotBlank() ?: false
                 }
                 .launchIn(lifecycleScope)
         }

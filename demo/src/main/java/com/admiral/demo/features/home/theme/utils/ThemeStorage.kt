@@ -3,7 +3,9 @@ package com.admiral.demo.features.home.theme.utils
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import com.admiral.themes.THEME_DARK
+import com.admiral.themes.THEME_DARK_SME
 import com.admiral.themes.THEME_LIGHT
+import com.admiral.themes.THEME_LIGHT_SME
 import com.admiral.themes.Theme
 import com.admiral.themes.darkSMETheme
 import com.admiral.themes.darkTheme
@@ -42,7 +44,7 @@ internal class ThemeStorage(context: Context) {
             .map { it.value as String }
             .map { JSONObject(it).toTheme() }
 
-        return if (themes.isEmpty()) {
+        return themes.ifEmpty {
             val light = lightTheme()
             val dark = darkTheme()
             val darkSME = lightSMETheme()
@@ -54,8 +56,6 @@ internal class ThemeStorage(context: Context) {
             saveTheme(lightSME)
 
             listOf(light, dark, darkSME, lightSME)
-        } else {
-            themes
         }
     }
 
@@ -67,7 +67,10 @@ internal class ThemeStorage(context: Context) {
     }
 
     fun removeTheme(theme: Theme) {
-        if (theme.name == THEME_LIGHT || theme.name == THEME_DARK) {
+        val isDefaultTheme = theme.name == THEME_LIGHT || theme.name == THEME_DARK ||
+                theme.name == THEME_LIGHT_SME || theme.name == THEME_DARK_SME
+
+        if (isDefaultTheme) {
             throw IllegalArgumentException("It is illegal to remove default theme, please reconsider your intentions")
         }
 

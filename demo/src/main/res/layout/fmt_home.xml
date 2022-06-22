@@ -806,8 +806,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/chat_title"
-                    app:admiralTitleText="@string/chat_subtitle" />
+                    app:admiralSubtitleText="@string/home_section_chat_subtitle"
+                    app:admiralTitleText="@string/home_section_chat_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:layout_width="wrap_content"
