@@ -4,6 +4,12 @@ github.com/admiral-team/admiral-tools v0.0.0-20220616135510-452215538c02 h1:BmnI
 github.com/admiral-team/admiral-tools v0.0.0-20220616135510-452215538c02/go.mod h1:BV3cI28dkTdODbZF44i2eIml78z9KyItPgu1Xc6FhsA=
 github.com/admiral-team/admiral-tools v0.0.0-20220617123606-53939dfd473b h1:T0zA8jjAU6m2gq5znXzfaGRq2e+RUwdwxrAgeUdtyGg=
 github.com/admiral-team/admiral-tools v0.0.0-20220617123606-53939dfd473b/go.mod h1:BV3cI28dkTdODbZF44i2eIml78z9KyItPgu1Xc6FhsA=
+github.com/admiral-team/admiral-tools v0.0.0-20220622094529-9449438382c1 h1:dv5Fgd3WdtWS9h6FS+Ix3bY5CZ/vODa8J1kD/PicYQM=
+github.com/admiral-team/admiral-tools v0.0.0-20220622094529-9449438382c1/go.mod h1:ojJ8oawkJv/3xLIv9fh2+amgEPPMsZU2LXShFBavd+c=
+github.com/admiral-team/admiral-tools v0.0.0-20220622102316-af62ad256cc1 h1:YWpaiZt/18mtTEJLp1rATRI+CEIJvTxRzGecGZ9xhZA=
+github.com/admiral-team/admiral-tools v0.0.0-20220622102316-af62ad256cc1/go.mod h1:ojJ8oawkJv/3xLIv9fh2+amgEPPMsZU2LXShFBavd+c=
+github.com/admiral-team/admiral-tools v0.0.0-20220622103307-9e0c52e1d7a6 h1:FlKeVvaGzFJDMHUlek1OdyyCjRoW7tWbTbKCF4mZ++w=
+github.com/admiral-team/admiral-tools v0.0.0-20220622103307-9e0c52e1d7a6/go.mod h1:ojJ8oawkJv/3xLIv9fh2+amgEPPMsZU2LXShFBavd+c=
 github.com/iancoleman/strcase v0.2.0 h1:05I4QRnGpI0m37iZQRuskXh+w77mr6Z41lwQzuHLwW0=
 github.com/iancoleman/strcase v0.2.0/go.mod h1:iwCmte+B7n89clKwxIoIXy/HfoL7AsD47ZCWhYzw7ho=
 github.com/joho/godotenv v1.4.0 h1:3l4+N6zfMWnkbPEXKng2o2/MR5mSwTrBih4ZEkkz1lg=
