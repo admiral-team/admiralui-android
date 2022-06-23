@@ -7,13 +7,12 @@
     android:orientation="vertical"
     tools:parentTag="android.widget.LinearLayout">
 
-    <ImageView
+    <com.admiral.uikit.components.imageview.ImageView
         android:id="@+id/admiralZeroScreenIcon"
         android:layout_width="72dp"
         android:layout_height="72dp"
         android:layout_gravity="center_horizontal"
-        android:src="@drawable/admiral_ic_check_solid"
-        app:tint="@color/green_50" />
+        android:src="@drawable/admiral_ic_check_solid" />
 
     <com.admiral.uikit.components.text.TextView
         android:id="@+id/admiralZeroScreenTitle"

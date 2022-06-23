@@ -86,8 +86,7 @@ class BaseCell @JvmOverloads constructor(
             backgroundColors?.pressed ?: theme.palette.textPrimary.withAlpha(RIPPLE_ALPHA)
         val colorState = ColorState(
             normalEnabled = backgroundColors?.normalEnabled ?: theme.palette.backgroundBasic,
-            normalDisabled = backgroundColors?.normalDisabled
-                ?: theme.palette.backgroundBasic.withAlpha(),
+            normalDisabled = backgroundColors?.normalDisabled ?: theme.palette.backgroundBasic.withAlpha(),
             pressed = backgroundColors?.pressed ?: theme.palette.backgroundBasic
         )
 

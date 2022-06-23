@@ -14,7 +14,11 @@ import com.admiral.demo.features.home.StepperFragment
 import com.admiral.demo.features.home.SwitchFragment
 import com.admiral.demo.features.home.TagsFragment
 import com.admiral.demo.features.home.ToolbarFragment
-import com.admiral.demo.features.home.alert.PopUpFragment
+import com.admiral.demo.features.home.alert.AlertFragment
+import com.admiral.demo.features.home.alert.AlertsOnboardingsFragment
+import com.admiral.demo.features.home.alert.ErrorviewFragment
+import com.admiral.demo.features.home.alert.OnboardingFragment
+import com.admiral.demo.features.home.alert.ZeroscreenFragment
 import com.admiral.demo.features.home.badges.BadgesFragment
 import com.admiral.demo.features.home.badges.BadgesNormalFragment
 import com.admiral.demo.features.home.badges.BadgesSmallFragment
@@ -218,8 +222,28 @@ class SwitchScreen : Screen() {
 }
 
 @Parcelize
-class PopUpScreen : Screen() {
-    override fun getFragment() = PopUpFragment()
+class AlertsOnboardingScreen : Screen() {
+    override fun getFragment() = AlertsOnboardingsFragment()
+}
+
+@Parcelize
+class AlertScreen : Screen() {
+    override fun getFragment() = AlertFragment()
+}
+
+@Parcelize
+class OnboardingScreen : Screen() {
+    override fun getFragment() = OnboardingFragment()
+}
+
+@Parcelize
+class ZeroScreen : Screen() {
+    override fun getFragment() = ZeroscreenFragment()
+}
+
+@Parcelize
+class ErrorviewScreen : Screen() {
+    override fun getFragment() = ErrorviewFragment()
 }
 
 @Parcelize
