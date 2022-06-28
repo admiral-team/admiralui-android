@@ -26,6 +26,7 @@ object Versions {
         val gson = "2.8.6"
         object Android {
             val material = "1.4.0"
+            val mlKitTextRecognition = "18.0.0"
         }
     }
 
@@ -43,6 +44,8 @@ object Versions {
         val fragment = "1.4.1"
         val activityCompose = "1.4.0"
         val compose = "1.2.0-alpha01"
+        val preference = "1.1.1"
+        val camerax = "1.2.0-alpha01"
         val test = "1.4.0"
         val junit = "1.1.3"
         val espresso = "3.4.0"
