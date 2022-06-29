@@ -62,9 +62,9 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
                         if (view is BaseCell) {
                             val cellUnit = (view[1] as? TitleSubtitleCellUnit) ?: return@forEach
                             val isTitleContains = cellUnit.title
-                                ?.contains(filter.toString(), ignoreCase = true) ?: false
+                                ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
                             val isSubtitleContains = cellUnit.subtitle
-                                ?.contains(filter.toString(), ignoreCase = true) ?: false
+                                ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
 
                             view.isVisible = isTitleContains || isSubtitleContains
                         }
