@@ -10,10 +10,21 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content" />
 
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
+
     <com.admiral.uikit.components.errorscreen.ErrorView
+        android:id="@+id/errorView"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        app:admiralButtonText="Альтернативное действие"
-        app:admiralTitleText="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+        android:layout_height="wrap_content"
+        app:admiralButtonText="@string/pop_up_example_button"
+        app:admiralTitleText="@string/lorem_ipsum" />
+
+    <Space
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_weight="1" />
 
 </androidx.appcompat.widget.LinearLayoutCompat>
