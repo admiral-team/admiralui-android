@@ -46,6 +46,9 @@ class PopUpDialogFragment : AlertDialogFragment(R.layout.admiral_view_pop_up_dia
         }
         requireView().findViewById<Button>(R.id.buttonAlternative).apply {
             text = context.getString(R.string.pop_up_example_button_alternative)
+            setOnClickListener {
+                this@PopUpDialogFragment.dismiss()
+            }
         }
     }
 }
