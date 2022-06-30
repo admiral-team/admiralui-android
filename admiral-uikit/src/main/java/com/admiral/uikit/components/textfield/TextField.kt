@@ -428,9 +428,9 @@ class TextField @JvmOverloads constructor(
 
         enableInput()
         invalidateListeners()
-        editText.applyStyle(Typography.getStyle(ThemeManager.theme.typography.body1))
 
         isSaveEnabled = true
+        invalidateStyle()
     }
 
     override fun onAttachedToWindow() {
