@@ -50,7 +50,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/tab2">
+            app:checkedId="@+id/tabOne2">
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
                 android:id="@+id/tabOne2"
@@ -84,7 +84,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/tab3">
+            app:checkedId="@+id/tabOne3">
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
                 android:id="@+id/tabOne3"
@@ -126,7 +126,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/tab4">
+            app:checkedId="@+id/tabOne4">
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
                 android:id="@+id/tabOne4"
@@ -176,7 +176,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/tab5">
+            app:checkedId="@+id/tabOne5">
 
             <com.admiral.uikit.components.tabs.UnderlineSliderTab
                 android:id="@+id/tabOne5"

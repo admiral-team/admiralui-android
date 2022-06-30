@@ -624,7 +624,7 @@
             </com.admiral.uikit.components.cell.BaseCell>
 
             <com.admiral.uikit.components.cell.BaseCell
-                android:id="@+id/popUpButton"
+                android:id="@+id/alertsButton"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:clickable="true"
@@ -644,7 +644,7 @@
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
                     app:admiralSubtitleText="Информирующие сообщения"
-                    app:admiralTitleText="Pop-ups" />
+                    app:admiralTitleText="@string/alerts_title_home" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/iconPopUp"

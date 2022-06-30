@@ -8,17 +8,16 @@ import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
-import com.admiral.demo.databinding.FmtPopUpBinding
+import com.admiral.demo.databinding.FmtAlertsAlertBinding
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.themes.ColorPaletteEnum
 import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.dialogs.AlertDialog
 
-class PopUpFragment : BaseFragment(R.layout.fmt_pop_up) {
+class AlertFragment : BaseFragment(R.layout.fmt_alerts_alert) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
-    private val binding by viewBinding(FmtPopUpBinding::bind)
+    private val binding by viewBinding(FmtAlertsAlertBinding::bind)
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -26,9 +25,6 @@ class PopUpFragment : BaseFragment(R.layout.fmt_pop_up) {
         binding.buttonShowBottomSheet.setOnClickListener {
             showDialogFragment()
         }
-
-        binding.hintOpenDialog.compoundDrawablesNormalEnabledPalette =
-            ColorPaletteEnum.ELEMENT_ACCENT
     }
 
     private fun showDialog() {
