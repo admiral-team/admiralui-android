@@ -70,6 +70,7 @@ import com.admiral.demo.features.home.tabs.TabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineCenterTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineSliderTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineTabsFragment
+import com.admiral.demo.features.home.camera.CameraFragment
 import com.admiral.demo.features.home.textFields.TextFieldsDoubleFragment
 import com.admiral.demo.features.home.textFields.TextFieldsFeedbackFragment
 import com.admiral.demo.features.home.textFields.TextFieldsNumberFragment
@@ -289,6 +290,11 @@ class TextFieldsCardNumberScreen : Screen() {
 @Parcelize
 class TextFieldsSmsScreen : Screen() {
     override fun getFragment() = TextFieldsSmsFragment()
+}
+
+@Parcelize
+class CameraScreen : Screen() {
+    override fun getFragment() = CameraFragment()
 }
 
 @Parcelize
