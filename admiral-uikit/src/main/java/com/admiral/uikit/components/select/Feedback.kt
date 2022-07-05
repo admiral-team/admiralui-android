@@ -10,6 +10,7 @@ import android.view.View.OnClickListener
 import android.widget.ImageView
 import androidx.annotation.IntRange
 import androidx.constraintlayout.widget.ConstraintLayout
+import androidx.core.animation.doOnEnd
 import androidx.core.content.res.use
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
@@ -138,11 +139,29 @@ class Feedback @JvmOverloads constructor(
         val color = if (viewRating > chosenRating) {
             iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAdditional
         } else {
-            iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent
+            if (isEnabled) {
+                iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent
+            } else {
+                iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+            }
         }
 
         if (isAnimationEnabled) {
-            view.animatePulse(startDelay = delay * ANIMATION_DELAY, color = color).start()
+            view.animatePulse(startDelay = delay * ANIMATION_DELAY, color = color).apply {
+                doOnEnd {
+                    val colorAtTheEnd = if (viewRating > chosenRating) {
+                        iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAdditional
+                    } else {
+                        if (isEnabled) {
+                            iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent
+                        } else {
+                            iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+                        }
+                    }
+                    view.imageTintList = ColorStateList.valueOf(colorAtTheEnd)
+                }
+            }.start()
+
         } else {
             view.imageTintList = ColorStateList.valueOf(color)
         }

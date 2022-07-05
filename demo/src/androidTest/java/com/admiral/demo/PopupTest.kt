@@ -18,15 +18,70 @@ class PopupTest : ScreenshotTest {
     var activityRule: IntentsTestRule<AppActivity> = IntentsTestRule(AppActivity::class.java, true, false)
 
     @Test
-    fun checkBottomSheet() {
+    fun checkAlertsMain() {
         val intent = Intent().apply {
             putExtra(KEY_IS_TEST, true)
         }
         val activity = activityRule.launchActivity(intent)
 
         onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
-        onView(withId(R.id.popUpButton)).perform(BetterScrollTo(), ViewActions.click())
-        onView(withId(R.id.buttonShowBottomSheet)).perform(ViewActions.click())
+        onView(withId(R.id.alertsButton)).perform(BetterScrollTo(), ViewActions.click())
+
+        compareScreenshot(activity)
+    }
+
+    @Test
+    fun checkAlerts() {
+        val intent = Intent().apply {
+            putExtra(KEY_IS_TEST, true)
+        }
+        val activity = activityRule.launchActivity(intent)
+
+        onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
+        onView(withId(R.id.alertsButton)).perform(BetterScrollTo(), ViewActions.click())
+        onView(withId(R.id.btnAlerts)).perform(BetterScrollTo(), ViewActions.click())
+
+        compareScreenshot(activity)
+    }
+
+    @Test
+    fun checkOnboarding() {
+        val intent = Intent().apply {
+            putExtra(KEY_IS_TEST, true)
+        }
+        val activity = activityRule.launchActivity(intent)
+
+        onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
+        onView(withId(R.id.alertsButton)).perform(BetterScrollTo(), ViewActions.click())
+        onView(withId(R.id.btnOnboarding)).perform(BetterScrollTo(), ViewActions.click())
+
+        compareScreenshot(activity)
+    }
+
+    @Test
+    fun checkZeroscreen() {
+        val intent = Intent().apply {
+            putExtra(KEY_IS_TEST, true)
+        }
+        val activity = activityRule.launchActivity(intent)
+
+        onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
+        onView(withId(R.id.alertsButton)).perform(BetterScrollTo(), ViewActions.click())
+        onView(withId(R.id.btnZeroscreen)).perform(BetterScrollTo(), ViewActions.click())
+
+        compareScreenshot(activity)
+    }
+
+    @Test
+    fun checkErrorview() {
+        val intent = Intent().apply {
+            putExtra(KEY_IS_TEST, true)
+        }
+        val activity = activityRule.launchActivity(intent)
+
+        onView(withId(R.id.mainMenuHome)).perform(ViewActions.click())
+        onView(withId(R.id.alertsButton)).perform(BetterScrollTo(), ViewActions.click())
+        onView(withId(R.id.btnErrorview)).perform(BetterScrollTo(), ViewActions.click())
 
         compareScreenshot(activity)
     }

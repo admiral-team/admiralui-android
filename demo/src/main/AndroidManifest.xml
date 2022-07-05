@@ -3,6 +3,8 @@
     package="com.admiral.demo"
     android:sharedUserId="com.admiral.demo.uid">
 
+    <uses-permission android:name="android.permission.CAMERA" />
+
     <application
         android:name="com.admiral.demo.app.App"
         android:allowBackup="false"
@@ -11,6 +13,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.AdmiralUIAndroid.Launcher">
+
+        <meta-data
+            android:name="com.google.mlkit.vision.DEPENDENCIES"
+            android:value="ocr" />
 
         <activity
             android:name="com.admiral.demo.app.AppActivity"
