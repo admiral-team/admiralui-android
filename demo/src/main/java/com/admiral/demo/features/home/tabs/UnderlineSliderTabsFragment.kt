@@ -27,10 +27,12 @@ class UnderlineSliderTabsFragment : BaseFragment(R.layout.fmt_tabs_underline_sli
                     R.id.defaultTab -> {
                         binding.tabsTwo.isEnabled = true
                         binding.tabsThree.isEnabled = true
+                        binding.tabsNotification.isEnabled = true
                     }
                     R.id.disabledTab -> {
                         binding.tabsTwo.isEnabled = false
                         binding.tabsThree.isEnabled = false
+                        binding.tabsNotification.isEnabled = false
                     }
                 }
             }
