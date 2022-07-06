@@ -75,6 +75,7 @@ import com.admiral.demo.features.home.tabs.UnderlineCenterTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineSliderTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineTabsFragment
 import com.admiral.demo.features.home.camera.CameraFragment
+import com.admiral.demo.features.home.chat.ChatTextMessageFragment
 import com.admiral.demo.features.home.textFields.TextFieldsDoubleFragment
 import com.admiral.demo.features.home.textFields.TextFieldsFeedbackFragment
 import com.admiral.demo.features.home.textFields.TextFieldsNumberFragment
@@ -514,6 +515,11 @@ class ChatScreen : Screen() {
 @Parcelize
 class ChatInputScreen : Screen() {
     override fun getFragment() = ChatInputFragment()
+}
+
+@Parcelize
+class ChatTextMessageScreen : Screen() {
+    override fun getFragment() = ChatTextMessageFragment()
 }
 
 @Parcelize

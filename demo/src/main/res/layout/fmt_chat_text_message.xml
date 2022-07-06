@@ -4,8 +4,6 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fillViewport="true"
-    android:paddingStart="@dimen/module_x4"
-    android:paddingEnd="@dimen/module_x4"
     android:scrollbars="none">
 
     <com.admiral.uikit.layout.LinearLayout
@@ -16,139 +14,77 @@
         <com.admiral.uikit.components.appbar.Appbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            app:admiralTitleText="@string/chat_text_message_title"
+            app:admiralTitleTextGravity="center"
+            app:contentInsetStartWithNavigation="0dp" />
 
-        <com.admiral.uikit.components.chat.TextMessage
-            android:id="@+id/btn"
+        <Space
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:clickable="true"
-            android:focusable="true"
-            app:admiralIsOutgoing="false"
-            app:admiralMessageStatus="none"
-            app:admiralText="@string/chat_example_text_small"
-            app:admiralTimeText="@string/chat_example_time" />
+            android:layout_weight="1" />
 
         <com.admiral.uikit.components.chat.TextMessage
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginEnd="@dimen/module_x4"
             app:admiralIsOutgoing="true"
-            app:admiralMessageStatus="none"
-            app:admiralText="@string/chat_example_text_small"
+            app:admiralMessageStatus="read"
+            app:admiralText="Hello"
             app:admiralTimeText="@string/chat_example_time" />
 
         <com.admiral.uikit.components.chat.TextMessage
             android:id="@+id/chat"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:admiralIsLast="true"
-            app:admiralIsOutgoing="false"
-            app:admiralText="@string/chat_example_text"
-            app:admiralTimeText="@string/chat_example_time" />
-
-        <com.admiral.uikit.components.chat.TextMessage
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:layout_gravity="end"
-            android:clickable="true"
-            android:focusable="true"
-            app:admiralIsLast="true"
+            android:layout_marginTop="@dimen/module_x2"
+            android:layout_marginEnd="@dimen/module_x4"
             app:admiralIsOutgoing="true"
-            app:admiralMessageStatus="loading"
-            app:admiralText="@string/chat_example_text_small"
+            app:admiralMessageStatus="load"
+            app:admiralText="@string/lorem_ipsum"
             app:admiralTimeText="@string/chat_example_time" />
 
-        <com.admiral.uikit.components.chat.TextMessage
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:admiralIsLast="true"
-            app:admiralIsOutgoing="false"
-            app:admiralText="@string/chat_example_text"
-            app:admiralTimeText="@string/chat_example_time" />
-
-        <com.admiral.uikit.components.chat.image.ImageMessage
-            android:id="@+id/imageLayout"
+        <com.admiral.uikit.components.text.TextView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x2"
+            android:text="Татьяна"
+            app:admiralTextColorNormalEnabledPalette="textSecondary"
+            app:admiralTextStyle="caption1" />
 
         <com.admiral.uikit.components.chat.TextMessage
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            app:admiralIsLast="true"
-            app:admiralIsOutgoing="true"
-            app:admiralMessageStatus="error"
-            app:admiralText="@string/chat_example_text"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x1"
+            app:admiralIsOutgoing="false"
+            app:admiralText="@string/chat_text_message_mid_size"
             app:admiralTimeText="@string/chat_example_time" />
 
         <com.admiral.uikit.components.chat.TextMessage
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x2"
             app:admiralIsLast="true"
             app:admiralIsOutgoing="false"
-            app:admiralText="@string/chat_example_text"
+            app:admiralText="@string/chat_text_message_title"
             app:admiralTimeText="@string/chat_example_time" />
 
         <com.admiral.uikit.components.chat.TextMessage
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"
+            android:layout_marginTop="@dimen/module_x2"
+            android:layout_marginEnd="@dimen/module_x4"
+            android:layout_marginBottom="@dimen/module_x4"
             app:admiralIsLast="true"
             app:admiralIsOutgoing="true"
             app:admiralMessageStatus="send"
-            app:admiralText="@string/chat_example_text"
+            app:admiralText="@string/lorem_ipsum"
             app:admiralTimeText="@string/chat_example_time" />
-
-        <com.admiral.uikit.components.chat.TextMessage
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:admiralIsLast="true"
-            app:admiralIsOutgoing="false"
-            app:admiralText="@string/chat_example_text"
-            app:admiralTimeText="@string/chat_example_time" />
-
-        <com.admiral.uikit.components.chat.TextMessage
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            app:admiralIsLast="true"
-            app:admiralIsOutgoing="true"
-            app:admiralMessageStatus="sending"
-            app:admiralText="@string/chat_example_text"
-            app:admiralTimeText="@string/chat_example_time" />
-
-        <com.admiral.uikit.components.chat.TextMessage
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:admiralIsLast="true"
-            app:admiralIsOutgoing="false"
-            app:admiralText="@string/chat_example_text"
-            app:admiralTimeText="@string/chat_example_time" />
-
-        <com.admiral.uikit.components.chat.TextMessage
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_gravity="end"
-            app:admiralIsLast="true"
-            app:admiralIsOutgoing="true"
-            app:admiralMessageStatus="read"
-            app:admiralText="@string/chat_example_text"
-            app:admiralTimeText="@string/chat_example_time" />
-
-        <Space
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_weight="1" />
-
-        <com.admiral.uikit.components.chat.Input
-            android:id="@+id/input"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x4"
-            android:layout_marginBottom="@dimen/module_x10"
-            app:admiralButtonIcon="@drawable/long_arrow_right" />
-
     </com.admiral.uikit.layout.LinearLayout>
-
 </ScrollView>
