@@ -13,6 +13,7 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.ChatFilesScreen
 import com.admiral.demo.screen.ChatImagesScreen
 import com.admiral.demo.screen.ChatInputScreen
+import com.admiral.demo.screen.ChatTextMessageScreen
 import com.admiral.demo.screen.ChatTextOperationScreen
 
 class ChatFragment : BaseFragment(R.layout.fmt_chat) {
@@ -36,6 +37,9 @@ class ChatFragment : BaseFragment(R.layout.fmt_chat) {
             }
             textOperation.setOnClickListener {
                 navigationViewModel.open(ChatTextOperationScreen())
+            }
+            bcTextMessage.setOnClickListener {
+                navigationViewModel.open(ChatTextMessageScreen())
             }
         }
     }
