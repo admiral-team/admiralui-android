@@ -20,12 +20,16 @@ import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.common.util.ComponentsRadius
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.coloredDrawable
+import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.ripple
+import com.admiral.uikit.ext.roundedColoredStroke
+import com.admiral.uikit.ext.roundedRectangle
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -125,7 +129,13 @@ class InputNumber @JvmOverloads constructor(
     var iconBackgroundColors: ColorState? = null
         set(value) {
             field = value
-            invalidateIconBackgroundColors()
+            invalidateImageViews()
+        }
+
+    var iconBackgroundType: IconBackgroundType = IconBackgroundType.RECTANGLE
+        set(value) {
+            field = value
+            invalidateImageViews()
         }
 
     /**
@@ -135,7 +145,7 @@ class InputNumber @JvmOverloads constructor(
     var iconTintColors: ColorState? = null
         set(value) {
             field = value
-            invalidateIconTintColors()
+            invalidateImageViews()
         }
 
     /**
@@ -196,6 +206,7 @@ class InputNumber @JvmOverloads constructor(
             parseIcons(it)
 
             isEnabled = it.getBoolean(R.styleable.InputNumber_enabled, true)
+            iconBackgroundType = IconBackgroundType.from(it.getInt(R.styleable.InputNumber_admiralIconType, 0))
         }
 
         setupIncrementView()
@@ -226,8 +237,7 @@ class InputNumber @JvmOverloads constructor(
 
     override fun onThemeChanged(theme: Theme) {
         invalidateTextColors()
-        invalidateIconBackgroundColors()
-        invalidateIconTintColors()
+        invalidateImageViews()
     }
 
     private fun CoroutineScope.setupAutoIncrement() = launch {
@@ -302,8 +312,7 @@ class InputNumber @JvmOverloads constructor(
     }
 
     private fun updateIncrementDecrementEnablingState() {
-        enableIncrementImageView(isEnabled && value != maxValue && !autoDecrement)
-        enableDecrementImageView(isEnabled && value != minValue && !autoIncrement)
+        invalidateImageViews()
     }
 
     private fun increment(isSingleTap: Boolean = false) {
@@ -316,62 +325,18 @@ class InputNumber @JvmOverloads constructor(
         value = newValue
     }
 
-    private fun enableDecrementImageView(isEnabled: Boolean) {
-        val tintNormalColor =
-            iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
-        val backgroundNormalColor =
-            iconBackgroundColors?.normalEnabled
-                ?: ThemeManager.theme.palette.backgroundAdditionalOne
+    private fun invalidateImageViews() {
+        val isDecrementEnabled = isEnabled && value != maxValue && !autoIncrement
+        val inIncrementEnabled = isEnabled && value != maxValue && !autoDecrement
 
-        val tintDisabledColor =
-            iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
-        val backgroundDisabledColor =
-            iconBackgroundColors?.normalEnabled
-                ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
+        decrementImageView.isEnabled = isDecrementEnabled
+        incrementImageView.isEnabled = inIncrementEnabled
 
-        val tintColorState: ColorStateList
-        val backgroundColorState: ColorStateList
+        incrementImageView.invalidateIconBackgroundColors(inIncrementEnabled)
+        decrementImageView.invalidateIconBackgroundColors(isDecrementEnabled)
 
-        if (isEnabled) {
-            tintColorState = ColorStateList.valueOf(tintNormalColor)
-            backgroundColorState = ColorStateList.valueOf(backgroundNormalColor)
-        } else {
-            tintColorState = ColorStateList.valueOf(tintDisabledColor)
-            backgroundColorState = ColorStateList.valueOf(backgroundDisabledColor)
-        }
-
-        decrementImageView.isEnabled = isEnabled
-        decrementImageView.imageTintList = tintColorState
-        decrementImageView.backgroundTintList = backgroundColorState
-    }
-
-    private fun enableIncrementImageView(isEnabled: Boolean) {
-        val tintNormalColor =
-            iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
-        val backgroundNormalColor =
-            iconBackgroundColors?.normalEnabled
-                ?: ThemeManager.theme.palette.backgroundAdditionalOne
-
-        val tintDisabledColor =
-            iconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
-        val backgroundDisabledColor =
-            iconBackgroundColors?.normalDisabled
-                ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
-
-        val tintColorState: ColorStateList
-        val backgroundColorState: ColorStateList
-
-        if (isEnabled) {
-            tintColorState = ColorStateList.valueOf(tintNormalColor)
-            backgroundColorState = ColorStateList.valueOf(backgroundNormalColor)
-        } else {
-            tintColorState = ColorStateList.valueOf(tintDisabledColor)
-            backgroundColorState = ColorStateList.valueOf(backgroundDisabledColor)
-        }
-
-        incrementImageView.isEnabled = isEnabled
-        incrementImageView.imageTintList = tintColorState
-        incrementImageView.backgroundTintList = backgroundColorState
+        incrementImageView.invalidateIconTintColors(inIncrementEnabled)
+        decrementImageView.invalidateIconTintColors(isDecrementEnabled)
     }
 
     private fun parseIcons(a: TypedArray) {
@@ -440,39 +405,80 @@ class InputNumber @JvmOverloads constructor(
         valueTextView.setTextColor(textColorStateList)
     }
 
-    private fun invalidateIconBackgroundColors() {
-        val rippleColor =
-            iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
-                RIPPLE_ALPHA
-            )
-        val mask = context.drawable(R.drawable.admiral_bg_round)
-        val contentStateList = colorStateList(
-            enabled = iconBackgroundColors?.normalEnabled
-                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
-            disabled = iconBackgroundColors?.normalDisabled
-                ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha(),
-            pressed = iconBackgroundColors?.pressed
-                ?: ThemeManager.theme.palette.backgroundAdditionalOne
-        )
-        val content = context.coloredDrawable(R.drawable.admiral_bg_round, contentStateList)
-
-        decrementImageView.backgroundTintList = contentStateList
-        incrementImageView.backgroundTintList = contentStateList
-
-        decrementImageView.background = ripple(rippleColor, content, mask)
-        incrementImageView.background = ripple(rippleColor, content, mask)
+    private fun ImageView.invalidateIconBackgroundColors(isEnabled: Boolean) {
+        when (iconBackgroundType) {
+            IconBackgroundType.OVAL -> {
+                this.setOvalBackgroundShape(isEnabled)
+            }
+            IconBackgroundType.RECTANGLE -> {
+                this.setRectangleBackgroundShape(isEnabled)
+            }
+        }
     }
 
-    private fun invalidateIconTintColors() {
-        val iconTintColorStateList = colorStateList(
-            enabled = iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
-            disabled = iconTintColors?.normalDisabled
-                ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
-            pressed = iconTintColors?.pressed ?: ThemeManager.theme.palette.elementPrimary
-        )
+    private fun ImageView.setOvalBackgroundShape(isEnabled: Boolean) {
+        val backgroundNormalColor =
+            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne
 
-        decrementImageView.imageTintList = iconTintColorStateList
-        incrementImageView.imageTintList = iconTintColorStateList
+        val backgroundDisabledColor =
+            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
+
+        val backgroundColorState = if (isEnabled) {
+            ColorStateList.valueOf(backgroundNormalColor)
+        } else {
+            ColorStateList.valueOf(backgroundDisabledColor)
+        }
+
+        val rippleColor = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
+            RIPPLE_ALPHA
+        )
+        val mask = context.drawable(R.drawable.admiral_bg_round)
+        val content = context.coloredDrawable(R.drawable.admiral_bg_round, backgroundColorState)
+
+        this.backgroundTintList = backgroundColorState
+        this.background = ripple(rippleColor, content, mask)
+        this.updateLayoutParams {
+            width = SIZE_OVAL.dpToPx(context)
+            height = SIZE_OVAL.dpToPx(context)
+        }
+    }
+
+    private fun ImageView.setRectangleBackgroundShape(isEnabled: Boolean) {
+        val radius = ComponentsRadius.RADIUS_8
+        val rippleColor = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
+            RIPPLE_ALPHA
+        )
+        val mask = roundedRectangle(radius)
+
+        val color = if (isEnabled) {
+            ColorStateList.valueOf(
+                iconBackgroundColors?.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent
+            )
+        } else {
+            ColorStateList.valueOf(
+                iconBackgroundColors?.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha()
+            )
+        }
+        val content = context.roundedColoredStroke(radius, color)
+
+        this.background = ripple(rippleColor, content, mask)
+        this.background = ripple(rippleColor, content, mask)
+        this.updateLayoutParams {
+            width = SIZE_RECTANGLE.dpToPx(context)
+            height = SIZE_RECTANGLE.dpToPx(context)
+        }
+    }
+
+    private fun ImageView.invalidateIconTintColors(isEnabled: Boolean) {
+        val iconTintColorStateList = if (isEnabled) {
+            ColorStateList.valueOf(iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary)
+        } else {
+            ColorStateList.valueOf(
+                iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+            )
+        }
+
+        this.imageTintList = iconTintColorStateList
     }
 
     private companion object {
@@ -482,5 +488,7 @@ class InputNumber @JvmOverloads constructor(
         private const val DEFAULT_MODIFIER = 1
         private const val DEFAULT_MULTIPLIER = 10
         private const val RIPPLE_ALPHA = 0.1f
+        private const val SIZE_RECTANGLE = 38
+        private const val SIZE_OVAL = 40
     }
 }

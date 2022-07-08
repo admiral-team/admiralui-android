@@ -45,5 +45,13 @@
             android:layout_marginTop="@dimen/module_x8"
             app:admiralTextOptional="@string/text_fields_number_optional_label" />
 
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/textFieldRectangle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:admiralIconType="rectangle"
+            android:layout_marginTop="@dimen/module_x8"
+            app:admiralTextOptional="@string/text_fields_number_optional_label" />
+
     </com.admiral.uikit.layout.LinearLayout>
 </ScrollView>

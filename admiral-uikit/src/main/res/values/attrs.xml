@@ -159,6 +159,11 @@
         <attr name="admiralIconBackgroundColorNormalEnabled" />
         <attr name="admiralIconBackgroundColorPressed" />
         <attr name="admiralIconBackgroundColorNormalDisabled" />
+
+        <attr name="admiralIconType" format="flags">
+            <flag name="oval" value="0" />
+            <flag name="rectangle" value="1" />
+        </attr>
     </declare-styleable>
 
     <declare-styleable name="Slider" parent="GlobalAttrDeclare">
