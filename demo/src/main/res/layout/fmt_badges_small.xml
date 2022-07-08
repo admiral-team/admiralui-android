@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
 
     <com.admiral.uikit.layout.ConstraintLayout
         android:id="@+id/linearLayout"
@@ -91,9 +92,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x7"
             android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeSize="small"
             app:admiralBadgeStyle="additional"
             app:admiralText="@string/badges_example_start"
-            app:admiralBadgeSize="small"
             app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit"
             app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit" />
 
@@ -137,9 +138,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x7"
             android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeSize="small"
             app:admiralBadgeStyle="neutral"
             app:admiralText="@string/badges_example_start"
-            app:admiralBadgeSize="small"
             app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit1"
             app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit1" />
 
@@ -184,9 +185,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x7"
             android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeSize="small"
             app:admiralBadgeStyle="normal"
             app:admiralText="@string/badges_example_start"
-            app:admiralBadgeSize="small"
             app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit2"
             app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit2" />
 
@@ -231,9 +232,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x7"
             android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeSize="small"
             app:admiralBadgeStyle="success"
             app:admiralText="@string/badges_example_start"
-            app:admiralBadgeSize="small"
             app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit3"
             app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit3" />
 
@@ -278,9 +279,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x7"
             android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeSize="small"
             app:admiralBadgeStyle="error"
             app:admiralText="@string/badges_example_start"
-            app:admiralBadgeSize="small"
 
 
             app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit4"
@@ -327,9 +328,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x7"
             android:layout_marginBottom="@dimen/module_x7"
+            app:admiralBadgeSize="small"
             app:admiralBadgeStyle="attention"
             app:admiralText="@string/badges_example_start"
-            app:admiralBadgeSize="small"
             app:layout_constraintBottom_toBottomOf="@+id/iconBackgroundCellUnit5"
             app:layout_constraintStart_toStartOf="@+id/iconBackgroundCellUnit5" />
 
