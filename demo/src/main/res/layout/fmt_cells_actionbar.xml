@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
 
     <com.admiral.uikit.layout.LinearLayout
         android:layout_width="match_parent"
@@ -13,9 +14,9 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:contentInsetStartWithNavigation="0dp"
+            app:admiralTitleText="@string/actionbar_title"
             app:admiralTitleTextGravity="center"
-            app:admiralTitleText="@string/actionbar_title" />
+            app:contentInsetStartWithNavigation="0dp" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabs"
@@ -43,8 +44,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginEnd="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x11"
+            android:layout_marginEnd="@dimen/module_x4"
             android:text="@string/actionbar_default_title"
             app:admiralTextColorNormalEnabledPalette="textSecondary"
             app:admiralTextStyle="headline" />
@@ -67,11 +68,11 @@
                 android:id="@+id/titleCell"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
                 android:paddingStart="@dimen/module_x4"
                 android:paddingEnd="@dimen/module_x4"
-                android:paddingBottom="@dimen/module_x1"
-                android:clickable="true"
-                android:focusable="true">
+                android:paddingBottom="@dimen/module_x1">
 
                 <com.admiral.uikit.components.cell.unit.CardCellUnit
                     android:id="@+id/leadingTitle"
@@ -124,17 +125,17 @@
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
                 android:layout_gravity="end|center_vertical"
-                android:gravity="center_vertical"/>
+                android:gravity="center_vertical" />
 
             <com.admiral.uikit.components.cell.BaseCell
                 android:id="@+id/titleCell2"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:clickable="true"
+                android:focusable="true"
                 android:paddingStart="@dimen/module_x4"
                 android:paddingEnd="@dimen/module_x4"
-                android:paddingBottom="@dimen/module_x1"
-                android:clickable="true"
-                android:focusable="true">
+                android:paddingBottom="@dimen/module_x1">
 
                 <com.admiral.uikit.components.cell.unit.CardCellUnit
                     android:id="@+id/leadingTitle2"
