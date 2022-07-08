@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <com.admiral.uikit.components.appbar.Appbar
+        android:id="@+id/toolbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.zeroscreen.ZeroScreen
+        android:id="@+id/zeroScreen"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginTop="@dimen/module_x23"
+        android:layout_marginBottom="@dimen/module_x9"
+        app:admiralButtonText="@string/pop_up_example_button"
+        app:admiralIcon="@drawable/admiral_ic_check_solid"
+        app:admiralSubtitleText="@string/lorem_ipsum"
+        app:admiralTitleText="@string/pop_up_example_title"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/toolbar" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -24,12 +24,14 @@
     <string name="home_section_tabs">Tabs</string>
     <string name="home_section_bottom_sheet_subtitle">Информационная панель</string>
     <string name="home_section_bottom_sheet_title">Bottom-sheets</string>
-    <string name="home_section_toolbar_subtitle">Subtitle</string>
+    <string name="home_section_toolbar_subtitle">Меню</string>
     <string name="home_section_toolbar_title">Toolbar</string>
     <string name="home_section_stepper_subtitle">Набор шагов</string>
     <string name="home_section_stepper_title">Stepper</string>
     <string name="home_section_pin_keyboard_subtitle">Клавиатура для ввода пинкода</string>
     <string name="home_section_pin_keyboard_title">Pin Keyboard</string>
+    <string name="home_section_chat_title">Chat</string>
+    <string name="home_section_chat_subtitle">Элементы чата</string>
 
     <string name="cell_title">Title</string>
     <string name="cell_subtitle">Subtitle</string>
@@ -41,7 +43,7 @@
     <string name="cell_more">More</string>
     <string name="cell_message">Message hello</string>
     <string name="cell_action">Действие</string>
-    <string name="cell_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor</string>
+    <string name="cell_lorem_ipsum">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
 
     <string-array name="courses">
         <item>algebra</item>
@@ -98,6 +100,8 @@
     <string name="tabs_one">One</string>
     <string name="tabs_two">Two</string>
     <string name="tabs_three">Three</string>
+    <string name="tabs_four">Four</string>
+    <string name="tabs_five">Five</string>
     <string name="tabs_example_informer_tab_subtitle">в месяц</string>
     <string name="tabs_example_informer_tab_title">2 900 ₽</string>
     <string name="tabs_loading">Loading</string>
@@ -117,13 +121,19 @@
     <string name="switcher_off">Off</string>
     <string name="switcher_subtitle">Переключатель</string>
 
+    <string name="alerts_onboarding_title">Alerts &amp; Onboarding </string>
+    <string name="alerts_title_home">Alerts</string>
+    <string name="alerts_title">Alert</string>
+    <string name="onboarding_title">Onboarding</string>
+    <string name="zeroscreen_title">Zeroscreen</string>
+    <string name="error_view_title">Error View</string>
     <string name="pop_up_title">Pop-up</string>
     <string name="pop_up_hint">Всплывающие окна поверх контента, часто содержат короткое информирующее сообщение, иллюстрацию и кнопки основгого или альтернативного действия.</string>
     <string name="pop_up_guide">Для вызова Pop-up, нажмите кнопку</string>
-    <string name="pop_up_action_sshow">Показать Pop-up</string>
-    <string name="pop_up_example_title">Заголовок в одну или две строки</string>
+    <string name="pop_up_action_sshow">Показать Alert</string>
+    <string name="pop_up_example_title">Header</string>
     <string name="pop_up_example_button">Хорошо</string>
-    <string name="pop_up_example_button_alternative">Альтернативное действие</string>
+    <string name="pop_up_example_button_alternative">Отмена</string>
 
     <string name="text_fields_standard_vs_icon_title">Standard vs Icon</string>
     <string name="text_fields_default">Default</string>
@@ -191,6 +201,10 @@
 
     <string name="buttons_title">Buttons</string>
     <string name="buttons_primary">Primary</string>
+    <string name="buttons_primary_title">Primary buttons</string>
+    <string name="buttons_secondary_title">Secondary buttons</string>
+    <string name="buttons_ghost_title">Ghost buttons</string>
+    <string name="buttons_other_title">Other buttons</string>
     <string name="buttons_example_chose">Выбрать</string>
     <string name="buttons_example_date">08.06.20 — 14.08.20</string>
     <string name="buttons_example_big">Big Button</string>
@@ -272,7 +286,7 @@
     <string name="badges_subtitle">Количественные зачения</string>
 
     <string name="page_control_title">Page Controls</string>
-    <string name="page_control_subtitle">Прогесс просмотра страниц</string>
+    <string name="page_control_subtitle">Прогресс просмотра страниц</string>
     <string name="page_control_liner">Liner</string>
     <string name="page_control_circle">Circle</string>
     <string name="page_control_next">Next ➔</string>
@@ -338,6 +352,7 @@
     <string name="info_contacts_want_title">Хотите использовать дизайн-систему?</string>
     <string name="info_contacts_want_text">Для того, чтобы использовать дизайн-систему в сврем проекте, стоит написать на рабочую почту или при желании назначить встречу:</string>
     <string name="info_faq">FAQ</string>
+    <string name="info_documentation">Документация</string>
     <string name="info_chat">Уже совсем скоро мы сможем\nпереписываться!</string>
     <string name="info_settings">Раздел в разработке</string>
     <string name="info_description">
@@ -382,7 +397,6 @@
     <string name="currency_icons_flags_title">Icons &amp; Flags</string>
 
     <string name="chat_title">Chat</string>
-    <string name="chat_subtitle">Элементы чата</string>
     <string name="chat_example_text">hello this is text</string>
     <string name="chat_example_text_small">:)</string>
     <string name="chat_example_time">14:52</string>

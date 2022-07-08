@@ -26,4 +26,6 @@ fastlane/screenshots/**/*.png
 fastlane/test_output
 fastlane/.env.secret
 fastlane/cache
+go/.env.secret
 /vendor/
+

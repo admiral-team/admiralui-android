@@ -5,7 +5,6 @@ import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.ColorInt
 import androidx.core.content.res.use
@@ -18,9 +17,8 @@ import com.admiral.uikit.R
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.button.Button
+import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.components.text.TextView
-import com.admiral.uikit.ext.colorStateList
-import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
@@ -49,7 +47,7 @@ class ZeroScreen @JvmOverloads constructor(
     var iconTintColor: ColorState? = null
         set(value) {
             field = value
-            invalidateIcon()
+            invalidateIconColor()
         }
 
     /**
@@ -97,8 +95,7 @@ class ZeroScreen @JvmOverloads constructor(
     val titleTextView: TextView by lazy { findViewById(R.id.admiralZeroScreenTitle) }
     val subtitleTextView: TextView by lazy { findViewById(R.id.admiralZeroScreenSubtitle) }
     val button: Button by lazy { findViewById(R.id.admiralZeroScreenButton) }
-
-    private val iconImageView: ImageView by lazy { findViewById(R.id.admiralZeroScreenIcon) }
+    val iconImageView: ImageView by lazy { findViewById(R.id.admiralZeroScreenIcon) }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_zero_screen, this)
@@ -135,6 +132,7 @@ class ZeroScreen @JvmOverloads constructor(
     override fun onThemeChanged(theme: Theme) {
         invalidateIcon()
         invalidateSubtitleColor()
+        invalidateIconColor()
     }
 
     private fun parseDrawableColors(a: TypedArray) {
@@ -152,17 +150,17 @@ class ZeroScreen @JvmOverloads constructor(
     }
 
     private fun invalidateIcon() {
-        iconImageView.setImageDrawable(
-            icon?.colored(
-                colorStateList(
-                    enabled = iconTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementSuccess,
-                    disabled = iconTintColor?.normalDisabled ?: ThemeManager.theme.palette.elementSuccess.withAlpha(),
-                    pressed = iconTintColor?.pressed ?: ThemeManager.theme.palette.elementSuccess,
-                )
-            )
-        )
+        iconImageView.setImageDrawable(icon)
 
         iconImageView.isVisible = icon != null
+    }
+
+    private fun invalidateIconColor() {
+        iconImageView.imageTintColorState = ColorState(
+            normalEnabled = iconTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementSuccess,
+            normalDisabled = iconTintColor?.normalDisabled ?: ThemeManager.theme.palette.elementSuccess.withAlpha(),
+            pressed = iconTintColor?.pressed ?: ThemeManager.theme.palette.elementSuccess,
+        )
     }
 
     private fun invalidateSubtitleColor() {

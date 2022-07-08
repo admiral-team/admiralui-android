@@ -1,7 +1,7 @@
-import java.util.Properties
-import java.io.FileReader
 import com.android.build.api.dsl.ApkSigningConfig
 import com.android.build.api.dsl.ApplicationBuildType
+import java.io.FileReader
+import java.util.*
 
 plugins {
     id("com.android.application")
@@ -130,22 +130,28 @@ dependencies {
 
     implementation(Libs.Google.gson)
     implementation(Libs.Google.Android.material)
+    implementation(Libs.Google.Android.mlKitTextRecognition)
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.fragmentKtx)
     implementation(Libs.AndroidX.appcompat)
     implementation(Libs.AndroidX.constraintLayout)
+    implementation(Libs.AndroidX.preference)
     implementation(Libs.AndroidX.Activity.compose)
     implementation(Libs.AndroidX.Compose.foundation)
     implementation(Libs.AndroidX.Compose.material)
     implementation(Libs.AndroidX.Compose.Ui.ui)
     implementation(Libs.AndroidX.Compose.Ui.tooling)
+    implementation(Libs.AndroidX.Camera.camera2)
+    implementation(Libs.AndroidX.Camera.cameraView)
+    implementation(Libs.AndroidX.Camera.cameraLifecycle)
 
     implementation(Libs.timber)
     implementation(Libs.viewBinding)
     implementation(Libs.colorPickerView)
     implementation(Libs.expandableLayout)
     implementation(Libs.inputMask)
+    implementation(Libs.pdfViewer)
 
     testImplementation(Libs.Kotlin.coroutinesTest)
     androidTestImplementation(Libs.Kotlin.coroutinesTest)
