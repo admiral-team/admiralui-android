@@ -13,7 +13,6 @@ import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.common.util.ComponentsRadius
 
@@ -59,6 +58,16 @@ internal fun Context.roundedRectangle(radius: ComponentsRadius): Drawable {
     return ShapeDrawable(shape)
 }
 
+internal fun Context.roundedColoredRectangle(radius: ComponentsRadius, colorState: ColorStateList): Drawable {
+    val shape = GradientDrawable()
+    shape.shape = GradientDrawable.RECTANGLE
+    shape.cornerRadius = getRadiusFloat(radius)
+
+    shape.color = colorState
+
+    return shape
+}
+
 internal fun Context.roundedColoredRectangle(radius: ComponentsRadius, colorState: ColorState): Drawable {
     val shape = GradientDrawable()
     shape.shape = GradientDrawable.RECTANGLE
@@ -68,6 +77,18 @@ internal fun Context.roundedColoredRectangle(radius: ComponentsRadius, colorStat
         enabled = colorState.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
         disabled = colorState.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
         pressed = colorState.pressed ?: ThemeManager.theme.palette.backgroundAccent
+    )
+
+    return shape
+}
+
+internal fun Context.roundedColoredStroke(radius: ComponentsRadius, colorState: ColorStateList): Drawable {
+    val shape = GradientDrawable()
+    shape.shape = GradientDrawable.RECTANGLE
+    shape.cornerRadius = getRadiusFloat(radius)
+
+    shape.setStroke(
+        2.dpToPx(this), colorState
     )
 
     return shape
