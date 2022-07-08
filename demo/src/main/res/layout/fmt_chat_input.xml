@@ -8,14 +8,10 @@
     <com.admiral.uikit.components.appbar.Appbar
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
-
-    <com.admiral.uikit.components.text.TextView
-        android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/module_x4"
-        android:text="@string/chat_input_title"
-        app:admiralTextStyle="largetitle1" />
+        app:admiralTitleText="@string/chat_input_title"
+        app:admiralTitleTextGravity="center"
+        app:contentInsetStartWithNavigation="0dp" />
 
     <com.admiral.uikit.components.tabs.StandardTabs
         android:id="@+id/tabsState"
@@ -55,6 +51,11 @@
             android:fitsSystemWindows="true"
             android:orientation="vertical">
 
+            <Space
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_weight="1" />
+
             <com.admiral.uikit.components.text.TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
@@ -87,15 +88,11 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/module_x2"
                 android:layout_marginEnd="@dimen/module_x4"
+                android:layout_marginBottom="@dimen/module_x4"
                 app:admiralIsOutgoing="true"
                 app:admiralMessageStatus="sending"
                 app:admiralText="@string/informers_example_info"
                 app:admiralTimeText="@string/chat_example_time" />
-
-            <Space
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_weight="1" />
 
             <com.admiral.uikit.components.chat.Input
                 android:id="@+id/input"
