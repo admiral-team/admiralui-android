@@ -13,6 +13,7 @@ import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtHomeBinding
 import com.admiral.demo.features.home.theme.ThemeListMode
 import com.admiral.demo.features.main.NavigationViewModel
+import com.admiral.demo.screen.AlertsOnboardingScreen
 import com.admiral.demo.screen.BadgesScreen
 import com.admiral.demo.screen.BottomSheetScreen
 import com.admiral.demo.screen.ButtonsScreen
@@ -25,7 +26,6 @@ import com.admiral.demo.screen.IconsScreen
 import com.admiral.demo.screen.InformersNotificationsScreen
 import com.admiral.demo.screen.LinksScreen
 import com.admiral.demo.screen.PageControlScreen
-import com.admiral.demo.screen.PopUpScreen
 import com.admiral.demo.screen.RadioButtonScreen
 import com.admiral.demo.screen.ShimmerScreen
 import com.admiral.demo.screen.SpinnerScreen
@@ -62,9 +62,9 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
                         if (view is BaseCell) {
                             val cellUnit = (view[1] as? TitleSubtitleCellUnit) ?: return@forEach
                             val isTitleContains = cellUnit.title
-                                ?.contains(filter.toString(), ignoreCase = true) ?: false
+                                ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
                             val isSubtitleContains = cellUnit.subtitle
-                                ?.contains(filter.toString(), ignoreCase = true) ?: false
+                                ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
 
                             view.isVisible = isTitleContains || isSubtitleContains
                         }
@@ -117,8 +117,8 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
             navigationViewModel.open(SwitchScreen())
         }
 
-        binding.popUpButton.setOnClickListener {
-            navigationViewModel.open(PopUpScreen())
+        binding.alertsButton.setOnClickListener {
+            navigationViewModel.open(AlertsOnboardingScreen())
         }
 
         binding.textFieldsButton.setOnClickListener {

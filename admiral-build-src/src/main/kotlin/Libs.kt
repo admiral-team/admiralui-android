@@ -9,6 +9,7 @@ object Libs {
     val viewBinding =
         "com.github.kirich1409:viewbindingpropertydelegate-noreflection:${Versions.viewBinding}"
     val inputMask = "com.github.RedMadRobot:input-mask-android:${Versions.inputMask}"
+    val pdfViewer = "com.github.barteksc:android-pdf-viewer:${Versions.pdfViewer}"
 
     object Kotlin {
         val stdLib = "org.jetbrains.kotlin:kotlin-stdlib-jdk8:${Versions.Kotlin.stdLib}"
@@ -24,6 +25,7 @@ object Libs {
         object Android {
             val material =
                 "com.google.android.material:material:${Versions.Google.Android.material}"
+            val mlKitTextRecognition = "com.google.android.gms:play-services-mlkit-text-recognition:${Versions.Google.Android.mlKitTextRecognition}"
         }
     }
 
@@ -44,6 +46,7 @@ object Libs {
         val constraintLayout =
             "androidx.constraintlayout:constraintlayout:${Versions.AndroidX.constraintLayout}"
         val recyclerView = "androidx.recyclerview:recyclerview:${Versions.AndroidX.recyclerView}"
+        val preference ="androidx.preference:preference-ktx:${Versions.AndroidX.preference}"
 
         object Activity {
             val compose = "androidx.activity:activity-compose:${Versions.AndroidX.activityCompose}"
@@ -63,6 +66,12 @@ object Libs {
 
             val foundation = "androidx.compose.foundation:foundation:${Versions.AndroidX.compose}"
             val material = "androidx.compose.material:material:${Versions.AndroidX.compose}"
+        }
+
+        object Camera {
+            val camera2 = "androidx.camera:camera-camera2:${Versions.AndroidX.camerax}"
+            val cameraView = "androidx.camera:camera-view:${Versions.AndroidX.camerax}"
+            val cameraLifecycle = "androidx.camera:camera-lifecycle:${Versions.AndroidX.camerax}"
         }
 
         object Test {

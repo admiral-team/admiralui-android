@@ -12,8 +12,10 @@ import androidx.test.espresso.action.ViewActions
 import androidx.test.espresso.matcher.ViewMatchers
 import androidx.test.espresso.util.HumanReadables
 import androidx.test.espresso.util.TreeIterables
+import org.hamcrest.Description
 import org.hamcrest.Matcher
 import org.hamcrest.Matchers
+import org.hamcrest.TypeSafeMatcher
 import java.util.concurrent.TimeoutException
 
 @Suppress("MatchingDeclarationName")
@@ -88,6 +90,21 @@ fun waitUntilShown(viewId: Int, millis: Long): ViewAction {
                 .withViewDescription(HumanReadables.describe(view))
                 .withCause(TimeoutException())
                 .build()
+        }
+    }
+}
+
+fun withIndex(matcher: Matcher<View?>, index: Int): Matcher<View?> {
+    return object : TypeSafeMatcher<View?>() {
+        var currentIndex = 0
+        override fun describeTo(description: Description) {
+            description.appendText("with index: ")
+            description.appendValue(index)
+            matcher.describeTo(description)
+        }
+
+        override fun matchesSafely(view: View?): Boolean {
+            return matcher.matches(view) && currentIndex++ == index
         }
     }
 }

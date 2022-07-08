@@ -21,12 +21,16 @@ import com.admiral.demo.screen.ColorsScreen
 import com.admiral.demo.screen.KEY_THEME
 import com.admiral.demo.screen.TypographyScreen
 import com.admiral.themes.THEME_DARK
+import com.admiral.themes.THEME_DARK_SME
 import com.admiral.themes.THEME_LIGHT
+import com.admiral.themes.THEME_LIGHT_SME
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.copy
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
+
+// todo replace logic to VM
 
 class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
 
@@ -35,6 +39,7 @@ class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
     private lateinit var theme: Theme
     private var themeChanged = false
     private var newThemeName: String? = null
+    private var isEditingCurrentTheme = false
 
     override val isThemePickerVisible = false
 
@@ -42,9 +47,15 @@ class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
         super.onViewCreated(view, savedInstanceState)
 
         theme = requireArguments().getParcelable(KEY_THEME)!!
-        val customTheme = theme.name != THEME_DARK && theme.name != THEME_LIGHT
 
-        registerToolbar(binding.toolbar, customTheme, navigationViewModel::close)
+        if (!isEditingCurrentTheme) {
+            isEditingCurrentTheme = theme == ThemeManager.theme
+        }
+
+        val isCustomTheme = theme.name != THEME_DARK && theme.name != THEME_LIGHT
+                && theme.name != THEME_DARK_SME && theme.name != THEME_LIGHT_SME
+
+        registerToolbar(binding.toolbar, isCustomTheme, navigationViewModel::close)
         binding.toolbar.title = theme.name
 
         binding.btnColors.setOnClickListener {
@@ -57,7 +68,7 @@ class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
 
         binding.button.setOnClickListener {
             if (themeChanged) {
-                if (newThemeName != theme.name) {
+                if (newThemeName != theme.name && newThemeName != null) {
                     ThemeStorageDAO.removeTheme(theme)
                 }
 
@@ -66,20 +77,27 @@ class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
                 themeChanged = false
                 binding.button.text = getString(R.string.themes_creates_apply)
                 binding.toolbar.title = theme.name
+
+                if (isEditingCurrentTheme) {
+                    applyTheme()
+                }
             } else {
-                ThemeManager.theme = theme
+                applyTheme()
             }
         }
 
         binding.textField.inputText = theme.name
-        binding.textField.isVisible = customTheme
+        binding.textField.isVisible = isCustomTheme
 
         viewLifecycleOwner.lifecycleScope.launch {
             binding.textField.textFlow.collect {
                 if (it != null && theme.name != it.toString()) {
                     newThemeName = it.toString()
                     themeChanged = true
-                    binding.button.text = getString(R.string.themes_creates_save)
+                    binding.button.apply {
+                        text = getString(R.string.themes_creates_save)
+                        isEnabled = it.isNotBlank()
+                    }
                 }
             }
         }
@@ -94,6 +112,11 @@ class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
                 binding.button.text = getString(R.string.themes_creates_save)
             }
         }
+    }
+
+    private fun applyTheme() {
+        ThemeStorageDAO.theme = theme
+        isEditingCurrentTheme = true
     }
 
     override fun onDestroyView() {

@@ -7,19 +7,16 @@
     <com.admiral.uikit.layout.LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical">
+        android:orientation="vertical"
+        android:paddingBottom="@dimen/module_x18">
 
         <com.admiral.uikit.components.appbar.Appbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:text="@string/tabs_standard_title"
-            app:admiralTextStyle="largetitle1" />
+            app:contentInsetStartWithNavigation="0dp"
+            app:admiralTitleTextGravity="center"
+            app:admiralTitleText="@string/tabs_standard_title" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabsState"
@@ -46,7 +43,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
+            android:layout_marginTop="@dimen/module_x10"
             android:text="@string/tabs_two_controls"
             app:admiralTextColorNormalEnabled="@color/grey_40"
             app:admiralTextStyle="headline" />
@@ -55,27 +52,28 @@
             android:id="@+id/tabsTwo"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/one2">
+            android:layout_marginTop="@dimen/module_x5"
+            app:checkedId="@+id/tabsTwoTabOne">
 
             <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/one2"
+                android:id="@+id/tabsTwoTabOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_one" />
 
             <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/two2"
+                android:id="@+id/tabsTwoTabOneTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_two" />
+
         </com.admiral.uikit.components.tabs.StandardTabs>
 
         <com.admiral.uikit.components.text.TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
-            android:layout_marginTop="@dimen/module_x9"
+            android:layout_marginTop="@dimen/module_x10"
             android:text="@string/tabs_three_controls"
             app:admiralTextColorNormalEnabled="@color/grey_40"
             app:admiralTextStyle="headline" />
@@ -84,27 +82,119 @@
             android:id="@+id/tabsThree"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="@dimen/module_x4"
-            app:checkedId="@+id/one">
+            android:layout_marginTop="@dimen/module_x5"
+            app:checkedId="@+id/tabsThreeTabOne">
 
             <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/one"
+                android:id="@+id/tabsThreeTabOne"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_one" />
 
             <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/two"
+                android:id="@+id/tabsThreeTabTwo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_two" />
 
             <com.admiral.uikit.components.tabs.StandardTab
-                android:id="@+id/three"
+                android:id="@+id/tabsThreeTabThree"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:text="@string/tabs_three" />
 
         </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x10"
+            android:text="@string/tabs_four_controls"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabsFour"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x5"
+            app:checkedId="@+id/tabsFourTabOne">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFourTabOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_one" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFourTabTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_two" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFourTabThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_three" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFourTabFour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_four" />
+
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x10"
+            android:text="@string/tabs_five_controls"
+            app:admiralTextColorNormalEnabled="@color/grey_40"
+            app:admiralTextStyle="headline" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabsFive"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x5"
+            app:checkedId="@+id/tabsFiveTabOne">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFiveTabOne"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_one" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFiveTabTwo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_two" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFiveTabThree"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_three" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFiveTabFour"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_four" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/tabsFiveTabFive"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/tabs_five" />
+
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
     </com.admiral.uikit.layout.LinearLayout>
+
 </ScrollView>

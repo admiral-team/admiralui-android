@@ -14,7 +14,11 @@ import com.admiral.demo.features.home.StepperFragment
 import com.admiral.demo.features.home.SwitchFragment
 import com.admiral.demo.features.home.TagsFragment
 import com.admiral.demo.features.home.ToolbarFragment
-import com.admiral.demo.features.home.alert.PopUpFragment
+import com.admiral.demo.features.home.alert.AlertFragment
+import com.admiral.demo.features.home.alert.AlertsOnboardingsFragment
+import com.admiral.demo.features.home.alert.ErrorviewFragment
+import com.admiral.demo.features.home.alert.OnboardingFragment
+import com.admiral.demo.features.home.alert.ZeroscreenFragment
 import com.admiral.demo.features.home.badges.BadgesFragment
 import com.admiral.demo.features.home.badges.BadgesNormalFragment
 import com.admiral.demo.features.home.badges.BadgesSmallFragment
@@ -70,6 +74,7 @@ import com.admiral.demo.features.home.tabs.TabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineCenterTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineSliderTabsFragment
 import com.admiral.demo.features.home.tabs.UnderlineTabsFragment
+import com.admiral.demo.features.home.camera.CameraFragment
 import com.admiral.demo.features.home.textFields.TextFieldsDoubleFragment
 import com.admiral.demo.features.home.textFields.TextFieldsFeedbackFragment
 import com.admiral.demo.features.home.textFields.TextFieldsNumberFragment
@@ -87,6 +92,7 @@ import com.admiral.demo.features.home.theme.ThemeListMode
 import com.admiral.demo.features.home.timepicker.TimePickerFragment
 import com.admiral.demo.features.home.typography.TypographyFragment
 import com.admiral.demo.features.info.ContactsFragment
+import com.admiral.demo.features.info.DocumentationFragment
 import com.admiral.demo.features.info.FaqFragment
 import com.admiral.demo.features.info.InfoFragment
 import com.admiral.demo.features.info.InfoMoreFragment
@@ -216,8 +222,28 @@ class SwitchScreen : Screen() {
 }
 
 @Parcelize
-class PopUpScreen : Screen() {
-    override fun getFragment() = PopUpFragment()
+class AlertsOnboardingScreen : Screen() {
+    override fun getFragment() = AlertsOnboardingsFragment()
+}
+
+@Parcelize
+class AlertScreen : Screen() {
+    override fun getFragment() = AlertFragment()
+}
+
+@Parcelize
+class OnboardingScreen : Screen() {
+    override fun getFragment() = OnboardingFragment()
+}
+
+@Parcelize
+class ZeroScreen : Screen() {
+    override fun getFragment() = ZeroscreenFragment()
+}
+
+@Parcelize
+class ErrorviewScreen : Screen() {
+    override fun getFragment() = ErrorviewFragment()
 }
 
 @Parcelize
@@ -288,6 +314,11 @@ class TextFieldsCardNumberScreen : Screen() {
 @Parcelize
 class TextFieldsSmsScreen : Screen() {
     override fun getFragment() = TextFieldsSmsFragment()
+}
+
+@Parcelize
+class CameraScreen : Screen() {
+    override fun getFragment() = CameraFragment()
 }
 
 @Parcelize
@@ -523,4 +554,9 @@ class RulesButtonsScreen : Screen() {
 @Parcelize
 class OtherButtonsScreen : Screen() {
     override fun getFragment() = OtherButtonsFragment()
+}
+
+@Parcelize
+class DocumentationScreen : Screen() {
+    override fun getFragment() = DocumentationFragment()
 }
