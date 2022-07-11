@@ -238,6 +238,9 @@
         <attr name="admiralBottomTextMaxLines" format="integer" />
 
         <attr name="admiralIsError" />
+
+        <attr name="admiralIsBottomLineVisible" format="boolean" />
+        <attr name="admiralIsAdditionalTextVisible" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="TextFieldSearch" parent="GlobalAttrDeclare">
