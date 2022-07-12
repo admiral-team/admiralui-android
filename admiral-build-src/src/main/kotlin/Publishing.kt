@@ -29,7 +29,7 @@ object Publishing {
             val url: String = "https://maven.pkg.github.com/admiral-team/admiralui-android"
         ) : Repository(
             type = GITHUB_REPO_TYPE,
-            name = "GitHubPackages",
+            name = "GitHubPackages"
         )
 
         object Nexus : Repository(

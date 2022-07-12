@@ -372,6 +372,12 @@ class TextField @JvmOverloads constructor(
             invalidateListeners()
         }
 
+    var isBottomLineVisible: Boolean = true
+        set(value) {
+            field = value
+            dividerView.visibility = if (value) View.VISIBLE else View.INVISIBLE
+        }
+
     val inputLayout: TextInputLayout by lazy { findViewById(R.id.inputLayout) }
 
     private var textFlowField = MutableStateFlow<String?>(null)
@@ -421,6 +427,9 @@ class TextField @JvmOverloads constructor(
 
             maxLines = it.getInt(R.styleable.TextField_android_maxLines, Int.MAX_VALUE)
             maxLength = it.getInt(R.styleable.TextField_android_maxLength, Int.MAX_VALUE)
+
+            isBottomLineVisible = it.getBoolean(R.styleable.TextField_admiralIsBottomLineVisible, true)
+            isAdditionalTextVisible = it.getBoolean(R.styleable.TextField_admiralIsAdditionalTextVisible, true)
         }
 
         keyListener = editText.keyListener
