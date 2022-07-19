@@ -207,6 +207,9 @@ class InputNumber @JvmOverloads constructor(
 
             isEnabled = it.getBoolean(R.styleable.InputNumber_enabled, true)
             iconBackgroundType = IconBackgroundType.from(it.getInt(R.styleable.InputNumber_admiralIconType, 0))
+
+            minValue = it.getInt(R.styleable.InputNumber_admiralInputMinValue, DEFAULT_MIN_VALUE)
+            maxValue = it.getInt(R.styleable.InputNumber_admiralInputMaxValue, DEFAULT_MAX_VALUE)
         }
 
         setupIncrementView()
@@ -326,7 +329,7 @@ class InputNumber @JvmOverloads constructor(
     }
 
     private fun invalidateImageViews() {
-        val isDecrementEnabled = isEnabled && value != maxValue && !autoIncrement
+        val isDecrementEnabled = isEnabled && value != minValue && !autoIncrement
         val inIncrementEnabled = isEnabled && value != maxValue && !autoDecrement
 
         decrementImageView.isEnabled = isDecrementEnabled
@@ -375,8 +378,6 @@ class InputNumber @JvmOverloads constructor(
     private fun parseTexts(a: TypedArray) {
         optionalText = a.getString(R.styleable.InputNumber_admiralTextOptional)
         value = a.getInt(R.styleable.InputNumber_admiralInputValue, 0)
-        minValue = a.getInt(R.styleable.InputNumber_admiralInputMinValue, DEFAULT_MIN_VALUE)
-        maxValue = a.getInt(R.styleable.InputNumber_admiralInputMaxValue, DEFAULT_MAX_VALUE)
     }
 
     private fun parseTextColors(a: TypedArray) {

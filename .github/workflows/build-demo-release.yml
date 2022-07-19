@@ -113,5 +113,6 @@ jobs:
           git status
           git fetch --all
           git checkout --track origin/${{ github.head_ref }}
+          git fetch --unshallow origin
           git push --all --force mirror
           git status

@@ -188,9 +188,9 @@
 
     <string name="actionbar_title">Actionbar</string>
     <string name="actionbar_more_clicked">More clicked</string>
-    <string name="actionbar_email">Email</string>
-    <string name="actionbar_star">Star</string>
-    <string name="actionbar_edit">Edit</string>
+    <string name="actionbar_email">Text</string>
+    <string name="actionbar_star">Text</string>
+    <string name="actionbar_edit">Text</string>
     <string name="actionbar_email_clicked">Email clicked</string>
     <string name="actionbar_star_clicked">Star clicked</string>
     <string name="actionbar_edit_clicked">Edit clicked</string>
