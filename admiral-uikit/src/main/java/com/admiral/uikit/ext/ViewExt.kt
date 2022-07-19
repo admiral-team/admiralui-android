@@ -57,10 +57,9 @@ internal fun View.parseAttrs(
 
 internal fun View.colorStateList(
     @ColorInt enabled: Int,
-    @ColorInt disabled: Int,
-    @ColorInt pressed: Int
+    @ColorInt disabled: Int? = null,
+    @ColorInt pressed: Int? = null
 ): ColorStateList {
-
     return ColorStateList(
         arrayOf(
             intArrayOf(android.R.attr.state_pressed),
@@ -68,8 +67,8 @@ internal fun View.colorStateList(
             intArrayOf()
         ),
         intArrayOf(
-            pressed,
-            disabled,
+            pressed ?: enabled,
+            disabled ?: enabled,
             enabled
         )
     )

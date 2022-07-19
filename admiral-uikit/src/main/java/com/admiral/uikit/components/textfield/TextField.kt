@@ -372,6 +372,26 @@ class TextField @JvmOverloads constructor(
             invalidateListeners()
         }
 
+    /**
+     * Determines if [dividerView] is Visible or not.
+     */
+    var isBottomLineVisible: Boolean = true
+        set(value) {
+            field = value
+            dividerView.visibility = if (value) View.VISIBLE else View.INVISIBLE
+        }
+
+    /**
+     * Determines if [placeholderText] is always visible In the input area even when the text field is
+     * unpopulated and not focused.
+     */
+    var isHintAlwaysVisible: Boolean = false
+        set(value) {
+            field = value
+            inputLayout.isExpandedHintEnabled = !value
+            invalidateHintTextColors()
+        }
+
     val inputLayout: TextInputLayout by lazy { findViewById(R.id.inputLayout) }
 
     private var textFlowField = MutableStateFlow<String?>(null)
@@ -421,6 +441,10 @@ class TextField @JvmOverloads constructor(
 
             maxLines = it.getInt(R.styleable.TextField_android_maxLines, Int.MAX_VALUE)
             maxLength = it.getInt(R.styleable.TextField_android_maxLength, Int.MAX_VALUE)
+
+            isBottomLineVisible = it.getBoolean(R.styleable.TextField_admiralIsBottomLineVisible, true)
+            isAdditionalTextVisible = it.getBoolean(R.styleable.TextField_admiralIsAdditionalTextVisible, true)
+            isHintAlwaysVisible = it.getBoolean(R.styleable.TextField_admiralIsHintAlwaysVisible, false)
         }
 
         keyListener = editText.keyListener
@@ -656,7 +680,12 @@ class TextField @JvmOverloads constructor(
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             isNowFocused -> hintTextColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> hintTextColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
-            else -> hintTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
+            else -> hintTextColors?.normalEnabled
+                ?: if (isHintAlwaysVisible) {
+                    ThemeManager.theme.palette.textAccent
+                } else {
+                    ThemeManager.theme.palette.textSecondary
+                }
         }
 
         inputLayout.hintTextColor = ColorStateList.valueOf(hintTextColor)

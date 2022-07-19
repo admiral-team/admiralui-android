@@ -27,10 +27,12 @@ class OutlineTabsFragment : BaseFragment(R.layout.fmt_tabs_outline) {
                     R.id.defaultTab -> {
                         binding.tabsThree.isEnabled = true
                         binding.tabsTwo.isEnabled = true
+                        binding.tabsNotification.isEnabled = true
                     }
                     R.id.disabledTab -> {
                         binding.tabsThree.isEnabled = false
                         binding.tabsTwo.isEnabled = false
+                        binding.tabsNotification.isEnabled = false
                     }
                 }
             }

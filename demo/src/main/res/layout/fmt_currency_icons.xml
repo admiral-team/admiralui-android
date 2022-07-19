@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
 
     <com.admiral.uikit.layout.LinearLayout
         android:layout_width="match_parent"
@@ -42,10 +43,10 @@
                 android:id="@+id/button"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:textAlignment="textEnd"
                 app:admiralCellUnitType="leadingText"
                 app:admiralIcon="@drawable/admiral_ic_chevron_right_outline"
-                app:admiralText="Button"
-                android:textAlignment="textEnd" />
+                app:admiralText="Button" />
 
         </com.admiral.uikit.components.cell.BaseCell>
 

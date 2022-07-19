@@ -38,7 +38,7 @@ class ToolbarFragment : BaseFragment(R.layout.fmt_toolbar) {
             if (new < old) {
                 binding.admiralToolbar.removeItem(old - 1)
             } else {
-                val index = new.rem(menuTitles.count())
+                val index = new - 1
                 binding.admiralToolbar.addItem(
                     ToolbarItem(
                         text = menuTitles[index],

@@ -2,7 +2,8 @@
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:scrollbars="none">
 
     <com.admiral.uikit.layout.LinearLayout
         android:layout_width="match_parent"
@@ -161,6 +162,85 @@
 
         </HorizontalScrollView>
 
-    </com.admiral.uikit.layout.LinearLayout>
+        <com.admiral.uikit.components.text.TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x9"
+            android:text="@string/tabs_notifications"
+            app:admiralTextColorNormalEnabledPalette="textSecondary"
+            app:admiralTextStyle="headline" />
 
+        <HorizontalScrollView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            android:scrollbars="none">
+
+            <com.admiral.uikit.components.tabs.OutlineSliderTabs
+                android:id="@+id/tabsNotification"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:checkedId="@+id/tabNotification1">
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:id="@+id/tabNotification1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_one"
+                    app:admiralIsBadgeVisible="true"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_two"
+                    app:admiralIsBadgeVisible="true"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_three"
+                    app:admiralIsBadgeEnabled="false"
+                    app:admiralIsBadgeVisible="true"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_four"
+                    app:admiralIsBadgeVisible="true"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_five"
+                    app:admiralIsBadgeVisible="true"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_six"
+                    app:admiralIsBadgeVisible="true"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_seven"
+                    app:admiralIsBadgeVisible="true"
+                    app:admiralUnderlinePadding="2dp" />
+
+                <com.admiral.uikit.components.tabs.OutlineSliderTab
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/tabs_example_eight"
+                    app:admiralIsBadgeVisible="true"
+                    app:admiralUnderlinePadding="2dp" />
+            </com.admiral.uikit.components.tabs.OutlineSliderTabs>
+        </HorizontalScrollView>
+    </com.admiral.uikit.layout.LinearLayout>
 </ScrollView>

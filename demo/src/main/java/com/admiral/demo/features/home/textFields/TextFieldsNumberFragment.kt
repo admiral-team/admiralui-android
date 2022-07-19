@@ -26,9 +26,11 @@ class TextFieldsNumberFragment : BaseFragment(R.layout.fmt_text_fields_number) {
                 when (checkedId) {
                     binding.defaultTab.id -> {
                         binding.textField.isEnabled = true
+                        binding.textFieldRectangle.isEnabled = true
                     }
                     binding.disabledTab.id -> {
                         binding.textField.isEnabled = false
+                        binding.textFieldRectangle.isEnabled = false
                     }
                 }
             }

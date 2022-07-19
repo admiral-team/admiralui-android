@@ -16,14 +16,10 @@
         <com.admiral.uikit.components.appbar.Appbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content" />
-
-        <com.admiral.uikit.components.text.TextView
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x4"
-            android:text="@string/chat_uploading_photo_title"
-            app:admiralTextStyle="largetitle1" />
+            app:admiralTitleText="@string/chat_uploading_photo_title"
+            app:admiralTitleTextGravity="center"
+            app:contentInsetStartWithNavigation="0dp" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabsState"
