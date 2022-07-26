@@ -62,8 +62,10 @@ lane :deploy_appcenter_dev do |options|
   sh("echo '#{formatted_build_info(build_info: build_info)}' >> $GITHUB_ENV")
   sh("echo 'EOF' >> $GITHUB_ENV")
 
-#   chat_id = ENV['TELEGRAM_DEV_CHAT_ID']
-#   send_message(build_info: build_info, chat_ids: [chat_id])
+  puts "\n#{formatted_build_info(build_info: build_info)}"
+
+  chat_id = ENV['TELEGRAM_DEV_CHAT_ID']
+  send_message(build_info: build_info, chat_ids: [chat_id])
 end
 
 lane :deploy_appcenter_prod do |options|
@@ -85,21 +87,21 @@ lane :deploy_appcenter_prod do |options|
     notify_testers: true
   )
 
-#   build_info_hash = lane_context[SharedValues::APPCENTER_BUILD_INFORMATION]
-#   build_info = BuildInfo.from_hash(build_info_hash)
-#   build_info.branch_name = branch_name
-#   build_info.build_url = appcenter_build_prod_url
-#   build_info.internal_version = current_lib_internal_version
-#
-#   puts "\n#{formatted_build_info(build_info: build_info)}"
-#
-#   if release_jira_version
-#       replace_version_jira
-#   end
-#
-#   chat_id = ENV['TELEGRAM_PROD_CHAT_ID']
-#   team_chat_id = ENV['TELEGRAM_ADMIRAL_DEV_CHAT_ID']
-#   send_message(build_info: build_info, chat_ids: [chat_id, team_chat_id])
+  build_info_hash = lane_context[SharedValues::APPCENTER_BUILD_INFORMATION]
+  build_info = BuildInfo.from_hash(build_info_hash)
+  build_info.branch_name = branch_name
+  build_info.build_url = appcenter_build_prod_url
+  build_info.internal_version = current_lib_internal_version
+
+  puts "\n#{formatted_build_info(build_info: build_info)}"
+
+  if release_jira_version
+      replace_version_jira
+  end
+
+  chat_id = ENV['TELEGRAM_PROD_CHAT_ID']
+  team_chat_id = ENV['TELEGRAM_ADMIRAL_DEV_CHAT_ID']
+  send_message(build_info: build_info, chat_ids: [chat_id, team_chat_id])
 end
 
 def replace_version_jira
