@@ -58,6 +58,28 @@ internal fun Context.roundedRectangle(radius: ComponentsRadius): Drawable {
     return ShapeDrawable(shape)
 }
 
+internal fun Context.roundedRectangle(
+    topLeft: ComponentsRadius,
+    topRight: ComponentsRadius,
+    bottomLeft: ComponentsRadius,
+    bottomRight: ComponentsRadius
+): Drawable {
+    val outerRadii =
+        floatArrayOf(
+            getRadiusFloat(topLeft),
+            getRadiusFloat(topLeft),
+            getRadiusFloat(topRight),
+            getRadiusFloat(topRight),
+            getRadiusFloat(bottomRight),
+            getRadiusFloat(bottomRight),
+            getRadiusFloat(bottomLeft),
+            getRadiusFloat(bottomLeft)
+        )
+
+    val shape = RoundRectShape(outerRadii, null, null)
+    return ShapeDrawable(shape)
+}
+
 internal fun Context.roundedColoredRectangle(radius: ComponentsRadius, colorState: ColorStateList): Drawable {
     val shape = GradientDrawable()
     shape.shape = GradientDrawable.RECTANGLE

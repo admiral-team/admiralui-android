@@ -160,9 +160,10 @@
         <attr name="admiralIconBackgroundColorPressed" />
         <attr name="admiralIconBackgroundColorNormalDisabled" />
 
-        <attr name="admiralIconType" format="flags">
+        <attr name="admiralinputType" format="flags">
             <flag name="oval" value="0" />
             <flag name="rectangle" value="1" />
+            <flag name="textField" value="2" />
         </attr>
     </declare-styleable>
 
