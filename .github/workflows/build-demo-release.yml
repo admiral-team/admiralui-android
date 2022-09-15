@@ -102,17 +102,3 @@ jobs:
           chmod +x gradlew
           ./gradlew publish -PrepositoryType="Nexus"
 
-  Push-To-Bitbacket:
-    runs-on: [ self-hosted, main ]
-    steps:
-      - name: Check out repository code
-        uses: actions/checkout@v3
-
-      - name: Push commit to the mirror
-        run: |
-          git status
-          git fetch --all
-          git checkout --track origin/${{ github.head_ref }}
-          git fetch --unshallow origin
-          git push --all --force mirror
-          git status
