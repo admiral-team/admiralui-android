@@ -6,11 +6,23 @@ on:
     types: [ 'opened', 'synchronize', 'reopened', 'edited' ]
     branches: [ 'main', 'develop', 'rc/**' ]
 jobs:
-  Build-Demo-Release:
+  approve: # First step
     runs-on: [ self-hosted, main ]
+
+    steps:
+      - name: Approve
+        run: echo For security reasons, all pull requests need to be approved first before running any automated CI.
+
+  build:
+    runs-on: [ self-hosted, main ]
+
+    needs: [ approve ]
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
+        with:
+          ref: ${{ github.event.pull_request.head.sha }}
+          fetch-depth: 2
 
       - name: Set up JDK 11
         uses: actions/setup-java@v3
