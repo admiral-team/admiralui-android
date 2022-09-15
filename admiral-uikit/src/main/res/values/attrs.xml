@@ -248,6 +248,8 @@
         <attr name="admiralIsBottomLineVisible" format="boolean" />
         <attr name="admiralIsAdditionalTextVisible" format="boolean" />
         <attr name="admiralIsHintAlwaysVisible" format="boolean" />
+
+        <attr name="android:saveEnabled" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="TextFieldSearch" parent="GlobalAttrDeclare">

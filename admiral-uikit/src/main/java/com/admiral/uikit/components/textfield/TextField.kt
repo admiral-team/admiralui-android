@@ -260,7 +260,7 @@ class TextField @JvmOverloads constructor(
     /**
      * Enable or disable editing.
      */
-    var isEditEnabled: Boolean = false
+    var isEditEnabled: Boolean = true
         set(value) {
             handleEditStatus(value)
         }
@@ -448,6 +448,7 @@ class TextField @JvmOverloads constructor(
             isBottomLineVisible = it.getBoolean(R.styleable.TextField_admiralIsBottomLineVisible, true)
             isAdditionalTextVisible = it.getBoolean(R.styleable.TextField_admiralIsAdditionalTextVisible, true)
             isHintAlwaysVisible = it.getBoolean(R.styleable.TextField_admiralIsHintAlwaysVisible, false)
+            isSaveEnabled = it.getBoolean(R.styleable.TextField_android_saveEnabled, true)
         }
 
         keyListener = editText.keyListener
@@ -456,7 +457,6 @@ class TextField @JvmOverloads constructor(
         enableInput()
         invalidateListeners()
 
-        isSaveEnabled = true
         invalidateStyle()
     }
 
@@ -867,7 +867,7 @@ class TextField @JvmOverloads constructor(
         }
     }
 
-    interface OnIconClickListener {
+    fun interface OnIconClickListener {
         fun onClick()
     }
 }
