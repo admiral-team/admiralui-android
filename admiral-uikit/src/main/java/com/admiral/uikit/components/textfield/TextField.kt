@@ -7,6 +7,8 @@ import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.os.Parcelable
 import android.text.InputFilter
 import android.text.TextUtils
@@ -45,6 +47,7 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.uikit.ext.setSelectionEnd
 import com.admiral.uikit.ext.showKeyboard
 import com.admiral.uikit.layout.ConstraintLayout
 import com.admiral.uikit.layout.LinearLayout
@@ -657,11 +660,11 @@ class TextField @JvmOverloads constructor(
         if (isTextHidden) {
             iconCloseImageView.setImageDrawable(iconCloseHidden ?: drawable(R.drawable.admiral_ic_eye_close_outline))
             editText.transformationMethod = PasswordTransformationMethod.getInstance()
-            editText.setSelection(editText.text.toString().length)
+            editText.setSelectionEnd()
         } else {
             iconCloseImageView.setImageDrawable(iconCloseShown ?: drawable(R.drawable.admiral_ic_eye_outline))
             editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            editText.setSelection(editText.text.toString().length)
+            editText.setSelectionEnd()
         }
     }
 
@@ -824,7 +827,9 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun invalidateStyle() {
-        inputLayout.setHintTextAppearance(Typography.getStyle(ThemeManager.theme.typography.subhead2))
+        Handler(Looper.getMainLooper()).post {
+            inputLayout.setHintTextAppearance(Typography.getStyle(ThemeManager.theme.typography.subhead2))
+        }
         additionalTextView.textStyle = ThemeManager.theme.typography.subhead2
         inputLayout.placeholderTextAppearance = Typography.getStyle(textFieldStyle.textStyle)
         editText.applyStyle(Typography.getStyle(textFieldStyle.textStyle))
