@@ -532,6 +532,13 @@ class TextField @JvmOverloads constructor(
         editText.showKeyboard()
     }
 
+    /**
+     * Returns true if this view has focus.
+     */
+    fun isNowFocused(): Boolean {
+        return isNowFocused
+    }
+
     fun setSelection(index: Int) {
         editText.setSelection(index)
     }
