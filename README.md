@@ -6,6 +6,7 @@ Visual components library for `Android`
 <img src="/docs/readme-preview.gif?raw=true" align="middle">
 </p>
 
+#TEST
 ## What is UI Kit?
 **UI Kit** - is a set of user interface elements.
 
