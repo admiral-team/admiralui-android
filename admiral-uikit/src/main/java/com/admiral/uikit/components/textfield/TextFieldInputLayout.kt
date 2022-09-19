@@ -11,8 +11,12 @@ open class TextFieldInputLayout @JvmOverloads constructor(
 ) : TextInputLayout(context, attrs, defStyleAttr) {
 
     override fun getBaseline(): Int {
-        return editText?.let {
-            measuredHeight - (it.measuredHeight - it.baseline - it.paddingTop)
-        } ?: super.getBaseline()
+        return if (editText != null) {
+            editText?.let {
+                measuredHeight - (it.measuredHeight - it.baseline - it.paddingTop)
+            } ?: super.getBaseline()
+        } else {
+            super.getBaseline()
+        }
     }
 }

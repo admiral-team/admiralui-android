@@ -1,8 +1,9 @@
 package com.admiral.uikit.components.input
 
-enum class IconBackgroundType {
+enum class InputType {
     OVAL,
-    RECTANGLE;
+    RECTANGLE,
+    TEXT_FIELD;
 
     companion object {
         fun from(index: Int) = values()[index]

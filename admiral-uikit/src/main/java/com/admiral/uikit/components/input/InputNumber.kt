@@ -5,9 +5,13 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
+import android.os.Handler
+import android.os.Looper
 import android.util.AttributeSet
+import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
+import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -21,7 +25,9 @@ import com.admiral.uikit.R
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.common.util.ComponentsRadius
+import com.admiral.uikit.components.textfield.TextField
 import com.admiral.uikit.ext.colorStateList
+import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.coloredDrawable
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
@@ -30,6 +36,7 @@ import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.ripple
 import com.admiral.uikit.ext.roundedColoredStroke
 import com.admiral.uikit.ext.roundedRectangle
+import com.admiral.uikit.ext.setSelectionEnd
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
@@ -68,7 +75,9 @@ class InputNumber @JvmOverloads constructor(
                 val dfs = DecimalFormatSymbols()
                 dfs.groupingSeparator = ' '
                 val df = DecimalFormat("###,###", dfs)
-                valueTextView.text = df.format(value)
+                Handler(Looper.getMainLooper()).post {
+                    valueEditText.inputText = df.format(value)
+                }
                 updateIncrementDecrementEnablingState()
             }
 
@@ -82,6 +91,15 @@ class InputNumber @JvmOverloads constructor(
                 value < minValue -> {
                     autoDecrement = false
                 }
+            }
+            valueEditText.editText.setSelectionEnd()
+        }
+        get() {
+            val text = valueEditText.inputText.replace(" ", "")
+            return if (text != "") {
+                text.toInt()
+            } else {
+                0
             }
         }
 
@@ -132,10 +150,15 @@ class InputNumber @JvmOverloads constructor(
             invalidateImageViews()
         }
 
-    var iconBackgroundType: IconBackgroundType = IconBackgroundType.RECTANGLE
+    /**
+     * Set the type of the view.
+     * Currently available 3 types: [InputType.RECTANGLE], [InputType.OVAL], [InputType.TEXT_FIELD].
+     * In [InputType.TEXT_FIELD] state it's allowed to set value by printing into [valueEditText].
+     */
+    var inputType: InputType = InputType.RECTANGLE
         set(value) {
             field = value
-            invalidateImageViews()
+            invalidateType()
         }
 
     /**
@@ -172,14 +195,15 @@ class InputNumber @JvmOverloads constructor(
 
     /**
      * Invoked when the value changes.
-     * The value is always between [MIN_VALUE] and [MAX_VALUE]).
+     * The value is always between [DEFAULT_MAX_VALUE] and [DEFAULT_MAX_VALUE]).
      */
     var onValueChange: ((old: Int, new: Int) -> Unit)? = null
 
+    val valueEditText: TextField by lazy { findViewById(R.id.valueTextField) }
     private val optionalLabelTextView: TextView by lazy { findViewById(R.id.optionalLabelTextView) }
-    private val valueTextView: TextView by lazy { findViewById(R.id.valueTextView) }
     private val decrementImageView: ImageView by lazy { findViewById(R.id.decrementImageView) }
     private val incrementImageView: ImageView by lazy { findViewById(R.id.incrementImageView) }
+    private val editTextBackground: View by lazy { findViewById(R.id.editTextBackground) }
 
     private var coroutineScope: CoroutineScope? = null
 
@@ -200,20 +224,25 @@ class InputNumber @JvmOverloads constructor(
 
         parseAttrs(attrs, R.styleable.InputNumber).use {
             parseTextColors(it)
-            parseTexts(it)
             parseIconBackgroundColors(it)
             parseIconColors(it)
             parseIcons(it)
 
             isEnabled = it.getBoolean(R.styleable.InputNumber_enabled, true)
-            iconBackgroundType = IconBackgroundType.from(it.getInt(R.styleable.InputNumber_admiralIconType, 0))
+            inputType = InputType.from(it.getInt(R.styleable.InputNumber_admiralinputType, 0))
 
             minValue = it.getInt(R.styleable.InputNumber_admiralInputMinValue, DEFAULT_MIN_VALUE)
             maxValue = it.getInt(R.styleable.InputNumber_admiralInputMaxValue, DEFAULT_MAX_VALUE)
+
+            parseTexts(it)
         }
 
         setupIncrementView()
         setupDecrementView()
+
+        valueEditText.isBottomLineVisible = false
+        valueEditText.editText.gravity = Gravity.CENTER_HORIZONTAL
+        valueEditText.isAdditionalTextVisible = false
     }
 
     override fun onAttachedToWindow() {
@@ -235,12 +264,14 @@ class InputNumber @JvmOverloads constructor(
         super.setEnabled(enabled)
         updateIncrementDecrementEnablingState()
         optionalLabelTextView.isEnabled = enabled
-        valueTextView.isEnabled = enabled
+        valueEditText.isEnabled = enabled
+        invalidateEditText()
     }
 
     override fun onThemeChanged(theme: Theme) {
         invalidateTextColors()
         invalidateImageViews()
+        invalidateEditText()
     }
 
     private fun CoroutineScope.setupAutoIncrement() = launch {
@@ -256,8 +287,8 @@ class InputNumber @JvmOverloads constructor(
     private fun setupValueTextViewWidth() {
         val max = -max(abs(minValue), abs(maxValue))
 
-        val textWidth = valueTextView.paint.measureText(max.toString())
-        valueTextView.updateLayoutParams {
+        val textWidth = valueEditText.editText.paint.measureText(max.toString())
+        valueEditText.updateLayoutParams {
             this.width = textWidth.toInt()
         }
     }
@@ -328,6 +359,29 @@ class InputNumber @JvmOverloads constructor(
         value = newValue
     }
 
+    private fun invalidateType() {
+        valueEditText.isEditEnabled = inputType == InputType.TEXT_FIELD
+
+        invalidateImageViews()
+        invalidateEditText()
+    }
+
+    private fun invalidateEditText() {
+        if (inputType == InputType.TEXT_FIELD) {
+            editTextBackground.background =
+                if (isEnabled) {
+                    drawable(R.drawable.admiral_bg_rectangle)
+                        ?.colored(ThemeManager.theme.palette.backgroundAdditionalOne)
+                } else {
+                    drawable(R.drawable.admiral_bg_rectangle)
+                        ?.colored(ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha())
+                }
+
+        } else {
+            editTextBackground.background = null
+        }
+    }
+
     private fun invalidateImageViews() {
         val isDecrementEnabled = isEnabled && value != minValue && !autoIncrement
         val inIncrementEnabled = isEnabled && value != maxValue && !autoDecrement
@@ -335,8 +389,8 @@ class InputNumber @JvmOverloads constructor(
         decrementImageView.isEnabled = isDecrementEnabled
         incrementImageView.isEnabled = inIncrementEnabled
 
-        incrementImageView.invalidateIconBackgroundColors(inIncrementEnabled)
-        decrementImageView.invalidateIconBackgroundColors(isDecrementEnabled)
+        incrementImageView.invalidateIconBackgroundColors(inIncrementEnabled, false)
+        decrementImageView.invalidateIconBackgroundColors(isDecrementEnabled, true)
 
         incrementImageView.invalidateIconTintColors(inIncrementEnabled)
         decrementImageView.invalidateIconTintColors(isDecrementEnabled)
@@ -403,16 +457,19 @@ class InputNumber @JvmOverloads constructor(
         )
 
         optionalLabelTextView.setTextColor(textColorStateList)
-        valueTextView.setTextColor(textColorStateList)
+        valueEditText.editText.setTextColor(textColorStateList)
     }
 
-    private fun ImageView.invalidateIconBackgroundColors(isEnabled: Boolean) {
-        when (iconBackgroundType) {
-            IconBackgroundType.OVAL -> {
+    private fun ImageView.invalidateIconBackgroundColors(isEnabled: Boolean, isLeft: Boolean) {
+        when (inputType) {
+            InputType.OVAL -> {
                 this.setOvalBackgroundShape(isEnabled)
             }
-            IconBackgroundType.RECTANGLE -> {
+            InputType.RECTANGLE -> {
                 this.setRectangleBackgroundShape(isEnabled)
+            }
+            InputType.TEXT_FIELD -> {
+                this.setTextFieldBackgroundShape(isEnabled, isLeft)
             }
         }
     }
@@ -463,7 +520,38 @@ class InputNumber @JvmOverloads constructor(
         val content = context.roundedColoredStroke(radius, color)
 
         this.background = ripple(rippleColor, content, mask)
-        this.background = ripple(rippleColor, content, mask)
+        this.updateLayoutParams {
+            width = SIZE_RECTANGLE.dpToPx(context)
+            height = SIZE_RECTANGLE.dpToPx(context)
+        }
+    }
+
+    private fun ImageView.setTextFieldBackgroundShape(isEnabled: Boolean, isLeft: Boolean) {
+        val radius = ComponentsRadius.RADIUS_8
+        val rippleColor = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
+            RIPPLE_ALPHA
+        )
+
+        val mask = if (isLeft) {
+            roundedRectangle(radius, ComponentsRadius.NONE, radius, ComponentsRadius.NONE)
+        } else {
+            roundedRectangle(ComponentsRadius.NONE, radius, ComponentsRadius.NONE, radius)
+        }
+
+        val backgroundNormalColor =
+            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne
+
+        val backgroundDisabledColor =
+            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
+
+        val backgroundColorState = if (isEnabled) {
+            ColorStateList.valueOf(backgroundNormalColor)
+        } else {
+            ColorStateList.valueOf(backgroundDisabledColor)
+        }
+
+        this.backgroundTintList = backgroundColorState
+        this.background = ripple(rippleColor, mask, mask)
         this.updateLayoutParams {
             width = SIZE_RECTANGLE.dpToPx(context)
             height = SIZE_RECTANGLE.dpToPx(context)
@@ -471,15 +559,30 @@ class InputNumber @JvmOverloads constructor(
     }
 
     private fun ImageView.invalidateIconTintColors(isEnabled: Boolean) {
-        val iconTintColorStateList = if (isEnabled) {
-            ColorStateList.valueOf(iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary)
-        } else {
-            ColorStateList.valueOf(
-                iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
-            )
-        }
+        when (inputType) {
+            InputType.OVAL -> {
+                val iconTintColorStateList = if (isEnabled) {
+                    ColorStateList.valueOf(iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary)
+                } else {
+                    ColorStateList.valueOf(
+                        iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+                    )
+                }
 
-        this.imageTintList = iconTintColorStateList
+                this.imageTintList = iconTintColorStateList
+            }
+            else -> {
+                val iconTintColorStateList = if (isEnabled) {
+                    ColorStateList.valueOf(iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent)
+                } else {
+                    ColorStateList.valueOf(
+                        iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+                    )
+                }
+
+                this.imageTintList = iconTintColorStateList
+            }
+        }
     }
 
     private companion object {

@@ -40,6 +40,13 @@ internal fun View.drawable(@DrawableRes drawableRes: Int): Drawable? = context.d
 
 internal fun View.roundedRectangle(radius: ComponentsRadius): Drawable = context.roundedRectangle(radius)
 
+internal fun View.roundedRectangle(
+    topLeft: ComponentsRadius,
+    topRight: ComponentsRadius,
+    bottomLeft: ComponentsRadius,
+    bottomRight: ComponentsRadius
+): Drawable = context.roundedRectangle(topLeft, topRight, bottomLeft, bottomRight)
+
 internal fun View.roundedColoredRectangle(radius: ComponentsRadius, colorState: ColorState): Drawable =
     context.roundedColoredRectangle(radius, colorState)
 

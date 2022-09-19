@@ -160,9 +160,10 @@
         <attr name="admiralIconBackgroundColorPressed" />
         <attr name="admiralIconBackgroundColorNormalDisabled" />
 
-        <attr name="admiralIconType" format="flags">
+        <attr name="admiralinputType" format="flags">
             <flag name="oval" value="0" />
             <flag name="rectangle" value="1" />
+            <flag name="textField" value="2" />
         </attr>
     </declare-styleable>
 
@@ -247,6 +248,8 @@
         <attr name="admiralIsBottomLineVisible" format="boolean" />
         <attr name="admiralIsAdditionalTextVisible" format="boolean" />
         <attr name="admiralIsHintAlwaysVisible" format="boolean" />
+
+        <attr name="android:saveEnabled" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="TextFieldSearch" parent="GlobalAttrDeclare">

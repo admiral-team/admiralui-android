@@ -7,6 +7,8 @@ import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.Build
+import android.os.Handler
+import android.os.Looper
 import android.os.Parcelable
 import android.text.InputFilter
 import android.text.TextUtils
@@ -45,6 +47,7 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.uikit.ext.setSelectionEnd
 import com.admiral.uikit.ext.showKeyboard
 import com.admiral.uikit.layout.ConstraintLayout
 import com.admiral.uikit.layout.LinearLayout
@@ -257,7 +260,7 @@ class TextField @JvmOverloads constructor(
     /**
      * Enable or disable editing.
      */
-    var isEditEnabled: Boolean = false
+    var isEditEnabled: Boolean = true
         set(value) {
             handleEditStatus(value)
         }
@@ -445,6 +448,7 @@ class TextField @JvmOverloads constructor(
             isBottomLineVisible = it.getBoolean(R.styleable.TextField_admiralIsBottomLineVisible, true)
             isAdditionalTextVisible = it.getBoolean(R.styleable.TextField_admiralIsAdditionalTextVisible, true)
             isHintAlwaysVisible = it.getBoolean(R.styleable.TextField_admiralIsHintAlwaysVisible, false)
+            isSaveEnabled = it.getBoolean(R.styleable.TextField_android_saveEnabled, true)
         }
 
         keyListener = editText.keyListener
@@ -453,7 +457,6 @@ class TextField @JvmOverloads constructor(
         enableInput()
         invalidateListeners()
 
-        isSaveEnabled = true
         invalidateStyle()
     }
 
@@ -530,6 +533,13 @@ class TextField @JvmOverloads constructor(
      */
     fun performFocus() {
         editText.showKeyboard()
+    }
+
+    /**
+     * Returns true if this view has focus.
+     */
+    fun isNowFocused(): Boolean {
+        return isNowFocused
     }
 
     fun setSelection(index: Int) {
@@ -633,7 +643,7 @@ class TextField @JvmOverloads constructor(
         ellipsize(isEditEnabled)
     }
 
-    private fun ellipsize(enabled: Boolean) {
+    fun ellipsize(enabled: Boolean) {
         if (enabled) {
             editText.inputType = inputType
             editText.keyListener = keyListener
@@ -650,11 +660,11 @@ class TextField @JvmOverloads constructor(
         if (isTextHidden) {
             iconCloseImageView.setImageDrawable(iconCloseHidden ?: drawable(R.drawable.admiral_ic_eye_close_outline))
             editText.transformationMethod = PasswordTransformationMethod.getInstance()
-            editText.setSelection(editText.text.toString().length)
+            editText.setSelectionEnd()
         } else {
             iconCloseImageView.setImageDrawable(iconCloseShown ?: drawable(R.drawable.admiral_ic_eye_outline))
             editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
-            editText.setSelection(editText.text.toString().length)
+            editText.setSelectionEnd()
         }
     }
 
@@ -817,7 +827,9 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun invalidateStyle() {
-        inputLayout.setHintTextAppearance(Typography.getStyle(ThemeManager.theme.typography.subhead2))
+        Handler(Looper.getMainLooper()).post {
+            inputLayout.setHintTextAppearance(Typography.getStyle(ThemeManager.theme.typography.subhead2))
+        }
         additionalTextView.textStyle = ThemeManager.theme.typography.subhead2
         inputLayout.placeholderTextAppearance = Typography.getStyle(textFieldStyle.textStyle)
         editText.applyStyle(Typography.getStyle(textFieldStyle.textStyle))
@@ -855,7 +867,7 @@ class TextField @JvmOverloads constructor(
         }
     }
 
-    interface OnIconClickListener {
+    fun interface OnIconClickListener {
         fun onClick()
     }
 }
