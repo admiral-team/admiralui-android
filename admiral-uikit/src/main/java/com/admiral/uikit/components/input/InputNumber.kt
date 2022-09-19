@@ -265,12 +265,13 @@ class InputNumber @JvmOverloads constructor(
         updateIncrementDecrementEnablingState()
         optionalLabelTextView.isEnabled = enabled
         valueEditText.isEnabled = enabled
-        invalidateTextView()
+        invalidateEditText()
     }
 
     override fun onThemeChanged(theme: Theme) {
         invalidateTextColors()
         invalidateImageViews()
+        invalidateEditText()
     }
 
     private fun CoroutineScope.setupAutoIncrement() = launch {
@@ -362,10 +363,10 @@ class InputNumber @JvmOverloads constructor(
         valueEditText.isEditEnabled = inputType == InputType.TEXT_FIELD
 
         invalidateImageViews()
-        invalidateTextView()
+        invalidateEditText()
     }
 
-    private fun invalidateTextView() {
+    private fun invalidateEditText() {
         if (inputType == InputType.TEXT_FIELD) {
             editTextBackground.background =
                 if (isEnabled) {
