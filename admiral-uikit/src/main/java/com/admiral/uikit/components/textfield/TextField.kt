@@ -643,7 +643,7 @@ class TextField @JvmOverloads constructor(
         ellipsize(isEditEnabled)
     }
 
-    private fun ellipsize(enabled: Boolean) {
+    fun ellipsize(enabled: Boolean) {
         if (enabled) {
             editText.inputType = inputType
             editText.keyListener = keyListener
