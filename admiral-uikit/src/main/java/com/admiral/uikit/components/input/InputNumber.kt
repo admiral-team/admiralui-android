@@ -5,13 +5,14 @@ import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
-import android.os.Handler
-import android.os.Looper
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.MotionEvent
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.constraintlayout.widget.ConstraintLayout
@@ -72,13 +73,6 @@ class InputNumber @JvmOverloads constructor(
             fun updateValue() {
                 onValueChange?.invoke(field, value)
                 field = value
-                val dfs = DecimalFormatSymbols()
-                dfs.groupingSeparator = ' '
-                val df = DecimalFormat("###,###", dfs)
-                Handler(Looper.getMainLooper()).post {
-                    valueEditText.inputText = df.format(value)
-                }
-                updateIncrementDecrementEnablingState()
             }
 
             when {
@@ -92,15 +86,16 @@ class InputNumber @JvmOverloads constructor(
                     autoDecrement = false
                 }
             }
+
+            val dfs = DecimalFormatSymbols()
+            dfs.groupingSeparator = ' '
+            val df = DecimalFormat("###,###", dfs)
+            isChangeable = false
+            valueEditText.inputText = df.format(field)
+            isChangeable = true
+
             valueEditText.editText.setSelectionEnd()
-        }
-        get() {
-            val text = valueEditText.inputText.replace(" ", "")
-            return if (text != "") {
-                text.toInt()
-            } else {
-                0
-            }
+            updateIncrementDecrementEnablingState()
         }
 
     /**
@@ -219,6 +214,25 @@ class InputNumber @JvmOverloads constructor(
             updateIncrementDecrementEnablingState()
         }
 
+    private var isChangeable = true
+
+    private val watcher = object : TextWatcher {
+        override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
+
+        override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+            if (isChangeable) {
+                val text = s.toString().replace(" ", "")
+                value = if (text != "") {
+                    text.toInt()
+                } else {
+                    0
+                }
+            }
+        }
+
+        override fun afterTextChanged(s: Editable?) {}
+    }
+
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_input_number, this)
 
@@ -243,6 +257,8 @@ class InputNumber @JvmOverloads constructor(
         valueEditText.isBottomLineVisible = false
         valueEditText.editText.gravity = Gravity.CENTER_HORIZONTAL
         valueEditText.isAdditionalTextVisible = false
+        valueEditText.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+        valueEditText.textWatcher = watcher
     }
 
     override fun onAttachedToWindow() {
@@ -276,7 +292,7 @@ class InputNumber @JvmOverloads constructor(
 
     private fun CoroutineScope.setupAutoIncrement() = launch {
         while (true) {
-            delay(DELAY)
+            delay(DELAY_AUTO_INCREMENT)
             when {
                 autoIncrement -> increment(isSingleTap = false)
                 autoDecrement -> decrement(isSingleTap = false)
@@ -287,7 +303,7 @@ class InputNumber @JvmOverloads constructor(
     private fun setupValueTextViewWidth() {
         val max = -max(abs(minValue), abs(maxValue))
 
-        val textWidth = valueEditText.editText.paint.measureText(max.toString())
+        val textWidth = valueEditText.editText.paint.measureText("$max ")
         valueEditText.updateLayoutParams {
             this.width = textWidth.toInt()
         }
@@ -586,7 +602,7 @@ class InputNumber @JvmOverloads constructor(
     }
 
     private companion object {
-        private const val DELAY = 300L
+        private const val DELAY_AUTO_INCREMENT = 300L
         private const val DEFAULT_MIN_VALUE = -99999
         private const val DEFAULT_MAX_VALUE = 99999
         private const val DEFAULT_MODIFIER = 1
