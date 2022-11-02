@@ -479,8 +479,6 @@ class TextField @JvmOverloads constructor(
         dividerView.isEnabled = enabled
         iconCloseImageView.isEnabled = enabled
 
-        ellipsize(enabled)
-
         invalidateColors()
     }
 
