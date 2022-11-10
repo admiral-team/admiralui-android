@@ -8,6 +8,8 @@ github.com/admiral-team/admiral-tools v0.0.0-20220817174330-34393f83fef4 h1:u+Ds
 github.com/admiral-team/admiral-tools v0.0.0-20220817174330-34393f83fef4/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
 github.com/admiral-team/admiral-tools v0.0.0-20221011191131-169a1233eea6 h1:ZkkDTzq+0nvP1cgvfyIJm2skah+YAT0Xn+404zylWYU=
 github.com/admiral-team/admiral-tools v0.0.0-20221011191131-169a1233eea6/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
+github.com/admiral-team/admiral-tools v0.0.0-20221011195450-28dccd566aad h1:hKMPiHGjFwo56DsflnJ20orBArQ5wI2UqTVqc1iLLaI=
+github.com/admiral-team/admiral-tools v0.0.0-20221011195450-28dccd566aad/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
 github.com/go-playground/colors v1.3.0 h1:B+jYkyTo36sREzsaXd3kawgG53rw0zqX9fSllGVoLdc=
 github.com/go-playground/colors v1.3.0/go.mod h1:5rTAoESUkprj1EHZvzGti8xkb8XwAGYzYEFmW18B8es=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
