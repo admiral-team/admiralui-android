@@ -2,11 +2,14 @@ module admiral.com/go
 
 go 1.17
 
-require github.com/admiral-team/admiral-tools v0.0.0-20220713202546-0a837bf33e2a
+require github.com/admiral-team/admiral-tools v0.0.0-20221011195450-28dccd566aad
 
 require (
+	github.com/Jeffail/gabs v1.4.0 // indirect
+	github.com/go-playground/colors v1.3.0 // indirect
 	github.com/golang/protobuf v1.5.2 // indirect
 	github.com/google/go-github/v43 v43.0.0 // indirect
+	github.com/google/go-github/v45 v45.2.0 // indirect
 	github.com/google/go-querystring v1.1.0 // indirect
 	golang.org/x/crypto v0.0.0-20210817164053-32db794688a5 // indirect
 	golang.org/x/net v0.0.0-20220624214902-1bab6f366d9e // indirect

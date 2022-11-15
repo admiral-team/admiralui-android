@@ -56,6 +56,12 @@ class InputNumber @JvmOverloads constructor(
 ) : ConstraintLayout(context, attrs, defStyleAttr), ThemeObserver {
 
     /**
+     * If the value is true - the size of the view that displays current value will automatically resize.
+     * Otherwise the size will be calculated from the [minValue] and [maxValue] values.
+     */
+    var isAutoWidth: Boolean = true
+
+    /**
      * Optional text.
      */
     var optionalText: String? = null
@@ -93,6 +99,9 @@ class InputNumber @JvmOverloads constructor(
             isChangeable = false
             valueEditText.inputText = df.format(field)
             isChangeable = true
+            if (isAutoWidth) {
+                setupValueTextViewWidth()
+            }
 
             valueEditText.editText.setSelectionEnd()
             updateIncrementDecrementEnablingState()
@@ -301,9 +310,22 @@ class InputNumber @JvmOverloads constructor(
     }
 
     private fun setupValueTextViewWidth() {
-        val max = -max(abs(minValue), abs(maxValue))
+        // if the size is auto we just take text from the edit text
+        val max = if (isAutoWidth) {
+            valueEditText.inputText + "    "
+            // else we calculate which value will be higher
+        } else {
+            -max(abs(minValue), abs(maxValue))
+        }
 
-        val textWidth = valueEditText.editText.paint.measureText("$max ")
+        // add spaces for the DecimalFormat("###,###", dfs) if the size is fixed
+        val emptySpaces = if (isAutoWidth) {
+            ""
+        } else {
+            " ".repeat(max(abs(minValue), abs(maxValue)).toString().length % NUMBER_SPACES)
+        }
+
+        val textWidth = valueEditText.editText.paint.measureText("$max $emptySpaces")
         valueEditText.updateLayoutParams {
             this.width = textWidth.toInt()
         }
@@ -602,6 +624,7 @@ class InputNumber @JvmOverloads constructor(
     }
 
     private companion object {
+        private const val NUMBER_SPACES = 3
         private const val DELAY_AUTO_INCREMENT = 300L
         private const val DEFAULT_MIN_VALUE = -99999
         private const val DEFAULT_MAX_VALUE = 99999

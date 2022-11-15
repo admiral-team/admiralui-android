@@ -1,7 +1,17 @@
+github.com/Jeffail/gabs v1.4.0 h1://5fYRRTq1edjfIrQGvdkcd22pkYUrHZ5YC/H2GJVAo=
+github.com/Jeffail/gabs v1.4.0/go.mod h1:6xMvQMK4k33lb7GUUpaAPh6nKMmemQeg5d4gn7/bOXc=
 github.com/admiral-team/admiral-tools v0.0.0-20220713201205-558c0a039fc1 h1:tPHZOy8ugZ35lzratzE+UytRB1JYvpfAEjWsTliGE0I=
 github.com/admiral-team/admiral-tools v0.0.0-20220713201205-558c0a039fc1/go.mod h1:AY1H2L8D+Kidkmo6I1diBm5Ru1/42ewAc7b+XguzgWs=
 github.com/admiral-team/admiral-tools v0.0.0-20220713202546-0a837bf33e2a h1:rdvYx+9j2Q736YO38tLVL+EkwSK1mmnrIe+hyXFxHM8=
 github.com/admiral-team/admiral-tools v0.0.0-20220713202546-0a837bf33e2a/go.mod h1:AY1H2L8D+Kidkmo6I1diBm5Ru1/42ewAc7b+XguzgWs=
+github.com/admiral-team/admiral-tools v0.0.0-20220817174330-34393f83fef4 h1:u+Ds6EVi9JJqS4LQrIprSa+YaRD35b45j/DDdXLftbk=
+github.com/admiral-team/admiral-tools v0.0.0-20220817174330-34393f83fef4/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
+github.com/admiral-team/admiral-tools v0.0.0-20221011191131-169a1233eea6 h1:ZkkDTzq+0nvP1cgvfyIJm2skah+YAT0Xn+404zylWYU=
+github.com/admiral-team/admiral-tools v0.0.0-20221011191131-169a1233eea6/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
+github.com/admiral-team/admiral-tools v0.0.0-20221011195450-28dccd566aad h1:hKMPiHGjFwo56DsflnJ20orBArQ5wI2UqTVqc1iLLaI=
+github.com/admiral-team/admiral-tools v0.0.0-20221011195450-28dccd566aad/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
+github.com/go-playground/colors v1.3.0 h1:B+jYkyTo36sREzsaXd3kawgG53rw0zqX9fSllGVoLdc=
+github.com/go-playground/colors v1.3.0/go.mod h1:5rTAoESUkprj1EHZvzGti8xkb8XwAGYzYEFmW18B8es=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
 github.com/golang/protobuf v1.5.0/go.mod h1:FsONVRAS9T7sI+LIUmWTfcYkHO4aIWwzhcaSAoJOfIk=
 github.com/golang/protobuf v1.5.2 h1:ROPKBNFfQgOUMifHyP+KYbvpjbdoFNs+aK7DXlji0Tw=
@@ -12,6 +22,8 @@ github.com/google/go-github v17.0.0+incompatible h1:N0LgJ1j65A7kfXrZnUDaYCs/Sf4r
 github.com/google/go-github v17.0.0+incompatible/go.mod h1:zLgOLi98H3fifZn+44m+umXrS52loVEgC2AApnigrVQ=
 github.com/google/go-github/v43 v43.0.0 h1:y+GL7LIsAIF2NZlJ46ZoC/D1W1ivZasT0lnWHMYPZ+U=
 github.com/google/go-github/v43 v43.0.0/go.mod h1:ZkTvvmCXBvsfPpTHXnH/d2hP9Y0cTbvN9kr5xqyXOIc=
+github.com/google/go-github/v45 v45.2.0 h1:5oRLszbrkvxDDqBCNj2hjDZMKmvexaZ1xw/FCD+K3FI=
+github.com/google/go-github/v45 v45.2.0/go.mod h1:FObaZJEDSTa/WGCzZ2Z3eoCDXWJKMenWWTrd8jrta28=
 github.com/google/go-querystring v1.1.0 h1:AnCroh3fv4ZBgVIf1Iwtovgjaw/GiKJo8M8yD/fhyJ8=
 github.com/google/go-querystring v1.1.0/go.mod h1:Kcdr2DB4koayq7X8pmAG4sNG59So17icRSOU623lUBU=
 github.com/iancoleman/strcase v0.2.0 h1:05I4QRnGpI0m37iZQRuskXh+w77mr6Z41lwQzuHLwW0=
