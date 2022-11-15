@@ -10,15 +10,15 @@ import (
 )
 
 func main() {
-	token := goDotEnvVariable("FIGMA_ACCESS_TOKEN")
-	imagesFile := goDotEnvVariable("FIGMA_IMAGES_FILE_KEY")
-	documentationFile := goDotEnvVariable("FIGMA_DOCUMENTATION_FILE_KEY")
+	figmaToken := goDotEnvVariable("FIGMA_ACCESS_TOKEN")
 
 	switch os.Args[1] {
 	case "loadDocumentation":
-		client.LoadDocumentation(token, documentationFile, "../demo/src/main/assets")
+		documentationFile := goDotEnvVariable("FIGMA_DOCUMENTATION_FILE_KEY")
+		client.LoadDocumentation(figmaToken, documentationFile, "../demo/src/main/assets")
 	case "loadImages":
-		client.LoadImagesAndroid(token, imagesFile)
+		imagesFile := goDotEnvVariable("FIGMA_IMAGES_FILE_KEY")
+		client.LoadImagesAndroid(figmaToken, imagesFile)
 	case "createRelease":
 		githubToken := goDotEnvVariable("GITHUB_TOKEN")
 		tgToken := goDotEnvVariable("TELEGRAM_API_TOKEN")
