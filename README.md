@@ -7,7 +7,7 @@ Visual components library for `Android`
 </p>
 
 ## What is UI Kit?
-**UI Kit** - is a set of user interface elements.
+**UI Kit** - is a set of user interface elements. Learn more about AdmiralUI in [documentation](https://github.com/admiral-team/admiralui-android/blob/develop/demo/src/main/assets/documentation.pdf)
 
 ### Pros of using UI Kit:
 - Allows you to adhere to a single visual style and interface solutions
