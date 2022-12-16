@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
 import android.view.LayoutInflater
+import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.isVisible
@@ -20,10 +21,8 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
 
 class TextMessage @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr), ThemeObserver {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : LinearLayout(context, attrs, defStyleAttr), ThemeObserver {
 
     /**
      * There are three types of MessageStatus: NONE, LOADING and DONE.
@@ -33,6 +32,12 @@ class TextMessage @JvmOverloads constructor(
         set(value) {
             field = value
             invalidateIcon()
+        }
+
+    var isError: Boolean = false
+        set(value) {
+            field = value
+            showMessageError(isError)
         }
 
     /**
@@ -91,6 +96,8 @@ class TextMessage @JvmOverloads constructor(
     private val textMessageTextView: TextView by lazy { findViewById(R.id.admiralTextMessageTextView) }
     private val timeTextView: TextView by lazy { findViewById(R.id.admiralTextMessageTimeTextView) }
     private val statusImageView: ImageView by lazy { findViewById(R.id.admiralTextMessageIconImageView) }
+    private val errorImageView: ImageView by lazy { findViewById(R.id.admiralTextMessageErrorView) }
+    private val container: ConstraintLayout by lazy { findViewById(R.id.admiralTextMessageMessageContainer) }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_message_text, this)
@@ -104,15 +111,15 @@ class TextMessage @JvmOverloads constructor(
 
             messageStatus = MessageStatus.from(
                 it.getInt(
-                    R.styleable.TextMessage_admiralMessageStatus,
-                    MessageStatus.NONE.ordinal
+                    R.styleable.TextMessage_admiralMessageStatus, MessageStatus.NONE.ordinal
                 )
             )
-            messageGravity = it.getInt(R.styleable.TextMessage_admiralMessageGravity, Gravity.FILL_HORIZONTAL)
+            messageGravity =
+                it.getInt(R.styleable.TextMessage_admiralMessageGravity, Gravity.FILL_HORIZONTAL)
         }
 
-        background = drawable(R.drawable.admiral_bg_rectangle_12dp)
-            ?.colored(ThemeManager.theme.palette.backgroundAccent)
+        container.background =
+            drawable(R.drawable.admiral_bg_rectangle_12dp)?.colored(ThemeManager.theme.palette.backgroundAccent)
     }
 
     /**
@@ -145,21 +152,17 @@ class TextMessage @JvmOverloads constructor(
     }
 
     private fun invalidateBackground() {
-        background = if (isOutgoing) {
+        container.background = if (isOutgoing) {
             if (isLast) {
-                drawable(R.drawable.admiral_bg_message_incoming_last)
-                    ?.colored(ThemeManager.theme.palette.backgroundAccent)
+                drawable(R.drawable.admiral_bg_message_incoming_last)?.colored(ThemeManager.theme.palette.backgroundAccent)
             } else {
-                drawable(R.drawable.admiral_bg_message_chat)
-                    ?.colored(ThemeManager.theme.palette.backgroundAccent)
+                drawable(R.drawable.admiral_bg_message_chat)?.colored(ThemeManager.theme.palette.backgroundAccent)
             }
         } else {
             if (isLast) {
-                drawable(R.drawable.admiral_bg_message_outgoing_last)
-                    ?.colored(ThemeManager.theme.palette.backgroundAdditionalOne)
+                drawable(R.drawable.admiral_bg_message_outgoing_last)?.colored(ThemeManager.theme.palette.backgroundAdditionalOne)
             } else {
-                drawable(R.drawable.admiral_bg_message_chat)
-                    ?.colored(ThemeManager.theme.palette.backgroundAdditionalOne)
+                drawable(R.drawable.admiral_bg_message_chat)?.colored(ThemeManager.theme.palette.backgroundAdditionalOne)
             }
         }
     }
@@ -188,5 +191,9 @@ class TextMessage @JvmOverloads constructor(
 
     private fun invalidateIcon() {
         statusImageView.setMessageStatusIcon(messageStatus, isOutgoing)
+    }
+
+    private fun showMessageError(isError: Boolean) {
+        errorImageView.isVisible = isError
     }
 }

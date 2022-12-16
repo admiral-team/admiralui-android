@@ -9,6 +9,7 @@ import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
@@ -178,7 +179,8 @@ class Button @JvmOverloads constructor(
             additionalText = it.getString(R.styleable.Button_admiralTextAdditional)
 
             actionTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
-            additionalTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
+            additionalTextView.isAllCaps =
+                it.getBoolean(R.styleable.Button_android_textAllCaps, false)
             drawablePadding = it.getDimension(R.styleable.Button_android_drawablePadding, 0f)
 
             val drawableStartId = it.getResourceId(R.styleable.Button_android_drawableStart, 0)
@@ -190,7 +192,12 @@ class Button @JvmOverloads constructor(
             isLoading = it.getBoolean(R.styleable.Button_admiralIsLoading, false)
 
             radius =
-                ComponentsRadius.from(it.getInt(R.styleable.Button_admiralRadius, ComponentsRadius.RADIUS_8.ordinal))
+                ComponentsRadius.from(
+                    it.getInt(
+                        R.styleable.Button_admiralRadius,
+                        ComponentsRadius.RADIUS_8.ordinal
+                    )
+                )
         }
 
         invalidateAppearance()
@@ -303,8 +310,10 @@ class Button @JvmOverloads constructor(
         val color = backgroundColor?.pressed ?: ThemeManager.theme.palette.backgroundAccentPressed
         val mask = roundedRectangle(radius)
         val colorState = ColorState(
-            normalEnabled = backgroundColor?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
-            normalDisabled = backgroundColor?.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
+            normalEnabled = backgroundColor?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAccent,
+            normalDisabled = backgroundColor?.normalDisabled
+                ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
             pressed = backgroundColor?.pressed ?: ThemeManager.theme.palette.backgroundAccent
         )
 
@@ -339,13 +348,16 @@ class Button @JvmOverloads constructor(
     private fun invalidateTextColors() {
         val colorState = when (buttonStyle) {
             ButtonStyle.Primary -> ColorState(
-                normalEnabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textStaticWhite,
-                normalDisabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.textStaticWhite.withAlpha(),
+                normalEnabled = textColor?.normalEnabled
+                    ?: ThemeManager.theme.palette.textStaticWhite,
+                normalDisabled = textColor?.normalDisabled
+                    ?: ThemeManager.theme.palette.textStaticWhite.withAlpha(),
                 pressed = textColor?.pressed ?: ThemeManager.theme.palette.textStaticWhite
             )
             ButtonStyle.Secondary, ButtonStyle.Ghost -> ColorState(
                 normalEnabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textAccent,
-                normalDisabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.textAccent.withAlpha(),
+                normalDisabled = textColor?.normalDisabled
+                    ?: ThemeManager.theme.palette.textAccent.withAlpha(),
                 pressed = textColor?.pressed ?: ThemeManager.theme.palette.textAccentPressed
             )
         }
@@ -357,13 +369,16 @@ class Button @JvmOverloads constructor(
     private fun invalidateDrawable() {
         val colorState = when (buttonStyle) {
             ButtonStyle.Primary -> ColorState(
-                normalEnabled = drawableTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
+                normalEnabled = drawableTintColor?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
                 normalDisabled = drawableTintColor?.normalDisabled
                     ?: ThemeManager.theme.palette.elementStaticWhite.withAlpha(),
-                pressed = drawableTintColor?.pressed ?: ThemeManager.theme.palette.elementStaticWhite
+                pressed = drawableTintColor?.pressed
+                    ?: ThemeManager.theme.palette.elementStaticWhite
             )
             ButtonStyle.Secondary, ButtonStyle.Ghost -> ColorState(
-                normalEnabled = drawableTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
+                normalEnabled = drawableTintColor?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
                 normalDisabled = drawableTintColor?.normalDisabled
                     ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
                 pressed = drawableTintColor?.pressed ?: ThemeManager.theme.palette.elementAccent
@@ -391,13 +406,15 @@ class Button @JvmOverloads constructor(
 
     private fun invalidateLoading() {
         if (isLoading) {
-            spinner.animate().alpha(1f)
-
+            spinner.animate().alpha(1f).withEndAction {
+                spinner.isVisible = true
+            }
             actionTextView.animate().alpha(0f)
             additionalTextView.animate().alpha(0f)
         } else {
-            spinner.animate().alpha(0f)
-
+            spinner.animate().alpha(0f).withEndAction {
+                spinner.isVisible = false
+            }
             actionTextView.animate().alpha(1f)
 
             if (!additionalText.isNullOrEmpty() && buttonSize != ButtonSize.Small) {
