@@ -1,5 +1,6 @@
 package com.admiral.uikit.components.chat.image
 
+import android.animation.LayoutTransition
 import android.content.Context
 import android.util.AttributeSet
 import android.view.Gravity
@@ -18,6 +19,7 @@ import com.admiral.uikit.R
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.chat.MessageStatus
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
@@ -27,10 +29,8 @@ import com.admiral.uikit.layout.LinearLayout
 import com.admiral.uikit.components.imageview.ImageView as AdmiralImageView
 
 class ImageMessage @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
-) : FrameLayout(context, attrs, defStyleAttr) {
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
+) : LinearLayout(context, attrs, defStyleAttr) {
 
     /*
       * There are three types of MessageStatus: NONE, LOADING and DONE.
@@ -40,6 +40,12 @@ class ImageMessage @JvmOverloads constructor(
         set(value) {
             field = value
             invalidateIcon()
+        }
+
+    var isError: Boolean = false
+        set(value) {
+            field = value
+            showMessageError(isError)
         }
 
     /**
@@ -58,6 +64,8 @@ class ImageMessage @JvmOverloads constructor(
      */
     val views = mutableListOf<ChatImageView>()
 
+    private val frameContainer = FrameLayout(context)
+
     private val timeTextView = TextView(context).apply {
         textStyle = ThemeManager.theme.typography.caption1
         textColor = ColorState(ThemeManager.theme.palette.textStaticWhite)
@@ -65,54 +73,93 @@ class ImageMessage @JvmOverloads constructor(
     }
 
     private val statusImageView = AdmiralImageView(context).apply {
-        val attributes =
-            LayoutParams(STATUS_IMAGE_VIEW_SIZE.dpToPx(context), STATUS_IMAGE_VIEW_SIZE.dpToPx(context))
+        val attributes = LayoutParams(
+            STATUS_IMAGE_VIEW_SIZE.dpToPx(context), STATUS_IMAGE_VIEW_SIZE.dpToPx(context)
+        )
         layoutParams = attributes
     }
 
     private val timeContainer = LinearLayout(context).apply {
         showDividers = LinearLayoutCompat.SHOW_DIVIDER_MIDDLE
-        dividerDrawable = ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_4dp)
+        dividerDrawable =
+            ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_4dp)
         orientation = LinearLayoutCompat.HORIZONTAL
 
-        val attributes = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
+        val attributes = android.widget.FrameLayout.LayoutParams(
+            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
+        ).apply {
             gravity = Gravity.BOTTOM or Gravity.END
         }
         layoutParams = attributes
 
         background = drawable(R.drawable.admiral_bg_rectangle_18dp)
         backgroundColorNormalEnabledPalette = ColorPaletteEnum.BACKGROUND_MODAL_VIEW
+        backgroundColorPressedPalette = ColorPaletteEnum.BACKGROUND_MODAL_VIEW
 
         addView(timeTextView)
         addView(statusImageView)
 
-        updatePadding(4.dpToPx(context), 2.dpToPx(context), 4.dpToPx(context), 2.dpToPx(context))
+        updatePadding(
+            4.dpToPx(context), 2.dpToPx(context), 4.dpToPx(context), 2.dpToPx(context)
+        )
         setMargins(0, MARGIN_TIME_RIGHT, MARGIN_TIME_BOTTOM, 0)
         isVisible = false
     }
 
     private val imagesContainer = GridLayout(context)
 
+    private val errorImageView = ImageView(context).apply {
+        val attributes = LayoutParams(
+            ERROR_IMAGE_VIEW_SIZE.dpToPx(context), ERROR_IMAGE_VIEW_SIZE.dpToPx(context)
+        ).apply {
+            gravity = Gravity.BOTTOM
+        }
+        layoutParams = attributes
+        setImageDrawable(drawable(R.drawable.admiral_ic_error_solid)?.colored(ThemeManager.theme.palette.elementError))
+        isVisible = false
+    }
+
     init {
-        isBackgroundTransparent = true
+        frameContainer.isBackgroundTransparent = true
 
         parseAttrs(attrs, R.styleable.ImageMessage).use {
             time = it.getString(R.styleable.ImageMessage_admiralTimeText)
 
-            messageStatus = MessageStatus.from(it.getInt(R.styleable.ImageMessage_admiralMessageStatus, 0))
+            messageStatus =
+                MessageStatus.from(it.getInt(R.styleable.ImageMessage_admiralMessageStatus, 0))
         }
 
         imagesContainer.columnCount = 2
 
-        this.addView(imagesContainer)
-        this.addView(timeContainer)
+        frameContainer.addView(imagesContainer)
+        frameContainer.addView(timeContainer)
 
         invalidateIcon()
+
+        this.addView(frameContainer)
+        this.addView(errorImageView)
+
+        layoutTransition = LayoutTransition()
     }
 
     override fun onFinishInflate() {
         super.onFinishInflate()
         initViews()
+    }
+
+    private fun initViews() {
+        this.children.forEach {
+            if (it is ChatImageView) {
+                addImageView(it)
+                it.isVisible = false
+            }
+        }
+
+        children.forEachIndexed { indext, view ->
+            if (view is ChatImageView) {
+                removeViewAt(indext)
+            }
+        }
     }
 
     fun addImageView(imageView: ImageView?) {
@@ -132,24 +179,6 @@ class ImageMessage @JvmOverloads constructor(
         views.add(0, chatImageViewCreated)
 
         showViews()
-    }
-
-    private fun initViews() {
-        this.children.forEach {
-            if (it is ImageView) {
-                addImageView(it)
-                it.isVisible = false
-            } else if (it is ChatImageView) {
-                addImageView(it)
-                it.isVisible = false
-            }
-        }
-
-        children.forEachIndexed { indext, view ->
-            if (view is ImageView || view is ChatImageView) {
-                removeViewAt(indext)
-            }
-        }
     }
 
     @Suppress("MagicNumber")
@@ -296,17 +325,16 @@ class ImageMessage @JvmOverloads constructor(
         ).apply {
             columnSpec = GridLayout.spec(0, 2)
             height = VIEW_HEIGHT.dpToPx(context)
-            width = ViewGroup.LayoutParams.MATCH_PARENT
+            width = 232.dpToPx(context)
         }
     }
 
     private fun getNormalLayoutParams(): ViewGroup.LayoutParams {
         return GridLayout.LayoutParams(
-            GridLayout.spec(GridLayout.UNDEFINED),
-            GridLayout.spec(GridLayout.UNDEFINED, 1f)
+            GridLayout.spec(GridLayout.UNDEFINED), GridLayout.spec(GridLayout.UNDEFINED, 1f)
         ).apply {
             height = VIEW_HEIGHT.dpToPx(context)
-            width = 0
+            width = VIEW_HEIGHT.dpToPx(context)
         }
     }
 
@@ -334,10 +362,15 @@ class ImageMessage @JvmOverloads constructor(
         statusImageView.imageTintColorState = ColorState(color)
     }
 
+    private fun showMessageError(isError: Boolean) {
+        errorImageView.isVisible = isError
+    }
+
     private companion object {
         const val MARGIN_TIME_BOTTOM = 8
         const val MARGIN_TIME_RIGHT = 12
         const val STATUS_IMAGE_VIEW_SIZE = 16
+        const val ERROR_IMAGE_VIEW_SIZE = 28
         const val VIEW_HEIGHT = 114
     }
 }

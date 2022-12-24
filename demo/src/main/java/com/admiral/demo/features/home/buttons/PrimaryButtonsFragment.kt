@@ -22,9 +22,19 @@ class PrimaryButtonsFragment : BaseFragment(R.layout.fmt_buttons_primary) {
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
+        var isLoading = false
+
         with(binding) {
+            btnBigIconStart.setOnClickListener {
+                isLoading = !isLoading
+                btnAddition.isLoading = isLoading
+            }
             tabsState.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
-                override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
+                override fun onCheckedChanged(
+                    radioButton: View?,
+                    isChecked: Boolean,
+                    checkedId: Int
+                ) {
                     val isEnabled = checkedId == R.id.defaultTab
                     btnAddition.isEnabled = isEnabled
                     btnBigIconStart.isEnabled = isEnabled

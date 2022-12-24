@@ -25,6 +25,7 @@
             android:layout_weight="1" />
 
         <com.admiral.uikit.components.chat.TextMessage
+            android:id="@+id/textMessageFirst"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="end"

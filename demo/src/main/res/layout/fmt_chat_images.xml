@@ -52,7 +52,8 @@
             app:admiralTextStyle="headline" />
 
         <com.admiral.uikit.components.chat.image.ImageMessage
-            android:layout_width="232dp"
+            android:id="@+id/imageFirst"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
@@ -75,7 +76,8 @@
             app:admiralTextStyle="headline" />
 
         <com.admiral.uikit.components.chat.image.ImageMessage
-            android:layout_width="232dp"
+            android:id="@+id/imageSecond"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
@@ -103,7 +105,7 @@
             app:admiralTextStyle="headline" />
 
         <com.admiral.uikit.components.chat.image.ImageMessage
-            android:layout_width="232dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
@@ -136,7 +138,7 @@
             app:admiralTextStyle="headline" />
 
         <com.admiral.uikit.components.chat.image.ImageMessage
-            android:layout_width="232dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
@@ -175,7 +177,7 @@
             app:admiralTextStyle="headline" />
 
         <com.admiral.uikit.components.chat.image.ImageMessage
-            android:layout_width="232dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
@@ -218,7 +220,7 @@
             app:admiralTextStyle="headline" />
 
         <com.admiral.uikit.components.chat.image.ImageMessage
-            android:layout_width="232dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"

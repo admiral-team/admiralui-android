@@ -17,5 +17,15 @@ class ChatTextMessageFragment : BaseFragment(R.layout.fmt_chat_text_message) {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
+
+        var isError = false
+
+        binding.apply {
+            textMessageFirst.setOnClickListener {
+                isError = !isError
+                textMessageFirst.isError = isError
+                chat.isError = isError
+            }
+        }
     }
 }
