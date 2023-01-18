@@ -6,6 +6,7 @@ import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.widget.FrameLayout
 import android.widget.ImageView
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
@@ -27,7 +28,7 @@ class StaticNotification @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : ConstraintLayout(context, attrs, defStyleAttr), ThemeObserver {
+) : FrameLayout(context, attrs, defStyleAttr), ThemeObserver {
 
     /**
      * Color state for background.
@@ -231,7 +232,8 @@ class StaticNotification @JvmOverloads constructor(
             pressed = a.getColorOrNull(R.styleable.StaticNotification_admiralBackgroundColorPressed),
         )
 
-        isBackgroundColorDefault = a.getBoolean(R.styleable.StaticNotification_admiralIsBackgroundDefault, false)
+        isBackgroundColorDefault =
+            a.getBoolean(R.styleable.StaticNotification_admiralIsBackgroundDefault, false)
     }
 
     private fun parseTextColors(a: TypedArray) {
@@ -284,7 +286,8 @@ class StaticNotification @JvmOverloads constructor(
 
     private fun invalidateTextColors() {
         val colorState = ColorState(
-            normalEnabled = notificationTextColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
+            normalEnabled = notificationTextColors?.normalEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
             normalDisabled = notificationTextColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = notificationTextColors?.pressed ?: ThemeManager.theme.palette.textPrimary
@@ -296,7 +299,8 @@ class StaticNotification @JvmOverloads constructor(
     private fun invalidateLinkColors() {
         val colorState = ColorState(
             normalEnabled = linkColors?.normalEnabled ?: ThemeManager.theme.palette.textAccent,
-            normalDisabled = linkColors?.normalDisabled ?: ThemeManager.theme.palette.textAccent.withAlpha(),
+            normalDisabled = linkColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textAccent.withAlpha(),
             pressed = linkColors?.pressed ?: ThemeManager.theme.palette.textAccentPressed
         )
 
