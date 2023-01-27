@@ -48,14 +48,14 @@
 
         <com.admiral.uikit.components.imageview.ImageView
             android:id="@+id/iconCloseImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/module_x7"
+            android:layout_height="@dimen/module_x7"
             android:src="@drawable/admiral_ic_eye_close_outline" />
 
         <com.admiral.uikit.components.imageview.ImageView
             android:id="@+id/iconImageView"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_width="@dimen/module_x7"
+            android:layout_height="@dimen/module_x7"
             android:layout_marginEnd="@dimen/module_x1"
             android:src="@drawable/admiral_ic_archive_solid" />
     </com.admiral.uikit.layout.LinearLayout>
