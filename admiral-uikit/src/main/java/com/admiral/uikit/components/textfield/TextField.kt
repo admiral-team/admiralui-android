@@ -825,16 +825,16 @@ class TextField @JvmOverloads constructor(
     private fun invalidateIcon() {
         val topMargin = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x4
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x5
-                else -> R.dimen.module_x5
+                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x3
+                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x4
+                else -> R.dimen.module_x4
             }
         )
 
         val size = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x6
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x6
+                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x7
+                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x7
                 else -> R.dimen.module_x10
             }
         )
