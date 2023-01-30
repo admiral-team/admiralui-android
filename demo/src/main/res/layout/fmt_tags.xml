@@ -142,7 +142,7 @@
                 app:admiralIconPosition="right"
                 app:admiralTagColor="gray"
                 app:admiralText="@string/tags_chips_flag"
-                app:chipIcon="@drawable/test_ic_france" />
+                app:chipIcon="@drawable/test_ic_russia" />
 
         </com.admiral.uikit.components.chip.ChipGroup>
 
@@ -182,7 +182,7 @@
                 app:admiralIconPosition="right"
                 app:admiralTagColor="green"
                 app:admiralText="@string/tags_chips_flag"
-                app:chipIcon="@drawable/test_ic_france" />
+                app:chipIcon="@drawable/test_ic_russia" />
 
         </com.admiral.uikit.components.chip.ChipGroup>
 
@@ -222,7 +222,7 @@
                 app:admiralIconPosition="right"
                 app:admiralTagColor="red"
                 app:admiralText="@string/tags_chips_flag"
-                app:chipIcon="@drawable/test_ic_france" />
+                app:chipIcon="@drawable/test_ic_russia" />
 
         </com.admiral.uikit.components.chip.ChipGroup>
 
@@ -263,7 +263,7 @@
                 app:admiralIconPosition="right"
                 app:admiralTagColor="orange"
                 app:admiralText="@string/tags_chips_flag"
-                app:chipIcon="@drawable/test_ic_france" />
+                app:chipIcon="@drawable/test_ic_russia" />
 
         </com.admiral.uikit.components.chip.ChipGroup>
 

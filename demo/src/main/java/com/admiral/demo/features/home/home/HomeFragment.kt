@@ -67,6 +67,9 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
                                 ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
 
                             view.isVisible = isTitleContains || isSubtitleContains
+                            if (cellUnit.title == getString(R.string.home_section_stepper_title)) {
+                                view.isVisible = false
+                            }
                         }
                     }
                 }

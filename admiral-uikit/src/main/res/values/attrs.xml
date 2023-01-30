@@ -348,6 +348,7 @@
         <attr name="admiralTextColorNormalDisabled" />
 
         <attr name="admiralTextColorNormalEnabledPalette" />
+        <attr name="admiralTextColorNormalDisabledPalette" />
         <attr name="admiralTextColorPressedPalette" />
         <attr name="admiralCompoundDrawablesNormalEnabledPalette" />
         <attr name="admiralCompoundDrawablesPressedPalette" />
