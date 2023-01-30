@@ -65,6 +65,15 @@ open class TextView @JvmOverloads constructor(
         }
 
     /**
+     * Color of text for the normal disabled state from palette.
+     */
+    var textColorNormalDisabledPalette: ColorPaletteEnum? = null
+        set(value) {
+            field = value
+            invalidateTextColor()
+        }
+
+    /**
      * Color of text for the pressed state from palette.
      */
     var textColorPressedPalette: ColorPaletteEnum? = null
@@ -129,7 +138,8 @@ open class TextView @JvmOverloads constructor(
 
     init {
         parseAttrs(attrs, R.styleable.TextView).use {
-            textStyle = Typography.getStyleById(it.getInt(R.styleable.TextView_admiralTextStyle, subhead1))
+            textStyle =
+                Typography.getStyleById(it.getInt(R.styleable.TextView_admiralTextStyle, subhead1))
 
             textColor = ColorState(
                 normalEnabled = it.getColorOrNull(R.styleable.TextView_admiralTextColorNormalEnabled),
@@ -138,6 +148,8 @@ open class TextView @JvmOverloads constructor(
             )
             textColorNormalEnabledPalette =
                 ColorPaletteEnum.from(it.getIntOrNull(R.styleable.TextView_admiralTextColorNormalEnabledPalette))
+            textColorNormalDisabledPalette =
+                ColorPaletteEnum.from(it.getIntOrNull(R.styleable.TextView_admiralTextColorNormalDisabledPalette))
             textColorPressedPalette =
                 ColorPaletteEnum.from(it.getIntOrNull(R.styleable.TextView_admiralTextColorPressedPalette))
             compoundDrawablesNormalEnabledPalette =
@@ -226,8 +238,9 @@ open class TextView @JvmOverloads constructor(
                     ?: androidTextColor
                     ?: ThemeManager.theme.palette.textPrimary,
                 normalDisabled = textColor?.normalDisabled
-                    ?: textColorNormalEnabledPalette?.colorResToToken()
-                    ?: androidTextColor
+                    ?: textColorNormalDisabledPalette?.colorResToToken()
+                    ?: androidTextColor?.withAlpha()
+                    ?: textColorNormalEnabledPalette?.colorResToToken()?.withAlpha()
                     ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
                 pressed = textColor?.pressed
                     ?: textColorPressedPalette?.colorResToToken()

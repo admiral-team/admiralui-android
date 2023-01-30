@@ -29,6 +29,15 @@
                 android:layout_height="wrap_content"
                 app:admiralHintText="@string/home_search_hint" />
 
+            <com.admiral.uikit.components.text.TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="text text"
+                android:enabled="false"
+                app:admiralTextColorNormalEnabledPalette="elementError"
+                app:admiralTextColorNormalDisabledPalette="textSecondary"
+                app:admiralTextStyle="largetitle1" />
+
             <com.admiral.uikit.components.cell.BaseCell
                 android:id="@+id/themeButton"
                 android:layout_width="match_parent"
