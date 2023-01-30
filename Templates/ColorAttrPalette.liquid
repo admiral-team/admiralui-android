@@ -8,6 +8,10 @@
         <enum name="{{ style_name | default_format }}" value="{{ forloop.index0}}" />{% endfor %}
     </attr>
 
+    <attr name="admiralTextColorNormalDisabledPalette" format="enum">{% for style_name in common_style_names %}
+        <enum name="{{ style_name | default_format }}" value="{{ forloop.index0}}" />{% endfor %}
+    </attr>
+
     <attr name="admiralTextColorPressedPalette" format="enum">{% for style_name in common_style_names %}
         <enum name="{{ style_name | default_format }}" value="{{ forloop.index0}}" />{% endfor %}
     </attr>
