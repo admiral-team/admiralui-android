@@ -13,30 +13,7 @@ import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtHomeBinding
 import com.admiral.demo.features.home.theme.ThemeListMode
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.demo.screen.AlertsOnboardingScreen
-import com.admiral.demo.screen.BadgesScreen
-import com.admiral.demo.screen.BottomSheetScreen
-import com.admiral.demo.screen.ButtonsScreen
-import com.admiral.demo.screen.CalendarScreen
-import com.admiral.demo.screen.CellsScreen
-import com.admiral.demo.screen.ChatScreen
-import com.admiral.demo.screen.CheckBoxScreen
-import com.admiral.demo.screen.CurrencyScreen
-import com.admiral.demo.screen.IconsScreen
-import com.admiral.demo.screen.InformersNotificationsScreen
-import com.admiral.demo.screen.LinksScreen
-import com.admiral.demo.screen.PageControlScreen
-import com.admiral.demo.screen.RadioButtonScreen
-import com.admiral.demo.screen.ShimmerScreen
-import com.admiral.demo.screen.SpinnerScreen
-import com.admiral.demo.screen.StepperScreen
-import com.admiral.demo.screen.SwitchScreen
-import com.admiral.demo.screen.TabsScreen
-import com.admiral.demo.screen.TagsScreen
-import com.admiral.demo.screen.TextFieldsScreen
-import com.admiral.demo.screen.ThemeListScreen
-import com.admiral.demo.screen.TimePickerScreen
-import com.admiral.demo.screen.ToolbarScreen
+import com.admiral.demo.screen.*
 import com.admiral.uikit.components.cell.BaseCell
 import com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
 import kotlinx.coroutines.flow.debounce
@@ -67,6 +44,9 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
                                 ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
 
                             view.isVisible = isTitleContains || isSubtitleContains
+                            if (cellUnit.title == getString(R.string.home_section_stepper_title)) {
+                                view.isVisible = false
+                            }
                         }
                     }
                 }

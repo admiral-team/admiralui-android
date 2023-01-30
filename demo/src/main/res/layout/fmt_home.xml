@@ -663,7 +663,8 @@
                 android:clickable="true"
                 android:focusable="true"
                 android:paddingStart="@dimen/module_x4"
-                android:paddingEnd="@dimen/module_x4">
+                android:paddingEnd="@dimen/module_x4"
+                android:visibility="gone">
 
                 <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
                     android:id="@+id/iconBackgroundToolbar"
