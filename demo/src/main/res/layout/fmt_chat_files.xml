@@ -68,7 +68,7 @@
             android:layout_marginTop="@dimen/module_x2"
             android:layout_marginEnd="@dimen/module_x4"
             app:admiralIsOutgoing="true"
-            app:admiralMessageStatus="sending"
+            app:admiralMessageStatus="none"
             app:admiralTimeText="@string/chat_example_time" />
 
         <com.admiral.uikit.components.text.TextView
@@ -99,7 +99,7 @@
             android:layout_marginEnd="@dimen/module_x4"
             app:admiralIsLast="true"
             app:admiralIsOutgoing="true"
-            app:admiralMessageStatus="sending"
+            app:admiralMessageStatus="none"
             app:admiralTimeText="@string/chat_example_time" />
 
     </com.admiral.uikit.layout.LinearLayout>

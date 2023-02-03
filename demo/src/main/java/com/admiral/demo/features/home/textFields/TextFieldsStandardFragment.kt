@@ -6,12 +6,15 @@ import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
+import android.widget.HorizontalScrollView
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtTextFieldsStandardBinding
 import com.admiral.demo.features.main.NavigationViewModel
+import com.admiral.uikit.components.chip.Chip
+import com.admiral.uikit.components.chip.ChipGroup
 import com.admiral.uikit.view.checkable.CheckableGroup
 
 class TextFieldsStandardFragment : BaseFragment(R.layout.fmt_text_fields_standard) {
@@ -89,5 +92,41 @@ class TextFieldsStandardFragment : BaseFragment(R.layout.fmt_text_fields_standar
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
+    }
+
+    private fun addBottomView() {
+        with(binding) {
+            textField.addBottomView(HorizontalScrollView(requireContext()).apply {
+                addView(ChipGroup(requireContext()).apply {
+                    isSingleSelection = true
+                    isSingleLine = true
+                    addView(Chip(requireContext()).apply {
+                        text = "500"
+                        isCheckable = true
+                    })
+                    addView(Chip(requireContext()).apply {
+                        text = "1000"
+                        isCheckable = true
+                    })
+                    addView(Chip(requireContext()).apply {
+                        text = "10 000"
+                        isCheckable = true
+                    })
+                    addView(Chip(requireContext()).apply {
+                        text = "50 000"
+                        isCheckable = true
+                    })
+
+                    setOnCheckedChangeListener { _, checkedId ->
+                        val chip: Chip? = this.findViewById(checkedId)
+
+                        if (chip != null) {
+                            textField.inputText = chip.text.toString()
+                            textField.setSelection(textField.inputText.length)
+                        }
+                    }
+                })
+            })
+        }
     }
 }

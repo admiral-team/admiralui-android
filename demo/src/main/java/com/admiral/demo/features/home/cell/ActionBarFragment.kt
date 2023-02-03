@@ -38,6 +38,7 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
     private fun initTabs() {
         binding.tabs.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
             override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
+                initTitleCell()
                 when (checkedId) {
                     binding.defaultTab.id -> {
                         binding.actionBar.isEnabled = true
@@ -98,12 +99,21 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
 
     @SuppressLint("ClickableViewAccessibility")
     private fun initTitleCell() {
-        binding.titleCell.setOnTouchListener(
-            object : ActionBarOnSwipeTouchListener(binding.titleCell, binding.actionBar) {}
-        )
-        binding.titleCell2.setOnTouchListener(
-            object : ActionBarOnSwipeTouchListener(binding.titleCell2, binding.actionBar2) {}
-        )
+        if (binding.tabs.getCheckedId() == binding.defaultTab.id) {
+            binding.titleCell.setOnTouchListener(
+                object : ActionBarOnSwipeTouchListener(binding.titleCell, binding.actionBar) {}
+            )
+            binding.titleCell2.setOnTouchListener(
+                object : ActionBarOnSwipeTouchListener(binding.titleCell2, binding.actionBar2) {}
+            )
+        } else {
+            binding.titleCell.setOnTouchListener(
+                null
+            )
+            binding.titleCell2.setOnTouchListener(
+                null
+            )
+        }
     }
 
     private fun showToast(message: String) {

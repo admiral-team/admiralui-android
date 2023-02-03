@@ -50,6 +50,7 @@ import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.setSelectionEnd
 import com.admiral.uikit.ext.showKeyboard
 import com.admiral.uikit.layout.ConstraintLayout
+import com.admiral.uikit.layout.FrameLayout
 import com.admiral.uikit.layout.LinearLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
@@ -407,6 +408,7 @@ class TextField @JvmOverloads constructor(
     val editText: TextInputEditText by lazy { findViewById(R.id.editText) }
 
     private val mainContentContainer: LinearLayout by lazy { findViewById(R.id.admiralViewTextFieldRightViews) }
+    private val bottomContentContainer: FrameLayout by lazy { findViewById(R.id.admiralTextFieldBottomContainer) }
 
     private val iconImageView: ImageView by lazy { findViewById(R.id.iconImageView) }
     private val iconCloseImageView: ImageView by lazy { findViewById(R.id.iconCloseImageView) }
@@ -436,18 +438,24 @@ class TextField @JvmOverloads constructor(
 
             isEnabled = it.getBoolean(R.styleable.TextField_enabled, true)
 
-            bottomTextMaxLines = it.getInt(R.styleable.TextField_admiralBottomTextMaxLines, Int.MAX_VALUE)
+            bottomTextMaxLines =
+                it.getInt(R.styleable.TextField_admiralBottomTextMaxLines, Int.MAX_VALUE)
             isError = it.getBoolean(R.styleable.TextField_admiralIsError, false)
 
-            inputType = it.getInt(R.styleable.TextField_android_inputType, EditorInfo.TYPE_CLASS_TEXT)
-            imeOptions = it.getInt(R.styleable.TextField_android_imeOptions, EditorInfo.IME_ACTION_NEXT)
+            inputType =
+                it.getInt(R.styleable.TextField_android_inputType, EditorInfo.TYPE_CLASS_TEXT)
+            imeOptions =
+                it.getInt(R.styleable.TextField_android_imeOptions, EditorInfo.IME_ACTION_NEXT)
 
             maxLines = it.getInt(R.styleable.TextField_android_maxLines, Int.MAX_VALUE)
             maxLength = it.getInt(R.styleable.TextField_android_maxLength, Int.MAX_VALUE)
 
-            isBottomLineVisible = it.getBoolean(R.styleable.TextField_admiralIsBottomLineVisible, true)
-            isAdditionalTextVisible = it.getBoolean(R.styleable.TextField_admiralIsAdditionalTextVisible, true)
-            isHintAlwaysVisible = it.getBoolean(R.styleable.TextField_admiralIsHintAlwaysVisible, false)
+            isBottomLineVisible =
+                it.getBoolean(R.styleable.TextField_admiralIsBottomLineVisible, true)
+            isAdditionalTextVisible =
+                it.getBoolean(R.styleable.TextField_admiralIsAdditionalTextVisible, true)
+            isHintAlwaysVisible =
+                it.getBoolean(R.styleable.TextField_admiralIsHintAlwaysVisible, false)
             isSaveEnabled = it.getBoolean(R.styleable.TextField_android_saveEnabled, true)
         }
 
@@ -546,14 +554,22 @@ class TextField @JvmOverloads constructor(
 
     fun addEndView(view: View) {
         val params = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.WRAP_CONTENT
+            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
         )
         view.layoutParams = params
 
         additionalRightView = view
         mainContentContainer.addView(view, mainContentContainer.childCount)
         invalidateIcon()
+    }
+
+    fun addBottomView(view: View) {
+        val params = LayoutParams(
+            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
+        )
+        view.layoutParams = params
+
+        bottomContentContainer.addView(view, bottomContentContainer.childCount)
     }
 
     private fun parseTexts(a: TypedArray) {
@@ -575,7 +591,8 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun parseIcon(a: TypedArray) {
-        iconBackgroundColor = a.getColor(R.styleable.TextField_admiralIconBackgroundColor, Color.TRANSPARENT)
+        iconBackgroundColor =
+            a.getColor(R.styleable.TextField_admiralIconBackgroundColor, Color.TRANSPARENT)
         icon = a.getDrawable(R.styleable.TextField_admiralIcon)
         iconImageView.isVisible = icon != null
 
@@ -585,11 +602,17 @@ class TextField @JvmOverloads constructor(
 
     private fun parseGravity(a: TypedArray) {
         inputTextGravity =
-            TextGravity.fromGravity(a.getInt(R.styleable.TextField_admiralTextInputGravity, Gravity.START))
+            TextGravity.fromGravity(
+                a.getInt(
+                    R.styleable.TextField_admiralTextInputGravity,
+                    Gravity.START
+                )
+            )
     }
 
     private fun parseColors(a: TypedArray) {
-        errorColor = a.getInt(R.styleable.TextField_admiralErrorColor, ThemeManager.theme.palette.textError)
+        errorColor =
+            a.getInt(R.styleable.TextField_admiralErrorColor, ThemeManager.theme.palette.textError)
 
         inputTextColor = a.getColorOrNull(R.styleable.TextField_admiralTextInputColor)
 
@@ -608,7 +631,8 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun parseIsShowPasswordIconEnabled(it: TypedArray) {
-        isPasswordIconEnabled = it.getBoolean(R.styleable.TextField_admiralIsShowPasswordIconEnabled, false)
+        isPasswordIconEnabled =
+            it.getBoolean(R.styleable.TextField_admiralIsShowPasswordIconEnabled, false)
     }
 
     @SuppressLint("ClickableViewAccessibility")
@@ -656,11 +680,15 @@ class TextField @JvmOverloads constructor(
 
     private fun invalidateTextHidden() {
         if (isTextHidden) {
-            iconCloseImageView.setImageDrawable(iconCloseHidden ?: drawable(R.drawable.admiral_ic_eye_close_outline))
+            iconCloseImageView.setImageDrawable(
+                iconCloseHidden ?: drawable(R.drawable.admiral_ic_eye_close_outline)
+            )
             editText.transformationMethod = PasswordTransformationMethod.getInstance()
             editText.setSelectionEnd()
         } else {
-            iconCloseImageView.setImageDrawable(iconCloseShown ?: drawable(R.drawable.admiral_ic_eye_outline))
+            iconCloseImageView.setImageDrawable(
+                iconCloseShown ?: drawable(R.drawable.admiral_ic_eye_outline)
+            )
             editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
             editText.setSelectionEnd()
         }
@@ -687,13 +715,13 @@ class TextField @JvmOverloads constructor(
         val hintTextColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             isNowFocused -> hintTextColors?.focused ?: ThemeManager.theme.palette.textAccent
-            !isEnabled -> hintTextColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
-            else -> hintTextColors?.normalEnabled
-                ?: if (isHintAlwaysVisible) {
-                    ThemeManager.theme.palette.textAccent
-                } else {
-                    ThemeManager.theme.palette.textSecondary
-                }
+            !isEnabled -> hintTextColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+            else -> hintTextColors?.normalEnabled ?: if (isHintAlwaysVisible) {
+                ThemeManager.theme.palette.textAccent
+            } else {
+                ThemeManager.theme.palette.textSecondary
+            }
         }
 
         inputLayout.hintTextColor = ColorStateList.valueOf(hintTextColor)
@@ -704,14 +732,17 @@ class TextField @JvmOverloads constructor(
         color as there is the check: "if (this.placeholderTextColor != placeholderTextColor)".
         But when we put font style to the placeholder, it changes the color and we need to get it back.
         */
-        inputLayout.placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textAccent)
-        inputLayout.placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
+        inputLayout.placeholderTextColor =
+            ColorStateList.valueOf(ThemeManager.theme.palette.textAccent)
+        inputLayout.placeholderTextColor =
+            ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
     }
 
     private fun invalidateAdditionalTextColors() {
         val additionalTextColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
-            !isEnabled -> additionalTextColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+            !isEnabled -> additionalTextColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textSecondary.withAlpha()
             else -> additionalTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
 
@@ -723,7 +754,8 @@ class TextField @JvmOverloads constructor(
         editText.setTextColor(
             colorStateList(
                 enabled = inputTextColor ?: ThemeManager.theme.palette.textPrimary,
-                disabled = inputTextColor?.withAlpha() ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                disabled = inputTextColor?.withAlpha()
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
                 pressed = inputTextColor ?: ThemeManager.theme.palette.textPrimary
             )
         )
@@ -741,9 +773,11 @@ class TextField @JvmOverloads constructor(
     private fun invalidateIconColors() {
         if (isError && !isIconFixed) {
             iconImageView.imageTintColorState = ColorState(ThemeManager.theme.palette.elementError)
-            iconCloseImageView.imageTintColorState = ColorState(ThemeManager.theme.palette.elementError)
+            iconCloseImageView.imageTintColorState =
+                ColorState(ThemeManager.theme.palette.elementError)
         } else {
-            iconImageView.imageTintColorState = ColorState(iconTintColor ?: ThemeManager.theme.palette.elementPrimary)
+            iconImageView.imageTintColorState =
+                ColorState(iconTintColor ?: ThemeManager.theme.palette.elementPrimary)
             iconCloseImageView.imageTintColorState =
                 ColorState(iconTintColor ?: ThemeManager.theme.palette.elementPrimary)
         }
@@ -753,7 +787,8 @@ class TextField @JvmOverloads constructor(
         val dividerColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             isNowFocused -> additionalTextColors?.focused ?: ThemeManager.theme.palette.textAccent
-            !isEnabled -> additionalTextColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+            !isEnabled -> additionalTextColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textSecondary.withAlpha()
             else -> additionalTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
 
@@ -790,16 +825,16 @@ class TextField @JvmOverloads constructor(
     private fun invalidateIcon() {
         val topMargin = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x4
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x5
-                else -> R.dimen.module_x5
+                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x3
+                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x4
+                else -> R.dimen.module_x4
             }
         )
 
         val size = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x6
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x6
+                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x7
+                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x7
                 else -> R.dimen.module_x10
             }
         )
@@ -839,7 +874,8 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun invalidateTextHint() {
-        inputLayout.isHintEnabled = textFieldStyle != TextFieldStyle.Clipped && !optionalText.isNullOrEmpty()
+        inputLayout.isHintEnabled =
+            textFieldStyle != TextFieldStyle.Clipped && !optionalText.isNullOrEmpty()
         inputLayout.hint = optionalText
     }
 
