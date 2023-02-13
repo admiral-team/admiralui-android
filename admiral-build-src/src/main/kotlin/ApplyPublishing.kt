@@ -1,6 +1,7 @@
 @file:Suppress("MayBeConstant", "unused")
 
 import Publishing.Repository.Companion.toRepository
+import com.android.build.gradle.internal.cxx.configure.gradleLocalProperties
 import org.gradle.api.Action
 import org.gradle.api.Project
 import org.gradle.api.publish.PublishingExtension
@@ -53,12 +54,15 @@ fun Project.publishing(
                     }
                 }
                 Publishing.Repository.Nexus -> {
+                    val NEXUS_LOGIN: String = gradleLocalProperties(rootDir).getProperty("NEXUS_LOGIN")
+                    val NEXUS_PASSWORD: String = gradleLocalProperties(rootDir).getProperty("NEXUS_PASSWORD")
+                    val NEXUS_URL: String = gradleLocalProperties(rootDir).getProperty("NEXUS_URL")
                     maven {
                         name = repository.name
-                        url = uri(System.getenv("NEXUS_URL") ?: "")
+                        url = uri(NEXUS_URL)
                         credentials {
-                            username = System.getenv("NEXUS_USERNAME")
-                            password = System.getenv("NEXUS_PASSWORD")
+                            username = NEXUS_LOGIN
+                            password = NEXUS_PASSWORD
                         }
                     }
                 }
