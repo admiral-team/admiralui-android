@@ -58,6 +58,7 @@ fun Project.publishing(
                     val NEXUS_PASSWORD: String = gradleLocalProperties(rootDir).getProperty("NEXUS_PASSWORD")
                     val NEXUS_URL: String = gradleLocalProperties(rootDir).getProperty("NEXUS_URL")
                     maven {
+                        isAllowInsecureProtocol = true
                         name = repository.name
                         url = uri(NEXUS_URL)
                         credentials {
