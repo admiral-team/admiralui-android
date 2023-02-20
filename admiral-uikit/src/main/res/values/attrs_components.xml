@@ -304,6 +304,10 @@
         <attr name="admiralTextColorNormalEnabled" />
         <attr name="admiralHintTextColorNormalEnabled" />
 
+        <attr name="admiralSearchBackgroundColorNormalEnabledPalette"/>
+
+        <attr name="saveSearchState" format="boolean"/>
+
         <attr name="admiralText" />
         <attr name="admiralHintText" />
 
