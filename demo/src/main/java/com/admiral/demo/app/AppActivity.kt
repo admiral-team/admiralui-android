@@ -12,10 +12,12 @@ class AppActivity : AppCompatActivity(R.layout.act_app) {
         setTheme(R.style.Theme_AdmiralUIAndroid)
         super.onCreate(savedInstanceState)
 
-        supportFragmentManager
-            .beginTransaction()
-            .add(R.id.container, MainFragment())
-            .commitNow()
+        if (savedInstanceState == null) {
+            supportFragmentManager
+                .beginTransaction()
+                .add(R.id.container, MainFragment())
+                .commitNow()
+        }
 
         val isTest = intent.extras?.getBoolean(KEY_IS_TEST) ?: false
         if (isTest) OnboardingStorage(this).setOpened(true)

@@ -23,7 +23,9 @@ class NavigationFragment : BaseFragment(R.layout.fmt_tab_container) {
             childFragmentManager.popBackStack()
         }
 
-        arguments?.getParcelable<Screen>(ARG_SCREEN)?.let(::showScreen)
+        if (savedInstanceState == null) {
+            arguments?.getParcelable<Screen>(ARG_SCREEN)?.let(::showScreen)
+        }
 
         childFragmentManager.addOnBackStackChangedListener {
             val visible = (childFragmentManager.fragments.last() as? BaseFragment)?.isThemePickerVisible ?: true

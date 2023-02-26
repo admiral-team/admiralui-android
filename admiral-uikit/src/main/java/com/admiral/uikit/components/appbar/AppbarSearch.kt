@@ -3,6 +3,9 @@ package com.admiral.uikit.components.appbar
 import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
+import android.os.Handler
+import android.os.Looper
+import android.os.Parcelable
 import android.util.AttributeSet
 import android.view.Gravity
 import android.widget.LinearLayout
@@ -10,6 +13,8 @@ import androidx.annotation.ColorRes
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.res.use
+import com.admiral.themes.ColorPaletteEnum
+import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -19,11 +24,13 @@ import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.cell.unit.IconCellUnit
 import com.admiral.uikit.components.textfield.TextFieldSearch
 import com.admiral.uikit.ext.dpToPx
-import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
+import com.admiral.uikit.ext.getIntOrNull
+import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
 import kotlinx.coroutines.flow.StateFlow
+import kotlinx.parcelize.Parcelize
 
 class AppbarSearch @JvmOverloads constructor(
     context: Context,
@@ -108,10 +115,9 @@ class AppbarSearch @JvmOverloads constructor(
     /**
      * Text of the [textFieldSearch].
      */
-    var text: String? = null
+    var text: String?
         set(value) {
-            field = value
-            textFieldSearch.editText?.setText(value)
+            textFieldSearch.inputText = value.orEmpty()
         }
         get() {
             if (textFieldSearch.editText?.editableText.isNullOrEmpty()) {
@@ -172,6 +178,21 @@ class AppbarSearch @JvmOverloads constructor(
             invalidateIconsColors()
         }
 
+    /**
+     * Indicates whether this view will save search input state
+     */
+    var saveSearchState: Boolean = false
+
+    /**
+     * Color of [textFieldSearch] background drawable.
+     * In case color is null, the selected color theme will be used.
+     */
+    var searchBackground: ColorState?
+        set(value) {
+            textFieldSearch.backgroundColors = value
+        }
+        get() = textFieldSearch.backgroundColors
+
     init {
         parseAttrs(attrs, R.styleable.AppbarSearch).use {
             editTextDrawableStart = it.getDrawable(R.styleable.AppbarSearch_android_drawableStart)
@@ -187,6 +208,13 @@ class AppbarSearch @JvmOverloads constructor(
             iconStart.icon = it.getDrawable(R.styleable.AppbarSearch_admiralIconStart)
             iconEnd.icon = it.getDrawable(R.styleable.AppbarSearch_admiralIconEnd)
             parseIconsColors(it)
+
+            saveSearchState = it.getBoolean(R.styleable.AppbarSearch_saveSearchState, false)
+            searchBackground = ColorState(
+                normalEnabled = ColorPaletteEnum.from(
+                    it.getIntOrNull(R.styleable.AppbarSearch_admiralSearchBackgroundColorNormalEnabledPalette)
+                ).colorResToToken()
+            )
         }
 
         linearLayout.addView(iconStart)
@@ -257,4 +285,30 @@ class AppbarSearch @JvmOverloads constructor(
         const val MARGIN = 16
         const val TEXT_FIELD_SEARCH_HEIGHT = 36
     }
+
+    override fun onSaveInstanceState(): Parcelable? {
+        val superState = super.onSaveInstanceState()
+        return if (saveSearchState) {
+            SavedState(
+                superState = superState,
+                searchInput = text
+            )
+        } else superState
+    }
+
+    override fun onRestoreInstanceState(state: Parcelable?) {
+        (state as? SavedState)?.let {
+            super.onRestoreInstanceState(state.superState)
+            state.searchInput?.let { searchInput ->
+                text = searchInput
+                Handler(Looper.getMainLooper()).post { textFieldSearch.editText?.setSelection(searchInput.length) }
+            }
+        } ?: super.onRestoreInstanceState(state)
+    }
+
+    @Parcelize
+    private data class SavedState(
+        val superState: Parcelable?,
+        val searchInput: String?,
+    ) : Parcelable
 }
