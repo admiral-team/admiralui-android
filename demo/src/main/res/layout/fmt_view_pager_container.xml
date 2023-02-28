@@ -14,14 +14,22 @@
 
     <com.admiral.uikit.components.tabs.UnderlineSliderTabs
         android:id="@+id/underlineTabs"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:gravity="center_horizontal" />
 
     <com.admiral.uikit.components.tabs.OutlineSliderTabs
         android:id="@+id/outlineTabs"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginTop="@dimen/module_x4"
+        android:gravity="center_horizontal" />
+
+    <com.admiral.uikit.components.tabs.StandardTabs
+        android:id="@+id/standardTabs"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal"
         android:layout_marginTop="@dimen/module_x4"
@@ -39,7 +47,7 @@
     <androidx.viewpager2.widget.ViewPager2
         android:id="@+id/viewPager2"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content" />
+        android:layout_height="200dp" />
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/viewPager"
