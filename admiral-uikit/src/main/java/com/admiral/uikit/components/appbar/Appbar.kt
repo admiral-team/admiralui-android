@@ -9,7 +9,6 @@ import android.view.Gravity
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.View
-import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.annotation.ColorRes
 import androidx.annotation.MenuRes
@@ -19,6 +18,9 @@ import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.core.view.children
 import androidx.core.view.isVisible
+import androidx.core.view.size
+import com.admiral.themes.ColorPaletteEnum
+import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -34,6 +36,7 @@ import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
+import com.admiral.uikit.ext.getIntOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
 import kotlinx.coroutines.flow.StateFlow
@@ -46,11 +49,28 @@ class Appbar @JvmOverloads constructor(
     ThemeObserver {
 
     /**
+     * Color of background from the palette for the normal enabled state.
+     */
+    var backgroundColorNormalEnabledPalette: ColorPaletteEnum? = null
+        set(value) {
+            field = value
+            invalidateBackground()
+        }
+
+    /**
      * Container fot the title text and menu text.
      */
-    private val normalContainer: FrameLayout = FrameLayout(context).apply {
-        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.WRAP_CONTENT)
-        setMargins(MARGIN_VIEWS_CONTAINER_TOP)
+    private val mainContainer: LinearLayout = LinearLayout(context).apply {
+        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+        setMargins(
+            left = MARGIN_VIEWS_CONTAINER_TOP,
+            top = MARGIN_VIEWS_CONTAINER_TOP,
+            right = MARGIN_VIEWS_CONTAINER_RIGHT
+        )
+
+        showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
+        dividerDrawable =
+            ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_8dp)
     }
 
     /**
@@ -66,6 +86,7 @@ class Appbar @JvmOverloads constructor(
      * TextView shown at the middle of the app bar.
      */
     private val textViewTitle = TextView(context).apply {
+        layoutParams = LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f)
         ellipsize = TextUtils.TruncateAt.END
     }
 
@@ -73,7 +94,6 @@ class Appbar @JvmOverloads constructor(
      * TextView shown at the right of the app bar.
      */
     private val textViewMenu = Link(context).apply {
-        setMargins(right = MARGIN_MENU_TEXT_RIGHT)
         gravity = Gravity.END or Gravity.CENTER_VERTICAL
         visibility = View.GONE
     }
@@ -321,11 +341,17 @@ class Appbar @JvmOverloads constructor(
             parseIconsColors(it)
 
             titleMaxLines = it.getInt(R.styleable.Appbar_admiralTitleMaxLines, Int.MAX_VALUE)
+
+            backgroundColorNormalEnabledPalette = ColorPaletteEnum.from(
+                it.getIntOrNull(
+                    R.styleable.Appbar_admiralBackgroundColorNormalEnabledPalette
+                )
+            )
         }
 
-        normalContainer.addView(textViewTitle)
-        normalContainer.addView(textViewMenu)
-        addView(normalContainer)
+        mainContainer.addView(textViewTitle)
+        mainContainer.addView(textViewMenu)
+        addView(mainContainer)
 
         searchContainer.addView(iconStart)
         searchContainer.addView(textFieldSearch)
@@ -349,6 +375,14 @@ class Appbar @JvmOverloads constructor(
         super.onDetachedFromWindow()
     }
 
+    fun addViewStart(view: View) {
+        mainContainer.addView(view, 0)
+    }
+
+    fun addViewEnd(view: View) {
+        mainContainer.addView(view, mainContainer.size)
+    }
+
     fun inflateMenu(@MenuRes menuRes: Int, menu: Menu, inflater: MenuInflater) {
         inflater.inflate(menuRes, menu)
         for (i in 0 until menu.size()) {
@@ -369,6 +403,7 @@ class Appbar @JvmOverloads constructor(
         invalidateEditTextColors()
 
         invalidateMenuIcons()
+        invalidateBackground()
     }
 
     private fun parseIconsColors(a: TypedArray) {
@@ -442,11 +477,11 @@ class Appbar @JvmOverloads constructor(
     private fun invalidateType() {
         when (appbarType) {
             AppbarType.NORMAL -> {
-                normalContainer.isVisible = true
+                mainContainer.isVisible = true
                 searchContainer.isVisible = false
             }
             AppbarType.SEARCH -> {
-                normalContainer.isVisible = false
+                mainContainer.isVisible = false
                 searchContainer.isVisible = true
             }
         }
@@ -473,13 +508,20 @@ class Appbar @JvmOverloads constructor(
         }
     }
 
+    private fun invalidateBackground() {
+        setBackgroundColor(
+            backgroundColorNormalEnabledPalette.colorResToToken()
+                ?: ThemeManager.theme.palette.backgroundBasic
+        )
+    }
+
     interface OnTextChangeListener {
         fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int)
     }
 
     private companion object {
         const val BIG_MARGIN = 32
-        const val MARGIN_MENU_TEXT_RIGHT = 20
+        const val MARGIN_VIEWS_CONTAINER_RIGHT = 16
         const val MARGIN_VIEWS_CONTAINER_TOP = 16
 
         const val EDIT_TEXT_MARGIN = 16
