@@ -39,6 +39,15 @@ class AppbarSearch @JvmOverloads constructor(
 ) : Toolbar(ContextThemeWrapper(context, R.style.Widget_AppCompat_Toolbar), attrs, defStyleAttr), ThemeObserver {
 
     /**
+     * Color of background from the palette for the normal enabled state.
+     */
+    var backgroundColorNormalEnabledPalette: ColorPaletteEnum? = null
+        set(value) {
+            field = value
+            invalidateBackground()
+        }
+
+    /**
      * Container fot the edit text and icons.
      */
     private val linearLayout: LinearLayout = LinearLayout(context).apply {
@@ -210,10 +219,16 @@ class AppbarSearch @JvmOverloads constructor(
             parseIconsColors(it)
 
             saveSearchState = it.getBoolean(R.styleable.AppbarSearch_saveSearchState, false)
+
             searchBackground = ColorState(
                 normalEnabled = ColorPaletteEnum.from(
                     it.getIntOrNull(R.styleable.AppbarSearch_admiralSearchBackgroundColorNormalEnabledPalette)
                 ).colorResToToken()
+            )
+            backgroundColorNormalEnabledPalette = ColorPaletteEnum.from(
+                it.getIntOrNull(
+                    R.styleable.AppbarSearch_admiralBackgroundColorNormalEnabledPalette
+                )
             )
         }
 
@@ -242,6 +257,7 @@ class AppbarSearch @JvmOverloads constructor(
     override fun onThemeChanged(theme: Theme) {
         initTextsColor()
         invalidateIconsColors()
+        invalidateBackground()
     }
 
     private fun parseIconsColors(a: TypedArray) {
@@ -279,6 +295,13 @@ class AppbarSearch @JvmOverloads constructor(
 
     interface OnTextChangeListener {
         fun onTextChanged(text: CharSequence?, start: Int, before: Int, count: Int)
+    }
+
+    private fun invalidateBackground() {
+        setBackgroundColor(
+            backgroundColorNormalEnabledPalette.colorResToToken()
+                ?: ThemeManager.theme.palette.backgroundBasic
+        )
     }
 
     private companion object {
