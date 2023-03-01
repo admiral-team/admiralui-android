@@ -38,7 +38,7 @@ class ViewPagerFragment : BaseFragment(R.layout.fmt_view_pager_container) {
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
-        invalidateViewPager1()
+        invalidateViewPager2()
     }
 
     private fun invalidateViewPager2() {
@@ -54,6 +54,10 @@ class ViewPagerFragment : BaseFragment(R.layout.fmt_view_pager_container) {
             }
 
             outlineTabs.setupWithViewPager(viewPager2) { tab, position ->
+                tab.text = fragments[position].first
+            }
+
+            standardTabs.setupWithViewPager(viewPager2) { tab, position ->
                 tab.text = fragments[position].first
             }
 
@@ -75,6 +79,7 @@ class ViewPagerFragment : BaseFragment(R.layout.fmt_view_pager_container) {
 
             underlineTabs.setupWithViewPager(viewPager)
             outlineTabs.setupWithViewPager(viewPager)
+            standardTabs.setupWithViewPager(viewPager)
 
             btn.setOnClickListener {
                 adapter.add(

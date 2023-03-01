@@ -277,6 +277,7 @@
         </attr>
 
         <attr name="admiralTitleMaxLines" />
+        <attr name="admiralBackgroundColorNormalEnabledPalette" />
     </declare-styleable>
 
     <declare-styleable name="AppbarTitleSubtitle">
@@ -303,6 +304,11 @@
 
         <attr name="admiralTextColorNormalEnabled" />
         <attr name="admiralHintTextColorNormalEnabled" />
+
+        <attr name="admiralBackgroundColorNormalEnabledPalette" />
+        <attr name="admiralSearchBackgroundColorNormalEnabledPalette" />
+
+        <attr name="saveSearchState" format="boolean" />
 
         <attr name="admiralText" />
         <attr name="admiralHintText" />

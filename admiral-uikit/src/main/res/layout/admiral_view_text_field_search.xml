@@ -15,6 +15,7 @@
         android:background="@null"
         android:textAppearance="@style/AdmiralTextAppearance.Body1"
         tools:text="Optional label"
-        tools:textColor="@color/grey_40" />
+        tools:textColor="@color/grey_40"
+        android:saveEnabled="false"/>
 
 </merge>
