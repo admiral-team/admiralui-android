@@ -569,6 +569,7 @@ class TextField @JvmOverloads constructor(
         )
         view.layoutParams = params
 
+        bottomContentContainer.isVisible = true
         bottomContentContainer.addView(view, bottomContentContainer.childCount)
     }
 
