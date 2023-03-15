@@ -4,6 +4,8 @@ import (
 	"fmt"
 	"log"
 	"os"
+	"os/exec"
+
 
 	"github.com/admiral-team/admiral-tools/client"
 	"github.com/joho/godotenv"
@@ -24,6 +26,17 @@ func main() {
 		tgToken := goDotEnvVariable("TELEGRAM_API_TOKEN")
 		client.ReleaseAndroid(githubToken, tgToken)
 	case "uploadNexus":
+        os.Chdir("../")
+	    cmd := exec.Command("./gradlew", "assemble")
+        output, err := cmd.Output()
+        if err != nil {
+        	fmt.Println(err)
+        	return
+        }
+
+        os.Chdir("go/")
+        fmt.Println(string(output))
+
 		loadFilesToNexus()
 	default:
 		fmt.Println("Unknown command")
@@ -31,14 +44,14 @@ func main() {
 }
 
 func loadFilesToNexus() {
-	loadConcreteFileToNexus("admiral-resources", "admiral-resources-5.6.0.aar")
-	loadConcreteFileToNexus("admiral-themes", "admiral-themes-5.6.0.aar")
-	loadConcreteFileToNexus("admiral-uikit", "admiral-uikit-5.6.0.aar")
-	loadConcreteFileToNexus("admiral-uikit-common", "admiral-uikit-common-5.6.0.aar")
+	loadConcreteFileToNexus("admiral-resources", "admiral-resources.aar")
+	loadConcreteFileToNexus("admiral-themes", "admiral-themes.aar")
+	loadConcreteFileToNexus("admiral-uikit", "admiral-uikit.aar")
+	loadConcreteFileToNexus("admiral-uikit-common", "admiral-uikit-common.aar")
 }
 
 func loadConcreteFileToNexus(artifactId string, fileName string) {
-	version := "5.6.0"
+	version := os.Args[2]
 	groupId := "admiralui-android"
 	extention := "aar"
 	nexusRepository := goDotEnvVariable("NEXUS_URL")
