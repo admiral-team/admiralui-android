@@ -38,17 +38,25 @@ object Publishing {
             // NB: url is a secret on GitHub
         )
 
+        object Local : Repository(
+            type = NEXUS_REPO_TYPE,
+            name = "pfom-maven-lib"
+            // NB: url is a secret on GitHub
+        )
+
         companion object {
             fun String.toRepository(): Repository {
                 return when {
                     this == GITHUB_REPO_TYPE -> Github()
                     this == NEXUS_REPO_TYPE -> Nexus
+                    this == LOCAL_REPO_TYPE -> Local
                     else -> throw IllegalStateException("Unknown repository type: $this")
                 }
             }
 
             private const val GITHUB_REPO_TYPE = "Github"
             private const val NEXUS_REPO_TYPE = "Nexus"
+            private const val LOCAL_REPO_TYPE = "Local"
         }
     }
 }
