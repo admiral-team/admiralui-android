@@ -16,6 +16,12 @@ github.com/admiral-team/admiral-tools v0.0.0-20221115223423-0d4fbdab284c h1:mRQ9
 github.com/admiral-team/admiral-tools v0.0.0-20221115223423-0d4fbdab284c/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
 github.com/admiral-team/admiral-tools v0.0.0-20221224140230-5109fbaf9ed5 h1:wsrxYgzrTkEANgklQ3ebU9DMuIuQA0Nlh4fZMkmj7Is=
 github.com/admiral-team/admiral-tools v0.0.0-20221224140230-5109fbaf9ed5/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
+github.com/admiral-team/admiral-tools v0.0.0-20230206075642-90bafc18d5df h1:aDQv0yIKEZZ531Et1QAn6WsTUvOMqXDTF4ng0ePUvFg=
+github.com/admiral-team/admiral-tools v0.0.0-20230206075642-90bafc18d5df/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
+github.com/admiral-team/admiral-tools v0.0.0-20230315124902-f9514fd24d0f h1:fg6fj8h3GxURdeA1ViV1z4eoi5grZjhwF3GECWHOFbA=
+github.com/admiral-team/admiral-tools v0.0.0-20230315124902-f9514fd24d0f/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
+github.com/admiral-team/admiral-tools v0.0.0-20230315125759-325f4663ebb5 h1:6BnKzq8yT+P0c4ZlwHgVDfeMd2ooS6KvXykzywWAJ0Q=
+github.com/admiral-team/admiral-tools v0.0.0-20230315125759-325f4663ebb5/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
 github.com/go-playground/colors v1.3.0 h1:B+jYkyTo36sREzsaXd3kawgG53rw0zqX9fSllGVoLdc=
 github.com/go-playground/colors v1.3.0/go.mod h1:5rTAoESUkprj1EHZvzGti8xkb8XwAGYzYEFmW18B8es=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=

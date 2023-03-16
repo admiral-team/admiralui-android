@@ -27,7 +27,7 @@ sealed class TextFieldStyle(
         paddingBottom = R.dimen.module_x1,
         paddingLeft = R.dimen.module_x4,
         paddingRight = R.dimen.module_x4,
-        additionalTextPadding = R.dimen.module_x3,
+        additionalTextPadding = R.dimen.module_x2,
         dividerHeight = R.dimen.admiral_text_field_divider_height_extended,
         textStyle = ThemeManager.theme.typography.body1,
         additionalTextGravity = TextGravity.Start

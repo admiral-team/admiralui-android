@@ -43,6 +43,12 @@ fun Project.publishing(
 
         repositories {
             when (val repository = repositoryType?.toRepository()) {
+                is Publishing.Repository.Local -> {
+                    maven {
+                        name = "libs"
+                        url = uri(layout.buildDirectory.dir("../../libs"))
+                    }
+                }
                 is Publishing.Repository.Github -> {
                     maven {
                         name = repository.name
@@ -74,7 +80,7 @@ fun Project.publishing(
 private fun createArtifactId(
     artifactId: String,
     artifactIdSuffix: String?
-) : String {
+): String {
     return "$artifactId${artifactIdSuffix ?: ""}"
         .replace("/", "-")
         .replace("\\", "-")

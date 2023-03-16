@@ -2,7 +2,7 @@ module admiral.com/go
 
 go 1.17
 
-require github.com/admiral-team/admiral-tools v0.0.0-20221224140230-5109fbaf9ed5
+require github.com/admiral-team/admiral-tools v0.0.0-20230315125759-325f4663ebb5
 
 require (
 	github.com/Jeffail/gabs v1.4.0 // indirect
