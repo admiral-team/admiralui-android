@@ -81,25 +81,28 @@ tasks.named("assemble") {
 
 tasks.configureEach {
     doFirst {
-        // Create a trust manager that does not validate certificate chains
-        val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-            override fun getAcceptedIssuers(): Array<X509Certificate>? {
-                return null
-            }
-            override fun checkClientTrusted(certs: Array<X509Certificate>, authType: String) {
-                // Do nothing
-            }
-            override fun checkServerTrusted(certs: Array<X509Certificate>, authType: String) {
-                // Do nothing
-            }
-        })
-
-        // Install the trust manager
-        val sc = SSLContext.getInstance("SSL")
-        sc.init(null, trustAllCerts, SecureRandom())
-        HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)
-        val allHostsValid = HostnameVerifier { _, _ -> true }
-        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid)
+        System.setProperty("javax.net.ssl.trustStoreType", "none")
+        System.setProperty("https.protocols", "TLSv1.2,TLSv1.1,TLSv1,SSLv3")
+//        // Create a trust manager that does not validate certificate chains
+//        val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
+//            override fun getAcceptedIssuers(): Array<X509Certificate>? {
+//                return null
+//            }
+//            override fun checkClientTrusted(certs: Array<X509Certificate>, authType: String) {
+//                // Do nothing
+//            }
+//            override fun checkServerTrusted(certs: Array<X509Certificate>, authType: String) {
+//                // Do nothing
+//            }
+//        })
+//
+//        // Install the trust manager
+//        val sc = SSLContext.getInstance("SSL")
+//        sc.init(null, trustAllCerts, SecureRandom())
+//        HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)
+//
+//        val allHostsValid = HostnameVerifier { _, _ -> true }
+//        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid)
     }
 }
 
