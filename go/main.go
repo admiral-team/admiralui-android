@@ -6,7 +6,6 @@ import (
 	"os"
 	"os/exec"
 
-
 	"github.com/admiral-team/admiral-tools/client"
 	"github.com/joho/godotenv"
 )
@@ -26,18 +25,14 @@ func main() {
 		tgToken := goDotEnvVariable("TELEGRAM_API_TOKEN")
 		client.ReleaseAndroid(githubToken, tgToken)
 	case "uploadNexus":
-        os.Chdir("../")
-	    cmd := exec.Command("./gradlew", "assemble")
-        output, err := cmd.Output()
-        if err != nil {
-        	fmt.Println(err)
-        	return
-        }
-
-        os.Chdir("go/")
-        fmt.Println(string(output))
-
-		loadFilesToNexus()
+		fmt.Println("Start uploading to the Nexus")
+		cmd = exec.Command("./gradlew", "publish", "-PrepositoryType=\"Nexus\"")
+		output, err = cmd.Output()
+		if err != nil {
+			fmt.Println(err)
+			return
+		}
+		fmt.Println(string(output))
 	default:
 		fmt.Println("Unknown command")
 	}
