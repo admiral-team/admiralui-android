@@ -1,3 +1,13 @@
+import java.net.URL
+import javax.net.ssl.HostnameVerifier
+import javax.net.ssl.HttpsURLConnection
+import javax.net.ssl.SSLContext
+import javax.net.ssl.TrustManager
+import javax.net.ssl.X509TrustManager
+import java.security.cert.X509Certificate
+import java.security.SecureRandom
+
+
 // Top-level build file where you can add configuration options common to all sub-projects/modules.
 buildscript {
     // NB: use such way only for 'old' plugins
@@ -67,6 +77,30 @@ tasks.register("createFile") {
 
 tasks.named("assemble") {
     finalizedBy("createFile")
+}
+
+tasks.configureEach {
+    doFirst {
+        // Create a trust manager that does not validate certificate chains
+        val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
+            override fun getAcceptedIssuers(): Array<X509Certificate>? {
+                return null
+            }
+            override fun checkClientTrusted(certs: Array<X509Certificate>, authType: String) {
+                // Do nothing
+            }
+            override fun checkServerTrusted(certs: Array<X509Certificate>, authType: String) {
+                // Do nothing
+            }
+        })
+
+        // Install the trust manager
+        val sc = SSLContext.getInstance("SSL")
+        sc.init(null, trustAllCerts, SecureRandom())
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)
+        val allHostsValid = HostnameVerifier { _, _ -> true }
+        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid)
+    }
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
