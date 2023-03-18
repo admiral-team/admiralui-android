@@ -1,4 +1,4 @@
-import java.net.URL
+import java.security.Security
 import javax.net.ssl.HostnameVerifier
 import javax.net.ssl.HttpsURLConnection
 import javax.net.ssl.SSLContext
@@ -23,7 +23,7 @@ buildscript {
 }
 
 plugins {
-    val androidGradlePluginVersion = "7.1.0-rc01"
+    val androidGradlePluginVersion = "7.3.1"
     val kotlinVersion = "1.6.10"
 
     id("admiral-gradle-plugin")
@@ -79,30 +79,30 @@ tasks.named("assemble") {
     finalizedBy("createFile")
 }
 
-tasks.configureEach {
+task("publish") {
     doFirst {
-        System.setProperty("javax.net.ssl.trustStoreType", "none")
-        System.setProperty("https.protocols", "TLSv1.2,TLSv1.1,TLSv1,SSLv3")
-//        // Create a trust manager that does not validate certificate chains
-//        val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
-//            override fun getAcceptedIssuers(): Array<X509Certificate>? {
-//                return null
-//            }
-//            override fun checkClientTrusted(certs: Array<X509Certificate>, authType: String) {
-//                // Do nothing
-//            }
-//            override fun checkServerTrusted(certs: Array<X509Certificate>, authType: String) {
-//                // Do nothing
-//            }
-//        })
-//
-//        // Install the trust manager
-//        val sc = SSLContext.getInstance("SSL")
-//        sc.init(null, trustAllCerts, SecureRandom())
-//        HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)
-//
-//        val allHostsValid = HostnameVerifier { _, _ -> true }
-//        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid)
+        print("i'm here")
+        Security.setProperty("javax.net.ssl.trustStoreType", "none")
+        Security.setProperty("https.protocols", "TLSv1.2,TLSv1.1,TLSv1,SSLv3")
+        val trustAllCerts = arrayOf<TrustManager>(object : X509TrustManager {
+            override fun getAcceptedIssuers(): Array<X509Certificate>? {
+                return null
+            }
+            override fun checkClientTrusted(certs: Array<X509Certificate>, authType: String) {
+                // Do nothing
+            }
+            override fun checkServerTrusted(certs: Array<X509Certificate>, authType: String) {
+                // Do nothing
+            }
+        })
+
+        // Install the trust manager
+        val sc = SSLContext.getInstance("SSL")
+        sc.init(null, trustAllCerts, SecureRandom())
+        HttpsURLConnection.setDefaultSSLSocketFactory(sc.socketFactory)
+
+        val allHostsValid = HostnameVerifier { _, _ -> true }
+        HttpsURLConnection.setDefaultHostnameVerifier(allHostsValid)
     }
 }
 

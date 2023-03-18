@@ -10,6 +10,7 @@ android {
         isComposeEnabled = false,
         isViewBindingEnabled = false
     )
+    namespace = "com.admiral.uikit.common"
 }
 
 dependencies {

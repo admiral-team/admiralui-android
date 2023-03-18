@@ -10,6 +10,7 @@ android {
         isComposeEnabled = true,
         isViewBindingEnabled = false
     )
+    namespace = "com.admiral.themes.compose"
 }
 
 dependencies {
