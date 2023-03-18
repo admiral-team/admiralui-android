@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.res.use
 import com.google.android.material.checkbox.MaterialCheckBox
+import com.admiral.themes.Font
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -38,7 +39,16 @@ class CheckBox @JvmOverloads constructor(
             invalidateButtonTintColors()
         }
 
-    var error: Boolean = false
+    /**
+     * Apply style to the text
+     */
+    var textStyle: Font = ThemeManager.theme.typography.subhead3
+        set(value) {
+            field = value
+            applyStyle(Typography.getStyle(field))
+        }
+
+    var isError: Boolean = false
         set(value) {
             field = value
             invalidateButtonTintColors()
@@ -57,13 +67,19 @@ class CheckBox @JvmOverloads constructor(
 
     init {
         parseAttrs(attrs, R.styleable.CheckBox).use {
-            error = it.getBoolean(R.styleable.CheckBox_admiralIsError, false)
+            isError = it.getBoolean(R.styleable.CheckBox_admiralIsError, false)
+
+            textStyle =
+                Typography.getStyleById(
+                    it.getInt(
+                        R.styleable.CheckBox_admiralTextStyle,
+                        Typography.subhead3
+                    )
+                )
 
             parseTintColors(it)
             parseTextColors(it)
         }
-
-        applyStyle(Typography.getStyle(ThemeManager.theme.typography.subhead3))
     }
 
     private fun parseTintColors(typedArray: TypedArray) {
@@ -134,7 +150,7 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun invalidateButtonTintColors() {
-        buttonTintList = if (error) {
+        buttonTintList = if (isError) {
             colorStateListForChecked(
                 checkedEnabled = buttonTintColors?.errorEnabled ?: ThemeManager.theme.palette.elementError,
                 checkedDisabled = buttonTintColors?.errorDisabled
@@ -155,7 +171,7 @@ class CheckBox @JvmOverloads constructor(
     }
 
     private fun invalidateTextColors() {
-        if (error) {
+        if (isError) {
             setTextColor(
                 colorStateListForChecked(
                     checkedEnabled = textColor?.errorEnabled ?: ThemeManager.theme.palette.textPrimary,

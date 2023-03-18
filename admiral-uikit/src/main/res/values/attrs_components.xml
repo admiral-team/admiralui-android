@@ -130,6 +130,8 @@
     </declare-styleable>
 
     <declare-styleable name="RadioButton">
+        <attr name="admiralTextStyle" />
+
         <attr name="admiralIsError" format="boolean" />
 
         <attr name="admiralButtonTintColorNormalEnabled" format="reference|color" />
@@ -148,6 +150,8 @@
     </declare-styleable>
 
     <declare-styleable name="CheckBox">
+        <attr name="admiralTextStyle" />
+
         <attr name="admiralIsError" />
 
         <attr name="admiralButtonTintColorNormalEnabled" />
@@ -166,6 +170,8 @@
     </declare-styleable>
 
     <declare-styleable name="Switcher">
+        <attr name="admiralTextStyle" />
+
         <attr name="admiralThumbTintColorNormalEnabled" format="reference|color" />
         <attr name="admiralThumbTintColorNormalDisabled" format="reference|color" />
         <attr name="admiralThumbTintColorCheckedEnabled" format="reference|color" />
