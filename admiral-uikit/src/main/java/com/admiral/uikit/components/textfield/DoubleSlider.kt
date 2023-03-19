@@ -27,6 +27,7 @@ import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.showKeyboard
+import com.admiral.uikit.ext.setSelectionEnd
 import com.google.android.material.slider.RangeSlider
 
 /**
@@ -353,15 +354,20 @@ class DoubleSlider @JvmOverloads constructor(
         val second = binding.rangeSlider.values.last().toInt().toString()
         if (editText.text.toString() != first) {
             editText.setText(first)
+            editText.setSelectionEnd()
         }
         if (editTextTo.text.toString() != second) {
             editTextTo.setText(second)
+            editTextTo.setSelectionEnd()
         }
     }
 
     private fun parseErrorColor(a: TypedArray) {
         if (a.hasValue(R.styleable.DoubleSlider_admiralErrorColor)) {
-            errorColor = a.getInt(R.styleable.DoubleSlider_admiralErrorColor, ThemeManager.theme.palette.textError)
+            errorColor = a.getInt(
+                R.styleable.DoubleSlider_admiralErrorColor,
+                ThemeManager.theme.palette.textError
+            )
         }
     }
 
@@ -396,7 +402,8 @@ class DoubleSlider @JvmOverloads constructor(
     private fun invalidateColors() {
         val editTextColorState = colorStateList(
             enabled = inputTextColor ?: ThemeManager.theme.palette.textPrimary,
-            disabled = inputTextColor?.withAlpha() ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            disabled = inputTextColor?.withAlpha()
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = inputTextColor ?: ThemeManager.theme.palette.textPrimary
         )
         editText.setTextColor(editTextColorState)
@@ -414,10 +421,12 @@ class DoubleSlider @JvmOverloads constructor(
         val defaultColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
-            !isEnabled -> textColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+            !isEnabled -> textColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textSecondary.withAlpha()
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
-        val placeholderTextColorStateList = ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
+        val placeholderTextColorStateList =
+            ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
 
         binding.inputLayoutFrom.apply {
             defaultHintTextColor = ColorStateList.valueOf(defaultColor)
@@ -448,7 +457,8 @@ class DoubleSlider @JvmOverloads constructor(
 
             trackHeight = TRACK_HEIGHT.dpToPx(context)
             trackActiveTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementAccent)
-            trackInactiveTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementPrimary)
+            trackInactiveTintList =
+                ColorStateList.valueOf(ThemeManager.theme.palette.elementPrimary)
         }
     }
 
