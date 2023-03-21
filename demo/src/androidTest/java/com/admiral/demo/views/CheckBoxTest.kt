@@ -67,7 +67,7 @@ class CheckBoxTest : ScreenshotTest {
         val checkBox = CheckBox(wrappedContext).apply {
             textResId?.let { this.text = context.getString(it) }
             this.isEnabled = isEnabled
-            this.error = isError
+            this.isError = isError
             setIsChecked(isChecked)
         }
 
