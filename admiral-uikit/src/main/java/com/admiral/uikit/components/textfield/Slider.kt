@@ -33,6 +33,7 @@ import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.showKeyboard
+import com.admiral.uikit.ext.setSelectionEnd
 import com.google.android.material.slider.Slider as MaterialSlider
 
 /**
@@ -40,13 +41,10 @@ import com.google.android.material.slider.Slider as MaterialSlider
  * Please, use filter, formatters, listeners from standard SDK or use custom.
  */
 class Slider @JvmOverloads constructor(
-    context: Context,
-    attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr), ThemeObserver {
 
-    private val binding = AdmiralViewSliderBinding
-        .inflate(LayoutInflater.from(context), this)
+    private val binding = AdmiralViewSliderBinding.inflate(LayoutInflater.from(context), this)
 
     private val focusChangeListeners = mutableListOf<OnFocusChangeListener>()
     private var isNowFocused = false
@@ -381,10 +379,9 @@ class Slider @JvmOverloads constructor(
     private fun updateEditTextValue() {
         val value = binding.materialSlider.value.toInt().toString()
         if (editText.text.toString() != value) {
-            Handler(Looper.getMainLooper()).post {
-                editText.setText(value)
-                editText.requestFocus()
-            }
+            editText.setText(value)
+            editText.requestFocus()
+            editText.setSelectionEnd()
         }
     }
 
@@ -447,14 +444,16 @@ class Slider @JvmOverloads constructor(
             thumbTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementStaticWhite)
             trackHeight = TRACK_HEIGHT.dpToPx(context)
             trackActiveTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementAccent)
-            trackInactiveTintList = ColorStateList.valueOf(ThemeManager.theme.palette.elementPrimary)
+            trackInactiveTintList =
+                ColorStateList.valueOf(ThemeManager.theme.palette.elementPrimary)
         }
     }
 
     private fun invalidateAdditionalTextColor() {
         val additionalTextColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
-            !isEnabled -> textColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+            !isEnabled -> textColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textSecondary.withAlpha()
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         binding.additionalTextView.textColor = ColorState(additionalTextColor)
@@ -464,12 +463,14 @@ class Slider @JvmOverloads constructor(
         var defaultColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
-            !isEnabled -> textColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+            !isEnabled -> textColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textSecondary.withAlpha()
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
 
         if (isError && !isEnabled) {
-            defaultColor = errorColor?.withAlpha() ?: ThemeManager.theme.palette.textError.withAlpha()
+            defaultColor =
+                errorColor?.withAlpha() ?: ThemeManager.theme.palette.textError.withAlpha()
         }
 
         binding.inputLayout.apply {
@@ -484,10 +485,8 @@ class Slider @JvmOverloads constructor(
     }
 
     private fun invalidateRangeTextsColor() {
-        val colorStateList: ColorStateList = ColorStateList.valueOf(
-            (textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary)
-                .let { if (isEnabled) it else it.withAlpha() }
-        )
+        val colorStateList: ColorStateList = ColorStateList.valueOf((textColors?.normalEnabled
+            ?: ThemeManager.theme.palette.textSecondary).let { if (isEnabled) it else it.withAlpha() })
 
         binding.leftTextView.setTextColor(colorStateList)
         binding.rightTextView.setTextColor(colorStateList)
@@ -496,7 +495,8 @@ class Slider @JvmOverloads constructor(
     private fun invalidateEditTextColor() {
         val editTextColorState = colorStateList(
             enabled = inputTextColor ?: ThemeManager.theme.palette.textPrimary,
-            disabled = inputTextColor?.withAlpha() ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            disabled = inputTextColor?.withAlpha()
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = inputTextColor ?: ThemeManager.theme.palette.textPrimary
         )
         binding.editText.setTextColor(editTextColorState)
