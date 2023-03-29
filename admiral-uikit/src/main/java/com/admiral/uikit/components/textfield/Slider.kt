@@ -14,7 +14,6 @@ import android.widget.EditText
 import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
-import androidx.core.view.doOnLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.admiral.themes.Theme
@@ -172,6 +171,15 @@ class Slider @JvmOverloads constructor(
                 text = value
                 isGone = value.isNullOrEmpty()
             }
+        }
+
+    /**
+     * Suffix text which is placed under divider.
+     */
+    var suffixText: String? = null
+        set(value) {
+            field = value
+            binding.inputLayout.suffixText = value
         }
 
     /**
@@ -398,6 +406,7 @@ class Slider @JvmOverloads constructor(
         optionalText = a.getString(R.styleable.Slider_admiralTextOptional)
         placeholderText = a.getString(R.styleable.Slider_admiralTextPlaceholder)
         additionalText = a.getString(R.styleable.Slider_admiralTextAdditional)
+        suffixText = a.getString(R.styleable.Slider_admiralSuffixText)
     }
 
     private fun parseIcon(a: TypedArray) {
@@ -431,7 +440,7 @@ class Slider @JvmOverloads constructor(
     private fun invalidateColors() {
         invalidateEditTextColor()
         invalidateRangeTextsColor()
-        invalidateHintTextColor()
+        invalidateOptionalTextColor()
         invalidateAdditionalTextColor()
         invalidateSliderTextColor()
     }
@@ -459,7 +468,7 @@ class Slider @JvmOverloads constructor(
         binding.additionalTextView.textColor = ColorState(additionalTextColor)
     }
 
-    private fun invalidateHintTextColor() {
+    private fun invalidateOptionalTextColor() {
         var defaultColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
@@ -473,15 +482,7 @@ class Slider @JvmOverloads constructor(
                 errorColor?.withAlpha() ?: ThemeManager.theme.palette.textError.withAlpha()
         }
 
-        binding.inputLayout.apply {
-            Handler(Looper.getMainLooper()).post {
-                defaultHintTextColor = ColorStateList.valueOf(defaultColor)
-            }
-
-            doOnLayout {
-                placeholderTextColor = ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
-            }
-        }
+        binding.admiralSliderOptionalText.textColor = ColorState(defaultColor)
     }
 
     private fun invalidateRangeTextsColor() {
@@ -499,15 +500,13 @@ class Slider @JvmOverloads constructor(
                 ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = inputTextColor ?: ThemeManager.theme.palette.textPrimary
         )
+        binding.inputLayout.setSuffixTextColor(editTextColorState)
         binding.editText.setTextColor(editTextColorState)
     }
 
     private fun invalidateTextHint() {
-        binding.inputLayout.apply {
-            isHintEnabled = !optionalText.isNullOrEmpty()
-            hint = optionalText
-        }
-        editText.hint = if (optionalText == null) placeholderText else null
+        binding.admiralSliderOptionalText.text = optionalText
+        binding.admiralSliderOptionalText.isVisible = optionalText != null
     }
 
     private fun invalidateValueFrom() {

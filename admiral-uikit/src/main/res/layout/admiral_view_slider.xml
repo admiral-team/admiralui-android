@@ -11,26 +11,40 @@
     android:paddingEnd="16dp"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <com.admiral.uikit.components.textfield.TextFieldInputLayout
-        android:id="@+id/inputLayout"
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralSliderOptionalText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:hintTextAppearance="@style/AdmiralTextAppearance.Subhead2"
-        app:layout_constraintEnd_toStartOf="@+id/iconImageView"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/AdmiralTextAppearance.Subhead2"
+        app:admiralTextStyle="subhead2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Optional text" />
+
+    <com.admiral.uikit.components.textfield.TextFieldInputLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        android:paddingTop="@dimen/module_x2"
+        app:hintEnabled="false"
+        app:suffixTextAppearance="@style/AdmiralTextAppearance.Body1"
+        app:layout_constraintTop_toBottomOf="@id/admiralSliderOptionalText"
         app:layout_constraintVertical_chainStyle="packed"
         app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@null"
             android:imeOptions="actionDone"
             android:inputType="number"
-            android:paddingTop="@dimen/module_x2"
             android:textAppearance="@style/AdmiralTextAppearance.Body1"
             android:textCursorDrawable="@null"
             tools:text="Optional label"

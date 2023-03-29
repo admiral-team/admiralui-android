@@ -184,6 +184,8 @@
         <attr name="admiralTextOptional" />
         <attr name="admiralLeftText" />
         <attr name="admiralRightText" />
+
+        <attr name="admiralSuffixText" />
     </declare-styleable>
 
     <declare-styleable name="DoubleSlider" parent="GlobalAttrDeclare">
@@ -199,6 +201,8 @@
         <attr name="admiralTextOptional" />
         <attr name="admiralLeftText" />
         <attr name="admiralRightText" />
+
+        <attr name="admiralSuffixText" format="string" />
     </declare-styleable>
 
     <declare-styleable name="TextField" parent="GlobalAttrDeclare">
