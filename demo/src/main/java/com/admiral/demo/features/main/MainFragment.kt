@@ -18,6 +18,7 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtMainBinding
 import com.admiral.demo.features.home.home.ComposeSwitcher
+import com.admiral.demo.features.home.home.ThemeListener
 import com.admiral.demo.features.home.home.ThemeSwitcher
 import com.admiral.demo.features.home.onboarding.OnboardingFragment
 import com.admiral.demo.features.home.onboarding.OnboardingStorage
@@ -37,7 +38,8 @@ import com.admiral.themes.darkTheme
 import com.admiral.themes.lightTheme
 import com.google.android.material.chip.Chip
 
-class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwitcher, ThemeSwitcher {
+class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwitcher, ThemeSwitcher,
+    ThemeListener {
 
     private val binding by viewBinding(FmtMainBinding::bind)
     private var compose = false
@@ -254,5 +256,10 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
     private fun isNightModeDetect(): Boolean {
         return requireActivity().applicationContext.resources.configuration.uiMode and
                 UI_MODE_NIGHT_MASK == UI_MODE_NIGHT_YES
+    }
+
+    override fun updateThemes() {
+        initThemePickerList()
+        invalidateThemePickerButtonColors()
     }
 }
