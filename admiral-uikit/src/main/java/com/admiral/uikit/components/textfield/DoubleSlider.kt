@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.doOnLayout
 import androidx.core.view.isGone
+import androidx.core.view.isVisible
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -112,7 +113,7 @@ class DoubleSlider @JvmOverloads constructor(
     var optionalText: String? = null
         set(value) {
             field = value
-            invalidateTextHint()
+            invalidateOptionalText()
         }
 
     /**
@@ -123,7 +124,7 @@ class DoubleSlider @JvmOverloads constructor(
         set(value) {
             field = value
             binding.inputLayoutFrom.placeholderText = value
-            invalidateTextHint()
+            invalidateOptionalText()
         }
 
     /**
@@ -134,7 +135,7 @@ class DoubleSlider @JvmOverloads constructor(
         set(value) {
             field = value
             //binding.inputLayoutTo.placeholderText = value
-            invalidateTextHint()
+            invalidateOptionalText()
         }
 
     /**
@@ -147,6 +148,16 @@ class DoubleSlider @JvmOverloads constructor(
                 text = value
                 isGone = value.isNullOrEmpty()
             }
+        }
+
+    /**
+     * Suffix text which is placed under divider.
+     */
+    var suffixText: String? = null
+        set(value) {
+            field = value
+            binding.inputLayoutFrom.suffixText = value
+            binding.inputLayoutTo.suffixText = value
         }
 
     /**
@@ -377,6 +388,7 @@ class DoubleSlider @JvmOverloads constructor(
         optionalText = a.getString(R.styleable.DoubleSlider_admiralTextOptional)
         placeholderText = a.getString(R.styleable.DoubleSlider_admiralTextOptional)
         additionalText = a.getString(R.styleable.DoubleSlider_admiralTextAdditional)
+        suffixText = a.getString(R.styleable.DoubleSlider_admiralSuffixText)
     }
 
     private fun parseDefaultColors(a: TypedArray) {
@@ -414,7 +426,9 @@ class DoubleSlider @JvmOverloads constructor(
                 .let { if (isEnabled) it else it.withAlpha() }
         )
         binding.inputLayoutFrom.setPrefixTextColor(colorStateList)
+        binding.inputLayoutFrom.setSuffixTextColor(editTextColorState)
         binding.inputLayoutTo.setPrefixTextColor(colorStateList)
+        binding.inputLayoutTo.setSuffixTextColor(editTextColorState)
         binding.leftTextView.setTextColor(colorStateList)
         binding.rightTextView.setTextColor(colorStateList)
 
@@ -428,18 +442,7 @@ class DoubleSlider @JvmOverloads constructor(
         val placeholderTextColorStateList =
             ColorStateList.valueOf(ThemeManager.theme.palette.textMask)
 
-        binding.inputLayoutFrom.apply {
-            defaultHintTextColor = ColorStateList.valueOf(defaultColor)
-            doOnLayout {
-                placeholderTextColor = placeholderTextColorStateList
-            }
-        }
-        binding.inputLayoutTo.apply {
-            defaultHintTextColor = ColorStateList.valueOf(defaultColor)
-            doOnLayout {
-                placeholderTextColor = placeholderTextColorStateList
-            }
-        }
+        binding.admiralDoubleSliderOptionalText.textColor = ColorState(defaultColor)
 
         val additionalTextColor: Int = when {
             isError -> errorColor ?: ThemeManager.theme.palette.textError
@@ -462,18 +465,9 @@ class DoubleSlider @JvmOverloads constructor(
         }
     }
 
-    private fun invalidateTextHint() {
-        binding.inputLayoutFrom.apply {
-            isHintEnabled = !optionalText.isNullOrEmpty()
-            hint = optionalText
-        }
-        editText.hint = if (optionalText == null) placeholderText else null
-
-//        binding.inputLayoutTo.apply {
-//            isHintEnabled = !placeholderTextTo.isNullOrEmpty()
-//            hint = placeholderTextTo
-//        }
-        editTextTo.hint = placeholderTextTo
+    private fun invalidateOptionalText() {
+        binding.admiralDoubleSliderOptionalText.text = optionalText
+        binding.admiralDoubleSliderOptionalText.isVisible = optionalText != null
     }
 
     private fun invalidateValueFrom() {

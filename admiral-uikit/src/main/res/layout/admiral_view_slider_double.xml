@@ -11,31 +11,44 @@
     android:paddingEnd="16dp"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
-    <com.admiral.uikit.components.textfield.TextFieldInputLayout
-        android:id="@+id/inputLayoutFrom"
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralDoubleSliderOptionalText"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:prefixText="@string/admiral_slider_from"
-        app:prefixTextAppearance="@style/AdmiralTextAppearance.Body1"
-        app:hintTextAppearance="@style/AdmiralTextAppearance.Subhead2"
-        app:layout_constraintEnd_toStartOf="@+id/inputLayoutTo"
+        android:ellipsize="end"
+        android:maxLines="1"
+        android:textAppearance="@style/AdmiralTextAppearance.Subhead2"
+        app:admiralTextStyle="subhead2"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintVertical_chainStyle="packed"
-        app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1">
+        tools:text="Optional text" />
+
+    <com.admiral.uikit.components.textfield.TextFieldInputLayout
+        android:id="@+id/inputLayoutFrom"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:paddingTop="@dimen/module_x2"
+        app:hintEnabled="false"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/admiralDoubleSliderOptionalText"
+        app:layout_constraintVertical_chainStyle="packed"
+        app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1"
+        app:prefixText="@string/admiral_slider_from"
+        app:suffixTextAppearance="@style/AdmiralTextAppearance.Body1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editText"
-            android:layout_width="match_parent"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="bottom"
             android:background="@null"
+            android:imeOptions="actionDone"
             android:inputType="number"
-            android:paddingTop="@dimen/module_x2"
             android:textAppearance="@style/AdmiralTextAppearance.Body1"
             android:textCursorDrawable="@null"
-            tools:text="от 10"
-            tools:textColor="@color/grey_40" />
+            tools:text="Optional label" />
 
     </com.admiral.uikit.components.textfield.TextFieldInputLayout>
 
@@ -44,12 +57,13 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:gravity="end"
-        app:prefixText="@string/admiral_slider_to"
-        app:prefixTextAppearance="@style/AdmiralTextAppearance.Body1"
         app:hintTextAppearance="@style/AdmiralTextAppearance.Subhead2"
         app:layout_constraintEnd_toStartOf="@id/iconImageView"
         app:layout_constraintTop_toTopOf="parent"
-        app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1">
+        app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1"
+        app:prefixText="@string/admiral_slider_to"
+        app:prefixTextAppearance="@style/AdmiralTextAppearance.Body1"
+        app:suffixTextAppearance="@style/AdmiralTextAppearance.Body1">
 
         <com.google.android.material.textfield.TextInputEditText
             android:id="@+id/editTextTo"
@@ -77,10 +91,10 @@
         android:scaleType="centerInside"
         android:src="@drawable/admiral_ic_archive_solid"
         android:visibility="gone"
+        app:admiralIconColorNormalEnabledPalette="elementPrimary"
         app:layout_constraintBottom_toTopOf="@+id/rangeSlider"
         app:layout_constraintEnd_toEndOf="parent"
-        app:admiralIconColorNormalEnabledPalette="elementPrimary"
-        tools:visibility="visible"/>
+        tools:visibility="visible" />
 
     <com.admiral.uikit.components.informer.InformerSmall
         android:id="@+id/admiralSliderInformer"
@@ -92,8 +106,8 @@
         app:admiralPointerBias="0.95"
         app:layout_constraintEnd_toEndOf="@id/iconImageView"
         app:layout_constraintTop_toBottomOf="@id/iconImageView"
-        tools:visibility="visible"
-        tools:alpha="0.4"/>
+        tools:alpha="0.4"
+        tools:visibility="visible" />
 
     <com.google.android.material.slider.RangeSlider
         android:id="@+id/rangeSlider"
