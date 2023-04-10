@@ -3,7 +3,6 @@ package com.admiral.uikit.components.actionbar
 import android.content.Context
 import android.content.res.TypedArray
 import android.util.AttributeSet
-import android.widget.ImageView
 import android.widget.LinearLayout
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
@@ -13,14 +12,15 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
 
 class ActionBar @JvmOverloads constructor(
     context: Context,
@@ -167,6 +167,7 @@ class ActionBar @JvmOverloads constructor(
     }
 
     private fun createImageView(@DrawableRes icon: Int) = ImageView(context).apply {
+        isColored = true
         background = drawable(R.drawable.admiral_bg_round_clickable)
             ?.colored(ThemeManager.theme.palette.backgroundBasic)
 
@@ -294,6 +295,7 @@ class ActionBar @JvmOverloads constructor(
     }
 
     override fun onThemeChanged(theme: Theme) {
+        invalidateButtonBackgroundColor()
         invalidateBackgroundColor()
         invalidateDotsTintColor()
         invalidateUpTintColor()
@@ -303,14 +305,19 @@ class ActionBar @JvmOverloads constructor(
     }
 
     private fun invalidateBackgroundColor() {
-        setBackgroundColor(backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne)
+        setBackgroundColor(
+            backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne
+        )
     }
 
     private fun invalidateButtonBackgroundColor() {
         val backgroundColors = colorStateList(
-            enabled = buttonBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundBasic,
-            disabled = buttonBackgroundColors?.normalDisabled ?: ThemeManager.theme.palette.backgroundBasic,
-            pressed = buttonBackgroundColors?.pressed ?: ThemeManager.theme.palette.backgroundSelected
+            enabled = buttonBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundBasic,
+            disabled = buttonBackgroundColors?.normalDisabled
+                ?: ThemeManager.theme.palette.backgroundBasic,
+            pressed = buttonBackgroundColors?.pressed
+                ?: ThemeManager.theme.palette.backgroundSelected
         )
 
         dots.backgroundTintList = backgroundColors
@@ -321,42 +328,58 @@ class ActionBar @JvmOverloads constructor(
     }
 
     private fun invalidateDotsTintColor() {
-        dots.imageTintList = colorStateList(
-            enabled = dotsIconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-            disabled = dotsIconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+        dots.imageTintColorState = ColorState(
+            normalEnabled = dotsIconTintColors?.normalEnabled
+                ?: ThemeManager.theme.palette.elementAccent,
+            normalDisabled = dotsIconTintColors?.normalDisabled
+                ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
             pressed = dotsIconTintColors?.pressed ?: ThemeManager.theme.palette.elementAccentPressed
         )
     }
 
     private fun invalidateUpTintColor() {
-        up.imageTintList = colorStateList(
-            enabled = upIconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
-            disabled = upIconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
+        up.imageTintColorState = ColorState(
+            normalEnabled = upIconTintColors?.normalEnabled
+                ?: ThemeManager.theme.palette.elementPrimary,
+            normalDisabled = upIconTintColors?.normalDisabled
+                ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
             pressed = upIconTintColors?.pressed ?: ThemeManager.theme.palette.elementPrimary
         )
     }
 
     private fun invalidateDownTintColor() {
-        down.imageTintList = colorStateList(
-            enabled = downIconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
-            disabled = downIconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
-            pressed = downIconTintColors?.pressed ?: ThemeManager.theme.palette.elementPrimary
-        )
+        down.imageTintColorState =
+            ColorState(
+                normalEnabled = downIconTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary,
+                normalDisabled = downIconTintColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
+                pressed = downIconTintColors?.pressed ?: ThemeManager.theme.palette.elementPrimary
+            )
     }
 
     private fun invalidateEditTintColor() {
-        edit.imageTintList = colorStateList(
-            enabled = editIconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-            disabled = editIconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-            pressed = editIconTintColors?.pressed ?: ThemeManager.theme.palette.elementAccentPressed
-        )
+        edit.imageTintColorState =
+            ColorState(
+                normalEnabled = editIconTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
+                normalDisabled = editIconTintColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+                pressed = editIconTintColors?.pressed
+                    ?: ThemeManager.theme.palette.elementAccentPressed
+            )
+
     }
 
     private fun invalidateDeleteTintColor() {
-        delete.imageTintList = colorStateList(
-            enabled = deleteIconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementError,
-            disabled = deleteIconTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementError.withAlpha(),
-            pressed = deleteIconTintColors?.pressed ?: ThemeManager.theme.palette.elementErrorPressed
-        )
+        delete.imageTintColorState =
+            ColorState(
+                normalEnabled = deleteIconTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementError,
+                normalDisabled = deleteIconTintColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementError.withAlpha(),
+                pressed = deleteIconTintColors?.pressed
+                    ?: ThemeManager.theme.palette.elementErrorPressed
+            )
     }
 }
