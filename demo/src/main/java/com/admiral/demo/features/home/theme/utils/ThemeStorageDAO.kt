@@ -45,15 +45,7 @@ object ThemeStorageDAO {
     }
 
     private fun updateThemes() {
-        themes = storage.getAll().sortedWith(Comparator { t1, t2 ->
-            return@Comparator if (t1.name == THEME_LIGHT || t1.name == THEME_DARK) {
-                -1
-            } else if (t2.name == THEME_LIGHT || t2.name == THEME_DARK) {
-                1
-            } else {
-                t1.name.compareTo(t2.name)
-            }
-        })
+        themes = storage.getAll()
         theme = themes.find { it.name == storage.currentTheme() } ?: lightTheme()
     }
 }

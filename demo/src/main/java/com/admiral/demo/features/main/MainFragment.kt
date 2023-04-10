@@ -243,7 +243,7 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
                     )
                 }
 
-                if (theme == ThemeManager.theme) {
+                if (theme.name == ThemeManager.theme.name) {
                     isChecked = true
                     setTextColor(ThemeManager.theme.palette.textStaticWhite)
                 } else {
