@@ -62,24 +62,28 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@id/tabs" />
 
-        <com.admiral.uikit.components.radiobutton.RadioButton
-            android:id="@+id/radioButton1"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/rgNormal"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x3"
             android:layout_marginTop="@dimen/module_x3"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDefault" />
+            app:layout_constraintTop_toBottomOf="@id/tvDefault">
 
-        <com.admiral.uikit.components.radiobutton.RadioButton
-            android:id="@+id/radioButton2"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x3"
-            android:layout_marginTop="@dimen/module_x3"
-            android:text="@string/radio_buttons_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radioButton1" />
+            <com.admiral.uikit.components.radiobutton.RadioButton
+                android:id="@+id/radioButton1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <com.admiral.uikit.components.radiobutton.RadioButton
+                android:id="@+id/radioButton2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_buttons_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioButton1" />
+        </RadioGroup>
 
         <com.admiral.uikit.components.text.TextView
             android:id="@+id/tvDefault1"
@@ -91,28 +95,33 @@
             app:admiralTextColorNormalEnabled="@color/grey_40"
             app:admiralTextStyle="headline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radioButton2" />
+            app:layout_constraintTop_toBottomOf="@id/rgNormal" />
 
-        <com.admiral.uikit.components.radiobutton.RadioButton
-            android:id="@+id/radioButton3"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:id="@+id/rgChecked"
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x3"
             android:layout_marginTop="@dimen/module_x3"
-            android:checked="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDefault1" />
+            app:layout_constraintTop_toBottomOf="@id/tvDefault1">
 
-        <com.admiral.uikit.components.radiobutton.RadioButton
-            android:id="@+id/radioButton4"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x3"
-            android:layout_marginTop="@dimen/module_x3"
-            android:checked="true"
-            android:text="@string/radio_buttons_text"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radioButton3" />
+            <com.admiral.uikit.components.radiobutton.RadioButton
+                android:id="@+id/radioButton3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true" />
+
+            <com.admiral.uikit.components.radiobutton.RadioButton
+                android:id="@+id/radioButton4"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:checked="true"
+                android:text="@string/radio_buttons_text"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioButton3" />
+
+        </RadioGroup>
 
         <com.admiral.uikit.components.text.TextView
             android:id="@+id/tvDefault2"
@@ -124,28 +133,32 @@
             app:admiralTextColorNormalEnabled="@color/grey_40"
             app:admiralTextStyle="headline"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radioButton4" />
+            app:layout_constraintTop_toBottomOf="@id/rgChecked" />
 
-        <com.admiral.uikit.components.radiobutton.RadioButton
-            android:id="@+id/radioButton5"
-            android:layout_width="wrap_content"
+        <RadioGroup
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x3"
             android:layout_marginTop="@dimen/module_x3"
-            app:admiralIsError="true"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/tvDefault2" />
+            app:layout_constraintTop_toBottomOf="@id/tvDefault2">
 
-        <com.admiral.uikit.components.radiobutton.RadioButton
-            android:id="@+id/radioButton6"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="@dimen/module_x3"
-            android:layout_marginTop="@dimen/module_x3"
-            android:text="@string/radio_buttons_text"
-            app:admiralIsError="true"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/radioButton5" />
+            <com.admiral.uikit.components.radiobutton.RadioButton
+                android:id="@+id/radioButton5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                app:admiralIsError="true" />
+
+            <com.admiral.uikit.components.radiobutton.RadioButton
+                android:id="@+id/radioButton6"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/radio_buttons_text"
+                app:admiralIsError="true"
+                android:checked="true"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@id/radioButton5" />
+        </RadioGroup>
 
     </com.admiral.uikit.layout.ConstraintLayout>
 
