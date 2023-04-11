@@ -60,13 +60,27 @@ class Appbar @JvmOverloads constructor(
     /**
      * Container fot the title text and menu text.
      */
-    private val mainContainer: LinearLayout = LinearLayout(context).apply {
-        layoutParams = LayoutParams(LayoutParams.MATCH_PARENT, LayoutParams.MATCH_PARENT)
+    private val endContainer: LinearLayout = LinearLayout(context).apply {
+        layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT).apply {
+            gravity = Gravity.END or Gravity.CENTER_VERTICAL
+        }
+
         setMargins(
-            left = MARGIN_VIEWS_CONTAINER_TOP,
-            top = MARGIN_VIEWS_CONTAINER_TOP,
             right = MARGIN_VIEWS_CONTAINER_RIGHT
         )
+
+        showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
+        dividerDrawable =
+            ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_8dp)
+    }
+
+    /**
+     * Container fot the title text and menu text.
+     */
+    private val startContainer: LinearLayout = LinearLayout(context).apply {
+        layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.MATCH_PARENT).apply {
+            gravity = Gravity.START or Gravity.CENTER_VERTICAL
+        }
 
         showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
         dividerDrawable =
@@ -86,15 +100,17 @@ class Appbar @JvmOverloads constructor(
      * TextView shown at the middle of the app bar.
      */
     private val textViewTitle = TextView(context).apply {
-        layoutParams = LinearLayout.LayoutParams(0, LayoutParams.WRAP_CONTENT, 1f)
+        layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         ellipsize = TextUtils.TruncateAt.END
+        title = ""
     }
 
     /**
      * TextView shown at the right of the app bar.
      */
     private val textViewMenu = Link(context).apply {
-        gravity = Gravity.END or Gravity.CENTER_VERTICAL
+        layoutParams =
+            LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         visibility = View.GONE
     }
 
@@ -104,7 +120,9 @@ class Appbar @JvmOverloads constructor(
     var textViewTitleGravity = Gravity.CENTER_HORIZONTAL
         set(value) {
             field = value
-            textViewTitle.gravity = value
+            textViewTitle.layoutParams = textViewTitle.layoutParams.apply {
+                (this as LayoutParams).gravity = value
+            }
         }
 
     var appbarType: AppbarType = AppbarType.NORMAL
@@ -349,14 +367,16 @@ class Appbar @JvmOverloads constructor(
             )
         }
 
-        mainContainer.addView(textViewTitle)
-        mainContainer.addView(textViewMenu)
-        addView(mainContainer)
+        endContainer.addView(textViewMenu)
+        addView(endContainer)
+        addView(startContainer)
+        addView(searchContainer)
+
+        addView(textViewTitle)
 
         searchContainer.addView(iconStart)
         searchContainer.addView(textFieldSearch)
         searchContainer.addView(iconEnd)
-        addView(searchContainer)
     }
 
     /**
@@ -376,11 +396,11 @@ class Appbar @JvmOverloads constructor(
     }
 
     fun addViewStart(view: View) {
-        mainContainer.addView(view, 0)
+        startContainer.addView(view, 0)
     }
 
     fun addViewEnd(view: View) {
-        mainContainer.addView(view, mainContainer.size)
+        endContainer.addView(view, endContainer.size)
     }
 
     fun inflateMenu(@MenuRes menuRes: Int, menu: Menu, inflater: MenuInflater) {
@@ -477,11 +497,13 @@ class Appbar @JvmOverloads constructor(
     private fun invalidateType() {
         when (appbarType) {
             AppbarType.NORMAL -> {
-                mainContainer.isVisible = true
+                startContainer.isVisible = true
+                endContainer.isVisible = true
                 searchContainer.isVisible = false
             }
             AppbarType.SEARCH -> {
-                mainContainer.isVisible = false
+                startContainer.isVisible = false
+                endContainer.isVisible = false
                 searchContainer.isVisible = true
             }
         }
