@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.AppCompatRadioButton
 import androidx.core.content.res.use
+import com.admiral.themes.Font
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -39,7 +40,16 @@ class RadioButton @JvmOverloads constructor(
             invalidateButtonTintColors()
         }
 
-    var error: Boolean = false
+    /**
+     * Apply style to the text
+     */
+    var textStyle: Font = ThemeManager.theme.typography.subhead3
+        set(value) {
+            field = value
+            applyStyle(Typography.getStyle(field))
+        }
+
+    var isError: Boolean = false
         set(value) {
             field = value
             invalidateButtonTintColors()
@@ -58,13 +68,19 @@ class RadioButton @JvmOverloads constructor(
 
     init {
         parseAttrs(attrs, R.styleable.RadioButton).use {
-            error = it.getBoolean(R.styleable.RadioButton_admiralIsError, false)
+            isError = it.getBoolean(R.styleable.RadioButton_admiralIsError, false)
+
+            textStyle =
+                Typography.getStyleById(
+                    it.getInt(
+                        R.styleable.RadioButton_admiralTextStyle,
+                        Typography.subhead3
+                    )
+                )
 
             parseTintColors(it)
             parseTextColors(it)
         }
-
-        applyStyle(Typography.getStyle(ThemeManager.theme.typography.subhead3))
     }
 
     /**
@@ -135,20 +151,25 @@ class RadioButton @JvmOverloads constructor(
     }
 
     private fun invalidateButtonTintColors() {
-        buttonTintList = if (error) {
+        buttonTintList = if (isError) {
             colorStateListForChecked(
-                checkedEnabled = buttonTintColors?.errorEnabled ?: ThemeManager.theme.palette.elementError,
+                checkedEnabled = buttonTintColors?.errorEnabled
+                    ?: ThemeManager.theme.palette.elementError,
                 checkedDisabled = buttonTintColors?.errorDisabled
                     ?: ThemeManager.theme.palette.elementError.withAlpha(),
-                normalEnabled = buttonTintColors?.errorEnabled ?: ThemeManager.theme.palette.elementError,
-                normalDisabled = buttonTintColors?.errorDisabled ?: ThemeManager.theme.palette.elementError.withAlpha()
+                normalEnabled = buttonTintColors?.errorEnabled
+                    ?: ThemeManager.theme.palette.elementError,
+                normalDisabled = buttonTintColors?.errorDisabled
+                    ?: ThemeManager.theme.palette.elementError.withAlpha()
             )
         } else {
             colorStateListForChecked(
-                checkedEnabled = buttonTintColors?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
+                checkedEnabled = buttonTintColors?.checkedEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
                 checkedDisabled = buttonTintColors?.checkedDisabled
                     ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                normalEnabled = buttonTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
+                normalEnabled = buttonTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
                 normalDisabled = buttonTintColors?.normalDisabled
                     ?: ThemeManager.theme.palette.elementAccent.withAlpha()
             )
@@ -156,22 +177,30 @@ class RadioButton @JvmOverloads constructor(
     }
 
     private fun invalidateTextColors() {
-        if (error) {
+        if (isError) {
             setTextColor(
                 colorStateListForChecked(
-                    checkedEnabled = textColor?.errorEnabled ?: ThemeManager.theme.palette.textPrimary,
-                    checkedDisabled = textColor?.errorDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
-                    normalEnabled = textColor?.errorEnabled ?: ThemeManager.theme.palette.textPrimary,
-                    normalDisabled = textColor?.errorDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                    checkedEnabled = textColor?.errorEnabled
+                        ?: ThemeManager.theme.palette.textPrimary,
+                    checkedDisabled = textColor?.errorDisabled
+                        ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                    normalEnabled = textColor?.errorEnabled
+                        ?: ThemeManager.theme.palette.textPrimary,
+                    normalDisabled = textColor?.errorDisabled
+                        ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
                 )
             )
         } else {
             setTextColor(
                 colorStateListForChecked(
-                    checkedEnabled = textColor?.checkedEnabled ?: ThemeManager.theme.palette.textPrimary,
-                    checkedDisabled = textColor?.checkedDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
-                    normalEnabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-                    normalDisabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                    checkedEnabled = textColor?.checkedEnabled
+                        ?: ThemeManager.theme.palette.textPrimary,
+                    checkedDisabled = textColor?.checkedDisabled
+                        ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                    normalEnabled = textColor?.normalEnabled
+                        ?: ThemeManager.theme.palette.textPrimary,
+                    normalDisabled = textColor?.normalDisabled
+                        ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
                 )
             )
         }

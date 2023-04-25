@@ -6,6 +6,7 @@ import android.util.AttributeSet
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.appcompat.widget.SwitchCompat
 import androidx.core.content.res.use
+import com.admiral.themes.Font
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -62,14 +63,29 @@ class Switcher @JvmOverloads constructor(
             invalidateTextColors()
         }
 
+    /**
+     * Apply style to the text
+     */
+    var textStyle: Font = ThemeManager.theme.typography.subhead3
+        set(value) {
+            field = value
+            applyStyle(Typography.getStyle(field))
+        }
+
     init {
         parseAttrs(attrs, R.styleable.Switcher).use {
             parseThumbColors(it)
             parseTrackColors(it)
             parseTextColors(it)
-        }
 
-        applyStyle(Typography.getStyle(ThemeManager.theme.typography.subhead3))
+            textStyle =
+                Typography.getStyleById(
+                    it.getInt(
+                        R.styleable.Switcher_admiralTextStyle,
+                        Typography.subhead3
+                    )
+                )
+        }
     }
 
     private fun parseTextColors(typedArray: TypedArray) {
@@ -148,20 +164,26 @@ class Switcher @JvmOverloads constructor(
     private fun invalidateThumbTintColors() {
         thumbTintList =
             colorStateListForChecked(
-                checkedEnabled = thumbTintColors?.checkedEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                checkedDisabled = thumbTintColors?.checkedDisabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                normalEnabled = thumbTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                normalDisabled = thumbTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementStaticWhite
+                checkedEnabled = thumbTintColors?.checkedEnabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
+                checkedDisabled = thumbTintColors?.checkedDisabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
+                normalEnabled = thumbTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
+                normalDisabled = thumbTintColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite
             )
     }
 
     private fun invalidateTrackTintColors() {
         trackTintList =
             colorStateListForChecked(
-                checkedEnabled = trackTintColors?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
+                checkedEnabled = trackTintColors?.checkedEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
                 checkedDisabled = trackTintColors?.checkedDisabled
                     ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                normalEnabled = trackTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
+                normalEnabled = trackTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary,
                 normalDisabled = trackTintColors?.normalDisabled
                     ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
             )
@@ -171,7 +193,8 @@ class Switcher @JvmOverloads constructor(
         setTextColor(
             colorStateList(
                 enabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-                disabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                disabled = textColor?.normalDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
                 pressed = textColor?.pressed ?: ThemeManager.theme.palette.textPrimary,
             )
         )

@@ -1,11 +1,13 @@
 package com.admiral.demo.features.home.theme
 
+import android.content.Context
 import android.os.Bundle
 import android.view.Menu
 import android.view.MenuInflater
 import android.view.MenuItem
 import android.view.View
 import androidx.core.view.isVisible
+import androidx.fragment.app.Fragment
 import androidx.fragment.app.clearFragmentResult
 import androidx.fragment.app.setFragmentResultListener
 import androidx.fragment.app.viewModels
@@ -15,6 +17,8 @@ import com.google.android.material.dialog.MaterialAlertDialogBuilder
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtThemeBinding
+import com.admiral.demo.features.home.home.ThemeListener
+import com.admiral.demo.features.home.home.ThemeSwitcher
 import com.admiral.demo.features.home.theme.utils.ThemeStorageDAO
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.ColorsScreen
@@ -33,6 +37,8 @@ import kotlinx.coroutines.launch
 // todo replace logic to VM
 
 class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
+
+    private var themeListener: ThemeListener? = null
 
     private val binding by viewBinding(FmtThemeBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
@@ -130,6 +136,7 @@ class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
                 .setMessage(R.string.themes_creates_delete_question)
                 .setPositiveButton(R.string.yes) { dialog, which ->
                     ThemeStorageDAO.removeTheme(theme)
+                    themeListener?.updateThemes()
                     navigationViewModel.close()
                 }
                 .setNegativeButton(R.string.no, null)
@@ -144,5 +151,18 @@ class ThemeFragment : BaseFragment(R.layout.fmt_theme) {
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         inflater.inflate(R.menu.menu_appbar_theme, menu)
         super.onCreateOptionsMenu(menu, inflater)
+    }
+
+    override fun onAttach(context: Context) {
+        super.onAttach(context)
+        onAttachToParentFragment(requireParentFragment().requireParentFragment())
+    }
+
+    private fun onAttachToParentFragment(fragment: Fragment) {
+        try {
+            themeListener = fragment as ThemeListener
+        } catch (e: ClassCastException) {
+            throw ClassCastException("$fragment must implement ComposeSwitcher and ThemeSwitcher")
+        }
     }
 }
