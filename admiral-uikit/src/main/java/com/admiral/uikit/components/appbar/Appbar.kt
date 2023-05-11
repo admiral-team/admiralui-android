@@ -125,6 +125,15 @@ class Appbar @JvmOverloads constructor(
             }
         }
 
+    /**
+     * Alignment of the Title text view.
+     */
+    var textViewTitleAlignment = TEXT_ALIGNMENT_CENTER
+        set(value) {
+            field = value
+            textViewTitle.textAlignment = value
+        }
+
     var appbarType: AppbarType = AppbarType.NORMAL
         set(value) {
             field = value
@@ -344,6 +353,9 @@ class Appbar @JvmOverloads constructor(
 
             textViewTitleGravity =
                 it.getInt(R.styleable.Appbar_admiralTitleTextGravity, Gravity.START)
+
+            textViewTitleAlignment =
+                it.getInt(R.styleable.Appbar_admiralTitleTextAlignment, TEXT_ALIGNMENT_CENTER)
 
             editTextDrawableStart = it.getDrawable(R.styleable.Appbar_android_drawableStart)
                 ?: drawable(R.drawable.admiral_ic_search_outline)
