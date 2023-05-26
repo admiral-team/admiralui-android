@@ -22,6 +22,8 @@ github.com/admiral-team/admiral-tools v0.0.0-20230315124902-f9514fd24d0f h1:fg6f
 github.com/admiral-team/admiral-tools v0.0.0-20230315124902-f9514fd24d0f/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
 github.com/admiral-team/admiral-tools v0.0.0-20230315125759-325f4663ebb5 h1:6BnKzq8yT+P0c4ZlwHgVDfeMd2ooS6KvXykzywWAJ0Q=
 github.com/admiral-team/admiral-tools v0.0.0-20230315125759-325f4663ebb5/go.mod h1:IPsiBOauKr4dwrSJTQiSgtAPzNU+sdyBjSPSkFdnPm0=
+github.com/admiral-team/admiral-tools v0.0.0-20230516225123-feeb3c2204eb h1:0pyi/XZHT38DSskVkJAv/MbYLRzVXtgFAfih8IgvmMQ=
+github.com/admiral-team/admiral-tools v0.0.0-20230516225123-feeb3c2204eb/go.mod h1:ViSziD3mRNNR+uf9k8ZgtAx3iH2Kr7jrMcVAR7oOIDU=
 github.com/go-playground/colors v1.3.0 h1:B+jYkyTo36sREzsaXd3kawgG53rw0zqX9fSllGVoLdc=
 github.com/go-playground/colors v1.3.0/go.mod h1:5rTAoESUkprj1EHZvzGti8xkb8XwAGYzYEFmW18B8es=
 github.com/golang/protobuf v1.3.1/go.mod h1:6lQm79b+lXiMfvg/cZm0SGofjICqVBUtrP5yJMmIC1U=
@@ -42,6 +44,8 @@ github.com/iancoleman/strcase v0.2.0 h1:05I4QRnGpI0m37iZQRuskXh+w77mr6Z41lwQzuHL
 github.com/iancoleman/strcase v0.2.0/go.mod h1:iwCmte+B7n89clKwxIoIXy/HfoL7AsD47ZCWhYzw7ho=
 github.com/joho/godotenv v1.4.0 h1:3l4+N6zfMWnkbPEXKng2o2/MR5mSwTrBih4ZEkkz1lg=
 github.com/joho/godotenv v1.4.0/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
+github.com/joho/godotenv v1.5.1 h1:7eLL/+HRGLY0ldzfGMeQkb7vMd0as4CfYvUVzLqw0N0=
+github.com/joho/godotenv v1.5.1/go.mod h1:f4LDr5Voq0i2e/R5DDNOoa2zzDfwtkZa6DnEwAbqwq4=
 github.com/phpdave11/gofpdi v1.0.11/go.mod h1:vBmVV0Do6hSBHC8uKUQ71JGW+ZGQq74llk/7bXwjDoI=
 github.com/phpdave11/gofpdi v1.0.13 h1:o61duiW8M9sMlkVXWlvP92sZJtGKENvW3VExs6dZukQ=
 github.com/phpdave11/gofpdi v1.0.13/go.mod h1:vBmVV0Do6hSBHC8uKUQ71JGW+ZGQq74llk/7bXwjDoI=
