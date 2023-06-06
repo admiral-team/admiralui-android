@@ -14,8 +14,8 @@ object Keystore {
         }
 
         object Release {
-            val keystore = "release.keystore"
-            val properties = "keystore_release.properties"
+            val keystore = "debug.keystore"
+            val properties = "keystore_debug.properties"
         }
     }
 }

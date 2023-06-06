@@ -7,7 +7,7 @@ on:
     branches: [ 'main', 'develop', 'rc/**' ]
 jobs:
   approve: # First step
-    runs-on: [ self-hosted, main ]
+    runs-on: [ self-hosted, tim ]
 
     steps:
       - name: Approve
