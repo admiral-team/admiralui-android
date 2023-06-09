@@ -7,7 +7,7 @@ on:
     branches: [ 'main', 'develop', 'rc/**' ]
 jobs:
   approve: # First step
-    runs-on: [ self-hosted, main, android ]
+    runs-on: [ self-hosted, main, android, ARM64 ]
 
     steps:
       - name: Approve
