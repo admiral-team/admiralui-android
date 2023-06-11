@@ -23,13 +23,15 @@ class ToastNotificationFragment : BaseFragment(R.layout.fmt_notifications_toast)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
         binding.btnToast.setOnClickListener {
-            val multipleToastNotification = ToastNotification.Builder(requireContext(), binding.coordinator)
-                .setLinkText("Link text")
-                .setLinkClickListener {
-                    it.hide()
-                }
-                .setText("At breakpoint boundaries, mini units divide the screen into a fixed master grid.")
-                .apply()
+            val multipleToastNotification =
+                ToastNotification.Builder(requireContext(), binding.coordinator)
+                    .setLinkText("Link text")
+                    .setLinkClickListener {
+                        it.hide()
+                    }
+                    .setMargins(top = 20)
+                    .setText("At breakpoint boundaries, mini units divide the screen into a fixed master grid.")
+                    .apply()
 
             multipleToastNotification.show()
         }

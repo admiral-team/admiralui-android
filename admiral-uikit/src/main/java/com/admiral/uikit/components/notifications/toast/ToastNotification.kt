@@ -12,7 +12,6 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
-import com.google.android.material.snackbar.Snackbar
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
 import com.admiral.uikit.common.foundation.ColorState
@@ -24,6 +23,7 @@ import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.setMargins
+import com.google.android.material.snackbar.Snackbar
 
 class ToastNotification {
 
@@ -40,13 +40,15 @@ class ToastNotification {
     class Builder(context: Context, parentRootView: View) {
         private var toastNotification: ToastNotification = ToastNotification()
 
-        private val toastView: View = LayoutInflater.from(context).inflate(R.layout.admiral_notification, null)
+        private val toastView: View =
+            LayoutInflater.from(context).inflate(R.layout.admiral_notification, null)
 
         private var icon = toastView.findViewById<ImageView>(R.id.admiralIcon)
         private var closeIcon = toastView.findViewById<ImageView>(R.id.admiralCloseIcon)
-        private var toastTextView = toastView.findViewById<TextView>(R.id.admiralToastTextView).apply {
-            isVisible = false
-        }
+        private var toastTextView =
+            toastView.findViewById<TextView>(R.id.admiralToastTextView).apply {
+                isVisible = false
+            }
         private var toastLinkTextView = toastView.findViewById<Link>(R.id.admiralLinkTextView)
 
         /**
@@ -149,22 +151,40 @@ class ToastNotification {
             return this
         }
 
+        @Deprecated("use setMargins method without left and right values")
         fun setMargins(
-            top: Int = 0, bottom: Int = 0, left: Int = 0, right: Int = 0, isDimenRes: Boolean = false
+            top: Int = 0,
+            bottom: Int = 0,
+            left: Int = 0,
+            right: Int = 0,
+            isDimenRes: Boolean = false
         ): Builder {
-            val context = toastNotification.snackBarInstance.view.context
-            val innerView: View = (toastNotification.snackBarInstance.view as ViewGroup).getChildAt(0)
-            val params = innerView.layoutParams as FrameLayout.LayoutParams
+            val snackBarView = toastNotification.snackBarInstance.view
+            snackBarView.translationY =
+                top.dpToPx(toastNotification.snackBarInstance.view.context).toFloat()
 
-            params.topMargin = getMargin(isDimenRes, context, top)
+            if (bottom != 0) {
+                snackBarView.translationY =
+                    -bottom.dpToPx(toastNotification.snackBarInstance.view.context).toFloat()
+            }
 
-            params.bottomMargin = getMargin(isDimenRes, context, bottom)
+            return this
+        }
 
-            params.marginStart = getMargin(isDimenRes, context, left)
+        fun setMargins(
+            top: Int = 0, bottom: Int = 0, isDimenRes: Boolean = false
+        ): Builder {
+            val snackBarView = toastNotification.snackBarInstance.view
+            val context = snackBarView.context
 
-            params.marginEnd = getMargin(isDimenRes, context, right)
+            val tomMargin = getMargin(isDimenRes, context, top)
+            snackBarView.translationY = tomMargin.toFloat()
 
-            innerView.layoutParams = params
+            if (bottom != 0) {
+                val bottomMargin = getMargin(isDimenRes, context, bottom)
+                snackBarView.translationY = -bottomMargin.toFloat()
+            }
+
             return this
         }
 
@@ -201,7 +221,8 @@ class ToastNotification {
 
         fun apply(): ToastNotification {
             // apply width of the toast.
-            val viewInner: View = (toastNotification.snackBarInstance.view as ViewGroup).getChildAt(0)
+            val viewInner: View =
+                (toastNotification.snackBarInstance.view as ViewGroup).getChildAt(0)
             val paramsInner = viewInner.layoutParams as FrameLayout.LayoutParams
             paramsInner.width = if (isWidthMatchParent) {
                 CoordinatorLayout.LayoutParams.WRAP_CONTENT
@@ -239,14 +260,18 @@ class ToastNotification {
         private fun createViewLayout(context: Context) =
             LinearLayout(context).apply {
                 val params =
-                    LinearLayout.LayoutParams(CONTAINER_WIDTH.dpToPx(context), LinearLayout.LayoutParams.WRAP_CONTENT)
+                    LinearLayout.LayoutParams(
+                        CONTAINER_WIDTH.dpToPx(context),
+                        LinearLayout.LayoutParams.WRAP_CONTENT
+                    )
                         .apply {
                             gravity = Gravity.CENTER
                         }
                 layoutParams = params
 
                 background = context.drawable(R.drawable.admiral_bg_rectangle_8dp)
-                backgroundTintList = ColorStateList.valueOf(ThemeManager.theme.palette.backgroundAdditionalOne)
+                backgroundTintList =
+                    ColorStateList.valueOf(ThemeManager.theme.palette.backgroundAdditionalOne)
                 setPadding(
                     CONTAINER_PADDING_HORIZONTAL.dpToPx(context),
                     CONTAINER_PADDING_VERTICAL.dpToPx(context),
@@ -310,7 +335,8 @@ class ToastNotification {
             }
 
             setImageDrawable(drawable(R.drawable.admiral_ic_close_outline))
-            imageTintColorState = ColorState(normalEnabled = ThemeManager.theme.palette.elementPrimary)
+            imageTintColorState =
+                ColorState(normalEnabled = ThemeManager.theme.palette.elementPrimary)
             isFocusable = true
             isClickable = true
             isVisible = false
