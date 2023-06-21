@@ -29,6 +29,7 @@ class ToastNotificationFragment : BaseFragment(R.layout.fmt_notifications_toast)
                     .setLinkClickListener {
                         it.hide()
                     }
+                    .setIsWidthMatchParent(true)
                     .setMargins(top = 20)
                     .setText("At breakpoint boundaries, mini units divide the screen into a fixed master grid.")
                     .apply()
