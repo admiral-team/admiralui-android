@@ -225,9 +225,9 @@ class ToastNotification {
                 (toastNotification.snackBarInstance.view as ViewGroup).getChildAt(0)
             val paramsInner = viewInner.layoutParams as FrameLayout.LayoutParams
             paramsInner.width = if (isWidthMatchParent) {
-                CoordinatorLayout.LayoutParams.WRAP_CONTENT
+                CoordinatorLayout.LayoutParams.MATCH_PARENT
             } else {
-                CONTAINER_WIDTH.dpToPx(toastNotification.snackBarInstance.view.context)
+                CoordinatorLayout.LayoutParams.WRAP_CONTENT
             }
 
             // change inner gravity depended on toasts' width.
