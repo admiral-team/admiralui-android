@@ -27,7 +27,7 @@ import com.google.android.material.snackbar.Snackbar
 
 class ToastNotification {
 
-    private lateinit var snackBarInstance: Snackbar
+    lateinit var snackBarInstance: Snackbar
 
     fun show() {
         snackBarInstance.show()
