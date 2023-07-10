@@ -421,6 +421,8 @@ class TextField @JvmOverloads constructor(
     private var currentUnderlineDrawable: Drawable? = null
     private var additionalRightView: View? = null
 
+    private var shouldEmitFlow = true
+
     init {
         isBackgroundTransparent = true
         LayoutInflater.from(context).inflate(R.layout.admiral_view_text_field, this)
@@ -466,6 +468,15 @@ class TextField @JvmOverloads constructor(
         invalidateListeners()
 
         invalidateStyle()
+    }
+
+    fun setInputText(inputText: String, notifyTextFlow: Boolean = true) {
+        if (notifyTextFlow.not()) {
+            shouldEmitFlow = false
+        }
+
+        this.inputText = inputText
+        shouldEmitFlow = true
     }
 
     override fun onAttachedToWindow() {
@@ -718,6 +729,7 @@ class TextField @JvmOverloads constructor(
             isNowFocused -> hintTextColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> hintTextColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> hintTextColors?.normalEnabled ?: if (isHintAlwaysVisible) {
                 ThemeManager.theme.palette.textAccent
             } else {
@@ -744,6 +756,7 @@ class TextField @JvmOverloads constructor(
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             !isEnabled -> additionalTextColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> additionalTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
 
@@ -790,6 +803,7 @@ class TextField @JvmOverloads constructor(
             isNowFocused -> additionalTextColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> additionalTextColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> additionalTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
 
@@ -895,7 +909,9 @@ class TextField @JvmOverloads constructor(
     private fun invalidateListeners() {
         if (textWatcher == null) {
             editText.doOnTextChanged { text, _, _, _ ->
-                textFlowField.value = text.toString()
+                if (shouldEmitFlow) {
+                    textFlowField.value = text.toString()
+                }
             }
         } else {
             editText.addTextChangedListener(textWatcher)
