@@ -24,7 +24,8 @@ internal class MonthsGenerator(
     private val initialYearMonthProvider: () -> YearMonth,
     private val selectionProvider: () -> Selection,
     private val markedDaysProvider: () -> List<LocalDate>,
-    private val disabledDaysInfoProvider: () -> DisabledDaysInfo
+    private val disabledDaysInfoProvider: () -> DisabledDaysInfo,
+    private val highlightedDaysProvider: () -> List<LocalDate>,
 ) : IMonthsGenerator {
     override suspend fun generateItemOnStart(
         currentTopItem: MonthModel?
@@ -38,6 +39,7 @@ internal class MonthsGenerator(
                 selection = selectionProvider(),
                 markedDays = markedDaysProvider(),
                 disabledDaysInfo = disabledDaysInfoProvider(),
+                highlightedDays = highlightedDaysProvider(),
             )
     }
 
@@ -53,6 +55,7 @@ internal class MonthsGenerator(
                 selection = selectionProvider(),
                 markedDays = markedDaysProvider(),
                 disabledDaysInfo = disabledDaysInfoProvider(),
+                highlightedDays = highlightedDaysProvider(),
             )
     }
 

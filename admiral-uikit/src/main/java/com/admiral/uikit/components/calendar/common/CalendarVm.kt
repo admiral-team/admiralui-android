@@ -39,7 +39,8 @@ internal abstract class CalendarVm : ViewModel() {
             initialYearMonthProvider = { calendarStateFlow.value.initialYearMonth },
             selectionProvider = { calendarStateFlow.value.selection },
             markedDaysProvider = { calendarStateFlow.value.markedDays },
-            disabledDaysInfoProvider = { calendarStateFlow.value.disabledDaysInfo }
+            disabledDaysInfoProvider = { calendarStateFlow.value.disabledDaysInfo },
+            highlightedDaysProvider = { calendarStateFlow.value.highlightedDays }
         )
 
         viewModelScope.launch {
@@ -72,7 +73,8 @@ internal abstract class CalendarVm : ViewModel() {
                 clock = clock,
                 selection = calendarState.selection,
                 markedDays = calendarState.markedDays,
-                disabledDaysInfo = calendarState.disabledDaysInfo
+                disabledDaysInfo = calendarState.disabledDaysInfo,
+                highlightedDays = calendarState.highlightedDays,
             )
         }
     }
@@ -115,6 +117,7 @@ internal abstract class CalendarVm : ViewModel() {
                     }
                 )
             }
+
             is SelectionMode.IntervalSelection -> {
                 val currentStartDate = (selection as? Selection.IntervalSelection)?.startDate
                 val currentEndDate = (selection as? Selection.IntervalSelection)?.endDate
@@ -125,18 +128,21 @@ internal abstract class CalendarVm : ViewModel() {
                             endDate = clickedDate
                         )
                     }
+
                     currentStartDate != null && currentEndDate == null -> {
                         Selection.IntervalSelection(
                             startDate = currentStartDate,
                             endDate = clickedDate
                         )
                     }
+
                     currentEndDate != null && currentStartDate == null -> {
                         Selection.IntervalSelection(
                             startDate = clickedDate,
                             endDate = currentEndDate
                         )
                     }
+
                     currentStartDate != null && currentEndDate != null -> {
                         when {
                             currentStartDate == clickedDate || currentEndDate == clickedDate -> {
@@ -145,24 +151,28 @@ internal abstract class CalendarVm : ViewModel() {
                                     endDate = clickedDate
                                 )
                             }
+
                             clickedDate < currentStartDate -> {
                                 Selection.IntervalSelection(
                                     startDate = clickedDate,
                                     endDate = currentEndDate
                                 )
                             }
+
                             clickedDate > currentEndDate -> {
                                 Selection.IntervalSelection(
                                     startDate = currentStartDate,
                                     endDate = clickedDate
                                 )
                             }
+
                             else -> Selection.IntervalSelection(
                                 startDate = clickedDate,
                                 endDate = clickedDate
                             )
                         }
                     }
+
                     else -> selection
                 }
                 mutableCalendarStateFlow.value = calendarStateFlow.value.copy(
@@ -194,6 +204,7 @@ internal abstract class CalendarVm : ViewModel() {
                     }
                 }
             }
+
             IMonthsGenerator.Direction.ON_END -> {
                 for (i in 0 until additionalItemCount) {
                     val currentBottomItem = months.lastOrNull()

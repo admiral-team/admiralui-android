@@ -10,16 +10,21 @@ import java.time.YearMonth
 val MockCalendarState = CalendarState(
     initialYearMonth = YearMonth.of(2021, 1),
     markedDays = listOf(
-        LocalDate.of(2020, 1, 5),
-        LocalDate.of(2020, 1, 6),
-        LocalDate.of(2020, 1, 7)
+        LocalDate.of(2021, 1, 5),
+        LocalDate.of(2021, 1, 6),
+        LocalDate.of(2021, 1, 7)
     ),
     disabledDaysInfo = DisabledDaysInfo(
         disabledDays = listOf(
-            LocalDate.of(2020, 1, 15),
-            LocalDate.of(2020, 1, 16),
-            LocalDate.of(2020, 1, 17)
+            LocalDate.of(2021, 1, 15),
+            LocalDate.of(2021, 1, 16),
+            LocalDate.of(2021, 1, 17)
         )
     ),
-    selectionMode = SelectionMode.IntervalSelection
+    selectionMode = SelectionMode.IntervalSelection,
+    highlightedDays = listOf(
+        LocalDate.of(2021, 1, 19),
+        LocalDate.of(2021, 1, 20),
+        LocalDate.of(2021, 1, 21)
+    )
 )

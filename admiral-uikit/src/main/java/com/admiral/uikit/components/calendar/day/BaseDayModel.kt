@@ -16,7 +16,12 @@ sealed class BaseDayModel {
         /**
          * It means that day has special point mark
          */
-        open val isMarked: Boolean
+        open val isMarked: Boolean,
+
+        /**
+         * It means that day has special meaning
+         */
+        open val isHighlighted: Boolean
     ) : BaseDayModel() {
 
         /**
@@ -24,10 +29,12 @@ sealed class BaseDayModel {
          */
         data class Normal(
             override val localDate: LocalDate,
-            override val isMarked: Boolean
+            override val isMarked: Boolean,
+            override val isHighlighted: Boolean,
         ) : DayModel(
             localDate = localDate,
-            isMarked = isMarked
+            isMarked = isMarked,
+            isHighlighted = isHighlighted,
         )
 
         /**
@@ -35,21 +42,25 @@ sealed class BaseDayModel {
          */
         data class Disabled(
             override val localDate: LocalDate,
-            override val isMarked: Boolean
+            override val isMarked: Boolean,
+            override val isHighlighted: Boolean,
         ) : DayModel(
             localDate = localDate,
-            isMarked = isMarked
+            isMarked = isMarked,
+            isHighlighted = isHighlighted,
         )
 
         /**
-         * Current day in calendar is highlighted day
+         * Current day in calendar is a current day.
          */
-        data class Highlighted(
+        data class Current(
             override val localDate: LocalDate,
-            override val isMarked: Boolean
+            override val isMarked: Boolean,
+            override val isHighlighted: Boolean,
         ) : DayModel(
             localDate = localDate,
-            isMarked = isMarked
+            isMarked = isMarked,
+            isHighlighted = isHighlighted,
         )
 
         /**
@@ -57,10 +68,12 @@ sealed class BaseDayModel {
          */
         data class Selected(
             override val localDate: LocalDate,
-            override val isMarked: Boolean
+            override val isMarked: Boolean,
+            override val isHighlighted: Boolean,
         ) : DayModel(
             localDate = localDate,
-            isMarked = isMarked
+            isMarked = isMarked,
+            isHighlighted = isHighlighted,
         )
 
         /**
@@ -69,10 +82,25 @@ sealed class BaseDayModel {
          */
         data class SelectedBright(
             override val localDate: LocalDate,
-            override val isMarked: Boolean
+            override val isMarked: Boolean,
+            override val isHighlighted: Boolean,
         ) : DayModel(
             localDate = localDate,
-            isMarked = isMarked
+            isMarked = isMarked,
+            isHighlighted = isHighlighted,
+        )
+
+        /**
+         * Current day in calendar is a highlighted day.
+         */
+        data class Highlighted(
+            override val localDate: LocalDate,
+            override val isMarked: Boolean,
+            override val isHighlighted: Boolean,
+        ) : DayModel(
+            localDate = localDate,
+            isMarked = isMarked,
+            isHighlighted = isHighlighted,
         )
     }
 }
