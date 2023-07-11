@@ -18,15 +18,13 @@ import java.time.YearMonth
 internal class MonthView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
-    defStyleAttr: Int = 0
+    defStyleAttr: Int = 0,
 ) : RecyclerView(context, attrs, defStyleAttr) {
 
     private val binding = AdmiralViewCalendarMonthBinding
         .inflate(LayoutInflater.from(context), this)
 
     private val dayHeight = pixels(R.dimen.admiral_calendar_day_height)
-
-    private val horizontalSpacing = pixels(R.dimen.admiral_calendar_month_horizontal_spacing_between_days)
 
     /**
      * Current month model.
@@ -52,7 +50,8 @@ internal class MonthView @JvmOverloads constructor(
     fun initRecycler(
         parentWidth: Int,
         viewPool: RecycledViewPool,
-        dayClickedAction: (BaseDayModel.DayModel) -> Unit
+        dayClickedAction: (BaseDayModel.DayModel) -> Unit,
+        dayVerticalSpacingPx: Int = pixels(R.dimen.module_x5)
     ) {
         binding.root.apply {
             setHasFixedSize(true)
@@ -67,19 +66,20 @@ internal class MonthView @JvmOverloads constructor(
 
             adapter = DaysAdapter(context, dayClickedAction)
 
-            val horizontalSpacing = pixels(R.dimen.admiral_calendar_month_horizontal_spacing_between_days)
             val itemWidth = pixels(R.dimen.admiral_calendar_day_width)
             val recyclerHorizontalMargin = pixels(R.dimen.module_x4)
-            val verticalSpacing =
+            val horizontalSpacing =
                 ((parentWidth - 2 * recyclerHorizontalMargin) - SPAN * itemWidth) / (SPAN - 1)
 
             addItemDecoration(
                 DaysSpacingDecoration(
                     span = SPAN,
-                    horizontalSpacingInPx = horizontalSpacing,
-                    verticalSpacingInPx = verticalSpacing,
+                    dayVerticalSpacingPx = dayVerticalSpacingPx / 2,
+                    dayHorizontalSpacingPx = horizontalSpacing,
                 )
             )
+
+            updateRecyclerViewHeight(dayVerticalSpacingPx = dayVerticalSpacingPx)
         }
     }
 
@@ -87,18 +87,16 @@ internal class MonthView @JvmOverloads constructor(
         val items = createDays()
         val adapter = adapter as? DaysAdapter
 
-        adapter?.submitList(items) {
-            updateRecyclerViewHeight()
-        }
+        adapter?.submitList(items)
     }
 
-    private fun updateRecyclerViewHeight() {
+    private fun updateRecyclerViewHeight(dayVerticalSpacingPx: Int) {
         post {
             updateLayoutParams {
                 height = model.yearMonth.calculateHeightOfMothView(
                     isStartFromMonday = isStartFromMonday,
                     dayHeight = dayHeight,
-                    horizontalSpacing = horizontalSpacing
+                    verticalSpacing = dayVerticalSpacingPx / 2
                 )
             }
         }

@@ -6,8 +6,8 @@ import androidx.recyclerview.widget.RecyclerView
 
 internal class DaysSpacingDecoration(
     private val span: Int,
-    private val horizontalSpacingInPx: Int,
-    private val verticalSpacingInPx: Int
+    private val dayVerticalSpacingPx: Int,
+    private val dayHorizontalSpacingPx: Int
 ) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(
@@ -22,9 +22,9 @@ internal class DaysSpacingDecoration(
         val column = position % span
 
         outRect.apply {
-            left = column * verticalSpacingInPx / span
-            right = verticalSpacingInPx - (column + 1) * verticalSpacingInPx / span
-            top = if (position >= span) horizontalSpacingInPx else top
+            left = column * dayHorizontalSpacingPx / span
+            right = dayHorizontalSpacingPx - (column + 1) * dayHorizontalSpacingPx / span
+            top = if (position >= span) dayVerticalSpacingPx else top
         }
     }
 }
