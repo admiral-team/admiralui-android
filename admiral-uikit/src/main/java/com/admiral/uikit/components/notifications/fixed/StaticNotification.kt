@@ -4,6 +4,7 @@ import android.content.Context
 import android.content.res.TypedArray
 import android.graphics.Color
 import android.graphics.drawable.Drawable
+import android.text.TextUtils.TruncateAt
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.widget.FrameLayout
@@ -22,6 +23,7 @@ import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
+import com.admiral.uikit.ext.getIntOrNull
 import com.admiral.uikit.ext.parseAttrs
 
 class StaticNotification @JvmOverloads constructor(
@@ -50,6 +52,24 @@ class StaticNotification @JvmOverloads constructor(
             field = value
             notificationTextView.text = value
             notificationTextView.isVisible = value?.isNotEmpty() == true
+        }
+
+    /**
+     * Determines max lines of the [notificationText] that may be printed.
+     */
+    var maxLines: Int = Int.MAX_VALUE
+        set(value) {
+            field = value
+            invalidateMaxLines()
+        }
+
+    /**
+     * Determines how to ellipsize the [notificationText].
+     */
+    var ellipsize: TruncateAt? = null
+        set(value) {
+            field = value
+            invalidateEllipsize()
         }
 
     /**
@@ -122,7 +142,7 @@ class StaticNotification @JvmOverloads constructor(
         }
 
     /**
-     * Default style is [InformerStyle.Info]
+     * Default style is [StaticNotificationStyle.Info]
      */
     var isBackgroundColorDefault: Boolean = false
         set(value) {
@@ -167,10 +187,18 @@ class StaticNotification @JvmOverloads constructor(
 
             isEnabled = it.getBoolean(R.styleable.StaticNotification_enabled, true)
             linkText = it.getString(R.styleable.StaticNotification_admiralLinkText)
+
             notificationText = it.getString(R.styleable.StaticNotification_admiralText)
+            maxLines = it.getInt(R.styleable.StaticNotification_android_maxLines, Int.MAX_VALUE)
+            ellipsize = findTruncateAt(
+                it.getIntOrNull(
+                    R.styleable.StaticNotification_android_ellipsize,
+                )
+            )
 
             isIconVisible = it.getBoolean(R.styleable.StaticNotification_admiralIsIconVisible, true)
-            isCloseIconVisible = it.getBoolean(R.styleable.StaticNotification_admiralIsCloseIconVisible, true)
+            isCloseIconVisible =
+                it.getBoolean(R.styleable.StaticNotification_admiralIsCloseIconVisible, true)
         }
 
         backgroundTintList = colorStateList(
@@ -296,6 +324,14 @@ class StaticNotification @JvmOverloads constructor(
         notificationTextView.textColor = colorState
     }
 
+    private fun invalidateMaxLines() {
+        notificationTextView.maxLines = maxLines
+    }
+
+    private fun invalidateEllipsize() {
+        notificationTextView.ellipsize = ellipsize
+    }
+
     private fun invalidateLinkColors() {
         val colorState = ColorState(
             normalEnabled = linkColors?.normalEnabled ?: ThemeManager.theme.palette.textAccent,
@@ -346,5 +382,10 @@ class StaticNotification @JvmOverloads constructor(
     private fun invalidateIconsVisibility() {
         iconImageView.isVisible = isIconVisible
         iconCloseImageView.isVisible = isCloseIconVisible
+    }
+
+    private companion object {
+        fun findTruncateAt(value: Int?): TruncateAt? =
+            TruncateAt.values().find { it.ordinal == (value?.minus(1)) }
     }
 }
