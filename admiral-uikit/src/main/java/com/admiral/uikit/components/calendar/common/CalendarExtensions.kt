@@ -34,11 +34,13 @@ internal fun YearMonth.getTitle(resources: Resources): String {
     )
 }
 
+@Suppress("LongParameterList", "LongMethod")
 internal fun YearMonth.toCalendarMonthModel(
     resources: Resources,
     clock: Clock,
     selection: Selection,
     markedDays: List<LocalDate>,
+    highlightedDays: List<LocalDate>,
     disabledDaysInfo: DisabledDaysInfo
 ): MonthModel {
     val currentLocalDate = LocalDate.now(clock)
@@ -47,59 +49,88 @@ internal fun YearMonth.toCalendarMonthModel(
         val localDate = LocalDate.of(this.year, this.month, day)
         val isCurrentDay = currentLocalDate == localDate
         val isMarked = markedDays.contains(localDate)
+        val isHighlighted = highlightedDays.contains(localDate)
         val isDisabled = disabledDaysInfo.disabledDays.contains(localDate) ||
                 (!disabledDaysInfo.isEnabledBeforeCurrentDay && localDate < currentLocalDate) ||
                 (!disabledDaysInfo.isEnabledAfterCurrentDay && localDate > currentLocalDate)
 
-        fun checkIsHighlighted(): BaseDayModel.DayModel {
-            return if (isCurrentDay) {
-                BaseDayModel.DayModel.Highlighted(localDate = localDate, isMarked = isMarked)
+        fun checkIsMarked(): BaseDayModel.DayModel {
+            return if (isHighlighted) {
+                BaseDayModel.DayModel.Highlighted(
+                    localDate = localDate,
+                    isMarked = isMarked,
+                    isHighlighted = isHighlighted,
+                )
+            } else if (isCurrentDay) {
+                BaseDayModel.DayModel.Current(
+                    localDate = localDate,
+                    isMarked = isMarked,
+                    isHighlighted = isHighlighted,
+                )
             } else {
-                BaseDayModel.DayModel.Normal(localDate = localDate, isMarked = isMarked)
+                BaseDayModel.DayModel.Normal(
+                    localDate = localDate,
+                    isMarked = isMarked,
+                    isHighlighted = isHighlighted,
+                )
             }
         }
 
         when {
             isDisabled -> {
-                BaseDayModel.DayModel.Disabled(localDate = localDate, isMarked = isMarked)
+                BaseDayModel.DayModel.Disabled(
+                    localDate = localDate,
+                    isMarked = isMarked,
+                    isHighlighted = isHighlighted,
+                )
             }
+
             selection is Selection.SingleSelection -> {
                 if (selection.date == localDate) {
                     BaseDayModel.DayModel.SelectedBright(
                         localDate = localDate,
-                        isMarked = isMarked
+                        isMarked = isMarked,
+                        isHighlighted = isHighlighted,
                     )
                 } else {
-                    checkIsHighlighted()
+                    checkIsMarked()
                 }
             }
+
             selection is Selection.IntervalSelection -> {
                 when {
                     selection.startDate == localDate -> {
                         BaseDayModel.DayModel.SelectedBright(
                             localDate = localDate,
-                            isMarked = isMarked
+                            isMarked = isMarked,
+                            isHighlighted = isHighlighted,
                         )
                     }
+
                     selection.endDate == localDate -> {
                         BaseDayModel.DayModel.SelectedBright(
                             localDate = localDate,
-                            isMarked = isMarked
+                            isMarked = isMarked,
+                            isHighlighted = isHighlighted,
                         )
                     }
+
                     localDate in selection.startDate..selection.endDate -> {
                         BaseDayModel.DayModel.Selected(
                             localDate = localDate,
-                            isMarked = isMarked
+                            isMarked = isMarked,
+                            isHighlighted = isHighlighted,
                         )
                     }
+
                     else -> {
-                        checkIsHighlighted()
+                        checkIsMarked()
                     }
                 }
             }
+
             else -> {
-                checkIsHighlighted()
+                checkIsMarked()
             }
         }
     }
@@ -115,7 +146,7 @@ internal fun YearMonth.toCalendarMonthModel(
 internal fun YearMonth.calculateHeightOfMothView(
     isStartFromMonday: Boolean,
     dayHeight: Int,
-    horizontalSpacing: Int
+    verticalSpacing: Int
 ): Int {
     val dayCountInOneWeek = 7
     var emptyDayCount = atDay(1).dayOfWeek.value
@@ -126,5 +157,5 @@ internal fun YearMonth.calculateHeightOfMothView(
     val rowCount =
         (itemCount / dayCountInOneWeek + if (itemCount % dayCountInOneWeek != 0) 1 else 0)
 
-    return rowCount * dayHeight + (rowCount - 1) * horizontalSpacing
+    return rowCount * dayHeight + (rowCount - 1) * verticalSpacing
 }

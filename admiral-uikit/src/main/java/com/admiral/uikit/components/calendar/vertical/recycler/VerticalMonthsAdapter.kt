@@ -12,7 +12,8 @@ import com.admiral.uikit.databinding.AdmiralItemVerticalCalendarBinding
 
 internal class VerticalMonthsAdapter(
     context: Context,
-    private val dayClickedAction: (BaseDayModel.DayModel) -> Unit
+    private val dayVerticalSpacingPx: Int,
+    private val dayClickedAction: (BaseDayModel.DayModel) -> Unit,
 ) : ListAdapter<MonthModel, VerticalMonthsAdapter.CalendarMonthViewHolder>(
     MonthsDiffCallback()
 ) {
@@ -27,7 +28,8 @@ internal class VerticalMonthsAdapter(
             it.calendarMonth.initRecycler(
                 parentWidth = parent.width,
                 viewPool = viewPool,
-                dayClickedAction = dayClickedAction
+                dayClickedAction = dayClickedAction,
+                dayVerticalSpacingPx = dayVerticalSpacingPx,
             )
         }
 

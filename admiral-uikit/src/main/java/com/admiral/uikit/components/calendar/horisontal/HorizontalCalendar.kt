@@ -50,8 +50,8 @@ class HorizontalCalendar @JvmOverloads constructor(
 
     private val dayHeight = pixels(R.dimen.admiral_calendar_day_height)
 
-    private val horizontalSpacing =
-        pixels(R.dimen.admiral_calendar_month_horizontal_spacing_between_days)
+    private val verticalSpacing =
+        pixels(R.dimen.admiral_calendar_month_vertical_spacing_between_days)
 
     private val drawableUp = drawable(R.drawable.admiral_ic_chevron_up_outline)
 
@@ -276,7 +276,7 @@ class HorizontalCalendar @JvmOverloads constructor(
                 height = yearMonth.calculateHeightOfMothView(
                     isStartFromMonday = true,
                     dayHeight = dayHeight,
-                    horizontalSpacing = horizontalSpacing
+                    verticalSpacing = verticalSpacing
                 )
             }
         }

@@ -47,7 +47,7 @@ internal class DayView @JvmOverloads constructor(
         binding.clickZone.setOnClickListener { onClickAction?.invoke(it) }
     }
 
-    @Suppress("NestedBlockDepth", "LongMethod")
+    @Suppress("NestedBlockDepth", "LongMethod", "ComplexMethod")
     private fun updateVisualState() = with(binding) {
         when (val type = model) {
             BaseDayModel.Unknown -> {
@@ -55,6 +55,7 @@ internal class DayView @JvmOverloads constructor(
                 day.isInvisible = true
                 clickZone.backgroundColorNormalEnabledPalette = ColorPaletteEnum.BACKGROUND_BASIC
             }
+
             is BaseDayModel.DayModel -> {
                 mark.isInvisible = !type.isMarked
                 day.isInvisible = false
@@ -74,6 +75,7 @@ internal class DayView @JvmOverloads constructor(
                             alpha = ENABLED_ALPHA
                         }
                     }
+
                     is BaseDayModel.DayModel.Disabled -> {
                         clickZone.apply {
                             background = backgroundDrawable
@@ -85,7 +87,8 @@ internal class DayView @JvmOverloads constructor(
                             alpha = DISABLED_ALPHA
                         }
                     }
-                    is BaseDayModel.DayModel.Highlighted -> {
+
+                    is BaseDayModel.DayModel.Current -> {
                         clickZone.apply {
                             background = backgroundHighlightedDrawable
                             backgroundColorNormalEnabledPalette = ColorPaletteEnum.TEXT_PRIMARY
@@ -97,6 +100,21 @@ internal class DayView @JvmOverloads constructor(
                             alpha = ENABLED_ALPHA
                         }
                     }
+
+                    is BaseDayModel.DayModel.Highlighted -> {
+                        clickZone.apply {
+                            background = backgroundDrawable
+                            backgroundColorNormalEnabledPalette =
+                                ColorPaletteEnum.BACKGROUND_SELECTED
+                            backgroundColorPressedPalette =
+                                ColorPaletteEnum.BACKGROUND_SELECTED_PRESSED
+                        }
+                        day.apply {
+                            textColorNormalEnabledPalette = ColorPaletteEnum.TEXT_PRIMARY
+                            alpha = ENABLED_ALPHA
+                        }
+                    }
+
                     is BaseDayModel.DayModel.Selected -> {
                         clickZone.apply {
                             background = backgroundDrawable
@@ -110,6 +128,7 @@ internal class DayView @JvmOverloads constructor(
                             alpha = ENABLED_ALPHA
                         }
                     }
+
                     is BaseDayModel.DayModel.SelectedBright -> {
                         clickZone.apply {
                             background = backgroundDrawable

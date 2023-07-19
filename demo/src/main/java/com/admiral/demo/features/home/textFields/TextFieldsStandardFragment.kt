@@ -42,6 +42,7 @@ class TextFieldsStandardFragment : BaseFragment(R.layout.fmt_text_fields_standar
                         binding.textFieldMultiline.isEnabled = true
                         binding.textFieldMultiline.isEditEnabled = true
                     }
+
                     binding.disabled.id -> {
                         binding.textField.isError = false
                         binding.textField.isEnabled = false
@@ -55,6 +56,7 @@ class TextFieldsStandardFragment : BaseFragment(R.layout.fmt_text_fields_standar
                         binding.textFieldMultiline.isEnabled = false
                         binding.textFieldMultiline.isEditEnabled = true
                     }
+
                     binding.error.id -> {
                         binding.textField.isError = true
                         binding.textField.isEnabled = true
@@ -68,6 +70,7 @@ class TextFieldsStandardFragment : BaseFragment(R.layout.fmt_text_fields_standar
                         binding.textFieldMultiline.isEnabled = true
                         binding.textFieldMultiline.isEditEnabled = true
                     }
+
                     binding.read.id -> {
                         binding.textField.isError = false
                         binding.textField.isEnabled = true

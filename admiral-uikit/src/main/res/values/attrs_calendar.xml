@@ -93,4 +93,8 @@
         <attr name="admiralDatesBeforeEnabled" format="boolean" />
         <attr name="admiralDatesAfterEnabled" format="boolean" />
     </declare-styleable>
+
+    <declare-styleable name="VerticalCalendar">
+        <attr name="admiralDayVerticalSpacing" format="dimension" />
+    </declare-styleable>
 </resources>

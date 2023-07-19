@@ -100,5 +100,8 @@
 
         <attr name="admiralIsIconVisible" format="boolean" />
         <attr name="admiralIsCloseIconVisible" format="boolean" />
+
+        <attr name="android:maxLines" />
+        <attr name="android:ellipsize" />
     </declare-styleable>
 </resources>

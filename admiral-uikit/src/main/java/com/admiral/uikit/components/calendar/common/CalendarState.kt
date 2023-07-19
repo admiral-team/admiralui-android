@@ -31,5 +31,10 @@ data class CalendarState(
     /**
      * Marked days describes dates with some events.
      */
-    val markedDays: List<LocalDate> = emptyList()
+    val markedDays: List<LocalDate> = emptyList(),
+
+    /**
+     * Highlighted days describes days that must be highlighted
+     */
+    val highlightedDays: List<LocalDate> = emptyList(),
 )

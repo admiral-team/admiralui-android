@@ -4,6 +4,7 @@ import android.content.Context
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.annotation.VisibleForTesting
+import androidx.core.content.res.use
 import androidx.core.view.doOnLayout
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.findViewTreeViewModelStoreOwner
@@ -13,9 +14,10 @@ import com.admiral.uikit.R
 import com.admiral.uikit.components.calendar.common.CalendarState
 import com.admiral.uikit.components.calendar.common.IMonthsGenerator
 import com.admiral.uikit.components.calendar.day.BaseDayModel
-import com.admiral.uikit.components.calendar.vertical.recycler.VerticalMonthsSpacingDecorator
 import com.admiral.uikit.components.calendar.vertical.recycler.VerticalMonthsAdapter
+import com.admiral.uikit.components.calendar.vertical.recycler.VerticalMonthsSpacingDecorator
 import com.admiral.uikit.databinding.AdmiralViewCalendarVerticalBinding
+import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.layout.FrameLayout
 import kotlinx.coroutines.CoroutineScope
@@ -71,13 +73,17 @@ class VerticalCalendar @JvmOverloads constructor(
                 needMoreTopItems -> {
                     viewModel.generateAdditionalMonths(IMonthsGenerator.Direction.ON_START)
                 }
+
                 needMoreBottomItems -> {
                     viewModel.generateAdditionalMonths(IMonthsGenerator.Direction.ON_END)
                 }
+
                 else -> return
             }
         }
     }
+
+    private var dayVerticalSpacingPx: Int = pixels(R.dimen.module_x5)
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     var clock: Clock = Clock.systemDefaultZone()
@@ -104,13 +110,23 @@ class VerticalCalendar @JvmOverloads constructor(
     var onDayClicked: ((BaseDayModel.DayModel) -> Unit)? = null
 
     init {
+        parseAttrs(attrs, R.styleable.VerticalCalendar).use {
+            dayVerticalSpacingPx =
+                it.getDimensionPixelSize(
+                    R.styleable.VerticalCalendar_admiralDayVerticalSpacing,
+                    pixels(R.dimen.module_x5)
+                )
+        }
         initRecycler()
     }
 
     private fun initRecycler() {
         binding.monthsRecycler.apply {
             layoutManager = LinearLayoutManager(context)
-            adapter = VerticalMonthsAdapter(context) { clickedDate ->
+            adapter = VerticalMonthsAdapter(
+                context = context,
+                dayVerticalSpacingPx = dayVerticalSpacingPx
+            ) { clickedDate ->
                 viewModel.handleDayClickedAction(clickedDate)
                 onDayClicked?.invoke(clickedDate)
             }
