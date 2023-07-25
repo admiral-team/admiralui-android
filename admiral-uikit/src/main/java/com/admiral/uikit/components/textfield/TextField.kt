@@ -54,8 +54,9 @@ import com.admiral.uikit.layout.FrameLayout
 import com.admiral.uikit.layout.LinearLayout
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
-import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.channels.BufferOverflow
+import kotlinx.coroutines.flow.MutableSharedFlow
+import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.parcelize.Parcelize
 import android.widget.LinearLayout.LayoutParams as LinearLayoutParams
 
@@ -398,9 +399,10 @@ class TextField @JvmOverloads constructor(
 
     val inputLayout: TextInputLayout by lazy { findViewById(R.id.inputLayout) }
 
-    private var textFlowField = MutableStateFlow<String?>(null)
+    private var textFlowField =
+        MutableSharedFlow<String?>(replay = 1, onBufferOverflow = BufferOverflow.DROP_OLDEST)
 
-    val textFlow: StateFlow<String?> = textFlowField
+    val textFlow: SharedFlow<String?> = textFlowField
 
     /**
      * Standard [TextInputEditText]. It's better to use it only for settings filters, formatter, etc.
@@ -910,7 +912,7 @@ class TextField @JvmOverloads constructor(
         if (textWatcher == null) {
             editText.doOnTextChanged { text, _, _, _ ->
                 if (shouldEmitFlow) {
-                    textFlowField.value = text.toString()
+                    textFlowField.tryEmit(text.toString())
                 }
             }
         } else {
