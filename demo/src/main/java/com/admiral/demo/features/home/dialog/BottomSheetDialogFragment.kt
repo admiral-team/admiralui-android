@@ -9,7 +9,11 @@ import com.admiral.demo.databinding.FmtBottomSheetDialogBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.dialogsfragment.AdmiralBottomSheetDialogFragment
 
-class BottomSheetDialogFragment : AdmiralBottomSheetDialogFragment(R.layout.fmt_bottom_sheet_dialog) {
+class BottomSheetDialogFragment :
+    AdmiralBottomSheetDialogFragment(
+        layoutResId = R.layout.fmt_bottom_sheet_dialog,
+        isFullScreen = false,
+    ) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
