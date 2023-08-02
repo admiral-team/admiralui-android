@@ -6,14 +6,19 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
+import androidx.annotation.LayoutRes
+import androidx.annotation.StyleRes
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import com.admiral.uikit.R
 
 abstract class AdmiralBottomSheetDialogFragment(
+    @LayoutRes
     private val layoutResId: Int,
-    private val isFullScreen: Boolean = false
+    private val isFullScreen: Boolean = false,
+    @StyleRes
+    private val theme: Int? = null
 ) : BottomSheetDialogFragment() {
 
     override fun onCreateView(
@@ -25,7 +30,8 @@ abstract class AdmiralBottomSheetDialogFragment(
     }
 
     override fun onCreateDialog(savedInstanceState: Bundle?): Dialog {
-        val dialog = BottomSheetDialog(requireContext(), R.style.AdmiralBottomSheetDialog)
+        val dialog =
+            BottomSheetDialog(requireContext(), theme ?: R.style.AdmiralBottomSheetDialogOverlay)
 
         dialog.setOnShowListener {
             val bottomSheetDialog = it as BottomSheetDialog
