@@ -12,10 +12,10 @@
     </style>
 
     <style name="AdmiralBottomSheetDialogOverlay" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
-        <item name="bottomSheetStyle">@style/AdmiralBottomSheetDialog.Modal</item>
         <item name="android:windowIsFloating">false</item>
         <item name="android:windowSoftInputMode">adjustResize</item>
         <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
         <item name="android:windowAnimationStyle">@style/AdmiralBottomSheetDialog.Animation</item>
     </style>
 

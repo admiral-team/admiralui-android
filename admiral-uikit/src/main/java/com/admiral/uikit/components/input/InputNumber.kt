@@ -35,8 +35,8 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.ext.roundedColoredStroke
-import com.admiral.uikit.ext.roundedRectangle
+import com.admiral.uikit.ext.createRoundedColoredStrokeDrawable
+import com.admiral.uikit.ext.createRoundedRectangleDrawable
 import com.admiral.uikit.ext.setSelectionEnd
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -544,7 +544,7 @@ class InputNumber @JvmOverloads constructor(
         val rippleColor = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
             RIPPLE_ALPHA
         )
-        val mask = roundedRectangle(radius)
+        val mask = createRoundedRectangleDrawable(radius)
 
         val color = if (isEnabled) {
             ColorStateList.valueOf(
@@ -555,7 +555,7 @@ class InputNumber @JvmOverloads constructor(
                 iconBackgroundColors?.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha()
             )
         }
-        val content = context.roundedColoredStroke(radius, color)
+        val content = context.createRoundedColoredStrokeDrawable(radius, color)
 
         this.background = ripple(rippleColor, content, mask)
         this.updateLayoutParams {
@@ -571,9 +571,9 @@ class InputNumber @JvmOverloads constructor(
         )
 
         val mask = if (isLeft) {
-            roundedRectangle(radius, ComponentsRadius.NONE, radius, ComponentsRadius.NONE)
+            createRoundedRectangleDrawable(radius, ComponentsRadius.NONE, radius, ComponentsRadius.NONE)
         } else {
-            roundedRectangle(ComponentsRadius.NONE, radius, ComponentsRadius.NONE, radius)
+            createRoundedRectangleDrawable(ComponentsRadius.NONE, radius, ComponentsRadius.NONE, radius)
         }
 
         val backgroundNormalColor =

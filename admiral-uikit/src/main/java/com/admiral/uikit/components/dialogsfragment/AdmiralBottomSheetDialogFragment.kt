@@ -5,17 +5,18 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.WindowManager
 import androidx.annotation.LayoutRes
 import androidx.annotation.StyleRes
-import com.google.android.material.bottomsheet.BottomSheetBehavior
+import com.admiral.uikit.R
+import com.admiral.uikit.ext.ADMIRAL_BOTTOM_SHEET_DEFAULT_CORNER_RADIUS
+import com.admiral.uikit.ext.setupAdmiralDialog
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
-import com.admiral.uikit.R
 
 abstract class AdmiralBottomSheetDialogFragment(
     @LayoutRes
     private val layoutResId: Int,
+    private val cornerRadius: Float = ADMIRAL_BOTTOM_SHEET_DEFAULT_CORNER_RADIUS,
     private val isFullScreen: Boolean = false,
     @StyleRes
     private val theme: Int? = null
@@ -33,36 +34,11 @@ abstract class AdmiralBottomSheetDialogFragment(
         val dialog =
             BottomSheetDialog(requireContext(), theme ?: R.style.AdmiralBottomSheetDialogOverlay)
 
-        dialog.setOnShowListener {
-            val bottomSheetDialog = it as BottomSheetDialog
-            val parentLayout =
-                bottomSheetDialog.findViewById<View>(com.google.android.material.R.id.design_bottom_sheet)
-
-            parentLayout?.let { view ->
-                val behaviour = BottomSheetBehavior.from(view)
-
-                setupBehaviour(behaviour)
-                setupFullHeight(view)
-            }
-        }
+        dialog.setupAdmiralDialog(
+            cornerRadius = cornerRadius,
+            isFullScreen = isFullScreen,
+        )
 
         return dialog
-    }
-
-    protected open fun setupBehaviour(behaviour: BottomSheetBehavior<View>) {
-        behaviour.state = BottomSheetBehavior.STATE_EXPANDED
-        behaviour.peekHeight = BottomSheetBehavior.PEEK_HEIGHT_AUTO
-        behaviour.skipCollapsed = true
-    }
-
-    protected open fun setupFullHeight(bottomSheet: View) {
-        val layoutParams = bottomSheet.layoutParams
-        if (isFullScreen) {
-            layoutParams.height = WindowManager.LayoutParams.MATCH_PARENT
-        } else {
-            layoutParams.height = WindowManager.LayoutParams.WRAP_CONTENT
-        }
-
-        bottomSheet.layoutParams = layoutParams
     }
 }
