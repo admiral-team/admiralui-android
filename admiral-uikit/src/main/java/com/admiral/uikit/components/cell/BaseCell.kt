@@ -20,8 +20,8 @@ import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.ext.roundedColoredRectangle
-import com.admiral.uikit.ext.roundedRectangle
+import com.admiral.uikit.ext.createRoundedColoredRectangleDrawable
+import com.admiral.uikit.ext.createRoundedRectangleDrawable
 import com.admiral.uikit.layout.ConstraintLayout
 
 class BaseCell @JvmOverloads constructor(
@@ -90,8 +90,8 @@ class BaseCell @JvmOverloads constructor(
             pressed = backgroundColors?.pressed ?: theme.palette.backgroundBasic
         )
 
-        val content = roundedColoredRectangle(radius, colorState)
-        val mask = roundedRectangle(radius)
+        val content = createRoundedColoredRectangleDrawable(radius, colorState)
+        val mask = createRoundedRectangleDrawable(radius)
 
         background = ripple(rippleColor, content, mask)
     }

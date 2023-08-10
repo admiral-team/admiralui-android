@@ -5,11 +5,11 @@ import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
+import android.view.View
 import android.widget.Button
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import androidx.core.view.isGone
-import androidx.core.view.isVisible
 import androidx.core.view.setPadding
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
@@ -22,14 +22,14 @@ import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.common.util.ComponentsRadius
 import com.admiral.uikit.components.spinner.Spinner
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.ext.createRoundedColoredRectangleDrawable
+import com.admiral.uikit.ext.createRoundedColoredStrokeDrawable
+import com.admiral.uikit.ext.createRoundedRectangleDrawable
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.ext.roundedColoredRectangle
-import com.admiral.uikit.ext.roundedColoredStroke
-import com.admiral.uikit.ext.roundedRectangle
 
 /**
  * Replacement of [Button].
@@ -199,8 +199,6 @@ class Button @JvmOverloads constructor(
                     )
                 )
         }
-
-        invalidateAppearance()
     }
 
     /**
@@ -308,7 +306,7 @@ class Button @JvmOverloads constructor(
 
     private fun invalidateBackground() {
         val color = backgroundColor?.pressed ?: ThemeManager.theme.palette.backgroundAccentPressed
-        val mask = roundedRectangle(radius)
+        val mask = createRoundedRectangleDrawable(radius)
         val colorState = ColorState(
             normalEnabled = backgroundColor?.normalEnabled
                 ?: ThemeManager.theme.palette.backgroundAccent,
@@ -318,7 +316,7 @@ class Button @JvmOverloads constructor(
         )
 
         background = if (buttonStyle == ButtonStyle.Primary) {
-            roundedColoredRectangle(
+            createRoundedColoredRectangleDrawable(
                 radius, ColorState(
                     normalEnabled = ThemeManager.theme.palette.backgroundBasic,
                     normalDisabled = ThemeManager.theme.palette.backgroundBasic
@@ -330,15 +328,17 @@ class Button @JvmOverloads constructor(
 
         buttonView.background = when (buttonStyle) {
             ButtonStyle.Primary -> {
-                val content = roundedColoredRectangle(radius, colorState)
+                val content = createRoundedColoredRectangleDrawable(radius, colorState)
 
                 ripple(color, content, mask)
             }
+
             ButtonStyle.Secondary -> {
-                val content = roundedColoredStroke(radius, colorState)
+                val content = createRoundedColoredStrokeDrawable(radius, colorState)
 
                 ripple(color.withAlpha(RIPPLE_ALPHA), content, mask)
             }
+
             ButtonStyle.Ghost -> {
                 ripple(color.withAlpha(RIPPLE_ALPHA), null, mask)
             }
@@ -354,6 +354,7 @@ class Button @JvmOverloads constructor(
                     ?: ThemeManager.theme.palette.textStaticWhite.withAlpha(),
                 pressed = textColor?.pressed ?: ThemeManager.theme.palette.textStaticWhite
             )
+
             ButtonStyle.Secondary, ButtonStyle.Ghost -> ColorState(
                 normalEnabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textAccent,
                 normalDisabled = textColor?.normalDisabled
@@ -376,6 +377,7 @@ class Button @JvmOverloads constructor(
                 pressed = drawableTintColor?.pressed
                     ?: ThemeManager.theme.palette.elementStaticWhite
             )
+
             ButtonStyle.Secondary, ButtonStyle.Ghost -> ColorState(
                 normalEnabled = drawableTintColor?.normalEnabled
                     ?: ThemeManager.theme.palette.elementAccent,
@@ -407,13 +409,13 @@ class Button @JvmOverloads constructor(
     private fun invalidateLoading() {
         if (isLoading) {
             spinner.animate().alpha(1f).withEndAction {
-                spinner.isVisible = true
+                spinner.visibility = View.VISIBLE
             }
             actionTextView.animate().alpha(0f)
             additionalTextView.animate().alpha(0f)
         } else {
             spinner.animate().alpha(0f).withEndAction {
-                spinner.isVisible = false
+                spinner.visibility = View.INVISIBLE
             }
             actionTextView.animate().alpha(1f)
 

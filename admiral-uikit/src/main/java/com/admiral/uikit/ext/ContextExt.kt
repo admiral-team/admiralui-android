@@ -1,6 +1,5 @@
 package com.admiral.uikit.ext
 
-import android.R
 import android.content.Context
 import android.content.res.ColorStateList
 import android.graphics.drawable.Drawable
@@ -13,6 +12,7 @@ import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.admiral.themes.ThemeManager
+import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.common.util.ComponentsRadius
 
@@ -27,9 +27,13 @@ internal fun Context.pixels(@DimenRes dimenRes: Int): Int {
     }
 }
 
-internal fun Context.drawable(@DrawableRes drawableRes: Int): Drawable? = ContextCompat.getDrawable(this, drawableRes)
+internal fun Context.drawable(@DrawableRes drawableRes: Int): Drawable? =
+    ContextCompat.getDrawable(this, drawableRes)
 
-internal fun Context.coloredDrawable(@DrawableRes drawableResId: Int, @ColorRes colorResId: Int): Drawable? {
+internal fun Context.coloredDrawable(
+    @DrawableRes drawableResId: Int,
+    @ColorRes colorResId: Int
+): Drawable? {
 
     return coloredDrawable(drawable(drawableResId), colorResId)
 }
@@ -39,17 +43,23 @@ internal fun Context.coloredDrawable(drawable: Drawable?, @ColorRes colorResId: 
     return drawable?.colored(colorInt)
 }
 
-internal fun Context.coloredDrawable(@DrawableRes drawableResId: Int, colorStateList: ColorStateList): Drawable? {
+internal fun Context.coloredDrawable(
+    @DrawableRes drawableResId: Int,
+    colorStateList: ColorStateList
+): Drawable? {
     return coloredDrawable(drawable(drawableResId), colorStateList)
 }
 
-internal fun Context.coloredDrawable(drawable: Drawable?, colorStateList: ColorStateList): Drawable? {
+internal fun Context.coloredDrawable(
+    drawable: Drawable?,
+    colorStateList: ColorStateList
+): Drawable? {
     return drawable?.colored(colorStateList)
 }
 
 const val RADIUS_ARRAY_SIZE = 8
 
-internal fun Context.roundedRectangle(radius: ComponentsRadius): Drawable {
+internal fun Context.createRoundedRectangleDrawable(radius: ComponentsRadius): Drawable {
     val outerRadii = FloatArray(RADIUS_ARRAY_SIZE).apply {
         fill(getRadiusFloat(radius))
     }
@@ -58,7 +68,7 @@ internal fun Context.roundedRectangle(radius: ComponentsRadius): Drawable {
     return ShapeDrawable(shape)
 }
 
-internal fun Context.roundedRectangle(
+internal fun Context.createRoundedRectangleDrawable(
     topLeft: ComponentsRadius,
     topRight: ComponentsRadius,
     bottomLeft: ComponentsRadius,
@@ -80,7 +90,10 @@ internal fun Context.roundedRectangle(
     return ShapeDrawable(shape)
 }
 
-internal fun Context.roundedColoredRectangle(radius: ComponentsRadius, colorState: ColorStateList): Drawable {
+internal fun Context.createRoundedColoredRectangleDrawable(
+    radius: ComponentsRadius,
+    colorState: ColorStateList
+): Drawable {
     val shape = GradientDrawable()
     shape.shape = GradientDrawable.RECTANGLE
     shape.cornerRadius = getRadiusFloat(radius)
@@ -90,21 +103,28 @@ internal fun Context.roundedColoredRectangle(radius: ComponentsRadius, colorStat
     return shape
 }
 
-internal fun Context.roundedColoredRectangle(radius: ComponentsRadius, colorState: ColorState): Drawable {
+internal fun Context.createRoundedColoredRectangleDrawable(
+    radius: ComponentsRadius,
+    colorState: ColorState
+): Drawable {
     val shape = GradientDrawable()
     shape.shape = GradientDrawable.RECTANGLE
     shape.cornerRadius = getRadiusFloat(radius)
 
     shape.color = colorStateList(
         enabled = colorState.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
-        disabled = colorState.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
+        disabled = colorState.normalDisabled
+            ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
         pressed = colorState.pressed ?: ThemeManager.theme.palette.backgroundAccent
     )
 
     return shape
 }
 
-internal fun Context.roundedColoredStroke(radius: ComponentsRadius, colorState: ColorStateList): Drawable {
+internal fun Context.createRoundedColoredStrokeDrawable(
+    radius: ComponentsRadius,
+    colorState: ColorStateList
+): Drawable {
     val shape = GradientDrawable()
     shape.shape = GradientDrawable.RECTANGLE
     shape.cornerRadius = getRadiusFloat(radius)
@@ -116,7 +136,10 @@ internal fun Context.roundedColoredStroke(radius: ComponentsRadius, colorState: 
     return shape
 }
 
-internal fun Context.roundedColoredStroke(radius: ComponentsRadius, colorState: ColorState): Drawable {
+internal fun Context.createRoundedColoredStrokeDrawable(
+    radius: ComponentsRadius,
+    colorState: ColorState
+): Drawable {
     val shape = GradientDrawable()
     shape.shape = GradientDrawable.RECTANGLE
     shape.cornerRadius = getRadiusFloat(radius)
@@ -124,7 +147,8 @@ internal fun Context.roundedColoredStroke(radius: ComponentsRadius, colorState: 
     shape.setStroke(
         2.dpToPx(this), colorStateList(
             enabled = colorState.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
-            disabled = colorState.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
+            disabled = colorState.normalDisabled
+                ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
             pressed = colorState.pressed ?: ThemeManager.theme.palette.backgroundAccent
         )
     )
@@ -151,8 +175,8 @@ internal fun Context.colorStateList(
 
     return ColorStateList(
         arrayOf(
-            intArrayOf(R.attr.state_pressed),
-            intArrayOf(-R.attr.state_enabled),
+            intArrayOf(android.R.attr.state_pressed),
+            intArrayOf(-android.R.attr.state_enabled),
             intArrayOf()
         ),
         intArrayOf(

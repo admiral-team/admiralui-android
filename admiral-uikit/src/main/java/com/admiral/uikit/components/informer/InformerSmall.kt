@@ -22,7 +22,7 @@ import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.ext.roundedColoredRectangle
+import com.admiral.uikit.ext.createRoundedColoredRectangleDrawable
 
 class InformerSmall @JvmOverloads constructor(
     context: Context,
@@ -199,7 +199,7 @@ class InformerSmall @JvmOverloads constructor(
             pressed = backgroundColors?.pressed ?: backgroundColor
         )
 
-        infoTextView.background = roundedColoredRectangle(radius, colorState)
+        infoTextView.background = createRoundedColoredRectangleDrawable(radius, colorState)
         topPointerImageView.imageTintColorState = colorState
         bottomPointerImageView.imageTintColorState = colorState
     }
