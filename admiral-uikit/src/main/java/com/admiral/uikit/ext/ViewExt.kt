@@ -9,11 +9,13 @@ import android.animation.ValueAnimator
 import android.annotation.SuppressLint
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
+import android.graphics.Outline
 import android.graphics.drawable.Drawable
 import android.graphics.drawable.RippleDrawable
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
+import android.view.ViewOutlineProvider
 import android.view.ViewTreeObserver
 import android.widget.ImageView
 import androidx.annotation.AttrRes
@@ -21,8 +23,10 @@ import androidx.annotation.ColorInt
 import androidx.annotation.ColorRes
 import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
+import androidx.annotation.Px
 import androidx.annotation.StyleRes
 import androidx.annotation.StyleableRes
+import androidx.core.view.doOnLayout
 import androidx.core.view.marginBottom
 import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
@@ -30,6 +34,7 @@ import androidx.core.view.marginTop
 import androidx.vectordrawable.graphics.drawable.ArgbEvaluator
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.common.util.ComponentsRadius
+import kotlin.math.min
 
 @ColorInt
 fun View.color(@ColorRes colorRes: Int): Int = context.color(colorRes)
@@ -38,20 +43,53 @@ fun View.pixels(@DimenRes dimenRes: Int): Int = context.pixels(dimenRes)
 
 internal fun View.drawable(@DrawableRes drawableRes: Int): Drawable? = context.drawable(drawableRes)
 
-internal fun View.roundedRectangle(radius: ComponentsRadius): Drawable = context.roundedRectangle(radius)
+internal fun View.createRoundedRectangleDrawable(radius: ComponentsRadius): Drawable =
+    context.createRoundedRectangleDrawable(radius)
 
-internal fun View.roundedRectangle(
+internal fun View.createRoundedRectangleDrawable(
     topLeft: ComponentsRadius,
     topRight: ComponentsRadius,
     bottomLeft: ComponentsRadius,
     bottomRight: ComponentsRadius
-): Drawable = context.roundedRectangle(topLeft, topRight, bottomLeft, bottomRight)
+): Drawable = context.createRoundedRectangleDrawable(topLeft, topRight, bottomLeft, bottomRight)
 
-internal fun View.roundedColoredRectangle(radius: ComponentsRadius, colorState: ColorState): Drawable =
-    context.roundedColoredRectangle(radius, colorState)
+internal fun View.createRoundedColoredRectangleDrawable(
+    radius: ComponentsRadius,
+    colorState: ColorState
+): Drawable =
+    context.createRoundedColoredRectangleDrawable(radius, colorState)
 
-internal fun View.roundedColoredStroke(radius: ComponentsRadius, colorState: ColorState): Drawable =
-    context.roundedColoredStroke(radius, colorState)
+internal fun View.createRoundedColoredStrokeDrawable(
+    radius: ComponentsRadius,
+    colorState: ColorState
+): Drawable =
+    context.createRoundedColoredStrokeDrawable(radius, colorState)
+
+internal fun View.roundTopCorners(@Px cornerRadius: Float) =
+    roundCertainCorners(cornerRadius) { view, outline, radius ->
+        outline.setRoundRect(0, 0, view.width, (view.height + radius).toInt(), radius)
+    }
+
+internal fun View.roundCertainCorners(
+    @Px cornerRadius: Float,
+    outlineRoundRectAction: (view: View, outline: Outline, radius: Float) -> Unit,
+) {
+    doOnLayout {
+        outlineProvider = object : ViewOutlineProvider() {
+            override fun getOutline(view: View, outline: Outline) {
+                val correctRadius = getCorrectRadius(cornerRadius)
+                outlineRoundRectAction.invoke(view, outline, correctRadius)
+            }
+        }
+    }
+    clipToOutline = true
+}
+
+internal fun View.getCorrectRadius(@Px cornerRadius: Float): Float {
+    /* Исправляет ошибку с чрезмерным скруглением на Android API 26 */
+    val maxRadius = min(height, width) / 2f
+    return if (maxRadius < cornerRadius) maxRadius else cornerRadius
+}
 
 internal fun View.parseAttrs(
     set: AttributeSet?,
@@ -118,10 +156,22 @@ internal fun View.colorStateListUnion(
     return ColorStateList(
         arrayOf(
             intArrayOf(android.R.attr.state_pressed), // pressed
-            intArrayOf(android.R.attr.state_checked, android.R.attr.state_enabled), // checked enabled
-            intArrayOf(android.R.attr.state_checked, -android.R.attr.state_enabled), // checked disabled
-            intArrayOf(android.R.attr.state_selected, android.R.attr.state_enabled), // selected enabled
-            intArrayOf(android.R.attr.state_selected, -android.R.attr.state_enabled), // selected disabled
+            intArrayOf(
+                android.R.attr.state_checked,
+                android.R.attr.state_enabled
+            ), // checked enabled
+            intArrayOf(
+                android.R.attr.state_checked,
+                -android.R.attr.state_enabled
+            ), // checked disabled
+            intArrayOf(
+                android.R.attr.state_selected,
+                android.R.attr.state_enabled
+            ), // selected enabled
+            intArrayOf(
+                android.R.attr.state_selected,
+                -android.R.attr.state_enabled
+            ), // selected disabled
             intArrayOf(
                 -android.R.attr.state_selected,
                 -android.R.attr.state_checked,
@@ -172,14 +222,21 @@ internal fun View.emptyColorStateList(): ColorStateList {
     return ColorStateList(arrayOf(), intArrayOf())
 }
 
-internal fun View.ripple(@ColorInt color: Int, content: Drawable?, mask: Drawable?): RippleDrawable {
+internal fun View.ripple(
+    @ColorInt color: Int,
+    content: Drawable?,
+    mask: Drawable?
+): RippleDrawable {
     val stateList = ColorStateList(arrayOf(intArrayOf()), intArrayOf(color))
 
     return RippleDrawable(stateList, content, mask)
 }
 
 @SuppressLint("RestrictedApi")
-internal fun View.animateBackgroundColor(@ColorInt vararg colors: Int, duration: Long = 250): Animator {
+internal fun View.animateBackgroundColor(
+    @ColorInt vararg colors: Int,
+    duration: Long = 250
+): Animator {
     val argbEvaluator = ArgbEvaluator.getInstance()
 
     return ObjectAnimator.ofInt(*colors).apply {
