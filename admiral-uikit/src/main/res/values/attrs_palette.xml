@@ -90,6 +90,7 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 
     <attr name="admiralTextColorNormalDisabledPalette" format="enum">
@@ -178,6 +179,7 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 
     <attr name="admiralTextColorPressedPalette" format="enum">
@@ -266,6 +268,7 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 
     <attr name="admiralCompoundDrawablesNormalEnabledPalette" format="enum">
@@ -354,6 +357,7 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 
     <attr name="admiralCompoundDrawablesPressedPalette" format="enum">
@@ -442,6 +446,7 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 
     <attr name="admiralIconColorNormalEnabledPalette" format="enum">
@@ -530,6 +535,7 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 
     <attr name="admiralBackgroundColorNormalEnabledPalette" format="enum">
@@ -618,6 +624,7 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 
     <attr name="admiralBackgroundColorPressedPalette" format="enum">
@@ -706,6 +713,7 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 
     <attr name="admiralSearchBackgroundColorNormalEnabledPalette" format="enum">
@@ -794,5 +802,6 @@
         <enum name="textSuccess" value="82" />
         <enum name="textSuccessDefault" value="83" />
         <enum name="textSuccessPressed" value="84" />
+        <enum name="transparent" value="85" />
     </attr>
 </resources>
