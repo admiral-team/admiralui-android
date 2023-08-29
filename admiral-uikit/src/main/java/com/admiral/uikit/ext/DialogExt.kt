@@ -1,10 +1,13 @@
 package com.admiral.uikit.ext
 
+import android.graphics.drawable.ColorDrawable
+import android.graphics.drawable.Drawable
 import android.view.View
 import android.view.ViewGroup
 import android.view.WindowManager
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat.setBackground
+import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
@@ -77,7 +80,7 @@ private fun getLayoutParamsWithHeight(
     return layoutParams
 }
 
-private fun View.createMaterialShapeDrawableWithRadius(cornerRadius: Float): MaterialShapeDrawable {
+private fun ViewGroup.createMaterialShapeDrawableWithRadius(cornerRadius: Float): MaterialShapeDrawable {
     val shapeAppearanceModel: ShapeAppearanceModel =
         //Create a ShapeAppearanceModel with the same shapeAppearanceOverlay used in the style
         ShapeAppearanceModel.builder(
@@ -90,7 +93,15 @@ private fun View.createMaterialShapeDrawableWithRadius(cornerRadius: Float): Mat
             .build()
 
     //Create a new MaterialShapeDrawable (you can't use the original MaterialShapeDrawable in the BottomSheet)
+    val background: Drawable? = this.getChildAt(0)?.background
+    val color = if (background is ColorDrawable) background.color else null
+
     val newMaterialShapeDrawable = MaterialShapeDrawable((shapeAppearanceModel))
+    if (color == null) {
+        newMaterialShapeDrawable.setTint(ThemeManager.theme.palette.backgroundBasic)
+    } else {
+        newMaterialShapeDrawable.setTint(color)
+    }
     newMaterialShapeDrawable.initializeElevationOverlay(this.context)
 
     return newMaterialShapeDrawable
