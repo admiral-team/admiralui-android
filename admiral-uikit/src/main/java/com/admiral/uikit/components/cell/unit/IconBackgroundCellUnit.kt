@@ -5,7 +5,6 @@ import android.content.res.TypedArray
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
-import android.widget.LinearLayout
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
 import com.admiral.themes.ColorPaletteEnum
@@ -98,10 +97,12 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
             parseIconBackgroundColors(it)
             parseIcon(it)
 
-            unitType = CellUnitType.from(it.getInt(R.styleable.IconCellUnit_admiralCellUnitType, 0))
-
-            iconTintColorNormalEnabledPalette =
-                ColorPaletteEnum.from(it.getIntOrNull(R.styleable.IconBackgroundCellUnit_admiralIconColorNormalEnabledPalette))
+            unitType = CellUnitType.from(
+                it.getInt(
+                    R.styleable.IconBackgroundCellUnit_admiralCellUnitType,
+                    0
+                )
+            )
         }
     }
 
@@ -140,29 +141,38 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
         icon = a.getDrawable(R.styleable.IconBackgroundCellUnit_admiralIcon)
     }
 
-    private fun parseIconColors(a: TypedArray) {
+    private fun parseIconColors(typedArray: TypedArray) {
+        imageView.isColored =
+            typedArray.getBoolean(R.styleable.IconBackgroundCellUnit_isIconColored, true)
+
+        iconTintColorNormalEnabledPalette =
+            ColorPaletteEnum.from(typedArray.getIntOrNull(R.styleable.IconBackgroundCellUnit_admiralIconColorNormalEnabledPalette))
+
         iconTintColors = ColorState(
-            normalEnabled = a.getColorOrNull(
+            normalEnabled = typedArray.getColorOrNull(
                 R.styleable.IconBackgroundCellUnit_admiralIconTintColorNormalEnabled,
             ),
-            pressed = a.getColorOrNull(
+            pressed = typedArray.getColorOrNull(
                 R.styleable.IconBackgroundCellUnit_admiralIconTintColorPressed,
             ),
-            normalDisabled = a.getColorOrNull(
+            normalDisabled = typedArray.getColorOrNull(
                 R.styleable.IconBackgroundCellUnit_admiralIconTintColorNormalDisabled,
             )
         )
     }
 
-    private fun parseIconBackgroundColors(a: TypedArray) {
+    private fun parseIconBackgroundColors(typedArray: TypedArray) {
+        iconBackgroundColorNormalEnabledPalette =
+            ColorPaletteEnum.from(typedArray.getIntOrNull(R.styleable.IconBackgroundCellUnit_admiralBackgroundColorNormalEnabledPalette))
+
         iconBackgroundColors = ColorState(
-            normalEnabled = a.getColorOrNull(
+            normalEnabled = typedArray.getColorOrNull(
                 R.styleable.IconBackgroundCellUnit_admiralIconBackgroundColorNormalEnabled,
             ),
-            pressed = a.getColorOrNull(
+            pressed = typedArray.getColorOrNull(
                 R.styleable.IconBackgroundCellUnit_admiralIconBackgroundColorPressed,
             ),
-            normalDisabled = a.getColorOrNull(
+            normalDisabled = typedArray.getColorOrNull(
                 R.styleable.IconBackgroundCellUnit_admiralIconBackgroundColorNormalDisabled,
             )
         )

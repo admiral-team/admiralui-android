@@ -208,6 +208,16 @@ class Appbar @JvmOverloads constructor(
         }
 
     /**
+     * Colors for back button tint from [ColorPaletteEnum].
+     * In case state is null, the selected color theme will be used.
+     */
+    var iconTintColorNormalEnabledPalette: ColorPaletteEnum? = null
+        set(value) {
+            field = value
+            invalidateBackButtonTintColors()
+        }
+
+    /**
      * Drawable for back button icon.
      * In case state is null, default drawable will be used.
      */
@@ -350,6 +360,8 @@ class Appbar @JvmOverloads constructor(
             isBackButtonEnabled = it.getBoolean(R.styleable.Appbar_admiralIsBackButtonEnabled, true)
             backButtonIcon = it.getDrawable(R.styleable.Appbar_admiralBackButtonIcon)
             backButtonColor = it.getColorOrNull(R.styleable.Appbar_admiralBackButtonColor)
+            iconTintColorNormalEnabledPalette =
+                ColorPaletteEnum.from(it.getIntOrNull(R.styleable.Appbar_admiralBackButtonColorPalette))
 
             textViewTitleGravity =
                 it.getInt(R.styleable.Appbar_admiralTitleTextGravity, Gravity.START)
@@ -464,7 +476,11 @@ class Appbar @JvmOverloads constructor(
     }
 
     private fun invalidateBackButtonTintColors() {
-        navigationIcon?.colored(backButtonColor ?: ThemeManager.theme.palette.elementAccent)
+        navigationIcon?.colored(
+            iconTintColorNormalEnabledPalette.colorResToToken()
+                ?: backButtonColor
+                ?: ThemeManager.theme.palette.elementAccent
+        )
     }
 
     private fun invalidateTitleTextColor() {
@@ -513,6 +529,7 @@ class Appbar @JvmOverloads constructor(
                 endContainer.isVisible = true
                 searchContainer.isVisible = false
             }
+
             AppbarType.SEARCH -> {
                 startContainer.isVisible = false
                 endContainer.isVisible = false
@@ -556,7 +573,6 @@ class Appbar @JvmOverloads constructor(
     private companion object {
         const val BIG_MARGIN = 32
         const val MARGIN_VIEWS_CONTAINER_RIGHT = 16
-        const val MARGIN_VIEWS_CONTAINER_TOP = 16
 
         const val EDIT_TEXT_MARGIN = 16
         const val ICONS_SIZE = 32

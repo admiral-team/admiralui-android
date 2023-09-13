@@ -91,7 +91,8 @@ enum class ColorPaletteEnum {
     TEXT_SUCCESS,
     TEXT_SUCCESS_DEFAULT,
     TEXT_SUCCESS_PRESSED,
-    TRANSPARENT;
+    TRANSPARENT,
+    STATIC_BLACK;
 
     companion object {
         fun from(index: Int?) = if (index == null) null else values()[index]
@@ -185,6 +186,7 @@ enum class ColorPaletteEnum {
                 TEXT_SUCCESS_DEFAULT -> ThemeManager.theme.palette.textSuccessDefault
                 TEXT_SUCCESS_PRESSED -> ThemeManager.theme.palette.textSuccessPressed
                 TRANSPARENT -> ThemeManager.theme.palette.transparent
+                STATIC_BLACK -> ThemeManager.theme.palette.staticBlack
                 else -> null
             }
         }
