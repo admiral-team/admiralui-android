@@ -17,6 +17,8 @@ import org.json.JSONObject
 @Suppress("LongParameterList")
 open class ColorPalette(
     val name: String,
+    val transparent: Int,
+    val staticBlack: Int,
     val disabledAlpha: Double,
     val backgroundAccent: Int,
     val backgroundAccentDark: Int,
@@ -103,12 +105,13 @@ open class ColorPalette(
     val textSuccess: Int,
     val textSuccessDefault: Int,
     val textSuccessPressed: Int,
-    val transparent: Int,
 ) : Parcelable
 
 internal fun ColorPalette.toJSON(): JSONObject {
     return JSONObject().apply {
         put("name", name)
+        put("transparent", transparent)
+        put("staticBlack", staticBlack)
         put("disabledAlpha", disabledAlpha)
         put("backgroundAccent", backgroundAccent)
         put("backgroundAccentDark", backgroundAccentDark)
@@ -195,13 +198,14 @@ internal fun ColorPalette.toJSON(): JSONObject {
         put("textSuccess", textSuccess)
         put("textSuccessDefault", textSuccessDefault)
         put("textSuccessPressed", textSuccessPressed)
-        put("transparent", transparent)
     }
 }
 
 internal fun JSONObject.toPalette(): ColorPalette {
     return ColorPalette(
         name = getString("name"),
+        transparent = getInt("transparent"),
+        staticBlack = getInt("staticBlack"),
         disabledAlpha = getDouble("disabledAlpha"),
         backgroundAccent = getInt("backgroundAccent"),
         backgroundAccentDark = getInt("backgroundAccentDark"),
@@ -288,12 +292,13 @@ internal fun JSONObject.toPalette(): ColorPalette {
         textSuccess = getInt("textSuccess"),
         textSuccessDefault = getInt("textSuccessDefault"),
         textSuccessPressed = getInt("textSuccessPressed"),
-        transparent = getInt("transparent")
     )
 }
 
 internal fun darkPalette() = ColorPalette(
     name = THEME_DARK,
+    transparent = Color.TRANSPARENT,
+    staticBlack = Color.BLACK,
     disabledAlpha = 0.6,
     backgroundAccent = Color.parseColor("#FF3A83F1"),
     backgroundAccentDark = Color.parseColor("#FF373B49"),
@@ -380,11 +385,12 @@ internal fun darkPalette() = ColorPalette(
     textSuccess = Color.parseColor("#FF3B9D65"),
     textSuccessDefault = Color.parseColor("#FF89B79D"),
     textSuccessPressed = Color.parseColor("#FF338256"),
-    transparent = Color.TRANSPARENT,
 )
 
 internal fun lightPalette() = ColorPalette(
     name = THEME_LIGHT,
+    transparent = Color.TRANSPARENT,
+    staticBlack = Color.BLACK,
     disabledAlpha = 0.6,
     backgroundAccent = Color.parseColor("#FF3A83F1"),
     backgroundAccentDark = Color.parseColor("#FF0B1D37"),
@@ -471,11 +477,12 @@ internal fun lightPalette() = ColorPalette(
     textSuccess = Color.parseColor("#FF44BF78"),
     textSuccessDefault = Color.parseColor("#FF84D0A7"),
     textSuccessPressed = Color.parseColor("#FF33985D"),
-    transparent = Color.TRANSPARENT,
 )
 
 internal fun sMEDarkPalette() = ColorPalette(
     name = THEME_DARK,
+    transparent = Color.TRANSPARENT,
+    staticBlack = Color.BLACK,
     disabledAlpha = 0.6,
     backgroundAccent = Color.parseColor("#FF189FE2"),
     backgroundAccentDark = Color.parseColor("#FF3F4553"),
@@ -562,11 +569,12 @@ internal fun sMEDarkPalette() = ColorPalette(
     textSuccess = Color.parseColor("#FF32C196"),
     textSuccessDefault = Color.parseColor("#FF90D0BC"),
     textSuccessPressed = Color.parseColor("#FF299B78"),
-    transparent = Color.TRANSPARENT,
 )
 
 internal fun sMELightPalette() = ColorPalette(
     name = THEME_LIGHT,
+    transparent = Color.TRANSPARENT,
+    staticBlack = Color.BLACK,
     disabledAlpha = 0.6,
     backgroundAccent = Color.parseColor("#FF00AAFF"),
     backgroundAccentDark = Color.parseColor("#FFFFFFFF"),
@@ -653,11 +661,12 @@ internal fun sMELightPalette() = ColorPalette(
     textSuccess = Color.parseColor("#FF00A976"),
     textSuccessDefault = Color.parseColor("#FF7FAFA0"),
     textSuccessPressed = Color.parseColor("#FF00875E"),
-    transparent = Color.TRANSPARENT,
 )
 
 fun ColorPalette.changeColor(colorName: String, @ColorInt color: Int): ColorPalette {
     return when (colorName) {
+        "staticBlack" -> copy(staticBlack = color)
+        "transparent" -> copy(transparent = color)
         "backgroundAccent" -> copy(backgroundAccent = color)
         "backgroundAccentDark" -> copy(backgroundAccentDark = color)
         "backgroundAccentPressed" -> copy(backgroundAccentPressed = color)
@@ -743,7 +752,6 @@ fun ColorPalette.changeColor(colorName: String, @ColorInt color: Int): ColorPale
         "textSuccess" -> copy(textSuccess = color)
         "textSuccessDefault" -> copy(textSuccessDefault = color)
         "textSuccessPressed" -> copy(textSuccessPressed = color)
-        "transparent" -> copy(transparent = color)
         else -> this
     }
 }
@@ -751,6 +759,8 @@ fun ColorPalette.changeColor(colorName: String, @ColorInt color: Int): ColorPale
 @Suppress("LongParameterList")
 fun ColorPalette.copy(
     name: String = this.name,
+    transparent: Int = this.transparent,
+    staticBlack: Int = this.staticBlack,
     disabledAlpha: Double = this.disabledAlpha,
     backgroundAccent: Int = this.backgroundAccent,
     backgroundAccentDark: Int = this.backgroundAccentDark,
@@ -837,10 +847,11 @@ fun ColorPalette.copy(
     textSuccess: Int = this.textSuccess,
     textSuccessDefault: Int = this.textSuccessDefault,
     textSuccessPressed: Int = this.textSuccessPressed,
-    transparent: Int = this.transparent,
 ): ColorPalette {
     return ColorPalette(
         name,
+        transparent,
+        staticBlack,
         disabledAlpha,
         backgroundAccent,
         backgroundAccentDark,
@@ -927,6 +938,5 @@ fun ColorPalette.copy(
         textSuccess,
         textSuccessDefault,
         textSuccessPressed,
-        transparent,
     )
 }

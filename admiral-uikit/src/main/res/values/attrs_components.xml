@@ -251,6 +251,7 @@
 
         <attr name="admiralIsBackButtonEnabled" format="boolean" />
         <attr name="admiralBackButtonColor" format="color|reference" />
+        <attr name="admiralBackButtonColorPalette" />
         <attr name="admiralBackButtonIcon" format="reference" />
 
         <attr name="admiralTitleTextGravity">

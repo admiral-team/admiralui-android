@@ -17,6 +17,8 @@ import org.json.JSONObject
 @Suppress("LongParameterList")
 open class ColorPalette(
     val name: String,
+    val transparent: Int,
+    val staticBlack: Int,
     val disabledAlpha: Double, {% for style_name in common_style_names %}
     val {{ style_name | default_format }}: Int,{% endfor %}
 ) : Parcelable
@@ -24,6 +26,8 @@ open class ColorPalette(
 internal fun ColorPalette.toJSON(): JSONObject {
     return JSONObject().apply {
         put("name", name)
+        put("transparent", transparent)
+        put("staticBlack", staticBlack)
         put("disabledAlpha", disabledAlpha){% for style_name in common_style_names %}
         put("{{ style_name | default_format }}", {{ style_name | default_format }}){% endfor %}
     }
@@ -32,6 +36,8 @@ internal fun ColorPalette.toJSON(): JSONObject {
 internal fun JSONObject.toPalette(): ColorPalette {
     return ColorPalette(
         name = getString("name"),
+        transparent = getInt("transparent"),
+        staticBlack = getInt("staticBlack"),
         disabledAlpha = getDouble("disabledAlpha"),{% for style_name in common_style_names %}
         {{ style_name | default_format }} = getInt("{{ style_name | default_format }}"),{% endfor %}
     )
@@ -39,12 +45,16 @@ internal fun JSONObject.toPalette(): ColorPalette {
 {% for group in groups %}
 internal fun {{ group.name | default_format }}Palette() = ColorPalette(
     name = {% if group.is_dark %}THEME_DARK{% else %}THEME_LIGHT{% endif %},
+    transparent = Color.TRANSPARENT,
+    staticBlack = Color.BLACK,
     disabledAlpha = 0.6,{% for style in group.styles %}
     {{ style.name_info.style_name | default_format }} = Color.parseColor("{{ style.color.hex_with_alpha }}"){% if forloop.last == false %},{% endif %}{% endfor %}
 )
 {% endfor %}
 fun ColorPalette.changeColor(colorName: String, @ColorInt color: Int): ColorPalette {
-    return when (colorName) { {% for style_name in common_style_names %}
+    return when (colorName) {
+        "staticBlack" -> copy(staticBlack = color)
+        "transparent" -> copy(transparent = color){% for style_name in common_style_names %}
         "{{ style_name | default_format }}" -> copy({{ style_name | default_format }} = color){% endfor %}
         else -> this
     }
@@ -53,11 +63,15 @@ fun ColorPalette.changeColor(colorName: String, @ColorInt color: Int): ColorPale
 @Suppress("LongParameterList")
 fun ColorPalette.copy(
     name: String = this.name,
+    transparent: Int = this.transparent,
+    staticBlack: Int = this.staticBlack,
     disabledAlpha: Double = this.disabledAlpha,{% for style_name in common_style_names %}
     {{ style_name | default_format }}: Int = this.{{ style_name | default_format }},{% endfor %}
 ): ColorPalette {
     return ColorPalette(
         name,
+        transparent,
+        staticBlack,
         disabledAlpha,{% for style_name in common_style_names %}
         {{ style_name | default_format }},{% endfor %}
     )

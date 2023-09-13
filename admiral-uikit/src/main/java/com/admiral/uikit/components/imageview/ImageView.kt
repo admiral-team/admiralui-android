@@ -96,8 +96,8 @@ open class ImageView @JvmOverloads constructor(
     }
 
     private fun invalidateImageTintColors() {
-        if (isColored) {
-            imageTintList = colorStateList(
+        imageTintList = if (isColored) {
+            colorStateList(
                 enabled = imageTintColorState?.normalEnabled
                     ?: imageColorNormalEnabledPalette.colorResToToken()
                     ?: ThemeManager.theme.palette.elementAccent,
@@ -108,6 +108,6 @@ open class ImageView @JvmOverloads constructor(
                     ?: imageColorNormalEnabledPalette.colorResToToken()
                     ?: ThemeManager.theme.palette.elementAccentPressed
             )
-        }
+        } else null
     }
 }

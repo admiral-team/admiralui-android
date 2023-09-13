@@ -39,7 +39,7 @@
         <attr name="admiralIconColorNormalEnabledPalette" />
     </declare-styleable>
 
-    <declare-styleable name="IconBackgroundCellUnit" parent="CellUnit">
+    <declare-styleable name="IconBackgroundCellUnit">
         <attr name="admiralCellUnitType" />
         <attr name="admiralIcon" />
 
@@ -51,7 +51,9 @@
         <attr name="admiralIconBackgroundColorPressed" />
         <attr name="admiralIconBackgroundColorNormalDisabled" />
 
+        <attr name="isIconColored" />
         <attr name="admiralIconColorNormalEnabledPalette" />
+        <attr name="admiralBackgroundColorNormalEnabledPalette" />
     </declare-styleable>
 
     <declare-styleable name="LabelCellUnit" parent="CellUnit">

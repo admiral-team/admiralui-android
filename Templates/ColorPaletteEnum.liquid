@@ -6,7 +6,9 @@ package com.admiral.themes
  */
 
 enum class ColorPaletteEnum { {% for style_name in common_style_names %}
-    {{ style_name | snakecase | replace: '/', '_' | upcase }}{% if forloop.last == false %},{% else %};{% endif %}{% endfor %}
+    {{ style_name | snakecase | replace: '/', '_' | upcase }},{% endif %}{% endfor %}
+    TRANSPARENT,
+    STATIC_BLACK;
 
     companion object {
         fun from(index: Int?) = if (index == null) null else values()[index]
@@ -15,6 +17,8 @@ enum class ColorPaletteEnum { {% for style_name in common_style_names %}
         fun ColorPaletteEnum?.colorResToToken(): Int? {
             return when (this) { {% for style_name in common_style_names %}
                 {{ style_name | snakecase | replace: '/', '_' | upcase }} -> ThemeManager.theme.palette.{{ style_name | default_format }}{% endfor %}
+                TRANSPARENT -> ThemeManager.theme.palette.transparent
+                STATIC_BLACK -> ThemeManager.theme.palette.staticBlack
                 else -> null
             }
         }
