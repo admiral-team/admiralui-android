@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="Tab" parent="GlobalAttrDeclare">
+        <attr name="admiralStrokeColorNormalEnabled" format="reference|color" />
+        <attr name="admiralStrokeColorNormalDisabled" format="reference|color" />
+        <attr name="admiralStrokeColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralStrokeColorCheckedDisabled" format="reference|color" />
+
+        <attr name="android:enabled" />
+
+        <attr name="admiralIsBadgeVisible" format="boolean" />
+        <attr name="admiralIsBadgeEnabled" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="StandardTab" parent="Tab">
+        <attr name="admiralStrokeColorCheckedEnabled" />
+        <attr name="admiralStrokeColorCheckedDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="LogoTab" parent="Tab">
+        <attr name="admiralStrokeColorCheckedEnabled" />
+        <attr name="admiralStrokeColorCheckedDisabled" />
+
+        <attr name="android:enabled" />
+        <attr name="srcCompat" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="InformerTab" parent="Tab">
+        <attr name="admiralTitleText" />
+        <attr name="admiralSubtitleText" />
+
+        <attr name="admiralStrokeColorCheckedEnabled" />
+        <attr name="admiralStrokeColorCheckedDisabled" />
+        <attr name="admiralStrokeColorNormalEnabled" />
+        <attr name="admiralStrokeColorNormalDisabled" />
+
+        <attr name="admiralTitleColorNormalEnabled" format="reference|color" />
+        <attr name="admiralTitleColorNormalDisabled" format="reference|color" />
+        <attr name="admiralTitleColorPressed" format="reference|color" />
+        <attr name="admiralTitleColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralTitleColorCheckedDisabled" format="reference|color" />
+
+        <attr name="admiralSubtitleColorNormalEnabled" format="reference|color" />
+        <attr name="admiralSubtitleColorNormalDisabled" format="reference|color" />
+        <attr name="admiralSubtitleColorPressed" format="reference|color" />
+        <attr name="admiralSubtitleColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralSubtitleColorCheckedDisabled" format="reference|color" />
+
+        <attr name="android:enabled" />
+    </declare-styleable>
+
+    <declare-styleable name="InformerTabLayout" parent="Tab">
+        <attr name="admiralIsPolygonVisible" format="boolean" />
+        <attr name="polygonMarginTop" format="dimension" />
+
+        <attr name="polygonColorNormalEnabled" format="reference|color" />
+        <attr name="polygonColorNormalDisabled" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="InformerTabContent" parent="GlobalAttrDeclare">
+        <attr name="enabled" />
+
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorPressed" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorPressed" />
+        <attr name="admiralTextColorNormalDisabled" />
+
+        <attr name="admiralSummColorNormalEnabled" />
+        <attr name="admiralSummColorNormalDisabled" />
+        <attr name="admiralSummColorPressed" />
+
+        <attr name="admiralSubtitleColorNormalEnabled" />
+        <attr name="admiralSubtitleColorNormalDisabled" />
+        <attr name="admiralSubtitleColorPressed" />
+
+        <attr name="admiralTitleText" />
+        <attr name="admiralSummText" />
+        <attr name="admiralSubtitleText" />
+
+        <attr name="admiralIconDrawable" format="reference" />
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="IconTab" parent="Tab">
+        <attr name="admiralText" />
+        <attr name="admiralIcon" />
+
+        <attr name="admiralIconBackgroundColorNormalEnabled" />
+        <attr name="admiralIconBackgroundColorNormalDisabled" />
+        <attr name="admiralIconBackgroundColorCheckedEnabled" />
+        <attr name="admiralIconBackgroundColorCheckedDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorCheckedEnabled" />
+        <attr name="admiralIconTintColorCheckedDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="OutlineSliderTab" parent="Tab">
+        <attr name="admiralStrokeColorCheckedEnabled" />
+        <attr name="admiralStrokeColorCheckedDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+
+        <attr name="android:text" />
+
+        <attr name="admiralIsBadgeVisible" />
+        <attr name="admiralIsBadgeEnabled" />
+    </declare-styleable>
+
+    <declare-styleable name="UnderlineSliderTab" parent="Tab">
+        <attr name="admiralUnderlinePadding" format="dimension" />
+
+        <attr name="admiralText" />
+
+        <attr name="admiralUnderlineColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralUnderlineColorCheckedDisabled" format="reference|color" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+
+        <attr name="android:enabled" />
+
+        <attr name="admiralIsBadgeVisible" />
+        <attr name="admiralIsBadgeEnabled" />
+    </declare-styleable>
+
+    <declare-styleable name="Stepper" parent="Tab">
+        <attr name="admiralTitleText" />
+        <attr name="admiralSubtitleText" />
+        <attr name="admiralLinkText" />
+
+        <attr name="admiralTitleTextColor" format="reference|color" />
+        <attr name="admiralSubtitleTextColor" format="reference|color" />
+        <attr name="admiralLinkTextColor" format="reference|color" />
+
+        <attr name="admiralLineColorDone" format="reference|color" />
+        <attr name="admiralLineColorCurrent" format="reference|color" />
+        <attr name="admiralLineColorNext" format="reference|color" />
+        <attr name="admiralLineColorError" format="reference|color" />
+        <attr name="admiralLineColorDisabled" format="reference|color" />
+
+        <attr name="admiralCircleOuterColorDone" format="reference|color" />
+        <attr name="admiralCircleOuterColorCurrent" format="reference|color" />
+        <attr name="admiralCircleOuterColorNext" format="reference|color" />
+        <attr name="admiralCircleOuterColorError" format="reference|color" />
+        <attr name="admiralCircleOuterColorDisabled" format="reference|color" />
+
+        <attr name="admiralCircleInnerColorDone" format="reference|color" />
+        <attr name="admiralCircleInnerColorCurrent" format="reference|color" />
+        <attr name="admiralCircleInnerColorNext" format="reference|color" />
+        <attr name="admiralCircleInnerColorError" format="reference|color" />
+        <attr name="admiralCircleInnerColorDisabled" format="reference|color" />
+
+        <attr name="admiralStepperStyle" format="enum">
+            <enum name="done" value="0" />
+            <enum name="current" value="1" />
+            <enum name="next" value="2" />
+            <enum name="error" value="3" />
+            <enum name="disabled" value="4" />
+        </attr>
+
+        <attr name="admiralIsStepFirst" format="boolean" />
+    </declare-styleable>
+</resources>

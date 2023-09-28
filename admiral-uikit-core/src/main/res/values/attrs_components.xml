@@ -1,0 +1,517 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <declare-styleable name="Chip" parent="GlobalAttrDeclare">
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorPressed" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorPressed" />
+        <attr name="admiralTextColorNormalDisabled" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorPressed" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+
+        <attr name="admiralText" />
+        <attr name="chipIcon" format="reference" />
+        <attr name="closeIconEnabled" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="Tag" parent="GlobalAttrDeclare">
+        <attr name="admiralText" />
+        <attr name="chipIcon" />
+
+        <attr name="isIconColored" format="boolean" />
+        <attr name="admiralTagColor" format="enum">
+            <enum name="blue" value="0" />
+            <enum name="gray" value="1" />
+            <enum name="green" value="2" />
+            <enum name="orange" value="3" />
+            <enum name="red" value="4" />
+        </attr>
+        <attr name="admiralIconPosition" format="enum">
+            <enum name="left" value="0" />
+            <enum name="right" value="1" />
+        </attr>
+        <attr name="admiralTagSize" format="enum">
+            <enum name="large" value="0" />
+            <enum name="medium" value="1" />
+            <enum name="small" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="Badge" parent="GlobalAttrDeclare">
+        <attr name="admiralText" />
+
+        <attr name="admiralBadgeStyle" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="error" value="1" />
+            <enum name="attention" value="2" />
+            <enum name="success" value="3" />
+            <enum name="neutral" value="4" />
+            <enum name="additional" value="5" />
+        </attr>
+
+        <attr name="admiralBadgeSize" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="small" value="1" />
+        </attr>
+
+        <attr name="admiralTextColor" format="reference|color" />
+        <attr name="admiralBadgeColor" format="reference|color" />
+        <attr name="admiralBadgeColorDisabled" format="reference|color" />
+        <attr name="admiralBadgeBorderColor" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="Link" parent="GlobalAttrDeclare">
+        <attr name="drawableStartCompat" />
+        <attr name="drawableEndCompat" />
+
+        <attr name="admiralText" />
+
+        <attr name="admiralLinkSize" format="enum">
+            <enum name="big" value="0" />
+            <enum name="small" value="1" />
+        </attr>
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorPressed" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="Spinner" parent="GlobalAttrDeclare">
+        <attr name="admiralSpinnerSize" format="enum">
+            <enum name="big" value="0" />
+            <enum name="medium" value="1" />
+            <enum name="small" value="2" />
+        </attr>
+
+        <attr name="isContrast" format="boolean" />
+
+        <attr name="admiralProgressColorNormalEnabled" format="reference|color" />
+        <attr name="admiralProgressColorNormalDisabled" format="reference|color" />
+        <attr name="admiralProgressColorPressed" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="BottomNavigation" parent="GlobalAttrDeclare">
+        <attr name="android:backgroundTint" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorSelectedEnabled" />
+        <attr name="admiralTextColorSelectedDisabled" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorSelectedEnabled" />
+        <attr name="admiralIconTintColorSelectedDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="Toolbar" parent="AdmiralBottomNavigation">
+        <attr name="menu" format="reference" />
+
+        <attr name="android:backgroundTint" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorSelectedEnabled" />
+        <attr name="admiralTextColorSelectedDisabled" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorSelectedEnabled" />
+        <attr name="admiralIconTintColorSelectedDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="RadioButton">
+        <attr name="admiralTextStyle" />
+
+        <attr name="admiralIsError" format="boolean" />
+
+        <attr name="admiralButtonTintColorNormalEnabled" format="reference|color" />
+        <attr name="admiralButtonTintColorNormalDisabled" format="reference|color" />
+        <attr name="admiralButtonTintColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralButtonTintColorCheckedDisabled" format="reference|color" />
+        <attr name="admiralButtonTintColorErrorEnabled" format="reference|color" />
+        <attr name="admiralButtonTintColorErrorDisabled" format="reference|color" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+        <attr name="admiralTextColorErrorEnabled" format="reference|color" />
+        <attr name="admiralTextColorErrorDisabled" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="CheckBox">
+        <attr name="admiralTextStyle" />
+
+        <attr name="admiralIsError" />
+
+        <attr name="admiralButtonTintColorNormalEnabled" />
+        <attr name="admiralButtonTintColorNormalDisabled" />
+        <attr name="admiralButtonTintColorCheckedEnabled" />
+        <attr name="admiralButtonTintColorCheckedDisabled" />
+        <attr name="admiralButtonTintColorErrorEnabled" />
+        <attr name="admiralButtonTintColorErrorDisabled" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+        <attr name="admiralTextColorErrorEnabled" />
+        <attr name="admiralTextColorErrorDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="Switcher">
+        <attr name="admiralTextStyle" />
+
+        <attr name="admiralThumbTintColorNormalEnabled" format="reference|color" />
+        <attr name="admiralThumbTintColorNormalDisabled" format="reference|color" />
+        <attr name="admiralThumbTintColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralThumbTintColorCheckedDisabled" format="reference|color" />
+
+        <attr name="admiralTrackTintColorNormalEnabled" format="reference|color" />
+        <attr name="admiralTrackTintColorNormalDisabled" format="reference|color" />
+        <attr name="admiralTrackTintColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralTrackTintColorCheckedDisabled" format="reference|color" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
+        <attr name="admiralTextColorCheckedEnabled" />
+        <attr name="admiralTextColorCheckedDisabled" />
+    </declare-styleable>
+
+    <declare-styleable name="ActionBar">
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+        <attr name="admiralBackgroundColorPressed" />
+
+        <attr name="admiralButtonBackgroundColorNormalEnabled" format="reference|color" />
+        <attr name="admiralButtonBackgroundColorNormalDisabled" format="reference|color" />
+        <attr name="admiralButtonBackgroundColorPressed" format="reference|color" />
+
+        <attr name="admiralDotsColorNormalEnabled" format="reference|color" />
+        <attr name="admiralDotsColorNormalDisabled" format="reference|color" />
+        <attr name="admiralDotsColorPressed" format="reference|color" />
+
+        <attr name="admiralUpColorNormalEnabled" format="reference|color" />
+        <attr name="admiralUpColorNormalDisabled" format="reference|color" />
+        <attr name="admiralUpColorPressed" format="reference|color" />
+
+        <attr name="admiralDownColorNormalEnabled" format="reference|color" />
+        <attr name="admiralDownColorNormalDisabled" format="reference|color" />
+        <attr name="admiralDownColorPressed" format="reference|color" />
+
+        <attr name="admiralEditColorNormalEnabled" format="reference|color" />
+        <attr name="admiralEditColorNormalDisabled" format="reference|color" />
+        <attr name="admiralEditColorPressed" format="reference|color" />
+
+        <attr name="admiralDeleteColorNormalEnabled" format="reference|color" />
+        <attr name="admiralDeleteColorNormalDisabled" format="reference|color" />
+        <attr name="admiralDeleteColorPressed" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="ActionBarSecondaryItem">
+        <attr name="admiralText" />
+        <attr name="admiralIcon" />
+        <attr name="admiralBackgroundColorNormalEnabledPalette" />
+        <attr name="admiralBackgroundColorPressedPalette" />
+        <attr name="admiralTextColorNormalEnabledPalette" />
+        <attr name="admiralTextColorPressedPalette" />
+    </declare-styleable>
+
+    <declare-styleable name="Line" parent="GlobalAttrDeclare">
+        <attr name="admiralLineThickness" format="enum">
+            <enum name="thick" value="0" />
+            <enum name="thin" value="1" />
+        </attr>
+
+        <attr name="admiralLineColorNormalEnabled" format="reference|color" />
+        <attr name="admiralLineColorNormalDisabled" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="Appbar">
+        <attr name="admiralAppbarSize" format="enum">
+            <enum name="big" value="0" />
+            <enum name="small" value="1" />
+        </attr>
+
+        <attr name="admiralTitleText" />
+        <attr name="admiralTitleColorNormalEnabled" />
+
+        <attr name="admiralMenuText" format="string|reference" />
+        <attr name="admiralMenuTextColorNormalEnabled" format="string|reference" />
+
+        <attr name="admiralIsBackButtonEnabled" format="boolean" />
+        <attr name="admiralBackButtonColor" format="color|reference" />
+        <attr name="admiralBackButtonColorPalette" />
+        <attr name="admiralBackButtonIcon" format="reference" />
+
+        <attr name="admiralTitleTextGravity">
+            <!-- Place the object in the center of its container in both the vertical and horizontal axis, not changing its size. -->
+            <flag name="center" value="0x11" />
+            <!-- Push object to the beginning of its container, not changing its size. -->
+            <flag name="start" value="0x00800003" />
+            <!-- Push object to the end of its container, not changing its size. -->
+            <flag name="end" value="0x00800005" />
+        </attr>
+
+        <attr name="android:drawableStart" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralHintTextColorNormalEnabled" format="reference|color" />
+
+        <attr name="admiralText" />
+        <attr name="admiralHintText" format="reference|string" />
+
+        <attr name="admiralIconStart" format="reference" />
+        <attr name="admiralIconEnd" format="reference" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorPressed" />
+
+        <attr name="admiralAppbarType" format="enum">
+            <enum name="normal" value="0" />
+            <enum name="search" value="1" />
+        </attr>
+
+        <attr name="admiralTitleMaxLines" />
+        <attr name="admiralBackgroundColorNormalEnabledPalette" />
+
+        <!-- Defines the alignment of the text. -->
+        <attr name="admiralTitleTextAlignment" format="integer">
+            <!-- Default. -->
+            <enum name="inherit" value="0" />
+            <!-- Default for the root view. The gravity determines the alignment, ALIGN_NORMAL,
+                ALIGN_CENTER, or ALIGN_OPPOSITE, which are relative to each paragraph’s
+                text direction. -->
+            <enum name="gravity" value="1" />
+            <!-- Align to the start of the paragraph, for example: ALIGN_NORMAL. -->
+            <enum name="textStart" value="2" />
+            <!-- Align to the end of the paragraph, for example: ALIGN_OPPOSITE. -->
+            <enum name="textEnd" value="3" />
+            <!-- Center the paragraph, for example: ALIGN_CENTER. -->
+            <enum name="center" value="4" />
+            <!-- Align to the start of the view, which is ALIGN_LEFT if the view’s resolved
+                layoutDirection is LTR, and ALIGN_RIGHT otherwise. -->
+            <enum name="viewStart" value="5" />
+            <!-- Align to the end of the view, which is ALIGN_RIGHT if the view’s resolved
+                layoutDirection is LTR, and ALIGN_LEFT otherwise. -->
+            <enum name="viewEnd" value="6" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="AppbarTitleSubtitle">
+        <attr name="admiralTitleText" />
+        <attr name="admiralSubtitleText" />
+
+        <attr name="admiralTitleTextColor" />
+        <attr name="admiralSubtitleTextColor" />
+        <attr name="admiralBackgroundColorNormalEnabled" />
+
+        <attr name="admiralIcon" />
+    </declare-styleable>
+
+    <declare-styleable name="AppbarStepper">
+        <attr name="admiralTabsCount" format="integer" />
+
+        <attr name="admiralTabsColorAccent" format="color|reference" />
+        <attr name="admiralTabsColorDefault" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="AppbarSearch">
+        <attr name="android:drawableStart" />
+        <attr name="admiralIsDrawableStartVisible" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralHintTextColorNormalEnabled" />
+
+        <attr name="admiralBackgroundColorNormalEnabledPalette" />
+        <attr name="admiralSearchBackgroundColorNormalEnabledPalette" />
+
+        <attr name="saveSearchState" format="boolean" />
+
+        <attr name="admiralText" />
+        <attr name="admiralHintText" />
+
+        <attr name="admiralIconStart" />
+        <attr name="admiralIconEnd" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorPressed" />
+    </declare-styleable>
+
+    <declare-styleable name="CirclePageControl">
+        <attr name="admiralProgress" format="integer" />
+
+        <attr name="admiralIsAnimationEnabled" format="boolean" />
+    </declare-styleable>
+
+    <declare-styleable name="LinerPageControl">
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+
+        <attr name="admiralTabsCount" />
+    </declare-styleable>
+
+    <declare-styleable name="PinKeyboard">
+        <attr name="admiralTextColor" />
+        <attr name="admiralRippleColor" format="color|reference" />
+        <attr name="admiralAdditionalButtonsColor" format="color|reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CurrencyCell" parent="GlobalAttrDeclare">
+        <attr name="admiralIsHeader" format="boolean" />
+
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+        <attr name="admiralBackgroundColorPressed" />
+
+        <attr name="admiralCurrencyTextColorNormalEnabled" format="color|reference" />
+        <attr name="admiralCurrencyTextColorNormalDisabled" format="color|reference" />
+        <attr name="admiralCurrencyTextColorPressed" format="color|reference" />
+
+        <attr name="admiralBuyTextColorNormalEnabled" format="color|reference" />
+        <attr name="admiralBuyTextColorNormalDisabled" format="color|reference" />
+        <attr name="admiralBuyTextColorPressed" format="color|reference" />
+
+        <attr name="admiralSellTextColorNormalEnabled" format="color|reference" />
+        <attr name="admiralSellTextColorNormalDisabled" format="color|reference" />
+        <attr name="admiralSellTextColorPressed" format="color|reference" />
+
+        <attr name="admiralHeaderTextColorNormalEnabled" format="color|reference" />
+        <attr name="admiralHeaderTextColorNormalDisabled" format="color|reference" />
+        <attr name="admiralHeaderTextColorPressed" format="color|reference" />
+
+        <attr name="admiralCurrencyText" format="string|reference" />
+        <attr name="admiralBuyText" format="string|reference" />
+        <attr name="admiralSellText" format="string|reference" />
+
+        <attr name="admiralCurrencyDrawable" format="reference" />
+        <attr name="admiralBuyDrawable" format="reference" />
+        <attr name="admiralSellDrawable" format="reference" />
+
+        <attr name="admiralBuyDrawableTintColorNormalEnabled" format="color|reference" />
+        <attr name="admiralBuyDrawableTintColorPressed" format="color|reference" />
+        <attr name="admiralBuyDrawableTintColorNormalDisabled" format="color|reference" />
+
+        <attr name="admiralSellDrawableTintColorNormalEnabled" format="color|reference" />
+        <attr name="admiralSellDrawableTintColorPressed" format="color|reference" />
+        <attr name="admiralSellDrawableTintColorNormalDisabled" format="color|reference" />
+
+        <attr name="admiralSellIconType" format="enum">
+            <enum name="none" value="0" />
+            <enum name="up" value="1" />
+            <enum name="down" value="2" />
+        </attr>
+
+        <attr name="admiralBuyIconType" format="enum">
+            <enum name="none" value="0" />
+            <enum name="up" value="1" />
+            <enum name="down" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TextMessage" parent="ChatMessage">
+        <attr name="admiralText" />
+        <attr name="admiralTimeText" />
+        <attr name="admiralIsOutgoing" />
+        <attr name="admiralIsLast" />
+        <attr name="admiralMessageStatus" />
+
+        <attr name="admiralMessageGravity">
+            <flag name="top" value="0x30" />
+            <flag name="bottom" value="0x50" />
+            <flag name="left" value="0x03" />
+            <flag name="right" value="0x05" />
+            <flag name="center_vertical" value="0x10" />
+            <flag name="fill_vertical" value="0x70" />
+            <flag name="center_horizontal" value="0x01" />
+            <flag name="fill_horizontal" value="0x07" />
+            <flag name="center" value="0x11" />
+            <flag name="fill" value="0x77" />
+            <flag name="clip_vertical" value="0x80" />
+            <flag name="clip_horizontal" value="0x08" />
+            <flag name="start" value="0x00800003" />
+            <flag name="end" value="0x00800005" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="ChatMessage">
+        <attr name="admiralTimeText" format="string|reference" />
+        <attr name="admiralIsLast" format="boolean" />
+        <attr name="admiralIsOutgoing" format="boolean" />
+
+        <attr name="admiralMessageStatus" format="enum">
+            <enum name="none" value="0" />
+            <enum name="loading" value="1" />
+            <enum name="load" value="2" />
+            <enum name="sending" value="3" />
+            <enum name="send" value="4" />
+            <enum name="read" value="5" />
+            <enum name="error" value="6" />
+            <enum name="done" value="7" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="TextOperation" parent="ChatMessage">
+        <attr name="admiralText" />
+        <attr name="admiralTitleText" />
+        <attr name="admiralTimeText" />
+        <attr name="admiralIsOutgoing" />
+        <attr name="admiralIsLast" />
+        <attr name="admiralMessageStatus" />
+        <attr name="admiralDateTimeText" format="string|reference" />
+
+        <attr name="admiralOperationType" format="enum">
+            <enum name="defaultOperation" value="0" />
+            <enum name="successOperation" value="1" />
+            <enum name="errorOperation" value="2" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="FileMessage" parent="ChatMessage">
+        <attr name="admiralTimeText" />
+
+        <attr name="admiralIsOutgoing" />
+        <attr name="admiralIsLast" />
+
+        <attr name="admiralMessageStatus" />
+    </declare-styleable>
+
+    <declare-styleable name="ImageMessage">
+        <attr name="admiralTimeText" />
+
+        <attr name="admiralMessageStatus" />
+    </declare-styleable>
+
+    <declare-styleable name="ChatImageView" parent="GlobalAttrDeclare">
+        <attr name="srcCompat" />
+    </declare-styleable>
+
+    <declare-styleable name="Input">
+        <attr name="admiralBackgroundColorNormalEnabled" />
+        <attr name="admiralBackgroundColorNormalDisabled" />
+        <attr name="admiralBackgroundColorPressed" />
+
+        <attr name="admiralIconStart" />
+
+        <attr name="admiralIconTintColorNormalEnabled" />
+        <attr name="admiralIconTintColorNormalDisabled" />
+        <attr name="admiralIconTintColorPressed" />
+
+        <attr name="admiralText" />
+        <attr name="admiralHintText" />
+
+        <attr name="admiralButtonIcon" format="reference" />
+    </declare-styleable>
+</resources>

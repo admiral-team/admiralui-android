@@ -17,7 +17,6 @@ plugins {
     val kotlinVersion = "1.6.10"
 
     id("admiral-gradle-plugin")
-    id("java")
     id("com.android.application") version androidGradlePluginVersion apply false
     id("com.android.library") version androidGradlePluginVersion apply false
     id("org.jetbrains.kotlin.android") version kotlinVersion apply false
@@ -36,37 +35,6 @@ allprojects {
             jvmTarget = JavaVersion.VERSION_1_8.toString()
         }
     }
-}
-
-fun copyFilesFromSubproject(subproject: Project) {
-    if (subproject.plugins.hasPlugin("com.android.library")) {
-        val fileContent = "This is the content of the file."
-        val outputFile = File("${subproject.buildDir}/myFile.txt")
-        outputFile.writeText(fileContent)
-
-        val sourceDirectory = File("${subproject.buildDir}/outputs/aar")
-        val destinationDirectory = File("${subproject.parent?.projectDir}/libs")
-
-        val regex = Regex(".*\\-release.aar") // regex to match all files with .txt extension
-
-        sourceDirectory.listFiles()?.filter { file -> regex.matches(file.name) }?.forEach { file ->
-            val newFileName = file.name.replace("-release", "")
-            val destinationFile = File(destinationDirectory, newFileName)
-            file.copyTo(destinationFile, overwrite = true)
-        }
-    }
-}
-
-tasks.register("createFile") {
-    doLast {
-        subprojects.forEach { proj ->
-            copyFilesFromSubproject(proj)
-        }
-    }
-}
-
-tasks.named("assemble") {
-    finalizedBy("createFile")
 }
 
 tasks.withType<io.gitlab.arturbosch.detekt.Detekt>().configureEach {
