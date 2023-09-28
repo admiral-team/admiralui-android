@@ -17,7 +17,7 @@ android {
 
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
-    api(project(Modules.Admiral.UiKit.common))
+    api(project(Modules.Admiral.UiKit.core))
 
     lintPublish(project(Modules.Admiral.lint))
 

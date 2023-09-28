@@ -48,8 +48,8 @@ import androidx.compose.ui.unit.sp
 import androidx.core.text.isDigitsOnly
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.textfield.fakeClickable
 

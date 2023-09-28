@@ -14,7 +14,7 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.components.links.Link
 import com.admiral.uikit.components.notifications.toast.ToastNotification.OnLinkClickListener

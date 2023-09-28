@@ -6,9 +6,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.common.components.cell.base.CellUnitType
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.components.cell.base.CellUnitType
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.cell.base.CellUnitCompose
 
 data class IconCellUnitCompose(

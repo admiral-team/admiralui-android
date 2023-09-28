@@ -1,6 +1,6 @@
 package com.admiral.uikit.components.cell.base
 
-@Deprecated("Use com.admiral.uikit.common.components.cell.base.CellUnitType instead")
+@Deprecated("Use com.admiral.uikit.core.components.cell.base.CellUnitType instead")
 enum class CellUnitType {
     LEADING,
     LEADING_TEXT,

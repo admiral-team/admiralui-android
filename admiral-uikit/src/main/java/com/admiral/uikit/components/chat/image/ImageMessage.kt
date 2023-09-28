@@ -16,7 +16,7 @@ import androidx.core.view.updatePadding
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.chat.MessageStatus
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colored

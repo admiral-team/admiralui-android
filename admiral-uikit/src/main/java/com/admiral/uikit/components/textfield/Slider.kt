@@ -21,8 +21,8 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.informer.InformerSmall
 import com.admiral.uikit.databinding.AdmiralViewSliderBinding
 import com.admiral.uikit.ext.applyStyle

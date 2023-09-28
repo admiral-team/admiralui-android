@@ -14,7 +14,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.compose.R
 
 @Preview(showBackground = true)

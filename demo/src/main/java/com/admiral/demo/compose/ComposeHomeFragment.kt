@@ -18,7 +18,7 @@ import com.admiral.demo.databinding.FmtHomeBinding
 import com.admiral.demo.features.home.theme.utils.ThemeStorageDAO
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.common.components.cell.base.CellUnitType
+import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.compose.cell.BaseCell
 import com.admiral.uikit.compose.cell.unit.IconCellUnitCompose
 import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnitCompose

@@ -11,7 +11,7 @@ import com.admiral.themes.ThemeManager
 import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.dialogsfragment.AlertDialogFragment
 import com.admiral.uikit.components.text.TextView
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 
 class PopUpDialogFragment : AlertDialogFragment(R.layout.admiral_view_pop_up_dialog) {
 

@@ -15,7 +15,7 @@ import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 
 class ErrorView @JvmOverloads constructor(
     context: Context,
