@@ -7,7 +7,7 @@ import com.admiral.demo.R
 import com.admiral.demo.databinding.TestViewPageControlLinerBinding
 import com.admiral.demo.ext.measureUnspecifiedHeight
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.control.LinerPageControl
 import com.karumi.shot.ScreenshotTest
 import org.junit.Test

@@ -40,8 +40,8 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.R
 
 @Preview(showBackground = true)

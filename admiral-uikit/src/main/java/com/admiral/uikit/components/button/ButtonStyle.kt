@@ -3,7 +3,7 @@ package com.admiral.uikit.components.button
 /**
  * Define styles for [Button]
  */
-@Deprecated("Use com.admiral.uikit.common.components.button.ButtonStyle instead")
+@Deprecated("Use com.admiral.uikit.core.components.button.ButtonStyle instead")
 sealed class ButtonStyle {
 
     /**

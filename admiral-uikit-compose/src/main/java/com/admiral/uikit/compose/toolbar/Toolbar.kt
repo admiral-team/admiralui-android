@@ -13,7 +13,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.bottom.BottomNavigation
 import com.admiral.uikit.compose.bottom.BottomNavigationItem
 import com.admiral.uikit.compose.util.DIMEN_X20

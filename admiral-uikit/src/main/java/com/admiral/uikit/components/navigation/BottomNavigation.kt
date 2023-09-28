@@ -6,22 +6,22 @@ import android.util.AttributeSet
 import android.util.TypedValue
 import android.view.Gravity
 import androidx.core.content.res.use
-import com.google.android.material.bottomnavigation.BottomNavigationItemView
-import com.google.android.material.bottomnavigation.BottomNavigationMenuView
-import com.google.android.material.bottomnavigation.BottomNavigationView
-import com.google.android.material.bottomnavigation.LabelVisibilityMode
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
 import com.admiral.uikit.components.badge.Badge
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colorStateListForSelected
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.google.android.material.bottomnavigation.BottomNavigationItemView
+import com.google.android.material.bottomnavigation.BottomNavigationMenuView
+import com.google.android.material.bottomnavigation.BottomNavigationView
+import com.google.android.material.navigation.NavigationBarView
 
 class BottomNavigation @JvmOverloads constructor(
     context: Context,
@@ -71,7 +71,7 @@ class BottomNavigation @JvmOverloads constructor(
             parseIconColors(it)
         }
 
-        labelVisibilityMode = LabelVisibilityMode.LABEL_VISIBILITY_LABELED
+        labelVisibilityMode = NavigationBarView.LABEL_VISIBILITY_LABELED
     }
 
     /**
@@ -182,24 +182,31 @@ class BottomNavigation @JvmOverloads constructor(
     }
 
     private fun invalidateBackgroundColor() {
-        setBackgroundColor(backgroundColor?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccentDark)
+        setBackgroundColor(
+            backgroundColor?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccentDark
+        )
     }
 
     private fun invalidateTextColor() {
         itemTextColor = colorStateListForSelected(
             normalEnabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.elementContrast,
-            normalDisabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.elementContrast.withAlpha(),
+            normalDisabled = textColor?.normalDisabled
+                ?: ThemeManager.theme.palette.elementContrast.withAlpha(),
             selectedEnabled = textColor?.selectedEnabled ?: ThemeManager.theme.palette.textAccent,
-            selectedDisabled = textColor?.selectedDisabled ?: ThemeManager.theme.palette.textAccent.withAlpha()
+            selectedDisabled = textColor?.selectedDisabled
+                ?: ThemeManager.theme.palette.textAccent.withAlpha()
         )
     }
 
     private fun invalidateIconColor() {
         itemIconTintList = colorStateListForSelected(
             normalEnabled = iconColor?.normalEnabled ?: ThemeManager.theme.palette.elementContrast,
-            normalDisabled = iconColor?.normalDisabled ?: ThemeManager.theme.palette.elementContrast.withAlpha(),
-            selectedEnabled = iconColor?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            selectedDisabled = iconColor?.selectedDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+            normalDisabled = iconColor?.normalDisabled
+                ?: ThemeManager.theme.palette.elementContrast.withAlpha(),
+            selectedEnabled = iconColor?.selectedEnabled
+                ?: ThemeManager.theme.palette.elementAccent,
+            selectedDisabled = iconColor?.selectedDisabled
+                ?: ThemeManager.theme.palette.elementAccent.withAlpha()
         )
     }
 

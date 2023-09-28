@@ -32,8 +32,8 @@ import androidx.core.view.marginEnd
 import androidx.core.view.marginStart
 import androidx.core.view.marginTop
 import androidx.vectordrawable.graphics.drawable.ArgbEvaluator
-import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.common.util.ComponentsRadius
+import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.util.ComponentsRadius
 import kotlin.math.min
 
 @ColorInt

@@ -29,6 +29,6 @@ include(
     ":admiral-themes-compose",
     ":admiral-uikit",
     ":admiral-uikit-compose",
-    ":admiral-uikit-common",
-    ":demo"
+    ":demo",
+    ":admiral-uikit-core",
 )

@@ -11,7 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.admiral.demo.R
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.components.text.TextView
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 
 class ColorsListAdapter(
     private val editable: Boolean,
