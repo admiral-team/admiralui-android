@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <dimen name="admiral_chat_text_message_max_width">260dp</dimen>
+    <dimen name="admiral_chat_text_operation_width">232dp</dimen>
+    <dimen name="admiral_toolbar_elevation">14dp</dimen>
+
+    <dimen name="admiral_vertical_selector_item_height">60dp</dimen>
+    <dimen name="admiral_vertical_selector_height">48dp</dimen>
+    <dimen name="admiral_vertical_selector_divider_width">76dp</dimen>
+    <dimen name="admiral_vertical_selector_divider_height">2dp</dimen>
+
+    <dimen name="admiral_chip_height">36dp</dimen>
+
+    <dimen name="admiral_tag_height_large">36dp</dimen>
+    <dimen name="admiral_tag_height_medium">28dp</dimen>
+    <dimen name="admiral_tag_height_small">20dp</dimen>
+    <dimen name="admiral_tag_icon_size_large">28dp</dimen>
+    <dimen name="admiral_tag_icon_size_medium">24dp</dimen>
+    <dimen name="admiral_tag_icon_size_small">20dp</dimen>
+
+    <dimen name="admiral_calendar_day_width">36dp</dimen>
+    <dimen name="admiral_calendar_day_height">42dp</dimen>
+    <dimen name="admiral_calendar_weekdays_size">36dp</dimen>
+    <dimen name="admiral_calendar_month_max_height">304dp</dimen>
+    <dimen name="admiral_calendar_month_vertical_spacing_between_days">10dp</dimen>
+    <dimen name="admiral_vertical_calendar_spacing_between_months">24dp</dimen>
+
+    <dimen name="admiral_text_field_search_max_height">36dp</dimen>
+</resources>
