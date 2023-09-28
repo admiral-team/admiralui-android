@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <style name="AdmiralThemeOverlay" />
+
+    <style name="AdmiralBottomSheetDialog" parent="Theme.MaterialComponents.Light.BottomSheetDialog">
+        <item name="bottomSheetStyle">@style/AdmiralBottomSheetDialog.Modal</item>
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/AdmiralBottomSheetDialog.Animation</item>
+    </style>
+
+    <style name="AdmiralBottomSheetDialogOverlay" parent="ThemeOverlay.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowIsFloating">false</item>
+        <item name="android:windowSoftInputMode">adjustResize</item>
+        <item name="android:statusBarColor">@android:color/transparent</item>
+        <item name="android:navigationBarColor">@android:color/transparent</item>
+        <item name="android:windowAnimationStyle">@style/AdmiralBottomSheetDialog.Animation</item>
+    </style>
+
+    <style name="AdmiralBottomSheetDialog.Animation" parent="Animation.MaterialComponents.BottomSheetDialog">
+        <item name="android:windowEnterAnimation">@anim/admiral_anim_bottom_sheet_slide_in</item>
+        <item name="android:windowExitAnimation">@anim/admiral_anim_bottom_sheet_slide_out</item>
+    </style>
+
+    <style name="AdmiralBottomSheetDialog.Modal" parent="Widget.Design.BottomSheet.Modal">
+        <item name="android:background">@drawable/admiral_bg_dialog_8dp</item>
+    </style>
+
+    <style name="AdmiralToolbarCancel">
+        <item name="android:textSize">16sp</item>
+        <item name="textAllCaps">false</item>
+        <item name="background">?android:selectableItemBackground</item>
+        <item name="colorControlHighlight">@color/transparent</item>
+        <item name="actionMenuTextColor">@color/blue_60</item>
+        <item name="android:actionMenuTextColor">@color/blue_60</item>
+    </style>
+
+    <style name="AdmiralAlertDialog" parent="Base.Theme.AppCompat.Light.Dialog">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:layout_marginRight">16dp</item>
+        <item name="android:layout_marginLeft">16dp</item>
+    </style>
+
+    <style name="TimePickerChips">
+        <item name="android:textSize">42sp</item>
+        <item name="android:fontFamily">@font/roboto_400</item>
+        <item name="android:letterSpacing">0.05</item>
+    </style>
+
+    <style name="AdmiralTimePicker" parent="ThemeOverlay.MaterialComponents.TimePicker">
+        <item name="textAppearanceOverline">@style/AdmiralTextAppearance.TimePickerOverline</item>
+        <item name="shapeAppearanceMediumComponent">@style/AdmiralTimePicker.ShapeAppearance</item>
+    </style>
+
+    <style name="AdmiralTimePicker.TextInputEditText" parent="Widget.MaterialComponents.TimePicker.Display.TextInputEditText">
+        <item name="android:textAppearance">@style/AdmiralTextAppearance.TimePickerChips</item>
+        <item name="android:textSize">42sp</item>
+    </style>
+
+    <style name="AdmiralTimePicker.ShapeAppearance" parent="ShapeAppearance.MaterialComponents">
+        <item name="cornerSize">6dp</item>
+    </style>
+
+    <style name="AdmiralThemeOverlay.Chip">
+        <item name="chipStyle">@style/AdmiralChip</item>
+    </style>
+
+    <style name="AdmiralChip" parent="Widget.MaterialComponents.Chip.Action">
+        <item name="chipMinTouchTargetSize">0dp</item>
+    </style>
+</resources>

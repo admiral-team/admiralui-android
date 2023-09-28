@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="@dimen/admiral_calendar_day_width"
+    android:layout_height="@dimen/admiral_calendar_day_height"
+    app:admiralBackgroundIsTransparent="true"
+    tools:orientation="vertical"
+    tools:parentTag="com.admiral.uikit.core.layout.FrameLayout">
+
+    <com.admiral.uikit.core.layout.FrameLayout
+        android:id="@+id/clickZone"
+        android:layout_width="@dimen/admiral_calendar_day_width"
+        android:layout_height="@dimen/admiral_calendar_day_width"
+        android:clickable="true"
+        android:focusable="true" />
+
+    <com.admiral.uikit.textview.TextView
+        android:id="@+id/day"
+        android:layout_width="@dimen/admiral_calendar_day_width"
+        android:layout_height="@dimen/admiral_calendar_day_width"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        app:admiralTextStyle="body1"
+        tools:text="22" />
+
+    <com.admiral.uikit.imageview.ImageView
+        android:id="@+id/mark"
+        android:layout_width="4dp"
+        android:layout_height="4dp"
+        android:layout_gravity="center|bottom"
+        android:layout_marginTop="2dp"
+        android:src="@drawable/admiral_bg_round"
+        app:layout_constraintTop_toBottomOf="@+id/dayContainer" />
+
+</merge>

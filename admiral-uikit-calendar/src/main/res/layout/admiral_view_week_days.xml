@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="@dimen/admiral_calendar_weekdays_size"
+    android:orientation="horizontal"
+    tools:parentTag="com.admiral.uikit.core.layout.ConstraintLayout">
+
+    <com.admiral.uikit.textview.TextView
+        android:id="@+id/day1"
+        android:layout_width="@dimen/admiral_calendar_weekdays_size"
+        android:layout_height="@dimen/admiral_calendar_weekdays_size"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        app:admiralTextColorNormalEnabledPalette="textSecondary"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toStartOf="@+id/day2"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toStartOf="parent"
+        tools:text="пн" />
+
+    <com.admiral.uikit.textview.TextView
+        android:id="@+id/day2"
+        android:layout_width="@dimen/admiral_calendar_weekdays_size"
+        android:layout_height="@dimen/admiral_calendar_weekdays_size"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        app:admiralTextColorNormalEnabledPalette="textSecondary"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toStartOf="@+id/day3"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/day1"
+        tools:text="вт" />
+
+    <com.admiral.uikit.textview.TextView
+        android:id="@+id/day3"
+        android:layout_width="@dimen/admiral_calendar_weekdays_size"
+        android:layout_height="@dimen/admiral_calendar_weekdays_size"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        app:admiralTextColorNormalEnabledPalette="textSecondary"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toStartOf="@+id/day4"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/day2"
+        tools:text="ср" />
+
+    <com.admiral.uikit.textview.TextView
+        android:id="@+id/day4"
+        android:layout_width="@dimen/admiral_calendar_weekdays_size"
+        android:layout_height="@dimen/admiral_calendar_weekdays_size"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        app:admiralTextColorNormalEnabledPalette="textSecondary"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toStartOf="@+id/day5"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/day3"
+        tools:text="чт" />
+
+    <com.admiral.uikit.textview.TextView
+        android:id="@+id/day5"
+        android:layout_width="@dimen/admiral_calendar_weekdays_size"
+        android:layout_height="@dimen/admiral_calendar_weekdays_size"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        app:admiralTextColorNormalEnabledPalette="textSecondary"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toStartOf="@+id/day6"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/day4"
+        tools:text="пт" />
+
+    <com.admiral.uikit.textview.TextView
+        android:id="@+id/day6"
+        android:layout_width="@dimen/admiral_calendar_weekdays_size"
+        android:layout_height="@dimen/admiral_calendar_weekdays_size"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        app:admiralTextColorNormalEnabledPalette="textSecondary"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toStartOf="@+id/day7"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/day5"
+        tools:text="сб" />
+
+    <com.admiral.uikit.textview.TextView
+        android:id="@+id/day7"
+        android:layout_width="@dimen/admiral_calendar_weekdays_size"
+        android:layout_height="@dimen/admiral_calendar_weekdays_size"
+        android:gravity="center"
+        android:includeFontPadding="false"
+        app:admiralTextColorNormalEnabledPalette="textSecondary"
+        app:admiralTextStyle="body2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_chainStyle="spread_inside"
+        app:layout_constraintStart_toEndOf="@+id/day6"
+        tools:text="вс" />
+
+</merge>

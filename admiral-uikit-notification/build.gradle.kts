@@ -1,0 +1,22 @@
+plugins {
+    id("com.android.library")
+    id("org.jetbrains.kotlin.android")
+}
+
+android {
+    applyConfig(
+        isCoreLibraryDesugaringEnabled = false,
+        isComposeEnabled = false,
+        isViewBindingEnabled = true
+    )
+}
+
+dependencies {
+    api(project(Modules.Admiral.UiKit.core))
+
+    implementation(project(Modules.Admiral.UiKit.Components.imageview))
+    implementation(project(Modules.Admiral.UiKit.Components.textview))
+    implementation(Libs.AndroidX.coreKtx)
+    implementation(Libs.AndroidX.appcompat)
+    implementation(Libs.Google.Android.material)
+}

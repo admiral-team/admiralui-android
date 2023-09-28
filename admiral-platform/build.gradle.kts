@@ -11,7 +11,10 @@ dependencies {
         api(project(Modules.Admiral.Themes.compose))
         api(project(Modules.Admiral.UiKit.uikit))
         api(project(Modules.Admiral.UiKit.common))
-        api(project(Modules.Admiral.UiKit.compose))
+        api(project(Modules.Admiral.UiKit.Components.notification))
+        api(project(Modules.Admiral.UiKit.Components.imageview))
+        api(project(Modules.Admiral.UiKit.Components.textview))
+        api(project(Modules.Admiral.UiKit.Components.calendar))
     }
 }
 

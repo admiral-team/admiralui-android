@@ -1,0 +1,168 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/coordinator"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:gravity="center"
+    android:orientation="vertical"
+    tools:context=".MainActivity">
+
+    <Button
+        android:id="@+id/btnToast"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Toast"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnStatic"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Static"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <Button
+        android:id="@+id/btnAction"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Action"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" >
+
+        <LinearLayout
+            android:id="@+id/staticNotificationContainer"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:visibility="gone"
+            tools:visibility="visible">
+
+            <com.admiral.uikit.notification.fixed.StaticNotification
+                android:id="@+id/notificationDefault"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsBackgroundDefault="true"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="info"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.notification.fixed.StaticNotification
+                android:id="@+id/notificationDefaultColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="info"
+                app:admiralText="@string/informers_example_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x9"
+                android:text="@string/informers_success"
+                app:admiralTextColorNormalEnabled="#999EA9"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.notification.fixed.StaticNotification
+                android:id="@+id/notificationSuccess"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsBackgroundDefault="true"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="success"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.notification.fixed.StaticNotification
+                android:id="@+id/notificationSuccessColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="success"
+                app:admiralText="@string/informers_example_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x9"
+                android:text="@string/informers_attention"
+                app:admiralTextColorNormalEnabled="#999EA9"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.notification.fixed.StaticNotification
+                android:id="@+id/notificationAttention"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsBackgroundDefault="true"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="attention"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.notification.fixed.StaticNotification
+                android:id="@+id/notificationAttentionColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="attention"
+                app:admiralText="@string/informers_example_info" />
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x9"
+                android:text="@string/informers_error"
+                app:admiralTextColorNormalEnabled="#999EA9"
+                app:admiralTextStyle="headline" />
+
+            <com.admiral.uikit.notification.fixed.StaticNotification
+                android:id="@+id/notificationError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralIsBackgroundDefault="true"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="error"
+                app:admiralText="@string/informers_example_info" />
+
+            <com.admiral.uikit.notification.fixed.StaticNotification
+                android:id="@+id/notificationErrorColored"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/module_x4"
+                android:layout_marginTop="@dimen/module_x4"
+                android:layout_marginEnd="@dimen/module_x4"
+                app:admiralLinkText="@string/informers_example_link"
+                app:admiralNotificationStyle="error"
+                app:admiralText="@string/informers_example_info" />
+        </LinearLayout>
+    </ScrollView>
+</LinearLayout>
