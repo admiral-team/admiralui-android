@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="ImageView">
+        <attr name="admiralImageTintColorNormalEnabled" format="color|reference" />
+        <attr name="admiralImageTintColorPressed" format="color|reference" />
+        <attr name="admiralImageTintColorNormalDisabled" format="color|reference" />
+
+        <attr name="admiralIconColorNormalEnabledPalette" />
+    </declare-styleable>
+</resources>

@@ -32,3 +32,9 @@ include(
     ":admiral-uikit-common",
     ":demo"
 )
+include(":admiral-imageview")
+include(":admiral-uikit-ext")
+include(":demo-separated-components")
+include(":admiral-links")
+include(":admiral-textview")
+include(":admiral-notification")

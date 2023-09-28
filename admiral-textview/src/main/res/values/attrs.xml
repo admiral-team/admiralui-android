@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="GlobalAttrDeclare">
+        <attr name="admiralTextColorNormalEnabled" format="reference|color" />
+        <attr name="admiralTextColorNormalDisabled" format="reference|color" />
+        <attr name="admiralTextColorPressed" format="reference|color" />
+    </declare-styleable>
+
+    <declare-styleable name="TextView">
+        <attr name="admiralTextStyle" />
+
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorPressed" />
+        <attr name="admiralTextColorNormalDisabled" />
+
+        <attr name="admiralTextColorNormalEnabledPalette" />
+        <attr name="admiralTextColorNormalDisabledPalette" />
+        <attr name="admiralTextColorPressedPalette" />
+        <attr name="admiralCompoundDrawablesNormalEnabledPalette" />
+        <attr name="admiralCompoundDrawablesPressedPalette" />
+
+        <attr name="android:textColor" />
+    </declare-styleable>
+
+</resources>
