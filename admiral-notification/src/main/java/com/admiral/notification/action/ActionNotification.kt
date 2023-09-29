@@ -120,9 +120,9 @@ class ActionNotification {
         /**
          * Set close button color
          */
-        fun setCloseButtonColor(
+        private fun setCloseButtonColor(
             @ColorInt color: Int = ThemeManager.theme.palette.elementAccent
-        ): Builder {
+        ) {
             val colorState = ColorState(
                 normalEnabled = color,
                 normalDisabled = color.withAlpha(),
@@ -131,48 +131,51 @@ class ActionNotification {
 
             binding.cancelText.textColorState = colorState
             binding.cancelImage.imageTintColorState = colorState
-            return this
         }
 
         /**
          * Set close button text
          */
-        fun setCloseButtonText(text: String = "Отмена"): Builder {
+        private fun setCloseButtonText(text: String = "Отмена") {
             binding.cancelText.text = text
-            return this
         }
 
         /**
          * Set close button visibility
          */
-        fun setCloseTextButtonVisible(isVisible: Boolean = true): Builder {
+        private fun setCloseTextButtonVisible(isVisible: Boolean = true) {
             binding.cancelText.isVisible = isVisible
-            return this
         }
 
         /**
          * Set close icon visibility
          */
-        fun setCloseIconButtonVisible(isVisible: Boolean = true): Builder {
+        private fun setCloseIconButtonVisible(isVisible: Boolean = true) {
             binding.cancelImage.isVisible = isVisible
-            return this
         }
 
         /**
          * Set close button type [ActionNotificationCloseType]
          */
         fun setCloseButtonType(
-            closeButtonType: ActionNotificationCloseType = ActionNotificationCloseType.TEXT
+            closeButtonType: ActionNotificationCloseType = ActionNotificationCloseType.Text()
         ): Builder {
             when (closeButtonType) {
-                ActionNotificationCloseType.ICON -> {
-                    binding.cancelText.isVisible = false
-                    binding.cancelImage.isVisible = true
+                is ActionNotificationCloseType.Icon -> {
+                    with(closeButtonType) {
+                        setCloseTextButtonVisible(!isVisible)
+                        setCloseIconButtonVisible(isVisible)
+                        setCloseButtonIcon(icon)
+                    }
                 }
 
-                ActionNotificationCloseType.TEXT -> {
-                    binding.cancelText.isVisible = true
-                    binding.cancelImage.isVisible = false
+                is ActionNotificationCloseType.Text -> {
+                    with(closeButtonType) {
+                        setCloseTextButtonVisible(isVisible)
+                        setCloseIconButtonVisible(!isVisible)
+                        setCloseButtonText(text)
+                        setCloseButtonColor(color)
+                    }
                 }
             }
             return this
@@ -182,13 +185,12 @@ class ActionNotification {
          * Set close button icon
          * @param icon icon [Drawable]
          */
-        fun setCloseButtonIcon(icon: Drawable? = null): Builder {
+        private fun setCloseButtonIcon(icon: Drawable? = null) {
             val context = actionNotification.snackBarInstance.view.context
             val iconSet = icon ?: ContextCompat.getDrawable(
                 context, R.drawable.admiral_ic_back_outline
             )
             binding.cancelImage.setImageDrawable(iconSet)
-            return this
         }
 
         /**

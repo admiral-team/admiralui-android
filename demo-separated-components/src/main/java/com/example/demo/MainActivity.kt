@@ -26,8 +26,12 @@ class MainActivity : AppCompatActivity() {
                 .setText(getString(R.string.notifications_action_action_text))
                 .setDuration(DURATION)
                 .setMargins(bottom = MARGIN)
-                .setCloseButtonType(ActionNotificationCloseType.TEXT)
-                .setCloseButtonText(getString(R.string.notifications_action_cancel_text))
+                .setCloseButtonType(
+                    ActionNotificationCloseType.Text(
+                        color = getColor(R.color.design_default_color_error),
+                        text = "Cancel"
+                    )
+                )
                 .build()
                 .show()
         }

@@ -1,19 +1,28 @@
 package com.admiral.notification.action
 
+import android.graphics.drawable.Drawable
+import androidx.annotation.ColorInt
+import com.admiral.themes.ThemeManager
+
 /**
  * [ActionNotification] close type
  */
-enum class ActionNotificationCloseType {
+sealed class ActionNotificationCloseType {
     /**
      * Icon type
      */
-    ICON,
+    data class Icon(
+        val isVisible: Boolean = true,
+        val icon: Drawable? = null,
+        @ColorInt val color: Int = ThemeManager.theme.palette.elementAccent
+    ) : ActionNotificationCloseType()
 
     /**
      * Text type
      */
-    TEXT
+    data class Text(
+        val isVisible: Boolean = true,
+        val text: String = "Отмена",
+        @ColorInt val color: Int = ThemeManager.theme.palette.elementAccent
+    ) : ActionNotificationCloseType()
 }
-
-// TODO: It will be better to refactor this code.
-//  Sealed class can simplify ActionNotification.Builder since we can reduce set functions
