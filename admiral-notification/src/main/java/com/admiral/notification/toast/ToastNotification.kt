@@ -109,12 +109,6 @@ class ToastNotification {
             return this
         }
 
-        @Deprecated("Use 'setIconTintList(iconTintColorState: ColorState)' instead ")
-        fun setIconTintList(iconTint: ColorStateList): Builder {
-            icon.drawable.setTintList(iconTint)
-            return this
-        }
-
         fun setIconTintList(iconTintColorState: ColorState): Builder {
             icon.imageTintColorState = iconTintColorState
             icon.isColored = true
@@ -123,12 +117,6 @@ class ToastNotification {
 
         fun setCloseIconVisible(isVisible: Boolean): Builder {
             closeIcon.isVisible = isVisible
-            return this
-        }
-
-        @Deprecated("Use 'setCloseIconTintList(iconTintColorState: ColorState)' instead ")
-        fun setCloseIconTintList(iconTint: ColorStateList): Builder {
-            closeIcon.drawable.setTintList(iconTint)
             return this
         }
 
@@ -146,26 +134,6 @@ class ToastNotification {
         fun <T : ViewGroup> updateGravity(action: (ViewGroup) -> ViewGroup.LayoutParams): Builder {
             val rootViewGroup: ViewGroup = toastNotification.snackBarInstance.view as ViewGroup
             rootViewGroup.layoutParams = action.invoke(rootViewGroup)
-            return this
-        }
-
-        @Deprecated("use setMargins method without left and right values")
-        fun setMargins(
-            top: Int = 0,
-            bottom: Int = 0,
-            left: Int = 0,
-            right: Int = 0,
-            isDimenRes: Boolean = false
-        ): Builder {
-            val snackBarView = toastNotification.snackBarInstance.view
-            snackBarView.translationY =
-                top.dpToPx(toastNotification.snackBarInstance.view.context).toFloat()
-
-            if (bottom != 0) {
-                snackBarView.translationY =
-                    -bottom.dpToPx(toastNotification.snackBarInstance.view.context).toFloat()
-            }
-
             return this
         }
 
@@ -203,12 +171,6 @@ class ToastNotification {
 
         fun setDuration(duration: Int = Snackbar.LENGTH_LONG): Builder {
             toastNotification.snackBarInstance.duration = duration
-            return this
-        }
-
-        @Deprecated("Use setLinkClickListener(onClickListener: OnLinkClickListener) instead")
-        fun setLinkClickListener(onClickListener: View.OnClickListener): Builder {
-            onLinkClickListener = OnLinkClickListener { onClickListener.onClick(toastLinkTextView) }
             return this
         }
 
@@ -318,7 +280,7 @@ class ToastNotification {
                         gravity = Gravity.START
                     }
 
-                    setMargins(LINK_MARGIN_TOP, 0, 0, 0)
+                    setMargins(LINK_MARGIN_TOP, 0)
                     isVisible = false
                 })
             }
