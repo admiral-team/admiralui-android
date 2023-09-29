@@ -13,6 +13,10 @@ object Publishing {
         val uiKitCommon = "admiral-uikit-common"
         val uiKit = "admiral-uikit"
         val uiKitCompose = "admiral-uikit-compose"
+        val imageview = "admiral-imageview"
+        val textview = "admiral-textview"
+        val links = "admiral-links"
+        val notification = "admiral-notification"
     }
 
     object POM {

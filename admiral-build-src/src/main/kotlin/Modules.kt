@@ -18,5 +18,12 @@ object Modules {
             val common = ":admiral-uikit-common"
             val compose = ":admiral-uikit-compose"
         }
+
+        object Components {
+            val imageview = ":admiral-imageview"
+            val textview = ":admiral-textview"
+            val links = ":admiral-links"
+            val notification = ":admiral-notification"
+        }
     }
 }

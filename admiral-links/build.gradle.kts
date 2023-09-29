@@ -12,10 +12,11 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":admiral-themes")))
-    implementation(project(mapOf("path" to ":admiral-textview")))
-    implementation(project(mapOf("path" to ":admiral-uikit-common")))
     implementation(project(mapOf("path" to ":admiral-uikit-ext")))
+
+    api(project(Modules.Admiral.UiKit.common))
+    api(project(Modules.Admiral.Themes.themes))
+    api(project(Modules.Admiral.Components.textview))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appcompat)

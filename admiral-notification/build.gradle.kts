@@ -12,12 +12,13 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":admiral-uikit-common")))
-    implementation(project(mapOf("path" to ":admiral-themes")))
-    implementation(project(mapOf("path" to ":admiral-imageview")))
-    implementation(project(mapOf("path" to ":admiral-textview")))
     implementation(project(mapOf("path" to ":admiral-uikit-ext")))
-    implementation(project(mapOf("path" to ":admiral-links")))
+
+    api(project(Modules.Admiral.UiKit.common))
+    api(project(Modules.Admiral.Themes.themes))
+    api(project(Modules.Admiral.Components.links))
+    api(project(Modules.Admiral.Components.imageview))
+    api(project(Modules.Admiral.Components.textview))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appcompat)

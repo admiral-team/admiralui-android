@@ -46,5 +46,5 @@ dependencies {
     implementation(Libs.Google.Android.material)
     implementation(Libs.Kotlin.stdLib)
 
-    implementation(project(mapOf("path" to ":admiral-notification")))
+    api(project(Modules.Admiral.Components.notification))
 }
