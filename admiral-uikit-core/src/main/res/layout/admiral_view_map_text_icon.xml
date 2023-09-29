@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.admiral.uikit.layout.FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    android:background="#fff"
+    android:orientation="vertical">
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiral_map_icon_text"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:gravity="center"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="5dp"
+        app:admiralTextStyle="caption1" />
+
+</com.admiral.uikit.layout.FrameLayout>

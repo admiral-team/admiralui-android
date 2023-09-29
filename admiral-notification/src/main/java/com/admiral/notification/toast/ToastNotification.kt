@@ -17,9 +17,9 @@ import com.admiral.themes.ThemeManager
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.imageview.ImageView
 import com.admiral.textview.TextView
-import com.admiral.uikit.ext.dpToPx
-import com.admiral.uikit.ext.drawable
-import com.admiral.uikit.ext.pixels
+import com.admiral.uikit.core.ext.dpToPx
+import com.admiral.uikit.core.ext.drawable
+import com.admiral.uikit.core.ext.pixels
 import com.admiral.links.Link
 import com.google.android.material.snackbar.Snackbar
 

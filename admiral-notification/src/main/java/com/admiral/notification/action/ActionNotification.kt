@@ -20,8 +20,8 @@ import com.admiral.notification.databinding.AdmiralNotificationActionBinding
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.ext.colorStateList
-import com.admiral.uikit.ext.dpToPx
+import com.admiral.uikit.core.ext.colorStateList
+import com.admiral.uikit.core.ext.dpToPx
 import com.admiral.notification.R
 
 class ActionNotification {

@@ -19,11 +19,11 @@ import com.admiral.notification.R
 import com.admiral.textview.TextView
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.ext.colorStateList
-import com.admiral.uikit.ext.drawable
-import com.admiral.uikit.ext.getColorOrNull
-import com.admiral.uikit.ext.getIntOrNull
-import com.admiral.uikit.ext.parseAttrs
+import com.admiral.uikit.core.ext.colorStateList
+import com.admiral.uikit.core.ext.drawable
+import com.admiral.uikit.core.ext.getColorOrNull
+import com.admiral.uikit.core.ext.getIntOrNull
+import com.admiral.uikit.core.ext.parseAttrs
 import com.admiral.links.Link
 
 class StaticNotification @JvmOverloads constructor(

@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:background="@color/blue_60"
+    tools:layout_height="72dp"
+    tools:layout_width="90dp"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.admiral.uikit.components.imageview.ImageView
+        android:id="@+id/icon"
+        android:layout_width="wrap_content"
+        android:layout_height="24dp"
+        android:layout_marginTop="14dp"
+        app:admiralIconColorNormalEnabledPalette="elementStaticWhite"
+        app:layout_constraintBottom_toTopOf="@+id/description"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:src="@drawable/admiral_ic_email_outline" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/description"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="6dp"
+        android:layout_marginEnd="6dp"
+        android:layout_marginBottom="16dp"
+        android:ellipsize="end"
+        android:gravity="center"
+        android:maxLines="1"
+        app:admiralTextColorNormalEnabledPalette="textStaticWhite"
+        app:admiralTextStyle="caption2"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/icon"
+        app:layout_constraintVertical_chainStyle="packed"
+        tools:text="Text" />
+
+</merge>

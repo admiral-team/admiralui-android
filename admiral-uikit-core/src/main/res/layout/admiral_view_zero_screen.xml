@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:parentTag="android.widget.LinearLayout">
+
+    <com.admiral.uikit.components.imageview.ImageView
+        android:id="@+id/admiralZeroScreenIcon"
+        android:layout_width="72dp"
+        android:layout_height="72dp"
+        android:layout_gravity="center_horizontal"
+        android:src="@drawable/admiral_ic_check_solid" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralZeroScreenTitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center_horizontal"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:gravity="center_horizontal"
+        app:admiralTextStyle="title1"
+        tools:text="Title Center" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/admiralZeroScreenSubtitle"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:gravity="center_horizontal"
+        app:admiralTextStyle="body2"
+        tools:text="Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua." />
+
+    <Space
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" />
+
+    <com.admiral.uikit.components.button.Button
+        android:id="@+id/admiralZeroScreenButton"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x4"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:layout_marginBottom="12dp"
+        app:admiralButtonStyle="primary"
+        tools:text="Ok" />
+
+</merge>

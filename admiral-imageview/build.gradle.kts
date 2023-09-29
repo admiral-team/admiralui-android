@@ -12,10 +12,9 @@ android {
 }
 
 dependencies {
-    implementation(project(mapOf("path" to ":admiral-uikit-ext")))
-
     api(project(Modules.Admiral.UiKit.common))
     api(project(Modules.Admiral.Themes.themes))
+    api(project(Modules.Admiral.UiKit.core))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appcompat)

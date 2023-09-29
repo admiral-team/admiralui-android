@@ -17,6 +17,7 @@ object Publishing {
         val textview = "admiral-textview"
         val links = "admiral-links"
         val notification = "admiral-notification"
+        val uikitCore = "admiral-uikit-core"
     }
 
     object POM {

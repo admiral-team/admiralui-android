@@ -12,10 +12,10 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.ext.getColorOrNull
-import com.admiral.uikit.ext.getIntOrNull
-import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.ext.colorStateList
+import com.admiral.uikit.core.ext.getColorOrNull
+import com.admiral.uikit.core.ext.getIntOrNull
+import com.admiral.uikit.core.ext.parseAttrs
+import com.admiral.uikit.core.ext.colorStateList
 
 /**
  * Replacement of default [AppCompatImageView].

@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <ProgressBar
+        android:id="@+id/progressBar"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:progressDrawable="@drawable/admiral_bg_progress" />
+
+    <com.admiral.uikit.components.imageview.ImageView
+        android:id="@+id/imageArrow"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_gravity="center"
+        android:layout_margin="12dp"
+        android:scaleType="centerInside"
+        app:srcCompat="@drawable/admiral_ic_arrow_right_outline"
+        app:tint="@color/white" />
+</merge>

@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    app:admiralBackgroundIsTransparent="true"
+    tools:parentTag="com.admiral.uikit.layout.ConstraintLayout">
+
+    <com.admiral.uikit.components.textfield.TextFieldInputLayout
+        android:id="@+id/inputLayout"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
+        android:background="@null"
+        app:hintTextAppearance="@style/AdmiralTextAppearance.Body2"
+        app:layout_constraintEnd_toStartOf="@id/admiralViewTextFieldRightViews"
+        app:layout_constraintHorizontal_weight="1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/editText"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="bottom"
+            android:background="@null"
+            android:inputType="textCapSentences|textMultiLine"
+            android:isScrollContainer="true"
+            android:paddingTop="@dimen/module_x2"
+            android:paddingBottom="3dp"
+            android:scrollHorizontally="false"
+            tools:text="Optional label" />
+
+    </com.admiral.uikit.components.textfield.TextFieldInputLayout>
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:id="@+id/admiralViewTextFieldRightViews"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="bottom"
+        android:gravity="bottom"
+        app:admiralBackgroundIsTransparent="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/inputLayout"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <com.admiral.uikit.components.imageview.ImageView
+            android:id="@+id/iconCloseImageView"
+            android:layout_width="@dimen/module_x7"
+            android:layout_height="@dimen/module_x7"
+            android:src="@drawable/admiral_ic_eye_close_outline" />
+
+        <com.admiral.uikit.components.imageview.ImageView
+            android:id="@+id/iconImageView"
+            android:layout_width="@dimen/module_x7"
+            android:layout_height="@dimen/module_x7"
+            android:layout_marginEnd="@dimen/module_x1"
+            android:src="@drawable/admiral_ic_archive_solid" />
+    </com.admiral.uikit.layout.LinearLayout>
+
+    <View
+        android:id="@+id/dividerView"
+        android:layout_width="match_parent"
+        android:layout_height="1dp"
+        android:background="@drawable/admiral_dotted_line"
+        app:layout_constraintTop_toBottomOf="@id/inputLayout" />
+
+    <com.admiral.uikit.layout.FrameLayout
+        android:id="@+id/admiralTextFieldBottomContainer"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x2"
+        android:visibility="gone"
+        app:layout_constraintTop_toBottomOf="@id/dividerView" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/additionalTextView"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:ellipsize="end"
+        app:admiralTextStyle="subhead2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/admiralTextFieldBottomContainer"
+        tools:text="Additional text" />
+
+</merge>

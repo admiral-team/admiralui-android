@@ -33,7 +33,7 @@ include(
     ":demo"
 )
 include(":admiral-imageview")
-include(":admiral-uikit-ext")
+include(":admiral-uikit-core")
 include(":demo-separated-components")
 include(":admiral-links")
 include(":admiral-textview")

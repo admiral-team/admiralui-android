@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
+
+    <com.admiral.uikit.components.checkbox.CheckBox
+        android:id="@+id/ruleCheckBox"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:translationX="-7dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <com.admiral.uikit.components.text.TextView
+        android:id="@+id/ruleText"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x1"
+        app:admiralTextStyle="subhead3"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@id/ruleCheckBox"
+        app:layout_constraintTop_toTopOf="@id/ruleCheckBox"
+        tools:text="Я согласен с условиями договора и подтверждаю свое согласие на обработку персональных данных Банком" />
+
+    <com.admiral.uikit.components.links.Link
+        android:id="@+id/ruleButton"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x3"
+        android:textAllCaps="false"
+        app:layout_constraintStart_toEndOf="@id/ruleCheckBox"
+        app:layout_constraintTop_toBottomOf="@id/ruleText"
+        tools:text="Открыть" />
+</merge>

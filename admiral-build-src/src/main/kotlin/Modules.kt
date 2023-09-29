@@ -17,6 +17,7 @@ object Modules {
             val uikit = ":admiral-uikit"
             val common = ":admiral-uikit-common"
             val compose = ":admiral-uikit-compose"
+            val core = ":admiral-uikit-core"
         }
 
         object Components {

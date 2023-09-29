@@ -10,11 +10,11 @@ import com.admiral.textview.TextView
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
-import com.admiral.uikit.ext.colorStateList
-import com.admiral.uikit.ext.colored
-import com.admiral.uikit.ext.getColorOrNull
-import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.ext.pixels
+import com.admiral.uikit.core.ext.colorStateList
+import com.admiral.uikit.core.ext.colored
+import com.admiral.uikit.core.ext.getColorOrNull
+import com.admiral.uikit.core.ext.parseAttrs
+import com.admiral.uikit.core.ext.pixels
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 

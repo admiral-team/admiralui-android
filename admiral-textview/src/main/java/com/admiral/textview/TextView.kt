@@ -17,12 +17,12 @@ import com.admiral.themes.Typography
 import com.admiral.themes.Typography.Companion.subhead1
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.ext.applyStyle
-import com.admiral.uikit.ext.colorStateList
-import com.admiral.uikit.ext.colorStateListUnion
-import com.admiral.uikit.ext.getColorOrNull
-import com.admiral.uikit.ext.getIntOrNull
-import com.admiral.uikit.ext.parseAttrs
+import com.admiral.uikit.core.ext.applyStyle
+import com.admiral.uikit.core.ext.colorStateList
+import com.admiral.uikit.core.ext.colorStateListUnion
+import com.admiral.uikit.core.ext.getColorOrNull
+import com.admiral.uikit.core.ext.getIntOrNull
+import com.admiral.uikit.core.ext.parseAttrs
 
 /**
  * Replacement of default [AppCompatTextView].
