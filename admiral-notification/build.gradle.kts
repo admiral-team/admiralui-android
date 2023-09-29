@@ -15,9 +15,9 @@ dependencies {
     api(project(Modules.Admiral.UiKit.core))
     api(project(Modules.Admiral.UiKit.common))
     api(project(Modules.Admiral.Themes.themes))
-    api(project(Modules.Admiral.Components.links))
-    api(project(Modules.Admiral.Components.imageview))
-    api(project(Modules.Admiral.Components.textview))
+    api(project(Modules.Admiral.UiKit.Components.links))
+    api(project(Modules.Admiral.UiKit.Components.imageview))
+    api(project(Modules.Admiral.UiKit.Components.textview))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appcompat)
