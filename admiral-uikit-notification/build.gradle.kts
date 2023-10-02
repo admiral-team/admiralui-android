@@ -8,17 +8,18 @@ android {
     applyConfig(
         isCoreLibraryDesugaringEnabled = false,
         isComposeEnabled = false,
-        isViewBindingEnabled = false
+        isViewBindingEnabled = true
     )
 }
 
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
-    implementation(project(Modules.Admiral.UiKit.common))
-    implementation(project(Modules.Admiral.Themes.themes))
+    api(project(Modules.Admiral.UiKit.core))
 
+    implementation(project(Modules.Admiral.UiKit.Components.imageview))
+    implementation(project(Modules.Admiral.UiKit.Components.textview))
     implementation(Libs.AndroidX.coreKtx)
-    implementation(Libs.Kotlin.coroutines)
+    implementation(Libs.AndroidX.appcompat)
     implementation(Libs.Google.Android.material)
 }
 
@@ -31,7 +32,7 @@ val artifactIdSuffix: String? by project
 val repositoryType: String? by project
 
 publishing(
-    artifactId = Publishing.ArtifactIds.uikitCore,
+    artifactId = Publishing.ArtifactIds.notification,
     artifactIdSuffix = artifactIdSuffix,
     repositoryType = repositoryType,
     sourcesJar = sourcesJar

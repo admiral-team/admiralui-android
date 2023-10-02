@@ -20,9 +20,9 @@ object Modules {
             val core = ":admiral-uikit-core"
 
             object Components {
-                val imageview = ":admiral-imageview"
-                val textview = ":admiral-textview"
-                val notification = ":admiral-notification"
+                val imageview = ":admiral-uikit-imageview"
+                val textview = ":admiral-uikit-textview"
+                val notification = ":admiral-uikit-notification"
             }
         }
     }

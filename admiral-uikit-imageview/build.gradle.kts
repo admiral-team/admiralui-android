@@ -6,20 +6,18 @@ plugins {
 
 android {
     applyConfig(
-        isCoreLibraryDesugaringEnabled = false,
+        isCoreLibraryDesugaringEnabled = true,
         isComposeEnabled = false,
-        isViewBindingEnabled = false
+        isViewBindingEnabled = true
     )
 }
 
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
-    implementation(project(Modules.Admiral.UiKit.common))
-    implementation(project(Modules.Admiral.Themes.themes))
+    api(project(Modules.Admiral.UiKit.core))
 
     implementation(Libs.AndroidX.coreKtx)
-    implementation(Libs.Kotlin.coroutines)
-    implementation(Libs.Google.Android.material)
+    implementation(Libs.AndroidX.appcompat)
 }
 
 val sourcesJar by tasks.registering(Jar::class) {
@@ -31,7 +29,7 @@ val artifactIdSuffix: String? by project
 val repositoryType: String? by project
 
 publishing(
-    artifactId = Publishing.ArtifactIds.uikitCore,
+    artifactId = Publishing.ArtifactIds.imageview,
     artifactIdSuffix = artifactIdSuffix,
     repositoryType = repositoryType,
     sourcesJar = sourcesJar

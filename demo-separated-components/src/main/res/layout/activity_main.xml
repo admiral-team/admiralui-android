@@ -45,7 +45,7 @@
             android:visibility="gone"
             tools:visibility="visible">
 
-            <com.admiral.notification.fixed.StaticNotification
+            <com.admiral.uikit.notification.fixed.StaticNotification
                 android:id="@+id/notificationDefault"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -57,7 +57,7 @@
                 app:admiralNotificationStyle="info"
                 app:admiralText="@string/informers_example_info" />
 
-            <com.admiral.notification.fixed.StaticNotification
+            <com.admiral.uikit.notification.fixed.StaticNotification
                 android:id="@+id/notificationDefaultColored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                 app:admiralTextColorNormalEnabled="#999EA9"
                 app:admiralTextStyle="headline" />
 
-            <com.admiral.notification.fixed.StaticNotification
+            <com.admiral.uikit.notification.fixed.StaticNotification
                 android:id="@+id/notificationSuccess"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 app:admiralNotificationStyle="success"
                 app:admiralText="@string/informers_example_info" />
 
-            <com.admiral.notification.fixed.StaticNotification
+            <com.admiral.uikit.notification.fixed.StaticNotification
                 android:id="@+id/notificationSuccessColored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -109,7 +109,7 @@
                 app:admiralTextColorNormalEnabled="#999EA9"
                 app:admiralTextStyle="headline" />
 
-            <com.admiral.notification.fixed.StaticNotification
+            <com.admiral.uikit.notification.fixed.StaticNotification
                 android:id="@+id/notificationAttention"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -121,7 +121,7 @@
                 app:admiralNotificationStyle="attention"
                 app:admiralText="@string/informers_example_info" />
 
-            <com.admiral.notification.fixed.StaticNotification
+            <com.admiral.uikit.notification.fixed.StaticNotification
                 android:id="@+id/notificationAttentionColored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -141,7 +141,7 @@
                 app:admiralTextColorNormalEnabled="#999EA9"
                 app:admiralTextStyle="headline" />
 
-            <com.admiral.notification.fixed.StaticNotification
+            <com.admiral.uikit.notification.fixed.StaticNotification
                 android:id="@+id/notificationError"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -153,7 +153,7 @@
                 app:admiralNotificationStyle="error"
                 app:admiralText="@string/informers_example_info" />
 
-            <com.admiral.notification.fixed.StaticNotification
+            <com.admiral.uikit.notification.fixed.StaticNotification
                 android:id="@+id/notificationErrorColored"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

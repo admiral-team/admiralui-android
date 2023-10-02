@@ -3,9 +3,9 @@ package com.example.demo
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.core.view.isVisible
-import com.admiral.notification.action.ActionNotification
-import com.admiral.notification.action.ActionNotificationCloseType
-import com.admiral.notification.toast.ToastNotification
+import com.admiral.uikit.notification.action.ActionNotification
+import com.admiral.uikit.notification.action.ActionNotificationCloseType
+import com.admiral.uikit.notification.toast.ToastNotification
 import com.example.demo.databinding.ActivityMainBinding
 
 class MainActivity : AppCompatActivity() {
