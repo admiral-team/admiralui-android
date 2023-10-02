@@ -33,7 +33,7 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <com.admiral.textview.TextView
+        <com.admiral.uikit.textview.TextView
             android:id="@+id/timerText"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
@@ -50,7 +50,7 @@
         app:barrierDirection="start"
         app:constraint_referenced_ids="cancelImage,cancelText" />
 
-    <com.admiral.links.Link
+    <com.admiral.uikit.links.Link
         android:id="@+id/cancelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:visibility="visible" />
 
-    <com.admiral.textview.TextView
+    <com.admiral.uikit.textview.TextView
         android:id="@+id/message"
         android:layout_width="0dp"
         android:layout_height="wrap_content"

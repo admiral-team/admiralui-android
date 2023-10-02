@@ -35,6 +35,5 @@ include(
 include(":admiral-imageview")
 include(":admiral-uikit-core")
 include(":demo-separated-components")
-include(":admiral-links")
 include(":admiral-textview")
 include(":admiral-notification")

@@ -1,4 +1,4 @@
-package com.admiral.links
+package com.admiral.uikit.links
 
 import android.content.Context
 import android.content.res.TypedArray
@@ -6,7 +6,8 @@ import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.Gravity
 import androidx.core.content.res.use
-import com.admiral.textview.TextView
+import com.admiral.textview.R
+import com.admiral.uikit.textview.TextView
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver

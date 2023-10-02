@@ -22,7 +22,6 @@ object Modules {
             object Components {
                 val imageview = ":admiral-imageview"
                 val textview = ":admiral-textview"
-                val links = ":admiral-links"
                 val notification = ":admiral-notification"
             }
         }

@@ -1,4 +1,4 @@
-package com.admiral.textview
+package com.admiral.uikit.textview
 
 import android.content.Context
 import android.graphics.drawable.Drawable
@@ -7,6 +7,7 @@ import androidx.annotation.ColorRes
 import androidx.appcompat.widget.AppCompatTextView
 import androidx.core.content.res.use
 import androidx.core.view.doOnLayout
+import com.admiral.textview.R
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Font

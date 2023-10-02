@@ -46,5 +46,5 @@ dependencies {
     implementation(Libs.Google.Android.material)
     implementation(Libs.Kotlin.stdLib)
 
-    api(project(Modules.Admiral.UiKit.Components.notification))
+    implementation(project(Modules.Admiral.UiKit.Components.notification))
 }

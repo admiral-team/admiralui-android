@@ -16,7 +16,7 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.notification.R
-import com.admiral.textview.TextView
+import com.admiral.uikit.textview.TextView
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.core.ext.colorStateList
@@ -24,7 +24,7 @@ import com.admiral.uikit.core.ext.drawable
 import com.admiral.uikit.core.ext.getColorOrNull
 import com.admiral.uikit.core.ext.getIntOrNull
 import com.admiral.uikit.core.ext.parseAttrs
-import com.admiral.links.Link
+import com.admiral.uikit.links.Link
 
 class StaticNotification @JvmOverloads constructor(
     context: Context,

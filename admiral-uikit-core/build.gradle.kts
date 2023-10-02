@@ -12,11 +12,10 @@ android {
 }
 
 dependencies {
-    api(project(Modules.Admiral.UiKit.common))
-    api(project(Modules.Admiral.Themes.themes))
+    implementation(project(Modules.Admiral.UiKit.common))
+    implementation(project(Modules.Admiral.Themes.themes))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.Kotlin.coroutines)
     implementation(Libs.Google.Android.material)
-    implementation(Libs.Kotlin.stdLib)
 }

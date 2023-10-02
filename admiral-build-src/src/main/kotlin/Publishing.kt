@@ -15,7 +15,6 @@ object Publishing {
         val uiKitCompose = "admiral-uikit-compose"
         val imageview = "admiral-imageview"
         val textview = "admiral-textview"
-        val links = "admiral-links"
         val notification = "admiral-notification"
         val uikitCore = "admiral-uikit-core"
     }

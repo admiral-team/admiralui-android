@@ -30,7 +30,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-    <com.admiral.textview.TextView
+    <com.admiral.uikit.textview.TextView
         android:id="@+id/admiralToastTextView"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
@@ -43,7 +43,7 @@
         app:layout_goneMarginEnd="@dimen/module_x4"
         tools:text="At breakpoint boundaries, mini units divide the screen into a fixed master grid." />
 
-    <com.admiral.links.Link
+    <com.admiral.uikit.links.Link
         android:id="@+id/admiralLinkTextView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"

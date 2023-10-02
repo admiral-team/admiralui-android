@@ -1,4 +1,4 @@
-package com.admiral.links
+package com.admiral.uikit.links
 
 /**
  * Define sizes for [Link]

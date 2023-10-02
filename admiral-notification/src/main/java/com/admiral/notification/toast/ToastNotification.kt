@@ -16,11 +16,11 @@ import com.admiral.notification.R
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.imageview.ImageView
-import com.admiral.textview.TextView
+import com.admiral.uikit.textview.TextView
 import com.admiral.uikit.core.ext.dpToPx
 import com.admiral.uikit.core.ext.drawable
 import com.admiral.uikit.core.ext.pixels
-import com.admiral.links.Link
+import com.admiral.uikit.links.Link
 import com.google.android.material.snackbar.Snackbar
 
 class ToastNotification {
