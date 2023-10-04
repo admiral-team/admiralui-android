@@ -1,6 +1,9 @@
+import com.android.build.gradle.internal.tasks.factory.dependsOn
+
 plugins {
     id("com.android.library")
     id("org.jetbrains.kotlin.android")
+    id("org.jetbrains.kotlin.plugin.parcelize")
     id("maven-publish")
 }
 
@@ -8,7 +11,7 @@ android {
     applyConfig(
         isCoreLibraryDesugaringEnabled = true,
         isComposeEnabled = false,
-        isViewBindingEnabled = false
+        isViewBindingEnabled = true
     )
 }
 

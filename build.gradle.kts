@@ -17,6 +17,7 @@ plugins {
     val kotlinVersion = "1.6.10"
 
     id("admiral-gradle-plugin")
+    id("java")
     id("com.android.application") version androidGradlePluginVersion apply false
     id("com.android.library") version androidGradlePluginVersion apply false
     id("org.jetbrains.kotlin.android") version kotlinVersion apply false
