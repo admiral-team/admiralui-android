@@ -10,8 +10,8 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.RecyclerView
 import com.admiral.demo.R
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.components.text.TextView
 
 class ColorsListAdapter(
     private val editable: Boolean,
@@ -40,10 +40,12 @@ class ColorsListAdapter(
                 ).apply {
                     findViewById<TextView>(R.id.textTitle).apply {
                         textStyle = ThemeManager.theme.typography.headline
-                        textColor = ColorState(normalEnabled = ThemeManager.theme.palette.textSecondary)
+                        textColor =
+                            ColorState(normalEnabled = ThemeManager.theme.palette.textSecondary)
                     }
                 }
             )
+
             else -> ColorViewHolder(
                 LayoutInflater.from(parent.context).inflate(
                     R.layout.item_color_row,
@@ -52,7 +54,8 @@ class ColorsListAdapter(
                 ).apply {
                     findViewById<TextView>(R.id.tvColorHex).apply {
                         textStyle = ThemeManager.theme.typography.subhead3
-                        textColor = ColorState(normalEnabled = ThemeManager.theme.palette.textSecondary)
+                        textColor =
+                            ColorState(normalEnabled = ThemeManager.theme.palette.textSecondary)
                     }
                 }
             )
@@ -61,7 +64,12 @@ class ColorsListAdapter(
 
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         when (holder) {
-            is ColorViewHolder -> holder.bind(differ.currentList[position] as ColorModel, editable, action)
+            is ColorViewHolder -> holder.bind(
+                differ.currentList[position] as ColorModel,
+                editable,
+                action
+            )
+
             is TitleViewHolder -> holder.bind(differ.currentList[position] as TitleModel)
         }
     }
@@ -90,20 +98,22 @@ class ColorsListAdapter(
 
     class ColorViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
-        fun bind(item: ColorModel, editable: Boolean, action: (ColorModel) -> Unit) = with(itemView) {
-            findViewById<View>(R.id.backgroundViewColor).background.setTint(item.color)
-            findViewById<TextView>(R.id.tvColorName).text = item.name
-            findViewById<TextView>(R.id.tvColorHex).text = item.hex
-            findViewById<View>(R.id.backgroundViewColorBorder).isVisible = item.hex.contains("FFFFFF")
+        fun bind(item: ColorModel, editable: Boolean, action: (ColorModel) -> Unit) =
+            with(itemView) {
+                findViewById<View>(R.id.backgroundViewColor).background.setTint(item.color)
+                findViewById<TextView>(R.id.tvColorName).text = item.name
+                findViewById<TextView>(R.id.tvColorHex).text = item.hex
+                findViewById<View>(R.id.backgroundViewColorBorder).isVisible =
+                    item.hex.contains("FFFFFF")
 
-            if (editable) {
-                findViewById<ImageView>(R.id.imageViewChevron).isVisible = true
-                setOnClickListener { action.invoke(item) }
-            } else {
-                findViewById<ImageView>(R.id.imageViewChevron).isVisible = false
-                setOnClickListener(null)
+                if (editable) {
+                    findViewById<ImageView>(R.id.imageViewChevron).isVisible = true
+                    setOnClickListener { action.invoke(item) }
+                } else {
+                    findViewById<ImageView>(R.id.imageViewChevron).isVisible = false
+                    setOnClickListener(null)
+                }
             }
-        }
     }
 
     private companion object {

@@ -6,7 +6,7 @@ plugins {
 
 android {
     applyConfig(
-        isCoreLibraryDesugaringEnabled = false,
+        isCoreLibraryDesugaringEnabled = true,
         isComposeEnabled = false,
         isViewBindingEnabled = false
     )
@@ -14,10 +14,10 @@ android {
 
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
-    api(project(Modules.Admiral.Themes.themes))
+    implementation(project(Modules.Admiral.Themes.themes))
 
     implementation(Libs.AndroidX.coreKtx)
-    implementation(Libs.AndroidX.appcompat)
+    implementation(Libs.Kotlin.coroutines)
     implementation(Libs.Google.Android.material)
 }
 

@@ -124,6 +124,7 @@ android {
 dependencies {
     implementation(project(Modules.Admiral.UiKit.uikit))
     implementation(project(Modules.Admiral.UiKit.compose))
+    implementation(project(Modules.Admiral.UiKit.common))
 
     coreLibraryDesugaring(Libs.AndroidTools.desugarJdkLibs)
     implementation(Libs.Kotlin.stdLib)

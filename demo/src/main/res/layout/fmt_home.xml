@@ -21,7 +21,7 @@
                 android:layout_height="wrap_content"
                 app:admiralAppbarSize="big"
                 app:admiralIsBackButtonEnabled="false"
-                app:admiralTitleText="Дизайн-система «Адмирал»" />
+                app:admiralTitleText="Дизайн-системаff «Адмирал»" />
 
             <com.admiral.uikit.components.appbar.AppbarSearch
                 android:id="@+id/search"
