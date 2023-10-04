@@ -21,10 +21,6 @@ func main() {
 	case "loadImages":
 		imagesFile := goDotEnvVariable("FIGMA_IMAGES_FILE_KEY")
 		client.LoadImagesAndroid(figmaToken, imagesFile)
-	case "createRelease":
-		githubToken := goDotEnvVariable("GITHUB_TOKEN")
-		tgToken := goDotEnvVariable("TELEGRAM_API_TOKEN")
-		client.ReleaseAndroid(githubToken, tgToken)
 	case "uploadNexus":
         os.Chdir("../")
 	    cmd := exec.Command("./gradlew", "assemble")
