@@ -11,8 +11,8 @@ object Versions {
     val pdfViewer = "3.2.0-beta.1"
 
     object Sdk {
-        val compileSdk = 31
-        val targetSdk = 31
+        val compileSdk = 33
+        val targetSdk = 33
         val minSdk = 21
     }
 
@@ -41,9 +41,9 @@ object Versions {
         val constraintLayout = "2.1.3"
         val lifecycle = "2.4.1"
         val recyclerView = "1.2.1"
-        val fragment = "1.4.1"
+        val fragment = "1.6.1"
         val activityCompose = "1.4.0"
-        val compose = "1.2.0-alpha01"
+        val compose = "1.4.0"
         val preference = "1.1.1"
         val camerax = "1.2.0-alpha01"
         val test = "1.4.0"

@@ -11,6 +11,7 @@ import com.admiral.uikit.common.components.cell.base.CellUnit
 import com.admiral.uikit.common.components.cell.base.CellUnitType
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.resources.R as res
 
 class CardCellUnit @JvmOverloads constructor(
     context: Context,
@@ -39,7 +40,7 @@ class CardCellUnit @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val spec = MeasureSpec.makeMeasureSpec(pixels(R.dimen.module_x11), MeasureSpec.EXACTLY)
+        val spec = MeasureSpec.makeMeasureSpec(pixels(res.dimen.module_x11), MeasureSpec.EXACTLY)
         super.onMeasure(spec, spec)
     }
 

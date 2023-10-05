@@ -92,7 +92,7 @@ class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateLis
   }
 
   public ClockFaceView(@NonNull Context context, @Nullable AttributeSet attrs) {
-    this(context, attrs, R.attr.materialClockStyle);
+    this(context, attrs, com.google.android.material.R.attr.materialClockStyle);
   }
 
   @SuppressLint({"ClickableViewAccessibility", "RestrictedApi"})
@@ -101,9 +101,9 @@ class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateLis
     TypedArray a =
         context.obtainStyledAttributes(
             attrs,
-            R.styleable.ClockFaceView,
+                com.google.android.material.R.styleable.ClockFaceView,
             defStyleAttr,
-            R.style.Widget_MaterialComponents_TimePicker_Clock);
+                com.google.android.material.R.style.Widget_MaterialComponents_TimePicker_Clock);
     Resources res = getResources();
 
     int defaultTextColor = ThemeManager.INSTANCE.getTheme().getPalette().getTextPrimary();
@@ -122,7 +122,7 @@ class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateLis
 
     LayoutInflater.from(context).inflate(R.layout.admiral_material_clockface_view, this, true);
     clockHandView = findViewById(R.id.material_clock_hand);
-    clockHandPadding = res.getDimensionPixelSize(R.dimen.material_clock_hand_padding);
+    clockHandPadding = res.getDimensionPixelSize(com.google.android.material.R.dimen.material_clock_hand_padding);
     int clockHandTextColor =
         textColor.getColorForState(
             new int[] {android.R.attr.state_selected}, textColor.getDefaultColor());
@@ -156,7 +156,7 @@ class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateLis
           public void onInitializeAccessibilityNodeInfo(
               View host, @NonNull AccessibilityNodeInfoCompat info) {
             super.onInitializeAccessibilityNodeInfo(host, info);
-            int index = (int) host.getTag(R.id.material_value_index);
+            int index = (int) host.getTag(com.google.android.material.R.id.material_value_index);
             if (index > 0) {
               info.setTraversalAfter(textViewPool.get(index - 1));
             }
@@ -177,9 +177,9 @@ class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateLis
     Arrays.fill(initialValues, VALUE_PLACEHOLDER);
     setValues(initialValues, /* contentDescription= */ 0);
 
-    minimumHeight = res.getDimensionPixelSize(R.dimen.material_time_picker_minimum_screen_height);
-    minimumWidth = res.getDimensionPixelSize(R.dimen.material_time_picker_minimum_screen_width);
-    clockSize = res.getDimensionPixelSize(R.dimen.material_clock_size);
+    minimumHeight = res.getDimensionPixelSize(com.google.android.material.R.dimen.material_time_picker_minimum_screen_height);
+    minimumWidth = res.getDimensionPixelSize(com.google.android.material.R.dimen.material_time_picker_minimum_screen_width);
+    clockSize = res.getDimensionPixelSize(com.google.android.material.R.dimen.material_clock_size);
   }
 
   /**
@@ -204,7 +204,7 @@ class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateLis
 
       if (textView == null) {
         textView = (TextView) inflater.inflate(R.layout.admiral_material_clockface_textview, this, false);
-        TextViewCompat.setTextAppearance(textView, R.style.AdmiralTextAppearance_TimePickerClockFace);
+        TextViewCompat.setTextAppearance(textView, com.admiral.resources.R.style.AdmiralTextAppearance_TimePickerClockFace);
 
         textViewPool.put(i, textView);
         addView(textView);
@@ -212,7 +212,7 @@ class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateLis
 
       textView.setVisibility(VISIBLE);
       textView.setText(values[i]);
-      textView.setTag(R.id.material_value_index, i);
+      textView.setTag(com.google.android.material.R.id.material_value_index, i);
       ViewCompat.setAccessibilityDelegate(textView, valueAccessibilityDelegate);
 
       textView.setTextColor(textColor);

@@ -23,6 +23,7 @@ import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.resources.R as res
 
 class TextButtonChooserCellUnit @JvmOverloads constructor(
     context: Context,
@@ -32,7 +33,7 @@ class TextButtonChooserCellUnit @JvmOverloads constructor(
 
     override lateinit var unitType: CellUnitType
 
-    var icon: Drawable? = ContextCompat.getDrawable(context, R.drawable.admiral_ic_chevron_down_outline)
+    var icon: Drawable? = ContextCompat.getDrawable(context, res.drawable.admiral_ic_chevron_down_outline)
         set(value) {
             field = value
             setDrawableEnd(icon)
@@ -141,7 +142,7 @@ class TextButtonChooserCellUnit @JvmOverloads constructor(
 
     private fun setDrawableEnd(drawable: Drawable?) {
         drawable?.colored(textColors?.normalEnabled ?: ThemeManager.theme.palette.textAccent).also {
-            compoundDrawablePadding = pixels(R.dimen.module_x1)
+            compoundDrawablePadding = pixels(res.dimen.module_x1)
             setCompoundDrawablesWithIntrinsicBounds(null, null, it, null)
         }
     }

@@ -10,6 +10,7 @@ import androidx.core.view.updatePadding
 import com.admiral.uikit.R
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.resources.R as res
 
 class InformerTabs @JvmOverloads constructor(
     context: Context,
@@ -19,10 +20,10 @@ class InformerTabs @JvmOverloads constructor(
 
     init {
         updatePadding(
-            left = context.pixels(R.dimen.module_x4),
-            top = context.pixels(R.dimen.module_x2),
-            right = context.pixels(R.dimen.module_x4),
-            bottom = context.pixels(R.dimen.module_x2)
+            left = context.pixels(res.dimen.module_x4),
+            top = context.pixels(res.dimen.module_x2),
+            right = context.pixels(res.dimen.module_x4),
+            bottom = context.pixels(res.dimen.module_x2)
         )
 
         orientation = HORIZONTAL

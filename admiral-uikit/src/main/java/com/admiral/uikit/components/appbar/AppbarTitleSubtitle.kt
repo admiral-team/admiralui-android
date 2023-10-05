@@ -13,6 +13,7 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.dpToPx
@@ -20,13 +21,17 @@ import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.setMargins
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.resources.R as res
 
 class AppbarTitleSubtitle @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : Toolbar(ContextThemeWrapper(context, R.style.Widget_AppCompat_Toolbar), attrs, defStyleAttr), ThemeObserver {
+) : Toolbar(
+    ContextThemeWrapper(context, androidx.appcompat.R.style.Widget_AppCompat_Toolbar),
+    attrs,
+    defStyleAttr
+), ThemeObserver {
 
     /**
      * Text for the title.
@@ -112,8 +117,10 @@ class AppbarTitleSubtitle @JvmOverloads constructor(
             titleText = it.getString(R.styleable.AppbarTitleSubtitle_admiralTitleText)
             subtitleText = it.getString(R.styleable.AppbarTitleSubtitle_admiralSubtitleText)
 
-            titleTextColor = it.getColorOrNull(R.styleable.AppbarTitleSubtitle_admiralTitleTextColor)
-            subtitleTextColor = it.getColorOrNull(R.styleable.AppbarTitleSubtitle_admiralSubtitleTextColor)
+            titleTextColor =
+                it.getColorOrNull(R.styleable.AppbarTitleSubtitle_admiralTitleTextColor)
+            subtitleTextColor =
+                it.getColorOrNull(R.styleable.AppbarTitleSubtitle_admiralSubtitleTextColor)
             backgroundColor =
                 it.getColorOrNull(R.styleable.AppbarTitleSubtitle_admiralBackgroundColorNormalEnabled)
 
@@ -176,7 +183,7 @@ class AppbarTitleSubtitle @JvmOverloads constructor(
 
     private fun setDrawableEnd(drawable: Drawable?) {
         drawable?.colored(titleTextColor ?: ThemeManager.theme.palette.elementStaticWhite).also {
-            titleTextView.compoundDrawablePadding = pixels(R.dimen.module_x1)
+            titleTextView.compoundDrawablePadding = pixels(res.dimen.module_x1)
             titleTextView.setCompoundDrawablesWithIntrinsicBounds(null, null, it, null)
         }
     }

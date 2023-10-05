@@ -43,7 +43,7 @@ jobs:
       - name: Run snapshot tests
         uses: reactivecircus/android-emulator-runner@v2
         with:
-          api-level: 24
+          api-level: 30
           force-avd-creation: false
           avd-name: Pixel_4_API_30
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none

@@ -27,6 +27,7 @@ import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import com.admiral.resources.R as res
 
 class TextFieldSearch @JvmOverloads constructor(
     context: Context,
@@ -136,7 +137,7 @@ class TextFieldSearch @JvmOverloads constructor(
     init {
         background = drawable(R.drawable.admiral_bg_rectangle_10dp)
         endIconMode = END_ICON_CLEAR_TEXT
-        endIconDrawable = drawable(R.drawable.admiral_ic_close_outline)?.colored(
+        endIconDrawable = drawable(res.drawable.admiral_ic_close_outline)?.colored(
             drawableStartTintColor ?: ThemeManager.theme.palette.elementPrimary
         )
         isHintEnabled = false
@@ -186,7 +187,7 @@ class TextFieldSearch @JvmOverloads constructor(
 
     private fun parseDrawableStart(a: TypedArray) {
         drawableStart = a.getDrawable(R.styleable.TextFieldSearch_admiralIcon)
-            ?: drawable(R.drawable.admiral_ic_search_outline)
+            ?: drawable(res.drawable.admiral_ic_search_outline)
 
         drawableStartTintColor = a.getColorOrNull(
             R.styleable.TextFieldSearch_admiralIconTintColorNormalEnabled

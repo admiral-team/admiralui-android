@@ -31,8 +31,9 @@ import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.ext.showKeyboard
 import com.admiral.uikit.ext.setSelectionEnd
+import com.admiral.uikit.ext.showKeyboard
+import com.admiral.resources.R as res
 import com.google.android.material.slider.Slider as MaterialSlider
 
 /**
@@ -299,10 +300,10 @@ class Slider @JvmOverloads constructor(
         }
 
         setPadding(
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x1)
+            pixels(res.dimen.module_x4),
+            pixels(res.dimen.module_x4),
+            pixels(res.dimen.module_x4),
+            pixels(res.dimen.module_x1)
         )
 
         initEditText()
@@ -463,6 +464,7 @@ class Slider @JvmOverloads constructor(
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         binding.additionalTextView.textColor = ColorState(additionalTextColor)
@@ -474,6 +476,7 @@ class Slider @JvmOverloads constructor(
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
 

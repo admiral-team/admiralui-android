@@ -25,6 +25,7 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.getIntOrNull
 import com.admiral.uikit.ext.parseAttrs
+import com.admiral.resources.R as res
 
 class StaticNotification @JvmOverloads constructor(
     context: Context,
@@ -345,10 +346,10 @@ class StaticNotification @JvmOverloads constructor(
 
     private fun invalidateIcon() {
         val iconDefault = when (notificationStyle) {
-            StaticNotificationStyle.Info -> drawable(R.drawable.admiral_ic_info_solid)
-            StaticNotificationStyle.Attention -> drawable(R.drawable.admiral_ic_error_triangle_solid)
-            StaticNotificationStyle.Success -> drawable(R.drawable.admiral_ic_check_solid)
-            StaticNotificationStyle.Error -> drawable(R.drawable.admiral_ic_close_circle_solid)
+            StaticNotificationStyle.Info -> drawable(res.drawable.admiral_ic_info_solid)
+            StaticNotificationStyle.Attention -> drawable(res.drawable.admiral_ic_error_triangle_solid)
+            StaticNotificationStyle.Success -> drawable(res.drawable.admiral_ic_check_solid)
+            StaticNotificationStyle.Error -> drawable(res.drawable.admiral_ic_close_circle_solid)
         }
 
         val icon = icon ?: iconDefault

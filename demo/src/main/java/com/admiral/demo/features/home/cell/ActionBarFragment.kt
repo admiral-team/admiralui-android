@@ -15,6 +15,7 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.uikit.components.actionbar.ActionBarOnSwipeTouchListener
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.resources.R as res
 
 class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
 
@@ -44,6 +45,7 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
                         binding.actionBar.isEnabled = true
                         binding.actionBar2.isEnabled = true
                     }
+
                     binding.disabledTab.id -> {
                         binding.actionBar.isEnabled = false
                         binding.actionBar2.isEnabled = false
@@ -65,7 +67,7 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
     private fun initActionBarSecondary() {
         binding.actionBar2.apply {
             addAction(
-                icon = R.drawable.admiral_ic_email_outline,
+                icon = res.drawable.admiral_ic_email_outline,
                 description = getString(R.string.actionbar_email),
                 backgroundColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_ACCENT,
                 backgroundColorPressedPalette = ColorPaletteEnum.ELEMENT_ACCENT_PRESSED,
@@ -75,7 +77,7 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
                 showToast(getString(R.string.actionbar_email_clicked))
             }
             addAction(
-                icon = R.drawable.admiral_ic_star_outline,
+                icon = res.drawable.admiral_ic_star_outline,
                 description = getString(R.string.actionbar_star),
                 backgroundColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_SUCCESS,
                 backgroundColorPressedPalette = ColorPaletteEnum.ELEMENT_SUCCESS_PRESSED,
@@ -85,7 +87,7 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
                 showToast(getString(R.string.actionbar_star_clicked))
             }
             addAction(
-                icon = R.drawable.admiral_ic_edit_outline,
+                icon = res.drawable.admiral_ic_edit_outline,
                 description = getString(R.string.actionbar_edit),
                 backgroundColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_ATTENTION,
                 backgroundColorPressedPalette = ColorPaletteEnum.ELEMENT_ATTENTION_PRESSED,

@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.resources"
     applyConfig(
         isCoreLibraryDesugaringEnabled = false,
         isComposeEnabled = false,

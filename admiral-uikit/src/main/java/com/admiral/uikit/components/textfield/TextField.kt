@@ -59,6 +59,7 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.parcelize.Parcelize
 import android.widget.LinearLayout.LayoutParams as LinearLayoutParams
+import com.admiral.resources.R as res
 
 /**
  * Replacement of TextFieldInputLayout and TextInputEditText.
@@ -695,13 +696,13 @@ class TextField @JvmOverloads constructor(
     private fun invalidateTextHidden() {
         if (isTextHidden) {
             iconCloseImageView.setImageDrawable(
-                iconCloseHidden ?: drawable(R.drawable.admiral_ic_eye_close_outline)
+                iconCloseHidden ?: drawable(res.drawable.admiral_ic_eye_close_outline)
             )
             editText.transformationMethod = PasswordTransformationMethod.getInstance()
             editText.setSelectionEnd()
         } else {
             iconCloseImageView.setImageDrawable(
-                iconCloseShown ?: drawable(R.drawable.admiral_ic_eye_outline)
+                iconCloseShown ?: drawable(res.drawable.admiral_ic_eye_outline)
             )
             editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
             editText.setSelectionEnd()
@@ -779,7 +780,7 @@ class TextField @JvmOverloads constructor(
 
     private fun invalidateIconDrawable() {
         if (isError && !isIconFixed) {
-            iconImageView.setImageDrawable(drawable(R.drawable.admiral_ic_error_solid))
+            iconImageView.setImageDrawable(drawable(res.drawable.admiral_ic_error_solid))
         } else {
             iconImageView.setImageDrawable(icon)
             iconImageView.isGone = icon == null
@@ -842,17 +843,17 @@ class TextField @JvmOverloads constructor(
     private fun invalidateIcon() {
         val topMargin = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x3
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x4
-                else -> R.dimen.module_x4
+                textFieldStyle == TextFieldStyle.Clipped -> res.dimen.module_x3
+                iconBackgroundColor == Color.TRANSPARENT -> res.dimen.module_x4
+                else -> res.dimen.module_x4
             }
         )
 
         val size = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x7
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x7
-                else -> R.dimen.module_x10
+                textFieldStyle == TextFieldStyle.Clipped -> res.dimen.module_x7
+                iconBackgroundColor == Color.TRANSPARENT -> res.dimen.module_x7
+                else -> res.dimen.module_x10
             }
         )
 

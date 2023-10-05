@@ -5,6 +5,7 @@ import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
+import com.admiral.resources.R as res
 
 data class Typography(
     val body1: TextStyle,
@@ -29,9 +30,9 @@ data class Typography(
 @Suppress("MagicNumber", "LongMethod")
 fun defaultTypography(): Typography {
     val fontFamily = FontFamily(
-        Font(R.font.roboto_400, FontWeight.W400),
-        Font(R.font.roboto_500, FontWeight.W500),
-        Font(R.font.roboto_700, FontWeight.W700)
+        Font(res.font.roboto_400, FontWeight.W400),
+        Font(res.font.roboto_500, FontWeight.W500),
+        Font(res.font.roboto_700, FontWeight.W700)
     )
 
     return Typography(

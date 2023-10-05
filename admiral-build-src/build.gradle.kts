@@ -1,7 +1,7 @@
 plugins {
     `kotlin-dsl`
 
-    val kotlinVersion = "1.6.10"
+    val kotlinVersion = "1.9.0"
     kotlin("jvm") version kotlinVersion
     kotlin("plugin.serialization") version kotlinVersion
 }
@@ -25,6 +25,6 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:7.1.0-rc01")
+    implementation("com.android.tools.build:gradle:7.4.2")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
 }

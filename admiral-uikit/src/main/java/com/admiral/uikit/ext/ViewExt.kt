@@ -244,7 +244,7 @@ internal fun View.animateBackgroundColor(
             setBackgroundColor(it.animatedValue as Int)
         }
         addListener(object : AnimatorListenerAdapter() {
-            override fun onAnimationCancel(animation: Animator?) {
+            override fun onAnimationCancel(animation: Animator) {
                 setBackgroundColor(colors.last())
             }
         })

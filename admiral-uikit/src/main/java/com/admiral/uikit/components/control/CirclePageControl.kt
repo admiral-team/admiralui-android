@@ -23,6 +23,7 @@ import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
 import com.admiral.uikit.layout.FrameLayout
+import com.admiral.resources.R as res
 
 class CirclePageControl @JvmOverloads constructor(
     context: Context,
@@ -56,7 +57,8 @@ class CirclePageControl @JvmOverloads constructor(
         isFocusable = true
 
         parseAttrs(attrs, R.styleable.CirclePageControl).use {
-            isAnimationEnabled = it.getBoolean(R.styleable.CirclePageControl_admiralIsAnimationEnabled, true)
+            isAnimationEnabled =
+                it.getBoolean(R.styleable.CirclePageControl_admiralIsAnimationEnabled, true)
             setProgress(it.getInt(R.styleable.CirclePageControl_admiralProgress, 0))
         }
     }
@@ -78,7 +80,7 @@ class CirclePageControl @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val spec = MeasureSpec.makeMeasureSpec(pixels(R.dimen.module_x18), MeasureSpec.EXACTLY)
+        val spec = MeasureSpec.makeMeasureSpec(pixels(res.dimen.module_x18), MeasureSpec.EXACTLY)
         super.onMeasure(spec, spec)
     }
 
@@ -105,15 +107,18 @@ class CirclePageControl @JvmOverloads constructor(
         val progressDrawable = progressBarDrawable.getDrawable(0)
 
         if (isContrast) {
-            progressDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                BlendModeCompat.SRC_ATOP
-            )
+            progressDrawable.colorFilter =
+                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                    backgroundColors?.normalEnabled
+                        ?: ThemeManager.theme.palette.elementStaticWhite,
+                    BlendModeCompat.SRC_ATOP
+                )
         } else {
-            progressDrawable.colorFilter = BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
-                backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
-                BlendModeCompat.SRC_ATOP
-            )
+            progressDrawable.colorFilter =
+                BlendModeColorFilterCompat.createBlendModeColorFilterCompat(
+                    backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
+                    BlendModeCompat.SRC_ATOP
+                )
         }
     }
 
@@ -127,7 +132,8 @@ class CirclePageControl @JvmOverloads constructor(
                 disabled = ThemeManager.theme.palette.elementStaticWhite.withAlpha(),
                 pressed = ThemeManager.theme.palette.elementStaticWhite
             )
-            val content = context.coloredDrawable(R.drawable.admiral_bg_circle_mask, contentStateList)
+            val content =
+                context.coloredDrawable(R.drawable.admiral_bg_circle_mask, contentStateList)
 
 
             icon.background = ripple(rippleColor, content, mask)
@@ -140,7 +146,8 @@ class CirclePageControl @JvmOverloads constructor(
                 disabled = ThemeManager.theme.palette.elementAccent.withAlpha(),
                 pressed = ThemeManager.theme.palette.elementAccent
             )
-            val content = context.coloredDrawable(R.drawable.admiral_bg_circle_mask, contentStateList)
+            val content =
+                context.coloredDrawable(R.drawable.admiral_bg_circle_mask, contentStateList)
 
 
             icon.background = ripple(rippleColor, content, mask)

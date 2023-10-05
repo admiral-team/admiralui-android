@@ -44,6 +44,7 @@ import java.time.Month
 import java.time.YearMonth
 import java.time.temporal.WeekFields
 import java.util.*
+import com.admiral.resources.R as res
 
 @Deprecated("Use HorizontalCalendar and VerticalCalendar instead. This one will be deleted soon.")
 class CalendarView @JvmOverloads constructor(
@@ -435,7 +436,7 @@ class CalendarView @JvmOverloads constructor(
     private fun setCompoundDrawableForHorizontalMonthYearTextView() {
         // NB: it's strange but when we try to change tint for existing CompoundDrawables
         // a crash occurs. That's why we change drawable
-        val drawableEnd = drawable(R.drawable.admiral_ic_chevron_down_outline)
+        val drawableEnd = drawable(res.drawable.admiral_ic_chevron_down_outline)
         drawableEnd?.colored(
             colorStateList(
                 enabled = monthYearTextColor ?: ThemeManager.theme.palette.elementAccent,

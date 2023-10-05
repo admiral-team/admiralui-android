@@ -10,7 +10,6 @@ import android.widget.EditText
 import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
-import androidx.core.view.doOnLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.admiral.themes.Theme
@@ -27,9 +26,10 @@ import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.ext.showKeyboard
 import com.admiral.uikit.ext.setSelectionEnd
+import com.admiral.uikit.ext.showKeyboard
 import com.google.android.material.slider.RangeSlider
+import com.admiral.resources.R as res
 
 /**
  * Slider view with two inputs.
@@ -248,10 +248,10 @@ class DoubleSlider @JvmOverloads constructor(
         }
 
         setPadding(
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x1)
+            pixels(res.dimen.module_x4),
+            pixels(res.dimen.module_x4),
+            pixels(res.dimen.module_x4),
+            pixels(res.dimen.module_x1)
         )
 
         initEditTexts()
@@ -437,6 +437,7 @@ class DoubleSlider @JvmOverloads constructor(
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         val placeholderTextColorStateList =
@@ -448,6 +449,7 @@ class DoubleSlider @JvmOverloads constructor(
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         binding.additionalTextView.setTextColor(additionalTextColor)

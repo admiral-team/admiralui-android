@@ -5,7 +5,7 @@ import android.view.View
 import com.admiral.uikit.common.foundation.ColorState
 
 data class ToolbarItem(
-    val text: CharSequence,
+    val text: CharSequence?,
     val icon: Drawable?,
     val id: Int = View.generateViewId(),
     val textColorState: ColorState? = null,

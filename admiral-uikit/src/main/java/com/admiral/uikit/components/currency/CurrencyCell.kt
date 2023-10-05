@@ -12,14 +12,15 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.common.ext.withAlpha
+import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.resources.R as res
 
 class CurrencyCell @JvmOverloads constructor(
     context: Context,
@@ -210,7 +211,8 @@ class CurrencyCell @JvmOverloads constructor(
             parseSellTextColors(it)
             parseHeaderTextColors(it)
 
-            val drawableCurrencyId = it.getResourceId(R.styleable.CurrencyCell_admiralCurrencyDrawable, 0)
+            val drawableCurrencyId =
+                it.getResourceId(R.styleable.CurrencyCell_admiralCurrencyDrawable, 0)
             val drawableBuyId = it.getResourceId(R.styleable.CurrencyCell_admiralBuyDrawable, 0)
             val drawableSellId = it.getResourceId(R.styleable.CurrencyCell_admiralSellDrawable, 0)
 
@@ -226,8 +228,14 @@ class CurrencyCell @JvmOverloads constructor(
             textBuy = it.getString(R.styleable.CurrencyCell_admiralBuyText)
             isHeader = it.getBoolean(R.styleable.CurrencyCell_admiralIsHeader, false)
 
-            drawableSellType = CurrencyDrawableType.from(it.getInt(R.styleable.CurrencyCell_admiralSellIconType, 0))
-            drawableBuyType = CurrencyDrawableType.from(it.getInt(R.styleable.CurrencyCell_admiralBuyIconType, 0))
+            drawableSellType = CurrencyDrawableType.from(
+                it.getInt(
+                    R.styleable.CurrencyCell_admiralSellIconType,
+                    0
+                )
+            )
+            drawableBuyType =
+                CurrencyDrawableType.from(it.getInt(R.styleable.CurrencyCell_admiralBuyIconType, 0))
         }
     }
 
@@ -358,7 +366,8 @@ class CurrencyCell @JvmOverloads constructor(
     private fun invalidateBackground() {
         val contentStateList = colorStateList(
             enabled = backgroundColor?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccent,
-            disabled = backgroundColor?.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
+            disabled = backgroundColor?.normalDisabled
+                ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
             pressed = backgroundColor?.pressed ?: ThemeManager.theme.palette.backgroundAccent
         )
 
@@ -367,7 +376,8 @@ class CurrencyCell @JvmOverloads constructor(
 
     private fun invalidateCurrencyTextColors() {
         val colorState = ColorState(
-            normalEnabled = this.textColorCurrency?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
+            normalEnabled = this.textColorCurrency?.normalEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
             normalDisabled = this.textColorCurrency?.normalDisabled
                 ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = this.textColorCurrency?.pressed ?: ThemeManager.theme.palette.textPrimary
@@ -378,7 +388,8 @@ class CurrencyCell @JvmOverloads constructor(
 
     private fun invalidateBuyTextColors() {
         val colorState = ColorState(
-            normalEnabled = this.textColorBuy?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
+            normalEnabled = this.textColorBuy?.normalEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
             normalDisabled = this.textColorBuy?.normalDisabled
                 ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = this.textColorBuy?.pressed ?: ThemeManager.theme.palette.textPrimary
@@ -408,10 +419,12 @@ class CurrencyCell @JvmOverloads constructor(
             )
         } else {
             val colorState = colorStateList(
-                enabled = drawableCurrencyTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
+                enabled = drawableCurrencyTintColor?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
                 disabled = drawableCurrencyTintColor?.normalDisabled
                     ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                pressed = drawableCurrencyTintColor?.pressed ?: ThemeManager.theme.palette.elementAccent
+                pressed = drawableCurrencyTintColor?.pressed
+                    ?: ThemeManager.theme.palette.elementAccent
             )
 
             currencyTextView.setCompoundDrawablesWithIntrinsicBounds(
@@ -425,7 +438,8 @@ class CurrencyCell @JvmOverloads constructor(
 
     private fun invalidateBuyDrawable() {
         val colorState = colorStateList(
-            enabled = drawableBuyTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
+            enabled = drawableBuyTintColor?.normalEnabled
+                ?: ThemeManager.theme.palette.elementPrimary,
             disabled = drawableBuyTintColor?.normalDisabled
                 ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
             pressed = drawableBuyTintColor?.pressed ?: ThemeManager.theme.palette.elementPrimary
@@ -433,8 +447,8 @@ class CurrencyCell @JvmOverloads constructor(
 
         val drawable = if (drawableBuy == null) {
             when (drawableBuyType) {
-                CurrencyDrawableType.DOWN -> drawable(R.drawable.admiral_ic_arrow_down_outline)
-                CurrencyDrawableType.UP -> drawable(R.drawable.admiral_ic_arrow_up_outline)
+                CurrencyDrawableType.DOWN -> drawable(res.drawable.admiral_ic_arrow_down_outline)
+                CurrencyDrawableType.UP -> drawable(res.drawable.admiral_ic_arrow_up_outline)
                 CurrencyDrawableType.NONE -> null
             }
         } else {
@@ -446,7 +460,8 @@ class CurrencyCell @JvmOverloads constructor(
 
     private fun invalidateSellDrawable() {
         val colorState = colorStateList(
-            enabled = drawableSellTintColor?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
+            enabled = drawableSellTintColor?.normalEnabled
+                ?: ThemeManager.theme.palette.elementPrimary,
             disabled = drawableSellTintColor?.normalDisabled
                 ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
             pressed = drawableSellTintColor?.pressed ?: ThemeManager.theme.palette.elementPrimary
@@ -454,8 +469,8 @@ class CurrencyCell @JvmOverloads constructor(
 
         val drawable = if (drawableSell == null) {
             when (drawableSellType) {
-                CurrencyDrawableType.DOWN -> drawable(R.drawable.admiral_ic_arrow_down_outline)
-                CurrencyDrawableType.UP -> drawable(R.drawable.admiral_ic_arrow_up_outline)
+                CurrencyDrawableType.DOWN -> drawable(res.drawable.admiral_ic_arrow_down_outline)
+                CurrencyDrawableType.UP -> drawable(res.drawable.admiral_ic_arrow_up_outline)
                 CurrencyDrawableType.NONE -> null
             }
         } else {
@@ -468,7 +483,8 @@ class CurrencyCell @JvmOverloads constructor(
     private fun invalidateType() {
         if (isHeader) {
             val colorState = ColorState(
-                normalEnabled = textColorHeader?.normalEnabled ?: ThemeManager.theme.palette.textSecondary,
+                normalEnabled = textColorHeader?.normalEnabled
+                    ?: ThemeManager.theme.palette.textSecondary,
                 normalDisabled = textColorHeader?.normalDisabled
                     ?: ThemeManager.theme.palette.textSecondary.withAlpha(),
                 pressed = textColorHeader?.pressed ?: ThemeManager.theme.palette.textSecondary

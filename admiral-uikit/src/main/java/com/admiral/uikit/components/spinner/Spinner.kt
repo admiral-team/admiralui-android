@@ -17,13 +17,14 @@ import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.resources.R as res
 
 class Spinner @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ProgressBar(
-    ContextThemeWrapper(context, R.style.Widget_AppCompat_ProgressBar),
+    ContextThemeWrapper(context, androidx.appcompat.R.style.Widget_AppCompat_ProgressBar),
     attrs,
     defStyleAttr
 ), ThemeObserver {
@@ -67,7 +68,8 @@ class Spinner @JvmOverloads constructor(
             parseColors(it)
         }
 
-        indeterminateDrawable = ContextCompat.getDrawable(context, R.drawable.admiral_progress_bar_states)
+        indeterminateDrawable =
+            ContextCompat.getDrawable(context, R.drawable.admiral_progress_bar_states)
 
         stateListAnimator = null
         isIndeterminate = true
@@ -91,9 +93,20 @@ class Spinner @JvmOverloads constructor(
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
         val spec = when (spinnerSize) {
-            SpinnerSize.SMALL -> MeasureSpec.makeMeasureSpec(pixels(R.dimen.module_x4), MeasureSpec.EXACTLY)
-            SpinnerSize.MEDIUM -> MeasureSpec.makeMeasureSpec(pixels(R.dimen.module_x6), MeasureSpec.EXACTLY)
-            SpinnerSize.BIG -> MeasureSpec.makeMeasureSpec(pixels(R.dimen.module_x12), MeasureSpec.EXACTLY)
+            SpinnerSize.SMALL -> MeasureSpec.makeMeasureSpec(
+                pixels(res.dimen.module_x4),
+                MeasureSpec.EXACTLY
+            )
+
+            SpinnerSize.MEDIUM -> MeasureSpec.makeMeasureSpec(
+                pixels(res.dimen.module_x6),
+                MeasureSpec.EXACTLY
+            )
+
+            SpinnerSize.BIG -> MeasureSpec.makeMeasureSpec(
+                pixels(res.dimen.module_x12),
+                MeasureSpec.EXACTLY
+            )
         }
 
         super.onMeasure(spec, spec)
@@ -114,14 +127,17 @@ class Spinner @JvmOverloads constructor(
     private fun invalidateProgressBarColor() {
         val colorStateList = if (isContrast) {
             colorStateList(
-                enabled = progressColor?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                disabled = progressColor?.normalDisabled ?: ThemeManager.theme.palette.elementStaticWhite.withAlpha(),
+                enabled = progressColor?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
+                disabled = progressColor?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite.withAlpha(),
                 pressed = progressColor?.pressed ?: ThemeManager.theme.palette.elementStaticWhite
             )
         } else {
             colorStateList(
                 enabled = progressColor?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-                disabled = progressColor?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+                disabled = progressColor?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
                 pressed = progressColor?.pressed ?: ThemeManager.theme.palette.elementAccent
             )
         }

@@ -22,6 +22,7 @@ import com.admiral.uikit.ext.animatePulse
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
+import com.admiral.resources.R as res
 
 /**
  * Replacement for Rating Bar
@@ -142,7 +143,8 @@ class Feedback @JvmOverloads constructor(
             if (isEnabled) {
                 iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent
             } else {
-                iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+                iconTintColors?.selectedEnabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha()
             }
         }
 
@@ -150,12 +152,15 @@ class Feedback @JvmOverloads constructor(
             view.animatePulse(startDelay = delay * ANIMATION_DELAY, color = color).apply {
                 doOnEnd {
                     val colorAtTheEnd = if (viewRating > chosenRating) {
-                        iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAdditional
+                        iconTintColors?.normalEnabled
+                            ?: ThemeManager.theme.palette.elementAdditional
                     } else {
                         if (isEnabled) {
-                            iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent
+                            iconTintColors?.selectedEnabled
+                                ?: ThemeManager.theme.palette.elementAccent
                         } else {
-                            iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+                            iconTintColors?.selectedEnabled
+                                ?: ThemeManager.theme.palette.elementAccent.withAlpha()
                         }
                     }
                     view.imageTintList = ColorStateList.valueOf(colorAtTheEnd)
@@ -205,7 +210,8 @@ class Feedback @JvmOverloads constructor(
                 if (isEnabled) {
                     iconTintColors?.selectedEnabled ?: ThemeManager.theme.palette.elementAccent
                 } else {
-                    iconTintColors?.selectedEnabled?.withAlpha() ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+                    iconTintColors?.selectedEnabled?.withAlpha()
+                        ?: ThemeManager.theme.palette.elementAccent.withAlpha()
                 }
             }
 
@@ -215,7 +221,7 @@ class Feedback @JvmOverloads constructor(
 
     private fun invalidateIcons() {
         stars.forEach {
-            it.setImageDrawable(icon ?: context.drawable(R.drawable.admiral_ic_star_solid))
+            it.setImageDrawable(icon ?: context.drawable(res.drawable.admiral_ic_star_solid))
         }
     }
 

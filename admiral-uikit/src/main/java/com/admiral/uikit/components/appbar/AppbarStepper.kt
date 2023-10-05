@@ -25,7 +25,12 @@ class AppbarStepper @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : Toolbar(ContextThemeWrapper(context, R.style.Widget_AppCompat_Toolbar), attrs, defStyleAttr), ThemeObserver {
+) : Toolbar(
+    ContextThemeWrapper(
+        context,
+        androidx.appcompat.R.style.Widget_AppCompat_Toolbar
+    ), attrs, defStyleAttr
+), ThemeObserver {
 
     /**
      * Color of tabs in activated state.
@@ -75,7 +80,8 @@ class AppbarStepper @JvmOverloads constructor(
         orientation = LinearLayout.HORIZONTAL
 
         showDividers = LinearLayout.SHOW_DIVIDER_MIDDLE
-        dividerDrawable = ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_8dp)
+        dividerDrawable =
+            ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_8dp)
     }
 
     init {

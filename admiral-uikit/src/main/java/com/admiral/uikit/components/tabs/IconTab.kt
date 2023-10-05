@@ -27,6 +27,7 @@ import com.admiral.uikit.view.checkable.CheckableImageView
 import com.admiral.uikit.view.checkable.CheckableLinearLayout
 import com.admiral.uikit.view.checkable.CheckableTextView
 import com.admiral.uikit.view.checkable.CheckableView
+import com.admiral.resources.R as res
 
 class IconTab @JvmOverloads constructor(
     context: Context,
@@ -127,7 +128,7 @@ class IconTab @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = MeasureSpec.makeMeasureSpec(pixels(R.dimen.module_x20), MeasureSpec.EXACTLY)
+        val width = MeasureSpec.makeMeasureSpec(pixels(res.dimen.module_x20), MeasureSpec.EXACTLY)
         super.onMeasure(width, measuredHeight)
     }
 
@@ -215,13 +216,16 @@ class IconTab @JvmOverloads constructor(
                 ?: ThemeManager.theme.palette.backgroundAdditionalOne,
             normalDisabled = iconBackgroundColorState?.normalDisabled
                 ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha(),
-            pressed = iconBackgroundColorState?.checkedEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
-            checkedEnabled = iconBackgroundColorState?.checkedEnabled ?: ThemeManager.theme.palette.backgroundAccent,
+            pressed = iconBackgroundColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            checkedEnabled = iconBackgroundColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.backgroundAccent,
             checkedDisabled = iconBackgroundColorState?.checkedEnabled
                 ?: ThemeManager.theme.palette.backgroundAccent.withAlpha(),
         )
 
-        val color = iconBackgroundColorState?.checkedEnabled ?: ThemeManager.theme.palette.backgroundAccent
+        val color =
+            iconBackgroundColorState?.checkedEnabled ?: ThemeManager.theme.palette.backgroundAccent
         val content = context.coloredDrawable(R.drawable.admiral_bg_round, stateList)
         val mask = context.drawable(R.drawable.admiral_bg_round)
 
@@ -231,10 +235,14 @@ class IconTab @JvmOverloads constructor(
     private fun invalidateTextColors() {
         textView.setTextColor(
             colorStateListForChecked(
-                checkedEnabled = textColorState?.checkedEnabled ?: ThemeManager.theme.palette.textAccent,
-                checkedDisabled = textColorState?.checkedDisabled ?: ThemeManager.theme.palette.textAccent.withAlpha(),
-                normalEnabled = textColorState?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-                normalDisabled = textColorState?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha()
+                checkedEnabled = textColorState?.checkedEnabled
+                    ?: ThemeManager.theme.palette.textAccent,
+                checkedDisabled = textColorState?.checkedDisabled
+                    ?: ThemeManager.theme.palette.textAccent.withAlpha(),
+                normalEnabled = textColorState?.normalEnabled
+                    ?: ThemeManager.theme.palette.textPrimary,
+                normalDisabled = textColorState?.normalDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha()
             )
         )
     }
@@ -242,11 +250,14 @@ class IconTab @JvmOverloads constructor(
     private fun invalidateIconColors() {
         iconView.imageTintList =
             colorStateListForChecked(
-                checkedEnabled = iconColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
+                checkedEnabled = iconColorState?.checkedEnabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
                 checkedDisabled = iconColorState?.checkedDisabled
                     ?: ThemeManager.theme.palette.elementStaticWhite.withAlpha(),
-                normalEnabled = iconColorState?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-                normalDisabled = iconColorState?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+                normalEnabled = iconColorState?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
+                normalDisabled = iconColorState?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha()
             )
     }
 

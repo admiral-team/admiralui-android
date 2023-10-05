@@ -24,6 +24,7 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.setMargins
 import com.google.android.material.snackbar.Snackbar
+import com.admiral.resources.R as res
 
 class ToastNotification {
 
@@ -334,7 +335,7 @@ class ToastNotification {
                 setMargins(ICONS_MARGIN.dpToPx(context), 0, 0, 0)
             }
 
-            setImageDrawable(drawable(R.drawable.admiral_ic_close_outline))
+            setImageDrawable(drawable(res.drawable.admiral_ic_close_outline))
             imageTintColorState =
                 ColorState(normalEnabled = ThemeManager.theme.palette.elementPrimary)
             isFocusable = true

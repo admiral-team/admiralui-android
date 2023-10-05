@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
-import com.admiral.uikit.R
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.resources.R as res
 
 class UnderlineSliderTabs @JvmOverloads constructor(
     context: Context,
@@ -25,10 +25,10 @@ class UnderlineSliderTabs @JvmOverloads constructor(
 
     init {
         updatePadding(
-            left = context.pixels(R.dimen.module_x2),
-            right = context.pixels(R.dimen.module_x2),
-            top = context.pixels(R.dimen.module_x2),
-            bottom = context.pixels(R.dimen.module_x2)
+            left = context.pixels(res.dimen.module_x2),
+            right = context.pixels(res.dimen.module_x2),
+            top = context.pixels(res.dimen.module_x2),
+            bottom = context.pixels(res.dimen.module_x2)
         )
 
         orientation = HORIZONTAL
@@ -39,14 +39,22 @@ class UnderlineSliderTabs @JvmOverloads constructor(
         children.forEach { it.isEnabled = enabled }
     }
 
-    fun setupWithViewPager(viewPager: ViewPager, tabConfigurationStrategy: TabConfigurationStrategy? = null) {
+    fun setupWithViewPager(
+        viewPager: ViewPager,
+        tabConfigurationStrategy: TabConfigurationStrategy? = null
+    ) {
         this.tabConfigurationStrategy = tabConfigurationStrategy
 
         populate(viewPager)
         viewPager.addOnAdapterChangeListener(AdapterChangeListener())
 
         viewPager.addOnPageChangeListener(object : ViewPager.OnPageChangeListener {
-            override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {}
+            override fun onPageScrolled(
+                position: Int,
+                positionOffset: Float,
+                positionOffsetPixels: Int
+            ) {
+            }
 
             override fun onPageSelected(position: Int) {
                 check(getChildAt(position).id)
@@ -58,7 +66,11 @@ class UnderlineSliderTabs @JvmOverloads constructor(
     }
 
     inner class AdapterChangeListener : ViewPager.OnAdapterChangeListener {
-        override fun onAdapterChanged(viewPager: ViewPager, oldAdapter: PagerAdapter?, newAdapter: PagerAdapter?) {
+        override fun onAdapterChanged(
+            viewPager: ViewPager,
+            oldAdapter: PagerAdapter?,
+            newAdapter: PagerAdapter?
+        ) {
             populate(viewPager)
         }
     }
@@ -116,7 +128,12 @@ class UnderlineSliderTabs @JvmOverloads constructor(
         populateTabsFromPagerAdapter(viewPager, tabConfigurationStrategy)
 
         viewPager.registerOnPageChangeCallback(TabLayoutOnPageChangeCallback())
-        viewPager.adapter?.registerAdapterDataObserver(Pager2AdapterObserver(viewPager, tabConfigurationStrategy))
+        viewPager.adapter?.registerAdapterDataObserver(
+            Pager2AdapterObserver(
+                viewPager,
+                tabConfigurationStrategy
+            )
+        )
     }
 
     inner class TabLayoutOnPageChangeCallback : ViewPager2.OnPageChangeCallback() {

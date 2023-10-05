@@ -6,6 +6,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.themes"
     applyConfig(
         isCoreLibraryDesugaringEnabled = false,
         isComposeEnabled = false,

@@ -13,6 +13,7 @@ import com.admiral.demo.databinding.FmtToolbarBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.toolbar.ToolbarItem
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.resources.R as res
 
 class ToolbarFragment : BaseFragment(R.layout.fmt_toolbar) {
 
@@ -24,10 +25,10 @@ class ToolbarFragment : BaseFragment(R.layout.fmt_toolbar) {
 
     private val iconIds =
         listOf(
-            R.drawable.admiral_ic_settings_solid,
-            R.drawable.admiral_ic_info_solid,
-            R.drawable.admiral_ic_get_cash_solid,
-            R.drawable.admiral_ic_card_solid
+            res.drawable.admiral_ic_settings_solid,
+            res.drawable.admiral_ic_info_solid,
+            res.drawable.admiral_ic_get_cash_solid,
+            res.drawable.admiral_ic_card_solid
         ).reversed()
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
@@ -48,20 +49,26 @@ class ToolbarFragment : BaseFragment(R.layout.fmt_toolbar) {
             }
         }
 
-        binding.tabsState.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
-                when (checkedId) {
-                    R.id.defaultTab -> {
-                        binding.admiralToolbar.isEnabled = true
-                        binding.inputNumber.isEnabled = true
-                    }
-                    R.id.disabledTab -> {
-                        binding.admiralToolbar.isEnabled = false
-                        binding.inputNumber.isEnabled = false
+        binding.tabsState.onCheckedChangeListener =
+            object : CheckableGroup.OnCheckedChangeListener {
+                override fun onCheckedChanged(
+                    radioButton: View?,
+                    isChecked: Boolean,
+                    checkedId: Int
+                ) {
+                    when (checkedId) {
+                        R.id.defaultTab -> {
+                            binding.admiralToolbar.isEnabled = true
+                            binding.inputNumber.isEnabled = true
+                        }
+
+                        R.id.disabledTab -> {
+                            binding.admiralToolbar.isEnabled = false
+                            binding.inputNumber.isEnabled = false
+                        }
                     }
                 }
             }
-        }
     }
 
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {

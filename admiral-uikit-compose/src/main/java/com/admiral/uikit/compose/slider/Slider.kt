@@ -50,8 +50,8 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.textfield.fakeClickable
+import com.admiral.resources.R as res
 
 @Preview(showBackground = true)
 @Composable
@@ -65,7 +65,7 @@ fun SliderPreview() {
             optionalText = "Optional label 2",
             placeholderText = "Placeholder text",
             additionalText = "Additional text",
-            icon = painterResource(id = R.drawable.admiral_ic_heart_solid),
+            icon = painterResource(id = res.drawable.admiral_ic_heart_solid),
             value = SLIDER_PREVIEW_VALUE,
             valueRange = SLIDER_PREVIEW_VALUE_RANGE_START..SLIDER_PREVIEW_VALUE_RANGE_END
         )
@@ -171,7 +171,12 @@ fun Slider(
                 onValueChange = {
                     if (it.text.isDigitsOnly()) {
                         val v = it.text.toInt()
-                        if (isInRange(valueRange.start.toInt(), valueRange.endInclusive.toInt(), v)) {
+                        if (isInRange(
+                                valueRange.start.toInt(),
+                                valueRange.endInclusive.toInt(),
+                                v
+                            )
+                        ) {
                             textState.value = it
                             onValueChange.invoke(it.text.toFloat())
                         }
@@ -197,8 +202,10 @@ fun Slider(
             )
 
             val iconColor =
-                if (isEnabled) textColorState?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
-                else textColorState?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+                if (isEnabled) textColorState?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary
+                else textColorState?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
 
             icon?.let {
                 Icon(

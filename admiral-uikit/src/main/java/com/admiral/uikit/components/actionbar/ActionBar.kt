@@ -21,6 +21,7 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.resources.R as res
 
 class ActionBar @JvmOverloads constructor(
     context: Context,
@@ -105,11 +106,11 @@ class ActionBar @JvmOverloads constructor(
             invalidateDeleteTintColor()
         }
 
-    val dots = createImageView(R.drawable.admiral_ic_more_outline)
-    val down = createImageView(R.drawable.admiral_ic_arrow_down_outline)
-    val up = createImageView(R.drawable.admiral_ic_arrow_up_outline)
-    val edit = createImageView(R.drawable.admiral_ic_edit_outline)
-    val delete = createImageView(R.drawable.admiral_ic_close_outline)
+    val dots = createImageView(res.drawable.admiral_ic_more_outline)
+    val down = createImageView(res.drawable.admiral_ic_arrow_down_outline)
+    val up = createImageView(res.drawable.admiral_ic_arrow_up_outline)
+    val edit = createImageView(res.drawable.admiral_ic_edit_outline)
+    val delete = createImageView(res.drawable.admiral_ic_close_outline)
 
     init {
         parseAttrs(attrs, R.styleable.ActionBar).use {
@@ -145,7 +146,7 @@ class ActionBar @JvmOverloads constructor(
 
             setImageDrawable(drawable(icon))
 
-            val padding = pixels(R.dimen.module_x1)
+            val padding = pixels(res.dimen.module_x1)
             setPadding(padding, padding, padding, padding)
 
             isClickable = true
@@ -173,7 +174,7 @@ class ActionBar @JvmOverloads constructor(
 
         setImageDrawable(drawable(icon))
 
-        val padding = pixels(R.dimen.module_x1)
+        val padding = pixels(res.dimen.module_x1)
         setPadding(padding, padding, padding, padding)
 
         isClickable = true

@@ -24,7 +24,10 @@ class RadioButton @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : AppCompatRadioButton(
-    ContextThemeWrapper(context, R.style.Widget_AppCompat_CompoundButton_RadioButton),
+    ContextThemeWrapper(
+        context,
+        androidx.appcompat.R.style.Widget_AppCompat_CompoundButton_RadioButton
+    ),
     attrs,
     defStyleAttr
 ), ThemeObserver {

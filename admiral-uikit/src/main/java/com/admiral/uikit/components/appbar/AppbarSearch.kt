@@ -24,19 +24,26 @@ import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.cell.unit.IconCellUnit
 import com.admiral.uikit.components.textfield.TextFieldSearch
 import com.admiral.uikit.ext.dpToPx
+import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.getIntOrNull
-import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
 import kotlinx.coroutines.flow.StateFlow
 import kotlinx.parcelize.Parcelize
+import com.admiral.resources.R as res
 
 class AppbarSearch @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : Toolbar(ContextThemeWrapper(context, R.style.Widget_AppCompat_Toolbar), attrs, defStyleAttr), ThemeObserver {
+) : Toolbar(
+    ContextThemeWrapper(
+        context,
+        androidx.appcompat.R.style.Widget_AppCompat_Toolbar
+    ), attrs, defStyleAttr
+),
+    ThemeObserver {
 
     /**
      * Color of background from the palette for the normal enabled state.
@@ -59,7 +66,11 @@ class AppbarSearch @JvmOverloads constructor(
      */
     private val textFieldSearch = TextFieldSearch(context).apply {
         layoutParams =
-            LinearLayout.LayoutParams(LayoutParams.MATCH_PARENT, TEXT_FIELD_SEARCH_HEIGHT.dpToPx(context), 1f)
+            LinearLayout.LayoutParams(
+                LayoutParams.MATCH_PARENT,
+                TEXT_FIELD_SEARCH_HEIGHT.dpToPx(context),
+                1f
+            )
         setMargins(0, MARGIN, 0, 0)
     }
 
@@ -205,11 +216,13 @@ class AppbarSearch @JvmOverloads constructor(
     init {
         parseAttrs(attrs, R.styleable.AppbarSearch).use {
             editTextDrawableStart = it.getDrawable(R.styleable.AppbarSearch_android_drawableStart)
-                ?: drawable(R.drawable.admiral_ic_search_outline)
-            isEditTextDrawableStartVisible = it.getBoolean(R.styleable.AppbarSearch_admiralIsDrawableStartVisible, true)
+                ?: drawable(res.drawable.admiral_ic_search_outline)
+            isEditTextDrawableStartVisible =
+                it.getBoolean(R.styleable.AppbarSearch_admiralIsDrawableStartVisible, true)
 
             textColor = it.getColorOrNull(R.styleable.AppbarSearch_admiralTextColorNormalEnabled)
-            hintTextColor = it.getColorOrNull(R.styleable.AppbarSearch_admiralHintTextColorNormalEnabled)
+            hintTextColor =
+                it.getColorOrNull(R.styleable.AppbarSearch_admiralHintTextColorNormalEnabled)
 
             text = it.getString(R.styleable.AppbarSearch_admiralText)
             hintText = it.getString(R.styleable.AppbarSearch_admiralHintText)
@@ -277,13 +290,15 @@ class AppbarSearch @JvmOverloads constructor(
     private fun initTextsColor() {
         textFieldSearch.inputTextColors = ColorState(
             normalEnabled = textColor ?: ThemeManager.theme.palette.textPrimary,
-            normalDisabled = textColor?.withAlpha() ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            normalDisabled = textColor?.withAlpha()
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = textColor ?: ThemeManager.theme.palette.textPrimary
         )
 
         textFieldSearch.hintTextColors = ColorState(
             normalEnabled = hintTextColor ?: ThemeManager.theme.palette.textSecondary,
-            normalDisabled = hintTextColor?.withAlpha() ?: ThemeManager.theme.palette.textSecondary.withAlpha(),
+            normalDisabled = hintTextColor?.withAlpha()
+                ?: ThemeManager.theme.palette.textSecondary.withAlpha(),
             pressed = hintTextColor ?: ThemeManager.theme.palette.textSecondary
         )
     }
@@ -324,7 +339,11 @@ class AppbarSearch @JvmOverloads constructor(
             super.onRestoreInstanceState(state.superState)
             state.searchInput?.let { searchInput ->
                 text = searchInput
-                Handler(Looper.getMainLooper()).post { textFieldSearch.editText?.setSelection(searchInput.length) }
+                Handler(Looper.getMainLooper()).post {
+                    textFieldSearch.editText?.setSelection(
+                        searchInput.length
+                    )
+                }
             }
         } ?: super.onRestoreInstanceState(state)
     }

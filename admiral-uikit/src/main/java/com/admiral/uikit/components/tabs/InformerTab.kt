@@ -23,6 +23,7 @@ import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
 import com.admiral.uikit.view.checkable.CheckableLinearLayout
 import com.admiral.uikit.view.checkable.CheckableTextView
+import com.admiral.resources.R as res
 
 class InformerTab @JvmOverloads constructor(
     context: Context,
@@ -106,8 +107,8 @@ class InformerTab @JvmOverloads constructor(
         isFocusable = true
 
         updatePadding(
-            top = context.pixels(R.dimen.module_x5),
-            bottom = context.pixels(R.dimen.module_x4)
+            top = context.pixels(res.dimen.module_x5),
+            bottom = context.pixels(res.dimen.module_x4)
         )
 
         orientation = VERTICAL
@@ -193,12 +194,15 @@ class InformerTab @JvmOverloads constructor(
 
     private fun invalidateBackground() {
         val stateList = colorStateListUnion(
-            normalEnabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAdditional,
+            normalEnabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAdditional,
             normalDisabled = strokeColorState?.checkedEnabled
                 ?: ThemeManager.theme.palette.elementAdditional.withAlpha(),
             pressed = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            checkedEnabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            checkedDisabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+            checkedEnabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent,
+            checkedDisabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
         )
 
         val color = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent
@@ -214,11 +218,14 @@ class InformerTab @JvmOverloads constructor(
 
     private fun invalidateTitleColors() {
         title.textColor = ColorState(
-            checkedEnabled = titleColorState?.checkedEnabled ?: ThemeManager.theme.palette.textPrimary,
+            checkedEnabled = titleColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
             checkedDisabled = titleColorState?.checkedDisabled
                 ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
-            normalEnabled = titleColorState?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-            normalDisabled = titleColorState?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha()
+            normalEnabled = titleColorState?.normalEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
+            normalDisabled = titleColorState?.normalDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha()
         )
     }
 

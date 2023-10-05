@@ -156,24 +156,24 @@ public final class MaterialTimePicker extends DialogFragment {
     Context context = dialog.getContext();
     int surfaceColor =
             MaterialAttributes.resolveOrThrow(
-                    context, R.attr.colorSurface, MaterialTimePicker.class.getCanonicalName());
+                    context, com.google.android.material.R.attr.colorSurface, MaterialTimePicker.class.getCanonicalName());
 
     MaterialShapeDrawable background =
             new MaterialShapeDrawable(
                     context,
                     null,
-                    R.attr.materialTimePickerStyle,
-                    R.style.Widget_MaterialComponents_TimePicker);
+                    com.google.android.material.R.attr.materialTimePickerStyle,
+                    com.google.android.material.R.style.Widget_MaterialComponents_TimePicker);
 
     TypedArray a =
             context.obtainStyledAttributes(
                     null,
-                    R.styleable.MaterialTimePicker,
-                    R.attr.materialTimePickerStyle,
-                    R.style.Widget_MaterialComponents_TimePicker);
+                    com.google.android.material.R.styleable.MaterialTimePicker,
+                    com.google.android.material.R.attr.materialTimePickerStyle,
+                    com.google.android.material.R.style.Widget_MaterialComponents_TimePicker);
 
-    clockIcon = com.admiral.uikit.R.drawable.admiral_ic_time_outline;
-    keyboardIcon = com.admiral.uikit.R.drawable.admiral_ic_keyboard_outline;
+    clockIcon =  com.admiral.resources.R.drawable.admiral_ic_time_outline;
+    keyboardIcon = com.admiral.resources.R.drawable.admiral_ic_keyboard_outline;
 
     a.recycle();
 
@@ -361,9 +361,9 @@ public final class MaterialTimePicker extends DialogFragment {
   private Pair<Integer, Integer> dataForMode(@InputMode int mode) {
     switch (mode) {
       case INPUT_MODE_KEYBOARD:
-        return new Pair<>(clockIcon, R.string.material_timepicker_clock_mode_description);
+        return new Pair<>(clockIcon, com.google.android.material.R.string.material_timepicker_clock_mode_description);
       case INPUT_MODE_CLOCK:
-        return new Pair<>(keyboardIcon, R.string.material_timepicker_text_input_mode_description);
+        return new Pair<>(keyboardIcon, com.google.android.material.R.string.material_timepicker_text_input_mode_description);
     }
 
     throw new IllegalArgumentException("no icon for mode: " + mode);
@@ -477,7 +477,7 @@ public final class MaterialTimePicker extends DialogFragment {
     if (overrideThemeResId != 0) {
       return overrideThemeResId;
     }
-    TypedValue value = MaterialAttributes.resolve(requireContext(), R.attr.materialTimePickerTheme);
+    TypedValue value = MaterialAttributes.resolve(requireContext(), com.google.android.material.R.attr.materialTimePickerTheme);
     return value == null ? 0 : value.data;
   }
 

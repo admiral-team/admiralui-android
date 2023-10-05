@@ -9,6 +9,7 @@ import androidx.core.view.updatePadding
 import com.admiral.uikit.R
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.resources.R as res
 
 class IconTabs @JvmOverloads constructor(
     context: Context,
@@ -18,15 +19,16 @@ class IconTabs @JvmOverloads constructor(
 
     init {
         updatePadding(
-            left = context.pixels(R.dimen.module_x4),
-            top = context.pixels(R.dimen.module_x2),
-            right = context.pixels(R.dimen.module_x4),
-            bottom = context.pixels(R.dimen.module_x2)
+            left = context.pixels(res.dimen.module_x4),
+            top = context.pixels(res.dimen.module_x2),
+            right = context.pixels(res.dimen.module_x4),
+            bottom = context.pixels(res.dimen.module_x2)
         )
 
         orientation = HORIZONTAL
         showDividers = SHOW_DIVIDER_MIDDLE
-        dividerDrawable = ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_16dp)
+        dividerDrawable =
+            ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_16dp)
         gravity = Gravity.CENTER
     }
 

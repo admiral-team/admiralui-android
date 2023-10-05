@@ -2,12 +2,12 @@ package com.admiral.uikit.components.chat
 
 import androidx.core.view.isVisible
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.R
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.drawable
+import com.admiral.resources.R as res
 
 @Suppress("MagicNumber")
 internal fun ImageView.setMessageStatusIcon(
@@ -19,9 +19,11 @@ internal fun ImageView.setMessageStatusIcon(
             MessageStatus.ERROR -> {
                 ThemeManager.theme.palette.elementErrorDefault
             }
+
             MessageStatus.SENDING -> {
                 ThemeManager.theme.palette.elementStaticWhite.withAlpha(0.5f)
             }
+
             else -> {
                 ThemeManager.theme.palette.elementStaticWhite
             }
@@ -31,9 +33,11 @@ internal fun ImageView.setMessageStatusIcon(
             MessageStatus.ERROR -> {
                 ThemeManager.theme.palette.elementErrorDefault
             }
+
             MessageStatus.SENDING -> {
                 ThemeManager.theme.palette.textSecondary.withAlpha(0.5f)
             }
+
             else -> {
                 ThemeManager.theme.palette.elementPrimary
             }
@@ -42,13 +46,13 @@ internal fun ImageView.setMessageStatusIcon(
 
     val drawable = when (status) {
         MessageStatus.NONE -> null
-        MessageStatus.LOAD -> drawable(R.drawable.admiral_ic_time_outline)
-        MessageStatus.SENDING -> drawable(R.drawable.admiral_ic_status_one_outline)
-        MessageStatus.SEND -> drawable(R.drawable.admiral_ic_status_one_outline)
-        MessageStatus.READ -> drawable(R.drawable.admiral_ic_status_two_outline)
-        MessageStatus.ERROR -> drawable(R.drawable.admiral_ic_error_outline)
-        MessageStatus.LOADING -> drawable(R.drawable.admiral_ic_time_outline)
-        MessageStatus.DONE -> drawable(R.drawable.admiral_ic_status_one_outline)
+        MessageStatus.LOAD -> drawable(res.drawable.admiral_ic_time_outline)
+        MessageStatus.SENDING -> drawable(res.drawable.admiral_ic_status_one_outline)
+        MessageStatus.SEND -> drawable(res.drawable.admiral_ic_status_one_outline)
+        MessageStatus.READ -> drawable(res.drawable.admiral_ic_status_two_outline)
+        MessageStatus.ERROR -> drawable(res.drawable.admiral_ic_error_outline)
+        MessageStatus.LOADING -> drawable(res.drawable.admiral_ic_time_outline)
+        MessageStatus.DONE -> drawable(res.drawable.admiral_ic_status_one_outline)
     }
 
     if (drawable == null) {

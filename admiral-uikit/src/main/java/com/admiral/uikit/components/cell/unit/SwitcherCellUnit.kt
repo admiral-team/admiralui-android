@@ -26,7 +26,7 @@ class SwitcherCellUnit @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : SwitchCompat(
-    ContextThemeWrapper(context, R.style.Widget_AppCompat_CompoundButton_Switch),
+    ContextThemeWrapper(context, androidx.appcompat.R.style.Widget_AppCompat_CompoundButton_Switch),
     attrs,
     defStyleAttr
 ), ThemeObserver, CellUnit {
@@ -154,20 +154,26 @@ class SwitcherCellUnit @JvmOverloads constructor(
     private fun invalidateThumbTintColors() {
         thumbTintList =
             colorStateListForChecked(
-                checkedEnabled = thumbTintColors?.checkedEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                checkedDisabled = thumbTintColors?.checkedDisabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                normalEnabled = thumbTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementStaticWhite,
-                normalDisabled = thumbTintColors?.normalDisabled ?: ThemeManager.theme.palette.elementStaticWhite
+                checkedEnabled = thumbTintColors?.checkedEnabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
+                checkedDisabled = thumbTintColors?.checkedDisabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
+                normalEnabled = thumbTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite,
+                normalDisabled = thumbTintColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementStaticWhite
             )
     }
 
     private fun invalidateTrackTintColors() {
         trackTintList =
             colorStateListForChecked(
-                checkedEnabled = thumbTintColors?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
+                checkedEnabled = thumbTintColors?.checkedEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
                 checkedDisabled = thumbTintColors?.checkedDisabled
                     ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                normalEnabled = thumbTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
+                normalEnabled = thumbTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary,
                 normalDisabled = thumbTintColors?.normalDisabled
                     ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
             )
@@ -177,7 +183,8 @@ class SwitcherCellUnit @JvmOverloads constructor(
         setTextColor(
             colorStateList(
                 enabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-                disabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                disabled = textColor?.normalDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
                 pressed = textColor?.pressed ?: ThemeManager.theme.palette.textPrimary,
             )
         )

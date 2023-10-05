@@ -106,20 +106,20 @@ class TimePickerTextInputPresenter implements TimePickerView.OnSelectionChange, 
         TextView hourLabel = hourTextInput.findViewById(R.id.material_label);
 
         dividerView = timePickerView.findViewById(R.id.material_divider_tv);
-        TextViewCompat.setTextAppearance(dividerView, R.style.AdmiralTextAppearance_TimePickerChips);
+        TextViewCompat.setTextAppearance(dividerView, R.style.TimePickerChips);
         dividerView.setTextColorNormalEnabledPalette(ColorPaletteEnum.TEXT_PRIMARY);
 
-        minuteLabel.setText(res.getString(R.string.material_timepicker_minute));
-        hourLabel.setText(res.getString(R.string.material_timepicker_hour));
-        minuteTextInput.setTag(R.id.selection_type, MINUTE);
-        hourTextInput.setTag(R.id.selection_type, HOUR);
+        minuteLabel.setText(res.getString(com.google.android.material.R.string.material_timepicker_minute));
+        hourLabel.setText(res.getString(com.google.android.material.R.string.material_timepicker_hour));
+        minuteTextInput.setTag(com.google.android.material.R.id.selection_type, MINUTE);
+        hourTextInput.setTag(com.google.android.material.R.id.selection_type, HOUR);
 
         if (time.format == CLOCK_12H) {
             setupPeriodToggle();
         }
 
         OnClickListener onClickListener =
-                v -> onSelectionChanged((int) v.getTag(R.id.selection_type));
+                v -> onSelectionChanged((int) v.getTag(com.google.android.material.R.id.selection_type));
 
         hourTextInput.setOnClickListener(onClickListener);
         minuteTextInput.setOnClickListener(onClickListener);
@@ -131,9 +131,9 @@ class TimePickerTextInputPresenter implements TimePickerView.OnSelectionChange, 
 
         controller = new TimePickerTextInputKeyController(hourTextInput, minuteTextInput, time);
         hourTextInput.setChipDelegate(
-                new ClickActionDelegate(timePickerView.getContext(), R.string.material_hour_selection));
+                new ClickActionDelegate(timePickerView.getContext(), com.google.android.material.R.string.material_hour_selection));
         minuteTextInput.setChipDelegate(
-                new ClickActionDelegate(timePickerView.getContext(), R.string.material_minute_selection));
+                new ClickActionDelegate(timePickerView.getContext(), com.google.android.material.R.string.material_minute_selection));
 
         initialize();
     }

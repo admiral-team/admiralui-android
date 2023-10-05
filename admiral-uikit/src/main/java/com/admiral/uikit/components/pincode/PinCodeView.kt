@@ -6,17 +6,18 @@ import android.util.AttributeSet
 import android.view.Gravity
 import android.view.View
 import android.view.animation.AnimationUtils
-import com.admiral.uikit.layout.LinearLayout
 import androidx.annotation.IntRange
 import androidx.core.content.res.use
 import androidx.core.view.forEachIndexed
-import com.admiral.uikit.R
-import com.admiral.uikit.ext.drawable
-import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.ext.pixels
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
+import com.admiral.uikit.R
+import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
+import com.admiral.uikit.ext.parseAttrs
+import com.admiral.uikit.ext.pixels
+import com.admiral.uikit.layout.LinearLayout
+import com.admiral.resources.R as res
 
 /**
  * It represents a set of indicator dots.
@@ -113,7 +114,7 @@ class PinCodeView @JvmOverloads constructor(
     init {
         orientation = HORIZONTAL
         gravity = Gravity.CENTER
-        val padding = pixels(R.dimen.module_x5) / 2
+        val padding = pixels(res.dimen.module_x5) / 2
 
         setPadding(padding, 0, padding, 0)
 
@@ -155,6 +156,7 @@ class PinCodeView @JvmOverloads constructor(
                     defaultColor ?: ThemeManager.theme.palette.elementAdditional
                 }
             }
+
             PinCodeState.SUCCESS -> successColor ?: ThemeManager.theme.palette.elementSuccess
             PinCodeState.ERROR -> errorColor ?: ThemeManager.theme.palette.elementError
         }
@@ -171,8 +173,8 @@ class PinCodeView @JvmOverloads constructor(
     }
 
     private fun addViews(count: Int) {
-        val size = pixels(R.dimen.module_x3)
-        val margin = pixels(R.dimen.module_x5) / 2
+        val size = pixels(res.dimen.module_x3)
+        val margin = pixels(res.dimen.module_x5) / 2
 
         for (index in dotsCount - count until dotsCount) {
             addView(

@@ -18,6 +18,7 @@ import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.resources.R as res
 
 open class Chip @JvmOverloads constructor(
     context: Context,
@@ -170,13 +171,13 @@ open class Chip @JvmOverloads constructor(
         // []text[]
         // As we can see space between icon and text must be in case when text isn't empty
 
-        chipEndPadding = pixels(R.dimen.module_x4).toFloat()
-        chipStartPadding = pixels(R.dimen.module_x4).toFloat()
+        chipEndPadding = pixels(res.dimen.module_x4).toFloat()
+        chipStartPadding = pixels(res.dimen.module_x4).toFloat()
 
         closeIconEndPadding = 0f
-        closeIconStartPadding = pixels(R.dimen.module_x2).toFloat()
+        closeIconStartPadding = pixels(res.dimen.module_x2).toFloat()
 
-        iconEndPadding = if (text.isEmpty()) 0f else pixels(R.dimen.module_x2).toFloat()
+        iconEndPadding = if (text.isEmpty()) 0f else pixels(res.dimen.module_x2).toFloat()
 
         textEndPadding = 0f
         textStartPadding = 0f

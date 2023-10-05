@@ -33,7 +33,7 @@ import com.admiral.uikit.common.components.button.ButtonSize
 import com.admiral.uikit.common.components.button.ButtonStyle
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-
+import com.admiral.resources.R as res
 @Preview(showBackground = false)
 @Composable
 fun Primary() {
@@ -49,7 +49,7 @@ fun Secondary() {
     Button(
         actionText = "Выбрать",
         isEnabled = false,
-        iconStart = painterResource(id = R.drawable.admiral_ic_heart_solid),
+        iconStart = painterResource(id = res.drawable.admiral_ic_heart_solid),
         buttonStyle = ButtonStyle.Secondary
     )
 }
@@ -59,7 +59,7 @@ fun Secondary() {
 fun Ghost() {
     Button(
         actionText = "Выбрать",
-        iconStart = painterResource(id = R.drawable.admiral_ic_heart_solid),
+        iconStart = painterResource(id = res.drawable.admiral_ic_heart_solid),
         buttonStyle = ButtonStyle.Ghost
     )
 }

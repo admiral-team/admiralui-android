@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.annotation.StyleRes
 import kotlinx.parcelize.Parcelize
 import org.json.JSONObject
+import com.admiral.resources.R as res
 
 /**
  * AdmiralUI
@@ -13,23 +14,74 @@ import org.json.JSONObject
 @Parcelize
 @Suppress("LongParameterList")
 open class Typography(
-    open val body1: Font = Font(R.style.AdmiralTextAppearance_Body1, R.style.AdmiralTextAppearance_Body1_Fixed),
-    open val body2: Font = Font(R.style.AdmiralTextAppearance_Body2, R.style.AdmiralTextAppearance_Body2_Fixed),
-    open val caption1: Font = Font(R.style.AdmiralTextAppearance_Caption1, R.style.AdmiralTextAppearance_Caption1_Fixed),
-    open val caption2: Font = Font(R.style.AdmiralTextAppearance_Caption2, R.style.AdmiralTextAppearance_Caption2_Fixed),
-    open val headline: Font = Font(R.style.AdmiralTextAppearance_Headline, R.style.AdmiralTextAppearance_Headline_Fixed),
-    open val largetitle1: Font = Font(R.style.AdmiralTextAppearance_LargeTitle1, R.style.AdmiralTextAppearance_LargeTitle1_Fixed),
-    open val largetitle2: Font = Font(R.style.AdmiralTextAppearance_LargeTitle2, R.style.AdmiralTextAppearance_LargeTitle2_Fixed),
-    open val overline: Font = Font(R.style.AdmiralTextAppearance_OVERLINE, R.style.AdmiralTextAppearance_OVERLINE_Fixed),
-    open val subhead3: Font = Font(R.style.AdmiralTextAppearance_Subhead3, R.style.AdmiralTextAppearance_Subhead3_Fixed),
-    open val subhead1: Font = Font(R.style.AdmiralTextAppearance_Subhead1, R.style.AdmiralTextAppearance_Subhead1_Fixed),
-    open val subhead2: Font = Font(R.style.AdmiralTextAppearance_Subhead2, R.style.AdmiralTextAppearance_Subhead2_Fixed),
-    open val subtitle1: Font = Font(R.style.AdmiralTextAppearance_Subtitle1, R.style.AdmiralTextAppearance_Subtitle1_Fixed),
-    open val subtitle2: Font = Font(R.style.AdmiralTextAppearance_Subtitle2, R.style.AdmiralTextAppearance_Subtitle2_Fixed),
-    open val subtitle3: Font = Font(R.style.AdmiralTextAppearance_Subtitle3, R.style.AdmiralTextAppearance_Subtitle3_Fixed),
-    open val title1: Font = Font(R.style.AdmiralTextAppearance_Title1, R.style.AdmiralTextAppearance_Title1_Fixed),
-    open val title2: Font = Font(R.style.AdmiralTextAppearance_Title2, R.style.AdmiralTextAppearance_Title2_Fixed),
-    open val pinNum: Font = Font(R.style.AdmiralTextAppearance_PinNum, R.style.AdmiralTextAppearance_PinNum_Fixed),
+    open val body1: Font = Font(
+        res.style.AdmiralTextAppearance_Body1,
+        res.style.AdmiralTextAppearance_Body1_Fixed
+    ),
+    open val body2: Font = Font(
+        res.style.AdmiralTextAppearance_Body2,
+        res.style.AdmiralTextAppearance_Body2_Fixed
+    ),
+    open val caption1: Font = Font(
+        res.style.AdmiralTextAppearance_Caption1,
+        res.style.AdmiralTextAppearance_Caption1_Fixed
+    ),
+    open val caption2: Font = Font(
+        res.style.AdmiralTextAppearance_Caption2,
+        res.style.AdmiralTextAppearance_Caption2_Fixed
+    ),
+    open val headline: Font = Font(
+        res.style.AdmiralTextAppearance_Headline,
+        res.style.AdmiralTextAppearance_Headline_Fixed
+    ),
+    open val largetitle1: Font = Font(
+        res.style.AdmiralTextAppearance_LargeTitle1,
+        res.style.AdmiralTextAppearance_LargeTitle1_Fixed
+    ),
+    open val largetitle2: Font = Font(
+        res.style.AdmiralTextAppearance_LargeTitle2,
+        res.style.AdmiralTextAppearance_LargeTitle2_Fixed
+    ),
+    open val overline: Font = Font(
+        res.style.AdmiralTextAppearance_OVERLINE,
+        res.style.AdmiralTextAppearance_OVERLINE_Fixed
+    ),
+    open val subhead3: Font = Font(
+        res.style.AdmiralTextAppearance_Subhead3,
+        res.style.AdmiralTextAppearance_Subhead3_Fixed
+    ),
+    open val subhead1: Font = Font(
+        res.style.AdmiralTextAppearance_Subhead1,
+        res.style.AdmiralTextAppearance_Subhead1_Fixed
+    ),
+    open val subhead2: Font = Font(
+        res.style.AdmiralTextAppearance_Subhead2,
+        res.style.AdmiralTextAppearance_Subhead2_Fixed
+    ),
+    open val subtitle1: Font = Font(
+        res.style.AdmiralTextAppearance_Subtitle1,
+        res.style.AdmiralTextAppearance_Subtitle1_Fixed
+    ),
+    open val subtitle2: Font = Font(
+        res.style.AdmiralTextAppearance_Subtitle2,
+        res.style.AdmiralTextAppearance_Subtitle2_Fixed
+    ),
+    open val subtitle3: Font = Font(
+        res.style.AdmiralTextAppearance_Subtitle3,
+        res.style.AdmiralTextAppearance_Subtitle3_Fixed
+    ),
+    open val title1: Font = Font(
+        res.style.AdmiralTextAppearance_Title1,
+        res.style.AdmiralTextAppearance_Title1_Fixed
+    ),
+    open val title2: Font = Font(
+        res.style.AdmiralTextAppearance_Title2,
+        res.style.AdmiralTextAppearance_Title2_Fixed
+    ),
+    open val pinNum: Font = Font(
+        res.style.AdmiralTextAppearance_PinNum,
+        res.style.AdmiralTextAppearance_PinNum_Fixed
+    ),
 ) : Parcelable {
 
     companion object {
@@ -46,7 +98,7 @@ open class Typography(
          * @return [Font] by index or [BODY_1] if index is not defined
          */
         @Suppress("MagicNumber")
-        fun getStyleById(index: Int): Font = when (index){ 
+        fun getStyleById(index: Int): Font = when (index) {
             1 -> ThemeManager.theme.typography.body1
             2 -> ThemeManager.theme.typography.body2
             3 -> ThemeManager.theme.typography.caption1
@@ -91,7 +143,7 @@ open class Typography(
 }
 
 internal fun Typography.toJSON(): JSONObject {
-    return JSONObject().apply { 
+    return JSONObject().apply {
         put("body1", body1.toJSON())
         put("body2", body2.toJSON())
         put("caption1", caption1.toJSON())

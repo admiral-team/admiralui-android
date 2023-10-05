@@ -1,7 +1,7 @@
 import com.android.build.api.dsl.ApkSigningConfig
 import com.android.build.api.dsl.ApplicationBuildType
 import java.io.FileReader
-import java.util.*
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -11,6 +11,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.demo"
     defaultConfig {
         applicationId = APPLICATION_ID
         testInstrumentationRunner = ANDROID_TEST_INSTRUMENTATION_RUNNER
@@ -66,7 +67,8 @@ android {
                 FileReader(keystorePropertiesFile).use { reader -> keystoreProperties.load(reader) }
 
                 config.storeFile = keystoreFile
-                config.storePassword = keystoreProperties.getProperty(Keystore.Properties.storePassword)
+                config.storePassword =
+                    keystoreProperties.getProperty(Keystore.Properties.storePassword)
                 config.keyAlias = keystoreProperties.getProperty(Keystore.Properties.keyAlias)
                 config.keyPassword = keystoreProperties.getProperty(Keystore.Properties.keyPassword)
             }

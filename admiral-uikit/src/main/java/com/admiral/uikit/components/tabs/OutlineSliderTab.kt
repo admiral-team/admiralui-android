@@ -30,6 +30,7 @@ import com.admiral.uikit.ext.ripple
 import com.admiral.uikit.ext.setMargins
 import com.admiral.uikit.view.checkable.CheckableFrameLayout
 import com.admiral.uikit.view.checkable.CheckableView
+import com.admiral.resources.R as res
 
 class OutlineSliderTab @JvmOverloads constructor(
     context: Context,
@@ -122,7 +123,8 @@ class OutlineSliderTab @JvmOverloads constructor(
             parseStrokeColors(it)
             parseTextColors(it)
             parseText(it)
-            isBadgeVisible = it.getBoolean(R.styleable.OutlineSliderTab_admiralIsBadgeVisible, false)
+            isBadgeVisible =
+                it.getBoolean(R.styleable.OutlineSliderTab_admiralIsBadgeVisible, false)
             isBadgeEnabled = it.getBoolean(R.styleable.OutlineSliderTab_admiralIsBadgeEnabled, true)
         }
 
@@ -131,10 +133,10 @@ class OutlineSliderTab @JvmOverloads constructor(
         isFocusable = true
 
         updatePadding(
-            top = context.pixels(R.dimen.module_x2),
-            bottom = context.pixels(R.dimen.module_x2),
-            left = context.pixels(R.dimen.module_x2),
-            right = context.pixels(R.dimen.module_x2)
+            top = context.pixels(res.dimen.module_x2),
+            bottom = context.pixels(res.dimen.module_x2),
+            left = context.pixels(res.dimen.module_x2),
+            right = context.pixels(res.dimen.module_x2)
         )
     }
 
@@ -219,19 +221,25 @@ class OutlineSliderTab @JvmOverloads constructor(
             textView.setMargins(0, MARGIN_WITH_BADGE, 0, MARGIN_WITH_BADGE)
         } else {
             textView.setMargins(0, 0, 0, 0)
-            textView.layoutParams = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
-                gravity = CENTER
-            }
+            textView.layoutParams =
+                LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT).apply {
+                    gravity = CENTER
+                }
         }
     }
 
     private fun invalidateColors() {
         val stateList = colorStateListUnion(
-            normalEnabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAdditional,
-            normalDisabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAdditional,
-            pressed = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAdditional,
-            checkedEnabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            checkedDisabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+            normalEnabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAdditional,
+            normalDisabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAdditional,
+            pressed = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAdditional,
+            checkedEnabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent,
+            checkedDisabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
         )
 
         val color = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent
@@ -248,10 +256,14 @@ class OutlineSliderTab @JvmOverloads constructor(
     private fun invalidateTextColors() {
         textView.setTextColor(
             colorStateListForChecked(
-                checkedEnabled = textColorState?.checkedEnabled ?: ThemeManager.theme.palette.textPrimary,
-                checkedDisabled = textColorState?.checkedDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
-                normalEnabled = textColorState?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-                normalDisabled = textColorState?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha()
+                checkedEnabled = textColorState?.checkedEnabled
+                    ?: ThemeManager.theme.palette.textPrimary,
+                checkedDisabled = textColorState?.checkedDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                normalEnabled = textColorState?.normalEnabled
+                    ?: ThemeManager.theme.palette.textPrimary,
+                normalDisabled = textColorState?.normalDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha()
             )
         )
     }

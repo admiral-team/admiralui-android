@@ -8,6 +8,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.uikit"
     applyConfig(
         isCoreLibraryDesugaringEnabled = true,
         isComposeEnabled = false,
@@ -18,6 +19,7 @@ android {
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
     api(project(Modules.Admiral.UiKit.common))
+    api(project(Modules.Admiral.resources))
 
     lintPublish(project(Modules.Admiral.lint))
 

@@ -25,6 +25,7 @@ import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnitCompose
 import com.admiral.uikit.compose.switcher
 import com.admiral.uikit.compose.tabs.LogoTabs
 import com.admiral.uikit.compose.util.DIMEN_X8
+import com.admiral.resources.R as res
 
 class ComposeHomeFragment : BaseFragment(R.layout.fmt_home) {
 
@@ -68,7 +69,7 @@ class ComposeHomeFragment : BaseFragment(R.layout.fmt_home) {
                             ),
                             IconCellUnitCompose(
                                 unitType = CellUnitType.TRAILING,
-                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                                icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                             )
                         ),
                         onClick = { }

@@ -42,7 +42,7 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.compose.R
+import com.admiral.resources.R as res
 
 @Preview(showBackground = true)
 @Composable
@@ -56,7 +56,7 @@ fun FirstCardTextField() {
             inputText = "Text in text field",
             placeholderText = "Placeholder text",
             additionalText = "Additional text",
-            icon = painterResource(id = R.drawable.admiral_ic_heart_solid)
+            icon = painterResource(id = res.drawable.admiral_ic_heart_solid)
         )
     }
 }
@@ -173,8 +173,10 @@ fun CardTextField(
             )
 
             val iconColor =
-                if (isEnabled) textColorState?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
-                else textColorState?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+                if (isEnabled) textColorState?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary
+                else textColorState?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
 
             icon?.let {
                 Icon(

@@ -16,13 +16,14 @@ import com.admiral.uikit.common.components.cell.base.CellUnitType
 import com.admiral.uikit.common.ext.withAlpha
 import com.admiral.uikit.common.foundation.ColorState
 import com.admiral.uikit.common.util.ComponentsRadius
+import com.admiral.uikit.ext.createRoundedColoredRectangleDrawable
+import com.admiral.uikit.ext.createRoundedRectangleDrawable
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.ext.createRoundedColoredRectangleDrawable
-import com.admiral.uikit.ext.createRoundedRectangleDrawable
 import com.admiral.uikit.layout.ConstraintLayout
+import com.admiral.resources.R as res
 
 class BaseCell @JvmOverloads constructor(
     context: Context,
@@ -46,15 +47,21 @@ class BaseCell @JvmOverloads constructor(
     init {
         parseAttrs(attrs, R.styleable.BaseCell).use {
             radius = ComponentsRadius.from(it.getInt(R.styleable.BaseCell_admiralRadius, 0))
-            leadingGravity = it.getInt(R.styleable.BaseCell_admiralLeadingElementGravity, Gravity.CENTER_HORIZONTAL)
-            trailingGravity = it.getInt(R.styleable.BaseCell_admiralTrailingElementGravity, Gravity.CENTER_HORIZONTAL)
+            leadingGravity = it.getInt(
+                R.styleable.BaseCell_admiralLeadingElementGravity,
+                Gravity.CENTER_HORIZONTAL
+            )
+            trailingGravity = it.getInt(
+                R.styleable.BaseCell_admiralTrailingElementGravity,
+                Gravity.CENTER_HORIZONTAL
+            )
         }
 
         this.setPadding(
             paddingLeft,
-            paddingTop + pixels(R.dimen.module_x3),
+            paddingTop + pixels(res.dimen.module_x3),
             paddingRight,
-            paddingBottom + pixels(R.dimen.module_x3)
+            paddingBottom + pixels(res.dimen.module_x3)
         )
 
         minHeight = MIN_HEIGHT.dpToPx(context)
@@ -86,7 +93,8 @@ class BaseCell @JvmOverloads constructor(
             backgroundColors?.pressed ?: theme.palette.textPrimary.withAlpha(RIPPLE_ALPHA)
         val colorState = ColorState(
             normalEnabled = backgroundColors?.normalEnabled ?: theme.palette.backgroundBasic,
-            normalDisabled = backgroundColors?.normalDisabled ?: theme.palette.backgroundBasic.withAlpha(),
+            normalDisabled = backgroundColors?.normalDisabled
+                ?: theme.palette.backgroundBasic.withAlpha(),
             pressed = backgroundColors?.pressed ?: theme.palette.backgroundBasic
         )
 
@@ -175,14 +183,15 @@ class BaseCell @JvmOverloads constructor(
                 set.setMargin(
                     leadingTextView.id,
                     ConstraintSet.START,
-                    pixels(R.dimen.module_x4) + this.marginStart
+                    pixels(res.dimen.module_x4) + this.marginStart
                 )
                 set.setMargin(
                     leadingTextView.id,
                     ConstraintSet.END,
-                    pixels(R.dimen.module_x4)
+                    pixels(res.dimen.module_x4)
                 )
             }
+
             leadingView != null && leadingTextView != null -> {
                 set.createHorizontalChain(
                     ConstraintSet.PARENT_ID,
@@ -196,9 +205,10 @@ class BaseCell @JvmOverloads constructor(
                 set.setMargin(
                     leadingTextView.id,
                     ConstraintSet.START,
-                    pixels(R.dimen.module_x4) + this.marginStart
+                    pixels(res.dimen.module_x4) + this.marginStart
                 )
             }
+
             trailingView != null && leadingTextView != null -> {
                 set.createHorizontalChain(
                     ConstraintSet.PARENT_ID,
@@ -212,9 +222,10 @@ class BaseCell @JvmOverloads constructor(
                 set.setMargin(
                     leadingTextView.id,
                     ConstraintSet.END,
-                    pixels(R.dimen.module_x4)
+                    pixels(res.dimen.module_x4)
                 )
             }
+
             leadingTextView != null -> {
                 set.connect(
                     leadingTextView.id,

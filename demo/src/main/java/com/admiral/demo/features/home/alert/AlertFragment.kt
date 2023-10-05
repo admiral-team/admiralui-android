@@ -29,10 +29,11 @@ class AlertFragment : BaseFragment(R.layout.fmt_alerts_alert) {
 
     private fun showDialog() {
         val dialog =
-            AlertDialog.Builder(requireContext()).setContent(R.layout.admiral_view_pop_up_dialog).apply().dialog
+            AlertDialog.Builder(requireContext())
+                .setContent(com.admiral.uikit.R.layout.admiral_view_pop_up_dialog).apply().dialog
 
-        val showBtn: Button = dialog.findViewById(R.id.buttonAction)
-        val cancelBtn: Button = dialog.findViewById(R.id.buttonAlternative)
+        val showBtn: Button = dialog.findViewById(com.admiral.uikit.R.id.buttonAction)
+        val cancelBtn: Button = dialog.findViewById(com.admiral.uikit.R.id.buttonAlternative)
         showBtn.text = "hello main button"
         cancelBtn.text = "hello cancel button"
         showBtn.setOnClickListener {

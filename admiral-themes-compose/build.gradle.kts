@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.themes.compose"
     applyConfig(
         isCoreLibraryDesugaringEnabled = false,
         isComposeEnabled = true,
@@ -15,6 +16,7 @@ android {
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
     api(project(Modules.Admiral.Themes.themes))
+    api(project(Modules.Admiral.resources))
 
     implementation(Libs.AndroidX.Compose.Ui.ui)
     implementation(Libs.Kotlin.stdLib)

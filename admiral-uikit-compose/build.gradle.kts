@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.uikit.compose"
     applyConfig(
         isCoreLibraryDesugaringEnabled = true,
         isComposeEnabled = true,

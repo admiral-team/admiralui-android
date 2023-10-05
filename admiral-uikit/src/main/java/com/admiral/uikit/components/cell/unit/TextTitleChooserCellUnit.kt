@@ -19,6 +19,7 @@ import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.resources.R as res
 
 class TextTitleChooserCellUnit @JvmOverloads constructor(
     context: Context,
@@ -62,8 +63,8 @@ class TextTitleChooserCellUnit @JvmOverloads constructor(
             parseDrawableColors(it)
         }
 
-        drawable(R.drawable.admiral_ic_chevron_down_outline)?.also {
-            compoundDrawablePadding = pixels(R.dimen.module_x1)
+        drawable(res.drawable.admiral_ic_chevron_down_outline)?.also {
+            compoundDrawablePadding = pixels(res.dimen.module_x1)
             setCompoundDrawablesWithIntrinsicBounds(null, null, it, null)
         }
     }
