@@ -45,7 +45,7 @@ jobs:
         with:
           api-level: 24
           force-avd-creation: false
-          avd-name: Pixel_4_API_30
+          avd-name: Pixel_4a_API_30
           emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
           disable-animations: true
           script: |
