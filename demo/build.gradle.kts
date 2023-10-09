@@ -82,6 +82,7 @@ android {
 
         create("release") {
             sign(
+
                 config = this,
                 propertiesFilePath = Keystore.Files.Release.properties,
                 keystoreFilePath = Keystore.Files.Release.keystore
