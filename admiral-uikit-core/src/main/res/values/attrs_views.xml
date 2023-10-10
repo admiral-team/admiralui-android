@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <declare-styleable name="CircularImageView">
+        <!-- BORDER -->
+        <attr name="admiralBorder" format="boolean" />
+        <attr name="admiralBorderWidth" format="dimension" />
+        <attr name="admiralBorderColor" format="color" />
+        <attr name="admiralBorderColorStart" format="color" />
+        <attr name="admiralBorderColorEnd" format="color" />
+        <attr name="admiralBorderColorDirection">
+            <flag name="leftToRight" value="1" />
+            <flag name="rightToLeft" value="2" />
+            <flag name="topToBottom" value="3" />
+            <flag name="bottomToTop" value="4" />
+        </attr>
+
+        <!-- CIRCLE COLOR -->
+        <attr name="admiralCircleColor" format="color" />
+        <attr name="admiralCircleColorStart" format="color" />
+        <attr name="admiralCircleColorEnd" format="color" />
+        <attr name="admiralCircleColorDirection">
+            <flag name="leftToRight" value="1" />
+            <flag name="rightToLeft" value="2" />
+            <flag name="topToBottom" value="3" />
+            <flag name="bottomToTop" value="4" />
+        </attr>
+
+        <!-- SHADOW -->
+        <attr name="admiralShadow" format="boolean" />
+        <attr name="admiralShadowColor" format="color" />
+        <attr name="admiralShadowRadius" format="dimension" />
+        <attr name="admiralShadowGravity">
+            <flag name="center" value="1" />
+            <flag name="top" value="2" />
+            <flag name="bottom" value="3" />
+            <flag name="start" value="4" />
+            <flag name="end" value="5" />
+        </attr>
+    </declare-styleable>
+
+    <declare-styleable name="CheckableGroup">
+        <attr name="checkedId" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="CheckableView">
+        <attr name="android:checked" />
+    </declare-styleable>
+</resources>

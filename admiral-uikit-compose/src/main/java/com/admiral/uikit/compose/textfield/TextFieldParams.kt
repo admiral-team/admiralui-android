@@ -5,7 +5,7 @@ import androidx.compose.foundation.text.KeyboardOptions
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.text.input.TextFieldValue
 import androidx.compose.ui.text.input.VisualTransformation
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 
 @Suppress("LongParameterList")
 class TextFieldParams(

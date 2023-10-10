@@ -16,8 +16,8 @@ import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.themes.Typography.Companion.subhead1
 import com.admiral.uikit.R
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colorStateListUnion

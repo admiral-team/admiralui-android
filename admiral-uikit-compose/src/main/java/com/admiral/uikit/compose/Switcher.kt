@@ -8,7 +8,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 
 @Composable
 fun switcher(

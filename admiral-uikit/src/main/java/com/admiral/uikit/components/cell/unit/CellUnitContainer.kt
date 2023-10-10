@@ -5,8 +5,8 @@ import android.util.AttributeSet
 import android.widget.FrameLayout
 import androidx.core.content.res.use
 import com.admiral.uikit.R
-import com.admiral.uikit.common.components.cell.base.CellUnit
-import com.admiral.uikit.common.components.cell.base.CellUnitType
+import com.admiral.uikit.core.components.cell.base.CellUnit
+import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.ext.parseAttrs
 
 class CellUnitContainer @JvmOverloads constructor(

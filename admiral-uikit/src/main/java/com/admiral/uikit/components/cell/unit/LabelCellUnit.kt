@@ -11,8 +11,8 @@ import androidx.core.content.res.use
 import androidx.core.view.isGone
 import com.admiral.uikit.R
 import com.admiral.uikit.components.badge.Badge
-import com.admiral.uikit.common.components.cell.base.CellUnit
-import com.admiral.uikit.common.components.cell.base.CellUnitType
+import com.admiral.uikit.core.components.cell.base.CellUnit
+import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.view.CircularImageView
 

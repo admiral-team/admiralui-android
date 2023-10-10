@@ -6,7 +6,7 @@ import com.admiral.uikit.R
 /**
  * Define sizes for [Button]
  */
-@Deprecated("Use com.admiral.uikit.common.components.button.ButtonSize instead")
+@Deprecated("Use com.admiral.uikit.core.components.button.ButtonSize instead")
 sealed class ButtonSize(
     @DimenRes val padding: Int,
     @DimenRes val minWidth: Int

@@ -3,8 +3,8 @@ package com.admiral.uikit.components.chat
 import androidx.core.view.isVisible
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.drawable

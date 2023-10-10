@@ -12,9 +12,9 @@ import androidx.annotation.DimenRes
 import androidx.annotation.DrawableRes
 import androidx.core.content.ContextCompat
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.common.util.ComponentsRadius
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.util.ComponentsRadius
 
 @ColorInt
 internal fun Context.color(@ColorRes colorRes: Int): Int = ContextCompat.getColor(this, colorRes)

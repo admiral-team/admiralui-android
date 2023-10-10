@@ -6,7 +6,7 @@ plugins {
 
 android {
     applyConfig(
-        isCoreLibraryDesugaringEnabled = true,
+        isCoreLibraryDesugaringEnabled = false,
         isComposeEnabled = true,
         isViewBindingEnabled = false
     )
@@ -15,7 +15,7 @@ android {
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
     api(project(Modules.Admiral.Themes.compose))
-    api(project(Modules.Admiral.UiKit.common))
+    api(project(Modules.Admiral.UiKit.core))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appcompat)
