@@ -54,7 +54,6 @@
         android:id="@+id/cancelText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
         app:admiralText="Отмена"
         android:visibility="visible"
         app:admiralTextStyle="body2"
@@ -77,14 +76,12 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/module_x3"
-        android:layout_marginEnd="@dimen/module_x2"
+        android:layout_marginEnd="@dimen/module_x3"
         app:admiralTextStyle="body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="@id/barrier"
         app:layout_constraintStart_toEndOf="@id/timerContainer"
         app:layout_constraintTop_toTopOf="parent"
-        app:layout_goneMarginEnd="0dp"
-        app:layout_goneMarginStart="0dp"
         tools:text="Сообщение будет удалено" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
