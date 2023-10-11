@@ -56,6 +56,7 @@ fun Project.publishing(
                         credentials {
                             username = System.getenv("CI_GITHUB_USERNAME")
                             password = System.getenv("CI_GITHUB_TOKEN")
+
                         }
                     }
                 }
