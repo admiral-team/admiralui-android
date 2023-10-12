@@ -67,6 +67,15 @@ fun Context.createRoundedRectangleDrawable(radius: ComponentsRadius): Drawable {
     return ShapeDrawable(shape)
 }
 
+fun Context.createRoundedRectangleDrawable(radius: Int): Drawable {
+    val outerRadii = FloatArray(RADIUS_ARRAY_SIZE).apply {
+        fill(getRadiusFloat(radius))
+    }
+
+    val shape = RoundRectShape(outerRadii, null, null)
+    return ShapeDrawable(shape)
+}
+
 fun Context.createRoundedRectangleDrawable(
     topLeft: ComponentsRadius,
     topRight: ComponentsRadius,
@@ -164,6 +173,10 @@ private fun Context.getRadiusFloat(radius: ComponentsRadius): Float {
         ComponentsRadius.RADIUS_16 -> 16.dpToPx(this).toFloat()
         ComponentsRadius.RADIUS_20 -> 20.dpToPx(this).toFloat()
     }
+}
+
+private fun getRadiusFloat(radius: Int): Float {
+    return radius.toFloat()
 }
 
 fun Context.colorStateList(

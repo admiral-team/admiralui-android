@@ -2,6 +2,7 @@ package com.admiral.uikit.notification.action
 
 import android.content.Context
 import android.content.res.ColorStateList
+import android.content.res.Resources
 import android.graphics.Color
 import android.graphics.drawable.Drawable
 import android.os.CountDownTimer
@@ -17,10 +18,12 @@ import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.core.ext.colorStateList
+import com.admiral.uikit.core.ext.createRoundedRectangleDrawable
 import com.admiral.uikit.core.ext.dpToPx
 import com.admiral.uikit.core.ext.pixels
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.util.ComponentsRadius
 import com.admiral.uikit.notification.R
 import com.admiral.uikit.notification.databinding.AdmiralNotificationActionBinding
 import com.google.android.material.snackbar.Snackbar
@@ -57,6 +60,14 @@ class ActionNotification {
 
         private val layoutInflater = LayoutInflater.from(context)
         private val binding = AdmiralNotificationActionBinding.inflate(layoutInflater)
+
+        private var backgroundDrawableWithRadius: Drawable? = null
+
+        @ColorInt
+        private var backgroundColor: Int? = null
+        private var isWidthMatchParent = false
+        private var gravity = Gravity.BOTTOM
+        private var marginHorizontal = DEFAULT_HORIZONTAL_MARGINS
 
         /**
          * Listener to detect cancel icon clicked.
@@ -99,10 +110,9 @@ class ActionNotification {
             }
 
             this.setGravity()
-            this.setBackgroundColor()
             this.setCloseButtonText()
             this.setCloseButtonColor()
-            this.setProgressTextColorState()
+            this.setProgressColor(ThemeManager.theme.palette.elementAccent)
             this.setCloseButtonIcon()
 
             onCancelClickListener = null
@@ -119,8 +129,8 @@ class ActionNotification {
         /**
          * Set text color
          */
-        fun setTextColor(colorState: ColorState): Builder {
-            binding.message.textColor = colorState
+        fun setTextColor(@ColorInt color: Int): Builder {
+            binding.message.textColor = ColorState(color)
             return this
         }
 
@@ -143,14 +153,16 @@ class ActionNotification {
         }
 
         /**
-         * Set progress color state
-         * @param progressTextColorState progress color state [ColorState]
+         * Set progress and timer text color.
+         *
+         * @param color progress color.
          */
-        fun setProgressTextColorState(
-            progressTextColorState: ColorState = ColorState(
-                normalEnabled = ThemeManager.theme.palette.elementAccent
-            )
+        fun setProgressColor(
+            @ColorInt color: Int
         ): Builder {
+            val progressTextColorState = ColorState(
+                normalEnabled = color
+            )
             binding.timerProgressBar.progressTintList = parentRootView.colorStateList(
                 enabled = progressTextColorState.normalEnabled
                     ?: ThemeManager.theme.palette.elementAccent,
@@ -168,24 +180,9 @@ class ActionNotification {
          * @param gravity [Gravity]
          */
         fun setGravity(gravity: Int = Gravity.BOTTOM): Builder {
-            val view: View = actionNotification.snackBarInstance.view
-            return if (view.layoutParams is CoordinatorLayout.LayoutParams) {
-                val params = view.layoutParams as CoordinatorLayout.LayoutParams
+            this.gravity = gravity
 
-                params.width = CoordinatorLayout.LayoutParams.WRAP_CONTENT
-                params.gravity = gravity or Gravity.CENTER_HORIZONTAL
-
-                view.layoutParams = params
-                this
-            } else {
-                val params = view.layoutParams as FrameLayout.LayoutParams
-
-                params.width = FrameLayout.LayoutParams.WRAP_CONTENT
-                params.gravity = gravity or Gravity.CENTER_HORIZONTAL
-
-                view.layoutParams = params
-                this
-            }
+            return this
         }
 
         /**
@@ -198,13 +195,15 @@ class ActionNotification {
         }
 
         /**
-         * Set top and bottom margins
-         * @param top top margin in Dp
-         * @param bottom bottom margin in Dp
+         * Set horizontal and top or bottom margins
+         * @param top top margin
+         * @param bottom bottom margin
+         * @param horizontal right and left margin
          */
         fun setMargins(
             top: Int = 0,
             bottom: Int = 0,
+            horizontal: Int = 0,
             isDimenRes: Boolean = false
         ): Builder {
             val snackBarView = actionNotification.snackBarInstance.view
@@ -218,6 +217,26 @@ class ActionNotification {
                 snackBarView.translationY = -bottomMargin.toFloat()
             }
 
+            marginHorizontal = getMargin(isDimenRes, context, horizontal)
+            return this
+        }
+
+        fun setIsWidthMatchParent(isMatchParent: Boolean): Builder {
+            isWidthMatchParent = isMatchParent
+
+            return this
+        }
+
+        /**
+         * Set background radius.
+         *
+         * @param radius radius of the corners.
+         */
+        fun setBackgroundRadius(
+            radius: Int
+        ): Builder {
+            backgroundDrawableWithRadius =
+                binding.root.context.createRoundedRectangleDrawable(radius = radius)
             return this
         }
 
@@ -226,9 +245,9 @@ class ActionNotification {
          * @param color - color [Int] value
          */
         fun setBackgroundColor(
-            @ColorInt color: Int = ThemeManager.theme.palette.backgroundAdditionalOne
+            @ColorInt color: Int
         ): Builder {
-            binding.root.backgroundTintList = ColorStateList.valueOf(color)
+            backgroundColor = color
             return this
         }
 
@@ -330,6 +349,36 @@ class ActionNotification {
          */
         fun build(): ActionNotification {
             actionNotification.builder = this
+
+            // set background
+            binding.root.background =
+                backgroundDrawableWithRadius ?: binding.root.context.createRoundedRectangleDrawable(
+                    radius = ComponentsRadius.RADIUS_8
+                )
+            binding.root.backgroundTintList = ColorStateList.valueOf(
+                backgroundColor ?: ThemeManager.theme.palette.backgroundAdditionalOne
+            )
+
+            // apply width of the toast.
+            val viewInner: View =
+                (actionNotification.snackBarInstance.view as ViewGroup).getChildAt(0)
+            val paramsInner = viewInner.layoutParams as FrameLayout.LayoutParams
+            if (isWidthMatchParent) {
+                paramsInner.width =
+                    Resources.getSystem().displayMetrics.widthPixels - marginHorizontal * 2
+            }
+            paramsInner.gravity = Gravity.CENTER
+
+            // apply gravity to the outer view.
+            val view: View = actionNotification.snackBarInstance.view
+            if (view.layoutParams is CoordinatorLayout.LayoutParams) {
+                val params = view.layoutParams as CoordinatorLayout.LayoutParams
+                params.gravity = gravity or Gravity.CENTER_HORIZONTAL
+            } else {
+                val params = view.layoutParams as FrameLayout.LayoutParams
+                params.gravity = gravity or Gravity.CENTER_HORIZONTAL
+            }
+
             return actionNotification
         }
 
@@ -388,10 +437,10 @@ class ActionNotification {
     }
 
     private companion object {
+        const val DEFAULT_HORIZONTAL_MARGINS = 16
         const val COUNT_DOWN_INTERVAL = 50L
         const val TIME_SHORT_MILLISECONDS = 2000L
         const val TIME_LONG_MILLISECONDS = 3500L
-        const val DEFAULT_MARGIN_BOTTOM = 104
         const val PROGRESS_BAR_TOTAL = 100
         const val MILLISECONDS_TO_SECONDS = 1000
 
