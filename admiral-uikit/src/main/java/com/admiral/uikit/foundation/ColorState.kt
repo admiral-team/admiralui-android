@@ -6,7 +6,7 @@ import androidx.annotation.ColorInt
 /**
  * Used as color state in all components as replacement of [ColorStateList].
  */
-@Deprecated("Use com.admiral.uikit.common.foundation.ColorState instead")
+@Deprecated("Use com.admiral.uikit.core.foundation.ColorState instead")
 data class ColorState(
     @ColorInt val normalEnabled: Int? = null,
     @ColorInt val normalDisabled: Int? = null,
@@ -20,7 +20,7 @@ data class ColorState(
     @ColorInt val errorDisabled: Int? = null
 )
 
-@Deprecated("Use com.admiral.uikit.common.foundation.ColorStateStepper instead")
+@Deprecated("Use com.admiral.uikit.core.foundation.ColorStateStepper instead")
 data class ColorStateStepper(
     @ColorInt val done: Int? = null,
     @ColorInt val current: Int? = null,

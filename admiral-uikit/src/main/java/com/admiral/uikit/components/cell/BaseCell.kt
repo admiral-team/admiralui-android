@@ -11,11 +11,11 @@ import androidx.core.view.children
 import androidx.core.view.marginStart
 import com.admiral.themes.ThemeManager.theme
 import com.admiral.uikit.R
-import com.admiral.uikit.common.components.cell.base.CellUnit
-import com.admiral.uikit.common.components.cell.base.CellUnitType
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.common.util.ComponentsRadius
+import com.admiral.uikit.core.components.cell.base.CellUnit
+import com.admiral.uikit.core.components.cell.base.CellUnitType
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.util.ComponentsRadius
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels

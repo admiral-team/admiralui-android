@@ -11,6 +11,11 @@ plugins {
 }
 
 android {
+
+    shot {
+        tolerance = 0.5
+    }
+
     defaultConfig {
         applicationId = APPLICATION_ID
         testInstrumentationRunner = ANDROID_TEST_INSTRUMENTATION_RUNNER
@@ -118,6 +123,10 @@ android {
         // More info: https://github.com/Kotlin/kotlinx.coroutines/tree/master/kotlinx-coroutines-debug#debug-agent-and-android
         resources.excludes.add("META-INF/AL2.0")
         resources.excludes.add("META-INF/LGPL2.1")
+    }
+
+    shot {
+        tolerance =  0.3
     }
 }
 

@@ -18,8 +18,8 @@ import androidx.core.view.updateLayoutParams
 import com.google.android.material.snackbar.Snackbar
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.databinding.AdmiralNotificationActionBinding
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.dpToPx

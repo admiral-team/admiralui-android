@@ -10,7 +10,6 @@ import android.widget.EditText
 import androidx.annotation.ColorInt
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
-import androidx.core.view.doOnLayout
 import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.admiral.themes.Theme
@@ -18,8 +17,8 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.databinding.AdmiralViewSliderDoubleBinding
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
@@ -27,8 +26,8 @@ import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.ext.showKeyboard
 import com.admiral.uikit.ext.setSelectionEnd
+import com.admiral.uikit.ext.showKeyboard
 import com.google.android.material.slider.RangeSlider
 
 /**

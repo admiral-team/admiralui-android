@@ -16,7 +16,7 @@ import com.admiral.demo.model.icon.IconCategoryListItem
 import com.admiral.demo.model.icon.IconItemTypes
 import com.admiral.demo.model.icon.IconListItem
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.text.TextView
 import java.util.*
 
@@ -60,7 +60,7 @@ class IconsListAdapter(private val onClickListener: (Float, Float, String) -> Un
                     parent,
                     false
                 ).apply {
-                    findViewById<com.admiral.uikit.components.text.TextView>(R.id.tvIconName).apply {
+                    findViewById<TextView>(R.id.tvIconName).apply {
                         textStyle = ThemeManager.theme.typography.caption2
                         textColor = ColorState(normalEnabled = ThemeManager.theme.palette.textSecondary)
                     }
@@ -72,7 +72,7 @@ class IconsListAdapter(private val onClickListener: (Float, Float, String) -> Un
                     parent,
                     false
                 ).apply {
-                    findViewById<com.admiral.uikit.components.text.TextView>(R.id.iconCategory).apply {
+                    findViewById<TextView>(R.id.iconCategory).apply {
                         textStyle = ThemeManager.theme.typography.headline
                         textColor = ColorState(normalEnabled = ThemeManager.theme.palette.textSecondary)
                     }

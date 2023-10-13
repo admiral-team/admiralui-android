@@ -12,9 +12,9 @@ import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.themes.Typography.Companion.body1
 import com.admiral.uikit.R
-import com.admiral.uikit.common.components.cell.base.CellUnit
-import com.admiral.uikit.common.components.cell.base.CellUnitType
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.components.cell.base.CellUnit
+import com.admiral.uikit.core.components.cell.base.CellUnitType
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.getIntOrNull

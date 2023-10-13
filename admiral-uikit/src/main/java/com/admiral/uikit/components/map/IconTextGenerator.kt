@@ -20,7 +20,7 @@ import androidx.core.content.ContextCompat
 import com.admiral.themes.Font
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.setMargins

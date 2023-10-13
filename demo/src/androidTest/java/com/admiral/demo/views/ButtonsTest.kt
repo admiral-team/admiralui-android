@@ -4,37 +4,43 @@ import android.view.LayoutInflater
 import androidx.annotation.StringRes
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.viewbinding.ViewBinding
-import com.karumi.shot.ScreenshotTest
-import com.admiral.demo.databinding.TestViewButtonPrimaryBigBinding
-import com.admiral.demo.ext.measureUnspecified
-import com.admiral.uikit.common.components.button.ButtonSize
-import com.admiral.uikit.components.button.Button
 import com.admiral.demo.R
 import com.admiral.demo.databinding.TestViewButtonGhostBigBinding
 import com.admiral.demo.databinding.TestViewButtonGhostMediumBinding
 import com.admiral.demo.databinding.TestViewButtonGhostSmallBinding
 import com.admiral.demo.databinding.TestViewButtonPrimaryBigAdditionBinding
+import com.admiral.demo.databinding.TestViewButtonPrimaryBigBinding
 import com.admiral.demo.databinding.TestViewButtonPrimaryMediumBinding
 import com.admiral.demo.databinding.TestViewButtonPrimarySmallBinding
 import com.admiral.demo.databinding.TestViewButtonSecondaryBigBinding
 import com.admiral.demo.databinding.TestViewButtonSecondaryMediumBinding
 import com.admiral.demo.databinding.TestViewButtonSecondarySmallBinding
-import com.admiral.uikit.common.components.button.ButtonStyle
+import com.admiral.demo.ext.measureUnspecified
+import com.admiral.uikit.components.button.Button
+import com.admiral.uikit.core.components.button.ButtonSize
+import com.admiral.uikit.core.components.button.ButtonStyle
+import com.karumi.shot.ScreenshotTest
 import org.junit.Test
 
 class ButtonsTest : ScreenshotTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
     private val layoutInflater = LayoutInflater.from(context)
     private val buttonPrimaryBigBinding = TestViewButtonPrimaryBigBinding.inflate(layoutInflater)
-    private val buttonPrimaryMediumBinding = TestViewButtonPrimaryMediumBinding.inflate(layoutInflater)
-    private val buttonPrimarySmallBinding = TestViewButtonPrimarySmallBinding.inflate(layoutInflater)
-    private val buttonSecondaryBigBinding = TestViewButtonSecondaryBigBinding.inflate(layoutInflater)
-    private val buttonSecondaryMediumBinding = TestViewButtonSecondaryMediumBinding.inflate(layoutInflater)
-    private val buttonSecondarySmallBinding = TestViewButtonSecondarySmallBinding.inflate(layoutInflater)
+    private val buttonPrimaryMediumBinding =
+        TestViewButtonPrimaryMediumBinding.inflate(layoutInflater)
+    private val buttonPrimarySmallBinding =
+        TestViewButtonPrimarySmallBinding.inflate(layoutInflater)
+    private val buttonSecondaryBigBinding =
+        TestViewButtonSecondaryBigBinding.inflate(layoutInflater)
+    private val buttonSecondaryMediumBinding =
+        TestViewButtonSecondaryMediumBinding.inflate(layoutInflater)
+    private val buttonSecondarySmallBinding =
+        TestViewButtonSecondarySmallBinding.inflate(layoutInflater)
     private val buttonGhostBigBinding = TestViewButtonGhostBigBinding.inflate(layoutInflater)
     private val buttonGhostMediumBinding = TestViewButtonGhostMediumBinding.inflate(layoutInflater)
     private val buttonGhostSmallBinding = TestViewButtonGhostSmallBinding.inflate(layoutInflater)
-    private val buttonPrimaryBigAdditionBinding = TestViewButtonPrimaryBigAdditionBinding.inflate(layoutInflater)
+    private val buttonPrimaryBigAdditionBinding =
+        TestViewButtonPrimaryBigAdditionBinding.inflate(layoutInflater)
 
     private fun Button.check() {
         measureUnspecified()

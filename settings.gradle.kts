@@ -29,6 +29,10 @@ include(
     ":admiral-themes-compose",
     ":admiral-uikit",
     ":admiral-uikit-compose",
-    ":admiral-uikit-common",
-    ":demo"
+    ":demo",
+    ":admiral-uikit-imageview",
+    ":admiral-uikit-core",
+    ":demo-separated-components",
+    ":admiral-uikit-textview",
+    ":admiral-uikit-notification"
 )

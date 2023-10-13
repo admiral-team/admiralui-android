@@ -13,8 +13,8 @@ import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 
 class Line @JvmOverloads constructor(
     context: Context,

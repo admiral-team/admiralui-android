@@ -11,9 +11,9 @@ import androidx.core.view.children
 import androidx.core.view.isGone
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.uikit.R
-import com.admiral.uikit.common.components.cell.base.CellUnit
-import com.admiral.uikit.common.components.cell.base.CellUnitType
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.components.cell.base.CellUnit
+import com.admiral.uikit.core.components.cell.base.CellUnitType
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.badge.Badge
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.ext.getColorOrNull

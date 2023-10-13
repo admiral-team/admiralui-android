@@ -2,7 +2,7 @@ package com.admiral.uikit.components.toolbar
 
 import android.graphics.drawable.Drawable
 import android.view.View
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 
 data class ToolbarItem(
     val text: CharSequence,

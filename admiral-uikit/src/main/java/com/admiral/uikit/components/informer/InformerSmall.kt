@@ -14,9 +14,9 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
-import com.admiral.uikit.common.ext.withAlpha
-import com.admiral.uikit.common.foundation.ColorState
-import com.admiral.uikit.common.util.ComponentsRadius
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.util.ComponentsRadius
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colorStateList

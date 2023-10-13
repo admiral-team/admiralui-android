@@ -8,7 +8,7 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.ItemOnboardingBinding
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.common.foundation.ColorState
+import com.admiral.uikit.core.foundation.ColorState
 
 class OnboardingScreenFragment : BaseFragment(R.layout.item_onboarding) {
 

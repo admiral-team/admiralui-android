@@ -8,15 +8,12 @@ import androidx.core.view.isVisible
 import androidx.test.platform.app.InstrumentationRegistry
 import androidx.viewbinding.ViewBinding
 import com.admiral.demo.R
-import com.admiral.demo.databinding.TestViewButtonGooglePlayBinding
 import com.admiral.demo.databinding.TestViewCellsCentralBinding
 import com.admiral.demo.databinding.TestViewCellsCentralTrailingBinding
 import com.admiral.demo.databinding.TestViewCellsLeadingCentralBinding
 import com.admiral.demo.databinding.TestViewCellsLeadingCentralTrailingBinding
 import com.admiral.demo.ext.measureUnspecifiedHeight
-import com.admiral.uikit.common.components.cell.base.CellUnitType
 import com.admiral.uikit.components.badge.BadgeSize
-import com.admiral.uikit.components.button.ButtonGooglePay
 import com.admiral.uikit.components.cell.BaseCell
 import com.admiral.uikit.components.cell.unit.CardCellUnit
 import com.admiral.uikit.components.cell.unit.CheckboxCellUnit
@@ -33,6 +30,7 @@ import com.admiral.uikit.components.cell.unit.TextLabelCellUnit
 import com.admiral.uikit.components.cell.unit.TextMessageCellUnit
 import com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
 import com.admiral.uikit.components.cell.unit.TitleSubtitleTextbuttonCellUnit
+import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.karumi.shot.ScreenshotTest
 import org.junit.Test
 
@@ -48,7 +46,8 @@ class CellsTest : ScreenshotTest {
     private val centralBinding = TestViewCellsCentralBinding.inflate(layoutInflater)
     private val leadingCentralBinding = TestViewCellsLeadingCentralBinding.inflate(layoutInflater)
     private val centralTrailingBinding = TestViewCellsCentralTrailingBinding.inflate(layoutInflater)
-    private val leadingCentralTrailingBinding = TestViewCellsLeadingCentralTrailingBinding.inflate(layoutInflater)
+    private val leadingCentralTrailingBinding =
+        TestViewCellsLeadingCentralTrailingBinding.inflate(layoutInflater)
 
     private val leadingViews = listOf(
         CellData(
@@ -347,15 +346,19 @@ class CellsTest : ScreenshotTest {
             leadingCell != null && centerCell != null && trailingCell != null -> {
                 "${leadingCell.name}_${centerCell.name}_${trailingCell.name}_$suffix"
             }
+
             leadingCell != null && centerCell != null -> {
                 "${leadingCell.name}_${centerCell.name}_$suffix"
             }
+
             centerCell != null && trailingCell != null -> {
                 "${centerCell.name}_${trailingCell.name}_$suffix"
             }
+
             centerCell != null -> {
                 "${centerCell.name}_$suffix"
             }
+
             else -> throw IllegalStateException("Unknown state")
         }
 

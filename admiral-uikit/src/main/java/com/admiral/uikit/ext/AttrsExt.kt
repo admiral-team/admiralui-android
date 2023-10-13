@@ -21,8 +21,8 @@ fun TypedArray.getColorOrNull(@StyleableRes index: Int): Int? {
 
 fun TypedArray.getIntOrNull(@StyleableRes index: Int): Int? {
     return if (this.hasValue(index)) {
-        val result = this.getInt(index, 0)
-        if (result == 0) {
+        val result = this.getInt(index, -1)
+        if (result == -1) {
             null
         } else {
             result
