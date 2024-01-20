@@ -2,6 +2,7 @@ package com.admiral.demo.features.main
 
 import android.os.Bundle
 import android.view.View
+import androidx.fragment.app.FragmentManager.POP_BACK_STACK_INCLUSIVE
 import androidx.fragment.app.viewModels
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
@@ -36,6 +37,19 @@ class NavigationFragment : BaseFragment(R.layout.fmt_tab_container) {
     fun onBackPressed(): Boolean {
         return if (childFragmentManager.backStackEntryCount > 1) {
             childFragmentManager.popBackStack()
+            true
+        } else {
+            false
+        }
+    }
+
+    fun onClearBackStack(): Boolean {
+        return if (childFragmentManager.backStackEntryCount > 1) {
+            val firstFragment = childFragmentManager.getBackStackEntryAt(1)
+            childFragmentManager.popBackStack(
+                firstFragment.id,
+                POP_BACK_STACK_INCLUSIVE
+            )
             true
         } else {
             false
