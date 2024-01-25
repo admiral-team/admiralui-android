@@ -13,10 +13,10 @@ jobs:
       - name: Approve
         run: echo For security reasons, all pull requests need to be approved first before running any automated CI.
 
-  build:
+  prepare:
     runs-on: [ self-hosted, main, android ]
-
     needs: [ approve ]
+
     steps:
       - name: Check out repository code
         uses: actions/checkout@v3
@@ -24,39 +24,32 @@ jobs:
           ref: ${{ github.event.pull_request.head.sha }}
           fetch-depth: 2
 
-      - name: Set up JDK 11
+      - name: Set up JDK 21
         uses: actions/setup-java@v3
         with:
           distribution: 'temurin'
-          java-version: 11.0.13
+          java-version: '21'
 
       - name: Prepare keystore files
         run: |
           cp $GITHUB_WORKSPACE/../../setup_files/keystore/keystore_release.properties $GITHUB_WORKSPACE/keystore_release.properties
           cp $GITHUB_WORKSPACE/../../setup_files/keystore/release.keystore $GITHUB_WORKSPACE/release.keystore
 
-      - name: Run detekt
-        run: |
-          chmod +x gradlew
-          ./gradlew detekt
+  build:
+    runs-on: [ self-hosted, main, android ]
+    needs: [ test ]
 
-      - name: Run snapshot tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 24
-          force-avd-creation: false
-          avd-name: Pixel_4_API_24
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
-          disable-animations: true
-          script: |
-            chmod +x gradlew
-            ./gradlew demo:executeScreenshotTests
-
+    steps:
       - name: Build demo release apk
         run: |
           chmod +x gradlew
           ./gradlew assembleRelease
 
+  release:
+    runs-on: [ self-hosted, main, android ]
+    needs: [ build ]
+
+    steps:
       - name: Setup fastlane environment
         run: bundle install
 
@@ -113,4 +106,3 @@ jobs:
         run: |
           chmod +x gradlew
           ./gradlew publish -PrepositoryType="Nexus"
-
