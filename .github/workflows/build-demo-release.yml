@@ -37,7 +37,7 @@ jobs:
 
   build:
     runs-on: [ self-hosted, main, android ]
-    needs: [ test ]
+    needs: [ prepare ]
 
     steps:
       - name: Build demo release apk
