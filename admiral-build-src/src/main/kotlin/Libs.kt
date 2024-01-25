@@ -62,6 +62,7 @@ object Libs {
             object Ui {
                 val ui = "androidx.compose.ui:ui:${Versions.AndroidX.compose}"
                 val tooling = "androidx.compose.ui:ui-tooling:${Versions.AndroidX.compose}"
+                val constraintlayout = "androidx.constraintlayout:constraintlayout-compose:1.0.1"
             }
 
             val foundation = "androidx.compose.foundation:foundation:${Versions.AndroidX.compose}"
