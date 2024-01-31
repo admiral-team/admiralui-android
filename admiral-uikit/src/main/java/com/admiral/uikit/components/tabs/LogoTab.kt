@@ -78,8 +78,8 @@ class LogoTab @JvmOverloads constructor(
         orientation = HORIZONTAL
         gravity = Gravity.CENTER
         parseAttrs(attrs, R.styleable.LogoTab).use {
-            parseStrokeColors(it)
             icon = it.getDrawable(R.styleable.LogoTab_srcCompat)
+            parseStrokeColors(it)
             isEnabled = it.getBoolean(R.styleable.LogoTab_android_enabled, true)
         }
 
@@ -113,6 +113,7 @@ class LogoTab @JvmOverloads constructor(
     override fun onThemeChanged(theme: Theme) {
         invalidateColors()
         invalidateDivider()
+        invalidateIcon()
     }
 
     override fun setEnabled(enabled: Boolean) {
