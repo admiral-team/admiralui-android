@@ -14,7 +14,7 @@
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            app:admiralTitleText="@string/tabs_underline_slider_title" />
+            app:admiralTitleText="@string/tabs_underline_title" />
 
         <com.admiral.uikit.components.tabs.StandardTabs
             android:id="@+id/tabsState"
