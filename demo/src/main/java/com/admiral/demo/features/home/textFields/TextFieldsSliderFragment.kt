@@ -68,10 +68,10 @@ class TextFieldsSliderFragment : BaseFragment(R.layout.fmt_text_fields_slider) {
                 valueTo = MAX_VALUE
                 placeholderText = MIN_VALUE.toInt().toString()
                 setOnIconClickListener {
-                    if (slider.isInformerVisible) {
-                        slider.hideInformer()
+                    if (isInformerVisible) {
+                        hideInformer()
                     } else {
-                        slider.showInformer("Text Informer")
+                        showInformer("Text Informer one")
                     }
                 }
             }
@@ -81,6 +81,13 @@ class TextFieldsSliderFragment : BaseFragment(R.layout.fmt_text_fields_slider) {
                 valueTo = MAX_VALUE
                 placeholderText = MIN_VALUE.toInt().toString()
                 placeholderTextTo = MAX_VALUE.toInt().toString()
+                setOnIconClickListener {
+                    if (isInformerVisible) {
+                        hideInformer()
+                    } else {
+                        showInformer("Text informer two")
+                    }
+                }
             }
         }
     }

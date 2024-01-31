@@ -3,6 +3,8 @@ package com.admiral.uikit.components.textfield
 import android.content.Context
 import android.content.res.ColorStateList
 import android.content.res.TypedArray
+import android.graphics.Color
+import android.graphics.drawable.Drawable
 import android.util.AttributeSet
 import android.view.LayoutInflater
 import android.view.inputmethod.EditorInfo
@@ -17,6 +19,7 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
+import com.admiral.uikit.components.informer.InformerSmall
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.databinding.AdmiralViewSliderDoubleBinding
@@ -214,6 +217,42 @@ class DoubleSlider @JvmOverloads constructor(
         }
     // endregion
 
+    /**
+     * Standard [InformerSmall] for showing hint text.
+     */
+    val informer: InformerSmall
+        get() = binding.admiralSliderInformer
+
+    /**
+     * Variable that holds if [InformerSmall] is visible
+     */
+    val isInformerVisible: Boolean
+        get() {
+            return informer.isVisible
+        }
+
+    /**
+     * In case tint color is null, the selected color theme will be used.
+     */
+    @ColorInt
+    var iconTintColor: Int? = null
+        set(value) {
+            field = value
+            binding.iconImageView.imageTintList = value?.let(ColorStateList::valueOf)
+        }
+
+    /**
+     * In case Drawable is null, the icon will be hidden.
+     */
+    var icon: Drawable? = null
+        set(value) {
+            field = value
+            binding.iconImageView.apply {
+                setImageDrawable(icon)
+                isGone = value == null
+            }
+        }
+
     // region public methods
     /**
      * Add input focus listener
@@ -237,11 +276,34 @@ class DoubleSlider @JvmOverloads constructor(
     }
     // endregion
 
+    /**
+     * Show an informer with given text
+     */
+    fun showInformer(informerText: String) {
+        informer.info = informerText
+        informer.isVisible = true
+    }
+
+    /**
+     * Hide the informer
+     */
+    fun hideInformer() {
+        informer.isVisible = false
+    }
+
+    /**
+     * Listener to detect icon clicking.
+     */
+    fun setOnIconClickListener(onClickListener: OnClickListener) {
+        binding.iconImageView.setOnClickListener(onClickListener)
+    }
+
     init {
         parseAttrs(attrs, R.styleable.DoubleSlider).use {
             parseDefaultColors(it)
             parseTexts(it)
             parseErrorColor(it)
+            parseIcon(it)
 
             isEnabled = it.getBoolean(R.styleable.DoubleSlider_enabled, true)
         }
@@ -280,6 +342,7 @@ class DoubleSlider @JvmOverloads constructor(
     override fun setEnabled(enabled: Boolean) {
         super.setEnabled(enabled)
         with(binding) {
+            iconImageView.isEnabled = enabled
             inputLayoutFrom.isEnabled = enabled
             inputLayoutTo.isEnabled = enabled
             editText.isEnabled = enabled
@@ -401,6 +464,21 @@ class DoubleSlider @JvmOverloads constructor(
             normalDisabled = a.getColorOrNull(R.styleable.DoubleSlider_admiralTextColorNormalDisabled),
             focused = a.getColorOrNull(R.styleable.DoubleSlider_admiralTextColorFocused)
         )
+    }
+
+    private fun parseIcon(a: TypedArray) {
+        icon = a.getDrawable(R.styleable.DoubleSlider_admiralIcon)
+
+        if (a.hasValue(R.styleable.DoubleSlider_admiralIconTintColor)) {
+            iconTintColor = a.getColor(R.styleable.DoubleSlider_admiralIconTintColor, Color.TRANSPARENT)
+        }
+    }
+
+    private fun invalidateTextHint() {
+        with(binding) {
+            admiralDoubleSliderOptionalText.text = optionalText
+            admiralDoubleSliderOptionalText.isVisible = optionalText != null
+        }
     }
 
     private fun invalidateListener() {

@@ -191,6 +191,9 @@
     <declare-styleable name="DoubleSlider" parent="GlobalAttrDeclare">
         <attr name="enabled" />
 
+        <attr name="admiralIcon" />
+        <attr name="admiralIconTintColor" />
+
         <attr name="admiralTextColorNormalEnabled" />
         <attr name="admiralTextColorNormalDisabled" />
         <attr name="admiralTextColorFocused" />

@@ -7,7 +7,7 @@
     android:minHeight="84dp"
     android:orientation="vertical"
     android:paddingStart="16dp"
-    android:paddingTop="8dp"
+    android:paddingTop="16dp"
     android:paddingEnd="16dp"
     tools:parentTag="androidx.constraintlayout.widget.ConstraintLayout">
 
@@ -27,15 +27,16 @@
 
     <com.admiral.uikit.components.textfield.TextFieldInputLayout
         android:id="@+id/inputLayoutFrom"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:paddingTop="@dimen/module_x2"
+        android:paddingTop="@dimen/module_x3"
         app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@id/guidelineCenter"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/admiralDoubleSliderOptionalText"
-        app:layout_constraintVertical_chainStyle="packed"
         app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1"
         app:prefixText="@string/admiral_slider_from"
+        app:prefixTextAppearance="@style/AdmiralTextAppearance.Body1"
         app:suffixTextAppearance="@style/AdmiralTextAppearance.Body1">
 
         <com.google.android.material.textfield.TextInputEditText
@@ -48,18 +49,27 @@
             android:inputType="number"
             android:textAppearance="@style/AdmiralTextAppearance.Body1"
             android:textCursorDrawable="@null"
-            tools:text="Optional label" />
+            tools:text="от 100"
+            tools:textColor="@color/grey_40" />
 
     </com.admiral.uikit.components.textfield.TextFieldInputLayout>
 
+    <androidx.constraintlayout.widget.Guideline
+        android:id="@+id/guidelineCenter"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
     <com.admiral.uikit.components.textfield.TextFieldInputLayout
         android:id="@+id/inputLayoutTo"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:gravity="end"
         app:hintTextAppearance="@style/AdmiralTextAppearance.Subhead2"
         app:layout_constraintEnd_toStartOf="@id/iconImageView"
-        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toEndOf="@id/guidelineCenter"
+        app:layout_constraintTop_toBottomOf="@id/admiralDoubleSliderOptionalText"
         app:placeholderTextAppearance="@style/AdmiralTextAppearance.Body1"
         app:prefixText="@string/admiral_slider_to"
         app:prefixTextAppearance="@style/AdmiralTextAppearance.Body1"
@@ -69,10 +79,8 @@
             android:id="@+id/editTextTo"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_gravity="bottom"
             android:background="@null"
             android:inputType="number"
-            android:paddingTop="@dimen/module_x2"
             android:textAppearance="@style/AdmiralTextAppearance.Body1"
             android:textCursorDrawable="@null"
             tools:text="до 10000"
@@ -90,11 +98,9 @@
         android:baselineAlignBottom="true"
         android:scaleType="centerInside"
         android:src="@drawable/admiral_ic_archive_solid"
-        android:visibility="gone"
         app:admiralIconColorNormalEnabledPalette="elementPrimary"
         app:layout_constraintBottom_toTopOf="@+id/rangeSlider"
-        app:layout_constraintEnd_toEndOf="parent"
-        tools:visibility="visible" />
+        app:layout_constraintEnd_toEndOf="parent" />
 
     <com.admiral.uikit.components.informer.InformerSmall
         android:id="@+id/admiralSliderInformer"
@@ -135,7 +141,7 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/rangeSlider"
         app:layout_constraintVertical_chainStyle="packed"
-        tools:text="10" />
+        tools:text="100" />
 
     <com.admiral.uikit.components.text.TextView
         android:id="@+id/rightTextView"

@@ -27,11 +27,13 @@
 
     <com.admiral.uikit.components.textfield.TextFieldInputLayout
         android:id="@+id/inputLayout"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         app:layout_constraintStart_toStartOf="parent"
         android:paddingTop="@dimen/module_x2"
         app:hintEnabled="false"
+        app:layout_constraintEnd_toStartOf="@id/iconImageView"
+        android:layout_marginEnd="@dimen/module_x2"
         app:suffixTextAppearance="@style/AdmiralTextAppearance.Body1"
         app:layout_constraintTop_toBottomOf="@id/admiralSliderOptionalText"
         app:layout_constraintVertical_chainStyle="packed"
