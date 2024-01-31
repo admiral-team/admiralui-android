@@ -121,7 +121,11 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
         val currentFragment = childFragmentManager.fragments.find { it.isVisible }
         val newFragment = childFragmentManager.findFragmentByTag(screen.key)
 
-        if (currentFragment != null && newFragment != null && currentFragment === newFragment) return
+        if (currentFragment != null && newFragment != null && currentFragment === newFragment) {
+            val currentNavFragment = currentFragment as? NavigationFragment
+            currentNavFragment?.onClearBackStack()
+            return
+        }
 
         childFragmentManager.commitNow {
             if (newFragment == null) {
