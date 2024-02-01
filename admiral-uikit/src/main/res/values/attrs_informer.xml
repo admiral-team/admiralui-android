@@ -86,7 +86,6 @@
         <attr name="admiralLinkColorPressed" />
         <attr name="admiralLinkColorDisabled" />
 
-        <attr name="admiralHeadlineText" />
         <attr name="admiralText" />
         <attr name="admiralLinkText" />
 
