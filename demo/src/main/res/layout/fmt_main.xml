@@ -28,23 +28,23 @@
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
         android:layout_marginEnd="@dimen/module_x4"
-        android:layout_marginBottom="@dimen/module_x18"
+        android:layout_marginBottom="@dimen/module_x4"
         android:src="@drawable/ic_btn_theme"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/bottomNavigationView"
         app:layout_constraintEnd_toEndOf="parent" />
 
     <HorizontalScrollView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="end|bottom"
-        android:layout_marginBottom="144dp"
+        android:layout_marginBottom="@dimen/module_x3"
         android:clipToPadding="false"
         android:elevation="@dimen/module_x4"
         android:padding="@dimen/module_x1"
         android:paddingStart="@dimen/module_x4"
         android:paddingEnd="@dimen/module_x4"
         android:scrollbars="none"
-        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/themePickerButton"
         app:layout_constraintEnd_toEndOf="parent">
 
         <com.google.android.material.chip.ChipGroup
