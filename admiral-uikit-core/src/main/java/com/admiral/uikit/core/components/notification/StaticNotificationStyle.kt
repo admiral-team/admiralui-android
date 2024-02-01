@@ -1,7 +1,7 @@
-package com.admiral.uikit.components.notifications.fixed
+package com.admiral.uikit.core.components.notification
 
 /**
- * Define styles for [StaticNotification]
+ * Define styles for StaticNotification
  */
 sealed class StaticNotificationStyle {
     object Info : StaticNotificationStyle()

@@ -11,6 +11,7 @@ import com.admiral.uikit.textview.TextView
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
+import com.admiral.uikit.core.components.link.LinkSize
 import com.admiral.uikit.core.ext.colorStateList
 import com.admiral.uikit.core.ext.colored
 import com.admiral.uikit.core.ext.getColorOrNull
