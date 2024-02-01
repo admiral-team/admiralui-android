@@ -23,6 +23,7 @@ dependencies {
 
     implementation(Libs.AndroidX.Compose.Ui.ui)
     implementation(Libs.AndroidX.Compose.Ui.tooling)
+    implementation(Libs.AndroidX.Compose.Ui.constraintlayout)
     implementation(Libs.AndroidX.Compose.foundation)
     implementation(Libs.AndroidX.Compose.material)
 

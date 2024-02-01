@@ -60,7 +60,7 @@
                 android:id="@+id/tabsTwoLogoTabOne"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_visa_64x32" />
+                app:srcCompat="@drawable/ic_visa_64x32_light" />
 
             <com.admiral.uikit.components.tabs.LogoTab
                 android:id="@+id/tabsTwoLogoTabTwo"
@@ -90,7 +90,7 @@
                 android:id="@+id/tabsThreeLogoTabOne"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_visa_64x32" />
+                app:srcCompat="@drawable/ic_visa_64x32_light" />
 
             <com.admiral.uikit.components.tabs.LogoTab
                 android:id="@+id/tabsThreeLogoTabTwo"
@@ -102,7 +102,7 @@
                 android:id="@+id/tabsThreeLogoTabThree"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_mir_64x32" />
+                app:srcCompat="@drawable/ic_mir_64x32_light" />
 
         </com.admiral.uikit.components.tabs.LogoTabs>
 
@@ -126,7 +126,7 @@
                 android:id="@+id/tabsFourLogoTabOne"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_visa_64x32" />
+                app:srcCompat="@drawable/ic_visa_64x32_light" />
 
             <com.admiral.uikit.components.tabs.LogoTab
                 android:id="@+id/tabsFourLogoTabTwo"
@@ -138,13 +138,13 @@
                 android:id="@+id/tabsFourLogoTabThree"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_mir_64x32" />
+                app:srcCompat="@drawable/ic_mir_64x32_light" />
 
             <com.admiral.uikit.components.tabs.LogoTab
                 android:id="@+id/tabsFourLogoTabFour"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_apple_pay_64x32" />
+                app:srcCompat="@drawable/ic_apple_pay_64x32_light" />
 
         </com.admiral.uikit.components.tabs.LogoTabs>
 
@@ -168,7 +168,7 @@
                 android:id="@+id/tabsFiveLogoTabOne"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_visa_64x32" />
+                app:srcCompat="@drawable/ic_visa_64x32_light" />
 
             <com.admiral.uikit.components.tabs.LogoTab
                 android:id="@+id/tabsFiveLogoTabTwo"
@@ -180,19 +180,19 @@
                 android:id="@+id/tabsFiveLogoTabThree"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_mir_64x32" />
+                app:srcCompat="@drawable/ic_mir_64x32_light" />
 
             <com.admiral.uikit.components.tabs.LogoTab
                 android:id="@+id/tabsFiveLogoTabFour"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_apple_pay_64x32" />
+                app:srcCompat="@drawable/ic_apple_pay_64x32_light" />
 
             <com.admiral.uikit.components.tabs.LogoTab
                 android:id="@+id/tabsFiveLogoTabFive"
                 android:layout_width="wrap_content"
                 android:layout_height="match_parent"
-                app:srcCompat="@drawable/ic_google_pay_64x32" />
+                app:srcCompat="@drawable/ic_google_pay_64x32_light" />
 
         </com.admiral.uikit.components.tabs.LogoTabs>
 

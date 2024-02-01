@@ -18,13 +18,13 @@ import com.admiral.demo.databinding.FmtHomeBinding
 import com.admiral.demo.features.home.theme.utils.ThemeStorageDAO
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.compose.cell.BaseCell
 import com.admiral.uikit.compose.cell.unit.IconCellUnitCompose
 import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnitCompose
-import com.admiral.uikit.compose.switcher
+import com.admiral.uikit.compose.Switcher
 import com.admiral.uikit.compose.tabs.LogoTabs
 import com.admiral.uikit.compose.util.DIMEN_X8
+import com.admiral.uikit.core.components.cell.base.CellUnitType
 
 class ComposeHomeFragment : BaseFragment(R.layout.fmt_home) {
 
@@ -43,14 +43,15 @@ class ComposeHomeFragment : BaseFragment(R.layout.fmt_home) {
                     modifier = Modifier.padding(top = DIMEN_X8)
                 ) {
                     val curTheme = ThemeManagerCompose.theme.value
-                    val isThemeDark = ThemeStorageDAO.getThemes()[0] == curTheme
+                    val isThemeDark = ThemeStorageDAO.getThemes()[1] == curTheme
 
-                    val switch = switcher(checked = isThemeDark)
-                    if (switch) {
-                        ThemeManagerCompose.setCurrentTheme(ThemeStorageDAO.getThemes()[0])
-                    } else {
-                        ThemeManagerCompose.setCurrentTheme(ThemeStorageDAO.getThemes()[1])
-                    }
+                    Switcher(checked = isThemeDark, onCheckedChanged = {
+                        if (it) {
+                            ThemeManagerCompose.setCurrentTheme(ThemeStorageDAO.getThemes()[1])
+                        } else {
+                            ThemeManagerCompose.setCurrentTheme(ThemeStorageDAO.getThemes()[0])
+                        }
+                    })
 
                     LogoTabs(
                         items = listOf(
