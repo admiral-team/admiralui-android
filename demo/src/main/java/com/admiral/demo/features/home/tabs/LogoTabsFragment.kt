@@ -15,8 +15,8 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
+import com.admiral.uikit.core.ext.isColorDark
 import com.admiral.uikit.view.checkable.CheckableGroup
-import java.util.Locale
 
 class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
 
@@ -64,7 +64,7 @@ class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
     }
 
     override fun onThemeChanged(theme: Theme) {
-        isNightModeDetect = theme.palette.name.lowercase(Locale.getDefault()).contains(IS_DARK_CONST)
+        isNightModeDetect = theme.palette.textPrimary.isColorDark(DARK_THRESHOLD)
         invalidateIcons()
     }
 
@@ -121,7 +121,7 @@ class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
         return ContextCompat.getDrawable(requireContext(), drawable)
     }
 
-    private companion object {
-        private const val IS_DARK_CONST = "dark"
+    companion object {
+        private const val DARK_THRESHOLD = 0.5f
     }
 }
