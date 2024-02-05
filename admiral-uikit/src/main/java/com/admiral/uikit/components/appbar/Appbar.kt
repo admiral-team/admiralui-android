@@ -19,18 +19,19 @@ import androidx.core.content.res.use
 import androidx.core.view.children
 import androidx.core.view.isVisible
 import androidx.core.view.size
+import androidx.core.view.updatePadding
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.cell.unit.IconCellUnit
 import com.admiral.uikit.components.links.Link
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.components.textfield.TextFieldSearch
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.dpToPx
@@ -389,6 +390,11 @@ class Appbar @JvmOverloads constructor(
                     R.styleable.Appbar_admiralBackgroundColorNormalEnabledPalette
                 )
             )
+
+            textViewTitle.updatePadding(
+                bottom = PADDING_TITLE_VERTICAL.dpToPx(context),
+                top = PADDING_TITLE_VERTICAL.dpToPx(context)
+            )
         }
 
         endContainer.addView(textViewMenu)
@@ -573,6 +579,7 @@ class Appbar @JvmOverloads constructor(
     private companion object {
         const val BIG_MARGIN = 32
         const val MARGIN_VIEWS_CONTAINER_RIGHT = 16
+        const val PADDING_TITLE_VERTICAL = 12
 
         const val EDIT_TEXT_MARGIN = 16
         const val ICONS_SIZE = 32
