@@ -96,7 +96,6 @@ class Badge @JvmOverloads constructor(
 
     override fun onThemeChanged(theme: Theme) {
         invalidateTextColors()
-        invalidateBackgroundColors()
         invalidateBorderColors()
     }
 
