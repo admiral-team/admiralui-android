@@ -9,15 +9,15 @@ import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.compose.cell.base.CellUnitCompose
+import com.admiral.uikit.compose.cell.base.CellUnit
 
-data class IconCellUnitCompose(
+data class IconCellUnit(
     override var unitType: CellUnitType,
     private val icon: Painter,
     private val contentDescription: String = "",
     private val iconColorState: ColorState? = null,
     private val isEnabled: Boolean = true
-) : CellUnitCompose {
+) : CellUnit {
 
     @Composable
     override fun Create(modifier: Modifier) {
