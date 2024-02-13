@@ -59,7 +59,8 @@
             <enum name="small" value="1" />
         </attr>
 
-        <attr name="admiralTextColor" format="reference|color" />
+        <attr name="admiralTextColorNormalEnabled" />
+        <attr name="admiralTextColorNormalDisabled" />
         <attr name="admiralBadgeColor" format="reference|color" />
         <attr name="admiralBadgeColorDisabled" format="reference|color" />
         <attr name="admiralBadgeBorderColor" format="reference|color" />
