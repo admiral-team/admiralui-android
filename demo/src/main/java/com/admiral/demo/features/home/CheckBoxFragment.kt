@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,7 +10,10 @@ import com.admiral.demo.databinding.FmtCheckBoxBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class CheckBoxFragment : BaseFragment(R.layout.fmt_check_box) {
+class CheckBoxFragment : BaseFragment(
+    layoutId = R.layout.fmt_check_box,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
@@ -33,6 +34,7 @@ class CheckBoxFragment : BaseFragment(R.layout.fmt_check_box) {
                         binding.checkBox5.isEnabled = true
                         binding.checkBox6.isEnabled = true
                     }
+
                     R.id.disabledTab -> {
                         binding.checkBox1.isEnabled = false
                         binding.checkBox2.isEnabled = false
@@ -44,9 +46,5 @@ class CheckBoxFragment : BaseFragment(R.layout.fmt_check_box) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

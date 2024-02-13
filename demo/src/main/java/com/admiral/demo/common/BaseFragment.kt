@@ -3,6 +3,9 @@ package com.admiral.demo.common
 import android.annotation.SuppressLint
 import android.content.Context
 import android.os.Bundle
+import android.view.Menu
+import android.view.MenuInflater
+import android.view.MenuItem
 import android.view.MotionEvent
 import android.view.View
 import android.view.ViewConfiguration
@@ -13,10 +16,42 @@ import androidx.annotation.LayoutRes
 import androidx.appcompat.app.AppCompatActivity
 import androidx.appcompat.widget.Toolbar
 import androidx.fragment.app.Fragment
+import com.admiral.demo.R
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
-abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId) {
+abstract class BaseFragment(
+    @LayoutRes val layoutId: Int,
+    private val menuId: Int? = null
+) : Fragment(layoutId) {
 
     open val isThemePickerVisible: Boolean = true
+    private var bottomNavigationView: BottomNavigationView? = null
+
+    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
+        bottomNavigationView = view.rootView.findViewById(R.id.bottomNavigationView)
+        hideKeyboardOnClick(view.rootView)
+        super.onViewCreated(view, savedInstanceState)
+    }
+
+    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
+        if (menuId != null) inflater.inflate(menuId, menu)
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+        return when (item.itemId) {
+            R.id.mainMenuInfo -> {
+                bottomNavigationView?.selectedItemId = R.id.mainMenuInfo
+                true
+            }
+
+            else -> super.onOptionsItemSelected(item)
+        }
+    }
+
+    override fun onDestroyView() {
+        bottomNavigationView = null
+        super.onDestroyView()
+    }
 
     fun registerToolbar(toolbar: Toolbar, hasOptionsMenu: Boolean, listener: () -> Unit) {
         (requireActivity() as AppCompatActivity).setSupportActionBar(toolbar)
@@ -32,12 +67,6 @@ abstract class BaseFragment(@LayoutRes layoutId: Int) : Fragment(layoutId) {
     fun showBackButton() {
         (requireActivity() as AppCompatActivity).supportActionBar?.setDisplayHomeAsUpEnabled(true)
         (requireActivity() as AppCompatActivity).supportActionBar?.setHomeButtonEnabled(true)
-    }
-
-    override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
-        super.onViewCreated(view, savedInstanceState)
-
-        hideKeyboardOnClick(view.rootView)
     }
 
     @SuppressLint("ClickableViewAccessibility")

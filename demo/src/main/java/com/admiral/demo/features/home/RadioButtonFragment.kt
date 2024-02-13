@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,7 +10,10 @@ import com.admiral.demo.databinding.FmtRadioButtonBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class RadioButtonFragment : BaseFragment(R.layout.fmt_radio_button) {
+class RadioButtonFragment : BaseFragment(
+    layoutId = R.layout.fmt_radio_button,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
@@ -44,9 +45,5 @@ class RadioButtonFragment : BaseFragment(R.layout.fmt_radio_button) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

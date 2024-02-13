@@ -2,8 +2,6 @@ package com.admiral.demo.features.home.timepicker
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -17,7 +15,10 @@ import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.components.timepicker.MaterialTimePicker
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class TimePickerFragment : BaseFragment(R.layout.fmt_time_picker), ThemeObserver {
+class TimePickerFragment : BaseFragment(
+    layoutId = R.layout.fmt_time_picker,
+    menuId = R.menu.menu_appbar_info
+), ThemeObserver {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
@@ -45,10 +46,6 @@ class TimePickerFragment : BaseFragment(R.layout.fmt_time_picker), ThemeObserver
     override fun onDestroyView() {
         super.onDestroyView()
         ThemeManager.unsubscribe(this)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 
     override fun onThemeChanged(theme: Theme) {

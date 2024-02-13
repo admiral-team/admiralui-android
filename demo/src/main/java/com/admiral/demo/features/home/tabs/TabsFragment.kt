@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.tabs
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -17,7 +15,10 @@ import com.admiral.demo.screen.OutlineTabsScreen
 import com.admiral.demo.screen.StandardTabsScreen
 import com.admiral.demo.screen.UnderlineTabsScreen
 
-class TabsFragment : BaseFragment(R.layout.fmt_tabs) {
+class TabsFragment : BaseFragment(
+    layoutId = R.layout.fmt_tabs,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTabsBinding::bind)
@@ -49,9 +50,5 @@ class TabsFragment : BaseFragment(R.layout.fmt_tabs) {
         binding.btnIconTabs.setOnClickListener {
             navigationViewModel.open(IconTabsScreen())
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

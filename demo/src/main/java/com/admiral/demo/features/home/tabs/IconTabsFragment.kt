@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.tabs
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,7 +10,10 @@ import com.admiral.demo.databinding.FmtTabsIconBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class IconTabsFragment : BaseFragment(R.layout.fmt_tabs_icon) {
+class IconTabsFragment : BaseFragment(
+    layoutId = R.layout.fmt_tabs_icon,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTabsIconBinding::bind)
@@ -35,9 +36,5 @@ class IconTabsFragment : BaseFragment(R.layout.fmt_tabs_icon) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

@@ -2,8 +2,6 @@ package com.admiral.demo.features.home.textFields
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import android.widget.HorizontalScrollView
@@ -17,7 +15,10 @@ import com.admiral.uikit.components.chip.Chip
 import com.admiral.uikit.components.chip.ChipGroup
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class TextFieldsStandardFragment : BaseFragment(R.layout.fmt_text_fields_standard) {
+class TextFieldsStandardFragment : BaseFragment(
+    layoutId = R.layout.fmt_text_fields_standard,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTextFieldsStandardBinding::bind)
@@ -91,10 +92,6 @@ class TextFieldsStandardFragment : BaseFragment(R.layout.fmt_text_fields_standar
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 
     private fun addBottomView() {

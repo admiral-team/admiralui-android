@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.tabs
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -13,7 +11,10 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.badge.BadgeType
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class UnderlineCenterTabsFragment : BaseFragment(R.layout.fmt_tabs_underline_center) {
+class UnderlineCenterTabsFragment : BaseFragment(
+    layoutId = R.layout.fmt_tabs_underline_center,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTabsUnderlineCenterBinding::bind)
@@ -44,9 +45,5 @@ class UnderlineCenterTabsFragment : BaseFragment(R.layout.fmt_tabs_underline_cen
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

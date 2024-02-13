@@ -50,13 +50,14 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
         super.onViewCreated(view, savedInstanceState)
         switchToSystemTheme(ThemeStorageDAO.isThemeAuto())
 
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
-            selectTab(getScreen(it.itemId, compose))
+        with(binding) {
+            bottomNavigationView.setOnItemSelectedListener {
+                selectTab(getScreen(it.itemId, compose))
+                return@setOnItemSelectedListener true
+            }
 
-            return@setOnNavigationItemSelectedListener true
+            bottomNavigationView.selectedItemId = R.id.mainMenuHome
         }
-
-        binding.bottomNavigationView.selectedItemId = R.id.mainMenuHome
 
         initThemeSoloPickerButton()
         initThemePickerList()
