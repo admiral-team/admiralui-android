@@ -59,6 +59,11 @@ class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
             }
     }
 
+    override fun onPause() {
+        super.onPause()
+        ThemeManager.unsubscribe(this)
+    }
+
     override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
         binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
