@@ -26,10 +26,12 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.cell.unit.IconCellUnit
-import com.admiral.uikit.components.links.Link
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.components.textfield.TextFieldSearch
+import com.admiral.uikit.core.components.button.ButtonSize
+import com.admiral.uikit.core.components.button.ButtonStyle
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colorStateList
@@ -109,7 +111,9 @@ class Appbar @JvmOverloads constructor(
     /**
      * TextView shown at the right of the app bar.
      */
-    private val textViewMenu = Link(context).apply {
+    private val buttonMenu = Button(context).apply {
+        buttonSize = ButtonSize.Small
+        buttonStyle = ButtonStyle.Ghost
         layoutParams =
             LinearLayout.LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         visibility = View.GONE
@@ -173,11 +177,11 @@ class Appbar @JvmOverloads constructor(
     var menuText: String? = null
         set(value) {
             field = value
-            textViewMenu.text = value
-            textViewMenu.isVisible = value?.isEmpty() == false
+            buttonMenu.text = value
+            buttonMenu.isVisible = value?.isEmpty() == false
         }
         get() {
-            return textViewMenu.text.toString()
+            return buttonMenu.text.toString()
         }
 
     /**
@@ -186,7 +190,7 @@ class Appbar @JvmOverloads constructor(
     var onMenuClickListener: OnClickListener? = null
         set(value) {
             field = value
-            textViewMenu.setOnClickListener {
+            buttonMenu.setOnClickListener {
                 value?.onClick(it)
             }
         }
@@ -397,7 +401,7 @@ class Appbar @JvmOverloads constructor(
             )
         }
 
-        endContainer.addView(textViewMenu)
+        endContainer.addView(buttonMenu)
         addView(endContainer)
         addView(startContainer)
         addView(searchContainer)
@@ -499,7 +503,7 @@ class Appbar @JvmOverloads constructor(
     }
 
     private fun invalidateMenuTextColor() {
-        textViewMenu.textColor = ColorState(
+        buttonMenu.textColor = ColorState(
             normalEnabled = menuTextColor ?: ThemeManager.theme.palette.textAccent,
             normalDisabled = menuTextColor?.withAlpha()
                 ?: ThemeManager.theme.palette.textAccent.withAlpha(),
