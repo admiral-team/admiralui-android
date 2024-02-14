@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -14,7 +12,10 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.toolbar.ToolbarItem
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class ToolbarFragment : BaseFragment(R.layout.fmt_toolbar) {
+class ToolbarFragment : BaseFragment(
+    layoutId = R.layout.fmt_toolbar,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtToolbarBinding::bind)
@@ -62,9 +63,5 @@ class ToolbarFragment : BaseFragment(R.layout.fmt_toolbar) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

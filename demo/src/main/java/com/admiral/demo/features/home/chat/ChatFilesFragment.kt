@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.chat
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.core.view.forEach
 import androidx.fragment.app.viewModels
@@ -15,7 +13,10 @@ import com.admiral.uikit.components.chat.file.ChatFileView
 import com.admiral.uikit.components.chat.file.FileMessage
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class ChatFilesFragment : BaseFragment(R.layout.fmt_chat_files) {
+class ChatFilesFragment : BaseFragment(
+    layoutId = R.layout.fmt_chat_files,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val binding by viewBinding(FmtChatFilesBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
@@ -87,9 +88,5 @@ class ChatFilesFragment : BaseFragment(R.layout.fmt_chat_files) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

@@ -2,8 +2,6 @@ package com.admiral.demo.features.home.textFields
 
 import android.app.Activity
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.view.inputmethod.InputMethodManager
 import androidx.fragment.app.viewModels
@@ -14,7 +12,10 @@ import com.admiral.demo.databinding.FmtTextFieldsDoubleBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class TextFieldsDoubleFragment : BaseFragment(R.layout.fmt_text_fields_double) {
+class TextFieldsDoubleFragment : BaseFragment(
+    layoutId = R.layout.fmt_text_fields_double,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTextFieldsDoubleBinding::bind)
@@ -77,9 +78,5 @@ class TextFieldsDoubleFragment : BaseFragment(R.layout.fmt_text_fields_double) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

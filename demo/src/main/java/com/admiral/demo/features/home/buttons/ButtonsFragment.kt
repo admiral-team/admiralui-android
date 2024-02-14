@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.buttons
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -16,7 +14,10 @@ import com.admiral.demo.screen.PrimaryButtonsScreen
 import com.admiral.demo.screen.RulesButtonsScreen
 import com.admiral.demo.screen.SecondaryButtonsScreen
 
-class ButtonsFragment : BaseFragment(R.layout.fmt_buttons) {
+class ButtonsFragment : BaseFragment(
+    layoutId = R.layout.fmt_buttons,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtButtonsBinding::bind)
@@ -42,9 +43,5 @@ class ButtonsFragment : BaseFragment(R.layout.fmt_buttons) {
                 navigationViewModel.open(OtherButtonsScreen())
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

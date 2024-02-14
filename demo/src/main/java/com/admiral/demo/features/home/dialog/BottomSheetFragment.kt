@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.dialog
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -15,7 +13,10 @@ import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.dialogs.AdmiralBottomSheetDialog
 import com.admiral.uikit.components.text.TextView
 
-class BottomSheetFragment : BaseFragment(R.layout.fmt_bottom_sheet) {
+class BottomSheetFragment : BaseFragment(
+    layoutId = R.layout.fmt_bottom_sheet,
+    menuId = R.menu.menu_appbar_info
+) {
 
     val binding by viewBinding(FmtBottomSheetBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
@@ -30,10 +31,6 @@ class BottomSheetFragment : BaseFragment(R.layout.fmt_bottom_sheet) {
 
         binding.hintOpenDialog.compoundDrawablesNormalEnabledPalette =
             ColorPaletteEnum.ELEMENT_ACCENT
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 
     private fun showDialog() {

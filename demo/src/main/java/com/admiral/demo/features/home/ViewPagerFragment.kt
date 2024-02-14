@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
@@ -16,7 +14,10 @@ import com.admiral.demo.helpers.viewpager.ViewPager2Adapter
 import com.admiral.demo.helpers.viewpager.ViewPagerAdapter
 import com.admiral.demo.helpers.viewpager.ViewPagerFragment
 
-class ViewPagerFragment : BaseFragment(R.layout.fmt_view_pager_container) {
+class ViewPagerFragment : BaseFragment(
+    layoutId = R.layout.fmt_view_pager_container,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
@@ -90,9 +91,5 @@ class ViewPagerFragment : BaseFragment(R.layout.fmt_view_pager_container) {
                 adapter.notifyDataSetChanged()
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.cell
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -14,7 +12,10 @@ import com.admiral.demo.screen.BaseCellsCenterScreen
 import com.admiral.demo.screen.BaseCellsLeadingScreen
 import com.admiral.demo.screen.BaseCellsTrailingScreen
 
-class BaseCellsFragment : BaseFragment(R.layout.fmt_cells_base) {
+class BaseCellsFragment : BaseFragment(
+    layoutId = R.layout.fmt_cells_base,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtCellsBaseBinding::bind)
@@ -34,9 +35,5 @@ class BaseCellsFragment : BaseFragment(R.layout.fmt_cells_base) {
         binding.btnTrailing.setOnClickListener {
             navigationViewModel.open(BaseCellsTrailingScreen())
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.buttons
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,7 +10,10 @@ import com.admiral.demo.databinding.FmtButtonsGhostBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class GhostButtonsFragment : BaseFragment(R.layout.fmt_buttons_ghost) {
+class GhostButtonsFragment : BaseFragment(
+    layoutId = R.layout.fmt_buttons_ghost,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
@@ -39,9 +40,5 @@ class GhostButtonsFragment : BaseFragment(R.layout.fmt_buttons_ghost) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }
