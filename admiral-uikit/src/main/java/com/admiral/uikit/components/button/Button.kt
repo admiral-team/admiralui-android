@@ -15,13 +15,12 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
-import com.admiral.uikit.components.spinner.Spinner
-import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.core.components.button.ButtonSize
 import com.admiral.uikit.core.components.button.ButtonStyle
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.core.util.ComponentsRadius
+import com.admiral.uikit.databinding.AdmiralViewButtonBinding
 import com.admiral.uikit.ext.createRoundedColoredRectangleDrawable
 import com.admiral.uikit.ext.createRoundedColoredStrokeDrawable
 import com.admiral.uikit.ext.createRoundedRectangleDrawable
@@ -39,6 +38,9 @@ class Button @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : ConstraintLayout(context, attrs, defStyleAttr), ThemeObserver {
+
+    private val binding = AdmiralViewButtonBinding
+        .inflate(LayoutInflater.from(context), this)
 
     /**
      * Color state for background.
@@ -99,7 +101,7 @@ class Button @JvmOverloads constructor(
     var text: String? = null
         set(value) {
             field = value
-            actionTextView.text = value
+            binding.actionTextView.text = value
         }
 
     /**
@@ -109,8 +111,9 @@ class Button @JvmOverloads constructor(
     var additionalText: String? = null
         set(value) {
             field = value
-            additionalTextView.text = value
-            additionalTextView.isGone = value.isNullOrEmpty() || buttonSize == ButtonSize.Small
+            binding.additionalTextView.text = value
+            binding.additionalTextView.isGone =
+                value.isNullOrEmpty() || buttonSize == ButtonSize.Small
         }
 
     /**
@@ -157,14 +160,7 @@ class Button @JvmOverloads constructor(
             invalidateLoading()
         }
 
-    private val actionTextView: TextView by lazy { findViewById(R.id.actionTextView) }
-    private val additionalTextView: TextView by lazy { findViewById(R.id.additionalTextView) }
-    private val spinner: Spinner by lazy { findViewById(R.id.admiralButtonSpinner) }
-    private val buttonView: ConstraintLayout by lazy { findViewById(R.id.admiralButton) }
-
     init {
-        LayoutInflater.from(context).inflate(R.layout.admiral_view_button, this)
-
         parseAttrs(attrs, R.styleable.Button).use {
             parseBackgroundColors(it)
             parseTextColors(it)
@@ -178,8 +174,9 @@ class Button @JvmOverloads constructor(
             text = it.getString(R.styleable.Button_android_text)
             additionalText = it.getString(R.styleable.Button_admiralTextAdditional)
 
-            actionTextView.isAllCaps = it.getBoolean(R.styleable.Button_android_textAllCaps, false)
-            additionalTextView.isAllCaps =
+            binding.actionTextView.isAllCaps =
+                it.getBoolean(R.styleable.Button_android_textAllCaps, false)
+            binding.additionalTextView.isAllCaps =
                 it.getBoolean(R.styleable.Button_android_textAllCaps, false)
             drawablePadding = it.getDimension(R.styleable.Button_android_drawablePadding, 0f)
 
@@ -218,9 +215,8 @@ class Button @JvmOverloads constructor(
     }
 
     override fun setEnabled(enabled: Boolean) {
-        actionTextView.isEnabled = enabled
-        additionalTextView.isEnabled = enabled
-        buttonView.isEnabled = enabled
+        binding.actionTextView.isEnabled = enabled
+        binding.additionalTextView.isEnabled = enabled
 
         super.setEnabled(enabled)
     }
@@ -236,8 +232,8 @@ class Button @JvmOverloads constructor(
     }
 
     private fun invalidateSize() {
-        buttonView.setPadding(pixels(buttonSize.padding))
-        buttonView.minWidth = pixels(buttonSize.defaultWidth)
+        this.setPadding(pixels(buttonSize.padding))
+        this.minWidth = pixels(buttonSize.defaultWidth)
     }
 
     private fun parseSize(a: TypedArray) {
@@ -315,18 +311,7 @@ class Button @JvmOverloads constructor(
             pressed = backgroundColor?.pressed ?: ThemeManager.theme.palette.backgroundAccent
         )
 
-        background = if (buttonStyle == ButtonStyle.Primary) {
-            createRoundedColoredRectangleDrawable(
-                radius, ColorState(
-                    normalEnabled = ThemeManager.theme.palette.backgroundBasic,
-                    normalDisabled = ThemeManager.theme.palette.backgroundBasic
-                )
-            )
-        } else {
-            null
-        }
-
-        buttonView.background = when (buttonStyle) {
+        background = when (buttonStyle) {
             ButtonStyle.Primary -> {
                 val content = createRoundedColoredRectangleDrawable(radius, colorState)
 
@@ -363,8 +348,8 @@ class Button @JvmOverloads constructor(
             )
         }
 
-        additionalTextView.textColor = colorState
-        actionTextView.textColor = colorState
+        binding.additionalTextView.textColor = colorState
+        binding.actionTextView.textColor = colorState
     }
 
     private fun invalidateDrawable() {
@@ -387,7 +372,7 @@ class Button @JvmOverloads constructor(
             )
         }
 
-        actionTextView.apply {
+        binding.actionTextView.apply {
             compoundDrawablesColorState = colorState
             setCompoundDrawablesWithIntrinsicBounds(
                 drawableStart,
@@ -401,26 +386,28 @@ class Button @JvmOverloads constructor(
 
     private fun invalidateSpinnerStyle() {
         when (buttonStyle) {
-            ButtonStyle.Primary -> spinner.isContrast = true
-            ButtonStyle.Secondary, ButtonStyle.Ghost -> spinner.isContrast = false
+            ButtonStyle.Primary -> binding.admiralButtonSpinner.isContrast = true
+            ButtonStyle.Secondary, ButtonStyle.Ghost -> binding.admiralButtonSpinner.isContrast =
+                false
         }
     }
 
     private fun invalidateLoading() {
-        if (isLoading) {
-            spinner.animate().alpha(1f).withEndAction {
-                spinner.visibility = View.VISIBLE
-            }
-            actionTextView.animate().alpha(0f)
-            additionalTextView.animate().alpha(0f)
-        } else {
-            spinner.animate().alpha(0f).withEndAction {
-                spinner.visibility = View.INVISIBLE
-            }
-            actionTextView.animate().alpha(1f)
-
-            if (!additionalText.isNullOrEmpty() && buttonSize != ButtonSize.Small) {
-                additionalTextView.animate().alpha(1f)
+        with(binding) {
+            if (isLoading) {
+                admiralButtonSpinner.animate().alpha(1f).withEndAction {
+                    admiralButtonSpinner.visibility = View.VISIBLE
+                }
+                actionTextView.animate().alpha(0f)
+                additionalTextView.animate().alpha(0f)
+            } else {
+                admiralButtonSpinner.animate().alpha(0f).withEndAction {
+                    admiralButtonSpinner.visibility = View.INVISIBLE
+                }
+                if (!additionalText.isNullOrEmpty() && buttonSize != ButtonSize.Small) {
+                    additionalTextView.animate().alpha(1f)
+                }
+                actionTextView.animate().alpha(1f)
             }
         }
     }
