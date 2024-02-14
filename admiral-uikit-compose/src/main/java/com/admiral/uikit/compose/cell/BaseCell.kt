@@ -14,12 +14,13 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.uikit.compose.cell.base.CellUnit
+import com.admiral.uikit.compose.util.DIMEN_X16
+import com.admiral.uikit.compose.util.DIMEN_X3
+import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.compose.cell.base.CellUnitCompose
-import com.admiral.uikit.compose.util.DIMEN_X16
-import com.admiral.uikit.compose.util.DIMEN_X4
 
 @Composable
 @Suppress("LongParameterList")
@@ -28,7 +29,7 @@ fun BaseCell(
     verticalAlignment: Alignment.Vertical = Alignment.CenterVertically,
     onClick: (() -> Unit)? = null,
     isEnabled: Boolean = true,
-    children: List<CellUnitCompose>,
+    children: List<CellUnit>,
     backgroundColorState: ColorState? = null
 ) {
     val theme = ThemeManagerCompose.theme.value
@@ -54,6 +55,7 @@ fun BaseCell(
             .background(
                 color = Color(backgroundColor)
             )
+            .padding(vertical = DIMEN_X3)
     ) {
         val leadingTextElement = children.find { it.unitType == CellUnitType.LEADING_TEXT }
         if (leadingTextElement == null) {

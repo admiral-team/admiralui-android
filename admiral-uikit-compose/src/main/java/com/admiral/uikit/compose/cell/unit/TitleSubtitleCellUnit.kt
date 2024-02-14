@@ -13,10 +13,10 @@ import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.compose.cell.base.CellUnitCompose
+import com.admiral.uikit.compose.cell.base.CellUnit
 import com.admiral.uikit.compose.util.DIMEN_X1
 
-data class TitleSubtitleCellUnitCompose(
+data class TitleSubtitleCellUnit(
     override var unitType: CellUnitType,
     private val titleText: String,
     private val titleTopography: TextStyle = ThemeManagerCompose.typography.body1,
@@ -26,7 +26,7 @@ data class TitleSubtitleCellUnitCompose(
     private val subtitleTextColorState: ColorState? = null,
     private val paddingValues: PaddingValues = PaddingValues(0.dp),
     private val isEnabled: Boolean = true
-) : CellUnitCompose {
+) : CellUnit {
 
     @Composable
     override fun Create(modifier: Modifier) {

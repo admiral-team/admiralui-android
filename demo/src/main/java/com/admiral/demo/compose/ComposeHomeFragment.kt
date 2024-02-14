@@ -6,23 +6,23 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
+import androidx.compose.foundation.rememberScrollState
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.platform.ComposeView
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.res.stringResource
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtHomeBinding
-import com.admiral.demo.features.home.theme.utils.ThemeStorageDAO
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.cell.BaseCell
-import com.admiral.uikit.compose.cell.unit.IconCellUnitCompose
-import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnitCompose
-import com.admiral.uikit.compose.Switcher
-import com.admiral.uikit.compose.tabs.LogoTabs
+import com.admiral.uikit.compose.cell.unit.IconBackgroundCellUnit
+import com.admiral.uikit.compose.cell.unit.IconCellUnit
+import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnit
 import com.admiral.uikit.compose.util.DIMEN_X8
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 
@@ -31,6 +31,7 @@ class ComposeHomeFragment : BaseFragment(R.layout.fmt_home) {
     private val binding by viewBinding(FmtHomeBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
+    @Suppress("LongMethod")
     override fun onCreateView(
         inflater: LayoutInflater,
         container: ViewGroup?,
@@ -40,39 +41,451 @@ class ComposeHomeFragment : BaseFragment(R.layout.fmt_home) {
             setContent {
                 Column(
                     horizontalAlignment = Alignment.CenterHorizontally,
-                    modifier = Modifier.padding(top = DIMEN_X8)
+                    modifier = Modifier
+                        .padding(top = DIMEN_X8)
+                        .verticalScroll(state = rememberScrollState())
                 ) {
-                    val curTheme = ThemeManagerCompose.theme.value
-                    val isThemeDark = ThemeStorageDAO.getThemes()[1] == curTheme
-
-                    Switcher(checked = isThemeDark, onCheckedChanged = {
-                        if (it) {
-                            ThemeManagerCompose.setCurrentTheme(ThemeStorageDAO.getThemes()[1])
-                        } else {
-                            ThemeManagerCompose.setCurrentTheme(ThemeStorageDAO.getThemes()[0])
-                        }
-                    })
-
-                    LogoTabs(
-                        items = listOf(
-                            painterResource(id = R.drawable.test_ic_visa),
-                            painterResource(id = R.drawable.test_ic_master_card),
-                            painterResource(id = R.drawable.test_ic_mir),
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_eyedropper_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_themes_title),
+                                subtitleText = stringResource(R.string.home_section_themes_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
                         )
                     )
                     BaseCell(
                         children = listOf(
-                            TitleSubtitleCellUnitCompose(
-                                unitType = CellUnitType.LEADING,
-                                titleText = "Checkbox",
-                                subtitleText = "Селектор"
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_diamond_solid),
+                                unitType = CellUnitType.LEADING
                             ),
-                            IconCellUnitCompose(
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_icons_title),
+                                subtitleText = stringResource(R.string.home_section_icons_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
                                 unitType = CellUnitType.TRAILING,
                                 icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
                             )
-                        ),
-                        onClick = { }
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_grid_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_buttons_title),
+                                subtitleText = stringResource(R.string.home_section_buttons_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_eyedropper_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_themes_title),
+                                subtitleText = stringResource(R.string.home_section_themes_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_sign_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_text_fields_title),
+                                subtitleText = stringResource(R.string.home_section_text_fields_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_menu_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_cells_title),
+                                subtitleText = stringResource(R.string.home_section_cells_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_typography_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_text_blocks_title),
+                                subtitleText = stringResource(R.string.home_section_text_blocks_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_diamond_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_tabs_title),
+                                subtitleText = stringResource(R.string.home_section_tabs_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_chat_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_chat_title),
+                                subtitleText = stringResource(R.string.home_section_chat_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_pin_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_tags_title),
+                                subtitleText = stringResource(R.string.home_section_tags_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_mobile_outline),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_badges_title),
+                                subtitleText = stringResource(R.string.home_section_badges_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_tune_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_radiobutton_title),
+                                subtitleText = stringResource(R.string.home_section_radiobutton_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_tasks_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_checkbox_title),
+                                subtitleText = stringResource(R.string.home_section_checkbox_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_tune_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_switcher_title),
+                                subtitleText = stringResource(R.string.home_section_switcher_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_link_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_links_title),
+                                subtitleText = stringResource(R.string.home_section_links_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_loader_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_spinner_title),
+                                subtitleText = stringResource(R.string.home_section_spinner_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_more_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_page_control_title),
+                                subtitleText = stringResource(R.string.home_section_page_control_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_update_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_shimmer_title),
+                                subtitleText = stringResource(R.string.home_section_shimmer_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_calendar_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_calendar_title),
+                                subtitleText = stringResource(R.string.home_section_calendar_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_time_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_time_picker_title),
+                                subtitleText = stringResource(R.string.home_section_timer_picker_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_email_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_alert_title),
+                                subtitleText = stringResource(R.string.home_section_alert_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_chat_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_toolbar_title),
+                                subtitleText = stringResource(R.string.home_section_toolbar_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_receipt_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_bottom_sheet_title),
+                                subtitleText = stringResource(R.string.home_section_bottom_sheet_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_treasury_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_currency_title),
+                                subtitleText = stringResource(R.string.home_section_currency_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_chat_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_chat_title),
+                                subtitleText = stringResource(R.string.home_section_chat_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
+                    )
+                    BaseCell(
+                        children = listOf(
+                            IconBackgroundCellUnit(
+                                icon = painterResource(id = R.drawable.admiral_ic_location_solid),
+                                unitType = CellUnitType.LEADING
+                            ),
+                            TitleSubtitleCellUnit(
+                                titleText = stringResource(R.string.home_section_map_title),
+                                subtitleText = stringResource(R.string.home_section_map_subtitle),
+                                unitType = CellUnitType.LEADING_TEXT
+                            ),
+                            IconCellUnit(
+                                unitType = CellUnitType.TRAILING,
+                                icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                            )
+                        )
                     )
                 }
             }

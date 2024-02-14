@@ -29,7 +29,6 @@ import com.admiral.demo.screen.PageControlScreen
 import com.admiral.demo.screen.RadioButtonScreen
 import com.admiral.demo.screen.ShimmerScreen
 import com.admiral.demo.screen.SpinnerScreen
-import com.admiral.demo.screen.StepperScreen
 import com.admiral.demo.screen.SwitchScreen
 import com.admiral.demo.screen.TabsScreen
 import com.admiral.demo.screen.TagsScreen
@@ -67,9 +66,6 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
                                 ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
 
                             view.isVisible = isTitleContains || isSubtitleContains
-                            if (cellUnit.title == getString(R.string.home_section_stepper_title)) {
-                                view.isVisible = false
-                            }
                         }
                     }
                 }
@@ -102,10 +98,6 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
 
         binding.calendarButton.setOnClickListener {
             navigationViewModel.open(CalendarScreen())
-        }
-
-        binding.stepperButton.setOnClickListener {
-            navigationViewModel.open(StepperScreen())
         }
 
         binding.radioButtonsButton.setOnClickListener {
