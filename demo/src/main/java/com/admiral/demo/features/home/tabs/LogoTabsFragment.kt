@@ -15,7 +15,7 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
-import com.admiral.uikit.core.ext.isColorDark
+import com.admiral.uikit.ext.isColorDark
 import com.admiral.uikit.view.checkable.CheckableGroup
 
 class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
@@ -126,7 +126,7 @@ class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
         return ContextCompat.getDrawable(requireContext(), drawable)
     }
 
-    companion object {
+    private companion object {
         private const val DARK_THRESHOLD = 0.5f
     }
 }

@@ -1,15 +1,20 @@
 package com.admiral.uikit.compose.badge
 
+import androidx.compose.foundation.ScrollState
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.BoxScope
+import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
+import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.defaultMinSize
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
@@ -27,12 +32,16 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.uikit.compose.util.DIMEN_X1
+import com.admiral.uikit.compose.util.DIMEN_X2
+import com.admiral.uikit.compose.util.DIMEN_X4
 
 @Composable
 fun BadgedBox(
     modifier: Modifier = Modifier,
     content: Int? = null,
-    color: BadgeColor = normal(),
+    color: BadgeColor = AdmiralBadgeColor.normal(),
+    position: BadgePosition = AdmiralBadgePosition.standard(),
     isEnable: Boolean = true,
     anchor: @Composable BoxScope.() -> Unit,
 ) {
@@ -79,17 +88,20 @@ fun BadgedBox(
         ) {
             // Use the width of the badge to infer whether it has any content (based on radius used
             // in [Badge]) and determine its horizontal offset.
-            val hasContent = badgePlaceable.width > (2 * BadgeRadius.roundToPx())
+            val hasContent = badgePlaceable.width > (2 * BADGE_RADIUS.dp.roundToPx())
             val badgeHorizontalOffset =
-                if (hasContent) BadgeWithContentHorizontalOffset else BadgeHorizontalOffset
+                if (hasContent) position.badgeWithContentHorizontalOffset else position.badgeHorizontalOffset
+            val badgeVerticalOffset =
+                if (hasContent) position.badgeVerticalWithContentOffset else position.badgeVerticalOffset
 
             anchorPlaceable.placeRelative(0, 0)
             val badgeX = anchorPlaceable.width + badgeHorizontalOffset.roundToPx()
-            val badgeY = -badgePlaceable.height / 2
+            val badgeY = -badgePlaceable.height - badgeVerticalOffset.roundToPx()
             badgePlaceable.placeRelative(badgeX, badgeY)
         }
     }
 }
+
 
 @Composable
 private fun Badge(
@@ -98,7 +110,7 @@ private fun Badge(
     color: BadgeColor,
     isEnable: Boolean,
 ) {
-    val radius = if (content != null) BadgeWithContentRadius else BadgeRadius
+    val radius = if (content != null) BADGE_WITH_CONTENT_RADIUS.dp else BADGE_RADIUS.dp
     val shape = RoundedCornerShape(radius)
     val backgroundColor =
         if (isEnable) color.backgroundColorNormal else color.backgroundColorDisable
@@ -108,164 +120,162 @@ private fun Badge(
     Row(
         modifier = modifier
             .defaultMinSize(minWidth = radius * 2, minHeight = radius * 2)
-            .border(borderWidth, color = color.borderColor, shape = shape)
-            .padding(spaceBetweenBorder)
+            .border(BORDER_WIDTH.dp, color = color.borderColor, shape = shape)
+            .padding(SPACE_BETWEEN_BORDER.dp)
             .background(color = backgroundColor, shape = shape),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         if (content != null) {
             Text(
-                modifier = Modifier.padding(horizontal = BadgeWithContentHorizontalPadding - spaceBetweenBorder),
+                modifier = Modifier.padding(horizontal = BADGE_WITH_CONTENT_HORIZONTAL_PADDING.dp - SPACE_BETWEEN_BORDER.dp),
                 text = content.toString(),
                 color = contentColor,
                 style = textStyle,
-                maxLines = 1,
+                maxLines = MAX_LINES,
                 textAlign = TextAlign.Center,
             )
         }
     }
 }
 
-private const val BADGE_LAYOUT_ID = "badge"
-private const val ANCHOR_LAYOUT_ID = "anchor"
-private val borderWidth = 2.dp
-private val spaceBetweenBorder = 1.dp
-private val BadgeRadius = 4.dp
-private val BadgeWithContentRadius = 8.dp
-// Leading and trailing text padding when a badge is displaying text that is too long to fit in
-// a circular badge, e.g. if badge number is greater than 9.
-private val BadgeWithContentHorizontalPadding = 4.dp
-// Horizontally align start/end of text badge 6dp from the end/start edge of its anchor
-private val BadgeWithContentHorizontalOffset = (-6).dp
-// Horizontally align start/end of icon only badge 4dp from the end/start edge of anchor
-private val BadgeHorizontalOffset = (-4).dp
+private const val BADGE_LAYOUT_ID = "BADGE_LAYOUT_ID"
+private const val ANCHOR_LAYOUT_ID = "ANCHOR_LAYOUT_ID"
+private const val MAX_LINES = 1
+private const val BORDER_WIDTH = 2
+private const val SPACE_BETWEEN_BORDER = 1
+private const val BADGE_RADIUS = 5
+private const val BADGE_WITH_CONTENT_RADIUS = 8
+private const val BADGE_WITH_CONTENT_HORIZONTAL_PADDING = 4
 
-@Preview(showBackground = true)
 @Composable
-fun BoxBadgeSmallPreview() {
+private fun IconWithBackground() {
     Box(
         modifier = Modifier
-            .size(50.dp),
-        contentAlignment = Alignment.CenterStart
+            .clip(RoundedCornerShape(DIMEN_X1))
+            .background(Color.Gray)
     ) {
-        val radius = 4.dp
-        BadgedBox {
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(radius))
-                    .background(Color.Green)
-            ) {
-                Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Favorite"
-                )
-            }
-        }
+        Icon(
+            Icons.Filled.Favorite,
+            contentDescription = "Favorite"
+        )
     }
 }
 
 @Preview(showBackground = true)
 @Composable
-fun BoxBadgeMedium9Preview() {
-    Box(
+private fun BadgePreview() {
+    Column(
         modifier = Modifier
-            .size(50.dp),
-        contentAlignment = Alignment.CenterStart
+            .fillMaxSize()
+            .background(color = Color(ThemeManagerCompose.theme.value.palette.backgroundBasic))
+            .verticalScroll(ScrollState(0))
+            .padding(vertical = DIMEN_X4, horizontal = DIMEN_X2),
     ) {
-        val radius = 4.dp
-        BadgedBox(
-            content = 9
-        ) {
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(radius))
-                    .background(Color.Green)
-            ) {
-                Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Favorite"
-                )
-            }
-        }
-    }
-}
+        Row {
+            BadgedBox { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
 
-@Preview(showBackground = true)
-@Composable
-fun BoxBadgeMedium111Preview() {
-    Box(
-        modifier = Modifier
-            .size(50.dp),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        val radius = 4.dp
-        BadgedBox(
-            content = 111
-        ) {
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(radius))
-                    .background(Color.Green)
-            ) {
-                Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Favorite"
-                )
-            }
-        }
-    }
-}
+            BadgedBox(color = AdmiralBadgeColor.error()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
 
-@Preview(showBackground = true)
-@Composable
-fun BoxBadgeMedium123Preview() {
-    Box(
-        modifier = Modifier
-            .size(50.dp),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        val radius = 6.dp
-        BadgedBox(
-            content = 123
-        ) {
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(radius))
-                    .background(Color.Green)
-            ) {
-                Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Favorite"
-                )
-            }
-        }
-    }
-}
+            BadgedBox(color = AdmiralBadgeColor.attention()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
 
-@Preview(showBackground = true)
-@Composable
-fun BoxBadgeMedium123DisablePreview() {
-    Box(
-        modifier = Modifier
-            .size(50.dp),
-        contentAlignment = Alignment.CenterStart
-    ) {
-        val radius = 6.dp
-        BadgedBox(
-            content = 123,
-            isEnable = false,
-        ) {
-            Box(
-                modifier = Modifier
-                    .clip(RoundedCornerShape(radius))
-                    .background(Color.Green)
-            ) {
-                Icon(
-                    Icons.Filled.Favorite,
-                    contentDescription = "Favorite"
-                )
-            }
+            BadgedBox(color = AdmiralBadgeColor.success()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(color = AdmiralBadgeColor.additional()) { IconWithBackground() }
         }
+        Spacer(modifier = Modifier.size(DIMEN_X4))
+
+        Row {
+            BadgedBox(content = 9) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 9, color = AdmiralBadgeColor.error()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 9, color = AdmiralBadgeColor.attention()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 9, color = AdmiralBadgeColor.success()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 9, color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 9, color = AdmiralBadgeColor.additional()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+        }
+        Spacer(modifier = Modifier.size(DIMEN_X4))
+
+        Row {
+            BadgedBox(content = 9, isEnable = false) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(
+                content = 9,
+                isEnable = false,
+                color = AdmiralBadgeColor.error()
+            ) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(
+                content = 9,
+                isEnable = false,
+                color = AdmiralBadgeColor.attention()
+            ) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(
+                content = 9,
+                isEnable = false,
+                color = AdmiralBadgeColor.success()
+            ) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(
+                content = 9,
+                isEnable = false,
+                color = AdmiralBadgeColor.neutral()
+            ) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(
+                content = 9,
+                isEnable = false,
+                color = AdmiralBadgeColor.additional()
+            ) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+        }
+        Spacer(modifier = Modifier.size(DIMEN_X4))
+
+        Row {
+            BadgedBox(content = 111) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 111, color = AdmiralBadgeColor.error()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 111, color = AdmiralBadgeColor.attention()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 111, color = AdmiralBadgeColor.success()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(content = 111, color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+
+            BadgedBox(
+                content = 111,
+                color = AdmiralBadgeColor.additional()
+            ) { IconWithBackground() }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+        }
+        Spacer(modifier = Modifier.size(DIMEN_X4))
     }
 }
