@@ -67,6 +67,7 @@ object Libs {
 
             val foundation = "androidx.compose.foundation:foundation:${Versions.AndroidX.compose}"
             val material = "androidx.compose.material:material:${Versions.AndroidX.compose}"
+            val navigation = "androidx.navigation:navigation-compose:${Versions.AndroidX.composeNavigation}"
         }
 
         object Camera {

@@ -147,6 +147,7 @@ dependencies {
     implementation(Libs.AndroidX.constraintLayout)
     implementation(Libs.AndroidX.preference)
     implementation(Libs.AndroidX.Activity.compose)
+    implementation(Libs.AndroidX.Compose.navigation)
     implementation(Libs.AndroidX.Compose.foundation)
     implementation(Libs.AndroidX.Compose.material)
     implementation(Libs.AndroidX.Compose.Ui.ui)
