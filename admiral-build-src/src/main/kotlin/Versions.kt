@@ -39,6 +39,7 @@ object Versions {
         val appcompat = "1.4.0"
         val coreKtx = "1.7.0"
         val constraintLayout = "2.1.3"
+        val constraintLayoutCompose = "1.0.1"
         val lifecycle = "2.4.1"
         val recyclerView = "1.2.1"
         val fragment = "1.4.1"

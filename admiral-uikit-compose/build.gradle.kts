@@ -22,8 +22,9 @@ dependencies {
     implementation(Libs.Google.Android.material)
 
     implementation(Libs.AndroidX.Compose.Ui.ui)
-    implementation(Libs.AndroidX.Compose.Ui.tooling)
-    implementation(Libs.AndroidX.Compose.Ui.constraintlayout)
+    debugImplementation(Libs.AndroidX.Compose.Ui.tooling)
+    implementation(Libs.AndroidX.Compose.Ui.preview)
+    implementation(Libs.AndroidX.Compose.constraintlayout)
     implementation(Libs.AndroidX.Compose.foundation)
     implementation(Libs.AndroidX.Compose.material)
 

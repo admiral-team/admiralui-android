@@ -41,7 +41,12 @@ data class TitleSubtitleCellUnit(
             else titleTextColorState?.normalDisabled ?: theme.palette.textSecondary.withAlpha()
 
         Column(modifier.padding(paddingValues)) {
-            Text(modifier = Modifier, text = titleText, color = Color(titleTextColor), style = titleTopography)
+            Text(
+                modifier = Modifier,
+                text = titleText,
+                color = Color(titleTextColor),
+                style = titleTopography
+            )
             Text(
                 modifier = Modifier.padding(top = DIMEN_X1),
                 text = subtitleText,
