@@ -16,6 +16,7 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
+import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -28,10 +29,16 @@ import androidx.compose.ui.layout.FirstBaseline
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
+import androidx.compose.ui.text.ExperimentalTextApi
+import androidx.compose.ui.text.PlatformTextStyle
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
+import androidx.compose.ui.text.style.TextGeometricTransform
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import androidx.compose.ui.unit.sp
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.Typography
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
@@ -103,6 +110,7 @@ fun BadgedBox(
 }
 
 
+@OptIn(ExperimentalTextApi::class)
 @Composable
 private fun Badge(
     modifier: Modifier = Modifier,
@@ -131,7 +139,11 @@ private fun Badge(
                 modifier = Modifier.padding(horizontal = BADGE_WITH_CONTENT_HORIZONTAL_PADDING.dp - SPACE_BETWEEN_BORDER.dp),
                 text = content.toString(),
                 color = contentColor,
-                style = textStyle,
+                style = textStyle.copy(
+                    platformStyle = PlatformTextStyle(
+                        includeFontPadding = false
+                    )
+                ),
                 maxLines = MAX_LINES,
                 textAlign = TextAlign.Center,
             )
