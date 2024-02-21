@@ -2,7 +2,7 @@
 
 package com.admiral.demo.screen
 
-import com.admiral.demo.compose.ComposeHomeFragment
+import com.admiral.demo.compose.home.ComposeHomeFragment
 import kotlinx.parcelize.Parcelize
 
 @Parcelize
