@@ -62,7 +62,7 @@
     <string name="home_section_timer_picker_subtitle">Выбор времени</string>
     <string name="home_section_alert_title">Alerts</string>
     <string name="home_section_alert_subtitle">Информирующие сообщения</string>
-    <string name="home_section_toolbar_title">Toolbar</string>
+    <string name="home_section_toolbar_title">Tool bar</string>
     <string name="home_section_toolbar_subtitle">Меню</string>
     <string name="home_section_bottom_sheet_title">Bottom-sheets</string>
     <string name="home_section_bottom_sheet_subtitle">Информационная панель</string>
