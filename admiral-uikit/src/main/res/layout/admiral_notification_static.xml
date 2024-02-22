@@ -16,19 +16,8 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="@dimen/module_x5"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <ImageView
-        android:id="@+id/admiralCloseIcon"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="@dimen/module_x5"
-        android:layout_marginEnd="@dimen/module_x4"
-        android:clickable="true"
-        android:focusable="true"
-        android:src="@drawable/admiral_ic_close_outline"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        tools:src="@drawable/admiral_ic_info_solid" />
 
     <com.admiral.uikit.components.text.TextView
         android:id="@+id/admiralToastTextView"
@@ -45,12 +34,26 @@
 
     <com.admiral.uikit.components.links.Link
         android:id="@+id/admiralLinkTextView"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/module_x2"
         android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/admiralToastTextView"
         app:layout_constraintStart_toStartOf="@id/admiralToastTextView"
         app:layout_constraintTop_toBottomOf="@id/admiralToastTextView"
-        tools:text="Link text" />
+        tools:admiralText="Link text"
+        tools:visibility="visible" />
+
+    <ImageView
+        android:id="@+id/admiralCloseIcon"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="@dimen/module_x5"
+        android:layout_marginEnd="@dimen/module_x4"
+        android:clickable="true"
+        android:focusable="true"
+        android:src="@drawable/admiral_ic_close_outline"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
