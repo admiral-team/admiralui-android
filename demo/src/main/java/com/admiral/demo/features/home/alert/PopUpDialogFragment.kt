@@ -2,52 +2,55 @@ package com.admiral.demo.features.home.alert
 
 import android.content.res.ColorStateList
 import android.os.Bundle
+import android.view.LayoutInflater
 import android.view.View
-import android.widget.ImageView
-import android.widget.LinearLayout
-import androidx.core.content.ContextCompat
+import android.view.ViewGroup
+import androidx.core.content.ContextCompat.getDrawable
+import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.dialogsfragment.AlertDialogFragment
-import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.databinding.AdmiralViewPopUpDialogBinding
 
 class PopUpDialogFragment : AlertDialogFragment(R.layout.admiral_view_pop_up_dialog) {
 
+    private val binding by viewBinding(AdmiralViewPopUpDialogBinding::bind)
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        setUpUi()
+    }
 
-        requireView().findViewById<LinearLayout>(R.id.popUpRoot).apply {
-            backgroundTintList = ColorStateList(
-                arrayOf(
-                    intArrayOf()
-                ),
-                intArrayOf(
-                    ThemeManager.theme.palette.backgroundExtraSurface
+    private fun setUpUi() {
+        with(binding) {
+            popUpRoot.backgroundTintList =
+                ColorStateList.valueOf(ThemeManager.theme.palette.backgroundExtraSurface)
+
+            ivTopImage.setImageDrawable(
+                getDrawable(
+                    requireContext(),
+                    R.drawable.test_ic_pop_up
                 )
             )
-        }
-        requireView().findViewById<ImageView>(R.id.ivTopImage).apply {
-            setImageDrawable(ContextCompat.getDrawable(requireContext(), R.drawable.test_ic_pop_up))
-        }
-        requireView().findViewById<TextView>(R.id.tvBody).apply {
-            text = getString(R.string.cell_lorem_ipsum)
-            textColor = ColorState(normalEnabled = ThemeManager.theme.palette.textSecondary)
-        }
-        requireView().findViewById<TextView>(R.id.tvTitle).apply {
-            text = context.getString(R.string.pop_up_example_title)
-        }
-        requireView().findViewById<Button>(R.id.buttonAction).apply {
-            text = context.getString(R.string.pop_up_example_button)
-            setOnClickListener {
-                this@PopUpDialogFragment.dismiss()
+
+            tvTitle.text = getString(R.string.pop_up_example_title)
+
+            tvBody.apply {
+                text = getString(R.string.cell_lorem_ipsum)
+                textColor = ColorState(normalEnabled = ThemeManager.theme.palette.textSecondary)
             }
-        }
-        requireView().findViewById<Button>(R.id.buttonAlternative).apply {
-            text = context.getString(R.string.pop_up_example_button_alternative)
-            setOnClickListener {
-                this@PopUpDialogFragment.dismiss()
+
+            buttonAction.apply {
+                text = getString(R.string.pop_up_example_button)
+                setOnClickListener { this@PopUpDialogFragment.dismiss() }
+            }
+
+            buttonAlternative.apply {
+                text = getString(R.string.pop_up_example_button_alternative)
+                setOnClickListener {
+                    this@PopUpDialogFragment.dismiss()
+                }
             }
         }
     }
