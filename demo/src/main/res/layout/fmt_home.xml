@@ -331,7 +331,7 @@
                     android:id="@+id/iconBackgroundBadges"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:admiralIcon="@drawable/admiral_ic_notifications_solid" />
+                    app:admiralIcon="@drawable/admiral_ic_mobile_outline" />
 
                 <com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
                     android:id="@+id/textBadges"
@@ -562,7 +562,7 @@
                     android:id="@+id/iconBackgroundShimmer"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:admiralIcon="@drawable/admiral_ic_redo_solid" />
+                    app:admiralIcon="@drawable/admiral_ic_update_solid" />
 
                 <com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
                     android:id="@+id/textShimmer"
@@ -760,7 +760,7 @@
                     android:id="@+id/iconBackgroundCurrency"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:admiralIcon="@drawable/admiral_ic_rub_solid" />
+                    app:admiralIcon="@drawable/admiral_ic_treasury_solid" />
 
                 <com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
                     android:id="@+id/textCurrency"
@@ -792,7 +792,7 @@
                 <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    app:admiralIcon="@drawable/admiral_ic_rub_solid" />
+                    app:admiralIcon="@drawable/admiral_ic_comment_solid" />
 
                 <com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
                     android:layout_width="wrap_content"
