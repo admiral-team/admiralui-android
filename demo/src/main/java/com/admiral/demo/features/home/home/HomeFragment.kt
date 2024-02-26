@@ -38,6 +38,7 @@ import com.admiral.demo.screen.TimePickerScreen
 import com.admiral.demo.screen.ToolbarScreen
 import com.admiral.uikit.components.cell.BaseCell
 import com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
+import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged
 import kotlinx.coroutines.flow.launchIn
@@ -48,120 +49,123 @@ class HomeFragment : BaseFragment(R.layout.fmt_home) {
     private val binding by viewBinding(FmtHomeBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
-    @Suppress("LongMethod")
+    @OptIn(FlowPreview::class)
+    @Suppress("LongMethod", "OPT_IN_IS_NOT_ENABLED")
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
-        binding.search.textFlow.debounce(DEBOUNCE_TIME)
-            .distinctUntilChanged()
-            .onEach { filter ->
-                if (filter != null) {
-                    binding.rootList.children.forEach { view ->
-                        if (view is BaseCell) {
-                            val cellUnit = (view[1] as? TitleSubtitleCellUnit) ?: return@forEach
-                            val isTitleContains = cellUnit.title
-                                ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
-                            val isSubtitleContains = cellUnit.subtitle
-                                ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
+        with(binding) {
+            registerToolbar(toolbar, true, navigationViewModel::close)
 
-                            view.isVisible = isTitleContains || isSubtitleContains
+            search.textFlow.debounce(DEBOUNCE_TIME)
+                .distinctUntilChanged()
+                .onEach { filter ->
+                    if (filter != null) {
+                        rootList.children.forEach { view ->
+                            if (view is BaseCell) {
+                                val cellUnit = (view[1] as? TitleSubtitleCellUnit) ?: return@forEach
+                                val isTitleContains = cellUnit.title
+                                    ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
+                                val isSubtitleContains = cellUnit.subtitle
+                                    ?.contains(filter.toString().trim(), ignoreCase = true) ?: false
+
+                                view.isVisible = isTitleContains || isSubtitleContains
+                            }
                         }
                     }
-                }
+                }.launchIn(lifecycleScope)
+
+            chatButton.setOnClickListener {
+                navigationViewModel.open(ChatScreen())
             }
-            .launchIn(lifecycleScope)
 
-        binding.chatButton.setOnClickListener {
-            navigationViewModel.open(ChatScreen())
-        }
+            tagsButton.setOnClickListener {
+                navigationViewModel.open(TagsScreen())
+            }
 
-        binding.tagsButton.setOnClickListener {
-            navigationViewModel.open(TagsScreen())
-        }
+            buttonsButton.setOnClickListener {
+                navigationViewModel.open(ButtonsScreen())
+            }
 
-        binding.buttonsButton.setOnClickListener {
-            navigationViewModel.open(ButtonsScreen())
-        }
+            tabsButton.setOnClickListener {
+                navigationViewModel.open(TabsScreen())
+            }
 
-        binding.tabsButton.setOnClickListener {
-            navigationViewModel.open(TabsScreen())
-        }
+            toolbarButton.setOnClickListener {
+                navigationViewModel.open(ToolbarScreen())
+            }
 
-        binding.toolbarButton.setOnClickListener {
-            navigationViewModel.open(ToolbarScreen())
-        }
+            bottomSheetButton.setOnClickListener {
+                navigationViewModel.open(BottomSheetScreen())
+            }
 
-        binding.bottomSheetButton.setOnClickListener {
-            navigationViewModel.open(BottomSheetScreen())
-        }
+            calendarButton.setOnClickListener {
+                navigationViewModel.open(CalendarScreen())
+            }
 
-        binding.calendarButton.setOnClickListener {
-            navigationViewModel.open(CalendarScreen())
-        }
+            radioButtonsButton.setOnClickListener {
+                navigationViewModel.open(RadioButtonScreen())
+            }
 
-        binding.radioButtonsButton.setOnClickListener {
-            navigationViewModel.open(RadioButtonScreen())
-        }
+            checkBoxButton.setOnClickListener {
+                navigationViewModel.open(CheckBoxScreen())
+            }
 
-        binding.checkBoxButton.setOnClickListener {
-            navigationViewModel.open(CheckBoxScreen())
-        }
+            switchButton.setOnClickListener {
+                navigationViewModel.open(SwitchScreen())
+            }
 
-        binding.switchButton.setOnClickListener {
-            navigationViewModel.open(SwitchScreen())
-        }
+            alertsButton.setOnClickListener {
+                navigationViewModel.open(AlertsOnboardingScreen())
+            }
 
-        binding.alertsButton.setOnClickListener {
-            navigationViewModel.open(AlertsOnboardingScreen())
-        }
+            textFieldsButton.setOnClickListener {
+                navigationViewModel.open(TextFieldsScreen())
+            }
 
-        binding.textFieldsButton.setOnClickListener {
-            navigationViewModel.open(TextFieldsScreen())
-        }
+            cellsButton.setOnClickListener {
+                navigationViewModel.open(CellsScreen())
+            }
 
-        binding.cellsButton.setOnClickListener {
-            navigationViewModel.open(CellsScreen())
-        }
+            shimmerButton.setOnClickListener {
+                navigationViewModel.open(ShimmerScreen())
+            }
 
-        binding.shimmerButton.setOnClickListener {
-            navigationViewModel.open(ShimmerScreen())
-        }
+            informerButton.setOnClickListener {
+                navigationViewModel.open(InformersNotificationsScreen())
+            }
 
-        binding.informerButton.setOnClickListener {
-            navigationViewModel.open(InformersNotificationsScreen())
-        }
+            linksButton.setOnClickListener {
+                navigationViewModel.open(LinksScreen())
+            }
 
-        binding.linksButton.setOnClickListener {
-            navigationViewModel.open(LinksScreen())
-        }
+            spinnerButton.setOnClickListener {
+                navigationViewModel.open(SpinnerScreen())
+            }
 
-        binding.spinnerButton.setOnClickListener {
-            navigationViewModel.open(SpinnerScreen())
-        }
+            badgesButton.setOnClickListener {
+                navigationViewModel.open(BadgesScreen())
+            }
 
-        binding.badgesButton.setOnClickListener {
-            navigationViewModel.open(BadgesScreen())
-        }
+            pageControlButton.setOnClickListener {
+                navigationViewModel.open(PageControlScreen())
+            }
 
-        binding.pageControlButton.setOnClickListener {
-            navigationViewModel.open(PageControlScreen())
-        }
+            themeButton.setOnClickListener {
+                navigationViewModel.open(ThemeListScreen(ThemeListMode.SHOW))
+            }
 
-        binding.themeButton.setOnClickListener {
-            navigationViewModel.open(ThemeListScreen(ThemeListMode.SHOW))
-        }
+            iconsButton.setOnClickListener {
+                navigationViewModel.open(IconsScreen())
+            }
 
-        binding.iconsButton.setOnClickListener {
-            navigationViewModel.open(IconsScreen())
-        }
+            timePickerButton.setOnClickListener {
+                navigationViewModel.open(TimePickerScreen())
+            }
 
-        binding.timePickerButton.setOnClickListener {
-            navigationViewModel.open(TimePickerScreen())
-        }
-
-        binding.currencyButton.setOnClickListener {
-            navigationViewModel.open(CurrencyScreen())
+            currencyButton.setOnClickListener {
+                navigationViewModel.open(CurrencyScreen())
+            }
         }
     }
 
