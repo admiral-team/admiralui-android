@@ -5,17 +5,17 @@
     android:id="@+id/admiral_notification_action"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:minHeight="52dp"
+    android:background="@drawable/admiral_bg_rectangle_8dp"
+    android:minHeight="@dimen/module_x13"
     android:paddingStart="@dimen/module_x4"
     android:paddingTop="@dimen/module_x3"
     android:paddingEnd="@dimen/module_x4"
-    android:paddingBottom="@dimen/module_x3"
-    android:background="@drawable/admiral_bg_rectangle_8dp">
+    android:paddingBottom="@dimen/module_x3">
 
     <FrameLayout
         android:id="@+id/timerContainer"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="@dimen/module_x7"
+        android:layout_height="@dimen/module_x7"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent">
@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:indeterminate="false"
-            android:max="100"
+            android:max="@dimen/module_x25"
             android:progress="75"
             android:progressDrawable="@drawable/admiral_progress_bar"
             android:scaleX="-1"
@@ -52,11 +52,11 @@
 
     <com.admiral.uikit.components.links.Link
         android:id="@+id/cancelText"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        android:layout_marginEnd="8dp"
-        app:admiralText="Отмена"
+        android:layout_marginEnd="@dimen/module_x2"
         android:visibility="visible"
+        app:admiralText="Отмена"
         app:admiralTextStyle="body2"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
@@ -64,8 +64,8 @@
 
     <com.admiral.uikit.components.imageview.ImageView
         android:id="@+id/cancelImage"
-        android:layout_width="28dp"
-        android:layout_height="28dp"
+        android:layout_width="@dimen/module_x7"
+        android:layout_height="@dimen/module_x7"
         android:visibility="gone"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
