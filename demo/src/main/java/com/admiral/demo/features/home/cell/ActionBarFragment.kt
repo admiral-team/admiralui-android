@@ -2,8 +2,6 @@ package com.admiral.demo.features.home.cell
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import android.widget.Toast
 import androidx.fragment.app.viewModels
@@ -16,7 +14,10 @@ import com.admiral.themes.ColorPaletteEnum
 import com.admiral.uikit.components.actionbar.ActionBarOnSwipeTouchListener
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
+class ActionBarFragment : BaseFragment(
+    layoutId = R.layout.fmt_cells_actionbar,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtCellsActionbarBinding::bind)
@@ -31,9 +32,6 @@ class ActionBarFragment : BaseFragment(R.layout.fmt_cells_actionbar) {
         initTitleCell()
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
-    }
 
     private fun initTabs() {
         binding.tabs.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {

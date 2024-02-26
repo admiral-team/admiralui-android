@@ -2,8 +2,6 @@ package com.admiral.demo.features.home.textFields
 
 import android.os.Bundle
 import android.text.InputFilter
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -13,7 +11,10 @@ import com.admiral.demo.databinding.FmtTextFieldsSmsBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class TextFieldsSmsFragment : BaseFragment(R.layout.fmt_text_fields_sms) {
+class TextFieldsSmsFragment : BaseFragment(
+    layoutId = R.layout.fmt_text_fields_sms,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTextFieldsSmsBinding::bind)
@@ -45,10 +46,6 @@ class TextFieldsSmsFragment : BaseFragment(R.layout.fmt_text_fields_sms) {
         }
 
         binding.textField.inputLayout.editText?.filters = arrayOf<InputFilter>(InputFilter.LengthFilter(MAX))
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 
     companion object {

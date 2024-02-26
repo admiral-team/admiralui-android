@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.informers
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,7 +10,10 @@ import com.admiral.demo.databinding.FmtInformersBigBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class InformersBigFragment : BaseFragment(R.layout.fmt_informers_big) {
+class InformersBigFragment : BaseFragment(
+    layoutId = R.layout.fmt_informers_big,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtInformersBigBinding::bind)
@@ -39,9 +40,5 @@ class InformersBigFragment : BaseFragment(R.layout.fmt_informers_big) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.notifications
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -13,7 +11,10 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.notifications.action.ActionNotification
 import com.admiral.uikit.components.notifications.action.ActionNotificationCloseType
 
-class ActionNotificationFragment : BaseFragment(R.layout.fmt_notifications_action) {
+class ActionNotificationFragment : BaseFragment(
+    layoutId = R.layout.fmt_notifications_action,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtNotificationsActionBinding::bind)
@@ -34,9 +35,6 @@ class ActionNotificationFragment : BaseFragment(R.layout.fmt_notifications_actio
         }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
-    }
 
     private companion object {
         const val DURATION = 5000

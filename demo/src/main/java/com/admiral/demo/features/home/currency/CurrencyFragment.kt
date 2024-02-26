@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.currency
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -15,7 +13,10 @@ import com.admiral.demo.screen.CurrencyFlagsScreen
 import com.admiral.demo.screen.CurrencyIconsFlagsScreen
 import com.admiral.demo.screen.CurrencyIconsScreen
 
-class CurrencyFragment : BaseFragment(R.layout.fmt_currency) {
+class CurrencyFragment : BaseFragment(
+    layoutId = R.layout.fmt_currency,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtCurrencyBinding::bind)
@@ -39,9 +40,5 @@ class CurrencyFragment : BaseFragment(R.layout.fmt_currency) {
         binding.btnCurrencyIconsFlags.setOnClickListener {
             navigationViewModel.open(CurrencyIconsFlagsScreen())
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

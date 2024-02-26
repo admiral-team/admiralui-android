@@ -1,33 +1,58 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.coordinatorlayout.widget.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<com.admiral.uikit.layout.CoordinatorLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:id="@+id/main_content"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="wrap_content">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/appbar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:stateListAnimator="@null">
+
+        <com.google.android.material.appbar.CollapsingToolbarLayout
+            android:id="@+id/collapsing"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:minHeight="0dp"
+            app:layout_scrollFlags="scroll|enterAlways|snap"
+            app:scrimAnimationDuration="0"
+            app:scrimVisibleHeightTrigger="0dp">
+
+            <com.admiral.uikit.layout.LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <com.admiral.uikit.components.appbar.Appbar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:admiralAppbarSize="big"
+                    app:admiralIsBackButtonEnabled="false"
+                    app:admiralTitleText="Дизайн-система «Адмирал»" />
+
+                <com.admiral.uikit.components.appbar.AppbarSearch
+                    android:id="@+id/search"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:admiralHintText="@string/home_search_hint" />
+            </com.admiral.uikit.layout.LinearLayout>
+        </com.google.android.material.appbar.CollapsingToolbarLayout>
+    </com.google.android.material.appbar.AppBarLayout>
 
     <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="match_parent"
+        android:overScrollMode="never"
+        app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <com.admiral.uikit.layout.LinearLayout
             android:id="@+id/rootList"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:orientation="vertical">
-
-            <com.admiral.uikit.components.appbar.Appbar
-                android:id="@+id/toolbar"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:admiralAppbarSize="big"
-                app:admiralIsBackButtonEnabled="false"
-                app:admiralTitleText="Дизайн-система «Адмирал»" />
-
-            <com.admiral.uikit.components.appbar.AppbarSearch
-                android:id="@+id/search"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                app:admiralHintText="@string/home_search_hint" />
 
             <com.admiral.uikit.components.cell.BaseCell
                 android:id="@+id/themeButton"
@@ -49,8 +74,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Цветовая схема и шрифтовые стили"
-                    app:admiralTitleText="Themes" />
+                    app:admiralSubtitleText="@string/home_section_themes_subtitle"
+                    app:admiralTitleText="@string/home_section_themes_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icTheme"
@@ -82,8 +107,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Набор иконок"
-                    app:admiralTitleText="Icons" />
+                    app:admiralSubtitleText="@string/home_section_icons_subtitle"
+                    app:admiralTitleText="@string/home_section_icons_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icColors"
@@ -115,8 +140,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Кнопки"
-                    app:admiralTitleText="Buttons" />
+                    app:admiralSubtitleText="@string/home_section_buttons_subtitle"
+                    app:admiralTitleText="@string/home_section_buttons_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icButtons"
@@ -148,8 +173,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Поля ввода"
-                    app:admiralTitleText="Text fields" />
+                    app:admiralSubtitleText="@string/home_section_text_fields_subtitle"
+                    app:admiralTitleText="@string/home_section_text_fields_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icTextField"
@@ -181,8 +206,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/cells_subtitle"
-                    app:admiralTitleText="@string/cells_title" />
+                    app:admiralSubtitleText="@string/home_section_cells_subtitle"
+                    app:admiralTitleText="@string/home_section_cells_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icCells"
@@ -214,8 +239,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Вкладки"
-                    app:admiralTitleText="@string/home_section_tabs" />
+                    app:admiralSubtitleText="@string/home_section_tabs_subtitle"
+                    app:admiralTitleText="@string/home_section_tabs_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icTabs"
@@ -247,8 +272,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/informers_subtitle"
-                    app:admiralTitleText="@string/informers_notifications_title" />
+                    app:admiralSubtitleText="@string/home_section_informers_subtitle"
+                    app:admiralTitleText="@string/home_section_informers_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icInformer"
@@ -280,8 +305,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/tags_chips_subtitle"
-                    app:admiralTitleText="@string/tags_chips_title" />
+                    app:admiralSubtitleText="@string/home_section_tags_subtitle"
+                    app:admiralTitleText="@string/home_section_tags_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icTags"
@@ -313,8 +338,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/badges_subtitle"
-                    app:admiralTitleText="@string/badges_title" />
+                    app:admiralSubtitleText="@string/home_section_badges_subtitle"
+                    app:admiralTitleText="@string/home_section_badges_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icBadges"
@@ -346,8 +371,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Радио кнопка"
-                    app:admiralTitleText="Radiobuttons" />
+                    app:admiralSubtitleText="@string/home_section_radiobutton_subtitle"
+                    app:admiralTitleText="@string/home_section_radiobutton_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icRadioButtons"
@@ -379,8 +404,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Селектор"
-                    app:admiralTitleText="Checkbox" />
+                    app:admiralSubtitleText="@string/home_section_checkbox_subtitle"
+                    app:admiralTitleText="@string/home_section_checkbox_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icCheckBox"
@@ -412,8 +437,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/switcher_subtitle"
-                    app:admiralTitleText="@string/switcher_title" />
+                    app:admiralSubtitleText="@string/home_section_switcher_subtitle"
+                    app:admiralTitleText="@string/home_section_switcher_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icSwitch"
@@ -445,8 +470,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/links_subtitle"
-                    app:admiralTitleText="@string/links_title" />
+                    app:admiralSubtitleText="@string/home_section_links_subtitle"
+                    app:admiralTitleText="@string/home_section_links_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icLinks"
@@ -478,8 +503,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/spinner_subtitle"
-                    app:admiralTitleText="@string/spinner_title" />
+                    app:admiralSubtitleText="@string/home_section_spinner_subtitle"
+                    app:admiralTitleText="@string/home_section_spinner_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icSpinner"
@@ -511,8 +536,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/page_control_subtitle"
-                    app:admiralTitleText="@string/page_control_title" />
+                    app:admiralSubtitleText="@string/home_section_page_control_subtitle"
+                    app:admiralTitleText="@string/home_section_page_control_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icPageControl"
@@ -544,8 +569,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Демонстрация процесса загрузки"
-                    app:admiralTitleText="Shimmers" />
+                    app:admiralSubtitleText="@string/home_section_shimmer_subtitle"
+                    app:admiralTitleText="@string/home_section_shimmer_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icShimmer"
@@ -577,8 +602,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Календарь"
-                    app:admiralTitleText="Calendar" />
+                    app:admiralSubtitleText="@string/home_section_calendar_subtitle"
+                    app:admiralTitleText="@string/home_section_calendar_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/iconCalendar"
@@ -610,8 +635,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Выбор времени"
-                    app:admiralTitleText="Time Picker" />
+                    app:admiralSubtitleText="@string/home_section_timer_picker_subtitle"
+                    app:admiralTitleText="@string/home_section_time_picker_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/iconCalendarTimePicker"
@@ -643,45 +668,11 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="Информирующие сообщения"
-                    app:admiralTitleText="@string/alerts_title_home" />
+                    app:admiralSubtitleText="@string/home_section_alert_subtitle"
+                    app:admiralTitleText="@string/home_section_alert_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/iconPopUp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="10dp"
-                    app:admiralCellUnitType="trailing"
-                    app:admiralIcon="@drawable/admiral_ic_chevron_right_outline" />
-
-            </com.admiral.uikit.components.cell.BaseCell>
-
-            <com.admiral.uikit.components.cell.BaseCell
-                android:id="@+id/stepperButton"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:clickable="true"
-                android:focusable="true"
-                android:paddingStart="@dimen/module_x4"
-                android:paddingEnd="@dimen/module_x4"
-                android:visibility="gone">
-
-                <com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
-                    android:id="@+id/iconBackgroundToolbar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralIcon="@drawable/admiral_ic_chat_solid" />
-
-                <com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
-                    android:id="@+id/textToolbar"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/home_section_stepper_subtitle"
-                    app:admiralTitleText="@string/home_section_stepper_title" />
-
-                <com.admiral.uikit.components.cell.unit.IconCellUnit
-                    android:id="@+id/icToolbar"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginTop="10dp"
@@ -776,8 +767,8 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     app:admiralCellUnitType="leadingText"
-                    app:admiralSubtitleText="@string/currency_subtitle"
-                    app:admiralTitleText="@string/currency_title" />
+                    app:admiralSubtitleText="@string/home_section_currency_subtitle"
+                    app:admiralTitleText="@string/home_section_currency_title" />
 
                 <com.admiral.uikit.components.cell.unit.IconCellUnit
                     android:id="@+id/icCurrency"
@@ -823,4 +814,4 @@
 
     </androidx.core.widget.NestedScrollView>
 
-</androidx.coordinatorlayout.widget.CoordinatorLayout>
+</com.admiral.uikit.layout.CoordinatorLayout>

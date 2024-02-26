@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.calendar
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -13,7 +11,10 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.CalendarHorizontalScreen
 import com.admiral.demo.screen.CalendarVerticalScreen
 
-class CalendarFragment : BaseFragment(R.layout.fmt_calendar_pick) {
+class CalendarFragment : BaseFragment(
+    layoutId = R.layout.fmt_calendar_pick,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val binding by viewBinding(FmtCalendarPickBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
@@ -29,9 +30,5 @@ class CalendarFragment : BaseFragment(R.layout.fmt_calendar_pick) {
         binding.btnVertical.setOnClickListener {
             navigationViewModel.open(CalendarVerticalScreen())
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

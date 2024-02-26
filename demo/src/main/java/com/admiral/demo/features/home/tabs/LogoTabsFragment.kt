@@ -2,8 +2,6 @@ package com.admiral.demo.features.home.tabs
 
 import android.graphics.drawable.Drawable
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.viewModels
@@ -15,10 +13,13 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
+import com.admiral.uikit.ext.isColorDark
 import com.admiral.uikit.view.checkable.CheckableGroup
-import java.util.Locale
 
-class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
+class LogoTabsFragment : BaseFragment(
+    layoutId = R.layout.fmt_tabs_logo,
+    menuId = R.menu.menu_appbar_info
+), ThemeObserver {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTabsLogoBinding::bind)
@@ -59,12 +60,13 @@ class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
             }
     }
 
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
+    override fun onPause() {
+        super.onPause()
+        ThemeManager.unsubscribe(this)
     }
 
     override fun onThemeChanged(theme: Theme) {
-        isNightModeDetect = theme.palette.name.lowercase(Locale.getDefault()).contains(IS_DARK_CONST)
+        isNightModeDetect = theme.palette.textPrimary.isColorDark(DARK_THRESHOLD)
         invalidateIcons()
     }
 
@@ -122,6 +124,6 @@ class LogoTabsFragment : BaseFragment(R.layout.fmt_tabs_logo), ThemeObserver {
     }
 
     private companion object {
-        private const val IS_DARK_CONST = "dark"
+        private const val DARK_THRESHOLD = 0.5f
     }
 }

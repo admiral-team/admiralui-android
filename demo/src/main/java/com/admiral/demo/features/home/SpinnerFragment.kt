@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
@@ -13,7 +11,10 @@ import com.admiral.demo.databinding.FmtSpinnerBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class SpinnerFragment : BaseFragment(R.layout.fmt_spinner) {
+class SpinnerFragment : BaseFragment(
+    layoutId = R.layout.fmt_spinner,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
@@ -44,9 +45,5 @@ class SpinnerFragment : BaseFragment(R.layout.fmt_spinner) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

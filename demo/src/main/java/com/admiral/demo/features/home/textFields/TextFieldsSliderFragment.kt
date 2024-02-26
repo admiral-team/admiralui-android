@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.textFields
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,7 +10,10 @@ import com.admiral.demo.databinding.FmtTextFieldsSliderBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class TextFieldsSliderFragment : BaseFragment(R.layout.fmt_text_fields_slider) {
+class TextFieldsSliderFragment : BaseFragment(
+    layoutId = R.layout.fmt_text_fields_slider,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
     private val binding by viewBinding(FmtTextFieldsSliderBinding::bind)
@@ -90,10 +91,6 @@ class TextFieldsSliderFragment : BaseFragment(R.layout.fmt_text_fields_slider) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 
     private companion object {

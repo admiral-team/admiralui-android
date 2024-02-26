@@ -14,6 +14,8 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
+import com.admiral.uikit.core.ext.colorStateList
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.getColorOrNull
@@ -37,8 +39,11 @@ class Badge @JvmOverloads constructor(
             invalidateBackgroundColors()
         }
 
-    @ColorInt
-    var textColor: Int? = null
+    var textColor: ColorState? = null
+        set(value) {
+            field = value
+            invalidateTextColors()
+        }
 
     @ColorInt
     var badgeColorNormal: Int? = null
@@ -64,12 +69,17 @@ class Badge @JvmOverloads constructor(
     init {
         applyStyle(Typography.getStyle(ThemeManager.theme.typography.caption2, true))
         gravity = Gravity.CENTER
-        background = ContextCompat.getDrawable(context, R.drawable.admiral_bg_rectangle_16dp_stroke_2dp)?.mutate()
+        background =
+            ContextCompat.getDrawable(context, R.drawable.admiral_bg_rectangle_16dp_stroke_2dp)
+                ?.mutate()
 
         parseAttrs(attrs, R.styleable.Badge).use {
             text = it.getText(R.styleable.Badge_admiralText)
 
-            textColor = it.getColorOrNull(R.styleable.Badge_admiralTextColor)
+            textColor = ColorState(
+                normalEnabled = it.getColorOrNull(R.styleable.Badge_admiralTextColorNormalEnabled),
+                normalDisabled = it.getColorOrNull(R.styleable.Badge_admiralTextColorNormalDisabled),
+            )
             badgeType = BadgeType.from(it.getInt(R.styleable.Badge_admiralBadgeStyle, 0))
             badgeSize = BadgeSize.from(it.getInt(R.styleable.Badge_admiralBadgeSize, 0))
             badgeColorNormal = it.getColorOrNull(R.styleable.Badge_admiralBadgeColor)
@@ -101,12 +111,16 @@ class Badge @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val heightSpec = MeasureSpec.makeMeasureSpec(badgeSize.size.dpToPx(context), MeasureSpec.EXACTLY)
+        val heightSpec =
+            MeasureSpec.makeMeasureSpec(badgeSize.size.dpToPx(context), MeasureSpec.EXACTLY)
         val widthSpec = when (badgeSize) {
             BadgeSize.SMALL -> heightSpec
             BadgeSize.NORMAL -> {
                 val additionalWidthInDp = maxOf(0, text.lastIndex * WIDTH_INCREASING_STEP_IN_DP)
-                MeasureSpec.makeMeasureSpec((badgeSize.size + additionalWidthInDp).dpToPx(context), MeasureSpec.EXACTLY)
+                MeasureSpec.makeMeasureSpec(
+                    (badgeSize.size + additionalWidthInDp).dpToPx(context),
+                    MeasureSpec.EXACTLY
+                )
             }
         }
 
@@ -115,13 +129,17 @@ class Badge @JvmOverloads constructor(
 
     override fun setEnabled(enabled: Boolean) {
         super.setEnabled(enabled)
+        invalidateTextColors()
         invalidateBackgroundColors()
     }
 
     private fun invalidateTextColors() {
-        val colorState = textColor ?: ThemeManager.theme.palette.textStaticWhite
-
-        setTextColor(colorState)
+        setTextColor(
+            colorStateList(
+                enabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textStaticWhite,
+                disabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.textSecondary,
+            )
+        )
     }
 
     private fun invalidateBackgroundColors() {
@@ -146,8 +164,12 @@ class Badge @JvmOverloads constructor(
     private fun invalidateBadgeSize() {
         when (badgeSize) {
             BadgeSize.SMALL -> {
-                textColor = Color.TRANSPARENT
+                textColor = ColorState(
+                    normalEnabled = Color.TRANSPARENT,
+                    normalDisabled = Color.TRANSPARENT,
+                )
             }
+
             BadgeSize.NORMAL -> {
                 invalidateTextColors()
             }

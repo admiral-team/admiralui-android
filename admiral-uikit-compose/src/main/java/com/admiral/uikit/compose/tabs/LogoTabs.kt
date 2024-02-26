@@ -33,7 +33,6 @@ import com.admiral.uikit.compose.util.DIMEN_X2
 @Suppress("LongParameterList", "LongMethod")
 fun LogoTabs(
     items: List<Painter>,
-    textColorState: ColorState? = null,
     borderColorState: ColorState? = null,
     selectedBorderColorState: ColorState? = null,
     isEnabled: Boolean = true,
@@ -45,9 +44,6 @@ fun LogoTabs(
 
     val theme = ThemeManagerCompose.theme.value
 
-    val textColor = if (isEnabled) textColorState?.normalEnabled ?: theme.palette.textPrimary
-    else textColorState?.normalDisabled ?: theme.palette.textPrimary.withAlpha()
-
     val borderColor = borderColorState?.normalEnabled ?: theme.palette.elementAdditional
 
     val selectedBorderColor =
@@ -57,7 +53,8 @@ fun LogoTabs(
     Surface(
         modifier = Modifier
             .height(DIMEN_X12),
-        color = Color(theme.palette.backgroundBasic)
+        color = Color(theme.palette.backgroundBasic),
+        shape = RoundedCornerShape(DIMEN_X2)
     ) {
         Box(
             modifier = Modifier

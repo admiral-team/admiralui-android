@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.alert
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -13,7 +11,10 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.dialogs.AlertDialog
 
-class AlertFragment : BaseFragment(R.layout.fmt_alerts_alert) {
+class AlertFragment : BaseFragment(
+    layoutId = R.layout.fmt_alerts_alert,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
@@ -44,9 +45,5 @@ class AlertFragment : BaseFragment(R.layout.fmt_alerts_alert) {
     fun showDialogFragment() {
         val bottomSheetFragment = PopUpDialogFragment()
         bottomSheetFragment.show(childFragmentManager, bottomSheetFragment.tag)
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

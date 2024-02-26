@@ -11,6 +11,8 @@ import androidx.activity.addCallback
 import androidx.annotation.IdRes
 import androidx.appcompat.widget.Toolbar
 import androidx.core.content.ContextCompat
+import androidx.core.view.WindowInsetsCompat
+import androidx.core.view.WindowInsetsCompat.toWindowInsetsCompat
 import androidx.core.view.isVisible
 import androidx.fragment.app.commitNow
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -48,13 +50,14 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
         super.onViewCreated(view, savedInstanceState)
         switchToSystemTheme(ThemeStorageDAO.isThemeAuto())
 
-        binding.bottomNavigationView.setOnNavigationItemSelectedListener {
-            selectTab(getScreen(it.itemId, compose))
+        with(binding) {
+            bottomNavigationView.setOnItemSelectedListener {
+                selectTab(getScreen(it.itemId, compose))
+                return@setOnItemSelectedListener true
+            }
 
-            return@setOnNavigationItemSelectedListener true
+            bottomNavigationView.selectedItemId = R.id.mainMenuHome
         }
-
-        binding.bottomNavigationView.selectedItemId = R.id.mainMenuHome
 
         initThemeSoloPickerButton()
         initThemePickerList()
@@ -68,6 +71,13 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
                 .add(R.id.container, OnboardingFragment())
                 .addToBackStack(null)
                 .commit()
+        }
+
+        requireActivity().window.decorView.setOnApplyWindowInsetsListener { view, insets ->
+            val insetsCompat = toWindowInsetsCompat(insets, view)
+            val isImeVisible = insetsCompat.isVisible(WindowInsetsCompat.Type.ime())
+            binding.bottomNavigationView.visibility = if (isImeVisible) View.GONE else View.VISIBLE
+            view.onApplyWindowInsets(insets)
         }
     }
 

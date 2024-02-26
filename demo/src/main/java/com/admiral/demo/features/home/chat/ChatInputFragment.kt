@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.chat
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,7 +10,10 @@ import com.admiral.demo.databinding.FmtChatInputBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class ChatInputFragment : BaseFragment(R.layout.fmt_chat_input) {
+class ChatInputFragment : BaseFragment(
+    layoutId = R.layout.fmt_chat_input,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val binding by viewBinding(FmtChatInputBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
@@ -28,9 +29,5 @@ class ChatInputFragment : BaseFragment(R.layout.fmt_chat_input) {
                 }
             }
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.chat
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.core.view.forEach
@@ -16,7 +14,10 @@ import com.admiral.uikit.components.chat.image.ChatImageView
 import com.admiral.uikit.components.chat.image.ImageMessage
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-class ChatImagesFragment : BaseFragment(R.layout.fmt_chat_images) {
+class ChatImagesFragment : BaseFragment(
+    layoutId = R.layout.fmt_chat_images,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val binding by viewBinding(FmtChatImagesBinding::bind)
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
@@ -70,9 +71,5 @@ class ChatImagesFragment : BaseFragment(R.layout.fmt_chat_images) {
         addImageView(ChatImageView(requireContext()).apply {
             drawable = ContextCompat.getDrawable(requireContext(), R.drawable.ic_chat_image)
         })
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }

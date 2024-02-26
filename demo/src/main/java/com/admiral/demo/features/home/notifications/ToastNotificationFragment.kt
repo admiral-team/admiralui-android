@@ -1,8 +1,6 @@
 package com.admiral.demo.features.home.notifications
 
 import android.os.Bundle
-import android.view.Menu
-import android.view.MenuInflater
 import android.view.View
 import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
@@ -12,7 +10,10 @@ import com.admiral.demo.databinding.FmtNotificationsToastBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.notifications.toast.ToastNotification
 
-class ToastNotificationFragment : BaseFragment(R.layout.fmt_notifications_toast) {
+class ToastNotificationFragment : BaseFragment(
+    layoutId = R.layout.fmt_notifications_toast,
+    menuId = R.menu.menu_appbar_info
+) {
 
     private val navigationViewModel: NavigationViewModel by viewModels({ requireParentFragment() })
 
@@ -36,9 +37,5 @@ class ToastNotificationFragment : BaseFragment(R.layout.fmt_notifications_toast)
 
             multipleToastNotification.show()
         }
-    }
-
-    override fun onCreateOptionsMenu(menu: Menu, inflater: MenuInflater) {
-        binding.toolbar.inflateMenu(R.menu.menu_appbar_info, menu, inflater)
     }
 }
