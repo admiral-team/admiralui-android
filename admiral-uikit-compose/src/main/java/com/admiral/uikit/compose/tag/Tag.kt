@@ -59,7 +59,7 @@ fun Tag(
             .clickable(
                 onClick = onClick,
                 enabled = isEnabled,
-                indication = rememberRipple(color = color.backgroundPressed),
+                indication = rememberRipple(),
                 interactionSource = remember { MutableInteractionSource() }
             ),
         verticalAlignment = Alignment.CenterVertically

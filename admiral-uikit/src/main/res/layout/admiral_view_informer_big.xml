@@ -56,6 +56,6 @@
             android:layout_marginTop="16dp"
             android:ellipsize="end"
             app:admiralTextStyle="body2"
-            tools:text="Link" />
+            tools:admiralText="Link" />
     </LinearLayout>
 </merge>

@@ -63,7 +63,7 @@ class Link @JvmOverloads constructor(
 
     init {
         textStyle = ThemeManager.theme.typography.body2
-        gravity = Gravity.START
+        gravity = Gravity.CENTER
 
         parseAttrs(attrs, R.styleable.Link).use {
             text = it.getText(R.styleable.Link_admiralText)
