@@ -1,6 +1,5 @@
 package com.admiral.uikit.compose.calendar
 
-import androidx.compose.foundation.ExperimentalFoundationApi
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -9,9 +8,9 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.lazy.GridCells
-import androidx.compose.foundation.lazy.LazyVerticalGrid
-import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.lazy.grid.GridCells
+import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
+import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
 import androidx.compose.material.Divider
@@ -27,20 +26,19 @@ import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
 import androidx.compose.ui.unit.dp
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X5
 import com.admiral.uikit.compose.util.DIMEN_X9
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import java.time.DateTimeException
 import java.time.DayOfWeek
 import java.time.LocalDate
 import java.time.format.TextStyle
-import java.util.*
+import java.util.Locale
 
-@OptIn(ExperimentalFoundationApi::class)
 @Composable
 @Suppress("LongParameterList")
 fun Calendar(
@@ -76,16 +74,22 @@ fun Calendar(
         else dayDefaultTextColorState?.normalDisabled ?: theme.palette.textPrimary.withAlpha()
 
     val dayBackgroundChosenColor =
-        if (isEnabled) dayBackgroundChosenColorState?.normalEnabled ?: theme.palette.backgroundAccent
-        else dayBackgroundChosenColorState?.normalDisabled ?: theme.palette.backgroundAccent.withAlpha()
+        if (isEnabled) dayBackgroundChosenColorState?.normalEnabled
+            ?: theme.palette.backgroundAccent
+        else dayBackgroundChosenColorState?.normalDisabled
+            ?: theme.palette.backgroundAccent.withAlpha()
 
     val dayBackgroundRangeColor =
-        if (isEnabled) dayBackgroundRangeColorState?.normalEnabled ?: theme.palette.backgroundSelected
-        else dayBackgroundRangeColorState?.normalDisabled ?: theme.palette.backgroundSelected.withAlpha()
+        if (isEnabled) dayBackgroundRangeColorState?.normalEnabled
+            ?: theme.palette.backgroundSelected
+        else dayBackgroundRangeColorState?.normalDisabled
+            ?: theme.palette.backgroundSelected.withAlpha()
 
     val dayBackgroundDefaultColor =
-        if (isEnabled) dayBackgroundDefaultColorState?.normalEnabled ?: theme.palette.backgroundBasic
-        else dayBackgroundDefaultColorState?.normalDisabled ?: theme.palette.backgroundBasic.withAlpha()
+        if (isEnabled) dayBackgroundDefaultColorState?.normalEnabled
+            ?: theme.palette.backgroundBasic
+        else dayBackgroundDefaultColorState?.normalDisabled
+            ?: theme.palette.backgroundBasic.withAlpha()
 
     val dividerColor =
         if (isEnabled) dividerColorState?.normalEnabled ?: theme.palette.elementAdditional
@@ -140,14 +144,15 @@ fun Calendar(
 
     LazyVerticalGrid(
         modifier = Modifier.padding(start = DIMEN_X4, end = DIMEN_X4),
-        cells = GridCells.Fixed(ITEM_COUNT)
+        columns = GridCells.Fixed(ITEM_COUNT)
     ) {
         months.forEachIndexed { monthIndex, month ->
 
             // Month Title
             items(ITEM_COUNT) {
                 if (it == 0) {
-                    val monthTitle = month.month.getDisplayName(TextStyle.FULL_STANDALONE, Locale.getDefault())
+                    val monthTitle =
+                        month.month.getDisplayName(TextStyle.FULL_STANDALONE, Locale.getDefault())
 
                     Text(
                         modifier = modifier
@@ -172,7 +177,8 @@ fun Calendar(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Text(
                         modifier = Modifier.padding(top = DIMEN_X5, bottom = DIMEN_X5),
-                        text = DayOfWeek.of(it + 1).getDisplayName(TextStyle.SHORT, Locale.getDefault()),
+                        text = DayOfWeek.of(it + 1)
+                            .getDisplayName(TextStyle.SHORT, Locale.getDefault()),
                         color = Color(weekDayLegendColor),
                         style = ThemeManagerCompose.typography.subhead2
                     )
@@ -180,7 +186,10 @@ fun Calendar(
             }
 
             // Days
-            val items = dates.subList(monthIndex * TOTAL_SPACE_IN_A_MONTH, (monthIndex + 1) * TOTAL_SPACE_IN_A_MONTH)
+            val items = dates.subList(
+                monthIndex * TOTAL_SPACE_IN_A_MONTH,
+                (monthIndex + 1) * TOTAL_SPACE_IN_A_MONTH
+            )
             itemsIndexed(items) { index, currentDateItem ->
                 val indexWithMonth = monthIndex * TOTAL_SPACE_IN_A_MONTH + index
 
@@ -243,7 +252,8 @@ fun Calendar(
                                 onClick = {
                                     // first date chosen
                                     if (firstDateChosen == null) {
-                                        firstDateChosen = SelectedDay(dates[indexWithMonth], indexWithMonth)
+                                        firstDateChosen =
+                                            SelectedDay(dates[indexWithMonth], indexWithMonth)
                                         dates[indexWithMonth] = dates[indexWithMonth].apply {
                                             isChosen = true
                                         }
@@ -253,9 +263,11 @@ fun Calendar(
                                             firstDateChosen?.day
                                         )
                                     ) {
-                                        secondDateChosen = SelectedDay(dates[indexWithMonth], indexWithMonth)
+                                        secondDateChosen =
+                                            SelectedDay(dates[indexWithMonth], indexWithMonth)
 
-                                        for (i in (firstDateChosen?.position ?: 0)..(secondDateChosen?.position ?: 0)) {
+                                        for (i in (firstDateChosen?.position
+                                            ?: 0)..(secondDateChosen?.position ?: 0)) {
                                             dates[i] = dates[i].apply {
                                                 isChosen = true
                                             }
@@ -274,32 +286,37 @@ fun Calendar(
                                             isChosen = true
                                         }
 
-                                        firstDateChosen = SelectedDay(dates[indexWithMonth], indexWithMonth)
+                                        firstDateChosen =
+                                            SelectedDay(dates[indexWithMonth], indexWithMonth)
 
                                         // both dates are chosen clicked at the date that is before the chosen range
                                     } else if (firstDateChosen != null &&
                                         secondDateChosen != null &&
                                         currentDateItem.isBefore(firstDateChosen?.day)
                                     ) {
-                                        for (i in indexWithMonth..(secondDateChosen?.position ?: 0)) {
+                                        for (i in indexWithMonth..(secondDateChosen?.position
+                                            ?: 0)) {
                                             dates[i] = dates[i].apply {
                                                 isChosen = true
                                             }
                                         }
 
-                                        firstDateChosen = SelectedDay(dates[indexWithMonth], indexWithMonth)
+                                        firstDateChosen =
+                                            SelectedDay(dates[indexWithMonth], indexWithMonth)
 
                                         // both dates are chosen clicked at the date that is after the chosen range
                                     } else if (firstDateChosen != null && secondDateChosen != null &&
                                         currentDateItem.isAfter(secondDateChosen?.day)
                                     ) {
-                                        for (i in (secondDateChosen?.position ?: 0)..indexWithMonth) {
+                                        for (i in (secondDateChosen?.position
+                                            ?: 0)..indexWithMonth) {
                                             dates[i] = dates[i].apply {
                                                 isChosen = true
                                             }
                                         }
 
-                                        secondDateChosen = SelectedDay(dates[indexWithMonth], indexWithMonth)
+                                        secondDateChosen =
+                                            SelectedDay(dates[indexWithMonth], indexWithMonth)
 
                                         // both dates are chosen clicked at the date that is in the middle of the chosen range
                                     } else if (firstDateChosen != null &&
@@ -307,13 +324,15 @@ fun Calendar(
                                         currentDateItem.isAfter(firstDateChosen?.day) &&
                                         currentDateItem.isBefore(secondDateChosen?.day)
                                     ) {
-                                        for (i in (firstDateChosen?.position ?: 0)..(secondDateChosen?.position ?: 0)) {
+                                        for (i in (firstDateChosen?.position
+                                            ?: 0)..(secondDateChosen?.position ?: 0)) {
                                             dates[i] = dates[i].apply {
                                                 isChosen = false
                                             }
                                         }
 
-                                        firstDateChosen = SelectedDay(dates[indexWithMonth], indexWithMonth)
+                                        firstDateChosen =
+                                            SelectedDay(dates[indexWithMonth], indexWithMonth)
                                         dates[indexWithMonth] = dates[indexWithMonth].apply {
                                             isChosen = true
                                         }

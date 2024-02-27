@@ -6,7 +6,7 @@ plugins {
 
 android {
     applyConfig(
-        isCoreLibraryDesugaringEnabled = false,
+        isCoreLibraryDesugaringEnabled = true,
         isComposeEnabled = true,
         isViewBindingEnabled = false
     )

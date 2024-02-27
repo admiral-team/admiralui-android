@@ -14,7 +14,7 @@ android {
 
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
-    implementation(project(Modules.Admiral.Themes.themes))
+    api(project(Modules.Admiral.Themes.themes))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.Kotlin.coroutines)

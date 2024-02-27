@@ -14,7 +14,7 @@ buildscript {
 
 plugins {
     val androidGradlePluginVersion = "7.1.0-rc01"
-    val kotlinVersion = "1.6.10"
+    val kotlinVersion = "1.7.0"
 
     id("admiral-gradle-plugin")
     id("com.android.application") version androidGradlePluginVersion apply false
