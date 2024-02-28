@@ -23,6 +23,7 @@ import com.admiral.uikit.core.components.cell.base.CellUnitType
 @Composable
 internal fun MainScreen(
     onTabsClick: () -> Unit = {},
+    onButtonsClick: () -> Unit = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -66,6 +67,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onButtonsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_grid_solid),

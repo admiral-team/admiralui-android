@@ -1,4 +1,4 @@
-package com.admiral.demo.compose.features.button
+package com.admiral.demo.compose.home.button
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
@@ -22,13 +22,12 @@ import com.admiral.uikit.compose.button.AdmiralButtonColor
 import com.admiral.uikit.compose.button.AdmiralButtonSize
 import com.admiral.uikit.compose.button.Button
 import com.admiral.uikit.compose.util.DIMEN_X11
-import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X6
 
 @Composable
 @Suppress("LongMethod")
-fun SecondaryButtonsView() {
+fun SecondaryButtonsScreen() {
     var isLoading by remember { mutableStateOf(false) }
     Scaffold { padding ->
         Column(
@@ -36,7 +35,7 @@ fun SecondaryButtonsView() {
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(padding)
-                .padding(vertical = DIMEN_X4, horizontal = DIMEN_X2),
+                .padding(vertical = DIMEN_X4, horizontal = DIMEN_X4),
         ) {
             Spacer(modifier = Modifier.size(DIMEN_X11))
             Button(
@@ -111,5 +110,5 @@ fun SecondaryButtonsView() {
 @Preview
 @Composable
 fun SecondaryButtonsViewPreview() {
-    SecondaryButtonsView()
+    SecondaryButtonsScreen()
 }

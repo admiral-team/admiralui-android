@@ -1,7 +1,8 @@
-package com.admiral.demo.compose.features.button
+package com.admiral.demo.compose.home.button
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
@@ -17,47 +18,53 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.uikit.compose.R
+import com.admiral.uikit.compose.button.AdmiralButtonColor
 import com.admiral.uikit.compose.button.AdmiralButtonSize
 import com.admiral.uikit.compose.button.Button
 import com.admiral.uikit.compose.util.DIMEN_X11
-import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X6
 
 @Composable
 @Suppress("LongMethod")
-fun PrimaryButtonsView() {
+fun GhostButtonsScreen() {
     var isLoading by remember { mutableStateOf(false) }
-    Scaffold { padding ->
+    Scaffold(
+        modifier = Modifier
+            .fillMaxWidth()
+    ) { padding ->
         Column(
             modifier = Modifier
-                .fillMaxWidth()
+                .fillMaxSize()
                 .verticalScroll(rememberScrollState())
                 .padding(padding)
-                .padding(vertical = DIMEN_X4, horizontal = DIMEN_X2),
+                .padding(vertical = DIMEN_X4, horizontal = DIMEN_X4),
         ) {
             Spacer(modifier = Modifier.size(DIMEN_X11))
             Button(
+                actionText = "Готово",
+                additionalText = "Выбрать все карты",
                 modifier = Modifier
                     .fillMaxWidth(),
-                actionText = "Выбрать",
-                additionalText = "08.06.20 — 14.08.20",
+                color = AdmiralButtonColor.ghost(),
                 isLoading = isLoading,
                 onClick = {
                     isLoading = isLoading.not()
                 })
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
+                actionText = "Big Button",
                 modifier = Modifier
                     .fillMaxWidth(),
-                actionText = "Big Button",
+                color = AdmiralButtonColor.ghost(),
                 iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
+                actionText = "Big Button",
                 modifier = Modifier
                     .fillMaxWidth(),
-                actionText = "Big Button",
+                color = AdmiralButtonColor.ghost(),
                 iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
@@ -65,40 +72,47 @@ fun PrimaryButtonsView() {
                 actionText = "Big Button",
                 modifier = Modifier
                     .fillMaxWidth(),
+                color = AdmiralButtonColor.ghost(),
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
-                actionText = "Medium Button",
                 size = AdmiralButtonSize.medium(),
+                actionText = "Medium Button",
+                color = AdmiralButtonColor.ghost(),
                 iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
-                actionText = "Medium Button",
                 size = AdmiralButtonSize.medium(),
+                actionText = "Medium Button",
+                color = AdmiralButtonColor.ghost(),
                 iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
-                actionText = "Medium Button",
                 size = AdmiralButtonSize.medium(),
+                actionText = "Medium Button",
+                color = AdmiralButtonColor.ghost(),
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
                 size = AdmiralButtonSize.small(),
                 actionText = "Small Button",
+                color = AdmiralButtonColor.ghost(),
                 iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
                 size = AdmiralButtonSize.small(),
                 actionText = "Small Button",
+                color = AdmiralButtonColor.ghost(),
                 iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
                 size = AdmiralButtonSize.small(),
                 actionText = "Small Button",
+                color = AdmiralButtonColor.ghost(),
             )
         }
     }
@@ -106,6 +120,6 @@ fun PrimaryButtonsView() {
 
 @Preview
 @Composable
-fun PrimaryButtonsViewPreview() {
-    PrimaryButtonsView()
+fun GhostButtonsViewPreview() {
+    GhostButtonsScreen()
 }
