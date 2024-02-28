@@ -12,12 +12,12 @@
         app:admiralCellUnitType="leading"
         app:admiralIcon="@drawable/test_ic_card_start" />
 
-    <com.admiral.uikit.components.cell.unit.TitleCellUnit
+    <com.admiral.uikit.components.cell.unit.TextCellUnit
         android:id="@+id/title3"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         app:admiralCellUnitType="leadingText"
-        app:admiralTitleText="@string/cell_title" />
+        app:admiralText="@string/cell_title" />
 
     <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
         android:id="@+id/checkBoxCellUnit"

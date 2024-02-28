@@ -44,14 +44,15 @@
 
         </com.admiral.uikit.components.tabs.StandardTabs>
 
-        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:id="@+id/textSecondaryCellUnitSwitch"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x13"
             app:admiralCellUnitType="leading"
-            app:admiralText="@string/tags_chips_default" />
+            app:admiralText="@string/tags_chips_default"
+            app:admiralTextColorNormalEnabledPalette="textSecondary" />
 
         <HorizontalScrollView
             android:layout_width="match_parent"
@@ -106,13 +107,14 @@
 
         </HorizontalScrollView>
 
-        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x11"
             app:admiralCellUnitType="leading"
-            app:admiralText="@string/tags_chips_additional" />
+            app:admiralText="@string/tags_chips_additional"
+            app:admiralTextColorNormalEnabledPalette="textSecondary" />
 
         <com.admiral.uikit.components.chip.ChipGroup
             android:id="@+id/gray"
@@ -146,13 +148,14 @@
 
         </com.admiral.uikit.components.chip.ChipGroup>
 
-        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x11"
             app:admiralCellUnitType="leading"
-            app:admiralText="@string/tags_chips_success" />
+            app:admiralText="@string/tags_chips_success"
+            app:admiralTextColorNormalEnabledPalette="textSecondary" />
 
         <com.admiral.uikit.components.chip.ChipGroup
             android:id="@+id/green"
@@ -186,13 +189,14 @@
 
         </com.admiral.uikit.components.chip.ChipGroup>
 
-        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x11"
             app:admiralCellUnitType="leading"
-            app:admiralText="@string/tags_chips_error" />
+            app:admiralText="@string/tags_chips_error"
+            app:admiralTextColorNormalEnabledPalette="textSecondary" />
 
         <com.admiral.uikit.components.chip.ChipGroup
             android:id="@+id/red"
@@ -226,13 +230,14 @@
 
         </com.admiral.uikit.components.chip.ChipGroup>
 
-        <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x11"
             app:admiralCellUnitType="leading"
-            app:admiralText="@string/tags_chips_attention" />
+            app:admiralText="@string/tags_chips_attention"
+            app:admiralTextColorNormalEnabledPalette="textSecondary" />
 
         <com.admiral.uikit.components.chip.ChipGroup
             android:id="@+id/yellow"
