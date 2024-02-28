@@ -1,4 +1,4 @@
-package com.admiral.demo.compose.features.button
+package com.admiral.demo.compose.home.button
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
@@ -20,7 +20,7 @@ import com.admiral.uikit.core.components.cell.base.CellUnitType
 
 @Composable
 @Suppress("LongMethod")
-fun ComposeButtonsView(
+fun ComposeButtonsScreen(
     onPrimaryClick: () -> Unit = {},
     onSecondaryClick: () -> Unit = {},
     onGhostClick: () -> Unit = {},
@@ -107,5 +107,5 @@ fun ComposeButtonsView(
 @Preview
 @Composable
 fun ComposeButtonsViewPreview() {
-    ComposeButtonsView()
+    ComposeButtonsScreen()
 }

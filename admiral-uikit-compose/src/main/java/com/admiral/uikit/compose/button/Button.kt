@@ -26,6 +26,7 @@ import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
@@ -79,6 +80,7 @@ fun Button(
                 color = color.borderColor,
                 shape = roundedCornerShape
             )
+            .clip(roundedCornerShape)
             .padding(SPACE_BETWEEN_BORDER_WIDTH.dp)
             .background(
                 color = backgroundColor,
@@ -86,10 +88,7 @@ fun Button(
             )
             .clickable(
                 onClick = onClick,
-                indication = rememberRipple(
-                    bounded = true,
-                    color = color.backgroundPressed
-                ),
+                indication = rememberRipple(bounded = true),
                 interactionSource = remember {
                     MutableInteractionSource()
                 }

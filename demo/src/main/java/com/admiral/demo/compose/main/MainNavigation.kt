@@ -7,10 +7,12 @@ internal const val MAIN_ROUTE = "main"
 
 internal fun NavGraphBuilder.mainScreen(
     onTabsClick: () -> Unit,
+    onButtonsClick: () -> Unit,
 ) {
     composable(route = MAIN_ROUTE) {
         MainScreen(
             onTabsClick = onTabsClick,
+            onButtonsClick = onButtonsClick,
         )
     }
 }
