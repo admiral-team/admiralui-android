@@ -13,7 +13,7 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
-import com.admiral.uikit.ext.isColorDark
+import com.admiral.uikit.core.ext.isColorDark
 import com.admiral.uikit.view.checkable.CheckableGroup
 
 class LogoTabsFragment : BaseFragment(

@@ -40,7 +40,8 @@
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x2"
             android:visibility="gone"
-            tools:text="Link text" />
+            tools:visibility="visible"
+            tools:admiralText="Link text" />
     </androidx.appcompat.widget.LinearLayoutCompat>
 
     <com.admiral.uikit.imageview.ImageView

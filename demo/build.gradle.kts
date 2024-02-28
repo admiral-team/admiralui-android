@@ -1,7 +1,8 @@
+
 import com.android.build.api.dsl.ApkSigningConfig
 import com.android.build.api.dsl.ApplicationBuildType
 import java.io.FileReader
-import java.util.*
+import java.util.Properties
 
 plugins {
     id("com.android.application")
@@ -147,10 +148,12 @@ dependencies {
     implementation(Libs.AndroidX.constraintLayout)
     implementation(Libs.AndroidX.preference)
     implementation(Libs.AndroidX.Activity.compose)
+    implementation(Libs.AndroidX.Compose.navigation)
     implementation(Libs.AndroidX.Compose.foundation)
     implementation(Libs.AndroidX.Compose.material)
     implementation(Libs.AndroidX.Compose.Ui.ui)
-    implementation(Libs.AndroidX.Compose.Ui.tooling)
+    debugImplementation(Libs.AndroidX.Compose.Ui.tooling)
+    implementation(Libs.AndroidX.Compose.Ui.preview)
     implementation(Libs.AndroidX.Camera.camera2)
     implementation(Libs.AndroidX.Camera.cameraView)
     implementation(Libs.AndroidX.Camera.cameraLifecycle)

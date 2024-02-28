@@ -25,6 +25,6 @@ gradlePlugin {
 }
 
 dependencies {
-    implementation("com.android.tools.build:gradle:7.1.0-rc01")
+    implementation("com.android.tools.build:gradle:7.3.1")
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.3.1")
 }
