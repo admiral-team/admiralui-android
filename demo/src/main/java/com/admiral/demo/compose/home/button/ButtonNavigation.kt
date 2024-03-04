@@ -33,7 +33,7 @@ internal fun NavGraphBuilder.buttonsScreen(
     onOtherClick: () -> Unit = {},
 ) {
     composable(route = BUTTONS_SCREEN_ROUTE) {
-        ComposeButtonsScreen(
+        ButtonsScreen(
             onPrimaryClick = onPrimaryClick,
             onSecondaryClick = onSecondaryClick,
             onGhostClick = onGhostClick,

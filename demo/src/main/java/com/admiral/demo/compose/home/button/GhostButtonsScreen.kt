@@ -120,6 +120,6 @@ fun GhostButtonsScreen() {
 
 @Preview
 @Composable
-fun GhostButtonsViewPreview() {
+fun GhostButtonsScreenPreview() {
     GhostButtonsScreen()
 }

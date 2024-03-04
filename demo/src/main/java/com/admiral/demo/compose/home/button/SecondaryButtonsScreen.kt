@@ -109,6 +109,6 @@ fun SecondaryButtonsScreen() {
 
 @Preview
 @Composable
-fun SecondaryButtonsViewPreview() {
+fun SecondaryButtonsScreenPreview() {
     SecondaryButtonsScreen()
 }

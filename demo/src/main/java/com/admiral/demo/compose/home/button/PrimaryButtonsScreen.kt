@@ -105,6 +105,6 @@ fun PrimaryButtonsScreen() {
 
 @Preview
 @Composable
-fun PrimaryButtonsViewPreview() {
+fun PrimaryButtonsScreenPreview() {
     PrimaryButtonsScreen()
 }
