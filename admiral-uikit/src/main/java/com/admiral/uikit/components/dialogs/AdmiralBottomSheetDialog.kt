@@ -24,7 +24,6 @@ class AdmiralBottomSheetDialog {
 
     class Builder(
         private val context: Context,
-        @Deprecated("Use setIsFullScreen() instead") private val isFullScreen: Boolean = false,
     ) {
         private var dialog: AdmiralBottomSheetDialog = AdmiralBottomSheetDialog()
 
@@ -39,11 +38,6 @@ class AdmiralBottomSheetDialog {
         private var view: View? = null
 
         private var isFullHeight: Boolean = false
-
-        init {
-            // TODO: remove it
-            this.isFullHeight = isFullScreen
-        }
 
         /**
          * Set is dialog should be full screen size.

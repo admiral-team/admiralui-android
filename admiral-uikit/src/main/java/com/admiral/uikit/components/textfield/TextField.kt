@@ -79,13 +79,6 @@ class TextField @JvmOverloads constructor(
             invalidateHintTextColors()
         }
 
-    @Deprecated("Use hintTextColors, additionalTextColors or inputTextColor method variable")
-    var textColors: ColorState? = null
-        set(value) {
-            field = value
-            invalidateAdditionalTextColors()
-        }
-
     /**
      * Color state for additional text view.
      * States: normal, disabled, focused.

@@ -89,7 +89,7 @@
                     app:admiralSummText="@string/actionbar_money_amount"
                     app:admiralTitleText="@string/cell_title" />
 
-                <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+                <com.admiral.uikit.components.cell.unit.TextCellUnit
                     android:id="@+id/iconTrailing"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -98,7 +98,7 @@
                     android:drawablePadding="@dimen/module_x1"
                     app:admiralCellUnitType="trailing"
                     app:admiralText="@string/actionbar_swipe"
-                    app:admiralTextColorNormalEnabled="#999EA9"
+                    app:admiralTextColorNormalEnabledPalette="textSecondary"
                     app:drawableTint="#999EA9" />
 
             </com.admiral.uikit.components.cell.BaseCell>
@@ -152,7 +152,7 @@
                     app:admiralSummText="@string/actionbar_money_amount"
                     app:admiralTitleText="@string/cell_title" />
 
-                <com.admiral.uikit.components.cell.unit.TextSecondaryCellUnit
+                <com.admiral.uikit.components.cell.unit.TextCellUnit
                     android:id="@+id/iconTrailing2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
@@ -161,7 +161,7 @@
                     android:drawablePadding="@dimen/module_x1"
                     app:admiralCellUnitType="trailing"
                     app:admiralText="@string/actionbar_swipe"
-                    app:admiralTextColorNormalEnabled="#999EA9"
+                    app:admiralTextColorNormalEnabledPalette="textSecondary"
                     app:drawableTint="#999EA9" />
 
             </com.admiral.uikit.components.cell.BaseCell>

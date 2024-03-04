@@ -28,16 +28,6 @@ class Spinner @JvmOverloads constructor(
     defStyleAttr
 ), ThemeObserver {
 
-    @Deprecated("Use spinnerSize")
-    var buttonSize: SpinnerSize = SpinnerSize.BIG
-        set(value) {
-            field = value
-            spinnerSize = field
-        }
-        get() {
-            return spinnerSize
-        }
-
     var spinnerSize: SpinnerSize = SpinnerSize.BIG
 
     var isContrast = false

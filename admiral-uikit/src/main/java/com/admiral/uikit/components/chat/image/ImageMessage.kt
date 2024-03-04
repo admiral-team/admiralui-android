@@ -347,9 +347,6 @@ class ImageMessage @JvmOverloads constructor(
             MessageStatus.SENDING -> drawable(R.drawable.admiral_ic_status_one_outline)
             MessageStatus.SEND -> drawable(R.drawable.admiral_ic_status_one_outline)
             MessageStatus.READ -> drawable(R.drawable.admiral_ic_status_two_outline)
-            MessageStatus.ERROR -> drawable(R.drawable.admiral_ic_error_outline)
-            MessageStatus.LOADING -> drawable(R.drawable.admiral_ic_time_outline)
-            MessageStatus.DONE -> drawable(R.drawable.admiral_ic_status_one_outline)
         }
 
         if (drawable == null) {

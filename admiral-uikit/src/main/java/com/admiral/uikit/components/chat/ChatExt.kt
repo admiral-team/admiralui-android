@@ -16,9 +16,6 @@ internal fun ImageView.setMessageStatusIcon(
 ) {
     val color = if (isOutgoing) {
         when (status) {
-            MessageStatus.ERROR -> {
-                ThemeManager.theme.palette.elementErrorDefault
-            }
             MessageStatus.SENDING -> {
                 ThemeManager.theme.palette.elementStaticWhite.withAlpha(0.5f)
             }
@@ -28,9 +25,6 @@ internal fun ImageView.setMessageStatusIcon(
         }
     } else {
         when (status) {
-            MessageStatus.ERROR -> {
-                ThemeManager.theme.palette.elementErrorDefault
-            }
             MessageStatus.SENDING -> {
                 ThemeManager.theme.palette.textSecondary.withAlpha(0.5f)
             }
@@ -46,9 +40,6 @@ internal fun ImageView.setMessageStatusIcon(
         MessageStatus.SENDING -> drawable(R.drawable.admiral_ic_status_one_outline)
         MessageStatus.SEND -> drawable(R.drawable.admiral_ic_status_one_outline)
         MessageStatus.READ -> drawable(R.drawable.admiral_ic_status_two_outline)
-        MessageStatus.ERROR -> drawable(R.drawable.admiral_ic_error_outline)
-        MessageStatus.LOADING -> drawable(R.drawable.admiral_ic_time_outline)
-        MessageStatus.DONE -> drawable(R.drawable.admiral_ic_status_one_outline)
     }
 
     if (drawable == null) {

@@ -63,18 +63,6 @@ open class FrameLayout @JvmOverloads constructor(
             invalidateBackground()
         }
 
-    /**
-     * Color for background from palette.
-     */
-    @Deprecated("Use `backgroundColorNormalEnabledPalette` instead")
-    @Suppress("VariableNaming")
-    var backgroundСolorNormalEnabledPalette: ColorPaletteEnum? = null
-        get() = backgroundColorNormalEnabledPalette
-        set(value) {
-            field = value
-            backgroundColorNormalEnabledPalette = value
-        }
-
     init {
         parseAttrs(attrs, R.styleable.FrameLayout).use {
             isBackgroundTransparent = it.getBoolean(
