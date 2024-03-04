@@ -19,11 +19,14 @@ import com.admiral.uikit.compose.cell.unit.IconCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnit
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 
+internal typealias homeItemClick = () -> Unit
+
 @Suppress("LongMethod")
 @Composable
 internal fun MainScreen(
-    onTabsClick: () -> Unit = {},
-    onButtonsClick: () -> Unit = {},
+    onTabsClick: homeItemClick = {},
+    onButtonsClick: homeItemClick = {},
+    onTextFieldsClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -102,6 +105,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onTextFieldsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_sign_solid),

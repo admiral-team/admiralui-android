@@ -38,38 +38,6 @@ import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 
-@Preview(showBackground = true)
-@Composable
-fun FirstSmsTextField() {
-    Box(
-        modifier = Modifier
-            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
-            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
-    ) {
-        SmsTextField(
-            inputText = "Text in text field",
-            placeholderText = "Placeholder text",
-            additionalText = "Additional text"
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SecondSmsTextField() {
-    Box(
-        modifier = Modifier
-            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
-            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
-    ) {
-        SmsTextField(
-            placeholderText = "Placeholder text",
-            additionalText = "Additional text",
-            isReadOnly = true
-        )
-    }
-}
-
 @Composable
 @Suppress("LongParameterList")
 fun SmsTextField(
@@ -232,3 +200,35 @@ private const val EXAMPLE_TEXT_FIELD_SIZE = 240
 private const val EXAMPLE_TEXT_FIELD_PADDING = 16
 
 private const val TEXT_FIELD_PADDING_TOP = 4
+
+@Preview(showBackground = true)
+@Composable
+fun FirstSmsTextField() {
+    Box(
+        modifier = Modifier
+            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
+            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
+    ) {
+        SmsTextField(
+            inputText = "Text in text field",
+            placeholderText = "Placeholder text",
+            additionalText = "Additional text"
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SecondSmsTextField() {
+    Box(
+        modifier = Modifier
+            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
+            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
+    ) {
+        SmsTextField(
+            placeholderText = "Placeholder text",
+            additionalText = "Additional text",
+            isReadOnly = true
+        )
+    }
+}

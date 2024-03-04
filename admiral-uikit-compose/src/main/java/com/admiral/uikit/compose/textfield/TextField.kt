@@ -48,41 +48,6 @@ import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.R
 
-@Preview(showBackground = true)
-@Composable
-fun First() {
-    Box(
-        modifier = Modifier
-            .padding(PREVIEW_BOX_PADDING.dp)
-            .width(PREVIEW_BOX_WIDTH.dp)
-    ) {
-        TextField(
-            inputText = "Text in text field",
-            optionalText = "Optional label",
-            placeholderText = "Placeholder text",
-            additionalText = "Additional text",
-            icon = painterResource(id = R.drawable.admiral_ic_heart_solid)
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun Second() {
-    Box(
-        modifier = Modifier
-            .padding(PREVIEW_BOX_PADDING.dp)
-            .width(PREVIEW_BOX_WIDTH.dp)
-    ) {
-        TextField(
-            optionalText = "Optional label",
-            placeholderText = "Placeholder text",
-            additionalText = "Additional text",
-            isReadOnly = true
-        )
-    }
-}
-
 @Composable
 @Suppress("LongParameterList")
 fun TextField(
@@ -204,8 +169,10 @@ fun TextField(
             )
 
             val iconColor =
-                if (isEnabled) textColorState?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
-                else textColorState?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+                if (isEnabled) textColorState?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary
+                else textColorState?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
 
             icon?.let {
                 Icon(
@@ -286,3 +253,38 @@ private const val ICON_HORIZONTAL_BIAS = 1f
 private const val ICON_VERTICAL_BIAS = 0.5f
 private const val TEXT_FIELD_PADDING = 4
 private const val ALPHA_ANIMATION_TIME = 300
+
+@Preview(showBackground = true)
+@Composable
+fun First() {
+    Box(
+        modifier = Modifier
+            .padding(PREVIEW_BOX_PADDING.dp)
+            .width(PREVIEW_BOX_WIDTH.dp)
+    ) {
+        TextField(
+            inputText = "Text in text field",
+            optionalText = "Optional label",
+            placeholderText = "Placeholder text",
+            additionalText = "Additional text",
+            icon = painterResource(id = R.drawable.admiral_ic_heart_solid)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun Second() {
+    Box(
+        modifier = Modifier
+            .padding(PREVIEW_BOX_PADDING.dp)
+            .width(PREVIEW_BOX_WIDTH.dp)
+    ) {
+        TextField(
+            optionalText = "Optional label",
+            placeholderText = "Placeholder text",
+            additionalText = "Additional text",
+            isReadOnly = true
+        )
+    }
+}
