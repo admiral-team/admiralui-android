@@ -16,6 +16,11 @@
 
 package com.admiral.uikit.components.timepicker;
 
+import static java.util.Calendar.AM;
+import static java.util.Calendar.HOUR;
+import static java.util.Calendar.MINUTE;
+import static java.util.Calendar.PM;
+
 import android.annotation.SuppressLint;
 import android.content.Context;
 import android.util.AttributeSet;
@@ -35,17 +40,12 @@ import androidx.core.view.AccessibilityDelegateCompat;
 import androidx.core.view.ViewCompat;
 import androidx.core.widget.TextViewCompat;
 
-import com.google.android.material.button.MaterialButtonToggleGroup;
 import com.admiral.themes.ColorPaletteEnum;
 import com.admiral.uikit.R;
 import com.admiral.uikit.components.text.TextView;
+import com.google.android.material.button.MaterialButtonToggleGroup;
 
 import java.util.Locale;
-
-import static java.util.Calendar.AM;
-import static java.util.Calendar.HOUR;
-import static java.util.Calendar.MINUTE;
-import static java.util.Calendar.PM;
 
 /**
  * The main view to display a time picker.
@@ -67,7 +67,7 @@ public class TimePickerView extends ConstraintLayout implements TimePickerContro
                 @Override
                 public void onClick(View v) {
                     if (onSelectionChangeListener != null) {
-                        onSelectionChangeListener.onSelectionChanged((int) v.getTag(R.id.selection_type));
+                        onSelectionChangeListener.onSelectionChanged((int) v.getTag(com.google.android.material.R.id.selection_type));
                     }
                 }
             };
@@ -99,7 +99,7 @@ public class TimePickerView extends ConstraintLayout implements TimePickerContro
         clockHandView = findViewById(R.id.material_clock_hand);
 
         dividerView = findViewById(R.id.material_divider_tv);
-        TextViewCompat.setTextAppearance(dividerView, R.style.AdmiralTextAppearance_TimePickerChips);
+        TextViewCompat.setTextAppearance(dividerView, R.style.TimePickerChips);
         dividerView.setTextColorNormalEnabledPalette(ColorPaletteEnum.TEXT_PRIMARY);
 
         setupDoubleTap();
@@ -149,8 +149,8 @@ public class TimePickerView extends ConstraintLayout implements TimePickerContro
     }
 
     private void setUpDisplay() {
-        minuteView.setTag(R.id.selection_type, MINUTE);
-        hourView.setTag(R.id.selection_type, HOUR);
+        minuteView.setTag(com.google.android.material.R.id.selection_type, MINUTE);
+        hourView.setTag(com.google.android.material.R.id.selection_type, HOUR);
 
         minuteView.setOnClickListener(selectionListener);
         hourView.setOnClickListener(selectionListener);

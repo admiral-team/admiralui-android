@@ -23,20 +23,20 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.components.textfield.TextField
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.core.util.ComponentsRadius
-import com.admiral.uikit.components.textfield.TextField
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.coloredDrawable
+import com.admiral.uikit.ext.createRoundedColoredStrokeDrawable
+import com.admiral.uikit.ext.createRoundedRectangleDrawable
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.ext.createRoundedColoredStrokeDrawable
-import com.admiral.uikit.ext.createRoundedRectangleDrawable
 import com.admiral.uikit.ext.setSelectionEnd
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -48,6 +48,7 @@ import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 import kotlin.math.abs
 import kotlin.math.max
+import com.admiral.resources.R as res
 
 class InputNumber @JvmOverloads constructor(
     context: Context,
@@ -85,9 +86,11 @@ class InputNumber @JvmOverloads constructor(
                 value in minValue..maxValue -> {
                     updateValue()
                 }
+
                 value > maxValue -> {
                     autoIncrement = false
                 }
+
                 value < minValue -> {
                     autoDecrement = false
                 }
@@ -182,7 +185,7 @@ class InputNumber @JvmOverloads constructor(
         set(value) {
             field = value
             incrementImageView.setImageDrawable(
-                value ?: context.drawable(R.drawable.admiral_ic_plus_outline)
+                value ?: context.drawable(res.drawable.admiral_ic_plus_outline)
             )
         }
 
@@ -193,7 +196,7 @@ class InputNumber @JvmOverloads constructor(
         set(value) {
             field = value
             decrementImageView.setImageDrawable(
-                value ?: context.drawable(R.drawable.admiral_ic_minus_outline)
+                value ?: context.drawable(res.drawable.admiral_ic_minus_outline)
             )
         }
 
@@ -503,9 +506,11 @@ class InputNumber @JvmOverloads constructor(
             InputType.OVAL -> {
                 this.setOvalBackgroundShape(isEnabled)
             }
+
             InputType.RECTANGLE -> {
                 this.setRectangleBackgroundShape(isEnabled)
             }
+
             InputType.TEXT_FIELD -> {
                 this.setTextFieldBackgroundShape(isEnabled, isLeft)
             }
@@ -514,10 +519,12 @@ class InputNumber @JvmOverloads constructor(
 
     private fun ImageView.setOvalBackgroundShape(isEnabled: Boolean) {
         val backgroundNormalColor =
-            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne
+            iconBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne
 
         val backgroundDisabledColor =
-            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
+            iconBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
 
         val backgroundColorState = if (isEnabled) {
             ColorStateList.valueOf(backgroundNormalColor)
@@ -525,9 +532,10 @@ class InputNumber @JvmOverloads constructor(
             ColorStateList.valueOf(backgroundDisabledColor)
         }
 
-        val rippleColor = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
-            RIPPLE_ALPHA
-        )
+        val rippleColor =
+            iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
+                RIPPLE_ALPHA
+            )
         val mask = context.drawable(R.drawable.admiral_bg_round)
         val content = context.coloredDrawable(R.drawable.admiral_bg_round, backgroundColorState)
 
@@ -541,9 +549,10 @@ class InputNumber @JvmOverloads constructor(
 
     private fun ImageView.setRectangleBackgroundShape(isEnabled: Boolean) {
         val radius = ComponentsRadius.RADIUS_8
-        val rippleColor = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
-            RIPPLE_ALPHA
-        )
+        val rippleColor =
+            iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
+                RIPPLE_ALPHA
+            )
         val mask = createRoundedRectangleDrawable(radius)
 
         val color = if (isEnabled) {
@@ -552,7 +561,8 @@ class InputNumber @JvmOverloads constructor(
             )
         } else {
             ColorStateList.valueOf(
-                iconBackgroundColors?.normalDisabled ?: ThemeManager.theme.palette.backgroundAccent.withAlpha()
+                iconBackgroundColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.backgroundAccent.withAlpha()
             )
         }
         val content = context.createRoundedColoredStrokeDrawable(radius, color)
@@ -566,21 +576,34 @@ class InputNumber @JvmOverloads constructor(
 
     private fun ImageView.setTextFieldBackgroundShape(isEnabled: Boolean, isLeft: Boolean) {
         val radius = ComponentsRadius.RADIUS_8
-        val rippleColor = iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
-            RIPPLE_ALPHA
-        )
+        val rippleColor =
+            iconBackgroundColors?.pressed ?: ThemeManager.theme.palette.textPrimary.withAlpha(
+                RIPPLE_ALPHA
+            )
 
         val mask = if (isLeft) {
-            createRoundedRectangleDrawable(radius, ComponentsRadius.NONE, radius, ComponentsRadius.NONE)
+            createRoundedRectangleDrawable(
+                radius,
+                ComponentsRadius.NONE,
+                radius,
+                ComponentsRadius.NONE
+            )
         } else {
-            createRoundedRectangleDrawable(ComponentsRadius.NONE, radius, ComponentsRadius.NONE, radius)
+            createRoundedRectangleDrawable(
+                ComponentsRadius.NONE,
+                radius,
+                ComponentsRadius.NONE,
+                radius
+            )
         }
 
         val backgroundNormalColor =
-            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne
+            iconBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne
 
         val backgroundDisabledColor =
-            iconBackgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
+            iconBackgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
 
         val backgroundColorState = if (isEnabled) {
             ColorStateList.valueOf(backgroundNormalColor)
@@ -600,21 +623,28 @@ class InputNumber @JvmOverloads constructor(
         when (inputType) {
             InputType.OVAL -> {
                 val iconTintColorStateList = if (isEnabled) {
-                    ColorStateList.valueOf(iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary)
+                    ColorStateList.valueOf(
+                        iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
+                    )
                 } else {
                     ColorStateList.valueOf(
-                        iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+                        iconTintColors?.normalEnabled
+                            ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
                     )
                 }
 
                 this.imageTintList = iconTintColorStateList
             }
+
             else -> {
                 val iconTintColorStateList = if (isEnabled) {
-                    ColorStateList.valueOf(iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent)
+                    ColorStateList.valueOf(
+                        iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent
+                    )
                 } else {
                     ColorStateList.valueOf(
-                        iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+                        iconTintColors?.normalEnabled
+                            ?: ThemeManager.theme.palette.elementAccent.withAlpha()
                     )
                 }
 

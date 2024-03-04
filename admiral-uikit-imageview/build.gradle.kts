@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.uikit.imageview"
     applyConfig(
         isCoreLibraryDesugaringEnabled = false,
         isComposeEnabled = false,
@@ -15,6 +16,7 @@ android {
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
     api(project(Modules.Admiral.UiKit.core))
+    api(project(Modules.Admiral.Themes.themes))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.AndroidX.appcompat)

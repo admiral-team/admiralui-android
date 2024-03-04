@@ -27,9 +27,9 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X25
+import com.admiral.resources.R as res
 
 @Composable
 fun Tag(
@@ -126,7 +126,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "$emoji Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.gray(),
                 isEnabled = false,
@@ -135,7 +135,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.orange(),
                 isIconColored = false,
@@ -145,7 +145,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.red(),
                 isEnabled = false,
@@ -156,7 +156,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample $emoji",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 isEnabled = true,
                 isIconColored = false,
@@ -166,7 +166,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.green(),
                 isIconColored = true,
@@ -183,7 +183,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "$emoji Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 size = AdmiralTagSize.medium(),
                 color = AdmiralTagColor.gray(),
@@ -193,7 +193,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.orange(),
                 isIconColored = false,
@@ -208,7 +208,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.red(),
                 isEnabled = false,
@@ -223,7 +223,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample $emoji",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 isEnabled = true,
                 isIconColored = false,
@@ -238,7 +238,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.green(),
                 size = AdmiralTagSize.medium(),
@@ -261,7 +261,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "$emoji Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 size = AdmiralTagSize.small(),
                 color = AdmiralTagColor.gray(),
@@ -271,7 +271,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.orange(),
                 isIconColored = false,
@@ -286,7 +286,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.red(),
                 isEnabled = false,
@@ -301,7 +301,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample $emoji",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 isEnabled = true,
                 isIconColored = false,
@@ -316,7 +316,7 @@ private fun TagPreview() {
             Spacer(modifier = Modifier.size(DIMEN_X2))
             Tag(
                 text = "Sample",
-                icon = painterResource(id = R.drawable.admiral_ic_car_solid),
+                icon = painterResource(id = res.drawable.admiral_ic_car_solid),
                 iconPosition = TagIconPosition.LEFT,
                 color = AdmiralTagColor.green(),
                 size = AdmiralTagSize.small(),

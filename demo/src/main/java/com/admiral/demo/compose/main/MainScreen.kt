@@ -18,6 +18,7 @@ import com.admiral.uikit.compose.cell.unit.IconBackgroundCellUnit
 import com.admiral.uikit.compose.cell.unit.IconCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnit
 import com.admiral.uikit.core.components.cell.base.CellUnitType
+import com.admiral.resources.R as res
 
 @Suppress("LongMethod")
 @Composable
@@ -35,7 +36,7 @@ internal fun MainScreen(
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_eyedropper_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_eyedropper_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -45,14 +46,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_diamond_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_diamond_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -62,7 +63,7 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
@@ -70,7 +71,7 @@ internal fun MainScreen(
                 onClick = onButtonsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_grid_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_grid_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -80,14 +81,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_eyedropper_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_eyedropper_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -97,14 +98,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_sign_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_sign_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -114,14 +115,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_menu_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_menu_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -131,14 +132,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_typography_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_typography_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -148,7 +149,7 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
@@ -156,7 +157,7 @@ internal fun MainScreen(
                 onClick = onTabsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_diamond_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_diamond_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -166,14 +167,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_chat_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_chat_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -183,14 +184,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_pin_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_pin_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -200,14 +201,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_mobile_outline),
+                        icon = painterResource(id = res.drawable.admiral_ic_mobile_outline),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -217,14 +218,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_tune_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_tune_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -234,14 +235,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_tasks_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_tasks_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -251,14 +252,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_tune_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_tune_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -268,14 +269,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_link_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_link_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -285,14 +286,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_loader_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_loader_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -302,14 +303,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_more_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_more_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -319,14 +320,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_update_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_update_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -336,14 +337,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_calendar_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_calendar_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -353,14 +354,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_time_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_time_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -370,14 +371,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_email_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_email_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -387,14 +388,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_chat_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_chat_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -404,14 +405,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_receipt_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_receipt_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -421,14 +422,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_treasury_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_treasury_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -438,14 +439,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_chat_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_chat_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -455,14 +456,14 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
             BaseCell(
                 children = listOf(
                     IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_location_solid),
+                        icon = painterResource(id = res.drawable.admiral_ic_location_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
@@ -472,7 +473,7 @@ internal fun MainScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )

@@ -10,7 +10,6 @@ import androidx.core.view.isGone
 import androidx.core.view.isVisible
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.R
 import com.admiral.uikit.components.cell.unit.IconBackgroundCellUnit
 import com.admiral.uikit.components.spinner.SpinnerLoading
 import com.admiral.uikit.components.text.TextView
@@ -18,6 +17,7 @@ import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.setMargins
 import com.admiral.uikit.layout.LinearLayout
+import com.admiral.resources.R as res
 
 class ChatFileView @JvmOverloads constructor(
     context: Context,
@@ -59,7 +59,7 @@ class ChatFileView @JvmOverloads constructor(
         ).apply {
             gravity = Gravity.CENTER
         }
-        icon = drawable(R.drawable.admiral_ic_description_outline)
+        icon = drawable(res.drawable.admiral_ic_description_outline)
     }
 
     /**
@@ -68,7 +68,7 @@ class ChatFileView @JvmOverloads constructor(
     var icon: Drawable? = null
         set(value) {
             field = value
-            iconBackgroundCellUnit.icon = drawable(R.drawable.admiral_ic_description_outline)
+            iconBackgroundCellUnit.icon = drawable(res.drawable.admiral_ic_description_outline)
             iconBackgroundCellUnit.isGone = value == null
         }
 

@@ -5,7 +5,6 @@ import android.text.TextUtils
 import android.util.AttributeSet
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.res.use
-import com.google.android.material.chip.Chip
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
@@ -16,6 +15,8 @@ import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.google.android.material.chip.Chip
+import com.admiral.uikit.core.R as core
 
 class Tag @JvmOverloads constructor(
     context: Context,
@@ -77,6 +78,7 @@ class Tag @JvmOverloads constructor(
                     chipIconSize = pixels(R.dimen.admiral_tag_icon_size_large).toFloat()
                     applyStyle(Typography.getStyle(ThemeManager.theme.typography.body1))
                 }
+
                 TagSize.Medium -> {
                     val tagHeight = pixels(R.dimen.admiral_tag_height_medium)
                     chipMinHeight = tagHeight.toFloat()
@@ -84,6 +86,7 @@ class Tag @JvmOverloads constructor(
                     chipIconSize = pixels(R.dimen.admiral_tag_icon_size_medium).toFloat()
                     applyStyle(Typography.getStyle(ThemeManager.theme.typography.body1))
                 }
+
                 TagSize.Small -> {
                     val tagHeight = pixels(R.dimen.admiral_tag_height_small)
                     chipMinHeight = tagHeight.toFloat()
@@ -151,10 +154,10 @@ class Tag @JvmOverloads constructor(
     private fun invalidatePadding() {
         setEnsureMinTouchTargetSize(false)
 
-        chipStartPadding = pixels(R.dimen.module_x4).toFloat()
-        chipEndPadding = pixels(R.dimen.module_x4).toFloat()
+        chipStartPadding = pixels(core.dimen.module_x4).toFloat()
+        chipEndPadding = pixels(core.dimen.module_x4).toFloat()
 
-        iconEndPadding = pixels(R.dimen.module_x2).toFloat()
+        iconEndPadding = pixels(core.dimen.module_x2).toFloat()
         textEndPadding = 0f
         textStartPadding = 0f
     }
@@ -170,6 +173,7 @@ class Tag @JvmOverloads constructor(
                 chipBackgroundColorDisabled = ThemeManager.theme.palette.backgroundSelected
                 chipBackgroundColorPressed = ThemeManager.theme.palette.backgroundSelectedPressed
             }
+
             TagColor.Gray -> {
                 chipIconColorEnabled = ThemeManager.theme.palette.elementPrimary
                 chipIconColorDisabled = ThemeManager.theme.palette.elementPrimary.withAlpha()
@@ -180,6 +184,7 @@ class Tag @JvmOverloads constructor(
                 chipBackgroundColorPressed =
                     ThemeManager.theme.palette.backgroundAdditionalOnePressed
             }
+
             TagColor.Green -> {
                 chipIconColorEnabled = ThemeManager.theme.palette.elementSuccess
                 chipIconColorDisabled = ThemeManager.theme.palette.elementSuccess.withAlpha()
@@ -189,6 +194,7 @@ class Tag @JvmOverloads constructor(
                 chipBackgroundColorDisabled = ThemeManager.theme.palette.backgroundSuccess
                 chipBackgroundColorPressed = ThemeManager.theme.palette.backgroundSuccess
             }
+
             TagColor.Orange -> {
                 chipIconColorEnabled = ThemeManager.theme.palette.elementAttention
                 chipIconColorDisabled = ThemeManager.theme.palette.elementAttention.withAlpha()
@@ -198,6 +204,7 @@ class Tag @JvmOverloads constructor(
                 chipBackgroundColorDisabled = ThemeManager.theme.palette.backgroundAttention
                 chipBackgroundColorPressed = ThemeManager.theme.palette.backgroundAttention
             }
+
             TagColor.Red -> {
                 chipIconColorEnabled = ThemeManager.theme.palette.elementError
                 chipIconColorDisabled = ThemeManager.theme.palette.elementError.withAlpha()

@@ -10,6 +10,7 @@ import com.admiral.demo.databinding.FmtAlertsAlertBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.dialogs.AlertDialog
+import com.admiral.uikit.R as uikit
 
 class AlertFragment : BaseFragment(
     layoutId = R.layout.fmt_alerts_alert,
@@ -30,10 +31,10 @@ class AlertFragment : BaseFragment(
 
     private fun showDialog() {
         val dialog =
-            AlertDialog.Builder(requireContext()).setContent(R.layout.admiral_view_pop_up_dialog).apply().dialog
+            AlertDialog.Builder(requireContext()).setContent(uikit.layout.admiral_view_pop_up_dialog).apply().dialog
 
-        val showBtn: Button = dialog.findViewById(R.id.buttonAction)
-        val cancelBtn: Button = dialog.findViewById(R.id.buttonAlternative)
+        val showBtn: Button = dialog.findViewById(uikit.id.buttonAction)
+        val cancelBtn: Button = dialog.findViewById(uikit.id.buttonAlternative)
         showBtn.text = "hello main button"
         cancelBtn.text = "hello cancel button"
         showBtn.setOnClickListener {

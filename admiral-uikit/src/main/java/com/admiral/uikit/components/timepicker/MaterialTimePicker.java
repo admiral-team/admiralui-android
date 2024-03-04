@@ -44,16 +44,16 @@ import androidx.annotation.StringRes;
 import androidx.annotation.StyleRes;
 import androidx.fragment.app.DialogFragment;
 
-import com.google.android.material.button.MaterialButton;
-import com.google.android.material.resources.MaterialAttributes;
-import com.google.android.material.shape.MaterialShapeDrawable;
 import com.admiral.themes.ColorPaletteEnum;
 import com.admiral.themes.ThemeManager;
 import com.admiral.uikit.R;
 import com.admiral.uikit.components.button.Button;
+import com.admiral.uikit.components.text.TextView;
 import com.admiral.uikit.ext.ViewExtKt;
 import com.admiral.uikit.layout.LinearLayout;
-import com.admiral.uikit.components.text.TextView;
+import com.google.android.material.button.MaterialButton;
+import com.google.android.material.resources.MaterialAttributes;
+import com.google.android.material.shape.MaterialShapeDrawable;
 
 import java.lang.annotation.Retention;
 import java.lang.annotation.RetentionPolicy;
@@ -65,513 +65,513 @@ import java.util.Set;
  */
 public final class MaterialTimePicker extends DialogFragment {
 
-  private final Set<OnClickListener> positiveButtonListeners = new LinkedHashSet<>();
-  private final Set<OnClickListener> negativeButtonListeners = new LinkedHashSet<>();
-  private final Set<OnCancelListener> cancelListeners = new LinkedHashSet<>();
-  private final Set<OnDismissListener> dismissListeners = new LinkedHashSet<>();
-
-  private TimePickerView timePickerView;
-  private ViewStub textInputStub;
-
-  @Nullable
-  private TimePickerClockPresenter timePickerClockPresenter;
-  @Nullable
-  private TimePickerTextInputPresenter timePickerTextInputPresenter;
-  @Nullable
-  private TimePickerPresenter activePresenter;
-
-  @DrawableRes
-  private int keyboardIcon;
-  @DrawableRes
-  private int clockIcon;
-
-  private int titleResId = 0;
-  private String titleText;
-
-  /**
-   * Values supported for the input type of the dialog.
-   */
-  @IntDef({INPUT_MODE_CLOCK, INPUT_MODE_KEYBOARD})
-  @Retention(RetentionPolicy.SOURCE)
-  @interface InputMode {
-  }
-
-  public static final int INPUT_MODE_CLOCK = 0;
-  public static final int INPUT_MODE_KEYBOARD = 1;
-
-  static final String TIME_MODEL_EXTRA = "TIME_PICKER_TIME_MODEL";
-  static final String INPUT_MODE_EXTRA = "TIME_PICKER_INPUT_MODE";
-  static final String TITLE_RES_EXTRA = "TIME_PICKER_TITLE_RES";
-  static final String TITLE_TEXT_EXTRA = "TIME_PICKER_TITLE_TEXT";
-  static final String OVERRIDE_THEME_RES_ID = "TIME_PICKER_OVERRIDE_THEME_RES_ID";
-
-  private MaterialButton modeButton;
-
-  @InputMode
-  private int inputMode = INPUT_MODE_CLOCK;
-
-  private TimeModel time;
-
-  private int overrideThemeResId = 0;
-
-  @NonNull
-  private static MaterialTimePicker newInstance(@NonNull Builder options) {
-    MaterialTimePicker fragment = new MaterialTimePicker();
-    Bundle args = new Bundle();
-    args.putParcelable(TIME_MODEL_EXTRA, options.time);
-    args.putInt(INPUT_MODE_EXTRA, options.inputMode);
-    args.putInt(TITLE_RES_EXTRA, options.titleTextResId);
-    args.putInt(OVERRIDE_THEME_RES_ID, options.overrideThemeResId);
-    if (options.titleText != null) {
-      args.putString(TITLE_TEXT_EXTRA, options.titleText.toString());
-    }
-
-    fragment.setArguments(args);
-    return fragment;
-  }
-
-  @IntRange(from = 0, to = 60)
-  public int getMinute() {
-    return time.minute;
-  }
-
-  /**
-   * Returns the hour of day in the range [0, 23].
-   */
-  @IntRange(from = 0, to = 23)
-  public int getHour() {
-    return time.hour % 24;
-  }
-
-  @InputMode
-  public int getInputMode() {
-    return inputMode;
-  }
-
-  @SuppressLint("RestrictedApi")
-  @NonNull
-  @Override
-  public final Dialog onCreateDialog(@Nullable Bundle bundle) {
-    Dialog dialog = new Dialog(requireContext(), getThemeResId());
-    Context context = dialog.getContext();
-    int surfaceColor =
-            MaterialAttributes.resolveOrThrow(
-                    context, R.attr.colorSurface, MaterialTimePicker.class.getCanonicalName());
-
-    MaterialShapeDrawable background =
-            new MaterialShapeDrawable(
-                    context,
-                    null,
-                    R.attr.materialTimePickerStyle,
-                    R.style.Widget_MaterialComponents_TimePicker);
-
-    TypedArray a =
-            context.obtainStyledAttributes(
-                    null,
-                    R.styleable.MaterialTimePicker,
-                    R.attr.materialTimePickerStyle,
-                    R.style.Widget_MaterialComponents_TimePicker);
-
-    clockIcon = com.admiral.uikit.R.drawable.admiral_ic_time_outline;
-    keyboardIcon = com.admiral.uikit.R.drawable.admiral_ic_keyboard_outline;
-
-    a.recycle();
-
-    background.initializeElevationOverlay(context);
-    background.setFillColor(ColorStateList.valueOf(surfaceColor));
-    Window window = dialog.getWindow();
-    window.setBackgroundDrawable(background);
-    window.requestFeature(Window.FEATURE_NO_TITLE);
-    // On some Android APIs the dialog won't wrap content by default. Explicitly update here.
-    window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-
-    return dialog;
-  }
-
-  @Override
-  public void onCreate(@Nullable Bundle bundle) {
-    super.onCreate(bundle);
-    restoreState(bundle == null ? getArguments() : bundle);
-  }
-
-  @Override
-  public void onSaveInstanceState(@NonNull Bundle bundle) {
-    super.onSaveInstanceState(bundle);
-    bundle.putParcelable(TIME_MODEL_EXTRA, time);
-    bundle.putInt(INPUT_MODE_EXTRA, inputMode);
-    bundle.putInt(TITLE_RES_EXTRA, titleResId);
-    bundle.putString(TITLE_TEXT_EXTRA, titleText);
-    bundle.putInt(OVERRIDE_THEME_RES_ID, overrideThemeResId);
-  }
-
-  private void restoreState(@Nullable Bundle bundle) {
-    if (bundle == null) {
-      return;
-    }
-
-    time = bundle.getParcelable(TIME_MODEL_EXTRA);
-    if (time == null) {
-      time = new TimeModel();
-    }
-    inputMode = bundle.getInt(INPUT_MODE_EXTRA, INPUT_MODE_CLOCK);
-    titleResId = bundle.getInt(TITLE_RES_EXTRA, 0);
-    titleText = bundle.getString(TITLE_TEXT_EXTRA);
-    overrideThemeResId = bundle.getInt(OVERRIDE_THEME_RES_ID, 0);
-  }
-
-  @NonNull
-  @Override
-  public final View onCreateView(
-          @NonNull LayoutInflater layoutInflater,
-          @Nullable ViewGroup viewGroup,
-          @Nullable Bundle bundle) {
-    ViewGroup root =
-            (ViewGroup) layoutInflater.inflate(com.admiral.uikit.R.layout.admiral_material_timepicker_dialog, viewGroup);
-    timePickerView = root.findViewById(R.id.material_timepicker_view);
-    timePickerView.setOnDoubleTapListener(
-            new TimePickerView.OnDoubleTapListener() {
-              @Override
-              public void onDoubleTap() {
-                inputMode = INPUT_MODE_KEYBOARD;
-                updateInputMode(modeButton);
-                timePickerTextInputPresenter.resetChecked();
-              }
-            });
-    textInputStub = root.findViewById(R.id.material_textinput_timepicker);
-    modeButton = root.findViewById(R.id.material_timepicker_mode_button);
-    TextView headerTitle = root.findViewById(R.id.header_title);
-    headerTitle.setTextColorNormalEnabledPalette(ColorPaletteEnum.TEXT_SECONDARY);
-
-    if (!TextUtils.isEmpty(titleText)) {
-      headerTitle.setText(titleText);
-    }
-
-    if (titleResId != 0) {
-      headerTitle.setText(titleResId);
-    }
-
-    modeButton.setRippleColor(ViewExtKt.colorStateListUnion(
-            modeButton,
-            0,
-            0,
-            0,
-            0,
-            0,
-            0,
-            ThemeManager.INSTANCE.getTheme().getPalette().getBackgroundAccentPressed()
-    ));
-    modeButton.setIconTint(ColorStateList.valueOf(ThemeManager.INSTANCE.getTheme().getPalette().getElementPrimary()));
-
-    updateInputMode(modeButton);
-    Button okButton = root.findViewById(R.id.material_timepicker_ok_button);
-    okButton.setOnClickListener(
-            new OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                for (OnClickListener listener : positiveButtonListeners) {
-                  listener.onClick(v);
-                }
-                dismiss();
-              }
-            });
-
-    Button cancelButton = root.findViewById(R.id.material_timepicker_cancel_button);
-    cancelButton.setOnClickListener(
-            new OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                for (OnClickListener listener : negativeButtonListeners) {
-                  listener.onClick(v);
-                }
-                dismiss();
-              }
-            });
-
-    modeButton.setOnClickListener(
-            new OnClickListener() {
-              @Override
-              public void onClick(View v) {
-                inputMode = (inputMode == INPUT_MODE_CLOCK) ? INPUT_MODE_KEYBOARD : INPUT_MODE_CLOCK;
-                updateInputMode(modeButton);
-              }
-            });
-
-    return root;
-  }
-
-  @Override
-  public void onStop() {
-    super.onStop();
-    activePresenter = null;
-    timePickerClockPresenter = null;
-    timePickerTextInputPresenter = null;
-    timePickerView = null;
-  }
-
-  @Override
-  public final void onCancel(@NonNull DialogInterface dialogInterface) {
-    for (OnCancelListener listener : cancelListeners) {
-      listener.onCancel(dialogInterface);
-    }
-    super.onCancel(dialogInterface);
-  }
-
-  @Override
-  public final void onDismiss(@NonNull DialogInterface dialogInterface) {
-    for (OnDismissListener listener : dismissListeners) {
-      listener.onDismiss(dialogInterface);
-    }
-
-    super.onDismiss(dialogInterface);
-  }
-
-  private void updateInputMode(MaterialButton modeButton) {
-    if (activePresenter != null) {
-      activePresenter.hide();
-    }
-
-    activePresenter = initializeOrRetrieveActivePresenterForMode(inputMode);
-    activePresenter.show();
-    activePresenter.invalidate();
-    Pair<Integer, Integer> buttonData = dataForMode(inputMode);
-    modeButton.setIconResource(buttonData.first);
-    modeButton.setContentDescription(getResources().getString(buttonData.second));
-  }
-
-  private TimePickerPresenter initializeOrRetrieveActivePresenterForMode(int mode) {
-    if (mode == INPUT_MODE_CLOCK) {
-      timePickerClockPresenter =
-              timePickerClockPresenter == null
-                      ? new TimePickerClockPresenter(timePickerView, time)
-                      : timePickerClockPresenter;
-
-      return timePickerClockPresenter;
-    }
-
-    if (timePickerTextInputPresenter == null) {
-      LinearLayout textInputView = (LinearLayout) textInputStub.inflate();
-      timePickerTextInputPresenter = new TimePickerTextInputPresenter(textInputView, time);
-    }
-
-    timePickerTextInputPresenter.clearCheck();
-
-    return timePickerTextInputPresenter;
-  }
-
-  private Pair<Integer, Integer> dataForMode(@InputMode int mode) {
-    switch (mode) {
-      case INPUT_MODE_KEYBOARD:
-        return new Pair<>(clockIcon, R.string.material_timepicker_clock_mode_description);
-      case INPUT_MODE_CLOCK:
-        return new Pair<>(keyboardIcon, R.string.material_timepicker_text_input_mode_description);
-    }
-
-    throw new IllegalArgumentException("no icon for mode: " + mode);
-  }
-
-  @Nullable
-  TimePickerClockPresenter getTimePickerClockPresenter() {
-    return timePickerClockPresenter;
-  }
-
-  /**
-   * The supplied listener is called when the user confirms a valid selection.
-   */
-  public boolean addOnPositiveButtonClickListener(@NonNull OnClickListener listener) {
-    return positiveButtonListeners.add(listener);
-  }
-
-  /**
-   * Removes a listener previously added via {@link
-   * MaterialTimePicker#addOnPositiveButtonClickListener(OnClickListener)}.
-   */
-  public boolean removeOnPositiveButtonClickListener(@NonNull OnClickListener listener) {
-    return positiveButtonListeners.remove(listener);
-  }
-
-  /**
-   * Removes all listeners added via {@link
-   * MaterialTimePicker#addOnPositiveButtonClickListener(OnClickListener)}.
-   */
-  public void clearOnPositiveButtonClickListeners() {
-    positiveButtonListeners.clear();
-  }
-
-  /**
-   * The supplied listener is called when the user clicks the cancel button.
-   */
-  public boolean addOnNegativeButtonClickListener(@NonNull OnClickListener listener) {
-    return negativeButtonListeners.add(listener);
-  }
-
-  /**
-   * Removes a listener previously added via {@link
-   * MaterialTimePicker#addOnNegativeButtonClickListener(OnClickListener)}.
-   */
-  public boolean removeOnNegativeButtonClickListener(@NonNull OnClickListener listener) {
-    return negativeButtonListeners.remove(listener);
-  }
-
-  /**
-   * Removes all listeners added via {@link
-   * MaterialTimePicker#addOnNegativeButtonClickListener(OnClickListener)}.
-   */
-  public void clearOnNegativeButtonClickListeners() {
-    negativeButtonListeners.clear();
-  }
-
-  /**
-   * The supplied listener is called when the user cancels the picker via back button or a touch
-   * outside the view.
-   *
-   * <p>It is not called when the user clicks the cancel button. To add a listener for use when the
-   * user clicks the cancel button, use {@link
-   * MaterialTimePicker#addOnNegativeButtonClickListener(OnClickListener)}.
-   */
-  public boolean addOnCancelListener(@NonNull OnCancelListener listener) {
-    return cancelListeners.add(listener);
-  }
-
-  /**
-   * Removes a listener previously added via {@link
-   * MaterialTimePicker#addOnCancelListener(OnCancelListener)}.
-   */
-  public boolean removeOnCancelListener(@NonNull OnCancelListener listener) {
-    return cancelListeners.remove(listener);
-  }
-
-  /**
-   * Removes all listeners added via {@link
-   * MaterialTimePicker#addOnCancelListener(OnCancelListener)}.
-   */
-  public void clearOnCancelListeners() {
-    cancelListeners.clear();
-  }
-
-  /**
-   * The supplied listener is called whenever the DialogFragment is dismissed, no matter how it is
-   * dismissed.
-   */
-  public boolean addOnDismissListener(@NonNull OnDismissListener listener) {
-    return dismissListeners.add(listener);
-  }
-
-  /**
-   * Removes a listener previously added via {@link
-   * MaterialTimePicker#addOnDismissListener(OnDismissListener)}.
-   */
-  public boolean removeOnDismissListener(@NonNull OnDismissListener listener) {
-    return dismissListeners.remove(listener);
-  }
-
-  /**
-   * Removes all listeners added via {@link
-   * MaterialTimePicker#addOnDismissListener(OnDismissListener)}.
-   */
-  public void clearOnDismissListeners() {
-    dismissListeners.clear();
-  }
-
-  @SuppressLint("RestrictedApi")
-  private int getThemeResId() {
-    if (overrideThemeResId != 0) {
-      return overrideThemeResId;
-    }
-    TypedValue value = MaterialAttributes.resolve(requireContext(), R.attr.materialTimePickerTheme);
-    return value == null ? 0 : value.data;
-  }
-
-  /**
-   * Used to create {@link MaterialTimePicker} instances.
-   */
-  public static final class Builder {
-
-    private TimeModel time = new TimeModel();
-
-    private int inputMode;
-    private int titleTextResId = 0;
-    private CharSequence titleText;
-    private int overrideThemeResId = R.style.AdmiralTimePicker;
+    private final Set<OnClickListener> positiveButtonListeners = new LinkedHashSet<>();
+    private final Set<OnClickListener> negativeButtonListeners = new LinkedHashSet<>();
+    private final Set<OnCancelListener> cancelListeners = new LinkedHashSet<>();
+    private final Set<OnDismissListener> dismissListeners = new LinkedHashSet<>();
+
+    private TimePickerView timePickerView;
+    private ViewStub textInputStub;
+
+    @Nullable
+    private TimePickerClockPresenter timePickerClockPresenter;
+    @Nullable
+    private TimePickerTextInputPresenter timePickerTextInputPresenter;
+    @Nullable
+    private TimePickerPresenter activePresenter;
+
+    @DrawableRes
+    private int keyboardIcon;
+    @DrawableRes
+    private int clockIcon;
+
+    private int titleResId = 0;
+    private String titleText;
 
     /**
-     * Sets the input mode with which to start the time picker.
+     * Values supported for the input type of the dialog.
      */
+    @IntDef({INPUT_MODE_CLOCK, INPUT_MODE_KEYBOARD})
+    @Retention(RetentionPolicy.SOURCE)
+    @interface InputMode {
+    }
+
+    public static final int INPUT_MODE_CLOCK = 0;
+    public static final int INPUT_MODE_KEYBOARD = 1;
+
+    static final String TIME_MODEL_EXTRA = "TIME_PICKER_TIME_MODEL";
+    static final String INPUT_MODE_EXTRA = "TIME_PICKER_INPUT_MODE";
+    static final String TITLE_RES_EXTRA = "TIME_PICKER_TITLE_RES";
+    static final String TITLE_TEXT_EXTRA = "TIME_PICKER_TITLE_TEXT";
+    static final String OVERRIDE_THEME_RES_ID = "TIME_PICKER_OVERRIDE_THEME_RES_ID";
+
+    private MaterialButton modeButton;
+
+    @InputMode
+    private int inputMode = INPUT_MODE_CLOCK;
+
+    private TimeModel time;
+
+    private int overrideThemeResId = 0;
+
     @NonNull
-    public Builder setInputMode(@InputMode int inputMode) {
-      this.inputMode = inputMode;
-      return this;
+    private static MaterialTimePicker newInstance(@NonNull Builder options) {
+        MaterialTimePicker fragment = new MaterialTimePicker();
+        Bundle args = new Bundle();
+        args.putParcelable(TIME_MODEL_EXTRA, options.time);
+        args.putInt(INPUT_MODE_EXTRA, options.inputMode);
+        args.putInt(TITLE_RES_EXTRA, options.titleTextResId);
+        args.putInt(OVERRIDE_THEME_RES_ID, options.overrideThemeResId);
+        if (options.titleText != null) {
+            args.putString(TITLE_TEXT_EXTRA, options.titleText.toString());
+        }
+
+        fragment.setArguments(args);
+        return fragment;
+    }
+
+    @IntRange(from = 0, to = 60)
+    public int getMinute() {
+        return time.minute;
     }
 
     /**
-     * Sets the hour with which to start the time picker.
+     * Returns the hour of day in the range [0, 23].
+     */
+    @IntRange(from = 0, to = 23)
+    public int getHour() {
+        return time.hour % 24;
+    }
+
+    @InputMode
+    public int getInputMode() {
+        return inputMode;
+    }
+
+    @SuppressLint("RestrictedApi")
+    @NonNull
+    @Override
+    public final Dialog onCreateDialog(@Nullable Bundle bundle) {
+        Dialog dialog = new Dialog(requireContext(), getThemeResId());
+        Context context = dialog.getContext();
+        int surfaceColor =
+                MaterialAttributes.resolveOrThrow(
+                        context, com.google.android.material.R.attr.colorSurface, MaterialTimePicker.class.getCanonicalName());
+
+        MaterialShapeDrawable background =
+                new MaterialShapeDrawable(
+                        context,
+                        null,
+                        com.google.android.material.R.attr.materialTimePickerStyle,
+                        com.google.android.material.R.style.Widget_MaterialComponents_TimePicker);
+
+        TypedArray a =
+                context.obtainStyledAttributes(
+                        null,
+                        com.google.android.material.R.styleable.MaterialTimePicker,
+                        com.google.android.material.R.attr.materialTimePickerStyle,
+                        com.google.android.material.R.style.Widget_MaterialComponents_TimePicker);
+
+        clockIcon = com.admiral.resources.R.drawable.admiral_ic_time_outline;
+        keyboardIcon = com.admiral.resources.R.drawable.admiral_ic_keyboard_outline;
+
+        a.recycle();
+
+        background.initializeElevationOverlay(context);
+        background.setFillColor(ColorStateList.valueOf(surfaceColor));
+        Window window = dialog.getWindow();
+        window.setBackgroundDrawable(background);
+        window.requestFeature(Window.FEATURE_NO_TITLE);
+        // On some Android APIs the dialog won't wrap content by default. Explicitly update here.
+        window.setLayout(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+
+        return dialog;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle bundle) {
+        super.onCreate(bundle);
+        restoreState(bundle == null ? getArguments() : bundle);
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle bundle) {
+        super.onSaveInstanceState(bundle);
+        bundle.putParcelable(TIME_MODEL_EXTRA, time);
+        bundle.putInt(INPUT_MODE_EXTRA, inputMode);
+        bundle.putInt(TITLE_RES_EXTRA, titleResId);
+        bundle.putString(TITLE_TEXT_EXTRA, titleText);
+        bundle.putInt(OVERRIDE_THEME_RES_ID, overrideThemeResId);
+    }
+
+    private void restoreState(@Nullable Bundle bundle) {
+        if (bundle == null) {
+            return;
+        }
+
+        time = bundle.getParcelable(TIME_MODEL_EXTRA);
+        if (time == null) {
+            time = new TimeModel();
+        }
+        inputMode = bundle.getInt(INPUT_MODE_EXTRA, INPUT_MODE_CLOCK);
+        titleResId = bundle.getInt(TITLE_RES_EXTRA, 0);
+        titleText = bundle.getString(TITLE_TEXT_EXTRA);
+        overrideThemeResId = bundle.getInt(OVERRIDE_THEME_RES_ID, 0);
+    }
+
+    @NonNull
+    @Override
+    public final View onCreateView(
+            @NonNull LayoutInflater layoutInflater,
+            @Nullable ViewGroup viewGroup,
+            @Nullable Bundle bundle) {
+        ViewGroup root =
+                (ViewGroup) layoutInflater.inflate(com.admiral.uikit.R.layout.admiral_material_timepicker_dialog, viewGroup);
+        timePickerView = root.findViewById(R.id.material_timepicker_view);
+        timePickerView.setOnDoubleTapListener(
+                new TimePickerView.OnDoubleTapListener() {
+                    @Override
+                    public void onDoubleTap() {
+                        inputMode = INPUT_MODE_KEYBOARD;
+                        updateInputMode(modeButton);
+                        timePickerTextInputPresenter.resetChecked();
+                    }
+                });
+        textInputStub = root.findViewById(R.id.material_textinput_timepicker);
+        modeButton = root.findViewById(R.id.material_timepicker_mode_button);
+        TextView headerTitle = root.findViewById(R.id.header_title);
+        headerTitle.setTextColorNormalEnabledPalette(ColorPaletteEnum.TEXT_SECONDARY);
+
+        if (!TextUtils.isEmpty(titleText)) {
+            headerTitle.setText(titleText);
+        }
+
+        if (titleResId != 0) {
+            headerTitle.setText(titleResId);
+        }
+
+        modeButton.setRippleColor(ViewExtKt.colorStateListUnion(
+                modeButton,
+                0,
+                0,
+                0,
+                0,
+                0,
+                0,
+                ThemeManager.INSTANCE.getTheme().getPalette().getBackgroundAccentPressed()
+        ));
+        modeButton.setIconTint(ColorStateList.valueOf(ThemeManager.INSTANCE.getTheme().getPalette().getElementPrimary()));
+
+        updateInputMode(modeButton);
+        Button okButton = root.findViewById(R.id.material_timepicker_ok_button);
+        okButton.setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (OnClickListener listener : positiveButtonListeners) {
+                            listener.onClick(v);
+                        }
+                        dismiss();
+                    }
+                });
+
+        Button cancelButton = root.findViewById(R.id.material_timepicker_cancel_button);
+        cancelButton.setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        for (OnClickListener listener : negativeButtonListeners) {
+                            listener.onClick(v);
+                        }
+                        dismiss();
+                    }
+                });
+
+        modeButton.setOnClickListener(
+                new OnClickListener() {
+                    @Override
+                    public void onClick(View v) {
+                        inputMode = (inputMode == INPUT_MODE_CLOCK) ? INPUT_MODE_KEYBOARD : INPUT_MODE_CLOCK;
+                        updateInputMode(modeButton);
+                    }
+                });
+
+        return root;
+    }
+
+    @Override
+    public void onStop() {
+        super.onStop();
+        activePresenter = null;
+        timePickerClockPresenter = null;
+        timePickerTextInputPresenter = null;
+        timePickerView = null;
+    }
+
+    @Override
+    public final void onCancel(@NonNull DialogInterface dialogInterface) {
+        for (OnCancelListener listener : cancelListeners) {
+            listener.onCancel(dialogInterface);
+        }
+        super.onCancel(dialogInterface);
+    }
+
+    @Override
+    public final void onDismiss(@NonNull DialogInterface dialogInterface) {
+        for (OnDismissListener listener : dismissListeners) {
+            listener.onDismiss(dialogInterface);
+        }
+
+        super.onDismiss(dialogInterface);
+    }
+
+    private void updateInputMode(MaterialButton modeButton) {
+        if (activePresenter != null) {
+            activePresenter.hide();
+        }
+
+        activePresenter = initializeOrRetrieveActivePresenterForMode(inputMode);
+        activePresenter.show();
+        activePresenter.invalidate();
+        Pair<Integer, Integer> buttonData = dataForMode(inputMode);
+        modeButton.setIconResource(buttonData.first);
+        modeButton.setContentDescription(getResources().getString(buttonData.second));
+    }
+
+    private TimePickerPresenter initializeOrRetrieveActivePresenterForMode(int mode) {
+        if (mode == INPUT_MODE_CLOCK) {
+            timePickerClockPresenter =
+                    timePickerClockPresenter == null
+                            ? new TimePickerClockPresenter(timePickerView, time)
+                            : timePickerClockPresenter;
+
+            return timePickerClockPresenter;
+        }
+
+        if (timePickerTextInputPresenter == null) {
+            LinearLayout textInputView = (LinearLayout) textInputStub.inflate();
+            timePickerTextInputPresenter = new TimePickerTextInputPresenter(textInputView, time);
+        }
+
+        timePickerTextInputPresenter.clearCheck();
+
+        return timePickerTextInputPresenter;
+    }
+
+    private Pair<Integer, Integer> dataForMode(@InputMode int mode) {
+        switch (mode) {
+            case INPUT_MODE_KEYBOARD:
+                return new Pair<>(clockIcon, com.google.android.material.R.string.material_timepicker_clock_mode_description);
+            case INPUT_MODE_CLOCK:
+                return new Pair<>(keyboardIcon, com.google.android.material.R.string.material_timepicker_text_input_mode_description);
+        }
+
+        throw new IllegalArgumentException("no icon for mode: " + mode);
+    }
+
+    @Nullable
+    TimePickerClockPresenter getTimePickerClockPresenter() {
+        return timePickerClockPresenter;
+    }
+
+    /**
+     * The supplied listener is called when the user confirms a valid selection.
+     */
+    public boolean addOnPositiveButtonClickListener(@NonNull OnClickListener listener) {
+        return positiveButtonListeners.add(listener);
+    }
+
+    /**
+     * Removes a listener previously added via {@link
+     * MaterialTimePicker#addOnPositiveButtonClickListener(OnClickListener)}.
+     */
+    public boolean removeOnPositiveButtonClickListener(@NonNull OnClickListener listener) {
+        return positiveButtonListeners.remove(listener);
+    }
+
+    /**
+     * Removes all listeners added via {@link
+     * MaterialTimePicker#addOnPositiveButtonClickListener(OnClickListener)}.
+     */
+    public void clearOnPositiveButtonClickListeners() {
+        positiveButtonListeners.clear();
+    }
+
+    /**
+     * The supplied listener is called when the user clicks the cancel button.
+     */
+    public boolean addOnNegativeButtonClickListener(@NonNull OnClickListener listener) {
+        return negativeButtonListeners.add(listener);
+    }
+
+    /**
+     * Removes a listener previously added via {@link
+     * MaterialTimePicker#addOnNegativeButtonClickListener(OnClickListener)}.
+     */
+    public boolean removeOnNegativeButtonClickListener(@NonNull OnClickListener listener) {
+        return negativeButtonListeners.remove(listener);
+    }
+
+    /**
+     * Removes all listeners added via {@link
+     * MaterialTimePicker#addOnNegativeButtonClickListener(OnClickListener)}.
+     */
+    public void clearOnNegativeButtonClickListeners() {
+        negativeButtonListeners.clear();
+    }
+
+    /**
+     * The supplied listener is called when the user cancels the picker via back button or a touch
+     * outside the view.
      *
-     * @param hour The hour value is independent of the time format ({@link #setTimeFormat(int)}),
-     *             and should always be a number in the [0, 23] range.
+     * <p>It is not called when the user clicks the cancel button. To add a listener for use when the
+     * user clicks the cancel button, use {@link
+     * MaterialTimePicker#addOnNegativeButtonClickListener(OnClickListener)}.
      */
-    @NonNull
-    public Builder setHour(@IntRange(from = 0, to = 23) int hour) {
-      time.setHourOfDay(hour);
-      return this;
+    public boolean addOnCancelListener(@NonNull OnCancelListener listener) {
+        return cancelListeners.add(listener);
     }
 
     /**
-     * Sets the minute with which to start the time picker.
+     * Removes a listener previously added via {@link
+     * MaterialTimePicker#addOnCancelListener(OnCancelListener)}.
      */
-    @NonNull
-    public Builder setMinute(@IntRange(from = 0, to = 60) int minute) {
-      time.setMinute(minute);
-      return this;
+    public boolean removeOnCancelListener(@NonNull OnCancelListener listener) {
+        return cancelListeners.remove(listener);
     }
 
     /**
-     * Sets the time format for the time picker.
-     *
-     * @param format Either {@code CLOCK_12H} 12 hour format with an AM/PM toggle or {@code
-     *               CLOCK_24} 24 hour format without toggle.
+     * Removes all listeners added via {@link
+     * MaterialTimePicker#addOnCancelListener(OnCancelListener)}.
      */
-    @NonNull
-    public Builder setTimeFormat(@TimeFormat int format) {
-      int hour = time.hour;
-      int minute = time.minute;
-      time = new TimeModel(format);
-      time.setMinute(minute);
-      time.setHourOfDay(hour);
-      return this;
+    public void clearOnCancelListeners() {
+        cancelListeners.clear();
     }
 
     /**
-     * Sets the text used to guide the user at the top of the picker.
+     * The supplied listener is called whenever the DialogFragment is dismissed, no matter how it is
+     * dismissed.
      */
-    @NonNull
-    public Builder setTitleText(@StringRes int titleTextResId) {
-      this.titleTextResId = titleTextResId;
-      return this;
+    public boolean addOnDismissListener(@NonNull OnDismissListener listener) {
+        return dismissListeners.add(listener);
     }
 
     /**
-     * Sets the text used to guide the user at the top of the picker.
+     * Removes a listener previously added via {@link
+     * MaterialTimePicker#addOnDismissListener(OnDismissListener)}.
      */
-    @NonNull
-    public Builder setTitleText(@Nullable CharSequence charSequence) {
-      this.titleText = charSequence;
-      return this;
+    public boolean removeOnDismissListener(@NonNull OnDismissListener listener) {
+        return dismissListeners.remove(listener);
     }
 
     /**
-     * Sets the theme for the time picker.
+     * Removes all listeners added via {@link
+     * MaterialTimePicker#addOnDismissListener(OnDismissListener)}.
      */
-    @NonNull
-    public Builder setTheme(@StyleRes int themeResId) {
-      this.overrideThemeResId = themeResId;
-      return this;
+    public void clearOnDismissListeners() {
+        dismissListeners.clear();
+    }
+
+    @SuppressLint("RestrictedApi")
+    private int getThemeResId() {
+        if (overrideThemeResId != 0) {
+            return overrideThemeResId;
+        }
+        TypedValue value = MaterialAttributes.resolve(requireContext(), com.google.android.material.R.attr.materialTimePickerTheme);
+        return value == null ? 0 : value.data;
     }
 
     /**
-     * Creates a {@link MaterialTimePicker} with the provided options.
+     * Used to create {@link MaterialTimePicker} instances.
      */
-    @NonNull
-    public MaterialTimePicker build() {
-      return MaterialTimePicker.newInstance(this);
+    public static final class Builder {
+
+        private TimeModel time = new TimeModel();
+
+        private int inputMode;
+        private int titleTextResId = 0;
+        private CharSequence titleText;
+        private int overrideThemeResId = R.style.AdmiralTimePicker;
+
+        /**
+         * Sets the input mode with which to start the time picker.
+         */
+        @NonNull
+        public Builder setInputMode(@InputMode int inputMode) {
+            this.inputMode = inputMode;
+            return this;
+        }
+
+        /**
+         * Sets the hour with which to start the time picker.
+         *
+         * @param hour The hour value is independent of the time format ({@link #setTimeFormat(int)}),
+         *             and should always be a number in the [0, 23] range.
+         */
+        @NonNull
+        public Builder setHour(@IntRange(from = 0, to = 23) int hour) {
+            time.setHourOfDay(hour);
+            return this;
+        }
+
+        /**
+         * Sets the minute with which to start the time picker.
+         */
+        @NonNull
+        public Builder setMinute(@IntRange(from = 0, to = 60) int minute) {
+            time.setMinute(minute);
+            return this;
+        }
+
+        /**
+         * Sets the time format for the time picker.
+         *
+         * @param format Either {@code CLOCK_12H} 12 hour format with an AM/PM toggle or {@code
+         *               CLOCK_24} 24 hour format without toggle.
+         */
+        @NonNull
+        public Builder setTimeFormat(@TimeFormat int format) {
+            int hour = time.hour;
+            int minute = time.minute;
+            time = new TimeModel(format);
+            time.setMinute(minute);
+            time.setHourOfDay(hour);
+            return this;
+        }
+
+        /**
+         * Sets the text used to guide the user at the top of the picker.
+         */
+        @NonNull
+        public Builder setTitleText(@StringRes int titleTextResId) {
+            this.titleTextResId = titleTextResId;
+            return this;
+        }
+
+        /**
+         * Sets the text used to guide the user at the top of the picker.
+         */
+        @NonNull
+        public Builder setTitleText(@Nullable CharSequence charSequence) {
+            this.titleText = charSequence;
+            return this;
+        }
+
+        /**
+         * Sets the theme for the time picker.
+         */
+        @NonNull
+        public Builder setTheme(@StyleRes int themeResId) {
+            this.overrideThemeResId = themeResId;
+            return this;
+        }
+
+        /**
+         * Creates a {@link MaterialTimePicker} with the provided options.
+         */
+        @NonNull
+        public MaterialTimePicker build() {
+            return MaterialTimePicker.newInstance(this);
+        }
     }
-  }
 }

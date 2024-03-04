@@ -12,6 +12,8 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.coloredDrawable
 import com.admiral.uikit.ext.drawable
@@ -19,8 +21,8 @@ import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.resources.R as res
+import com.admiral.uikit.core.R as core
 
 class ButtonGooglePay @JvmOverloads constructor(
     context: Context,
@@ -40,26 +42,26 @@ class ButtonGooglePay @JvmOverloads constructor(
             invalidateTextColors()
         }
 
-    private val startTextView: TextView by lazy { findViewById<TextView>(R.id.tvStart) }
-    private val endTextView: TextView by lazy { findViewById<TextView>(R.id.tvEnd) }
-    private val googleIcon: ImageView by lazy { findViewById<ImageView>(R.id.googleIcon) }
+    private val startTextView: TextView by lazy { findViewById(R.id.tvStart) }
+    private val endTextView: TextView by lazy { findViewById(R.id.tvEnd) }
+    private val googleIcon: ImageView by lazy { findViewById(R.id.googleIcon) }
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_btn_google_pay, this)
 
         startTextView.text = context.getString(R.string.google_play_button_add_into)
         endTextView.text = context.getString(R.string.google_play_button_pay)
-        googleIcon.setImageDrawable(drawable(R.drawable.admiral_ic_google_pay))
+        googleIcon.setImageDrawable(drawable(res.drawable.admiral_ic_google_pay))
 
         background = drawable(R.drawable.admiral_bg_rectangle_clickable_8dp)
         isClickable = true
         isFocusable = true
 
         setPadding(
-            pixels(R.dimen.module_x3),
-            pixels(R.dimen.module_x3),
-            pixels(R.dimen.module_x3),
-            pixels(R.dimen.module_x3),
+            pixels(core.dimen.module_x3),
+            pixels(core.dimen.module_x3),
+            pixels(core.dimen.module_x3),
+            pixels(core.dimen.module_x3),
         )
 
         parseAttrs(attrs, R.styleable.ButtonGooglePay).use {
@@ -131,11 +133,15 @@ class ButtonGooglePay @JvmOverloads constructor(
     }
 
     private fun invalidateBackground() {
-        val rippleColor = backgroundColor?.pressed ?: ThemeManager.theme.palette.backgroundBasic.withAlpha(RIPPLE_ALPHA)
+        val rippleColor =
+            backgroundColor?.pressed ?: ThemeManager.theme.palette.backgroundBasic.withAlpha(
+                RIPPLE_ALPHA
+            )
         val mask = context.drawable(R.drawable.admiral_bg_btn_mask)
         val contentStateList = colorStateList(
             enabled = backgroundColor?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-            disabled = backgroundColor?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            disabled = backgroundColor?.normalDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = backgroundColor?.pressed ?: ThemeManager.theme.palette.textPrimary
         )
         val content = context.coloredDrawable(R.drawable.admiral_bg_btn_mask, contentStateList)
@@ -146,7 +152,8 @@ class ButtonGooglePay @JvmOverloads constructor(
     private fun invalidateTextColors() {
         val textColor = ColorState(
             normalEnabled = textColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundBasic,
-            normalDisabled = textColors?.normalDisabled ?: ThemeManager.theme.palette.backgroundBasic.withAlpha(),
+            normalDisabled = textColors?.normalDisabled
+                ?: ThemeManager.theme.palette.backgroundBasic.withAlpha(),
             pressed = textColors?.pressed ?: ThemeManager.theme.palette.backgroundBasic
         )
 

@@ -14,6 +14,7 @@ import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.uikit.core.R as core
 
 class LogoTabs @JvmOverloads constructor(
     context: Context,
@@ -23,10 +24,10 @@ class LogoTabs @JvmOverloads constructor(
 
     init {
         updatePadding(
-            left = context.pixels(R.dimen.module_x4),
-            top = context.pixels(R.dimen.module_x2),
-            right = context.pixels(R.dimen.module_x4),
-            bottom = context.pixels(R.dimen.module_x2)
+            left = context.pixels(core.dimen.module_x4),
+            top = context.pixels(core.dimen.module_x2),
+            right = context.pixels(core.dimen.module_x4),
+            bottom = context.pixels(core.dimen.module_x2)
         )
 
         orientation = HORIZONTAL
@@ -66,7 +67,8 @@ class LogoTabs @JvmOverloads constructor(
     }
 
     override fun onThemeChanged(theme: Theme) {
-        background = drawable(R.drawable.admiral_bg_checkable_group)?.colored(theme.palette.elementAdditional)
+        background =
+            drawable(R.drawable.admiral_bg_checkable_group)?.colored(theme.palette.elementAdditional)
     }
 
     override fun setCheckedId(id: Int, isChecked: Boolean) {

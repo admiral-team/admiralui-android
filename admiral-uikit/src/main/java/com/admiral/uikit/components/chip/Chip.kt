@@ -5,19 +5,20 @@ import android.content.res.TypedArray
 import android.util.AttributeSet
 import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.res.use
-import com.google.android.material.chip.Chip
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
+import com.google.android.material.chip.Chip
+import com.admiral.uikit.core.R as core
 
 open class Chip @JvmOverloads constructor(
     context: Context,
@@ -170,13 +171,13 @@ open class Chip @JvmOverloads constructor(
         // []text[]
         // As we can see space between icon and text must be in case when text isn't empty
 
-        chipEndPadding = pixels(R.dimen.module_x4).toFloat()
-        chipStartPadding = pixels(R.dimen.module_x4).toFloat()
+        chipEndPadding = pixels(core.dimen.module_x4).toFloat()
+        chipStartPadding = pixels(core.dimen.module_x4).toFloat()
 
         closeIconEndPadding = 0f
-        closeIconStartPadding = pixels(R.dimen.module_x2).toFloat()
+        closeIconStartPadding = pixels(core.dimen.module_x2).toFloat()
 
-        iconEndPadding = if (text.isEmpty()) 0f else pixels(R.dimen.module_x2).toFloat()
+        iconEndPadding = if (text.isEmpty()) 0f else pixels(core.dimen.module_x2).toFloat()
 
         textEndPadding = 0f
         textStartPadding = 0f

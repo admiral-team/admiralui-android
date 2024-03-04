@@ -17,13 +17,13 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
-import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.button.AdmiralButtonColor
 import com.admiral.uikit.compose.button.AdmiralButtonSize
 import com.admiral.uikit.compose.button.Button
 import com.admiral.uikit.compose.util.DIMEN_X11
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X6
+import com.admiral.resources.R as res
 
 @Composable
 @Suppress("LongMethod")
@@ -57,7 +57,7 @@ fun GhostButtonsScreen() {
                 modifier = Modifier
                     .fillMaxWidth(),
                 color = AdmiralButtonColor.ghost(),
-                iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+                iconStart = painterResource(id = res.drawable.admiral_ic_heart_outline)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
@@ -65,7 +65,7 @@ fun GhostButtonsScreen() {
                 modifier = Modifier
                     .fillMaxWidth(),
                 color = AdmiralButtonColor.ghost(),
-                iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+                iconEnd = painterResource(id = res.drawable.admiral_ic_maintenance_solid)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
@@ -79,14 +79,14 @@ fun GhostButtonsScreen() {
                 size = AdmiralButtonSize.medium(),
                 actionText = "Medium Button",
                 color = AdmiralButtonColor.ghost(),
-                iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+                iconStart = painterResource(id = res.drawable.admiral_ic_heart_outline)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
                 size = AdmiralButtonSize.medium(),
                 actionText = "Medium Button",
                 color = AdmiralButtonColor.ghost(),
-                iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+                iconEnd = painterResource(id = res.drawable.admiral_ic_maintenance_solid)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
@@ -99,14 +99,14 @@ fun GhostButtonsScreen() {
                 size = AdmiralButtonSize.small(),
                 actionText = "Small Button",
                 color = AdmiralButtonColor.ghost(),
-                iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+                iconStart = painterResource(id = res.drawable.admiral_ic_heart_outline)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(
                 size = AdmiralButtonSize.small(),
                 actionText = "Small Button",
                 color = AdmiralButtonColor.ghost(),
-                iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+                iconEnd = painterResource(id = res.drawable.admiral_ic_maintenance_solid)
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Button(

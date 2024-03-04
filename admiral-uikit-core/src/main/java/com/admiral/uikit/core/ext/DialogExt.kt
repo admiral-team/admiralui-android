@@ -8,7 +8,7 @@ import android.view.WindowManager
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.ViewCompat.setBackground
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.ext.R
+import com.admiral.uikit.core.R
 import com.google.android.material.bottomsheet.BottomSheetBehavior
 import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.shape.MaterialShapeDrawable

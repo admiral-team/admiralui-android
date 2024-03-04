@@ -39,6 +39,7 @@ import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.themes.darkTheme
 import com.admiral.themes.lightTheme
 import com.google.android.material.chip.Chip
+import com.admiral.resources.R as res
 
 class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwitcher, ThemeSwitcher,
     ThemeListener {
@@ -184,7 +185,7 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
                     binding.themePickerButton.setImageDrawable(
                         ContextCompat.getDrawable(
                             requireContext(),
-                            R.drawable.admiral_ic_close_outline
+                            res.drawable.admiral_ic_close_outline
                         )
                     )
                 } else {

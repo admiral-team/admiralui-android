@@ -35,13 +35,13 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.button.AdmiralButtonColor.primary
 import com.admiral.uikit.compose.button.AdmiralButtonSize.big
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X12
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
+import com.admiral.resources.R as res
 
 @Composable
 @Suppress("LongParameterList")
@@ -170,12 +170,12 @@ fun PrimaryButtonPreview() {
         Spacer(modifier = Modifier.size(DIMEN_X4))
         Button(
             actionText = "Big Button",
-            iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+            iconStart = painterResource(id = res.drawable.admiral_ic_heart_outline)
         )
         Spacer(modifier = Modifier.size(DIMEN_X4))
         Button(
             actionText = "Big Button",
-            iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+            iconEnd = painterResource(id = res.drawable.admiral_ic_maintenance_solid)
         )
         Spacer(modifier = Modifier.size(DIMEN_X4))
         Button(actionText = "Big Button")
@@ -183,13 +183,13 @@ fun PrimaryButtonPreview() {
         Button(
             size = AdmiralButtonSize.medium(),
             actionText = "Medium Button",
-            iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+            iconStart = painterResource(id = res.drawable.admiral_ic_heart_outline)
         )
         Spacer(modifier = Modifier.size(DIMEN_X4))
         Button(
             size = AdmiralButtonSize.medium(),
             actionText = "Medium Button",
-            iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+            iconEnd = painterResource(id = res.drawable.admiral_ic_maintenance_solid)
         )
         Spacer(modifier = Modifier.size(DIMEN_X4))
         Button(
@@ -200,13 +200,13 @@ fun PrimaryButtonPreview() {
         Button(
             size = AdmiralButtonSize.small(),
             actionText = "Small Button",
-            iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+            iconStart = painterResource(id = res.drawable.admiral_ic_heart_outline)
         )
         Spacer(modifier = Modifier.size(DIMEN_X4))
         Button(
             size = AdmiralButtonSize.small(),
             actionText = "Small Button",
-            iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+            iconEnd = painterResource(id = res.drawable.admiral_ic_maintenance_solid)
         )
         Spacer(modifier = Modifier.size(DIMEN_X4))
         Button(

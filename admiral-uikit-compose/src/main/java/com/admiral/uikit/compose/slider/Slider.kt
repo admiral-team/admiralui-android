@@ -48,10 +48,10 @@ import androidx.compose.ui.unit.sp
 import androidx.core.text.isDigitsOnly
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.uikit.compose.textfield.fakeClickable
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.compose.R
-import com.admiral.uikit.compose.textfield.fakeClickable
+import com.admiral.resources.R as res
 
 @Preview(showBackground = true)
 @Composable
@@ -65,7 +65,7 @@ fun SliderPreview() {
             optionalText = "Optional label 2",
             placeholderText = "Placeholder text",
             additionalText = "Additional text",
-            icon = painterResource(id = R.drawable.admiral_ic_heart_solid),
+            icon = painterResource(id = res.drawable.admiral_ic_heart_solid),
             value = SLIDER_PREVIEW_VALUE,
             valueRange = SLIDER_PREVIEW_VALUE_RANGE_START..SLIDER_PREVIEW_VALUE_RANGE_END
         )

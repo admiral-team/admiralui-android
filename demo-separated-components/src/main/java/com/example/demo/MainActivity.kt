@@ -2,7 +2,6 @@ package com.example.demo
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import com.admiral.uikit.notification.action.ActionNotification
 import com.admiral.uikit.notification.action.ActionNotificationCloseType
@@ -29,7 +28,6 @@ class MainActivity : AppCompatActivity() {
                 .setMargins(bottom = MARGIN)
                 .setCloseButtonType(
                     ActionNotificationCloseType.Text(
-                        color = ContextCompat.getColor(this, R.color.design_default_color_error),
                         text = "Cancel"
                     )
                 )

@@ -35,10 +35,10 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
@@ -59,6 +59,8 @@ import kotlinx.coroutines.flow.MutableSharedFlow
 import kotlinx.coroutines.flow.SharedFlow
 import kotlinx.parcelize.Parcelize
 import android.widget.LinearLayout.LayoutParams as LinearLayoutParams
+import com.admiral.resources.R as res
+import com.admiral.uikit.core.R as core
 
 /**
  * Replacement of TextFieldInputLayout and TextInputEditText.
@@ -183,8 +185,8 @@ class TextField @JvmOverloads constructor(
 
     /**
      * In case background color is [Color.TRANSPARENT] or [textFieldStyle] is [TextFieldStyle.Clipped],
-     * [R.dimen.module_x10] is used as size of [icon],
-     * [R.dimen.module_x6] otherwise.
+     * [core.dimen.module_x10] is used as size of [icon],
+     * [core.dimen.module_x6] otherwise.
      */
     @ColorInt
     var iconBackgroundColor: Int = Color.TRANSPARENT
@@ -688,13 +690,13 @@ class TextField @JvmOverloads constructor(
     private fun invalidateTextHidden() {
         if (isTextHidden) {
             iconCloseImageView.setImageDrawable(
-                iconCloseHidden ?: drawable(R.drawable.admiral_ic_eye_close_outline)
+                iconCloseHidden ?: drawable(res.drawable.admiral_ic_eye_close_outline)
             )
             editText.transformationMethod = PasswordTransformationMethod.getInstance()
             editText.setSelectionEnd()
         } else {
             iconCloseImageView.setImageDrawable(
-                iconCloseShown ?: drawable(R.drawable.admiral_ic_eye_outline)
+                iconCloseShown ?: drawable(res.drawable.admiral_ic_eye_outline)
             )
             editText.transformationMethod = HideReturnsTransformationMethod.getInstance()
             editText.setSelectionEnd()
@@ -772,7 +774,7 @@ class TextField @JvmOverloads constructor(
 
     private fun invalidateIconDrawable() {
         if (isError && !isIconFixed) {
-            iconImageView.setImageDrawable(drawable(R.drawable.admiral_ic_error_solid))
+            iconImageView.setImageDrawable(drawable(res.drawable.admiral_ic_error_solid))
         } else {
             iconImageView.setImageDrawable(icon)
             iconImageView.isGone = icon == null
@@ -835,17 +837,17 @@ class TextField @JvmOverloads constructor(
     private fun invalidateIcon() {
         val topMargin = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x3
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x4
-                else -> R.dimen.module_x4
+                textFieldStyle == TextFieldStyle.Clipped -> core.dimen.module_x3
+                iconBackgroundColor == Color.TRANSPARENT -> core.dimen.module_x4
+                else -> core.dimen.module_x4
             }
         )
 
         val size = pixels(
             when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x7
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x7
-                else -> R.dimen.module_x10
+                textFieldStyle == TextFieldStyle.Clipped -> core.dimen.module_x7
+                iconBackgroundColor == Color.TRANSPARENT -> core.dimen.module_x7
+                else -> core.dimen.module_x10
             }
         )
 

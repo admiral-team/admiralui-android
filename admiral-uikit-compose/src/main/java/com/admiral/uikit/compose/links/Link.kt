@@ -17,11 +17,11 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.core.components.link.LinkSize
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.resources.R as res
 
 @Composable
 @Suppress("LongParameterList", "LongMethod")
@@ -124,8 +124,8 @@ private const val ICON_SMALL_SIZE = 18
 fun BigLinkPreview() {
     Link(
         linkText = "Link",
-        iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-        iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
+        iconStart = painterResource(id = res.drawable.admiral_ic_arrow_left_outline),
+        iconEnd = painterResource(id = res.drawable.admiral_ic_arrow_right_outline),
         isEnable = true,
         linkSize = LinkSize.BIG
     )
@@ -136,8 +136,8 @@ fun BigLinkPreview() {
 fun SmallLinkPreview() {
     Link(
         linkText = "Link",
-        iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-        iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
+        iconStart = painterResource(id = res.drawable.admiral_ic_arrow_left_outline),
+        iconEnd = painterResource(id = res.drawable.admiral_ic_arrow_right_outline),
         isEnable = true,
     )
 }
@@ -166,8 +166,8 @@ fun LinkWithoutIconBigPreview() {
 fun BigLinkDisablePreview() {
     Link(
         linkText = "Link",
-        iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-        iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
+        iconStart = painterResource(id = res.drawable.admiral_ic_arrow_left_outline),
+        iconEnd = painterResource(id = res.drawable.admiral_ic_arrow_right_outline),
         isEnable = false,
         linkSize = LinkSize.BIG
     )
@@ -178,8 +178,8 @@ fun BigLinkDisablePreview() {
 fun SmallLinkDisablePreview() {
     Link(
         linkText = "Link",
-        iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-        iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
+        iconStart = painterResource(id = res.drawable.admiral_ic_arrow_left_outline),
+        iconEnd = painterResource(id = res.drawable.admiral_ic_arrow_right_outline),
         isEnable = false,
     )
 }
@@ -207,8 +207,8 @@ fun LinkWithoutIconBigDisablePreview() {
 @Preview(showBackground = false)
 fun LinkLargeTextWithIconsPreview() {
     Link(
-        iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-        iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
+        iconStart = painterResource(id = res.drawable.admiral_ic_arrow_left_outline),
+        iconEnd = painterResource(id = res.drawable.admiral_ic_arrow_right_outline),
         linkText = "LinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLinkLink",
         linkSize = LinkSize.BIG
     )

@@ -45,6 +45,7 @@ object Versions {
         val fragment = "1.4.1"
         val activityCompose = "1.4.0"
         val compose = "1.2.0"
+        val composeExtension = "1.4.7"
         val composeNavigation = "2.5.3"
         val preference = "1.1.1"
         val camerax = "1.2.0-alpha01"

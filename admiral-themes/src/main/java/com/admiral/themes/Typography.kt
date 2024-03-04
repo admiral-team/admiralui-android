@@ -4,6 +4,7 @@ import android.os.Parcelable
 import androidx.annotation.StyleRes
 import kotlinx.parcelize.Parcelize
 import org.json.JSONObject
+import com.admiral.resources.R
 
 /**
  * AdmiralUI
@@ -46,7 +47,7 @@ open class Typography(
          * @return [Font] by index or [BODY_1] if index is not defined
          */
         @Suppress("MagicNumber")
-        fun getStyleById(index: Int): Font = when (index){ 
+        fun getStyleById(index: Int): Font = when (index){
             1 -> ThemeManager.theme.typography.body1
             2 -> ThemeManager.theme.typography.body2
             3 -> ThemeManager.theme.typography.caption1
@@ -91,7 +92,7 @@ open class Typography(
 }
 
 internal fun Typography.toJSON(): JSONObject {
-    return JSONObject().apply { 
+    return JSONObject().apply {
         put("body1", body1.toJSON())
         put("body2", body2.toJSON())
         put("caption1", caption1.toJSON())

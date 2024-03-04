@@ -27,6 +27,7 @@ import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
 import com.admiral.uikit.view.checkable.CheckableImageView
 import com.admiral.uikit.view.checkable.CheckableLinearLayout
+import com.admiral.uikit.core.R as core
 
 class LogoTab @JvmOverloads constructor(
     context: Context,
@@ -58,7 +59,8 @@ class LogoTab @JvmOverloads constructor(
         }
 
     private val imageView: CheckableImageView = CheckableImageView(context).apply {
-        val layoutParams = LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
+        val layoutParams =
+            LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.MATCH_PARENT)
         layoutParams.weight = 1f
         setLayoutParams(layoutParams)
     }
@@ -87,8 +89,8 @@ class LogoTab @JvmOverloads constructor(
         isFocusable = true
 
         updatePadding(
-            top = context.pixels(R.dimen.module_x4),
-            bottom = context.pixels(R.dimen.module_x4)
+            top = context.pixels(core.dimen.module_x4),
+            bottom = context.pixels(core.dimen.module_x4)
         )
         addView(imageView)
         addView(divider)
@@ -164,8 +166,10 @@ class LogoTab @JvmOverloads constructor(
             normalEnabled = Color.TRANSPARENT,
             normalDisabled = Color.TRANSPARENT,
             pressed = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            checkedEnabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            checkedDisabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+            checkedEnabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent,
+            checkedDisabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
         )
 
         val color = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent

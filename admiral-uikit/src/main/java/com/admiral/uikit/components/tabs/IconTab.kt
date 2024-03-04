@@ -27,6 +27,7 @@ import com.admiral.uikit.view.checkable.CheckableImageView
 import com.admiral.uikit.view.checkable.CheckableLinearLayout
 import com.admiral.uikit.view.checkable.CheckableTextView
 import com.admiral.uikit.view.checkable.CheckableView
+import com.admiral.uikit.core.R as core
 
 class IconTab @JvmOverloads constructor(
     context: Context,
@@ -127,7 +128,7 @@ class IconTab @JvmOverloads constructor(
     }
 
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {
-        val width = MeasureSpec.makeMeasureSpec(pixels(R.dimen.module_x20), MeasureSpec.EXACTLY)
+        val width = MeasureSpec.makeMeasureSpec(pixels(core.dimen.module_x20), MeasureSpec.EXACTLY)
         super.onMeasure(width, measuredHeight)
     }
 

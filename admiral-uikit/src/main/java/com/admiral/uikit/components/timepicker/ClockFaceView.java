@@ -48,9 +48,8 @@ import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.CollectionIn
 import androidx.core.view.accessibility.AccessibilityNodeInfoCompat.CollectionItemInfoCompat;
 import androidx.core.widget.TextViewCompat;
 
-import com.admiral.uikit.R;
-
 import com.admiral.themes.ThemeManager;
+import com.admiral.uikit.R;
 import com.admiral.uikit.components.text.TextView;
 
 import java.util.Arrays;
@@ -63,255 +62,255 @@ import java.util.Arrays;
  */
 class ClockFaceView extends RadialViewGroup implements ClockHandView.OnRotateListener {
 
-  private static final float EPSILON = .001f;
-  private static final int INITIAL_CAPACITY = 12;
-  private static final String VALUE_PLACEHOLDER = "";
+    private static final float EPSILON = .001f;
+    private static final int INITIAL_CAPACITY = 12;
+    private static final String VALUE_PLACEHOLDER = "";
 
-  private final ClockHandView clockHandView;
-  private final Rect textViewRect = new Rect();
-  private final RectF scratch = new RectF();
+    private final ClockHandView clockHandView;
+    private final Rect textViewRect = new Rect();
+    private final RectF scratch = new RectF();
 
-  private final SparseArray<TextView> textViewPool = new SparseArray<>();
-  private final AccessibilityDelegateCompat valueAccessibilityDelegate;
+    private final SparseArray<TextView> textViewPool = new SparseArray<>();
+    private final AccessibilityDelegateCompat valueAccessibilityDelegate;
 
-  private final int[] gradientColors;
-  private final float[] gradientPositions = new float[] {0f, 0.9f, 1f};
-  private final int clockHandPadding;
-  private final int minimumHeight;
-  private final int minimumWidth;
-  private final int clockSize;
+    private final int[] gradientColors;
+    private final float[] gradientPositions = new float[]{0f, 0.9f, 1f};
+    private final int clockHandPadding;
+    private final int minimumHeight;
+    private final int minimumWidth;
+    private final int clockSize;
 
-  private String[] values;
+    private String[] values;
 
-  private float currentHandRotation;
+    private float currentHandRotation;
 
-  private final ColorStateList textColor;
+    private final ColorStateList textColor;
 
-  public ClockFaceView(@NonNull Context context) {
-    this(context, null);
-  }
+    public ClockFaceView(@NonNull Context context) {
+        this(context, null);
+    }
 
-  public ClockFaceView(@NonNull Context context, @Nullable AttributeSet attrs) {
-    this(context, attrs, R.attr.materialClockStyle);
-  }
+    public ClockFaceView(@NonNull Context context, @Nullable AttributeSet attrs) {
+        this(context, attrs, com.google.android.material.R.attr.materialClockStyle);
+    }
 
-  @SuppressLint({"ClickableViewAccessibility", "RestrictedApi"})
-  public ClockFaceView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
-    super(context, attrs, defStyleAttr);
-    TypedArray a =
-        context.obtainStyledAttributes(
-            attrs,
-            R.styleable.ClockFaceView,
-            defStyleAttr,
-            R.style.Widget_MaterialComponents_TimePicker_Clock);
-    Resources res = getResources();
-
-    int defaultTextColor = ThemeManager.INSTANCE.getTheme().getPalette().getTextPrimary();
-    int selectedTextColor = ThemeManager.INSTANCE.getTheme().getPalette().getTextStaticWhite();
-
-    textColor = new ColorStateList(
-            new int[][]{
-                    new int[]{android.R.attr.state_selected},
-                    new int[]{} // this should be empty to make default color as we want
-            },
-            new int[]{
-                    selectedTextColor,
-                    defaultTextColor
-            }
-    );
-
-    LayoutInflater.from(context).inflate(R.layout.admiral_material_clockface_view, this, true);
-    clockHandView = findViewById(R.id.material_clock_hand);
-    clockHandPadding = res.getDimensionPixelSize(R.dimen.material_clock_hand_padding);
-    int clockHandTextColor =
-        textColor.getColorForState(
-            new int[] {android.R.attr.state_selected}, textColor.getDefaultColor());
-    gradientColors =
-        new int[] {clockHandTextColor, clockHandTextColor, textColor.getDefaultColor()};
-    clockHandView.addOnRotateListener(this);
-
-    setBackgroundColor(ThemeManager.INSTANCE.getTheme().getPalette().getBackgroundAdditionalOne());
-
-    getViewTreeObserver()
-        .addOnPreDrawListener(
-            new OnPreDrawListener() {
-              @Override
-              public boolean onPreDraw() {
-                if (!isShown()) {
-                  return true;
-                }
-                getViewTreeObserver().removeOnPreDrawListener(this);
-                int circleRadius =
-                    getHeight() / 2 - clockHandView.getSelectorRadius() - clockHandPadding;
-                setRadius(circleRadius);
-                return true;
-              }
-            });
-
-    setFocusable(true);
-    a.recycle();
-    valueAccessibilityDelegate =
-        new AccessibilityDelegateCompat() {
-          @Override
-          public void onInitializeAccessibilityNodeInfo(
-              View host, @NonNull AccessibilityNodeInfoCompat info) {
-            super.onInitializeAccessibilityNodeInfo(host, info);
-            int index = (int) host.getTag(R.id.material_value_index);
-            if (index > 0) {
-              info.setTraversalAfter(textViewPool.get(index - 1));
-            }
-
-            info.setCollectionItemInfo(
-                CollectionItemInfoCompat.obtain(
-                    /* rowIndex= */ 0,
-                    /* rowSpan= */ 1,
-                    /* columnIndex =*/ index,
-                    /* columnSpan= */ 1,
-                    /* heading= */ false,
-                    /* selected= */ host.isSelected()));
-          }
-        };
-
-    // Fill clock face with place holders
-    String[] initialValues = new String[INITIAL_CAPACITY];
-    Arrays.fill(initialValues, VALUE_PLACEHOLDER);
-    setValues(initialValues, /* contentDescription= */ 0);
-
-    minimumHeight = res.getDimensionPixelSize(R.dimen.material_time_picker_minimum_screen_height);
-    minimumWidth = res.getDimensionPixelSize(R.dimen.material_time_picker_minimum_screen_width);
-    clockSize = res.getDimensionPixelSize(R.dimen.material_clock_size);
-  }
-
-  /**
-   * Sets the list of values that will be shown in the clock face. The first value will be shown in
-   * the 12 O'Clock position, subsequent values will be evenly distributed after.
-   */
-  public void setValues(String[] values, @StringRes int contentDescription) {
-    this.values = values;
-    updateTextViews(contentDescription);
-  }
-
-  private void updateTextViews(@StringRes int contentDescription) {
-    LayoutInflater inflater = LayoutInflater.from(getContext());
-    int size = textViewPool.size();
-    for (int i = 0; i < max(values.length, size); ++i) {
-      TextView textView = textViewPool.get(i);
-      if (i >= values.length) {
-        removeView(textView);
-        textViewPool.remove(i);
-        continue;
-      }
-
-      if (textView == null) {
-        textView = (TextView) inflater.inflate(R.layout.admiral_material_clockface_textview, this, false);
-        TextViewCompat.setTextAppearance(textView, R.style.AdmiralTextAppearance_TimePickerClockFace);
-
-        textViewPool.put(i, textView);
-        addView(textView);
-      }
-
-      textView.setVisibility(VISIBLE);
-      textView.setText(values[i]);
-      textView.setTag(R.id.material_value_index, i);
-      ViewCompat.setAccessibilityDelegate(textView, valueAccessibilityDelegate);
-
-      textView.setTextColor(textColor);
-      if (contentDescription != 0) {
+    @SuppressLint({"ClickableViewAccessibility", "RestrictedApi"})
+    public ClockFaceView(@NonNull Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
+        super(context, attrs, defStyleAttr);
+        TypedArray a =
+                context.obtainStyledAttributes(
+                        attrs,
+                        com.google.android.material.R.styleable.ClockFaceView,
+                        defStyleAttr,
+                        com.google.android.material.R.style.Widget_MaterialComponents_TimePicker_Clock);
         Resources res = getResources();
-        textView.setContentDescription(res.getString(contentDescription, values[i]));
-      }
+
+        int defaultTextColor = ThemeManager.INSTANCE.getTheme().getPalette().getTextPrimary();
+        int selectedTextColor = ThemeManager.INSTANCE.getTheme().getPalette().getTextStaticWhite();
+
+        textColor = new ColorStateList(
+                new int[][]{
+                        new int[]{android.R.attr.state_selected},
+                        new int[]{} // this should be empty to make default color as we want
+                },
+                new int[]{
+                        selectedTextColor,
+                        defaultTextColor
+                }
+        );
+
+        LayoutInflater.from(context).inflate(R.layout.admiral_material_clockface_view, this, true);
+        clockHandView = findViewById(R.id.material_clock_hand);
+        clockHandPadding = res.getDimensionPixelSize(com.google.android.material.R.dimen.material_clock_hand_padding);
+        int clockHandTextColor =
+                textColor.getColorForState(
+                        new int[]{android.R.attr.state_selected}, textColor.getDefaultColor());
+        gradientColors =
+                new int[]{clockHandTextColor, clockHandTextColor, textColor.getDefaultColor()};
+        clockHandView.addOnRotateListener(this);
+
+        setBackgroundColor(ThemeManager.INSTANCE.getTheme().getPalette().getBackgroundAdditionalOne());
+
+        getViewTreeObserver()
+                .addOnPreDrawListener(
+                        new OnPreDrawListener() {
+                            @Override
+                            public boolean onPreDraw() {
+                                if (!isShown()) {
+                                    return true;
+                                }
+                                getViewTreeObserver().removeOnPreDrawListener(this);
+                                int circleRadius =
+                                        getHeight() / 2 - clockHandView.getSelectorRadius() - clockHandPadding;
+                                setRadius(circleRadius);
+                                return true;
+                            }
+                        });
+
+        setFocusable(true);
+        a.recycle();
+        valueAccessibilityDelegate =
+                new AccessibilityDelegateCompat() {
+                    @Override
+                    public void onInitializeAccessibilityNodeInfo(
+                            View host, @NonNull AccessibilityNodeInfoCompat info) {
+                        super.onInitializeAccessibilityNodeInfo(host, info);
+                        int index = (int) host.getTag(com.google.android.material.R.id.material_value_index);
+                        if (index > 0) {
+                            info.setTraversalAfter(textViewPool.get(index - 1));
+                        }
+
+                        info.setCollectionItemInfo(
+                                CollectionItemInfoCompat.obtain(
+                                        /* rowIndex= */ 0,
+                                        /* rowSpan= */ 1,
+                                        /* columnIndex =*/ index,
+                                        /* columnSpan= */ 1,
+                                        /* heading= */ false,
+                                        /* selected= */ host.isSelected()));
+                    }
+                };
+
+        // Fill clock face with place holders
+        String[] initialValues = new String[INITIAL_CAPACITY];
+        Arrays.fill(initialValues, VALUE_PLACEHOLDER);
+        setValues(initialValues, /* contentDescription= */ 0);
+
+        minimumHeight = res.getDimensionPixelSize(com.google.android.material.R.dimen.material_time_picker_minimum_screen_height);
+        minimumWidth = res.getDimensionPixelSize(com.google.android.material.R.dimen.material_time_picker_minimum_screen_width);
+        clockSize = res.getDimensionPixelSize(com.google.android.material.R.dimen.material_clock_size);
     }
-  }
 
-  @Override
-  public void onInitializeAccessibilityNodeInfo(@NonNull AccessibilityNodeInfo info) {
-    super.onInitializeAccessibilityNodeInfo(info);
-    AccessibilityNodeInfoCompat infoCompat = AccessibilityNodeInfoCompat.wrap(info);
-    infoCompat.setCollectionInfo(
-        CollectionInfoCompat.obtain(
-            /* rowCount= */ 1,
-            /* columnCount= */ values.length,
-            /* hierarchical= */ false,
-            SELECTION_MODE_SINGLE));
-  }
-
-  @Override
-  public void setRadius(int radius) {
-    if (radius != getRadius()) {
-      super.setRadius(radius);
-      clockHandView.setCircleRadius(getRadius());
-    }
-  }
-
-  @Override
-  protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
-    super.onLayout(changed, left, top, right, bottom);
-    findIntersectingTextView();
-  }
-
-  public void setHandRotation(@FloatRange(from = 0f, to = 360f) float rotation) {
-    clockHandView.setHandRotation(rotation);
-    findIntersectingTextView();
-  }
-
-  private void findIntersectingTextView() {
-    RectF selectorBox = clockHandView.getCurrentSelectorBox();
-    for (int i = 0; i < textViewPool.size(); ++i) {
-      TextView tv = textViewPool.get(i);
-      if (tv == null) {
-        continue;
-      }
-      tv.getDrawingRect(textViewRect);
-      textViewRect.offset(tv.getPaddingLeft(), tv.getPaddingTop());
-      offsetDescendantRectToMyCoords(tv, textViewRect);
-
-      scratch.set(textViewRect);
-      RadialGradient radialGradient = getGradientForTextView(selectorBox, scratch);
-      tv.getPaint().setShader(radialGradient);
-      tv.invalidate();
-    }
-  }
-
-  private RadialGradient getGradientForTextView(RectF selectorBox, RectF tvBox) {
-    if (!RectF.intersects(selectorBox, tvBox)) {
-      return null;
+    /**
+     * Sets the list of values that will be shown in the clock face. The first value will be shown in
+     * the 12 O'Clock position, subsequent values will be evenly distributed after.
+     */
+    public void setValues(String[] values, @StringRes int contentDescription) {
+        this.values = values;
+        updateTextViews(contentDescription);
     }
 
-    return new RadialGradient(
-        (selectorBox.centerX() - scratch.left),
-        (selectorBox.centerY() - scratch.top),
-        selectorBox.width() * .5f,
-        gradientColors,
-        gradientPositions,
-        TileMode.CLAMP);
-  }
+    private void updateTextViews(@StringRes int contentDescription) {
+        LayoutInflater inflater = LayoutInflater.from(getContext());
+        int size = textViewPool.size();
+        for (int i = 0; i < max(values.length, size); ++i) {
+            TextView textView = textViewPool.get(i);
+            if (i >= values.length) {
+                removeView(textView);
+                textViewPool.remove(i);
+                continue;
+            }
 
-  @Override
-  public void onRotate(float rotation, boolean animating) {
-    if (abs(currentHandRotation - rotation) > EPSILON) {
-      currentHandRotation = rotation;
-      findIntersectingTextView();
+            if (textView == null) {
+                textView = (TextView) inflater.inflate(R.layout.admiral_material_clockface_textview, this, false);
+                TextViewCompat.setTextAppearance(textView, com.admiral.resources.R.style.AdmiralTextAppearance_TimePickerClockFace);
+
+                textViewPool.put(i, textView);
+                addView(textView);
+            }
+
+            textView.setVisibility(VISIBLE);
+            textView.setText(values[i]);
+            textView.setTag(com.google.android.material.R.id.material_value_index, i);
+            ViewCompat.setAccessibilityDelegate(textView, valueAccessibilityDelegate);
+
+            textView.setTextColor(textColor);
+            if (contentDescription != 0) {
+                Resources res = getResources();
+                textView.setContentDescription(res.getString(contentDescription, values[i]));
+            }
+        }
     }
-  }
 
-  @Override
-  protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
-    Resources r = getResources();
-    DisplayMetrics displayMetrics = r.getDisplayMetrics();
+    @Override
+    public void onInitializeAccessibilityNodeInfo(@NonNull AccessibilityNodeInfo info) {
+        super.onInitializeAccessibilityNodeInfo(info);
+        AccessibilityNodeInfoCompat infoCompat = AccessibilityNodeInfoCompat.wrap(info);
+        infoCompat.setCollectionInfo(
+                CollectionInfoCompat.obtain(
+                        /* rowCount= */ 1,
+                        /* columnCount= */ values.length,
+                        /* hierarchical= */ false,
+                        SELECTION_MODE_SINGLE));
+    }
 
-    float height = displayMetrics.heightPixels;
-    float width = displayMetrics.widthPixels;
+    @Override
+    public void setRadius(int radius) {
+        if (radius != getRadius()) {
+            super.setRadius(radius);
+            clockHandView.setCircleRadius(getRadius());
+        }
+    }
 
-    // If the screen is smaller than our defined values. Scale the clock face
-    // proportionally to the smaller size
-    int size = (int) (clockSize / max3(minimumHeight / height, minimumWidth / width, 1f));
+    @Override
+    protected void onLayout(boolean changed, int left, int top, int right, int bottom) {
+        super.onLayout(changed, left, top, right, bottom);
+        findIntersectingTextView();
+    }
 
-    int spec = MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY);
-    setMeasuredDimension(size, size);
-    super.onMeasure(spec, spec);
-  }
+    public void setHandRotation(@FloatRange(from = 0f, to = 360f) float rotation) {
+        clockHandView.setHandRotation(rotation);
+        findIntersectingTextView();
+    }
 
-  private static float max3(float a, float b, float c) {
-    return max(max(a, b), c);
-  }
+    private void findIntersectingTextView() {
+        RectF selectorBox = clockHandView.getCurrentSelectorBox();
+        for (int i = 0; i < textViewPool.size(); ++i) {
+            TextView tv = textViewPool.get(i);
+            if (tv == null) {
+                continue;
+            }
+            tv.getDrawingRect(textViewRect);
+            textViewRect.offset(tv.getPaddingLeft(), tv.getPaddingTop());
+            offsetDescendantRectToMyCoords(tv, textViewRect);
+
+            scratch.set(textViewRect);
+            RadialGradient radialGradient = getGradientForTextView(selectorBox, scratch);
+            tv.getPaint().setShader(radialGradient);
+            tv.invalidate();
+        }
+    }
+
+    private RadialGradient getGradientForTextView(RectF selectorBox, RectF tvBox) {
+        if (!RectF.intersects(selectorBox, tvBox)) {
+            return null;
+        }
+
+        return new RadialGradient(
+                (selectorBox.centerX() - scratch.left),
+                (selectorBox.centerY() - scratch.top),
+                selectorBox.width() * .5f,
+                gradientColors,
+                gradientPositions,
+                TileMode.CLAMP);
+    }
+
+    @Override
+    public void onRotate(float rotation, boolean animating) {
+        if (abs(currentHandRotation - rotation) > EPSILON) {
+            currentHandRotation = rotation;
+            findIntersectingTextView();
+        }
+    }
+
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        Resources r = getResources();
+        DisplayMetrics displayMetrics = r.getDisplayMetrics();
+
+        float height = displayMetrics.heightPixels;
+        float width = displayMetrics.widthPixels;
+
+        // If the screen is smaller than our defined values. Scale the clock face
+        // proportionally to the smaller size
+        int size = (int) (clockSize / max3(minimumHeight / height, minimumWidth / width, 1f));
+
+        int spec = MeasureSpec.makeMeasureSpec(size, MeasureSpec.EXACTLY);
+        setMeasuredDimension(size, size);
+        super.onMeasure(spec, spec);
+    }
+
+    private static float max3(float a, float b, float c) {
+        return max(max(a, b), c);
+    }
 }

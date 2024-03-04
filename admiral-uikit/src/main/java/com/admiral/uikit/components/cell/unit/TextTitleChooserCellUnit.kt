@@ -9,16 +9,18 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.core.components.cell.base.CellUnit
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.resources.R as res
+import com.admiral.uikit.core.R as core
 
 class TextTitleChooserCellUnit @JvmOverloads constructor(
     context: Context,
@@ -57,13 +59,18 @@ class TextTitleChooserCellUnit @JvmOverloads constructor(
         parseAttrs(attrs, R.styleable.TextTitleChooserCellUnit).use {
             text = it.getText(R.styleable.TextTitleChooserCellUnit_admiralText)
 
-            unitType = CellUnitType.from(it.getInt(R.styleable.TextTitleChooserCellUnit_admiralCellUnitType, 0))
+            unitType = CellUnitType.from(
+                it.getInt(
+                    R.styleable.TextTitleChooserCellUnit_admiralCellUnitType,
+                    0
+                )
+            )
             parseTextColors(it)
             parseDrawableColors(it)
         }
 
-        drawable(R.drawable.admiral_ic_chevron_down_outline)?.also {
-            compoundDrawablePadding = pixels(R.dimen.module_x1)
+        drawable(res.drawable.admiral_ic_chevron_down_outline)?.also {
+            compoundDrawablePadding = pixels(core.dimen.module_x1)
             setCompoundDrawablesWithIntrinsicBounds(null, null, it, null)
         }
     }
@@ -121,7 +128,8 @@ class TextTitleChooserCellUnit @JvmOverloads constructor(
     private fun invalidateDrawableIconTintColors() {
         val colorState = colorStateList(
             enabled = drawableColor?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
-            disabled = drawableColor?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
+            disabled = drawableColor?.normalDisabled
+                ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
             pressed = drawableColor?.pressed ?: ThemeManager.theme.palette.elementPrimary
         )
 
@@ -133,7 +141,8 @@ class TextTitleChooserCellUnit @JvmOverloads constructor(
     private fun invalidateTextColors() {
         val colorState = ColorState(
             normalEnabled = textColorState?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-            normalDisabled = textColorState?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            normalDisabled = textColorState?.normalDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = textColorState?.pressed ?: ThemeManager.theme.palette.textPrimary
         )
 

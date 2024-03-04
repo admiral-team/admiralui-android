@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.uikit.notification"
     applyConfig(
         isCoreLibraryDesugaringEnabled = false,
         isComposeEnabled = false,
@@ -15,6 +16,8 @@ android {
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
     api(project(Modules.Admiral.UiKit.core))
+    api(project(Modules.Admiral.resources))
+    api(project(Modules.Admiral.Themes.themes))
 
     implementation(project(Modules.Admiral.UiKit.Components.imageview))
     implementation(project(Modules.Admiral.UiKit.Components.textview))

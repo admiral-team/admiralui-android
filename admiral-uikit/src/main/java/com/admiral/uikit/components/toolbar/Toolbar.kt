@@ -13,12 +13,13 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.components.badge.Badge
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.components.badge.Badge
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.uikit.core.R as core
 
 class Toolbar @JvmOverloads constructor(
     context: Context,
@@ -52,8 +53,8 @@ class Toolbar @JvmOverloads constructor(
         }
 
         updatePadding(
-            left = pixels(R.dimen.module_x2),
-            right = pixels(R.dimen.module_x2)
+            left = pixels(core.dimen.module_x2),
+            right = pixels(core.dimen.module_x2)
         )
 
         onThemeChanged(ThemeManager.theme)
@@ -217,7 +218,9 @@ class Toolbar @JvmOverloads constructor(
     }
 
     private fun invalidateBackgroundColor() {
-        background.setTint(backgroundColor?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccentDark)
+        background.setTint(
+            backgroundColor?.normalEnabled ?: ThemeManager.theme.palette.backgroundAccentDark
+        )
     }
 
     private companion object {

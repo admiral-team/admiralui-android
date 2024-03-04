@@ -12,15 +12,16 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.chat.MessageStatus
 import com.admiral.uikit.components.chat.setMessageStatusIcon
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.databinding.AdmiralViewTextOperationBinding
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.uikit.core.R as core
 
 class TextOperation @JvmOverloads constructor(
     context: Context,
@@ -152,8 +153,8 @@ class TextOperation @JvmOverloads constructor(
             maxWidth = width
         }
 
-        val verticalPadding = pixels(R.dimen.module_x2)
-        val horizontalPadding = pixels(R.dimen.module_x3)
+        val verticalPadding = pixels(core.dimen.module_x2)
+        val horizontalPadding = pixels(core.dimen.module_x3)
         binding.root.updatePadding(
             left = horizontalPadding,
             top = verticalPadding,
@@ -217,6 +218,7 @@ class TextOperation @JvmOverloads constructor(
                     pressed = ThemeManager.theme.palette.textPrimary
                 )
             }
+
             TextOperationType.SUCCESS -> {
                 ColorState(
                     normalEnabled = ThemeManager.theme.palette.textSuccess,
@@ -224,6 +226,7 @@ class TextOperation @JvmOverloads constructor(
                     pressed = ThemeManager.theme.palette.textSuccessPressed
                 )
             }
+
             TextOperationType.ERROR -> {
                 ColorState(
                     normalEnabled = ThemeManager.theme.palette.textError,

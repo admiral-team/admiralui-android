@@ -25,7 +25,10 @@ class Switcher @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : SwitchCompat(
-    ContextThemeWrapper(context, R.style.Widget_AppCompat_CompoundButton_Switch),
+    ContextThemeWrapper(
+        context,
+        com.google.android.material.R.style.Widget_AppCompat_CompoundButton_Switch
+    ),
     attrs,
     defStyleAttr
 ), ThemeObserver {

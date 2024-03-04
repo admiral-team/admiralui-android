@@ -28,6 +28,7 @@ import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import java.time.Clock
+import com.admiral.uikit.core.R as core
 
 /**
  * Vertical calendar view
@@ -83,7 +84,7 @@ class VerticalCalendar @JvmOverloads constructor(
         }
     }
 
-    private var dayVerticalSpacingPx: Int = pixels(R.dimen.module_x5)
+    private var dayVerticalSpacingPx: Int = pixels(core.dimen.module_x5)
 
     @VisibleForTesting(otherwise = VisibleForTesting.PRIVATE)
     var clock: Clock = Clock.systemDefaultZone()
@@ -114,7 +115,7 @@ class VerticalCalendar @JvmOverloads constructor(
             dayVerticalSpacingPx =
                 it.getDimensionPixelSize(
                     R.styleable.VerticalCalendar_admiralDayVerticalSpacing,
-                    pixels(R.dimen.module_x5)
+                    pixels(core.dimen.module_x5)
                 )
         }
         initRecycler()

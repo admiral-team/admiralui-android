@@ -2,13 +2,13 @@ package com.admiral.uikit.components.timepicker
 
 import android.content.Context
 import android.util.AttributeSet
-import com.google.android.material.chip.Chip
-import com.admiral.themes.R
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
+import com.admiral.uikit.core.R
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateListUnion
+import com.google.android.material.chip.Chip
 
 internal class TimePickerChip @JvmOverloads constructor(
     context: Context,
@@ -17,7 +17,7 @@ internal class TimePickerChip @JvmOverloads constructor(
 ) : Chip(context, attrs, defStyleAttr), ThemeObserver {
 
     init {
-        applyStyle(R.style.AdmiralTextAppearance_TimePickerChips)
+        applyStyle(R.style.TimePickerChips)
 
         invalidateBackgroundColor()
         invalidateTextColor()

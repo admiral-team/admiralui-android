@@ -15,12 +15,11 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.buildAnnotatedString
 import androidx.compose.ui.text.withStyle
-import com.admiral.themes.ThemeManager
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X5
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 
 @Composable
 @Suppress("LongParameterList")
@@ -43,14 +42,28 @@ fun checkBox(
                 modifier = modifier,
                 verticalArrangement = Arrangement.spacedBy(DIMEN_X5)
             ) {
-                CreateCheckBoxes(radioOptions, selectedOption, isEnabled, radioColor, textColor, onOptionSelected)
+                CreateCheckBoxes(
+                    radioOptions,
+                    selectedOption,
+                    isEnabled,
+                    radioColor,
+                    textColor,
+                    onOptionSelected
+                )
             }
         } else {
             Row(
                 modifier = modifier,
                 horizontalArrangement = Arrangement.spacedBy(DIMEN_X5)
             ) {
-                CreateCheckBoxes(radioOptions, selectedOption, isEnabled, radioColor, textColor, onOptionSelected)
+                CreateCheckBoxes(
+                    radioOptions,
+                    selectedOption,
+                    isEnabled,
+                    radioColor,
+                    textColor,
+                    onOptionSelected
+                )
             }
         }
 
@@ -79,10 +92,17 @@ private fun CreateCheckBoxes(
         ) {
             Checkbox(
                 colors = CheckboxDefaults.colors(
-                    checkedColor = Color(radioColor?.normalEnabled ?: ThemeManager.theme.palette.elementAccent),
-                    uncheckedColor = Color(radioColor?.normalEnabled ?: ThemeManager.theme.palette.elementAccent),
+                    checkedColor = Color(
+                        radioColor?.normalEnabled
+                            ?: ThemeManagerCompose.theme.value.palette.elementAccent
+                    ),
+                    uncheckedColor = Color(
+                        radioColor?.normalEnabled
+                            ?: ThemeManagerCompose.theme.value.palette.elementAccent
+                    ),
                     disabledColor = Color(
-                        radioColor?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha()
+                        radioColor?.normalDisabled
+                            ?: ThemeManagerCompose.theme.value.palette.elementAccent.withAlpha()
                     )
                 ),
                 enabled = isEnabled,

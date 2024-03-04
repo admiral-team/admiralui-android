@@ -16,9 +16,9 @@ import androidx.core.view.updatePadding
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.chat.MessageStatus
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
@@ -26,6 +26,7 @@ import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
 import com.admiral.uikit.layout.FrameLayout
 import com.admiral.uikit.layout.LinearLayout
+import com.admiral.resources.R as res
 import com.admiral.uikit.components.imageview.ImageView as AdmiralImageView
 
 class ImageMessage @JvmOverloads constructor(
@@ -115,7 +116,7 @@ class ImageMessage @JvmOverloads constructor(
             gravity = Gravity.BOTTOM
         }
         layoutParams = attributes
-        setImageDrawable(drawable(R.drawable.admiral_ic_error_solid)?.colored(ThemeManager.theme.palette.elementError))
+        setImageDrawable(drawable(res.drawable.admiral_ic_error_solid)?.colored(ThemeManager.theme.palette.elementError))
         isVisible = false
     }
 
@@ -343,10 +344,10 @@ class ImageMessage @JvmOverloads constructor(
 
         val drawable = when (messageStatus) {
             MessageStatus.NONE -> null
-            MessageStatus.LOAD -> drawable(R.drawable.admiral_ic_time_outline)
-            MessageStatus.SENDING -> drawable(R.drawable.admiral_ic_status_one_outline)
-            MessageStatus.SEND -> drawable(R.drawable.admiral_ic_status_one_outline)
-            MessageStatus.READ -> drawable(R.drawable.admiral_ic_status_two_outline)
+            MessageStatus.LOAD -> drawable(res.drawable.admiral_ic_time_outline)
+            MessageStatus.SENDING -> drawable(res.drawable.admiral_ic_status_one_outline)
+            MessageStatus.SEND -> drawable(res.drawable.admiral_ic_status_one_outline)
+            MessageStatus.READ -> drawable(res.drawable.admiral_ic_status_two_outline)
         }
 
         if (drawable == null) {

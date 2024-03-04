@@ -17,6 +17,7 @@ import com.admiral.uikit.compose.cell.unit.IconCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleCellUnit
 import com.admiral.uikit.compose.util.DIMEN_X8
 import com.admiral.uikit.core.components.cell.base.CellUnitType
+import com.admiral.resources.R as res
 
 @Composable
 @Suppress("LongMethod")
@@ -44,7 +45,7 @@ fun ComposeButtonsScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
@@ -57,7 +58,7 @@ fun ComposeButtonsScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
@@ -70,7 +71,7 @@ fun ComposeButtonsScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
@@ -83,7 +84,7 @@ fun ComposeButtonsScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )
@@ -96,7 +97,7 @@ fun ComposeButtonsScreen(
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                        icon = painterResource(id = res.drawable.admiral_ic_chevron_right_outline)
                     )
                 )
             )

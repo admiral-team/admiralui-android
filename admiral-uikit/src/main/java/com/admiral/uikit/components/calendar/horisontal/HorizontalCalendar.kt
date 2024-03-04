@@ -36,6 +36,7 @@ import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.launch
 import java.time.Clock
 import java.time.YearMonth
+import com.admiral.resources.R as res
 
 /**
  * Horizontal calendar view
@@ -53,9 +54,9 @@ class HorizontalCalendar @JvmOverloads constructor(
     private val verticalSpacing =
         pixels(R.dimen.admiral_calendar_month_vertical_spacing_between_days)
 
-    private val drawableUp = drawable(R.drawable.admiral_ic_chevron_up_outline)
+    private val drawableUp = drawable(res.drawable.admiral_ic_chevron_up_outline)
 
-    private val drawableDown = drawable(R.drawable.admiral_ic_chevron_down_outline)
+    private val drawableDown = drawable(res.drawable.admiral_ic_chevron_down_outline)
 
     private val binding = AdmiralViewCalendarHorizontalBinding
         .inflate(LayoutInflater.from(context), this)
@@ -105,9 +106,11 @@ class HorizontalCalendar @JvmOverloads constructor(
                 needMoreTopItems -> {
                     viewModel.generateAdditionalMonths(IMonthsGenerator.Direction.ON_START)
                 }
+
                 needMoreBottomItems -> {
                     viewModel.generateAdditionalMonths(IMonthsGenerator.Direction.ON_END)
                 }
+
                 else -> return
             }
         }

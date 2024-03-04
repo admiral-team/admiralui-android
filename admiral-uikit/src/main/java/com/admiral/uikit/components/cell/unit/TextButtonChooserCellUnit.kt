@@ -13,16 +13,18 @@ import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.themes.Typography.Companion.body1
 import com.admiral.uikit.R
+import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.core.components.cell.base.CellUnit
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
+import com.admiral.resources.R as res
+import com.admiral.uikit.core.R as core
 
 class TextButtonChooserCellUnit @JvmOverloads constructor(
     context: Context,
@@ -32,7 +34,8 @@ class TextButtonChooserCellUnit @JvmOverloads constructor(
 
     override lateinit var unitType: CellUnitType
 
-    var icon: Drawable? = ContextCompat.getDrawable(context, R.drawable.admiral_ic_chevron_down_outline)
+    var icon: Drawable? =
+        ContextCompat.getDrawable(context, res.drawable.admiral_ic_chevron_down_outline)
         set(value) {
             field = value
             setDrawableEnd(icon)
@@ -67,10 +70,20 @@ class TextButtonChooserCellUnit @JvmOverloads constructor(
         parseAttrs(attrs, R.styleable.TextButtonChooserCellUnit).use {
             text = it.getText(R.styleable.TextButtonChooserCellUnit_admiralText)
             textStyle =
-                Typography.getStyleById(it.getInt(R.styleable.TextButtonChooserCellUnit_admiralTextStyle, body1))
+                Typography.getStyleById(
+                    it.getInt(
+                        R.styleable.TextButtonChooserCellUnit_admiralTextStyle,
+                        body1
+                    )
+                )
 
             icon = it.getDrawable(R.styleable.TextButtonChooserCellUnit_admiralIcon)
-            unitType = CellUnitType.from(it.getInt(R.styleable.TextButtonChooserCellUnit_admiralCellUnitType, 0))
+            unitType = CellUnitType.from(
+                it.getInt(
+                    R.styleable.TextButtonChooserCellUnit_admiralCellUnitType,
+                    0
+                )
+            )
 
             parseTextColors(it)
             parseIconTintColors(it)
@@ -132,7 +145,8 @@ class TextButtonChooserCellUnit @JvmOverloads constructor(
     private fun invalidateTextColors() {
         val colorState = ColorState(
             normalEnabled = textColors?.normalEnabled ?: ThemeManager.theme.palette.textAccent,
-            normalDisabled = textColors?.normalDisabled ?: ThemeManager.theme.palette.textAccent.withAlpha(),
+            normalDisabled = textColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textAccent.withAlpha(),
             pressed = textColors?.pressed ?: ThemeManager.theme.palette.textAccentPressed
         )
 
@@ -141,7 +155,7 @@ class TextButtonChooserCellUnit @JvmOverloads constructor(
 
     private fun setDrawableEnd(drawable: Drawable?) {
         drawable?.colored(textColors?.normalEnabled ?: ThemeManager.theme.palette.textAccent).also {
-            compoundDrawablePadding = pixels(R.dimen.module_x1)
+            compoundDrawablePadding = pixels(core.dimen.module_x1)
             setCompoundDrawablesWithIntrinsicBounds(null, null, it, null)
         }
     }
@@ -150,7 +164,8 @@ class TextButtonChooserCellUnit @JvmOverloads constructor(
         val colorState = colorStateList(
             enabled = iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.textAccent,
             pressed = iconTintColors?.pressed ?: ThemeManager.theme.palette.textAccentPressed,
-            disabled = iconTintColors?.normalDisabled ?: ThemeManager.theme.palette.textAccent.withAlpha()
+            disabled = iconTintColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textAccent.withAlpha()
         )
 
         for (drawable in compoundDrawables) {

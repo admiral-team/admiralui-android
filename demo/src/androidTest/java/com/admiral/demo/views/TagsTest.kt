@@ -5,7 +5,6 @@ import androidx.appcompat.view.ContextThemeWrapper
 import androidx.core.content.ContextCompat
 import androidx.core.view.children
 import androidx.test.platform.app.InstrumentationRegistry
-import com.karumi.shot.ScreenshotTest
 import com.admiral.demo.R
 import com.admiral.demo.databinding.TestViewTagsLargeBinding
 import com.admiral.demo.databinding.TestViewTagsMediumBinding
@@ -16,11 +15,14 @@ import com.admiral.uikit.components.tag.Tag
 import com.admiral.uikit.components.tag.TagColor
 import com.admiral.uikit.components.tag.TagIconPosition
 import com.admiral.uikit.components.tag.TagSize
+import com.karumi.shot.ScreenshotTest
 import org.junit.Test
+import com.admiral.resources.R as res
 
 class TagsTest : ScreenshotTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val wrappedContext = ContextThemeWrapper(context, R.style.Theme_AdmiralUIAndroid_Launcher)
+    private val wrappedContext =
+        ContextThemeWrapper(context, R.style.Theme_AdmiralUIAndroid_Launcher)
     private val layoutInflater = LayoutInflater.from(context)
     private val tagsLargeBinding = TestViewTagsLargeBinding.inflate(layoutInflater)
     private val tagsMediumBinding = TestViewTagsMediumBinding.inflate(layoutInflater)
@@ -29,7 +31,7 @@ class TagsTest : ScreenshotTest {
         Tag(wrappedContext).apply {
             tagColor = TagColor.Blue
             text = context.getString(R.string.tags_chips_chip)
-            chipIcon = ContextCompat.getDrawable(context, R.drawable.admiral_ic_car_solid)
+            chipIcon = ContextCompat.getDrawable(context, res.drawable.admiral_ic_car_solid)
             isIconColored = true
         },
         Tag(wrappedContext).apply {
@@ -45,7 +47,7 @@ class TagsTest : ScreenshotTest {
         Tag(wrappedContext).apply {
             tagColor = TagColor.Gray
             text = context.getString(R.string.tags_chips_chip)
-            chipIcon = ContextCompat.getDrawable(context, R.drawable.admiral_ic_car_solid)
+            chipIcon = ContextCompat.getDrawable(context, res.drawable.admiral_ic_car_solid)
             isIconColored = true
         },
         Tag(wrappedContext).apply {
@@ -61,7 +63,7 @@ class TagsTest : ScreenshotTest {
         Tag(wrappedContext).apply {
             tagColor = TagColor.Green
             text = context.getString(R.string.tags_chips_chip)
-            chipIcon = ContextCompat.getDrawable(context, R.drawable.admiral_ic_car_solid)
+            chipIcon = ContextCompat.getDrawable(context, res.drawable.admiral_ic_car_solid)
             isIconColored = true
         },
         Tag(wrappedContext).apply {
@@ -77,7 +79,7 @@ class TagsTest : ScreenshotTest {
         Tag(wrappedContext).apply {
             tagColor = TagColor.Orange
             text = context.getString(R.string.tags_chips_chip)
-            chipIcon = ContextCompat.getDrawable(context, R.drawable.admiral_ic_car_solid)
+            chipIcon = ContextCompat.getDrawable(context, res.drawable.admiral_ic_car_solid)
             isIconColored = true
         },
         Tag(wrappedContext).apply {
@@ -93,7 +95,7 @@ class TagsTest : ScreenshotTest {
         Tag(wrappedContext).apply {
             tagColor = TagColor.Red
             text = context.getString(R.string.tags_chips_chip)
-            chipIcon = ContextCompat.getDrawable(context, R.drawable.admiral_ic_car_solid)
+            chipIcon = ContextCompat.getDrawable(context, res.drawable.admiral_ic_car_solid)
             isIconColored = true
         },
         Tag(wrappedContext).apply {
@@ -120,13 +122,15 @@ class TagsTest : ScreenshotTest {
     private fun checkByInflation(size: TagSize, isEnabled: Boolean) {
         val binding = when (size) {
             TagSize.Large -> tagsLargeBinding.also {
-                it.root.crutchTextAppearance(R.style.AdmiralTextAppearance_Body1)
+                it.root.crutchTextAppearance(res.style.AdmiralTextAppearance_Body1)
             }
+
             TagSize.Medium -> tagsMediumBinding.also {
-                it.root.crutchTextAppearance(R.style.AdmiralTextAppearance_Body1)
+                it.root.crutchTextAppearance(res.style.AdmiralTextAppearance_Body1)
             }
+
             TagSize.Small -> tagsSmallBinding.also {
-                it.root.crutchTextAppearance(R.style.AdmiralTextAppearance_Subhead2)
+                it.root.crutchTextAppearance(res.style.AdmiralTextAppearance_Subhead2)
             }
         }
 
@@ -199,9 +203,9 @@ class TagsTest : ScreenshotTest {
             }
             crutchTextAppearance(
                 when (size) {
-                    TagSize.Large -> R.style.AdmiralTextAppearance_Body1
-                    TagSize.Medium -> R.style.AdmiralTextAppearance_Body1
-                    TagSize.Small -> R.style.AdmiralTextAppearance_Subhead2
+                    TagSize.Large -> res.style.AdmiralTextAppearance_Body1
+                    TagSize.Medium -> res.style.AdmiralTextAppearance_Body1
+                    TagSize.Small -> res.style.AdmiralTextAppearance_Subhead2
                 }
             )
             this.isEnabled = isEnabled

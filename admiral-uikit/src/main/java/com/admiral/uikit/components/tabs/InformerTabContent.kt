@@ -13,14 +13,15 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.layout.LinearLayout
+import com.admiral.uikit.core.R as core
 
 class InformerTabContent @JvmOverloads constructor(
     context: Context,
@@ -219,7 +220,8 @@ class InformerTabContent @JvmOverloads constructor(
 
     private fun invalidateBackground() {
         val state = ColorState(
-            normalEnabled = backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            normalEnabled = backgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
             normalDisabled = backgroundColors?.normalDisabled ?: backgroundColors?.normalEnabled
             ?: ThemeManager.theme.palette.backgroundAdditionalOne,
             pressed = backgroundColors?.pressed ?: backgroundColors?.normalEnabled
@@ -231,8 +233,10 @@ class InformerTabContent @JvmOverloads constructor(
 
     private fun invalidateTitleColors() {
         val colorState = ColorState(
-            normalEnabled = titleTextColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-            normalDisabled = titleTextColors?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            normalEnabled = titleTextColors?.normalEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
+            normalDisabled = titleTextColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = titleTextColors?.pressed ?: ThemeManager.theme.palette.textPrimary
         )
 
@@ -242,7 +246,8 @@ class InformerTabContent @JvmOverloads constructor(
     private fun invalidateSummColors() {
         val colorState = ColorState(
             normalEnabled = summTextColors?.normalEnabled ?: ThemeManager.theme.palette.textAccent,
-            normalDisabled = summTextColors?.normalDisabled ?: ThemeManager.theme.palette.textAccent.withAlpha(),
+            normalDisabled = summTextColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textAccent.withAlpha(),
             pressed = summTextColors?.pressed ?: ThemeManager.theme.palette.textAccentPressed
         )
 
@@ -251,8 +256,10 @@ class InformerTabContent @JvmOverloads constructor(
 
     private fun invalidateSubtitleColors() {
         val colorState = ColorState(
-            normalEnabled = subtitleTextColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-            normalDisabled = subtitleTextColors?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            normalEnabled = subtitleTextColors?.normalEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
+            normalDisabled = subtitleTextColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = subtitleTextColors?.pressed ?: ThemeManager.theme.palette.textPrimary
         )
 
@@ -260,11 +267,13 @@ class InformerTabContent @JvmOverloads constructor(
     }
 
     private fun invalidateIconDrawable() {
-        summTextView.compoundDrawablePadding = pixels(R.dimen.module_x2)
+        summTextView.compoundDrawablePadding = pixels(core.dimen.module_x2)
         iconDrawable?.colored(
             colorStateList(
-                enabled = drawableColorTint?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
-                disabled = drawableColorTint?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
+                enabled = drawableColorTint?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary,
+                disabled = drawableColorTint?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
                 pressed = drawableColorTint?.pressed ?: ThemeManager.theme.palette.elementPrimary
             )
         )

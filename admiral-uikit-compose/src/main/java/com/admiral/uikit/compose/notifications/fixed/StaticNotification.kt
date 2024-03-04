@@ -26,7 +26,6 @@ import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.links.Link
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X3
@@ -34,6 +33,7 @@ import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.core.components.notification.StaticNotificationStyle
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.resources.R as res
 
 @Composable
 fun StaticNotification(
@@ -85,7 +85,7 @@ fun StaticNotification(
         pressed = linkColors?.pressed ?: palette.textAccentPressed
     )
 
-    val closeIcon = painterResource(id = R.drawable.admiral_ic_close_outline)
+    val closeIcon = painterResource(id = res.drawable.admiral_ic_close_outline)
 
     val iconColorDefault =
         when (notificationStyle) {
@@ -97,10 +97,10 @@ fun StaticNotification(
 
     val iconDefault = painterResource(
         when (notificationStyle) {
-            StaticNotificationStyle.Info -> (R.drawable.admiral_ic_info_solid)
-            StaticNotificationStyle.Attention -> (R.drawable.admiral_ic_error_triangle_solid)
-            StaticNotificationStyle.Success -> (R.drawable.admiral_ic_check_solid)
-            StaticNotificationStyle.Error -> (R.drawable.admiral_ic_close_circle_solid)
+            StaticNotificationStyle.Info -> (res.drawable.admiral_ic_info_solid)
+            StaticNotificationStyle.Attention -> (res.drawable.admiral_ic_error_triangle_solid)
+            StaticNotificationStyle.Success -> (res.drawable.admiral_ic_check_solid)
+            StaticNotificationStyle.Error -> (res.drawable.admiral_ic_close_circle_solid)
         }
     )
 
@@ -298,7 +298,7 @@ fun StaticNotificationSuccessDisablePreview() {
 fun StaticNotificationEmptyLinkPreview() {
     StaticNotification(
         notificationText = "At breakpoint boundaries, mini units divide the screen into a fixed master grid.",
-        icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+        icon = painterResource(id = res.drawable.admiral_ic_info_solid),
         isEnable = true
     )
 }

@@ -31,13 +31,15 @@ import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import kotlinx.coroutines.flow.MutableStateFlow
 import kotlinx.coroutines.flow.StateFlow
+import com.admiral.resources.R as res
+import com.admiral.uikit.core.R as core
 
 internal class TextFieldSearchOld @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : androidx.appcompat.widget.AppCompatEditText(
-    ContextThemeWrapper(context, R.style.Widget_AppCompat_EditText),
+    ContextThemeWrapper(context, com.google.android.material.R.style.Widget_AppCompat_EditText),
     attrs,
     defStyleAttr
 ), ThemeObserver {
@@ -111,7 +113,7 @@ internal class TextFieldSearchOld @JvmOverloads constructor(
         }
 
     private val drawableClose =
-        drawable(R.drawable.admiral_ic_close_outline)?.colored(
+        drawable(res.drawable.admiral_ic_close_outline)?.colored(
             colorStateList(
                 enabled = iconTintColor ?: ThemeManager.theme.palette.elementPrimary,
                 disabled = iconTintColor ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
@@ -130,9 +132,14 @@ internal class TextFieldSearchOld @JvmOverloads constructor(
             parseIcon(it)
             parseIconColors(it)
 
-            inputType = it.getInt(R.styleable.TextFieldSearch_android_inputType, EditorInfo.TYPE_CLASS_TEXT)
-            imeOptions = it.getInt(R.styleable.TextFieldSearch_android_imeOptions, EditorInfo.IME_ACTION_SEARCH)
-            isDrawableStartVisible = it.getBoolean(R.styleable.TextFieldSearch_admiralIsDrawableStartVisible, true)
+            inputType =
+                it.getInt(R.styleable.TextFieldSearch_android_inputType, EditorInfo.TYPE_CLASS_TEXT)
+            imeOptions = it.getInt(
+                R.styleable.TextFieldSearch_android_imeOptions,
+                EditorInfo.IME_ACTION_SEARCH
+            )
+            isDrawableStartVisible =
+                it.getBoolean(R.styleable.TextFieldSearch_admiralIsDrawableStartVisible, true)
         }
 
         setupClearButtonWithAction()
@@ -176,11 +183,13 @@ internal class TextFieldSearchOld @JvmOverloads constructor(
 
     private fun parseIcon(a: TypedArray) {
         drawableStart =
-            a.getDrawable(R.styleable.TextFieldSearch_admiralIcon) ?: drawable(R.drawable.admiral_ic_search_outline)
+            a.getDrawable(R.styleable.TextFieldSearch_admiralIcon)
+                ?: drawable(res.drawable.admiral_ic_search_outline)
     }
 
     private fun parseIconColors(a: TypedArray) {
-        iconTintColor = a.getColorOrNull(R.styleable.TextFieldSearch_admiralIconTintColorNormalEnabled)
+        iconTintColor =
+            a.getColorOrNull(R.styleable.TextFieldSearch_admiralIconTintColorNormalEnabled)
     }
 
     private fun parseTextColors(a: TypedArray) {
@@ -210,7 +219,8 @@ internal class TextFieldSearchOld @JvmOverloads constructor(
             colorStateList(
                 enabled = hintTextColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary,
                 pressed = hintTextColors?.pressed ?: ThemeManager.theme.palette.textSecondary,
-                disabled = hintTextColors?.normalDisabled ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+                disabled = hintTextColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.textSecondary.withAlpha()
             )
         )
     }
@@ -220,15 +230,18 @@ internal class TextFieldSearchOld @JvmOverloads constructor(
             colorStateList(
                 enabled = inputTextColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
                 pressed = inputTextColors?.pressed ?: ThemeManager.theme.palette.textPrimary,
-                disabled = inputTextColors?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha()
+                disabled = inputTextColors?.normalDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha()
             )
         )
     }
 
     private fun invalidateBackgroundColors() {
         backgroundTintList = colorStateList(
-            enabled = backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
-            pressed = backgroundColors?.pressed ?: ThemeManager.theme.palette.backgroundAdditionalOnePressed,
+            enabled = backgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            pressed = backgroundColors?.pressed
+                ?: ThemeManager.theme.palette.backgroundAdditionalOnePressed,
             disabled = backgroundColors?.normalDisabled
                 ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
         )
@@ -245,7 +258,7 @@ internal class TextFieldSearchOld @JvmOverloads constructor(
 
     private fun invalidateIcon() {
         if (isDrawableStartVisible) {
-            compoundDrawablePadding = pixels(R.dimen.module_x2)
+            compoundDrawablePadding = pixels(core.dimen.module_x2)
             drawableStart?.colored(iconTintColor ?: ThemeManager.theme.palette.elementPrimary)
             setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, null, null)
         } else {
@@ -273,7 +286,12 @@ internal class TextFieldSearchOld @JvmOverloads constructor(
             override fun afterTextChanged(editable: Editable?) {
                 if (editable?.isNotEmpty() == true) {
                     if (isDrawableStartVisible) {
-                        setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, drawableClose, null)
+                        setCompoundDrawablesWithIntrinsicBounds(
+                            drawableStart,
+                            null,
+                            drawableClose,
+                            null
+                        )
                     } else {
                         setCompoundDrawablesWithIntrinsicBounds(null, null, drawableClose, null)
                     }
@@ -284,7 +302,9 @@ internal class TextFieldSearchOld @JvmOverloads constructor(
                 }
             }
 
-            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) = Unit
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) =
+                Unit
+
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
                 onTextChangeListener?.onTextChanged(s, start, before, count)
             }

@@ -14,6 +14,7 @@ import com.admiral.uikit.components.calendar.month.recycler.DaysSpacingDecoratio
 import com.admiral.uikit.databinding.AdmiralViewCalendarMonthBinding
 import com.admiral.uikit.ext.pixels
 import java.time.YearMonth
+import com.admiral.uikit.core.R as core
 
 internal class MonthView @JvmOverloads constructor(
     context: Context,
@@ -51,7 +52,7 @@ internal class MonthView @JvmOverloads constructor(
         parentWidth: Int,
         viewPool: RecycledViewPool,
         dayClickedAction: (BaseDayModel.DayModel) -> Unit,
-        dayVerticalSpacingPx: Int = pixels(R.dimen.module_x5)
+        dayVerticalSpacingPx: Int = pixels(core.dimen.module_x5)
     ) {
         binding.root.apply {
             setHasFixedSize(true)
@@ -67,7 +68,7 @@ internal class MonthView @JvmOverloads constructor(
             adapter = DaysAdapter(context, dayClickedAction)
 
             val itemWidth = pixels(R.dimen.admiral_calendar_day_width)
-            val recyclerHorizontalMargin = pixels(R.dimen.module_x4)
+            val recyclerHorizontalMargin = pixels(core.dimen.module_x4)
             val horizontalSpacing =
                 ((parentWidth - 2 * recyclerHorizontalMargin) - SPAN * itemWidth) / (SPAN - 1)
 

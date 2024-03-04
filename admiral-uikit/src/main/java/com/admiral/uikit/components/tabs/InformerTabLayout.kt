@@ -20,6 +20,7 @@ import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
 import com.admiral.uikit.layout.LinearLayout
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.resources.R as res
 
 class InformerTabLayout @JvmOverloads constructor(
     context: Context,
@@ -41,7 +42,7 @@ class InformerTabLayout @JvmOverloads constructor(
      * View that points to the selected tab.
      */
     var polygonView: ImageView = ImageView(context).apply {
-        setImageResource(R.drawable.admiral_ic_polygon)
+        setImageResource(res.drawable.admiral_ic_polygon)
         val params = RelativeLayout.LayoutParams(
             RelativeLayout.LayoutParams.WRAP_CONTENT,
             RelativeLayout.LayoutParams.WRAP_CONTENT
@@ -56,7 +57,8 @@ class InformerTabLayout @JvmOverloads constructor(
         orientation = VERTICAL
 
         parseAttrs(attrs, R.styleable.InformerTabLayout).use {
-            isPolygonVisible = it.getBoolean(R.styleable.InformerTabLayout_admiralIsPolygonVisible, true)
+            isPolygonVisible =
+                it.getBoolean(R.styleable.InformerTabLayout_admiralIsPolygonVisible, true)
 
             parsePolygonColor(it)
             parsePolygonMargin(it)
@@ -131,16 +133,21 @@ class InformerTabLayout @JvmOverloads constructor(
     }
 
     private fun parsePolygonMargin(typedArray: TypedArray) {
-        val parsedMargin = typedArray.getDimension(R.styleable.InformerTabLayout_polygonMarginTop, 0f)
+        val parsedMargin =
+            typedArray.getDimension(R.styleable.InformerTabLayout_polygonMarginTop, 0f)
         polygonView.setMargins(top = parsedMargin.toInt())
     }
 
     private fun invalidatePolygonColor() {
         polygonView.imageTintList = colorStateListForChecked(
-            checkedEnabled = polygonColorState?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
-            checkedDisabled = polygonColorState?.normalDisabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
-            normalEnabled = polygonColorState?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
-            normalDisabled = polygonColorState?.normalDisabled ?: ThemeManager.theme.palette.backgroundAdditionalOne
+            checkedEnabled = polygonColorState?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            checkedDisabled = polygonColorState?.normalDisabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            normalEnabled = polygonColorState?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            normalDisabled = polygonColorState?.normalDisabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne
         )
     }
 }

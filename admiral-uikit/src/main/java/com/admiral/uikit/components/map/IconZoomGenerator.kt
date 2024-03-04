@@ -9,6 +9,7 @@ import com.admiral.uikit.R
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
+import com.admiral.resources.R as res
 
 /**
  * IconGenerator generates icons that contain zoom and location icons.
@@ -24,7 +25,12 @@ class IconZoomGenerator(private val context: Context) {
      * @return Bitmap icon.
      */
     fun makePlusIcon(size: Int = 40, iconColor: Int? = null, backgroundColor: Int? = null): Bitmap {
-        return createIconDrawable(R.drawable.admiral_ic_plus_outline, iconColor, backgroundColor, size)
+        return createIconDrawable(
+            res.drawable.admiral_ic_plus_outline,
+            iconColor,
+            backgroundColor,
+            size
+        )
     }
 
     /**
@@ -35,8 +41,17 @@ class IconZoomGenerator(private val context: Context) {
      * @param backgroundColor - background color of the minus icon.
      * @return Bitmap icon.
      */
-    fun makeMinusIcon(size: Int = 40, iconColor: Int? = null, backgroundColor: Int? = null): Bitmap {
-        return createIconDrawable(R.drawable.admiral_ic_minus_outline, iconColor, backgroundColor, size)
+    fun makeMinusIcon(
+        size: Int = 40,
+        iconColor: Int? = null,
+        backgroundColor: Int? = null
+    ): Bitmap {
+        return createIconDrawable(
+            res.drawable.admiral_ic_minus_outline,
+            iconColor,
+            backgroundColor,
+            size
+        )
     }
 
     /**
@@ -47,8 +62,17 @@ class IconZoomGenerator(private val context: Context) {
      * @param backgroundColor - background color of the location icon.
      * @return Bitmap icon.
      */
-    fun makeLocationIcon(size: Int = 40, iconColor: Int? = null, backgroundColor: Int? = null): Bitmap {
-        return createIconDrawable(R.drawable.admiral_ic_gps_solid, iconColor, backgroundColor, size)
+    fun makeLocationIcon(
+        size: Int = 40,
+        iconColor: Int? = null,
+        backgroundColor: Int? = null
+    ): Bitmap {
+        return createIconDrawable(
+            res.drawable.admiral_ic_gps_solid,
+            iconColor,
+            backgroundColor,
+            size
+        )
     }
 
     private fun createIconDrawable(
@@ -75,7 +99,14 @@ class IconZoomGenerator(private val context: Context) {
         )
 
         val bitmapPlus = finalDrawable.toBitmap(size.dpToPx(context), size.dpToPx(context))
-        return addShadow(bitmapPlus, bitmapPlus.height, bitmapPlus.width, SHADOW_SIZE, 0f, SHADOW_DY)
+        return addShadow(
+            bitmapPlus,
+            bitmapPlus.height,
+            bitmapPlus.width,
+            SHADOW_SIZE,
+            0f,
+            SHADOW_DY
+        )
     }
 
     private companion object {

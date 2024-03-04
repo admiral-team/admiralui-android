@@ -25,7 +25,10 @@ class RadioButtonCellUnit @JvmOverloads constructor(
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
 ) : AppCompatRadioButton(
-    ContextThemeWrapper(context, R.style.Widget_AppCompat_CompoundButton_RadioButton),
+    ContextThemeWrapper(
+        context,
+        com.google.android.material.R.style.Widget_AppCompat_CompoundButton_RadioButton
+    ),
     attrs,
     defStyleAttr
 ), ThemeObserver, CellUnit {
@@ -63,7 +66,8 @@ class RadioButtonCellUnit @JvmOverloads constructor(
     init {
         parseAttrs(attrs, R.styleable.RadioButtonCellUnit).use {
             error = it.getBoolean(R.styleable.RadioButtonCellUnit_admiralIsError, false)
-            unitType = CellUnitType.from(it.getInt(R.styleable.RadioButtonCellUnit_admiralCellUnitType, 0))
+            unitType =
+                CellUnitType.from(it.getInt(R.styleable.RadioButtonCellUnit_admiralCellUnitType, 0))
 
             parseTintColors(it)
             parseTextColors(it)
@@ -142,18 +146,23 @@ class RadioButtonCellUnit @JvmOverloads constructor(
     private fun invalidateButtonTintColors() {
         buttonTintList = if (error) {
             colorStateListForChecked(
-                checkedEnabled = buttonTintColors?.errorEnabled ?: ThemeManager.theme.palette.elementError,
+                checkedEnabled = buttonTintColors?.errorEnabled
+                    ?: ThemeManager.theme.palette.elementError,
                 checkedDisabled = buttonTintColors?.errorDisabled
                     ?: ThemeManager.theme.palette.elementError.withAlpha(),
-                normalEnabled = buttonTintColors?.errorEnabled ?: ThemeManager.theme.palette.elementError,
-                normalDisabled = buttonTintColors?.errorDisabled ?: ThemeManager.theme.palette.elementError.withAlpha()
+                normalEnabled = buttonTintColors?.errorEnabled
+                    ?: ThemeManager.theme.palette.elementError,
+                normalDisabled = buttonTintColors?.errorDisabled
+                    ?: ThemeManager.theme.palette.elementError.withAlpha()
             )
         } else {
             colorStateListForChecked(
-                checkedEnabled = buttonTintColors?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
+                checkedEnabled = buttonTintColors?.checkedEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
                 checkedDisabled = buttonTintColors?.checkedDisabled
                     ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                normalEnabled = buttonTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
+                normalEnabled = buttonTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
                 normalDisabled = buttonTintColors?.normalDisabled
                     ?: ThemeManager.theme.palette.elementAccent.withAlpha()
             )
@@ -164,19 +173,27 @@ class RadioButtonCellUnit @JvmOverloads constructor(
         if (error) {
             setTextColor(
                 colorStateListForChecked(
-                    checkedEnabled = textColor?.errorEnabled ?: ThemeManager.theme.palette.textPrimary,
-                    checkedDisabled = textColor?.errorDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
-                    normalEnabled = textColor?.errorEnabled ?: ThemeManager.theme.palette.textPrimary,
-                    normalDisabled = textColor?.errorDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                    checkedEnabled = textColor?.errorEnabled
+                        ?: ThemeManager.theme.palette.textPrimary,
+                    checkedDisabled = textColor?.errorDisabled
+                        ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                    normalEnabled = textColor?.errorEnabled
+                        ?: ThemeManager.theme.palette.textPrimary,
+                    normalDisabled = textColor?.errorDisabled
+                        ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
                 )
             )
         } else {
             setTextColor(
                 colorStateListForChecked(
-                    checkedEnabled = textColor?.checkedEnabled ?: ThemeManager.theme.palette.textPrimary,
-                    checkedDisabled = textColor?.checkedDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
-                    normalEnabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-                    normalDisabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                    checkedEnabled = textColor?.checkedEnabled
+                        ?: ThemeManager.theme.palette.textPrimary,
+                    checkedDisabled = textColor?.checkedDisabled
+                        ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                    normalEnabled = textColor?.normalEnabled
+                        ?: ThemeManager.theme.palette.textPrimary,
+                    normalDisabled = textColor?.normalDisabled
+                        ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
                 )
             )
         }

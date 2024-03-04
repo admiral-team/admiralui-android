@@ -16,6 +16,7 @@ import com.admiral.uikit.R
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
+import com.admiral.resources.R as res
 
 class SpinnerLoading @JvmOverloads constructor(
     context: Context,
@@ -33,7 +34,8 @@ class SpinnerLoading @JvmOverloads constructor(
         ).apply {
             gravity = Gravity.CENTER
         }
-        indeterminateDrawable = ContextCompat.getDrawable(context, R.drawable.admiral_progress_bar_states_small)
+        indeterminateDrawable =
+            ContextCompat.getDrawable(context, R.drawable.admiral_progress_bar_states_small)
     }
 
     /**
@@ -57,7 +59,7 @@ class SpinnerLoading @JvmOverloads constructor(
             setPadding(4.dpToPx(context))
         }
         imageColorNormalEnabledPalette = ColorPaletteEnum.ELEMENT_STATIC_WHITE
-        setImageDrawable(drawable(R.drawable.admiral_ic_small_close_outline))
+        setImageDrawable(drawable(res.drawable.admiral_ic_small_close_outline))
     }
 
     /**
@@ -119,7 +121,8 @@ class SpinnerLoading @JvmOverloads constructor(
         if (isBackgroundColored) {
             background = drawable(R.drawable.admiral_bg_round)
             backgroundTintList = ColorStateList.valueOf(
-                backgroundColorPaletteEnum.colorResToToken() ?: ThemeManager.theme.palette.elementAccent
+                backgroundColorPaletteEnum.colorResToToken()
+                    ?: ThemeManager.theme.palette.elementAccent
             )
         } else {
             background = null

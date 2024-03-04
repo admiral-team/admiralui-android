@@ -10,12 +10,13 @@ import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.ext.colorStateList
 import com.admiral.uikit.core.ext.getColorOrNull
 import com.admiral.uikit.core.ext.getIntOrNull
 import com.admiral.uikit.core.ext.parseAttrs
-import com.admiral.uikit.core.ext.colorStateList
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.R
 
 /**
  * Replacement of default [AppCompatImageView].
@@ -96,7 +97,7 @@ open class ImageView @JvmOverloads constructor(
 
     private fun invalidateImageTintColors() {
         imageTintList = if (isColored) {
-           context.colorStateList(
+            context.colorStateList(
                 enabled = imageTintColorState?.normalEnabled
                     ?: imageColorNormalEnabledPalette.colorResToToken()
                     ?: ThemeManager.theme.palette.elementAccent,

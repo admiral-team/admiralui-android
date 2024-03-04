@@ -49,6 +49,7 @@ fun Project.publishing(
                         url = uri(layout.buildDirectory.dir("../../libs"))
                     }
                 }
+
                 is Publishing.Repository.Github -> {
                     maven {
                         name = repository.name
@@ -59,9 +60,12 @@ fun Project.publishing(
                         }
                     }
                 }
+
                 Publishing.Repository.Nexus -> {
-                    val NEXUS_LOGIN: String = gradleLocalProperties(rootDir).getProperty("NEXUS_LOGIN")
-                    val NEXUS_PASSWORD: String = gradleLocalProperties(rootDir).getProperty("NEXUS_PASSWORD")
+                    val NEXUS_LOGIN: String =
+                        gradleLocalProperties(rootDir).getProperty("NEXUS_LOGIN")
+                    val NEXUS_PASSWORD: String =
+                        gradleLocalProperties(rootDir).getProperty("NEXUS_PASSWORD")
                     val NEXUS_URL: String = gradleLocalProperties(rootDir).getProperty("NEXUS_URL")
                     maven {
                         name = repository.name
@@ -72,6 +76,8 @@ fun Project.publishing(
                         }
                     }
                 }
+
+                else -> {}
             }
         }
     }

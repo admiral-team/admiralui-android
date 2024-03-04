@@ -14,16 +14,16 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.components.links.Link
-import com.admiral.uikit.components.notifications.toast.ToastNotification.OnLinkClickListener
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.setMargins
 import com.google.android.material.snackbar.Snackbar
+import com.admiral.resources.R as res
 
 class ToastNotification {
 
@@ -296,7 +296,7 @@ class ToastNotification {
                 setMargins(ICONS_MARGIN.dpToPx(context), 0, 0, 0)
             }
 
-            setImageDrawable(drawable(R.drawable.admiral_ic_close_outline))
+            setImageDrawable(drawable(res.drawable.admiral_ic_close_outline))
             imageTintColorState =
                 ColorState(normalEnabled = ThemeManager.theme.palette.elementPrimary)
             isFocusable = true

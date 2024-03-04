@@ -14,9 +14,9 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.components.badge.Badge
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.components.badge.Badge
 import com.admiral.uikit.databinding.AdmiralViewTabUnderlineBinding
 import com.admiral.uikit.ext.colorStateListForChecked
 import com.admiral.uikit.ext.drawable
@@ -27,6 +27,7 @@ import com.admiral.uikit.ext.ripple
 import com.admiral.uikit.ext.setMargins
 import com.admiral.uikit.view.checkable.CheckableLinearLayout
 import com.admiral.uikit.view.checkable.CheckableView
+import com.admiral.uikit.core.R as core
 
 class UnderlineSliderTab @JvmOverloads constructor(
     context: Context,
@@ -143,10 +144,10 @@ class UnderlineSliderTab @JvmOverloads constructor(
         binding.admiralUnderline.setImageDrawable(drawable(R.drawable.admiral_bg_rectangle_clickable))
 
         updatePadding(
-            left = context.pixels(R.dimen.module_x2),
-            right = context.pixels(R.dimen.module_x2),
-            top = context.pixels(R.dimen.module_x2),
-            bottom = context.pixels(R.dimen.module_x2)
+            left = context.pixels(core.dimen.module_x2),
+            right = context.pixels(core.dimen.module_x2),
+            top = context.pixels(core.dimen.module_x2),
+            bottom = context.pixels(core.dimen.module_x2)
         )
     }
 

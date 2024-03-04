@@ -5,6 +5,7 @@ plugins {
 }
 
 android {
+    namespace = "com.admiral.uikit.core"
     applyConfig(
         isCoreLibraryDesugaringEnabled = false,
         isComposeEnabled = false,
@@ -14,7 +15,8 @@ android {
 
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
-    api(project(Modules.Admiral.Themes.themes))
+    implementation(project(Modules.Admiral.Themes.themes))
+    implementation(project(Modules.Admiral.resources))
 
     implementation(Libs.AndroidX.coreKtx)
     implementation(Libs.Kotlin.coroutines)

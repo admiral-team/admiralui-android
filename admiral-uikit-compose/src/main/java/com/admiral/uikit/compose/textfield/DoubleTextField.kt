@@ -15,7 +15,7 @@ import androidx.compose.ui.unit.dp
 import androidx.compose.ui.unit.sp
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.compose.R
+import com.admiral.resources.R as res
 
 @Preview(showBackground = true)
 @Composable
@@ -34,7 +34,7 @@ fun PreviewDoubleTextField() {
             endTextFieldParams = TextFieldParams(
                 optionalText = "Optional label",
                 placeholderText = "Placeholder text",
-                icon = painterResource(id = R.drawable.admiral_ic_heart_solid)
+                icon = painterResource(id = res.drawable.admiral_ic_heart_solid)
             ),
             additionalText = "Additional Text"
         )

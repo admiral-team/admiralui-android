@@ -43,12 +43,18 @@ import com.admiral.uikit.ext.getIntOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
 import kotlinx.coroutines.flow.StateFlow
+import com.admiral.resources.R as res
 
 class Appbar @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : Toolbar(ContextThemeWrapper(context, R.style.Widget_AppCompat_Toolbar), attrs, defStyleAttr),
+) : Toolbar(
+    ContextThemeWrapper(
+        context,
+        com.google.android.material.R.style.Widget_AppCompat_Toolbar
+    ), attrs, defStyleAttr
+),
     ThemeObserver {
 
     /**
@@ -375,7 +381,7 @@ class Appbar @JvmOverloads constructor(
                 it.getInt(R.styleable.Appbar_admiralTitleTextAlignment, TEXT_ALIGNMENT_CENTER)
 
             editTextDrawableStart = it.getDrawable(R.styleable.Appbar_android_drawableStart)
-                ?: drawable(R.drawable.admiral_ic_search_outline)
+                ?: drawable(res.drawable.admiral_ic_search_outline)
 
             editTextTextColor = it.getColorOrNull(R.styleable.Appbar_admiralTextColorNormalEnabled)
             hintTextColor = it.getColorOrNull(R.styleable.Appbar_admiralHintTextColorNormalEnabled)
@@ -478,7 +484,7 @@ class Appbar @JvmOverloads constructor(
         navigationIcon = if (isBackButtonEnabled) {
             backButtonIcon ?: ContextCompat.getDrawable(
                 context,
-                R.drawable.admiral_ic_arrow_left_outline
+                res.drawable.admiral_ic_arrow_left_outline
             )
         } else {
             null

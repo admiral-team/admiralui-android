@@ -25,6 +25,7 @@ import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.ripple
 import com.admiral.uikit.view.checkable.CheckableTextView
 import com.admiral.uikit.view.checkable.CheckableView
+import com.admiral.uikit.core.R as core
 
 class StandardTab @JvmOverloads constructor(
     context: Context,
@@ -80,8 +81,8 @@ class StandardTab @JvmOverloads constructor(
         isFocusable = true
 
         updatePadding(
-            top = context.pixels(R.dimen.module_x2),
-            bottom = context.pixels(R.dimen.module_x2)
+            top = context.pixels(core.dimen.module_x2),
+            bottom = context.pixels(core.dimen.module_x2)
         )
     }
 
@@ -167,8 +168,10 @@ class StandardTab @JvmOverloads constructor(
             normalEnabled = Color.TRANSPARENT,
             normalDisabled = Color.TRANSPARENT,
             pressed = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            checkedEnabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent,
-            checkedDisabled = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+            checkedEnabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent,
+            checkedDisabled = strokeColorState?.checkedEnabled
+                ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
         )
 
         val color = strokeColorState?.checkedEnabled ?: ThemeManager.theme.palette.elementAccent
@@ -181,10 +184,14 @@ class StandardTab @JvmOverloads constructor(
     private fun invalidateTextColors() {
         setTextColor(
             colorStateListForChecked(
-                checkedEnabled = textColorState?.checkedEnabled ?: ThemeManager.theme.palette.textPrimary,
-                checkedDisabled = textColorState?.checkedDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
-                normalEnabled = textColorState?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-                normalDisabled = textColorState?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha()
+                checkedEnabled = textColorState?.checkedEnabled
+                    ?: ThemeManager.theme.palette.textPrimary,
+                checkedDisabled = textColorState?.checkedDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+                normalEnabled = textColorState?.normalEnabled
+                    ?: ThemeManager.theme.palette.textPrimary,
+                normalDisabled = textColorState?.normalDisabled
+                    ?: ThemeManager.theme.palette.textPrimary.withAlpha()
             )
         )
     }

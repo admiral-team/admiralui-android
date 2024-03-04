@@ -21,9 +21,9 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
+import com.admiral.uikit.components.informer.InformerSmall
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.components.informer.InformerSmall
 import com.admiral.uikit.databinding.AdmiralViewSliderBinding
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
@@ -31,8 +31,9 @@ import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.ext.showKeyboard
 import com.admiral.uikit.ext.setSelectionEnd
+import com.admiral.uikit.ext.showKeyboard
+import com.admiral.uikit.core.R as core
 import com.google.android.material.slider.Slider as MaterialSlider
 
 /**
@@ -299,10 +300,10 @@ class Slider @JvmOverloads constructor(
         }
 
         setPadding(
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x1)
+            pixels(core.dimen.module_x4),
+            pixels(core.dimen.module_x4),
+            pixels(core.dimen.module_x4),
+            pixels(core.dimen.module_x1)
         )
 
         initEditText()
@@ -463,6 +464,7 @@ class Slider @JvmOverloads constructor(
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         binding.additionalTextView.textColor = ColorState(additionalTextColor)
@@ -474,6 +476,7 @@ class Slider @JvmOverloads constructor(
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
 

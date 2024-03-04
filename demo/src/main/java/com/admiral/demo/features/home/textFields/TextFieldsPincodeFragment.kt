@@ -12,6 +12,7 @@ import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.keyboard.KeyboardNum
 import com.admiral.uikit.components.pincode.PinCodeState
 import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.resources.R as res
 
 class TextFieldsPincodeFragment : BaseFragment(
     layoutId = R.layout.fmt_text_fields_pincode,
@@ -36,9 +37,11 @@ class TextFieldsPincodeFragment : BaseFragment(
                     binding.defaultTab.id -> {
                         binding.pinCodeView.state = PinCodeState.DEFAULT
                     }
+
                     binding.error.id -> {
                         binding.pinCodeView.state = PinCodeState.ERROR
                     }
+
                     binding.successTab.id -> {
                         binding.pinCodeView.state = PinCodeState.SUCCESS
                     }
@@ -48,7 +51,7 @@ class TextFieldsPincodeFragment : BaseFragment(
 
         binding.pinKeyboard.isRightAdditionalButtonVisible = true
         binding.pinKeyboard.rightAdditionalButtonIcon =
-            ContextCompat.getDrawable(requireContext(), R.drawable.admiral_ic_fingerprint_outline)
+            ContextCompat.getDrawable(requireContext(), res.drawable.admiral_ic_fingerprint_outline)
 
         binding.pinKeyboard.keyListener = {
             when (it) {
@@ -56,13 +59,20 @@ class TextFieldsPincodeFragment : BaseFragment(
                     binding.pinCodeView.activeDotsCount--
                     if (binding.pinCodeView.activeDotsCount == 0) {
                         binding.pinKeyboard.rightAdditionalButtonIcon =
-                            ContextCompat.getDrawable(requireContext(), R.drawable.admiral_ic_fingerprint_outline)
+                            ContextCompat.getDrawable(
+                                requireContext(),
+                                res.drawable.admiral_ic_fingerprint_outline
+                            )
                     }
                 }
+
                 else -> {
                     binding.pinCodeView.activeDotsCount++
                     binding.pinKeyboard.rightAdditionalButtonIcon =
-                        ContextCompat.getDrawable(requireContext(), R.drawable.ic_pin_keyboard_remove)
+                        ContextCompat.getDrawable(
+                            requireContext(),
+                            R.drawable.ic_pin_keyboard_remove
+                        )
                 }
             }
         }

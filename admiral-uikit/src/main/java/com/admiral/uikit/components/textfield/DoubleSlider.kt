@@ -32,6 +32,7 @@ import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.setSelectionEnd
 import com.admiral.uikit.ext.showKeyboard
 import com.google.android.material.slider.RangeSlider
+import com.admiral.uikit.core.R as core
 
 /**
  * Slider view with two inputs.
@@ -309,10 +310,10 @@ class DoubleSlider @JvmOverloads constructor(
         }
 
         setPadding(
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x4),
-            pixels(R.dimen.module_x1)
+            pixels(core.dimen.module_x4),
+            pixels(core.dimen.module_x4),
+            pixels(core.dimen.module_x4),
+            pixels(core.dimen.module_x1)
         )
 
         initEditTexts()
@@ -470,7 +471,8 @@ class DoubleSlider @JvmOverloads constructor(
         icon = a.getDrawable(R.styleable.DoubleSlider_admiralIcon)
 
         if (a.hasValue(R.styleable.DoubleSlider_admiralIconTintColor)) {
-            iconTintColor = a.getColor(R.styleable.DoubleSlider_admiralIconTintColor, Color.TRANSPARENT)
+            iconTintColor =
+                a.getColor(R.styleable.DoubleSlider_admiralIconTintColor, Color.TRANSPARENT)
         }
     }
 
@@ -514,6 +516,7 @@ class DoubleSlider @JvmOverloads constructor(
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         val placeholderTextColorStateList =
@@ -525,6 +528,7 @@ class DoubleSlider @JvmOverloads constructor(
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         binding.additionalTextView.setTextColor(additionalTextColor)

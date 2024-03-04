@@ -12,16 +12,18 @@ import android.widget.FrameLayout
 import android.widget.LinearLayout
 import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.view.isVisible
-import com.admiral.uikit.notification.R
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.core.foundation.ColorState
-import com.admiral.uikit.imageview.ImageView
-import com.admiral.uikit.textview.TextView
 import com.admiral.uikit.core.ext.dpToPx
 import com.admiral.uikit.core.ext.drawable
 import com.admiral.uikit.core.ext.pixels
+import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.imageview.ImageView
 import com.admiral.uikit.links.Link
+import com.admiral.uikit.notification.R
+import com.admiral.uikit.textview.TextView
 import com.google.android.material.snackbar.Snackbar
+import com.admiral.resources.R as res
+import com.admiral.uikit.core.R as core
 
 class ToastNotification {
 
@@ -229,7 +231,7 @@ class ToastNotification {
                         }
                 layoutParams = params
 
-                background = context.drawable(R.drawable.admiral_bg_rectangle_8dp)
+                background = context.drawable(core.drawable.admiral_bg_rectangle_8dp)
                 backgroundTintList =
                     ColorStateList.valueOf(ThemeManager.theme.palette.backgroundAdditionalOne)
                 setPadding(
@@ -294,7 +296,7 @@ class ToastNotification {
                 setMargins(ICONS_MARGIN.dpToPx(context), 0, 0, 0)
             }
 
-            setImageDrawable(drawable(R.drawable.admiral_ic_close_outline))
+            setImageDrawable(drawable(res.drawable.admiral_ic_close_outline))
             imageTintColorState =
                 ColorState(normalEnabled = ThemeManager.theme.palette.elementPrimary)
             isFocusable = true

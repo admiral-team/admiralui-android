@@ -15,14 +15,14 @@ import androidx.coordinatorlayout.widget.CoordinatorLayout
 import androidx.core.content.ContextCompat
 import androidx.core.view.isVisible
 import androidx.core.view.updateLayoutParams
-import com.google.android.material.snackbar.Snackbar
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.R
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.databinding.AdmiralNotificationActionBinding
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.dpToPx
+import com.google.android.material.snackbar.Snackbar
+import com.admiral.resources.R as res
 
 class ActionNotification {
 
@@ -185,7 +185,7 @@ class ActionNotification {
         fun setCloseButtonIcon(icon: Drawable? = null): Builder {
             val context = actionNotification.snackBarInstance.view.context
             val iconSet = icon ?: ContextCompat.getDrawable(
-                context, R.drawable.admiral_ic_back_outline
+                context, res.drawable.admiral_ic_back_outline
             )
             binding.cancelImage.setImageDrawable(iconSet)
             return this
@@ -303,9 +303,11 @@ class ActionNotification {
                 Snackbar.LENGTH_SHORT -> {
                     TIME_SHORT_MILLISECONDS
                 }
+
                 Snackbar.LENGTH_LONG -> {
                     TIME_LONG_MILLISECONDS
                 }
+
                 else -> duration.toLong()
             }
             return this

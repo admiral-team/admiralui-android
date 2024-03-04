@@ -24,9 +24,9 @@ import com.admiral.uikit.core.ext.pixels
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.core.util.ComponentsRadius
-import com.admiral.uikit.notification.R
 import com.admiral.uikit.notification.databinding.AdmiralNotificationActionBinding
 import com.google.android.material.snackbar.Snackbar
+import com.admiral.resources.R as resources
 
 class ActionNotification {
 
@@ -430,7 +430,7 @@ class ActionNotification {
         private fun setCloseButtonIcon(icon: Drawable? = null) {
             val context = actionNotification.snackBarInstance.view.context
             val iconSet = icon ?: ContextCompat.getDrawable(
-                context, R.drawable.admiral_ic_back_outline
+                context, resources.drawable.admiral_ic_back_outline
             )
             binding.cancelImage.setImageDrawable(iconSet)
         }

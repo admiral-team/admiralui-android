@@ -5,19 +5,28 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("maven-publish")
+    id("app.cash.paparazzi")
 }
 
 android {
+    namespace = "com.admiral.uikit"
     applyConfig(
         isCoreLibraryDesugaringEnabled = true,
         isComposeEnabled = false,
         isViewBindingEnabled = true
     )
+    testOptions {
+        unitTests {
+            isIncludeAndroidResources = true
+        }
+    }
 }
 
 dependencies {
     api(platform(project(Modules.Admiral.platform)))
     api(project(Modules.Admiral.UiKit.core))
+    api(project(Modules.Admiral.Themes.themes))
+    api(project(Modules.Admiral.resources))
 
     lintPublish(project(Modules.Admiral.lint))
 

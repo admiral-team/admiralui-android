@@ -16,16 +16,17 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.cell.unit.IconCellUnit
 import com.admiral.uikit.components.textfield.TextFieldSearchOld
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import kotlinx.coroutines.flow.StateFlow
+import com.admiral.resources.R as res
 
 class Input @JvmOverloads constructor(
     context: Context,
@@ -133,7 +134,7 @@ class Input @JvmOverloads constructor(
             hintText = it.getString(R.styleable.Input_admiralHintText) ?: ""
             iconStart = it.getDrawable(R.styleable.Input_admiralIconStart)
             button.drawableEnd = it.getDrawable(R.styleable.Input_admiralButtonIcon)
-                ?: drawable(R.drawable.admiral_ic_arrow_down_outline)
+                ?: drawable(res.drawable.admiral_ic_arrow_down_outline)
         }
     }
 
@@ -190,8 +191,10 @@ class Input @JvmOverloads constructor(
 
     private fun invalidateBackgroundColors() {
         inputViewBackground.backgroundTintList = colorStateList(
-            enabled = backgroundColors?.normalEnabled ?: ThemeManager.theme.palette.backgroundAdditionalOne,
-            pressed = backgroundColors?.pressed ?: ThemeManager.theme.palette.backgroundAdditionalOnePressed,
+            enabled = backgroundColors?.normalEnabled
+                ?: ThemeManager.theme.palette.backgroundAdditionalOne,
+            pressed = backgroundColors?.pressed
+                ?: ThemeManager.theme.palette.backgroundAdditionalOnePressed,
             disabled = backgroundColors?.normalDisabled
                 ?: ThemeManager.theme.palette.backgroundAdditionalOne.withAlpha()
         )
@@ -200,7 +203,8 @@ class Input @JvmOverloads constructor(
     private fun invalidateDrawableIconTintColors() {
         iconStartCellUnit.iconTintColors =
             ColorState(
-                normalEnabled = iconTintColors?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary,
+                normalEnabled = iconTintColors?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary,
                 normalDisabled = iconTintColors?.normalDisabled
                     ?: ThemeManager.theme.palette.elementPrimary.withAlpha(),
                 pressed = iconTintColors?.pressed ?: ThemeManager.theme.palette.elementPrimary
@@ -209,8 +213,10 @@ class Input @JvmOverloads constructor(
 
     private fun invalidateTextColors() {
         textFieldSearch.inputTextColors = ColorState(
-            normalEnabled = inputTextColors?.normalEnabled ?: ThemeManager.theme.palette.textPrimary,
-            normalDisabled = inputTextColors?.normalDisabled ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
+            normalEnabled = inputTextColors?.normalEnabled
+                ?: ThemeManager.theme.palette.textPrimary,
+            normalDisabled = inputTextColors?.normalDisabled
+                ?: ThemeManager.theme.palette.textPrimary.withAlpha(),
             pressed = inputTextColors?.pressed ?: ThemeManager.theme.palette.textPrimary
         )
     }

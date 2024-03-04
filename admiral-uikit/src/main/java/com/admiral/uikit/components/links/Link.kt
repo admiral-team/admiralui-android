@@ -11,13 +11,14 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.R as core
 
 class Link @JvmOverloads constructor(
     context: Context,
@@ -109,12 +110,15 @@ class Link @JvmOverloads constructor(
 
     private fun parseDrawableEnd(typedArray: TypedArray) {
         drawableEnd = typedArray.getDrawable(R.styleable.Link_drawableEndCompat)
-        compoundDrawablePadding = pixels(R.dimen.module_x2)
+        compoundDrawablePadding = pixels(core.dimen.module_x2)
         drawableEnd?.colored(
             colorStateList(
-                enabled = drawableColorTint?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-                disabled = drawableColorTint?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                pressed = drawableColorTint?.pressed ?: ThemeManager.theme.palette.elementAccentPressed
+                enabled = drawableColorTint?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
+                disabled = drawableColorTint?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+                pressed = drawableColorTint?.pressed
+                    ?: ThemeManager.theme.palette.elementAccentPressed
             )
         )
         setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, drawableEnd, null)
@@ -122,12 +126,15 @@ class Link @JvmOverloads constructor(
 
     private fun parseDrawableStart(typedArray: TypedArray) {
         drawableStart = typedArray.getDrawable(R.styleable.Link_drawableStartCompat)
-        compoundDrawablePadding = pixels(R.dimen.module_x2)
+        compoundDrawablePadding = pixels(core.dimen.module_x2)
         drawableStart?.colored(
             colorStateList(
-                enabled = drawableColorTint?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-                disabled = drawableColorTint?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                pressed = drawableColorTint?.pressed ?: ThemeManager.theme.palette.elementAccentPressed
+                enabled = drawableColorTint?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
+                disabled = drawableColorTint?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+                pressed = drawableColorTint?.pressed
+                    ?: ThemeManager.theme.palette.elementAccentPressed
             )
         )
         setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, drawableEnd, null)
@@ -150,7 +157,8 @@ class Link @JvmOverloads constructor(
     private fun invalidateTextColors() {
         val colorState = ColorState(
             normalEnabled = textColorState?.normalEnabled ?: ThemeManager.theme.palette.textAccent,
-            normalDisabled = textColorState?.normalDisabled ?: ThemeManager.theme.palette.textAccent.withAlpha(),
+            normalDisabled = textColorState?.normalDisabled
+                ?: ThemeManager.theme.palette.textAccent.withAlpha(),
             pressed = textColorState?.pressed ?: ThemeManager.theme.palette.textAccentPressed
         )
 
@@ -160,16 +168,22 @@ class Link @JvmOverloads constructor(
     private fun invalidateIconColors() {
         drawableEnd?.setTintList(
             colorStateList(
-                enabled = drawableColorTint?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-                disabled = drawableColorTint?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                pressed = drawableColorTint?.pressed ?: ThemeManager.theme.palette.elementAccentPressed
+                enabled = drawableColorTint?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
+                disabled = drawableColorTint?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+                pressed = drawableColorTint?.pressed
+                    ?: ThemeManager.theme.palette.elementAccentPressed
             )
         )
         drawableStart?.setTintList(
             colorStateList(
-                enabled = drawableColorTint?.normalEnabled ?: ThemeManager.theme.palette.elementAccent,
-                disabled = drawableColorTint?.normalDisabled ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
-                pressed = drawableColorTint?.pressed ?: ThemeManager.theme.palette.elementAccentPressed
+                enabled = drawableColorTint?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementAccent,
+                disabled = drawableColorTint?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementAccent.withAlpha(),
+                pressed = drawableColorTint?.pressed
+                    ?: ThemeManager.theme.palette.elementAccentPressed
             )
         )
         setCompoundDrawablesWithIntrinsicBounds(drawableStart, null, drawableEnd, null)

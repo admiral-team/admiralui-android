@@ -15,16 +15,18 @@ import androidx.core.view.isVisible
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
-import com.admiral.uikit.notification.R
-import com.admiral.uikit.textview.TextView
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.core.ext.colorStateList
 import com.admiral.uikit.core.ext.drawable
 import com.admiral.uikit.core.ext.getColorOrNull
 import com.admiral.uikit.core.ext.getIntOrNull
 import com.admiral.uikit.core.ext.parseAttrs
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.links.Link
+import com.admiral.uikit.notification.R
+import com.admiral.uikit.textview.TextView
+import com.admiral.resources.R as res
+import com.admiral.uikit.core.R as core
 
 class StaticNotification @JvmOverloads constructor(
     context: Context,
@@ -177,7 +179,7 @@ class StaticNotification @JvmOverloads constructor(
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_notification_static, this)
 
-        parseAttrs(attrs, R.styleable.StaticNotification).use {
+        parseAttrs(attrs, core.styleable.StaticNotification).use {
             parseBackgroundColors(it)
             parseTextColors(it)
             parseLinkColors(it)
@@ -185,20 +187,21 @@ class StaticNotification @JvmOverloads constructor(
             parseIcon(it)
             parseStyle(it)
 
-            isEnabled = it.getBoolean(R.styleable.StaticNotification_enabled, true)
-            linkText = it.getString(R.styleable.StaticNotification_admiralLinkText)
+            isEnabled = it.getBoolean(core.styleable.StaticNotification_enabled, true)
+            linkText = it.getString(core.styleable.StaticNotification_admiralLinkText)
 
-            notificationText = it.getString(R.styleable.StaticNotification_admiralText)
-            maxLines = it.getInt(R.styleable.StaticNotification_android_maxLines, Int.MAX_VALUE)
+            notificationText = it.getString(core.styleable.StaticNotification_admiralText)
+            maxLines = it.getInt(core.styleable.StaticNotification_android_maxLines, Int.MAX_VALUE)
             ellipsize = findTruncateAt(
                 it.getIntOrNull(
-                    R.styleable.StaticNotification_android_ellipsize,
+                    core.styleable.StaticNotification_android_ellipsize,
                 )
             )
 
-            isIconVisible = it.getBoolean(R.styleable.StaticNotification_admiralIsIconVisible, true)
+            isIconVisible =
+                it.getBoolean(core.styleable.StaticNotification_admiralIsIconVisible, true)
             isCloseIconVisible =
-                it.getBoolean(R.styleable.StaticNotification_admiralIsCloseIconVisible, true)
+                it.getBoolean(core.styleable.StaticNotification_admiralIsCloseIconVisible, true)
         }
 
         backgroundTintList = colorStateList(
@@ -249,46 +252,46 @@ class StaticNotification @JvmOverloads constructor(
 
     private fun parseStyle(a: TypedArray) {
         notificationStyle = StaticNotificationStyle.fromIndex(
-            a.getInt(R.styleable.StaticNotification_admiralNotificationStyle, 0)
+            a.getInt(core.styleable.StaticNotification_admiralNotificationStyle, 0)
         )
     }
 
     private fun parseBackgroundColors(a: TypedArray) {
         backgroundColors = ColorState(
-            normalEnabled = a.getColorOrNull(R.styleable.StaticNotification_admiralBackgroundColorNormalEnabled),
-            normalDisabled = a.getColorOrNull(R.styleable.StaticNotification_admiralBackgroundColorNormalDisabled),
-            pressed = a.getColorOrNull(R.styleable.StaticNotification_admiralBackgroundColorPressed),
+            normalEnabled = a.getColorOrNull(core.styleable.StaticNotification_admiralBackgroundColorNormalEnabled),
+            normalDisabled = a.getColorOrNull(core.styleable.StaticNotification_admiralBackgroundColorNormalDisabled),
+            pressed = a.getColorOrNull(core.styleable.StaticNotification_admiralBackgroundColorPressed),
         )
 
         isBackgroundColorDefault =
-            a.getBoolean(R.styleable.StaticNotification_admiralIsBackgroundDefault, false)
+            a.getBoolean(core.styleable.StaticNotification_admiralIsBackgroundDefault, false)
     }
 
     private fun parseTextColors(a: TypedArray) {
         notificationTextColors = ColorState(
-            normalEnabled = a.getColorOrNull(R.styleable.StaticNotification_admiralTextColorNormalEnabled),
-            normalDisabled = a.getColorOrNull(R.styleable.StaticNotification_admiralTextColorNormalDisabled),
-            pressed = a.getColorOrNull(R.styleable.StaticNotification_admiralTextColorPressed),
+            normalEnabled = a.getColorOrNull(core.styleable.StaticNotification_admiralTextColorNormalEnabled),
+            normalDisabled = a.getColorOrNull(core.styleable.StaticNotification_admiralTextColorNormalDisabled),
+            pressed = a.getColorOrNull(core.styleable.StaticNotification_admiralTextColorPressed),
         )
     }
 
     private fun parseLinkColors(a: TypedArray) {
         linkColors = ColorState(
-            normalEnabled = a.getColorOrNull(R.styleable.StaticNotification_admiralLinkColorNormal),
-            normalDisabled = a.getColorOrNull(R.styleable.StaticNotification_admiralLinkColorDisabled),
-            pressed = a.getColorOrNull(R.styleable.StaticNotification_admiralLinkColorPressed),
+            normalEnabled = a.getColorOrNull(core.styleable.StaticNotification_admiralLinkColorNormal),
+            normalDisabled = a.getColorOrNull(core.styleable.StaticNotification_admiralLinkColorDisabled),
+            pressed = a.getColorOrNull(core.styleable.StaticNotification_admiralLinkColorPressed),
         )
     }
 
     private fun parseIcon(a: TypedArray) {
-        icon = a.getDrawable(R.styleable.StaticNotification_admiralIcon)
+        icon = a.getDrawable(core.styleable.StaticNotification_admiralIcon)
     }
 
     private fun parseIconColors(a: TypedArray) {
         linkColors = ColorState(
-            normalEnabled = a.getColorOrNull(R.styleable.StaticNotification_admiralIconTintColorNormalEnabled),
-            normalDisabled = a.getColorOrNull(R.styleable.StaticNotification_admiralIconTintColorNormalDisabled),
-            pressed = a.getColorOrNull(R.styleable.StaticNotification_admiralIconTintColorPressed)
+            normalEnabled = a.getColorOrNull(core.styleable.StaticNotification_admiralIconTintColorNormalEnabled),
+            normalDisabled = a.getColorOrNull(core.styleable.StaticNotification_admiralIconTintColorNormalDisabled),
+            pressed = a.getColorOrNull(core.styleable.StaticNotification_admiralIconTintColorPressed)
         )
     }
 
@@ -345,10 +348,10 @@ class StaticNotification @JvmOverloads constructor(
 
     private fun invalidateIcon() {
         val iconDefault = when (notificationStyle) {
-            StaticNotificationStyle.Info -> drawable(R.drawable.admiral_ic_info_solid)
-            StaticNotificationStyle.Attention -> drawable(R.drawable.admiral_ic_error_triangle_solid)
-            StaticNotificationStyle.Success -> drawable(R.drawable.admiral_ic_check_solid)
-            StaticNotificationStyle.Error -> drawable(R.drawable.admiral_ic_close_circle_solid)
+            StaticNotificationStyle.Info -> drawable(res.drawable.admiral_ic_info_solid)
+            StaticNotificationStyle.Attention -> drawable(res.drawable.admiral_ic_error_triangle_solid)
+            StaticNotificationStyle.Success -> drawable(res.drawable.admiral_ic_check_solid)
+            StaticNotificationStyle.Error -> drawable(res.drawable.admiral_ic_close_circle_solid)
         }
 
         val icon = icon ?: iconDefault

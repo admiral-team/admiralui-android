@@ -3,7 +3,7 @@ package com.admiral.uikit.components.textfield
 import androidx.annotation.DimenRes
 import com.admiral.themes.Font
 import com.admiral.themes.ThemeManager
-import com.admiral.uikit.R
+import com.admiral.uikit.core.R as core
 
 /**
  * Define styles for [TextField]
@@ -23,12 +23,12 @@ sealed class TextFieldStyle(
      * Used as default style.
      */
     object Extended : TextFieldStyle(
-        paddingTop = R.dimen.module_x4,
-        paddingBottom = R.dimen.module_x1,
-        paddingLeft = R.dimen.module_x4,
-        paddingRight = R.dimen.module_x4,
-        additionalTextPadding = R.dimen.module_x2,
-        dividerHeight = R.dimen.admiral_text_field_divider_height_extended,
+        paddingTop = core.dimen.module_x4,
+        paddingBottom = core.dimen.module_x1,
+        paddingLeft = core.dimen.module_x4,
+        paddingRight = core.dimen.module_x4,
+        additionalTextPadding = core.dimen.module_x2,
+        dividerHeight = core.dimen.admiral_text_field_divider_height_extended,
         textStyle = ThemeManager.theme.typography.body1,
         additionalTextGravity = TextGravity.Start
     )
@@ -37,12 +37,12 @@ sealed class TextFieldStyle(
      * Used as additional style. For example, for card number or sms code.
      */
     object Clipped : TextFieldStyle(
-        paddingTop = R.dimen.module_x3,
-        paddingBottom = R.dimen.module_x1,
-        paddingLeft = R.dimen.module_x10,
-        paddingRight = R.dimen.module_x10,
-        additionalTextPadding = R.dimen.module_x1,
-        dividerHeight = R.dimen.admiral_text_field_divider_height_clipped,
+        paddingTop = core.dimen.module_x3,
+        paddingBottom = core.dimen.module_x1,
+        paddingLeft = core.dimen.module_x10,
+        paddingRight = core.dimen.module_x10,
+        additionalTextPadding = core.dimen.module_x1,
+        dividerHeight = core.dimen.admiral_text_field_divider_height_clipped,
         textStyle = ThemeManager.theme.typography.title2,
         additionalTextGravity = TextGravity.Center
     )
