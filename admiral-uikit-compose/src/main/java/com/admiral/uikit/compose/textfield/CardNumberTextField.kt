@@ -44,42 +44,9 @@ import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.R
 
-@Preview(showBackground = true)
-@Composable
-fun FirstCardTextField() {
-    Box(
-        modifier = Modifier
-            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
-            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
-    ) {
-        CardTextField(
-            inputText = "Text in text field",
-            placeholderText = "Placeholder text",
-            additionalText = "Additional text",
-            icon = painterResource(id = R.drawable.admiral_ic_heart_solid)
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun SecondCardTextField() {
-    Box(
-        modifier = Modifier
-            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
-            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
-    ) {
-        CardTextField(
-            placeholderText = "Placeholder text",
-            additionalText = "Additional text",
-            isReadOnly = true
-        )
-    }
-}
-
 @Composable
 @Suppress("LongParameterList")
-fun CardTextField(
+fun CardNumberTextField(
     modifier: Modifier = Modifier,
     inputText: String = "",
     placeholderText: String? = null,
@@ -259,3 +226,36 @@ private const val EXAMPLE_TEXT_FIELD_SIZE = 240
 private const val EXAMPLE_TEXT_FIELD_PADDING = 16
 
 private const val TEXT_FIELD_PADDING_TOP = 4
+
+@Preview(showBackground = true)
+@Composable
+fun FirstNumberTextFieldPreview() {
+    Box(
+        modifier = Modifier
+            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
+            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
+    ) {
+        CardNumberTextField(
+            inputText = "Text in text field",
+            placeholderText = "Placeholder text",
+            additionalText = "Additional text",
+            icon = painterResource(id = R.drawable.admiral_ic_heart_solid)
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun SecondCardNumberTextFieldPreview() {
+    Box(
+        modifier = Modifier
+            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
+            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
+    ) {
+        CardNumberTextField(
+            placeholderText = "Placeholder text",
+            additionalText = "Additional text",
+            isReadOnly = true
+        )
+    }
+}

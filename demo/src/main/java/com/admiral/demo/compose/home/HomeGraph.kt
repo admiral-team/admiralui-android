@@ -11,6 +11,28 @@ import com.admiral.demo.compose.home.button.navigateToPrimaryButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToSecondaryButtonsScreen
 import com.admiral.demo.compose.home.button.primaryButtonsScreen
 import com.admiral.demo.compose.home.button.secondaryButtonsScreen
+import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
+import com.admiral.demo.compose.home.textfield.doubleTextFieldScreen
+import com.admiral.demo.compose.home.textfield.feedbackTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToCardNumberTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToDoubleTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToFeedbackTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToNumberDefaultTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToNumberSecondaryTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToNumbersTextFieldsScreen
+import com.admiral.demo.compose.home.textfield.navigateToPinCodeTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToSliderTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToSmsCodeTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToStandardTextFieldScreen
+import com.admiral.demo.compose.home.textfield.navigateToTextFieldsScreen
+import com.admiral.demo.compose.home.textfield.numberDefaultTextFieldScreen
+import com.admiral.demo.compose.home.textfield.numberSecondaryTextFieldScreen
+import com.admiral.demo.compose.home.textfield.numbersTextFieldsScreen
+import com.admiral.demo.compose.home.textfield.pinCodeTextFieldScreen
+import com.admiral.demo.compose.home.textfield.sliderTextFieldScreen
+import com.admiral.demo.compose.home.textfield.smsCodeTextFieldScreen
+import com.admiral.demo.compose.home.textfield.standardTextFieldScreen
+import com.admiral.demo.compose.home.textfield.textFieldsScreen
 import com.admiral.demo.compose.main.MAIN_ROUTE
 import com.admiral.demo.compose.main.mainScreen
 import com.admiral.demo.compose.tabs.navigateToTabs
@@ -27,7 +49,8 @@ fun NavGraphBuilder.homeGraph(
     ) {
         mainScreen(
             onTabsClick = { navController.navigateToTabs() },
-            onButtonsClick = { navController.navigateToButtonsScreen() }
+            onButtonsClick = { navController.navigateToButtonsScreen() },
+            onTextFieldsClick = { navController.navigateToTextFieldsScreen() }
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -39,6 +62,29 @@ fun NavGraphBuilder.homeGraph(
         primaryButtonsScreen()
         secondaryButtonsScreen()
         ghostButtonsScreen()
+        textFieldsScreen(
+            onStandardClick = { navController.navigateToStandardTextFieldScreen() },
+            onDoubleClick = { navController.navigateToDoubleTextFieldScreen() },
+            onSliderClick = { navController.navigateToSliderTextFieldScreen() },
+            onCardNumberClick = { navController.navigateToCardNumberTextFieldScreen() },
+            onSmsCodeClick = { navController.navigateToSmsCodeTextFieldScreen() },
+            onNumberClick = { navController.navigateToNumbersTextFieldsScreen() },
+            onFeedbackClick = { navController.navigateToFeedbackTextFieldScreen() },
+            onPinCodeClick = { navController.navigateToPinCodeTextFieldScreen() },
+        )
+        standardTextFieldScreen()
+        doubleTextFieldScreen()
+        sliderTextFieldScreen()
+        cardNumberTextFieldScreen()
+        smsCodeTextFieldScreen()
+        numbersTextFieldsScreen(
+            onDefaultClick = { navController.navigateToNumberDefaultTextFieldScreen() },
+            onSecondaryClick = { navController.navigateToNumberSecondaryTextFieldScreen() }
+        )
+        feedbackTextFieldScreen()
+        pinCodeTextFieldScreen()
+        numberDefaultTextFieldScreen()
+        numberSecondaryTextFieldScreen()
         tabsScreen()
     }
 }

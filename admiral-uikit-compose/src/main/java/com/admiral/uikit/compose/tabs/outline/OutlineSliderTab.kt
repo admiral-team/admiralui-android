@@ -150,9 +150,9 @@ private const val BADGE_TEXT_PADDING_HORIZONTAL = 8
 private const val BADGE_TEXT_PADDING_VERTICAL = 6
 
 @Immutable
-internal data class TabItem(
+data class TabItem(
     val text: String,
-    val isSelected: Boolean,
+    val isSelected: Boolean = false,
 )
 
 @Composable
@@ -211,7 +211,7 @@ private fun OutlineSliderTabPreview() {
     }
 }
 
-internal fun selectNewTab(list: MutableList<TabItem>, tabItemSelected: TabItem) {
+fun selectNewTab(list: MutableList<TabItem>, tabItemSelected: TabItem) {
     val indexOfLastSelected = list.indexOf(list.find { it.isSelected })
     val indexOfItem = list.indexOf(tabItemSelected)
 

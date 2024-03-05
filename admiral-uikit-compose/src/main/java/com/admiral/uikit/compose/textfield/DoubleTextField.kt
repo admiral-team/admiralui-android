@@ -17,53 +17,6 @@ import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.compose.R
 
-@Preview(showBackground = true)
-@Composable
-fun PreviewDoubleTextField() {
-    Box(
-        modifier = Modifier
-            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
-            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
-    ) {
-        DoubleTextField(
-            startTextFieldParams = TextFieldParams(
-                inputText = "First input",
-                optionalText = "Optional label",
-                placeholderText = "Placeholder text"
-            ),
-            endTextFieldParams = TextFieldParams(
-                optionalText = "Optional label",
-                placeholderText = "Placeholder text",
-                icon = painterResource(id = R.drawable.admiral_ic_heart_solid)
-            ),
-            additionalText = "Additional Text"
-        )
-    }
-}
-
-@Preview(showBackground = true)
-@Composable
-fun PreviewDoubleTextFieldStartBig() {
-    Box(
-        modifier = Modifier
-            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
-            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
-    ) {
-        DoubleTextField(
-            startTextFieldParams = TextFieldParams(
-                optionalText = "Optional label",
-                placeholderText = "Placeholder text"
-            ),
-            endTextFieldParams = TextFieldParams(
-                optionalText = "Optional label",
-                placeholderText = "Placeholder text"
-            ),
-            additionalText = "Additional Text",
-            ratio = DoubleTextFieldRatio.BIG_START
-        )
-    }
-}
-
 enum class DoubleTextFieldRatio(
     val startWeight: Float,
     val endWeight: Float
@@ -168,3 +121,50 @@ private const val EXAMPLE_TEXT_FIELD_SIZE = 320
 private const val EXAMPLE_TEXT_FIELD_PADDING = 16
 
 private const val TEXT_FIELD_PADDING = 8
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewDoubleTextField() {
+    Box(
+        modifier = Modifier
+            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
+            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
+    ) {
+        DoubleTextField(
+            startTextFieldParams = TextFieldParams(
+                inputText = "First input",
+                optionalText = "Optional label",
+                placeholderText = "Placeholder text"
+            ),
+            endTextFieldParams = TextFieldParams(
+                optionalText = "Optional label",
+                placeholderText = "Placeholder text",
+                icon = painterResource(id = R.drawable.admiral_ic_heart_solid)
+            ),
+            additionalText = "Additional Text"
+        )
+    }
+}
+
+@Preview(showBackground = true)
+@Composable
+fun PreviewDoubleTextFieldStartBig() {
+    Box(
+        modifier = Modifier
+            .padding(EXAMPLE_TEXT_FIELD_PADDING.dp)
+            .width(EXAMPLE_TEXT_FIELD_SIZE.dp)
+    ) {
+        DoubleTextField(
+            startTextFieldParams = TextFieldParams(
+                optionalText = "Optional label",
+                placeholderText = "Placeholder text"
+            ),
+            endTextFieldParams = TextFieldParams(
+                optionalText = "Optional label",
+                placeholderText = "Placeholder text"
+            ),
+            additionalText = "Additional Text",
+            ratio = DoubleTextFieldRatio.BIG_START
+        )
+    }
+}
