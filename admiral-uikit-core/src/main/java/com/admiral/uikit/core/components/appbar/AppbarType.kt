@@ -1,6 +1,5 @@
-package com.admiral.uikit.components.appbar
+package com.admiral.uikit.core.components.appbar
 
-@Deprecated("Use com.admiral.uikit.core.components.appbar.AppbarType instead")
 enum class AppbarType {
     NORMAL,
     SEARCH;
