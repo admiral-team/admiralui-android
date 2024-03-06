@@ -5,12 +5,12 @@ import android.view.View
 import androidx.fragment.app.viewModels
 import androidx.viewpager2.widget.ViewPager2
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
-import com.admiral.demo.databinding.FmtOnboardingBinding
 import com.admiral.demo.features.home.onboarding.OnboardingPagerAdapter
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.themes.ThemeManager
+import com.admiral.demo.R
+import com.admiral.demo.databinding.FmtOnboardingBinding
 
 class OnboardingFragment : BaseFragment(R.layout.fmt_onboarding) {
 

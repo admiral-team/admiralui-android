@@ -2,9 +2,7 @@ package com.admiral.demo.features.home.alert
 
 import android.content.res.ColorStateList
 import android.os.Bundle
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.core.content.ContextCompat.getDrawable
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R

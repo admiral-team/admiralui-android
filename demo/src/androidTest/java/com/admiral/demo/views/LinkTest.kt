@@ -13,7 +13,8 @@ import org.junit.Test
 
 class LinkTest : ScreenshotTest {
     private val context = InstrumentationRegistry.getInstrumentation().targetContext
-    private val wrappedContext = ContextThemeWrapper(context, R.style.Theme_AdmiralUIAndroid_Launcher)
+    private val wrappedContext =
+        ContextThemeWrapper(context, R.style.Theme_AdmiralUIAndroid_Launcher)
     private val layoutInflater = LayoutInflater.from(context)
     private val binding = TestViewLinkBinding.inflate(layoutInflater)
 
@@ -35,7 +36,8 @@ class LinkTest : ScreenshotTest {
             this.isEnabled = isEnabled
             text = context.getString(R.string.links_title)
             if (isIconShown) {
-                drawableEnd = ContextCompat.getDrawable(context, R.drawable.admiral_ic_arrow_right_outline)
+                drawableEnd =
+                    ContextCompat.getDrawable(context, R.drawable.admiral_ic_arrow_right_outline)
             }
 
             check()
@@ -50,7 +52,8 @@ class LinkTest : ScreenshotTest {
             this.isEnabled = isEnabled
             text = context.getString(R.string.links_title)
             if (isIconShown) {
-                drawableEnd = ContextCompat.getDrawable(context, R.drawable.admiral_ic_arrow_right_outline)
+                drawableEnd =
+                    ContextCompat.getDrawable(context, R.drawable.admiral_ic_arrow_right_outline)
             }
 
             check()

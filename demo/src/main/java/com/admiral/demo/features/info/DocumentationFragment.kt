@@ -3,12 +3,10 @@ package com.admiral.demo.features.info
 import android.os.Bundle
 import android.view.View
 import androidx.core.view.isVisible
-import androidx.fragment.app.viewModels
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtDocumentationBinding
-import com.admiral.demo.features.main.NavigationViewModel
 
 class DocumentationFragment : BaseFragment(R.layout.fmt_documentation) {
 

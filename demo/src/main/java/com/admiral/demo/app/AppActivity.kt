@@ -2,12 +2,12 @@ package com.admiral.demo.app
 
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.admiral.demo.R
 import com.admiral.demo.features.home.onboarding.OnboardingStorage
 import com.admiral.demo.features.main.MainFragment
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
+import com.admiral.demo.R
 
 class AppActivity : AppCompatActivity(R.layout.act_app), ThemeObserver {
 

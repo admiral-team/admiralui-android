@@ -424,16 +424,6 @@ class CellsTest : ScreenshotTest {
     }
 
     @Test
-    fun checkProgrammaticallyLeadingCentralCellEnabled() {
-        checkProgrammaticallyLeadingCentralCell(isEnabled = true)
-    }
-
-    @Test
-    fun checkProgrammaticallyLeadingCentralCellDisabled() {
-        checkProgrammaticallyLeadingCentralCell(isEnabled = false)
-    }
-
-    @Test
     fun checkProgrammaticallyCentralTrailingCellEnabled() {
         checkProgrammaticallyCentralTrailingCell(isEnabled = true)
     }

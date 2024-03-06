@@ -8,9 +8,7 @@ import androidx.core.view.isVisible
 import androidx.fragment.app.viewModels
 import androidx.lifecycle.lifecycleScope
 import by.kirich1409.viewbindingdelegate.viewBinding
-import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
-import com.admiral.demo.databinding.FmtHomeBinding
 import com.admiral.demo.features.home.theme.ThemeListMode
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.AlertsOnboardingScreen
@@ -38,6 +36,8 @@ import com.admiral.demo.screen.TimePickerScreen
 import com.admiral.demo.screen.ToolbarScreen
 import com.admiral.uikit.components.cell.BaseCell
 import com.admiral.uikit.components.cell.unit.TitleSubtitleCellUnit
+import com.admiral.demo.R
+import com.admiral.demo.databinding.FmtHomeBinding
 import kotlinx.coroutines.FlowPreview
 import kotlinx.coroutines.flow.debounce
 import kotlinx.coroutines.flow.distinctUntilChanged

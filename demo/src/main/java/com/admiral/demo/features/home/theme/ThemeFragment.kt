@@ -18,7 +18,6 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtThemeBinding
 import com.admiral.demo.features.home.home.ThemeListener
-import com.admiral.demo.features.home.home.ThemeSwitcher
 import com.admiral.demo.features.home.theme.utils.ThemeStorageDAO
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.demo.screen.ColorsScreen
