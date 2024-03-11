@@ -11,6 +11,7 @@ import com.admiral.uikit.ext.hex
 fun ColorPalette.colors(): List<ColorModel> {
     return listOf(
         ColorModel(name = "backgroundAccent", color = backgroundAccent, hex = backgroundAccent.hex()),
+        ColorModel(name = "backgroundAccentTwo", color = backgroundAccentTwo, hex = backgroundAccentTwo.hex()),
         ColorModel(name = "backgroundAccentDark", color = backgroundAccentDark, hex = backgroundAccentDark.hex()),
         ColorModel(name = "backgroundAccentPressed", color = backgroundAccentPressed, hex = backgroundAccentPressed.hex()),
         ColorModel(name = "backgroundAdditionalOne", color = backgroundAdditionalOne, hex = backgroundAdditionalOne.hex()),

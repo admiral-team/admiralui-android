@@ -92,6 +92,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralTextColorNormalDisabledPalette" format="enum">
@@ -182,6 +183,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralTextColorPressedPalette" format="enum">
@@ -272,6 +274,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralCompoundDrawablesNormalEnabledPalette" format="enum">
@@ -362,6 +365,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralCompoundDrawablesPressedPalette" format="enum">
@@ -452,6 +456,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralIconColorNormalEnabledPalette" format="enum">
@@ -542,6 +547,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralBackgroundColorNormalEnabledPalette" format="enum">
@@ -632,6 +638,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralBackgroundColorPressedPalette" format="enum">
@@ -722,6 +729,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralSearchBackgroundColorNormalEnabledPalette" format="enum">
@@ -812,6 +820,7 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 
     <attr name="admiralBackButtonColorPalette" format="enum">
@@ -902,5 +911,6 @@
         <enum name="textSuccessPressed" value="84" />
         <enum name="transparent" value="85" />
         <enum name="staticBlack" value="86" />
+        <enum name="backgroundAccentTwo" value="87" />
     </attr>
 </resources>
