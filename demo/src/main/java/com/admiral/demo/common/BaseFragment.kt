@@ -80,7 +80,7 @@ abstract class BaseFragment(
                     startClickTime = System.currentTimeMillis()
                 } else if (event.action == MotionEvent.ACTION_UP) {
                     if ((System.currentTimeMillis() - startClickTime) < ViewConfiguration.getTapTimeout() * TAP_TIMEOUT_CONST) {
-                        hideKeyboard(requireActivity().currentFocus)
+                        hideKeyboard(activity?.currentFocus)
                     }
                 }
                 false
@@ -97,14 +97,9 @@ abstract class BaseFragment(
     }
 
     private fun hideKeyboard(view: View?) {
-        if (view == null) {
-            return
-        }
-        val imm =
-            view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
-        if (!imm.isActive) {
-            return
-        }
+        if (view == null) return
+        val imm = view.context.getSystemService(Context.INPUT_METHOD_SERVICE) as InputMethodManager
+        if (!imm.isActive) return
         imm.hideSoftInputFromWindow(view.windowToken, 0)
         view.clearFocus()
     }
