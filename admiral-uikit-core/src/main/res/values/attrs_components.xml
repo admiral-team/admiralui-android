@@ -453,13 +453,10 @@
 
         <attr name="admiralMessageStatus" format="enum">
             <enum name="none" value="0" />
-            <enum name="loading" value="1" />
-            <enum name="load" value="2" />
-            <enum name="sending" value="3" />
-            <enum name="send" value="4" />
-            <enum name="read" value="5" />
-            <enum name="error" value="6" />
-            <enum name="done" value="7" />
+            <enum name="load" value="1" />
+            <enum name="sending" value="2" />
+            <enum name="send" value="3" />
+            <enum name="read" value="4" />
         </attr>
     </declare-styleable>
 
