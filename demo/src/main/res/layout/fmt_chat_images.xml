@@ -57,7 +57,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
-            app:admiralMessageStatus="done"
+            app:admiralMessageStatus="send"
             app:admiralTimeText="@string/chat_example_time">
 
             <com.admiral.uikit.components.chat.image.ChatImageView
@@ -81,7 +81,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
-            app:admiralMessageStatus="done"
+            app:admiralMessageStatus="send"
             app:admiralTimeText="@string/chat_example_time">
 
             <com.admiral.uikit.components.chat.image.ChatImageView
@@ -109,7 +109,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
-            app:admiralMessageStatus="done"
+            app:admiralMessageStatus="send"
             app:admiralTimeText="@string/chat_example_time">
 
             <com.admiral.uikit.components.chat.image.ChatImageView
@@ -142,7 +142,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
-            app:admiralMessageStatus="done"
+            app:admiralMessageStatus="send"
             app:admiralTimeText="@string/chat_example_time">
 
             <com.admiral.uikit.components.chat.image.ChatImageView
@@ -181,7 +181,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
-            app:admiralMessageStatus="done"
+            app:admiralMessageStatus="send"
             app:admiralTimeText="@string/chat_example_time">
 
             <com.admiral.uikit.components.chat.image.ChatImageView
@@ -224,7 +224,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x5"
-            app:admiralMessageStatus="done"
+            app:admiralMessageStatus="send"
             app:admiralTimeText="@string/chat_example_time">
 
             <com.admiral.uikit.components.chat.image.ChatImageView
