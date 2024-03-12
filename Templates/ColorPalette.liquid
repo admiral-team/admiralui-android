@@ -19,7 +19,8 @@ open class ColorPalette(
     val name: String,
     val transparent: Int,
     val staticBlack: Int,
-    val disabledAlpha: Double, {% for style_name in common_style_names %}
+    val disabledAlpha: Double,
+    val backgroundAccentTwo: Int, {% for style_name in common_style_names %}
     val {{ style_name | default_format }}: Int,{% endfor %}
 ) : Parcelable
 
@@ -28,6 +29,7 @@ internal fun ColorPalette.toJSON(): JSONObject {
         put("name", name)
         put("transparent", transparent)
         put("staticBlack", staticBlack)
+        put("backgroundAccentTwo", backgroundAccentTwo)
         put("disabledAlpha", disabledAlpha){% for style_name in common_style_names %}
         put("{{ style_name | default_format }}", {{ style_name | default_format }}){% endfor %}
     }
@@ -38,6 +40,7 @@ internal fun JSONObject.toPalette(): ColorPalette {
         name = getString("name"),
         transparent = getInt("transparent"),
         staticBlack = getInt("staticBlack"),
+        backgroundAccentTwo = getInt("backgroundAccentTwo"),
         disabledAlpha = getDouble("disabledAlpha"),{% for style_name in common_style_names %}
         {{ style_name | default_format }} = getInt("{{ style_name | default_format }}"),{% endfor %}
     )
@@ -47,6 +50,7 @@ internal fun {{ group.name | default_format }}Palette() = ColorPalette(
     name = {% if group.is_dark %}THEME_DARK{% else %}THEME_LIGHT{% endif %},
     transparent = Color.TRANSPARENT,
     staticBlack = Color.BLACK,
+    backgroundAccentTwo = Color.parseColor("#FF14315C"),
     disabledAlpha = 0.6,{% for style in group.styles %}
     {{ style.name_info.style_name | default_format }} = Color.parseColor("{{ style.color.hex_with_alpha }}"){% if forloop.last == false %},{% endif %}{% endfor %}
 )
@@ -54,6 +58,7 @@ internal fun {{ group.name | default_format }}Palette() = ColorPalette(
 fun ColorPalette.changeColor(colorName: String, @ColorInt color: Int): ColorPalette {
     return when (colorName) {
         "staticBlack" -> copy(staticBlack = color)
+        "backgroundAccentTwo" -> copy(backgroundAccentTwo = color)
         "transparent" -> copy(transparent = color){% for style_name in common_style_names %}
         "{{ style_name | default_format }}" -> copy({{ style_name | default_format }} = color){% endfor %}
         else -> this
@@ -64,6 +69,7 @@ fun ColorPalette.changeColor(colorName: String, @ColorInt color: Int): ColorPale
 fun ColorPalette.copy(
     name: String = this.name,
     transparent: Int = this.transparent,
+    backgroundAccentTwo: Int = this.backgroundAccentTwo,
     staticBlack: Int = this.staticBlack,
     disabledAlpha: Double = this.disabledAlpha,{% for style_name in common_style_names %}
     {{ style_name | default_format }}: Int = this.{{ style_name | default_format }},{% endfor %}
@@ -72,7 +78,8 @@ fun ColorPalette.copy(
         name,
         transparent,
         staticBlack,
-        disabledAlpha,{% for style_name in common_style_names %}
+        disabledAlpha,
+        backgroundAccentTwo,{% for style_name in common_style_names %}
         {{ style_name | default_format }},{% endfor %}
     )
 }
