@@ -13,7 +13,7 @@ object ThemeManagerCompose {
     val theme: State<Theme>
         get() = mutableState
 
-    var typography: Typography = defaultTypography()
+    var typography: AdmiralTypography = defaultAdmiralTypography()
 
     fun setCurrentTheme(newTheme: Theme) {
         ThemeManager.theme = newTheme
