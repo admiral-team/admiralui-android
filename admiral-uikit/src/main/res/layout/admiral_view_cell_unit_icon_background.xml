@@ -10,7 +10,7 @@
         android:id="@+id/admiralIconBackgroundCellImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:padding="10dp"
+        android:padding="@dimen/module_x2"
         app:layout_constraintStart_toStartOf="parent" />
 
     <com.admiral.uikit.components.badge.Badge

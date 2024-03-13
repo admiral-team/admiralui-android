@@ -7,20 +7,21 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
+import androidx.core.view.setPadding
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
-import com.admiral.uikit.core.components.cell.base.CellUnit
-import com.admiral.uikit.core.components.cell.base.CellUnitType
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.badge.Badge
 import com.admiral.uikit.components.imageview.ImageView
+import com.admiral.uikit.core.components.cell.base.CellUnit
+import com.admiral.uikit.core.components.cell.base.CellUnitType
+import com.admiral.uikit.core.ext.dpToPx
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.colorStateList
-import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.getIntOrNull
@@ -70,17 +71,10 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
         set(value) {
             field = value
             imageView.setImageDrawable(icon)
-            if (icon == null) {
-                imageView.layoutParams = LayoutParams(
-                    DEFAULT_SIZE_IMAGE.dpToPx(context),
-                    DEFAULT_SIZE_IMAGE.dpToPx(context)
-                )
-            } else {
-                imageView.layoutParams = LayoutParams(
-                    LayoutParams.WRAP_CONTENT,
-                    LayoutParams.WRAP_CONTENT
-                )
-            }
+            imageView.layoutParams = LayoutParams(
+                DEFAULT_SIZE_IMAGE.dpToPx(context),
+                DEFAULT_SIZE_IMAGE.dpToPx(context)
+            )
         }
 
     val badge: Badge by lazy { findViewById(R.id.admiralIconBackgroundCellBadge) }
@@ -89,6 +83,9 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_cell_unit_icon_background, this)
+        layoutParams.apply {
+            setPadding(PADDING.dpToPx(context))
+        }
 
         imageView.background = drawable(R.drawable.admiral_bg_round)
 
@@ -209,6 +206,7 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
     private companion object {
         const val ALPHA_ENABLED = 1f
         const val ALPHA_DISABLED = 0.6f
-        const val DEFAULT_SIZE_IMAGE = 40f
+        const val DEFAULT_SIZE_IMAGE = 44f
+        const val PADDING = 2f
     }
 }
