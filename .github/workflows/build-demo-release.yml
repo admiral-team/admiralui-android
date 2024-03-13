@@ -40,14 +40,30 @@ jobs:
     needs: [ prepare ]
 
     steps:
-      - name: Build demo release apk
+      - name: Detect
         run: |
           chmod +x gradlew
           ./gradlew detekt
+  test:
+    runs-on: [ self-hosted, main, android ]
+    needs: [ detect ]
+
+    steps:
+      - name: Run snapshot tests
+        uses: reactivecircus/android-emulator-runner@v2
+        with:
+          api-level: 30
+          force-avd-creation: false
+          avd-name: Pixel_4_API_30
+          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
+          disable-animations: true
+          script: |
+            chmod +x gradlew
+            ./gradlew demo:executeScreenshotTests
 
   build:
     runs-on: [ self-hosted, main, android ]
-    needs: [ detect ]
+    needs: [ test ]
 
     steps:
       - name: Build demo release apk
