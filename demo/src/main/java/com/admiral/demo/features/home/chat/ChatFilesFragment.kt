@@ -67,17 +67,23 @@ class ChatFilesFragment : BaseFragment(
             )
         }
 
-        binding.tabsState.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
-                binding.linearLayout.forEach {
-                    if (it is FileMessage) {
-                        it.views.forEachIndexed { index, child ->
-                            (child as? ChatFileView)?.isLoading = checkedId == binding.loadingTab.id
+        binding.tabsState.onCheckedChangeListener =
+            object : CheckableGroup.OnCheckedChangeListener {
+                override fun onCheckedChanged(
+                    radioButton: View?,
+                    isChecked: Boolean,
+                    checkedId: Int
+                ) {
+                    binding.linearLayout.forEach {
+                        if (it is FileMessage) {
+                            it.views.forEachIndexed { index, child ->
+                                (child as? ChatFileView)?.isLoading =
+                                    checkedId == binding.loadingTab.id
+                            }
                         }
                     }
                 }
             }
-        }
 
         binding.linearLayout.forEach {
             if (it is FileMessage) {

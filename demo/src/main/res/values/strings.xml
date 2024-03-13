@@ -185,7 +185,8 @@
     <string name="text_fields_card_number_text">1111 2222 3333 4444</string>
     <string name="text_fields_number_optional_label">Optional label</string>
     <string name="text_fields_feedback_title">Feedback</string>
-    <string name="text_fields_optional_label">label</string>
+    <string name="text_fields_label">label</string>
+    <string name="text_fields_optional_label">Optional label</string>
     <string name="text_fields_digits_count">Количество знаков</string>
     <string name="text_fields_slider_optional_label">Optional label</string>
     <string name="text_fields_example_slider_left">100</string>
@@ -194,6 +195,8 @@
     <string name="text_fields_example_slider_additional">Additional text</string>
     <string name="text_fields_number_title">Number</string>
     <string name="text_fields_double_title">Double</string>
+    <string name="text_fields_default_title">Default</string>
+    <string name="text_fields_secondary_title">Secondary</string>
     <string name="text_fields_example_50_50">50/50</string>
     <string name="text_fields_example_70_30">70/30</string>
     <string name="text_fields_standard_title">Standard</string>

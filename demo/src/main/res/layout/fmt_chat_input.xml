@@ -36,7 +36,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_weight="1"
         android:animateLayoutChanges="true"
         android:fillViewport="true"
         android:isScrollContainer="false"
@@ -88,19 +89,22 @@
                 android:layout_gravity="end"
                 android:layout_marginTop="@dimen/module_x2"
                 android:layout_marginEnd="@dimen/module_x4"
-                android:layout_marginBottom="@dimen/module_x4"
                 app:admiralIsOutgoing="true"
-                app:admiralMessageStatus="sending"
+                app:admiralIsLast="true"
+                app:admiralMessageStatus="send"
                 app:admiralText="@string/informers_example_info"
                 app:admiralTimeText="@string/chat_example_time" />
-
-            <com.admiral.uikit.components.chat.Input
-                android:id="@+id/input"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="@dimen/module_x16"
-                android:padding="@dimen/module_x3"
-                app:admiralIconStart="@drawable/admiral_ic_attach_file_outline" />
         </com.admiral.uikit.layout.LinearLayout>
     </ScrollView>
+
+    <com.admiral.uikit.components.chat.Input
+        android:id="@+id/input"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x4"
+        android:layout_marginBottom="@dimen/module_x16"
+        app:admiralButtonIcon="@drawable/admiral_ic_microphone_outline"
+        app:admiralHintText="@string/chat_input_message"
+        android:padding="@dimen/module_x3"
+        app:admiralIconStart="@drawable/admiral_ic_attach_file_outline" />
 </com.admiral.uikit.layout.LinearLayout>

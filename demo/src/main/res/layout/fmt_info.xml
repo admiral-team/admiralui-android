@@ -9,21 +9,21 @@
         android:id="@+id/toolbar"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
         app:admiralAppbarSize="big"
         app:admiralIsBackButtonEnabled="false"
-        app:admiralTitleText="@string/info_title" />
+        app:admiralTitleText="@string/info_title"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
     <ImageView
         android:id="@+id/imageView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:src="@drawable/img_info"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"/>
+        app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     <com.admiral.uikit.components.text.TextView
         android:id="@+id/versionTextView"
@@ -31,23 +31,23 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="@dimen/module_x2"
         app:admiralTextStyle="body2"
-        app:layout_constraintTop_toBottomOf="@+id/imageView"
-        app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        tools:text="Версия 1.2"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView"
+        tools:text="Версия 1.2" />
 
     <com.admiral.uikit.components.cell.BaseCell
         android:id="@+id/infoButton"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginTop="@dimen/module_x8"
         android:clickable="true"
         android:focusable="true"
         android:paddingStart="@dimen/module_x4"
         android:paddingEnd="@dimen/module_x4"
-        android:layout_marginTop="@dimen/module_x8"
-        app:layout_constraintTop_toBottomOf="@+id/versionTextView"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/versionTextView">
 
         <com.admiral.uikit.components.cell.unit.IconCellUnit
             android:id="@+id/iconBackgroundTheme"
@@ -55,12 +55,12 @@
             android:layout_height="wrap_content"
             app:admiralIcon="@drawable/admiral_ic_info_solid" />
 
-        <com.admiral.uikit.components.cell.unit.TitleCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:id="@+id/textTheme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:admiralCellUnitType="leadingText"
-            app:admiralTitleText="@string/info_title" />
+            app:admiralText="@string/info_title" />
 
         <com.admiral.uikit.components.cell.unit.IconCellUnit
             android:id="@+id/icTheme"
@@ -80,9 +80,9 @@
         android:focusable="true"
         android:paddingStart="@dimen/module_x4"
         android:paddingEnd="@dimen/module_x4"
-        app:layout_constraintTop_toBottomOf="@+id/infoButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/infoButton">
 
         <com.admiral.uikit.components.cell.unit.IconCellUnit
             android:id="@+id/iconBackgroundTheme2"
@@ -90,12 +90,12 @@
             android:layout_height="wrap_content"
             app:admiralIcon="@drawable/admiral_ic_email_solid" />
 
-        <com.admiral.uikit.components.cell.unit.TitleCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:id="@+id/textTheme2"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:admiralCellUnitType="leadingText"
-            app:admiralTitleText="@string/info_contacts" />
+            app:admiralText="@string/info_contacts" />
 
         <com.admiral.uikit.components.cell.unit.IconCellUnit
             android:id="@+id/icTheme2"
@@ -115,9 +115,9 @@
         android:focusable="true"
         android:paddingStart="@dimen/module_x4"
         android:paddingEnd="@dimen/module_x4"
-        app:layout_constraintTop_toBottomOf="@+id/contactsButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/contactsButton">
 
         <com.admiral.uikit.components.cell.unit.IconCellUnit
             android:id="@+id/iconBackgroundTheme3"
@@ -125,12 +125,12 @@
             android:layout_height="wrap_content"
             app:admiralIcon="@drawable/admiral_ic_help_solid" />
 
-        <com.admiral.uikit.components.cell.unit.TitleCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:id="@+id/textTheme3"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:admiralCellUnitType="leadingText"
-            app:admiralTitleText="@string/info_faq" />
+            app:admiralText="@string/info_faq" />
 
         <com.admiral.uikit.components.cell.unit.IconCellUnit
             android:id="@+id/icTheme3"
@@ -150,20 +150,20 @@
         android:focusable="true"
         android:paddingStart="@dimen/module_x4"
         android:paddingEnd="@dimen/module_x4"
-        app:layout_constraintTop_toBottomOf="@+id/faqButton"
+        app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent">
+        app:layout_constraintTop_toBottomOf="@+id/faqButton">
 
         <com.admiral.uikit.components.cell.unit.IconCellUnit
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:admiralIcon="@drawable/admiral_ic_docs_solid" />
 
-        <com.admiral.uikit.components.cell.unit.TitleCellUnit
+        <com.admiral.uikit.components.cell.unit.TextCellUnit
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:admiralCellUnitType="leadingText"
-            app:admiralTitleText="@string/info_documentation" />
+            app:admiralText="@string/info_documentation" />
 
         <com.admiral.uikit.components.cell.unit.IconCellUnit
             android:layout_width="wrap_content"

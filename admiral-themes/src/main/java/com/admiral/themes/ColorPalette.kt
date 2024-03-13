@@ -20,6 +20,7 @@ open class ColorPalette(
     val transparent: Int,
     val staticBlack: Int,
     val disabledAlpha: Double,
+    val backgroundAccentTwo: Int,
     val backgroundAccent: Int,
     val backgroundAccentDark: Int,
     val backgroundAccentPressed: Int,
@@ -114,6 +115,7 @@ internal fun ColorPalette.toJSON(): JSONObject {
         put("staticBlack", staticBlack)
         put("disabledAlpha", disabledAlpha)
         put("backgroundAccent", backgroundAccent)
+        put("backgroundAccentTwo", backgroundAccentTwo)
         put("backgroundAccentDark", backgroundAccentDark)
         put("backgroundAccentPressed", backgroundAccentPressed)
         put("backgroundAdditionalOne", backgroundAdditionalOne)
@@ -208,6 +210,7 @@ internal fun JSONObject.toPalette(): ColorPalette {
         staticBlack = getInt("staticBlack"),
         disabledAlpha = getDouble("disabledAlpha"),
         backgroundAccent = getInt("backgroundAccent"),
+        backgroundAccentTwo = getInt("backgroundAccentTwo"),
         backgroundAccentDark = getInt("backgroundAccentDark"),
         backgroundAccentPressed = getInt("backgroundAccentPressed"),
         backgroundAdditionalOne = getInt("backgroundAdditionalOne"),
@@ -301,6 +304,7 @@ internal fun darkPalette() = ColorPalette(
     staticBlack = Color.BLACK,
     disabledAlpha = 0.6,
     backgroundAccent = Color.parseColor("#FF3A83F1"),
+    backgroundAccentTwo = Color.parseColor("#FF14315C"),
     backgroundAccentDark = Color.parseColor("#FF373B49"),
     backgroundAccentPressed = Color.parseColor("#FF326DC6"),
     backgroundAdditionalOne = Color.parseColor("#FF23262F"),
@@ -393,6 +397,7 @@ internal fun lightPalette() = ColorPalette(
     staticBlack = Color.BLACK,
     disabledAlpha = 0.6,
     backgroundAccent = Color.parseColor("#FF3A83F1"),
+    backgroundAccentTwo = Color.parseColor("#FF3A83F1"),
     backgroundAccentDark = Color.parseColor("#FF0B1D37"),
     backgroundAccentPressed = Color.parseColor("#FF316FCC"),
     backgroundAdditionalOne = Color.parseColor("#FFF3F4F7"),
@@ -485,6 +490,7 @@ internal fun sMEDarkPalette() = ColorPalette(
     staticBlack = Color.BLACK,
     disabledAlpha = 0.6,
     backgroundAccent = Color.parseColor("#FF189FE2"),
+    backgroundAccentTwo = Color.parseColor("#FF14315C"),
     backgroundAccentDark = Color.parseColor("#FF3F4553"),
     backgroundAccentPressed = Color.parseColor("#FF137CB0"),
     backgroundAdditionalOne = Color.parseColor("#FF303643"),
@@ -577,6 +583,7 @@ internal fun sMELightPalette() = ColorPalette(
     staticBlack = Color.BLACK,
     disabledAlpha = 0.6,
     backgroundAccent = Color.parseColor("#FF00AAFF"),
+    backgroundAccentTwo = Color.parseColor("#FF3A83F1"),
     backgroundAccentDark = Color.parseColor("#FFFFFFFF"),
     backgroundAccentPressed = Color.parseColor("#FF0099E5"),
     backgroundAdditionalOne = Color.parseColor("#FFF1F1F6"),
@@ -668,6 +675,7 @@ fun ColorPalette.changeColor(colorName: String, @ColorInt color: Int): ColorPale
         "staticBlack" -> copy(staticBlack = color)
         "transparent" -> copy(transparent = color)
         "backgroundAccent" -> copy(backgroundAccent = color)
+        "backgroundAccentTwo" -> copy(backgroundAccentTwo = color)
         "backgroundAccentDark" -> copy(backgroundAccentDark = color)
         "backgroundAccentPressed" -> copy(backgroundAccentPressed = color)
         "backgroundAdditionalOne" -> copy(backgroundAdditionalOne = color)
@@ -763,6 +771,7 @@ fun ColorPalette.copy(
     staticBlack: Int = this.staticBlack,
     disabledAlpha: Double = this.disabledAlpha,
     backgroundAccent: Int = this.backgroundAccent,
+    backgroundAccentTwo: Int = this.backgroundAccentTwo,
     backgroundAccentDark: Int = this.backgroundAccentDark,
     backgroundAccentPressed: Int = this.backgroundAccentPressed,
     backgroundAdditionalOne: Int = this.backgroundAdditionalOne,
@@ -853,6 +862,7 @@ fun ColorPalette.copy(
         transparent,
         staticBlack,
         disabledAlpha,
+        backgroundAccentTwo,
         backgroundAccent,
         backgroundAccentDark,
         backgroundAccentPressed,

@@ -314,12 +314,6 @@ class ActionNotification {
         /**
          * Build [ActionNotification]
          */
-        @Deprecated("Use `build()` instead", ReplaceWith("build()"))
-        fun apply(): ActionNotification = build()
-
-        /**
-         * Build [ActionNotification]
-         */
         fun build(): ActionNotification {
             actionNotification.builder = this
             return actionNotification

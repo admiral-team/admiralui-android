@@ -26,7 +26,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:indeterminate="false"
-            android:max="@dimen/module_x25"
+            android:max="100"
             android:progress="75"
             android:progressDrawable="@drawable/admiral_progress_bar"
             android:scaleX="-1"

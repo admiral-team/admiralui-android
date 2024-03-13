@@ -6,15 +6,15 @@ buildscript {
         mavenCentral()
     }
     dependencies {
-        classpath("com.karumi:shot:5.14.1")
+        classpath("com.karumi:shot:6.1.0")
         // NOTE: Do not place your application dependencies here; they belong
         // in the individual module build.gradle files
     }
 }
 
 plugins {
-    val androidGradlePluginVersion = "7.1.0-rc01"
-    val kotlinVersion = "1.7.0"
+    val androidGradlePluginVersion = "7.4.2"
+    val kotlinVersion = "1.8.20"
 
     id("admiral-gradle-plugin")
     id("com.android.application") version androidGradlePluginVersion apply false

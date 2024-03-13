@@ -69,11 +69,7 @@ class TextFieldsCardNumberFragment : BaseFragment(
                     BANK_CARD_MASK
                 )
 
-                onIconClickListener = object : TextField.OnIconClickListener {
-                    override fun onClick() {
-                        navigationViewModel.open(CameraScreen())
-                    }
-                }
+                onIconClickListener = TextField.OnIconClickListener { navigationViewModel.open(CameraScreen()) }
             }
         }
     }

@@ -43,6 +43,8 @@ import com.admiral.uikit.ext.getIntOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
 import kotlinx.coroutines.flow.StateFlow
+import com.admiral.uikit.core.components.appbar.AppbarSize
+import com.admiral.uikit.core.components.appbar.AppbarType
 
 class Appbar @JvmOverloads constructor(
     context: Context,

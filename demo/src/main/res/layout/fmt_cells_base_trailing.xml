@@ -51,12 +51,12 @@
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
 
-            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:id="@+id/title"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
-                app:admiralTitleText="@string/cell_title" />
+                app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.IconCellUnit
                 android:id="@+id/iconTrailing"
@@ -77,12 +77,12 @@
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
 
-            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:id="@+id/title2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
-                app:admiralTitleText="@string/cell_title" />
+                app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.RadioButtonCellUnit
                 android:id="@+id/radioButtonCellUnit"
@@ -101,12 +101,12 @@
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
 
-            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:id="@+id/title3"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
-                app:admiralTitleText="@string/cell_title" />
+                app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.CheckboxCellUnit
                 android:id="@+id/checkBoxCellUnit"
@@ -125,12 +125,12 @@
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
 
-            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:id="@+id/title4"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
-                app:admiralTitleText="@string/cell_title" />
+                app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.SwitcherCellUnit
                 android:id="@+id/swicherCellUnit"
@@ -150,12 +150,12 @@
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
 
-            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:id="@+id/subtitleTitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
-                app:admiralTitleText="@string/cell_title" />
+                app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.LabelCellUnit
                 android:id="@+id/labelTrailing"
@@ -175,12 +175,12 @@
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
 
-            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:id="@+id/titleSubtitle"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
-                app:admiralTitleText="@string/cell_title" />
+                app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.CardCellUnit
                 android:id="@+id/cardTrailing"
@@ -200,12 +200,12 @@
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
 
-            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:id="@+id/textMessageIconCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
-                app:admiralTitleText="@string/cell_title" />
+                app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.DoubleSubtitleCellUnit
                 android:id="@+id/doubleSubtitleCellUnit"
@@ -226,12 +226,12 @@
             android:paddingStart="@dimen/module_x4"
             android:paddingEnd="@dimen/module_x4">
 
-            <com.admiral.uikit.components.cell.unit.TitleCellUnit
+            <com.admiral.uikit.components.cell.unit.TextCellUnit
                 android:id="@+id/titleSummSubtitleCellUnit"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralCellUnitType="leadingText"
-                app:admiralTitleText="@string/cell_title" />
+                app:admiralText="@string/cell_title" />
 
             <com.admiral.uikit.components.cell.unit.SubtitlePaymentCellUnit
                 android:id="@+id/subtitlePayment"

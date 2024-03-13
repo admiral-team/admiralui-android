@@ -63,18 +63,6 @@ open class ConstraintLayout @JvmOverloads constructor(
             invalidateBackground()
         }
 
-    /**
-     * Color of background from the palette for the normal enabled state.
-     */
-    @Deprecated("Use `backgroundColorNormalEnabledPalette` instead")
-    @Suppress("VariableNaming")
-    var backgroundСolorNormalEnabledPalette: ColorPaletteEnum? = null
-        get() = backgroundColorNormalEnabledPalette
-        set(value) {
-            field = value
-            backgroundColorNormalEnabledPalette = value
-        }
-
     init {
         parseAttrs(attrs, R.styleable.ConstraintLayout).use {
             isBackgroundTransparent = it.getBoolean(
