@@ -1,4 +1,3 @@
-
 import com.android.build.api.dsl.ApkSigningConfig
 import com.android.build.api.dsl.ApplicationBuildType
 import java.io.FileReader
@@ -37,7 +36,7 @@ android {
     }
 
     composeOptions {
-        kotlinCompilerExtensionVersion = Versions.AndroidX.compose
+        kotlinCompilerExtensionVersion = Versions.AndroidX.composeExtension
     }
 
     compileOptions {
@@ -72,7 +71,8 @@ android {
                 FileReader(keystorePropertiesFile).use { reader -> keystoreProperties.load(reader) }
 
                 config.storeFile = keystoreFile
-                config.storePassword = keystoreProperties.getProperty(Keystore.Properties.storePassword)
+                config.storePassword =
+                    keystoreProperties.getProperty(Keystore.Properties.storePassword)
                 config.keyAlias = keystoreProperties.getProperty(Keystore.Properties.keyAlias)
                 config.keyPassword = keystoreProperties.getProperty(Keystore.Properties.keyPassword)
             }
@@ -127,7 +127,7 @@ android {
     }
 
     shot {
-        tolerance =  0.3
+        tolerance = 0.3
     }
 }
 

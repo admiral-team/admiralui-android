@@ -2,8 +2,8 @@ package com.admiral.demo.app
 
 import android.app.Application
 import androidx.appcompat.app.AppCompatDelegate
-import com.admiral.demo.BuildConfig
 import com.admiral.demo.features.home.theme.utils.ThemeStorageDAO
+import com.admiral.demo.BuildConfig
 import timber.log.Timber
 import timber.log.Timber.DebugTree
 

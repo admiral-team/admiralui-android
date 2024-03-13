@@ -19,7 +19,7 @@ fun LibraryExtension.applyConfig(
 
     if (isComposeEnabled) {
         composeOptions {
-            kotlinCompilerExtensionVersion = Versions.AndroidX.compose
+            kotlinCompilerExtensionVersion = Versions.AndroidX.composeExtension
         }
     }
 
