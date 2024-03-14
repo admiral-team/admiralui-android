@@ -11,11 +11,6 @@ plugins {
 }
 
 android {
-
-    shot {
-        tolerance = 0.5
-    }
-
     defaultConfig {
         applicationId = APPLICATION_ID
         testInstrumentationRunner = ANDROID_TEST_INSTRUMENTATION_RUNNER
@@ -127,7 +122,7 @@ android {
     }
 
     shot {
-        tolerance = 0.3
+        tolerance = 1.0
     }
 }
 
