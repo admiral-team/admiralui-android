@@ -7,7 +7,6 @@ import android.util.AttributeSet
 import android.view.LayoutInflater
 import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.core.content.res.use
-import androidx.core.view.setPadding
 import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Theme
@@ -83,9 +82,6 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
 
     init {
         LayoutInflater.from(context).inflate(R.layout.admiral_view_cell_unit_icon_background, this)
-        layoutParams.apply {
-            setPadding(PADDING.dpToPx(context))
-        }
 
         imageView.background = drawable(R.drawable.admiral_bg_round)
 
@@ -207,6 +203,5 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
         const val ALPHA_ENABLED = 1f
         const val ALPHA_DISABLED = 0.6f
         const val DEFAULT_SIZE_IMAGE = 44f
-        const val PADDING = 2f
     }
 }
