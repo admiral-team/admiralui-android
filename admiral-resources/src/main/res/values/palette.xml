@@ -5,6 +5,7 @@
 -->
 <resources>
     <color name="dark_backgroundAccent">#FF3A83F1</color>
+    <color name="dark_backgroundAccentTwo">#FF14315C</color>
     <color name="dark_backgroundAccentDark">#FF373B49</color>
     <color name="dark_backgroundAccentPressed">#FF326DC6</color>
     <color name="dark_backgroundAdditionalOne">#FF23262F</color>
@@ -90,6 +91,7 @@
     <color name="dark_textSuccessDefault">#FF89B79D</color>
     <color name="dark_textSuccessPressed">#FF338256</color>
     <color name="light_backgroundAccent">#FF3A83F1</color>
+    <color name="light_backgroundAccentTwo">#FF3A83F1</color>
     <color name="light_backgroundAccentDark">#FF0B1D37</color>
     <color name="light_backgroundAccentPressed">#FF316FCC</color>
     <color name="light_backgroundAdditionalOne">#FFF3F4F7</color>
@@ -175,6 +177,7 @@
     <color name="light_textSuccessDefault">#FF84D0A7</color>
     <color name="light_textSuccessPressed">#FF33985D</color>
     <color name="sMEDark_backgroundAccent">#FF189FE2</color>
+    <color name="sMEDark_backgroundAccentTwo">#FF14315C</color>
     <color name="sMEDark_backgroundAccentDark">#FF3F4553</color>
     <color name="sMEDark_backgroundAccentPressed">#FF137CB0</color>
     <color name="sMEDark_backgroundAdditionalOne">#FF303643</color>
@@ -260,6 +263,7 @@
     <color name="sMEDark_textSuccessDefault">#FF90D0BC</color>
     <color name="sMEDark_textSuccessPressed">#FF299B78</color>
     <color name="sMELight_backgroundAccent">#FF00AAFF</color>
+    <color name="sMELight_backgroundAccentTwo">#FF3A83F1</color>
     <color name="sMELight_backgroundAccentDark">#FFFFFFFF</color>
     <color name="sMELight_backgroundAccentPressed">#FF0099E5</color>
     <color name="sMELight_backgroundAdditionalOne">#FFF1F1F6</color>
