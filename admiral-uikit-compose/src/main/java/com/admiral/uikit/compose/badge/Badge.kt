@@ -16,7 +16,6 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Icon
-import androidx.compose.material.LocalTextStyle
 import androidx.compose.material.Text
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.filled.Favorite
@@ -31,24 +30,27 @@ import androidx.compose.ui.layout.Layout
 import androidx.compose.ui.layout.layoutId
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.PlatformTextStyle
-import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
-import androidx.compose.ui.text.style.TextGeometricTransform
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.compose.ui.unit.sp
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.themes.compose.Typography
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
+
+private const val BADGE_LAYOUT_ID = "BADGE_LAYOUT_ID"
+private const val ANCHOR_LAYOUT_ID = "ANCHOR_LAYOUT_ID"
+private const val MAX_LINES = 1
+private val BorderWidth = 2.dp
+private val SpaceBetweenBorder = 1.dp
+private val BadgeRadius = 5.dp
 
 @Composable
 fun BadgedBox(
     modifier: Modifier = Modifier,
     content: Int? = null,
     color: BadgeColor = AdmiralBadgeColor.normal(),
-    position: BadgePosition = AdmiralBadgePosition.standard(),
+    position: BadgePosition = AdmiralBadgePosition.default(),
     isEnable: Boolean = true,
     anchor: @Composable BoxScope.() -> Unit,
 ) {
@@ -95,7 +97,7 @@ fun BadgedBox(
         ) {
             // Use the width of the badge to infer whether it has any content (based on radius used
             // in [Badge]) and determine its horizontal offset.
-            val hasContent = badgePlaceable.width > (2 * BADGE_RADIUS.dp.roundToPx())
+            val hasContent = badgePlaceable.width > (2 * BadgeRadius.roundToPx())
             val badgeHorizontalOffset =
                 if (hasContent) position.badgeWithContentHorizontalOffset else position.badgeHorizontalOffset
             val badgeVerticalOffset =
@@ -118,7 +120,7 @@ private fun Badge(
     color: BadgeColor,
     isEnable: Boolean,
 ) {
-    val radius = if (content != null) BADGE_WITH_CONTENT_RADIUS.dp else BADGE_RADIUS.dp
+    val radius = if (content != null) DIMEN_X2 else BadgeRadius
     val shape = RoundedCornerShape(radius)
     val backgroundColor =
         if (isEnable) color.backgroundColorNormal else color.backgroundColorDisable
@@ -128,15 +130,15 @@ private fun Badge(
     Row(
         modifier = modifier
             .defaultMinSize(minWidth = radius * 2, minHeight = radius * 2)
-            .border(BORDER_WIDTH.dp, color = color.borderColor, shape = shape)
-            .padding(SPACE_BETWEEN_BORDER.dp)
+            .border(BorderWidth, color = color.borderColor, shape = shape)
+            .padding(SpaceBetweenBorder)
             .background(color = backgroundColor, shape = shape),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
         if (content != null) {
             Text(
-                modifier = Modifier.padding(horizontal = BADGE_WITH_CONTENT_HORIZONTAL_PADDING.dp - SPACE_BETWEEN_BORDER.dp),
+                modifier = Modifier.padding(horizontal = DIMEN_X1 - SpaceBetweenBorder),
                 text = content.toString(),
                 color = contentColor,
                 style = textStyle.copy(
@@ -150,15 +152,6 @@ private fun Badge(
         }
     }
 }
-
-private const val BADGE_LAYOUT_ID = "BADGE_LAYOUT_ID"
-private const val ANCHOR_LAYOUT_ID = "ANCHOR_LAYOUT_ID"
-private const val MAX_LINES = 1
-private const val BORDER_WIDTH = 2
-private const val SPACE_BETWEEN_BORDER = 1
-private const val BADGE_RADIUS = 5
-private const val BADGE_WITH_CONTENT_RADIUS = 8
-private const val BADGE_WITH_CONTENT_HORIZONTAL_PADDING = 4
 
 @Composable
 private fun IconWithBackground() {
