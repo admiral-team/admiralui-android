@@ -30,7 +30,7 @@ class Badge @JvmOverloads constructor(
     var badgeSize: BadgeSize = BadgeSize.NORMAL
         set(value) {
             field = value
-            invalidateBadgeSize()
+            invalidateTextColors()
         }
 
     var badgeType: BadgeType = BadgeType.NORMAL
@@ -134,12 +134,27 @@ class Badge @JvmOverloads constructor(
     }
 
     private fun invalidateTextColors() {
-        setTextColor(
-            colorStateList(
-                enabled = textColor?.normalEnabled ?: ThemeManager.theme.palette.textStaticWhite,
-                disabled = textColor?.normalDisabled ?: ThemeManager.theme.palette.textSecondary,
-            )
-        )
+        when (badgeSize) {
+            BadgeSize.SMALL -> {
+                setTextColor(
+                    colorStateList(
+                        enabled = Color.TRANSPARENT,
+                        disabled = Color.TRANSPARENT,
+                    )
+                )
+            }
+
+            BadgeSize.NORMAL -> {
+                setTextColor(
+                    colorStateList(
+                        enabled = textColor?.normalEnabled
+                            ?: ThemeManager.theme.palette.textStaticWhite,
+                        disabled = textColor?.normalDisabled
+                            ?: ThemeManager.theme.palette.textSecondary,
+                    )
+                )
+            }
+        }
     }
 
     private fun invalidateBackgroundColors() {
@@ -159,22 +174,6 @@ class Badge @JvmOverloads constructor(
             val drawable = background as GradientDrawable
             drawable.setColor(badgeColorDisabled ?: ThemeManager.theme.palette.elementAdditional)
         }
-    }
-
-    private fun invalidateBadgeSize() {
-        when (badgeSize) {
-            BadgeSize.SMALL -> {
-                textColor = ColorState(
-                    normalEnabled = Color.TRANSPARENT,
-                    normalDisabled = Color.TRANSPARENT,
-                )
-            }
-
-            BadgeSize.NORMAL -> {
-                invalidateTextColors()
-            }
-        }
-        invalidate()
     }
 
     private fun invalidateBorderColors() {
