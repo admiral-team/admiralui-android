@@ -22,6 +22,38 @@
         <attr name="admiralTextColorCheckedDisabled" />
     </declare-styleable>
 
+    <declare-styleable name="LogoTab" parent="Tab">
+        <attr name="admiralStrokeColorCheckedEnabled" />
+        <attr name="admiralStrokeColorCheckedDisabled" />
+
+        <attr name="android:enabled" />
+        <attr name="srcCompat" format="reference" />
+    </declare-styleable>
+
+    <declare-styleable name="InformerTab" parent="Tab">
+        <attr name="admiralTitleText" />
+        <attr name="admiralSubtitleText" />
+
+        <attr name="admiralStrokeColorCheckedEnabled" />
+        <attr name="admiralStrokeColorCheckedDisabled" />
+        <attr name="admiralStrokeColorNormalEnabled" />
+        <attr name="admiralStrokeColorNormalDisabled" />
+
+        <attr name="admiralTitleColorNormalEnabled" format="reference|color" />
+        <attr name="admiralTitleColorNormalDisabled" format="reference|color" />
+        <attr name="admiralTitleColorPressed" format="reference|color" />
+        <attr name="admiralTitleColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralTitleColorCheckedDisabled" format="reference|color" />
+
+        <attr name="admiralSubtitleColorNormalEnabled" format="reference|color" />
+        <attr name="admiralSubtitleColorNormalDisabled" format="reference|color" />
+        <attr name="admiralSubtitleColorPressed" format="reference|color" />
+        <attr name="admiralSubtitleColorCheckedEnabled" format="reference|color" />
+        <attr name="admiralSubtitleColorCheckedDisabled" format="reference|color" />
+
+        <attr name="android:enabled" />
+    </declare-styleable>
+
     <declare-styleable name="InformerTabLayout" parent="Tab">
         <attr name="admiralIsPolygonVisible" format="boolean" />
         <attr name="polygonMarginTop" format="dimension" />
