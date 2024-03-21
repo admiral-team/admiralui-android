@@ -10,7 +10,7 @@ import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtTextFieldsPincodeBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.keyboard.KeyboardNum
-import com.admiral.uikit.components.pincode.PinCodeState
+import com.admiral.uikit.core.components.pincode.PinCodeState
 import com.admiral.uikit.view.checkable.CheckableGroup
 
 class TextFieldsPincodeFragment : BaseFragment(

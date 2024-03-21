@@ -17,6 +17,7 @@ import com.admiral.uikit.ext.pixels
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.ext.getColorOrNull
+import com.admiral.uikit.core.components.pincode.PinCodeState
 
 /**
  * It represents a set of indicator dots.
