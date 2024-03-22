@@ -27,6 +27,7 @@ internal fun MainScreen(
     onTabsClick: homeItemClick = {},
     onButtonsClick: homeItemClick = {},
     onTextFieldsClick: homeItemClick = {},
+    onCellsClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -123,6 +124,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onCellsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_menu_solid),

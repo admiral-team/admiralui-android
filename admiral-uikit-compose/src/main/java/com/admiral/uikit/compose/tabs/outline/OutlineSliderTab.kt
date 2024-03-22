@@ -53,7 +53,6 @@ fun OutlineSliderTab(
     isEnabled: Boolean = true,
     onClick: () -> Unit = {}
 ) {
-
     val borderColor = if (isEnabled) {
         if (isSelected) color.selectStrokeEnabled
         else color.unSelectStrokeEnable
@@ -91,6 +90,34 @@ fun OutlineSliderTab(
             }
         }
     )
+}
+
+@Composable
+fun OutlineSliderTabList(
+    list: MutableList<TabItem>,
+    onClick: (Int) -> Unit = {}
+) {
+    val tabList = remember {
+        list.toMutableStateList()
+    }
+    Row(
+        modifier = Modifier
+            .padding(horizontal = DIMEN_X4),
+        horizontalArrangement = Arrangement.spacedBy(DIMEN_X2)
+    ) {
+        tabList.forEachIndexed { index, tabItem ->
+            OutlineSliderTab(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                isSelected = tabList[index].isSelected,
+                tabText = tabItem.text,
+                onClick = {
+                    selectNewTab(tabList, tabList[index])
+                    onClick.invoke(index)
+                })
+        }
+    }
 }
 
 @Composable
@@ -207,8 +234,24 @@ private fun OutlineSliderTabPreview() {
         Spacer(modifier = Modifier.size(DIMEN_X4))
         OutlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false)
         Spacer(modifier = Modifier.size(DIMEN_X4))
-        OutlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false, isEnabled = false)
+        OutlineSliderTabList(
+            tabList,
+            isBadgeVisible = true,
+            isBadgeEnabled = false,
+            isEnabled = false
+        )
     }
+}
+
+@Preview
+@Composable
+fun OutlineSliderTabListPreview() {
+    OutlineSliderTabList(
+        mutableListOf(
+            TabItem("Default", true),
+            TabItem("Disabled", false),
+        )
+    )
 }
 
 fun selectNewTab(list: MutableList<TabItem>, tabItemSelected: TabItem) {

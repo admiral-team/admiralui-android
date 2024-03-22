@@ -25,7 +25,7 @@ import com.admiral.uikit.core.foundation.ColorState
 
 data class TextLabelCellUnit(
     override var unitType: CellUnitType,
-    @Size(min = TEXT_MIN_LENGTH, max = TEXT_MAX_LENGTH)
+    @Size(min = TextMinLength, max = TextMaxLength)
     private val text: String,
     private val textColorState: ColorState? = null,
     private val backgroundColorState: ColorState? = null,
@@ -42,7 +42,8 @@ data class TextLabelCellUnit(
             if (isEnabled) textColorState?.normalEnabled ?: theme.palette.textStaticWhite
             else textColorState?.normalDisabled ?: theme.palette.textStaticWhite.withAlpha()
         val backgroundColor =
-            backgroundColorState?.normalEnabled ?: theme.palette.backgroundSecondary
+            if (isEnabled) backgroundColorState?.normalEnabled ?: theme.palette.backgroundSecondary
+            else backgroundColorState?.normalDisabled ?: theme.palette.backgroundSecondary.withAlpha()
 
         Box(
             modifier = modifier
@@ -66,8 +67,8 @@ data class TextLabelCellUnit(
     }
 
     private companion object {
-        const val TEXT_MIN_LENGTH = 1L
-        const val TEXT_MAX_LENGTH = 2L
+        const val TextMinLength = 1L
+        const val TextMaxLength = 2L
     }
 }
 
