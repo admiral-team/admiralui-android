@@ -1,30 +1,39 @@
 package com.admiral.uikit.components.chat.image
 
 import android.content.Context
+import android.content.res.ColorStateList
 import android.graphics.PorterDuff
 import android.graphics.PorterDuffColorFilter
 import android.graphics.drawable.Drawable
 import android.util.AttributeSet
-import android.view.Gravity
-import android.widget.ImageView
+import android.view.LayoutInflater
+import android.widget.FrameLayout
 import androidx.core.content.res.use
 import androidx.core.view.isVisible
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
+import com.admiral.uikit.components.chat.MessageStatus
 import com.admiral.uikit.components.spinner.SpinnerLoading
+import com.admiral.uikit.core.ext.createRoundedRectangleDrawable
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.uikit.core.util.ComponentsRadius
+import com.admiral.uikit.databinding.AdmiralViewChatImageBinding
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
-import com.admiral.uikit.view.roundedImageView.RoundedImageView
 
 class ChatImageView @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
     defStyleAttr: Int = 0
-) : android.widget.FrameLayout(context, attrs, defStyleAttr), ThemeObserver {
+) : FrameLayout(context, attrs, defStyleAttr), ThemeObserver {
+
+    private val binding =
+        AdmiralViewChatImageBinding.inflate(LayoutInflater.from(context), this, true)
 
     /**
      * Defines image for the view.
@@ -32,7 +41,26 @@ class ChatImageView @JvmOverloads constructor(
     var drawable: Drawable? = null
         set(value) {
             field = value
-            imageView.setImageDrawable(value)
+            binding.imageView.setImageDrawable(value)
+        }
+
+    /**
+     * There are three types of [MessageStatus]: NONE, LOADING and DONE.
+     * Depending on this parameter, the view changes the icon's drawable.
+     */
+    internal var messageStatus: MessageStatus = MessageStatus.NONE
+        set(value) {
+            field = value
+            invalidateIcon()
+        }
+
+    /**
+     * Show / hide time with status.
+     */
+    internal var isShowStatus: Boolean = false
+        set(value) {
+            field = value
+            updateImageInfoVisibility()
         }
 
     /**
@@ -42,21 +70,45 @@ class ChatImageView @JvmOverloads constructor(
         set(value) {
             field = value
             invalidateLoading()
+            updateImageInfoVisibility()
         }
 
     /**
      * View shown on the loading state when [isLoading] == true.
      */
-    val loadingSpinner = SpinnerLoading(context).apply {
-        layoutParams = LayoutParams(
-            LayoutParams.WRAP_CONTENT,
-            LayoutParams.WRAP_CONTENT
-        ).apply {
-            gravity = Gravity.CENTER
+    val loadingSpinner: SpinnerLoading by lazy { findViewById(R.id.loadingSpinner) }
+
+    /**
+     * Time text.
+     * Component with the text and status icon is Gone if the text is null or empty.
+     */
+    internal var time: String? = null
+        set(value) {
+            field = value
+            binding.infoBoardTime.text = value
+            binding.statusTime.text = value
+            updateImageInfoVisibility()
         }
-        isVisible = false
-        isContrast = true
-    }
+
+    /**
+     * Image name text.
+     */
+    var imageName: String? = null
+        set(value) {
+            field = value
+            binding.imageName.text = value
+            updateImageInfoVisibility()
+        }
+
+    /**
+     * Image size and extension text.
+     */
+    var imageSize: String? = null
+        set(value) {
+            field = value
+            binding.imageSize.text = value
+            updateImageInfoVisibility()
+        }
 
     internal var imageViewType = ChatImageViewType.TOP
         set(value) {
@@ -64,26 +116,25 @@ class ChatImageView @JvmOverloads constructor(
             invalidateImageType()
         }
 
-    private var loadingForeground = RoundedImageView(context).apply {
-        isVisible = false
-        layoutParams = LayoutParams(
-            LayoutParams.MATCH_PARENT,
-            LayoutParams.MATCH_PARENT
-        )
-        scaleType = ImageView.ScaleType.CENTER_CROP
-
-        setImageDrawable(drawable(R.drawable.admiral_bg_message_image))
-        colorFilter = PorterDuffColorFilter(ThemeManager.theme.palette.backgroundModalView, PorterDuff.Mode.SRC_IN)
-    }
-
-    private val imageView = RoundedImageView(context).apply {
-        scaleType = ImageView.ScaleType.CENTER_CROP
-    }
-
     init {
-        addView(imageView)
-        addView(loadingForeground)
-        addView(loadingSpinner)
+        loadingSpinner.isContrast = true
+
+        with(binding) {
+
+            loadingForeground.apply {
+                setImageDrawable(drawable(R.drawable.admiral_bg_message_image))
+
+                colorFilter = PorterDuffColorFilter(
+                    ThemeManager.theme.palette.backgroundModalView,
+                    PorterDuff.Mode.SRC_IN
+                )
+            }
+
+            infoBoardBackgroundView.backgroundTintList =
+                ColorStateList.valueOf(ThemeManager.theme.palette.backgroundModalView)
+            imageSize.textColor =
+                ColorState(ThemeManager.theme.palette.textStaticWhite.withAlpha(IMAGE_SIZE_ALPHA))
+        }
 
         parseAttrs(attrs, R.styleable.ChatImageView).use {
             drawable = it.getDrawable(R.styleable.ChatImageView_srcCompat)
@@ -107,9 +158,12 @@ class ChatImageView @JvmOverloads constructor(
     }
 
     override fun onThemeChanged(theme: Theme) {
-        loadingForeground.apply {
+        binding.loadingForeground.apply {
             setImageDrawable(drawable(R.drawable.admiral_bg_message_image))
-            colorFilter = PorterDuffColorFilter(ThemeManager.theme.palette.backgroundModalView, PorterDuff.Mode.SRC_IN)
+            colorFilter = PorterDuffColorFilter(
+                ThemeManager.theme.palette.backgroundModalView,
+                PorterDuff.Mode.SRC_IN
+            )
         }
     }
 
@@ -127,30 +181,39 @@ class ChatImageView @JvmOverloads constructor(
             ChatImageViewType.SOLO -> {
                 invalidateSolo()
             }
+
             ChatImageViewType.TOP -> {
                 invalidateTop()
             }
+
             ChatImageViewType.TOP_LEFT -> {
                 invalidateTopLeft()
             }
+
             ChatImageViewType.TOP_RIGHT -> {
                 invalidateTopRight()
             }
+
             ChatImageViewType.MIDDLE_LEFT -> {
                 invalidateMiddleLeft()
             }
+
             ChatImageViewType.MIDDLE_RIGHT -> {
                 invalidateMiddleRight()
             }
+
             ChatImageViewType.LEFT -> {
                 invalidateLeft()
             }
+
             ChatImageViewType.RIGHT -> {
                 invalidateRight()
             }
+
             ChatImageViewType.BOTTOM_LEFT -> {
                 invalidateBottomLeft()
             }
+
             ChatImageViewType.BOTTOM_RIGHT -> {
                 invalidateBottomRight()
             }
@@ -158,148 +221,320 @@ class ChatImageView @JvmOverloads constructor(
     }
 
     private fun invalidateBottomRight() {
-        imageView.apply {
-            setMargins(0, 0, 0, MARGIN_SIDES)
-            setCornerRadius(0f, 0f, 0f, CORNER_RADIUS.dpToPx(context).toFloat())
-        }
-        loadingForeground.apply {
-            setMargins(0, 0, 0, MARGIN_SIDES)
-            setCornerRadius(0f, 0f, 0f, CORNER_RADIUS.dpToPx(context).toFloat())
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.NONE,
+                    bottomRight = ComponentsRadius.RADIUS_12,
+                )
+
+                setMargins(top = 0, right = 0, bottom = 0, left = MARGIN_SIDES)
+            }
+
+            imageView.apply {
+                setMargins(0, 0, 0, MARGIN_SIDES)
+                setCornerRadius(0f, 0f, 0f, CORNER_RADIUS.dpToPx(context).toFloat())
+            }
+            loadingForeground.apply {
+                setMargins(0, 0, 0, MARGIN_SIDES)
+                setCornerRadius(0f, 0f, 0f, CORNER_RADIUS.dpToPx(context).toFloat())
+            }
         }
     }
 
     private fun invalidateBottomLeft() {
-        imageView.apply {
-            setMargins(0, MARGIN_SIDES, 0, 0)
-            setCornerRadius(0f, 0f, CORNER_RADIUS.dpToPx(context).toFloat(), 0f)
-        }
-        loadingForeground.apply {
-            setMargins(0, MARGIN_SIDES, 0, 0)
-            setCornerRadius(0f, 0f, CORNER_RADIUS.dpToPx(context).toFloat(), 0f)
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.RADIUS_12,
+                    bottomRight = ComponentsRadius.NONE,
+                )
+
+                setMargins(top = 0, right = MARGIN_SIDES, bottom = 0, left = 0)
+            }
+
+            imageView.apply {
+                setMargins(0, MARGIN_SIDES, 0, 0)
+                setCornerRadius(0f, 0f, CORNER_RADIUS.dpToPx(context).toFloat(), 0f)
+            }
+            loadingForeground.apply {
+                setMargins(0, MARGIN_SIDES, 0, 0)
+                setCornerRadius(0f, 0f, CORNER_RADIUS.dpToPx(context).toFloat(), 0f)
+            }
         }
     }
 
     private fun invalidateRight() {
-        imageView.apply {
-            setCornerRadius(
-                0f,
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                0f,
-                CORNER_RADIUS.dpToPx(context).toFloat()
-            )
-            setMargins(0, 0, 0, MARGIN_SIDES)
-        }
-        loadingForeground.apply {
-            setCornerRadius(
-                0f,
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                0f,
-                CORNER_RADIUS.dpToPx(context).toFloat()
-            )
-            setMargins(0, 0, 0, MARGIN_SIDES)
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.NONE,
+                    bottomRight = ComponentsRadius.RADIUS_12,
+                )
+
+                setMargins(top = 0, right = 0, bottom = 0, left = MARGIN_SIDES)
+            }
+
+            imageView.apply {
+                setCornerRadius(
+                    0f,
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    0f,
+                    CORNER_RADIUS.dpToPx(context).toFloat()
+                )
+                setMargins(0, 0, 0, MARGIN_SIDES)
+            }
+            loadingForeground.apply {
+                setCornerRadius(
+                    0f,
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    0f,
+                    CORNER_RADIUS.dpToPx(context).toFloat()
+                )
+                setMargins(0, 0, 0, MARGIN_SIDES)
+            }
         }
     }
 
     private fun invalidateLeft() {
-        imageView.apply {
-            setCornerRadius(
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                0f,
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                0f
-            )
-            setMargins(0, MARGIN_SIDES, 0, 0)
-        }
-        loadingForeground.apply {
-            setCornerRadius(
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                0f,
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                0f
-            )
-            setMargins(0, MARGIN_SIDES, 0, 0)
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.RADIUS_12,
+                    bottomRight = ComponentsRadius.NONE,
+                )
+
+                setMargins(top = 0, right = MARGIN_SIDES, bottom = 0, left = 0)
+            }
+            imageView.apply {
+                setCornerRadius(
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    0f,
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    0f
+                )
+                setMargins(0, MARGIN_SIDES, 0, 0)
+            }
+            loadingForeground.apply {
+                setCornerRadius(
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    0f,
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    0f
+                )
+                setMargins(0, MARGIN_SIDES, 0, 0)
+            }
         }
     }
 
     private fun invalidateMiddleRight() {
-        imageView.apply {
-            setCornerRadius(0f, 0f, 0f, 0f)
-            setMargins(0, 0, MARGIN_BOTTOM, MARGIN_SIDES)
-        }
-        loadingForeground.apply {
-            setCornerRadius(0f, 0f, 0f, 0f)
-            setMargins(0, 0, MARGIN_BOTTOM, MARGIN_SIDES)
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.NONE,
+                    bottomRight = ComponentsRadius.NONE,
+                )
+
+                setMargins(top = 0, right = 0, bottom = MARGIN_BOTTOM, left = MARGIN_SIDES)
+            }
+            imageView.apply {
+                setCornerRadius(0f, 0f, 0f, 0f)
+                setMargins(0, 0, MARGIN_BOTTOM, MARGIN_SIDES)
+            }
+            loadingForeground.apply {
+                setCornerRadius(0f, 0f, 0f, 0f)
+                setMargins(0, 0, MARGIN_BOTTOM, MARGIN_SIDES)
+            }
         }
     }
 
     private fun invalidateMiddleLeft() {
-        imageView.apply {
-            setCornerRadius(0f, 0f, 0f, 0f)
-            setMargins(0, MARGIN_SIDES, MARGIN_BOTTOM, 0)
-        }
-        loadingForeground.apply {
-            setCornerRadius(0f, 0f, 0f, 0f)
-            setMargins(0, MARGIN_SIDES, MARGIN_BOTTOM, 0)
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.NONE,
+                    bottomRight = ComponentsRadius.NONE,
+                )
+
+                setMargins(top = 0, right = MARGIN_SIDES, bottom = MARGIN_BOTTOM, left = 0)
+            }
+            imageView.apply {
+                setCornerRadius(0f, 0f, 0f, 0f)
+                setMargins(0, MARGIN_SIDES, MARGIN_BOTTOM, 0)
+            }
+            loadingForeground.apply {
+                setCornerRadius(0f, 0f, 0f, 0f)
+                setMargins(0, MARGIN_SIDES, MARGIN_BOTTOM, 0)
+            }
         }
     }
 
     private fun invalidateTopRight() {
-        imageView.apply {
-            setMargins(0, 0, MARGIN_BOTTOM, MARGIN_SIDES)
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.NONE,
+                    bottomRight = ComponentsRadius.NONE,
+                )
 
-            setCornerRadius(0f, CORNER_RADIUS.dpToPx(context).toFloat(), 0f, 0f)
-        }
-        loadingForeground.apply {
-            setMargins(0, 0, MARGIN_BOTTOM, MARGIN_SIDES)
+                setMargins(top = 0, right = 0, bottom = MARGIN_BOTTOM, left = MARGIN_SIDES)
+            }
+            imageView.apply {
+                setMargins(0, 0, MARGIN_BOTTOM, MARGIN_SIDES)
 
-            setCornerRadius(0f, CORNER_RADIUS.dpToPx(context).toFloat(), 0f, 0f)
+                setCornerRadius(0f, CORNER_RADIUS.dpToPx(context).toFloat(), 0f, 0f)
+            }
+            loadingForeground.apply {
+                setMargins(0, 0, MARGIN_BOTTOM, MARGIN_SIDES)
+
+                setCornerRadius(0f, CORNER_RADIUS.dpToPx(context).toFloat(), 0f, 0f)
+            }
         }
     }
 
     private fun invalidateTopLeft() {
-        imageView.apply {
-            setMargins(0, MARGIN_SIDES, MARGIN_BOTTOM, 0)
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.NONE,
+                    bottomRight = ComponentsRadius.NONE,
+                )
 
-            setCornerRadius(CORNER_RADIUS.dpToPx(context).toFloat(), 0f, 0f, 0f)
-        }
-        loadingForeground.apply {
-            setMargins(0, MARGIN_SIDES, MARGIN_BOTTOM, 0)
+                setMargins(top = 0, right = MARGIN_SIDES, bottom = MARGIN_BOTTOM, left = 0)
+            }
+            imageView.apply {
+                setMargins(0, MARGIN_SIDES, MARGIN_BOTTOM, 0)
 
-            setCornerRadius(CORNER_RADIUS.dpToPx(context).toFloat(), 0f, 0f, 0f)
+                setCornerRadius(CORNER_RADIUS.dpToPx(context).toFloat(), 0f, 0f, 0f)
+            }
+            loadingForeground.apply {
+                setMargins(0, MARGIN_SIDES, MARGIN_BOTTOM, 0)
+
+                setCornerRadius(CORNER_RADIUS.dpToPx(context).toFloat(), 0f, 0f, 0f)
+            }
         }
     }
 
     private fun invalidateTop() {
-        imageView.apply {
-            setMargins(0, 0, MARGIN_BOTTOM, 0)
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.NONE,
+                    bottomRight = ComponentsRadius.NONE,
+                )
 
-            setCornerRadius(
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                0f,
-                0f
-            )
-        }
-        loadingForeground.apply {
-            setMargins(0, 0, MARGIN_BOTTOM, 0)
+                setMargins(top = 0, right = 0, bottom = MARGIN_BOTTOM, left = 0)
+            }
+            imageView.apply {
+                setMargins(0, 0, MARGIN_BOTTOM, 0)
 
-            setCornerRadius(
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                CORNER_RADIUS.dpToPx(context).toFloat(),
-                0f,
-                0f
-            )
+                setCornerRadius(
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    0f,
+                    0f
+                )
+            }
+
+            loadingForeground.apply {
+                setMargins(0, 0, MARGIN_BOTTOM, 0)
+
+                setCornerRadius(
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    CORNER_RADIUS.dpToPx(context).toFloat(),
+                    0f,
+                    0f
+                )
+            }
         }
     }
 
     private fun invalidateSolo() {
-        imageView.cornerRadius = CORNER_RADIUS.dpToPx(context).toFloat()
-        loadingForeground.cornerRadius = CORNER_RADIUS.dpToPx(context).toFloat()
+        with(binding) {
+            infoBoardBackgroundView.apply {
+                background = createRoundedRectangleDrawable(
+                    topLeft = ComponentsRadius.NONE,
+                    topRight = ComponentsRadius.NONE,
+                    bottomLeft = ComponentsRadius.RADIUS_12,
+                    bottomRight = ComponentsRadius.RADIUS_12,
+                )
+
+            }
+            imageView.cornerRadius = CORNER_RADIUS.dpToPx(context).toFloat()
+            loadingForeground.cornerRadius = CORNER_RADIUS.dpToPx(context).toFloat()
+        }
     }
 
     private fun invalidateLoading() {
-        loadingForeground.isVisible = isLoading
-        loadingSpinner.isVisible = isLoading
+        with(binding) {
+            loadingForeground.isVisible = isLoading
+            loadingSpinner.isVisible = isLoading
+        }
+    }
+
+    private fun invalidateIcon() {
+        val color = ThemeManager.theme.palette.elementStaticWhite
+
+        val drawable = when (messageStatus) {
+            MessageStatus.NONE -> null
+            MessageStatus.LOAD -> drawable(R.drawable.admiral_ic_time_outline)
+            MessageStatus.SENDING -> drawable(R.drawable.admiral_ic_status_one_outline)
+            MessageStatus.SEND -> drawable(R.drawable.admiral_ic_status_one_outline)
+            MessageStatus.READ -> drawable(R.drawable.admiral_ic_status_two_outline)
+        }
+
+        with(binding) {
+            if (drawable == null) {
+                statusImage.isVisible = false
+                infoBoardStatusImage.isVisible = false
+
+                statusTime.setMargins(top = 0, right = TIME_MARGIN_END, bottom = 0, left = 0)
+            } else {
+                statusImage.isVisible = true
+                infoBoardStatusImage.isVisible = true
+
+                statusImage.setImageDrawable(drawable)
+                infoBoardStatusImage.setImageDrawable(drawable)
+            }
+
+            statusImage.imageTintColorState = ColorState(color)
+            infoBoardStatusImage.imageTintColorState = ColorState(color)
+        }
+    }
+
+    private fun updateImageInfoVisibility() {
+        val isInfoBoardVisible =
+            imageName.isNullOrEmpty().not() && imageSize.isNullOrEmpty()
+                .not() && isLoading.not()
+        val isTimeNotEmpty = time.isNullOrEmpty().not()
+
+        with(binding) {
+            infoBoardGroup.isVisible = isInfoBoardVisible
+
+            infoBoardContainer.isVisible =
+                isInfoBoardVisible && isTimeNotEmpty && isShowStatus
+
+            statusContainer.isVisible =
+                isInfoBoardVisible.not() && isTimeNotEmpty && isShowStatus && isLoading.not()
+        }
     }
 
     fun interface OnLoaderClickListener {
@@ -310,5 +545,7 @@ class ChatImageView @JvmOverloads constructor(
         const val CORNER_RADIUS = 12
         const val MARGIN_SIDES = 2
         const val MARGIN_BOTTOM = 4
+        const val TIME_MARGIN_END = 4
+        const val IMAGE_SIZE_ALPHA = 0.4f
     }
 }

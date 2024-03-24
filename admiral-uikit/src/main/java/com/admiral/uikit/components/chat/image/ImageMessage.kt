@@ -7,40 +7,28 @@ import android.view.Gravity
 import android.view.ViewGroup
 import android.widget.GridLayout
 import android.widget.ImageView
-import androidx.appcompat.widget.LinearLayoutCompat
-import androidx.core.content.ContextCompat
 import androidx.core.content.res.use
 import androidx.core.view.children
 import androidx.core.view.isVisible
-import androidx.core.view.updatePadding
-import com.admiral.themes.ColorPaletteEnum
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.chat.MessageStatus
-import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.ext.setMargins
 import com.admiral.uikit.layout.FrameLayout
 import com.admiral.uikit.layout.LinearLayout
-import com.admiral.uikit.components.imageview.ImageView as AdmiralImageView
 
 class ImageMessage @JvmOverloads constructor(
     context: Context, attrs: AttributeSet? = null, defStyleAttr: Int = 0
 ) : LinearLayout(context, attrs, defStyleAttr) {
 
-    /*
-      * There are three types of MessageStatus: NONE, LOADING and DONE.
-      * Depending on this parameter, the view changes the icon's drawable.
-      * */
+    /**
+     * There are three types of MessageStatus: NONE, LOADING and DONE.
+     * Depending on this parameter, the view changes the icon's drawable.
+     */
     var messageStatus: MessageStatus = MessageStatus.NONE
-        set(value) {
-            field = value
-            invalidateIcon()
-        }
 
     var isError: Boolean = false
         set(value) {
@@ -53,11 +41,12 @@ class ImageMessage @JvmOverloads constructor(
      * Component with the text and status icon is Gone if the text is null or empty.
      */
     var time: String? = null
-        set(value) {
-            field = value
-            timeTextView.text = value
-            timeContainer.isVisible = value?.isNotEmpty() == true
-        }
+
+    /**
+     * Detailed information card
+     * Component with image name, size, extension and status with time
+     */
+    var isShouldShowDetailInfo: Boolean = false
 
     /**
      * Container of [ChatImageView] shown at the GridLayout.
@@ -65,46 +54,6 @@ class ImageMessage @JvmOverloads constructor(
     val views = mutableListOf<ChatImageView>()
 
     private val frameContainer = FrameLayout(context)
-
-    private val timeTextView = TextView(context).apply {
-        textStyle = ThemeManager.theme.typography.caption1
-        textColor = ColorState(ThemeManager.theme.palette.textStaticWhite)
-        gravity = Gravity.CENTER_VERTICAL
-    }
-
-    private val statusImageView = AdmiralImageView(context).apply {
-        val attributes = LayoutParams(
-            STATUS_IMAGE_VIEW_SIZE.dpToPx(context), STATUS_IMAGE_VIEW_SIZE.dpToPx(context)
-        )
-        layoutParams = attributes
-    }
-
-    private val timeContainer = LinearLayout(context).apply {
-        showDividers = LinearLayoutCompat.SHOW_DIVIDER_MIDDLE
-        dividerDrawable =
-            ContextCompat.getDrawable(context, R.drawable.admiral_devider_space_horizontal_4dp)
-        orientation = LinearLayoutCompat.HORIZONTAL
-
-        val attributes = android.widget.FrameLayout.LayoutParams(
-            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
-        ).apply {
-            gravity = Gravity.BOTTOM or Gravity.END
-        }
-        layoutParams = attributes
-
-        background = drawable(R.drawable.admiral_bg_rectangle_18dp)
-        backgroundColorNormalEnabledPalette = ColorPaletteEnum.BACKGROUND_MODAL_VIEW
-        backgroundColorPressedPalette = ColorPaletteEnum.BACKGROUND_MODAL_VIEW
-
-        addView(timeTextView)
-        addView(statusImageView)
-
-        updatePadding(
-            4.dpToPx(context), 2.dpToPx(context), 4.dpToPx(context), 2.dpToPx(context)
-        )
-        setMargins(0, MARGIN_TIME_RIGHT, MARGIN_TIME_BOTTOM, 0)
-        isVisible = false
-    }
 
     private val imagesContainer = GridLayout(context)
 
@@ -124,7 +73,6 @@ class ImageMessage @JvmOverloads constructor(
 
         parseAttrs(attrs, R.styleable.ImageMessage).use {
             time = it.getString(R.styleable.ImageMessage_admiralTimeText)
-
             messageStatus =
                 MessageStatus.from(it.getInt(R.styleable.ImageMessage_admiralMessageStatus, 0))
         }
@@ -132,9 +80,6 @@ class ImageMessage @JvmOverloads constructor(
         imagesContainer.columnCount = 2
 
         frameContainer.addView(imagesContainer)
-        frameContainer.addView(timeContainer)
-
-        invalidateIcon()
 
         this.addView(frameContainer)
         this.addView(errorImageView)
@@ -175,7 +120,6 @@ class ImageMessage @JvmOverloads constructor(
         val chatImageViewCreated = ChatImageView(context).apply {
             this.drawable = chatImageView.drawable
         }
-
         views.add(0, chatImageViewCreated)
 
         showViews()
@@ -207,6 +151,15 @@ class ImageMessage @JvmOverloads constructor(
 
         if (views.count() == 6) {
             showSixViews()
+        }
+
+        views.forEach {
+            it.time = time
+            it.messageStatus = messageStatus
+        }
+
+        views.last().apply {
+            isShowStatus = true
         }
     }
 
@@ -310,9 +263,7 @@ class ImageMessage @JvmOverloads constructor(
 
     private fun showOneView() {
         val imageView = views[0]
-
         imageView.imageViewType = ChatImageViewType.SOLO
-
         imageView.layoutParams = getFullWidthLayoutParams()
 
         imagesContainer.addView(imageView)
@@ -338,35 +289,11 @@ class ImageMessage @JvmOverloads constructor(
         }
     }
 
-    private fun invalidateIcon() {
-        val color = ThemeManager.theme.palette.elementStaticWhite
-
-        val drawable = when (messageStatus) {
-            MessageStatus.NONE -> null
-            MessageStatus.LOAD -> drawable(R.drawable.admiral_ic_time_outline)
-            MessageStatus.SENDING -> drawable(R.drawable.admiral_ic_status_one_outline)
-            MessageStatus.SEND -> drawable(R.drawable.admiral_ic_status_one_outline)
-            MessageStatus.READ -> drawable(R.drawable.admiral_ic_status_two_outline)
-        }
-
-        if (drawable == null) {
-            statusImageView.isVisible = false
-        } else {
-            statusImageView.isVisible = true
-            statusImageView.setImageDrawable(drawable)
-        }
-
-        statusImageView.imageTintColorState = ColorState(color)
-    }
-
     private fun showMessageError(isError: Boolean) {
         errorImageView.isVisible = isError
     }
 
     private companion object {
-        const val MARGIN_TIME_BOTTOM = 8
-        const val MARGIN_TIME_RIGHT = 12
-        const val STATUS_IMAGE_VIEW_SIZE = 16
         const val ERROR_IMAGE_VIEW_SIZE = 28
         const val VIEW_HEIGHT = 114
     }
