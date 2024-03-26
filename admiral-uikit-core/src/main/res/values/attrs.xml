@@ -81,6 +81,17 @@
             <enum name="RADIUS_16" value="4" />
             <enum name="RADIUS_20" value="5" />
         </attr>
+
+        <attr name="admiralBadgeText" format="string|reference" />
+        <attr name="admiralBadgeType" format="enum">
+            <enum name="NORMAL" value="0" />
+            <enum name="ERROR" value="1" />
+            <enum name="ATTENTION" value="2" />
+            <enum name="SUCCESS" value="3" />
+            <enum name="NEUTRAL" value="4" />
+            <enum name="ADDITIONAL" value="5" />
+        </attr>
+        <attr name="admiralShowSmallBadge" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="Feedback" parent="GlobalAttrDeclare">
@@ -190,6 +201,9 @@
 
     <declare-styleable name="DoubleSlider" parent="GlobalAttrDeclare">
         <attr name="enabled" />
+
+        <attr name="admiralIcon" />
+        <attr name="admiralIconTintColor" />
 
         <attr name="admiralTextColorNormalEnabled" />
         <attr name="admiralTextColorNormalDisabled" />

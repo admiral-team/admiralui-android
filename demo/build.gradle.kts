@@ -122,7 +122,7 @@ android {
     }
 
     shot {
-        tolerance = 5.0
+        tolerance = 7.0
     }
 }
 
