@@ -27,6 +27,7 @@ import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.core.util.ComponentsRadius
 import com.admiral.uikit.components.textfield.TextField
+import com.admiral.uikit.core.components.input.InputType
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.coloredDrawable
@@ -199,7 +200,7 @@ class InputNumber @JvmOverloads constructor(
 
     /**
      * Invoked when the value changes.
-     * The value is always between [DEFAULT_MAX_VALUE] and [DEFAULT_MAX_VALUE]).
+     * The value is always between [DEFAULT_MIN_VALUE] and [DEFAULT_MAX_VALUE]).
      */
     var onValueChange: ((old: Int, new: Int) -> Unit)? = null
 

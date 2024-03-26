@@ -1,1 +1,1 @@
-[FEATURE-627] - added color processing for navigation buttonsk
+[FEATURE-65] - added compose number Akhmedov Murad Muslimovich [4097679]* 26.03.2024, 06:51

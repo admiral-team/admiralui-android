@@ -1,4 +1,4 @@
-package com.admiral.uikit.components.input
+package com.admiral.uikit.core.components.input
 
 enum class InputType {
     OVAL,
