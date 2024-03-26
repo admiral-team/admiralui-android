@@ -1,12 +1,18 @@
 package com.admiral.themes.compose
 
+import androidx.compose.material.Typography
+import androidx.compose.runtime.compositionLocalOf
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.font.Font
 import androidx.compose.ui.text.font.FontFamily
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.unit.sp
 
-data class Typography(
+internal val LocalAdmiralTypographies = compositionLocalOf<AdmiralTypography> {
+    error("No AdmiralTypography provided")
+}
+
+data class AdmiralTypography(
     val body1: TextStyle,
     val body2: TextStyle,
     val caption1: TextStyle,
@@ -27,14 +33,14 @@ data class Typography(
 )
 
 @Suppress("MagicNumber", "LongMethod")
-fun defaultTypography(): Typography {
+fun defaultAdmiralTypography(): AdmiralTypography {
     val fontFamily = FontFamily(
         Font(R.font.roboto_400, FontWeight.W400),
         Font(R.font.roboto_500, FontWeight.W500),
         Font(R.font.roboto_700, FontWeight.W700)
     )
 
-    return Typography(
+    return AdmiralTypography(
         body1 = TextStyle(
             fontFamily = fontFamily,
             fontWeight = FontWeight.W500,
@@ -139,3 +145,19 @@ fun defaultTypography(): Typography {
         )
     )
 }
+
+val debugTypography = Typography(
+    h1 = defaultAdmiralTypography().body1,
+    h2 = defaultAdmiralTypography().body1,
+    h3 = defaultAdmiralTypography().body1,
+    h4 = defaultAdmiralTypography().body1,
+    h5 = defaultAdmiralTypography().body1,
+    h6 = defaultAdmiralTypography().body1,
+    subtitle1 = defaultAdmiralTypography().body1,
+    subtitle2 = defaultAdmiralTypography().body1,
+    body1 = defaultAdmiralTypography().body1,
+    body2 = defaultAdmiralTypography().body1,
+    button = defaultAdmiralTypography().body1,
+    caption = defaultAdmiralTypography().body1,
+    overline = defaultAdmiralTypography().body1,
+)

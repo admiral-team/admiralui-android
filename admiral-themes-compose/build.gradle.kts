@@ -17,6 +17,8 @@ dependencies {
     api(project(Modules.Admiral.Themes.themes))
 
     implementation(Libs.AndroidX.Compose.Ui.ui)
+    implementation(Libs.AndroidX.Compose.foundation)
+    implementation(Libs.AndroidX.Compose.material)
     implementation(Libs.Kotlin.stdLib)
 }
 
