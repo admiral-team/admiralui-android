@@ -6,7 +6,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.admiral.demo.R
 import com.admiral.demo.databinding.TestViewPincodeBinding
 import com.admiral.demo.ext.measureUnspecifiedHeight
-import com.admiral.uikit.components.pincode.PinCodeState
+import com.admiral.uikit.core.components.pincode.PinCodeState
 import com.admiral.uikit.components.pincode.PinCodeView
 import com.karumi.shot.ScreenshotTest
 import org.junit.Before
