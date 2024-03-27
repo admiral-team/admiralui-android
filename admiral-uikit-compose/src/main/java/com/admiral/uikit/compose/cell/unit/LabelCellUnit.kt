@@ -8,6 +8,9 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.tooling.preview.Preview
+import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.cell.base.CellUnit
 import com.admiral.uikit.compose.util.DIMEN_X11
 import com.admiral.uikit.core.components.cell.base.CellUnitType
@@ -28,12 +31,32 @@ data class LabelCellUnit(
                 .clip(CircleShape),
             painter = icon,
             contentDescription = contentDescription,
-            alpha = if (isEnabled) ALPHA_ENABLED else ALPHA_DISABLED
+            alpha = if (isEnabled) AlphaEnabled else AlphaDisabled
         )
     }
 
     private companion object {
-        const val ALPHA_DISABLED = 0.6F
-        const val ALPHA_ENABLED = 1.0F
+        const val AlphaDisabled = 0.6F
+        const val AlphaEnabled = 1.0F
     }
+}
+
+
+@Composable
+@Preview()
+fun LabelCellUnitUnitPreview() {
+    LabelCellUnit(
+        unitType = CellUnitType.LEADING,
+        icon = painterResource(id = R.drawable.admiral_ic_google_pay)
+    ).Create(modifier = Modifier)
+}
+
+@Composable
+@Preview()
+fun LabelCellUnitDisabledPreview() {
+    LabelCellUnit(
+        unitType = CellUnitType.LEADING,
+        icon = painterResource(id = R.drawable.admiral_ic_google_pay),
+        isEnabled = false
+    ).Create(modifier = Modifier)
 }
