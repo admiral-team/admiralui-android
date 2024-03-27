@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.compose.ui.platform.ComposeView
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
+import com.admiral.themes.compose.AdmiralTheme
 
 class ComposeHomeFragment : BaseFragment(R.layout.fmt_home) {
     override fun onCreateView(
@@ -16,7 +17,9 @@ class ComposeHomeFragment : BaseFragment(R.layout.fmt_home) {
     ): View {
         return ComposeView(requireContext()).apply {
             setContent {
-                HomeHost()
+                AdmiralTheme {
+                    HomeHost()
+                }
             }
         }
     }

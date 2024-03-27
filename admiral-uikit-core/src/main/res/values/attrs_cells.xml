@@ -54,6 +54,10 @@
         <attr name="isIconColored" />
         <attr name="admiralIconColorNormalEnabledPalette" />
         <attr name="admiralBackgroundColorNormalEnabledPalette" />
+
+        <attr name="admiralBadgeText" />
+        <attr name="admiralBadgeType" />
+        <attr name="admiralShowSmallBadge" />
     </declare-styleable>
 
     <declare-styleable name="LabelCellUnit" parent="CellUnit">

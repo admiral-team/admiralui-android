@@ -48,7 +48,7 @@ data class IconBackgroundCellUnit(
                 .height(DIMEN_X11)
                 .clip(CircleShape)
                 .background(color = Color(backgroundColor), shape = CircleShape)
-                .padding(ICON_PADDING.dp),
+                .padding(IconPadding.dp),
             painter = icon,
             contentDescription = contentDescription,
             tint = Color(iconColor),
@@ -56,6 +56,6 @@ data class IconBackgroundCellUnit(
     }
 
     private companion object {
-        const val ICON_PADDING = 10
+        const val IconPadding = 10
     }
 }

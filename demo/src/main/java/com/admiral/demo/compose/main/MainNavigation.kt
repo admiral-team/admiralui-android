@@ -9,12 +9,14 @@ internal fun NavGraphBuilder.mainScreen(
     onTabsClick: () -> Unit,
     onButtonsClick: () -> Unit,
     onTextFieldsClick: () -> Unit,
+    onCellsClick: () -> Unit,
 ) {
     composable(route = MAIN_ROUTE) {
         MainScreen(
             onTabsClick = onTabsClick,
             onButtonsClick = onButtonsClick,
             onTextFieldsClick = onTextFieldsClick,
+            onCellsClick = onCellsClick,
         )
     }
 }

@@ -1,5 +1,6 @@
 package com.admiral.uikit.compose.tabs.underline
 
+import android.annotation.SuppressLint
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -120,7 +121,7 @@ private fun UnderlineSliderTabWithBadge(
             color = AdmiralBadgeColor.normal(),
             isEnable = isBadgeEnabled,
             content = null,
-            position = AdmiralBadgePosition.standard(
+            position = AdmiralBadgePosition.default(
                 badgeVerticalOffset = BADGE_VERTICAL_OFFSET.dp,
                 badgeHorizontalOffset = BADGE_HORIZONTAL_OFFSET.dp
             )
@@ -136,6 +137,7 @@ private fun UnderlineSliderTabWithBadge(
     }
 }
 
+@SuppressLint("ModifierFactoryUnreferencedReceiver")
 private fun Modifier.bottomBorder(strokeWidth: Dp, color: Color) = composed(
     factory = {
         val density = LocalDensity.current

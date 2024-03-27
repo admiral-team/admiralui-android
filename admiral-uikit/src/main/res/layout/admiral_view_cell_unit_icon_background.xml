@@ -13,10 +13,20 @@
         android:padding="@dimen/module_x2"
         app:layout_constraintStart_toStartOf="parent" />
 
+    <Space
+        android:id="@+id/admiralIconBackgroundCellImageSpace"
+        android:layout_width="@dimen/module_x2"
+        android:layout_height="@dimen/module_x2"
+        app:layout_constraintStart_toEndOf="@id/admiralIconBackgroundCellImage"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <com.admiral.uikit.components.badge.Badge
         android:id="@+id/admiralIconBackgroundCellBadge"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:visibility="gone" />
+        android:visibility="gone"
+        app:layout_constraintEnd_toEndOf="@id/admiralIconBackgroundCellImageSpace"
+        app:layout_constraintTop_toTopOf="@id/admiralIconBackgroundCellImageSpace"
+        tools:visibility="visible" />
 
 </merge>

@@ -11,6 +11,12 @@ import com.admiral.demo.compose.home.button.navigateToPrimaryButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToSecondaryButtonsScreen
 import com.admiral.demo.compose.home.button.primaryButtonsScreen
 import com.admiral.demo.compose.home.button.secondaryButtonsScreen
+import com.admiral.demo.compose.home.cells.cellsBaseScreen
+import com.admiral.demo.compose.home.cells.cellsLeadingScreen
+import com.admiral.demo.compose.home.cells.cellsMainScreen
+import com.admiral.demo.compose.home.cells.navigateToCellsBaseScreen
+import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
+import com.admiral.demo.compose.home.cells.navigateToCellsScreen
 import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
 import com.admiral.demo.compose.home.textfield.doubleTextFieldScreen
 import com.admiral.demo.compose.home.textfield.feedbackTextFieldScreen
@@ -40,6 +46,7 @@ import com.admiral.demo.compose.tabs.tabsScreen
 
 internal const val HOME_GRAPH_ROUTE = "home_graph"
 
+@Suppress("LongMethod")
 fun NavGraphBuilder.homeGraph(
     navController: NavController,
 ) {
@@ -50,7 +57,8 @@ fun NavGraphBuilder.homeGraph(
         mainScreen(
             onTabsClick = { navController.navigateToTabs() },
             onButtonsClick = { navController.navigateToButtonsScreen() },
-            onTextFieldsClick = { navController.navigateToTextFieldsScreen() }
+            onTextFieldsClick = { navController.navigateToTextFieldsScreen() },
+            onCellsClick = { navController.navigateToCellsScreen() },
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -85,6 +93,24 @@ fun NavGraphBuilder.homeGraph(
         pinCodeTextFieldScreen()
         numberDefaultTextFieldScreen()
         numberSecondaryTextFieldScreen()
+        cellsMainScreen(
+            onBackClick = { navController.navigateBack() },
+            onBaseCellsClick = { navController.navigateToCellsBaseScreen() },
+            onActionbarClick = {},
+        )
+        cellsBaseScreen(
+            onBackClick = { navController.navigateBack() },
+            onCellsLeadingClick = {
+                navController.navigateToCellsLeadingScreen()
+            }
+        )
+        cellsLeadingScreen(
+            onBackClick = { navController.navigateBack() },
+        )
         tabsScreen()
     }
+}
+
+internal fun NavController.navigateBack() {
+    popBackStack()
 }

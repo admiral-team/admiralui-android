@@ -16,7 +16,7 @@ data class BadgePosition(
 
 object AdmiralBadgePosition {
     @Composable
-    fun standard(
+    fun default(
         badgeVerticalOffset: Dp = VERTICAL_OFFSET.dp,
         badgeVerticalWithContentOffset: Dp = VERTICAL_OFFSET_WITH_CONTENT.dp,
         badgeHorizontalOffset: Dp = HORIZONTAL_OFFSET.dp,

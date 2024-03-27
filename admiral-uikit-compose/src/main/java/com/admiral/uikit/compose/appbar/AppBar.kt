@@ -94,7 +94,7 @@ fun AppBar(
                     Icon(
                         painter = icon,
                         contentDescription = null,
-                        tint = navIconTintColor ?: Color(palette.elementAccent),
+                        tint = navIconTintColor ?: Color(palette.elementPrimary),
                         modifier = Modifier
                             .size(DIMEN_X7)
                             .constrainAs(navIconId) {

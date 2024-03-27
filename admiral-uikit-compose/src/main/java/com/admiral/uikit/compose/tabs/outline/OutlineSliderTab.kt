@@ -3,13 +3,13 @@ package com.admiral.uikit.compose.tabs.outline
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxWidth
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
+import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
@@ -19,10 +19,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.text.TextStyle
+import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.admiral.themes.compose.ThemeManagerCompose
@@ -31,6 +33,12 @@ import com.admiral.uikit.compose.badge.AdmiralBadgePosition
 import com.admiral.uikit.compose.badge.BadgedBox
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
+
+private const val MAX_LINES = 1
+private val BorderActiveWidth = 2.dp
+private val BorderInactiveWidth = 1.dp
+private val BadgeVerticalOffset = (-9).dp
+private val BadgeHorizontalOffset = (-1).dp
 
 @Composable
 fun OutlineSliderTab(
@@ -45,7 +53,6 @@ fun OutlineSliderTab(
     isEnabled: Boolean = true,
     onClick: () -> Unit = {}
 ) {
-
     val borderColor = if (isEnabled) {
         if (isSelected) color.selectStrokeEnabled
         else color.unSelectStrokeEnable
@@ -55,22 +62,18 @@ fun OutlineSliderTab(
     }
     val textColor = if (isEnabled) color.textEnable else color.textDisable
     val textStyle = if (isSelected) activeTextStyle else inactiveTextStyle
-    val shape = RoundedCornerShape(TAB_CORNER_SHAPE_RADIUS.dp)
-    val borderWidth = if (isSelected) TAB_BORDER_ACTIVE_WIDTH else TAB_BORDER_INACTIVE_WIDTH
+    val shape = RoundedCornerShape(DIMEN_X2)
+    val borderWidth = if (isSelected) BorderActiveWidth else BorderInactiveWidth
 
     Tab(
         modifier = modifier
-            .height(TAB_HEIGHT.dp)
             .fillMaxWidth()
-            .border(borderWidth.dp, borderColor, shape)
-            .padding(SPACE_BETWEEN_BORDER.dp)
+            .border(borderWidth, borderColor, shape)
             .clip(shape),
         selected = isSelected,
         enabled = isEnabled,
-        onClick = {
-            onClick()
-        },
-        text = {
+        onClick = { onClick() },
+        content = {
             when {
                 isBadgeVisible -> OutlineSliderTabWithBadge(
                     text = tabText,
@@ -90,16 +93,48 @@ fun OutlineSliderTab(
 }
 
 @Composable
+fun OutlineSliderTabList(
+    list: MutableList<TabItem>,
+    onClick: (Int) -> Unit = {}
+) {
+    val tabList = remember {
+        list.toMutableStateList()
+    }
+    Row(
+        modifier = Modifier
+            .padding(horizontal = DIMEN_X4),
+        horizontalArrangement = Arrangement.spacedBy(DIMEN_X2)
+    ) {
+        tabList.forEachIndexed { index, tabItem ->
+            OutlineSliderTab(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                isSelected = tabList[index].isSelected,
+                tabText = tabItem.text,
+                onClick = {
+                    selectNewTab(tabList, tabList[index])
+                    onClick.invoke(index)
+                })
+        }
+    }
+}
+
+@Composable
 private fun OutlineSliderTab(
     text: String,
     textColor: Color,
     textStyle: TextStyle,
 ) {
     Text(
+        modifier = Modifier
+            .padding(DIMEN_X2)
+            .wrapContentHeight(align = Alignment.CenterVertically),
         text = text,
         style = textStyle,
         color = textColor,
         maxLines = MAX_LINES,
+        textAlign = TextAlign.Center
     )
 }
 
@@ -110,25 +145,28 @@ private fun OutlineSliderTabWithBadge(
     textStyle: TextStyle,
     isBadgeEnabled: Boolean,
 ) {
-    Box(
-        modifier = Modifier.padding(
-            vertical = BADGE_TEXT_PADDING_VERTICAL.dp
-        )
+    Row(
+        modifier = Modifier
+            .padding(
+                end = DIMEN_X4,
+                start = DIMEN_X2,
+                top = DIMEN_X2,
+                bottom = DIMEN_X2
+            )
     ) {
         BadgedBox(
             color = AdmiralBadgeColor.normal(),
             isEnable = isBadgeEnabled,
             content = null,
-            position = AdmiralBadgePosition.standard(
-                badgeVerticalOffset = BADGE_VERTICAL_OFFSET.dp,
-                badgeHorizontalOffset = BADGE_HORIZONTAL_OFFSET.dp
+            position = AdmiralBadgePosition.default(
+                badgeVerticalOffset = BadgeVerticalOffset,
+                badgeHorizontalOffset = BadgeHorizontalOffset
             )
         ) {
             Text(
                 modifier = Modifier
-                    .padding(
-                        horizontal = BADGE_TEXT_PADDING_HORIZONTAL.dp,
-                    ),
+                    .wrapContentHeight(align = Alignment.CenterVertically)
+                    .padding(horizontal = DIMEN_X2),
                 text = text,
                 color = textColor,
                 style = textStyle,
@@ -137,17 +175,6 @@ private fun OutlineSliderTabWithBadge(
         }
     }
 }
-
-private const val TAB_CORNER_SHAPE_RADIUS = 8
-private const val TAB_BORDER_ACTIVE_WIDTH = 2
-private const val TAB_BORDER_INACTIVE_WIDTH = 1
-private const val SPACE_BETWEEN_BORDER = 1
-private const val TAB_HEIGHT = 32
-private const val MAX_LINES = 1
-private const val BADGE_VERTICAL_OFFSET = -9
-private const val BADGE_HORIZONTAL_OFFSET = -2
-private const val BADGE_TEXT_PADDING_HORIZONTAL = 8
-private const val BADGE_TEXT_PADDING_VERTICAL = 6
 
 @Immutable
 data class TabItem(
@@ -207,8 +234,24 @@ private fun OutlineSliderTabPreview() {
         Spacer(modifier = Modifier.size(DIMEN_X4))
         OutlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false)
         Spacer(modifier = Modifier.size(DIMEN_X4))
-        OutlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false, isEnabled = false)
+        OutlineSliderTabList(
+            tabList,
+            isBadgeVisible = true,
+            isBadgeEnabled = false,
+            isEnabled = false
+        )
     }
+}
+
+@Preview
+@Composable
+fun OutlineSliderTabListPreview() {
+    OutlineSliderTabList(
+        mutableListOf(
+            TabItem("Default", true),
+            TabItem("Disabled", false),
+        )
+    )
 }
 
 fun selectNewTab(list: MutableList<TabItem>, tabItemSelected: TabItem) {
