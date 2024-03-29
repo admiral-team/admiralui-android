@@ -15,7 +15,8 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
+import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.appbar.AppBar
 import com.admiral.uikit.compose.cell.BaseCell
 import com.admiral.uikit.compose.cell.unit.CardCellUnit
@@ -27,7 +28,6 @@ import com.admiral.uikit.compose.cell.unit.TitleCellUnit
 import com.admiral.uikit.compose.tabs.outline.OutlineSliderTabList
 import com.admiral.uikit.compose.tabs.outline.TabItem
 import com.admiral.uikit.core.components.cell.base.CellUnitType
-import com.admiral.uikit.core.foundation.ColorState
 
 @Composable
 @Suppress("LongMethod")
@@ -136,8 +136,8 @@ fun CellsLeadingScreen(
                 children = listOf(
                     IconCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_diamond_solid),
-                        iconColorState = ColorState(ThemeManagerCompose.theme.value.palette.elementAccent),
-
+                        iconColorEnable = AdmiralTheme.colors.elementAccent,
+                        iconColorDisable = AdmiralTheme.colors.elementAccent.withAlpha(),
                         unitType = CellUnitType.LEADING,
                         isEnabled = isEnabled
                     ),

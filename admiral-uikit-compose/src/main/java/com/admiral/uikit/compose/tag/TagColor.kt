@@ -2,6 +2,7 @@ package com.admiral.uikit.compose.tag
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
+import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
 import com.admiral.themes.compose.AdmiralTheme.colors
 import com.admiral.themes.compose.withAlpha
@@ -17,7 +18,19 @@ data class TagColor(
     val textEnable: Color,
     val textDisable: Color,
     val textPressed: Color,
-)
+) {
+    @Composable
+    fun getIconColor(isEnabled: Boolean) =
+        rememberUpdatedState(if (isEnabled) iconEnable else iconDisable)
+
+    @Composable
+    fun getBackgroundColor(isEnabled: Boolean) =
+        rememberUpdatedState(if (isEnabled) backgroundEnable else backgroundDisable)
+
+    @Composable
+    fun getTextColor(isEnabled: Boolean) =
+        rememberUpdatedState(if (isEnabled) textEnable else textDisable)
+}
 
 object AdmiralTagColor {
     @Composable

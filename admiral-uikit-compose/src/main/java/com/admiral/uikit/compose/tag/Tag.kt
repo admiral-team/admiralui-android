@@ -4,7 +4,6 @@ import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.interaction.MutableInteractionSource
-import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
@@ -34,6 +33,7 @@ import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.tag.AdmiralTagColor.gray
 import com.admiral.uikit.compose.tag.AdmiralTagColor.green
 import com.admiral.uikit.compose.tag.AdmiralTagColor.orange
+import com.admiral.uikit.compose.tag.AdmiralTagColor.red
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X25
 
@@ -50,9 +50,9 @@ fun Tag(
     onClick: () -> Unit = {}
 ) {
     val shape = RoundedCornerShape(DIMEN_X25)
-    val textColor = if (isEnabled) color.textEnable else color.textDisable
-    val backgroundColor = if (isEnabled) color.backgroundEnable else color.backgroundDisable
-    var iconColor = if (isEnabled) color.iconEnable else color.iconDisable
+    val textColor = color.getTextColor(isEnabled = isEnabled).value
+    val backgroundColor = color.getBackgroundColor(isEnabled = isEnabled).value
+    var iconColor = color.getIconColor(isEnabled = isEnabled).value
     iconColor = if (isIconColored) iconColor else Color.Unspecified
     val alpha = if (!isEnabled && !isIconColored) ALFA_DISABLE else ALFA_ENABLE
 
@@ -149,18 +149,18 @@ private fun TagPreview() {
                         isIconColored = false,
                     )
                     Spacer(modifier = Modifier.size(DIMEN_X2))
-                    Tag(text = "Sample", color = AdmiralTagColor.gray(), isEnabled = false)
+                    Tag(text = "Sample", color = gray(), isEnabled = false)
                     Spacer(modifier = Modifier.size(DIMEN_X2))
                     Tag(
                         text = "Sample",
                         icon = painterResource(id = R.drawable.admiral_ic_car_solid),
                         iconPosition = TagIconPosition.LEFT,
-                        color = AdmiralTagColor.red(),
+                        color = red(),
                         isEnabled = false,
                         isIconColored = false,
                     )
                     Spacer(modifier = Modifier.size(DIMEN_X2))
-                    Tag(text = "Sample", color = AdmiralTagColor.red())
+                    Tag(text = "Sample", color = red())
                     Spacer(modifier = Modifier.size(DIMEN_X2))
                     Tag(
                         text = "Sample $emoji",
@@ -194,7 +194,7 @@ private fun TagPreview() {
                         icon = painterResource(id = R.drawable.admiral_ic_car_solid),
                         iconPosition = TagIconPosition.LEFT,
                         size = AdmiralTagSize.medium(),
-                        color = AdmiralTagColor.gray(),
+                        color = gray(),
                         isEnabled = false,
                         isIconColored = true,
                     )
@@ -209,7 +209,7 @@ private fun TagPreview() {
                     )
                     Spacer(modifier = Modifier.size(DIMEN_X2))
                     Tag(
-                        text = "Sample", color = AdmiralTagColor.gray(),
+                        text = "Sample", color = gray(),
                         size = AdmiralTagSize.medium(),
                         isEnabled = false
                     )
@@ -218,14 +218,14 @@ private fun TagPreview() {
                         text = "Sample",
                         icon = painterResource(id = R.drawable.admiral_ic_car_solid),
                         iconPosition = TagIconPosition.LEFT,
-                        color = AdmiralTagColor.red(),
+                        color = red(),
                         isEnabled = false,
                         isIconColored = false,
                         size = AdmiralTagSize.medium(),
                     )
                     Spacer(modifier = Modifier.size(DIMEN_X2))
                     Tag(
-                        text = "Sample", color = AdmiralTagColor.red(),
+                        text = "Sample", color = red(),
                         size = AdmiralTagSize.medium(),
                     )
                     Spacer(modifier = Modifier.size(DIMEN_X2))
@@ -272,7 +272,7 @@ private fun TagPreview() {
                         icon = painterResource(id = R.drawable.admiral_ic_car_solid),
                         iconPosition = TagIconPosition.LEFT,
                         size = AdmiralTagSize.small(),
-                        color = AdmiralTagColor.gray(),
+                        color = gray(),
                         isEnabled = false,
                         isIconColored = true,
                     )
@@ -287,7 +287,7 @@ private fun TagPreview() {
                     )
                     Spacer(modifier = Modifier.size(DIMEN_X2))
                     Tag(
-                        text = "Sample", color = AdmiralTagColor.gray(),
+                        text = "Sample", color = gray(),
                         size = AdmiralTagSize.small(),
                         isEnabled = false
                     )
@@ -296,14 +296,14 @@ private fun TagPreview() {
                         text = "Sample",
                         icon = painterResource(id = R.drawable.admiral_ic_car_solid),
                         iconPosition = TagIconPosition.LEFT,
-                        color = AdmiralTagColor.red(),
+                        color = red(),
                         isEnabled = false,
                         isIconColored = false,
                         size = AdmiralTagSize.small(),
                     )
                     Spacer(modifier = Modifier.size(DIMEN_X2))
                     Tag(
-                        text = "Sample", color = AdmiralTagColor.red(),
+                        text = "Sample", color = red(),
                         size = AdmiralTagSize.small(),
                     )
                     Spacer(modifier = Modifier.size(DIMEN_X2))

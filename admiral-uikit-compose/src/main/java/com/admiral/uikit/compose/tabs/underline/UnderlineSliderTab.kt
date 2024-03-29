@@ -1,7 +1,6 @@
 package com.admiral.uikit.compose.tabs.underline
 
 import android.annotation.SuppressLint
-import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -28,12 +28,15 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.badge.AdmiralBadgeColor
 import com.admiral.uikit.compose.badge.AdmiralBadgePosition
 import com.admiral.uikit.compose.badge.BadgedBox
 import com.admiral.uikit.compose.tabs.outline.TabItem
 import com.admiral.uikit.compose.tabs.outline.selectNewTab
+import com.admiral.uikit.compose.util.DIMEN_X2
+import com.admiral.uikit.compose.util.DIMEN_X4
+import com.admiral.uikit.compose.util.DIMEN_X8
 
 @Composable
 fun UnderlineSliderTab(
@@ -41,26 +44,24 @@ fun UnderlineSliderTab(
     isSelected: Boolean = false,
     tabText: String,
     color: UnderlineTabColor = AdmiralUnderlineTabColorColor.normal(),
-    activeTextStyle: TextStyle = ThemeManagerCompose.typography.subhead2,
-    inactiveTextStyle: TextStyle = ThemeManagerCompose.typography.subhead3,
+    activeTextStyle: TextStyle = AdmiralTheme.typography.subhead2,
+    inactiveTextStyle: TextStyle = AdmiralTheme.typography.subhead3,
     isBadgeVisible: Boolean = false,
     isBadgeEnabled: Boolean = true,
     isEnabled: Boolean = true,
     onClick: () -> Unit = {}
 ) {
-    val textColor = if (isEnabled) color.textEnable else color.textDisable
+    val textColor = color.getTextColor(isEnabled = isEnabled).value
     val textStyle = if (isSelected) activeTextStyle else inactiveTextStyle
-    val bottomIndicatorColor = if (isEnabled) {
-        if (isSelected) color.selectBottomIndicatorEnabled
+
+    val bottomIndicatorColor =
+        if (isSelected) color.getSelectBottomIndicatorColor(isEnabled = isEnabled).value
         else color.unSelectBottomIndicator
-    } else {
-        if (isSelected) color.selectBottomIndicatorEnabled
-        else color.unSelectBottomIndicator
-    }
+
     Tab(
         modifier = modifier
             .fillMaxWidth()
-            .height(TAB_HEIGHT.dp)
+            .height(DIMEN_X8)
             .bottomBorder(
                 BOTTOM_INDICATOR_WIDTH.dp,
                 color = bottomIndicatorColor
@@ -158,7 +159,6 @@ private fun Modifier.bottomBorder(strokeWidth: Dp, color: Color) = composed(
 )
 
 private const val BOTTOM_INDICATOR_WIDTH = 2
-private const val TAB_HEIGHT = 32
 private const val MAX_LINES = 1
 private const val BADGE_VERTICAL_OFFSET = -6
 private const val BADGE_HORIZONTAL_OFFSET = 2
@@ -174,8 +174,8 @@ private fun UnderlineSliderTabList(
 ) {
     LazyRow(
         modifier = Modifier
-            .padding(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+            .padding(horizontal = DIMEN_X4),
+        horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
     ) {
         itemsIndexed(list) { index, tabItem ->
             UnderlineSliderTab(
@@ -199,8 +199,8 @@ private fun UnderlineCenterTabList(
 ) {
     Row(
         modifier = Modifier
-            .padding(horizontal = 16.dp),
-        horizontalArrangement = Arrangement.spacedBy(8.dp),
+            .padding(horizontal = DIMEN_X4),
+        horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
     ) {
         list.forEachIndexed { index, tabItem ->
             UnderlineSliderTab(
@@ -230,22 +230,32 @@ private fun UnderlineSliderTabPreview() {
         }.toMutableStateList()
     }
 
-    Column(
-        modifier = Modifier
-            .background(color = Color(ThemeManagerCompose.theme.value.palette.backgroundBasic))
-            .padding(vertical = 16.dp)
-    ) {
-        UnderlineSliderTabList(tabList)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineSliderTabList(tabList, isEnabled = false)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineSliderTabList(tabList, isBadgeVisible = true)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineSliderTabList(tabList, isBadgeVisible = true, isEnabled = false)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false, isEnabled = false)
+    AdmiralTheme {
+        Surface(
+            color = AdmiralTheme.colors.backgroundBasic
+        ) {
+            Column(
+                modifier = Modifier
+                    .padding(vertical = DIMEN_X4)
+            ) {
+                UnderlineSliderTabList(tabList)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineSliderTabList(tabList, isEnabled = false)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineSliderTabList(tabList, isBadgeVisible = true)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineSliderTabList(tabList, isBadgeVisible = true, isEnabled = false)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineSliderTabList(
+                    tabList,
+                    isBadgeVisible = true,
+                    isBadgeEnabled = false,
+                    isEnabled = false
+                )
+            }
+        }
     }
 }
 
@@ -293,21 +303,26 @@ private fun UnderlineCenterTabPreview() {
         }.toMutableStateList()
     }
 
-    Column(
-        modifier = Modifier
-            .fillMaxWidth()
-            .background(color = Color(ThemeManagerCompose.theme.value.palette.backgroundBasic))
-            .padding(vertical = 16.dp)
-    ) {
-        UnderlineCenterTabList(twoList)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineCenterTabList(threeList, isEnabled = false)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineCenterTabList(fourList, isBadgeVisible = true)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineCenterTabList(fiveList, isBadgeVisible = true, isEnabled = false)
-        Spacer(modifier = Modifier.size(16.dp))
-        UnderlineCenterTabList(sixList, isBadgeVisible = true, isBadgeEnabled = false)
-        UnderlineCenterTabList(sixList)
+    AdmiralTheme {
+        Surface(
+            color = AdmiralTheme.colors.backgroundBasic
+        ) {
+            Column(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(vertical = DIMEN_X4)
+            ) {
+                UnderlineCenterTabList(twoList)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineCenterTabList(threeList, isEnabled = false)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineCenterTabList(fourList, isBadgeVisible = true)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineCenterTabList(fiveList, isBadgeVisible = true, isEnabled = false)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                UnderlineCenterTabList(sixList, isBadgeVisible = true, isBadgeEnabled = false)
+                UnderlineCenterTabList(sixList)
+            }
+        }
     }
 }

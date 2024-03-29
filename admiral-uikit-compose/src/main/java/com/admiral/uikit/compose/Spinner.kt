@@ -7,7 +7,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 
@@ -24,13 +26,11 @@ fun Spinner(
     modifier: Modifier = Modifier,
     size: SpinnerSize = SpinnerSize.MEDIUM,
     isEnabled: Boolean = true,
-    spinnerColorState: ColorState? = null,
+    enableColor: Color = AdmiralTheme.colors.backgroundAccent,
+    disableColor: Color = AdmiralTheme.colors.backgroundAccent.withAlpha(),
 ) {
-    val theme = ThemeManagerCompose.theme.value
 
-    val spinnerColor =
-        if (isEnabled) spinnerColorState?.normalEnabled ?: theme.palette.backgroundAccent
-        else spinnerColorState?.normalDisabled ?: theme.palette.backgroundAccent.withAlpha()
+    val spinnerColor = if (isEnabled) enableColor else disableColor
 
     val sizeDp = when (size) {
         SpinnerSize.BIG -> SPINNER_BIG_SIZE.dp
@@ -39,7 +39,7 @@ fun Spinner(
     }
 
     CircularProgressIndicator(
-        color = Color(spinnerColor),
+        color = spinnerColor,
         strokeWidth = 2.dp,
         modifier = modifier
             .size(sizeDp)

@@ -9,11 +9,8 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.selection.selectable
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.State
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
-import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
@@ -21,7 +18,6 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.util.DIMEN_X3
 import com.admiral.uikit.compose.util.DIMEN_X4
@@ -52,8 +48,8 @@ fun Feedback(
                 icon = icon,
                 selected = it < rating,
                 onClick = onClick,
-                iconTintNormal = colors.iconTintNormalColor(enabled = enabled).value,
-                iconTintSelected = colors.iconTintSelectedColor(enabled = enabled).value,
+                iconTintNormal = colors.getIconTintNormalColor(enabled = enabled).value,
+                iconTintSelected = colors.getIconTintSelectedColor(enabled = enabled).value,
                 modifier = Modifier
                     .size(size = iconSize)
             )

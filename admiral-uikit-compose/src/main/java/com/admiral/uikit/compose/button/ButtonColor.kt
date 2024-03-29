@@ -2,10 +2,9 @@ package com.admiral.uikit.compose.button
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.graphics.Color
-import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.themes.compose.AdmiralTheme
+import com.admiral.themes.compose.withAlpha
 
 @Immutable
 data class ButtonColor(
@@ -24,123 +23,73 @@ data class ButtonColor(
 object AdmiralButtonColor {
     @Composable
     fun primary(
-        textColorEnable: Color = textStaticWhite,
-        textColorDisable: Color = textStaticWhiteWithAlfa,
-        textColorPressed: Color = textStaticWhite,
-        backgroundEnable: Color = backgroundAccent,
-        backgroundDisable: Color = backgroundAccentWithAlfa,
-        backgroundPressed: Color = backgroundAccent,
-        iconTintEnable: Color = elementStaticWhite,
-        iconTintDisable: Color = elementStaticWhiteWithAlfa,
-        iconTintPressed: Color = elementStaticWhite,
-    ): ButtonColor = remember(
-        backgroundEnable,
-        backgroundDisable,
-        backgroundPressed,
-        textColorEnable,
-        textColorDisable,
-        textColorPressed,
-        iconTintEnable,
-        iconTintDisable,
-        iconTintPressed,
-    ) {
-        ButtonColor(
-            backgroundEnable = backgroundEnable,
-            backgroundDisable = backgroundDisable,
-            backgroundPressed = backgroundPressed,
-            textColorEnable = textColorEnable,
-            textColorDisable = textColorDisable,
-            textColorPressed = textColorPressed,
-            iconTintEnable = iconTintEnable,
-            iconTintDisable = iconTintDisable,
-            iconTintPressed = iconTintPressed,
-            borderColor = transparent
-        )
-    }
+        textColorEnable: Color = AdmiralTheme.colors.textStaticWhite,
+        textColorDisable: Color = AdmiralTheme.colors.textStaticWhite.withAlpha(),
+        textColorPressed: Color = AdmiralTheme.colors.textStaticWhite,
+        backgroundEnable: Color = AdmiralTheme.colors.backgroundAccent,
+        backgroundDisable: Color = AdmiralTheme.colors.backgroundAccent.withAlpha(),
+        backgroundPressed: Color = AdmiralTheme.colors.backgroundAccent,
+        iconTintEnable: Color = AdmiralTheme.colors.elementStaticWhite,
+        iconTintDisable: Color = AdmiralTheme.colors.elementStaticWhite.withAlpha(),
+        iconTintPressed: Color = AdmiralTheme.colors.elementStaticWhite,
+    ) = ButtonColor(
+        backgroundEnable = backgroundEnable,
+        backgroundDisable = backgroundDisable,
+        backgroundPressed = backgroundPressed,
+        textColorEnable = textColorEnable,
+        textColorDisable = textColorDisable,
+        textColorPressed = textColorPressed,
+        iconTintEnable = iconTintEnable,
+        iconTintDisable = iconTintDisable,
+        iconTintPressed = iconTintPressed,
+        borderColor = Color.Transparent
+    )
 
     @Composable
     fun secondary(
-        textColorEnable: Color = textAccent,
-        textColorDisable: Color = textAccentWithAlfa,
-        textColorPressed: Color = textAccentPressed,
-        backgroundEnable: Color = transparent,
-        backgroundDisable: Color = transparent,
-        backgroundPressed: Color = transparent,
-        iconTintEnable: Color = elementAccent,
-        iconTintDisable: Color = elementAccentWithAlfa,
-        iconTintPressed: Color = elementAccent,
-    ): ButtonColor = remember(
-        backgroundEnable,
-        backgroundDisable,
-        backgroundPressed,
-        textColorEnable,
-        textColorDisable,
-        textColorPressed,
-        iconTintEnable,
-        iconTintDisable,
-        iconTintPressed,
-    ) {
-        ButtonColor(
-            backgroundEnable = backgroundEnable,
-            backgroundDisable = backgroundDisable,
-            backgroundPressed = backgroundPressed,
-            textColorEnable = textColorEnable,
-            textColorDisable = textColorDisable,
-            textColorPressed = textColorPressed,
-            iconTintEnable = iconTintEnable,
-            iconTintDisable = iconTintDisable,
-            iconTintPressed = iconTintPressed,
-            borderColor = elementAccent,
-        )
-    }
+        textColorEnable: Color = AdmiralTheme.colors.textAccent,
+        textColorDisable: Color = AdmiralTheme.colors.textAccent.withAlpha(),
+        textColorPressed: Color = AdmiralTheme.colors.textAccentPressed,
+        backgroundEnable: Color = Color.Transparent,
+        backgroundDisable: Color = Color.Transparent,
+        backgroundPressed: Color = Color.Transparent,
+        iconTintEnable: Color = AdmiralTheme.colors.elementAccent,
+        iconTintDisable: Color = AdmiralTheme.colors.elementAccent.withAlpha(),
+        iconTintPressed: Color = AdmiralTheme.colors.elementAccent,
+    ) = ButtonColor(
+        backgroundEnable = backgroundEnable,
+        backgroundDisable = backgroundDisable,
+        backgroundPressed = backgroundPressed,
+        textColorEnable = textColorEnable,
+        textColorDisable = textColorDisable,
+        textColorPressed = textColorPressed,
+        iconTintEnable = iconTintEnable,
+        iconTintDisable = iconTintDisable,
+        iconTintPressed = iconTintPressed,
+        borderColor = AdmiralTheme.colors.elementAccent,
+    )
 
     @Composable
     fun ghost(
-        textColorEnable: Color = textAccent,
-        textColorDisable: Color = textAccentWithAlfa,
-        textColorPressed: Color = textAccentPressed,
-        backgroundEnable: Color = transparent,
-        backgroundDisable: Color = transparent,
-        backgroundPressed: Color = transparent,
-        iconTintEnable: Color = elementAccent,
-        iconTintDisable: Color = elementAccentWithAlfa,
-        iconTintPressed: Color = elementAccent,
-    ): ButtonColor = remember(
-        backgroundEnable,
-        backgroundDisable,
-        backgroundPressed,
-        textColorEnable,
-        textColorDisable,
-        textColorPressed,
-        iconTintEnable,
-        iconTintDisable,
-        iconTintPressed,
-    ) {
-        ButtonColor(
-            backgroundEnable = backgroundEnable,
-            backgroundDisable = backgroundDisable,
-            backgroundPressed = backgroundPressed,
-            textColorEnable = textColorEnable,
-            textColorDisable = textColorDisable,
-            textColorPressed = textColorPressed,
-            iconTintEnable = iconTintEnable,
-            iconTintDisable = iconTintDisable,
-            iconTintPressed = iconTintPressed,
-            borderColor = transparent,
-        )
-    }
+        textColorEnable: Color = AdmiralTheme.colors.textAccent,
+        textColorDisable: Color = AdmiralTheme.colors.textAccent.withAlpha(),
+        textColorPressed: Color = AdmiralTheme.colors.textAccentPressed,
+        backgroundEnable: Color = Color.Transparent,
+        backgroundDisable: Color = Color.Transparent,
+        backgroundPressed: Color = Color.Transparent,
+        iconTintEnable: Color = AdmiralTheme.colors.elementAccent,
+        iconTintDisable: Color = AdmiralTheme.colors.elementAccent.withAlpha(),
+        iconTintPressed: Color = AdmiralTheme.colors.elementAccent,
+    ) = ButtonColor(
+        backgroundEnable = backgroundEnable,
+        backgroundDisable = backgroundDisable,
+        backgroundPressed = backgroundPressed,
+        textColorEnable = textColorEnable,
+        textColorDisable = textColorDisable,
+        textColorPressed = textColorPressed,
+        iconTintEnable = iconTintEnable,
+        iconTintDisable = iconTintDisable,
+        iconTintPressed = iconTintPressed,
+        borderColor = Color.Transparent,
+    )
 }
-
-private val palette = ThemeManagerCompose.theme.value.palette
-private val textStaticWhite = Color(palette.textStaticWhite)
-private val textStaticWhiteWithAlfa = Color(palette.textStaticWhite.withAlpha())
-private val textAccent = Color(palette.textAccent)
-private val textAccentWithAlfa = Color(palette.textAccent.withAlpha())
-private val textAccentPressed = Color(palette.textAccentPressed)
-private val backgroundAccent = Color(palette.backgroundAccent)
-private val backgroundAccentWithAlfa = Color(palette.backgroundAccent.withAlpha())
-private val elementStaticWhite = Color(palette.elementStaticWhite)
-private val elementStaticWhiteWithAlfa = Color(palette.elementStaticWhite.withAlpha())
-private val elementAccent = Color(palette.elementAccent)
-private val elementAccentWithAlfa = Color(palette.elementAccent.withAlpha())
-private val transparent = Color(palette.transparent)

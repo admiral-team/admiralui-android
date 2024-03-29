@@ -11,11 +11,11 @@ import androidx.compose.foundation.layout.heightIn
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
-import androidx.compose.material.Icon
-import androidx.compose.material.Scaffold
-import androidx.compose.material.Surface
-import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
+import androidx.compose.material3.Icon
+import androidx.compose.material3.Scaffold
+import androidx.compose.material3.Surface
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -29,7 +29,8 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
+import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.button.AdmiralButtonColor
 import com.admiral.uikit.compose.button.AdmiralButtonSize
@@ -40,8 +41,6 @@ import com.admiral.uikit.compose.util.DIMEN_X6
 import com.admiral.uikit.compose.util.DIMEN_X7
 import com.admiral.uikit.compose.util.DIMEN_X8
 import com.admiral.uikit.core.components.appbar.AppbarSize
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 
 @Suppress("LongParameterList")
 @Composable
@@ -61,22 +60,20 @@ fun AppBar(
     maxActions: Int = MaxActions,
     onOverFlowActionsIconClick: () -> Unit = {},
     size: AppbarSize = AppbarSize.SMALL,
-    backgroundColor: Color? = null,
-    navIconTintColor: Color? = null,
-    titleColor: Color? = null,
-    actionTextColor: ColorState? = null,
+    backgroundColor: Color = AdmiralTheme.colors.backgroundBasic,
+    navIconTintColor: Color = AdmiralTheme.colors.elementPrimary,
+    titleColor: Color = AdmiralTheme.colors.textPrimary,
+    actionTextColor: Color = AdmiralTheme.colors.textAccent,
 ) {
-    val palette = ThemeManagerCompose.theme.value.palette
-    val typography = ThemeManagerCompose.typography
     val textStyle = when (size) {
-        AppbarSize.SMALL -> typography.subtitle2
-        AppbarSize.BIG -> typography.largetitle1
+        AppbarSize.SMALL -> AdmiralTheme.typography.subtitle2
+        AppbarSize.BIG -> AdmiralTheme.typography.largetitle1
     }
     val showAsActionItems = actions.take(maxActions)
     val overflowItems = actions.subtract(showAsActionItems.toSet()).toList()
 
     Surface(
-        color = backgroundColor ?: Color(palette.backgroundBasic),
+        color = backgroundColor,
         modifier = modifier
             .fillMaxWidth()
             .heightIn(min = AppBarHeight)
@@ -94,7 +91,7 @@ fun AppBar(
                     Icon(
                         painter = icon,
                         contentDescription = null,
-                        tint = navIconTintColor ?: Color(palette.elementPrimary),
+                        tint = navIconTintColor,
                         modifier = Modifier
                             .size(DIMEN_X7)
                             .constrainAs(navIconId) {
@@ -141,7 +138,7 @@ fun AppBar(
                         modifier = Modifier,
                         text = title,
                         textAlign = titleAlign,
-                        color = titleColor ?: Color(palette.textPrimary),
+                        color = titleColor,
                         style = textStyle,
                         overflow = TextOverflow.Ellipsis,
                         maxLines = titleMaxLines
@@ -160,10 +157,8 @@ fun AppBar(
                         },
                     actionText = actionText,
                     color = AdmiralButtonColor.ghost(
-                        textColorEnable = actionTextColor?.normalEnabled?.let { Color(it) }
-                            ?: Color(palette.textAccent),
-                        textColorDisable = actionTextColor?.normalDisabled?.let { Color(it) }
-                            ?: Color(palette.textAccent.withAlpha())
+                        textColorEnable = actionTextColor,
+                        textColorDisable = actionTextColor.withAlpha()
                     ),
                     size = AdmiralButtonSize.small(),
                     onClick = onActionTextClickListener,
@@ -183,15 +178,12 @@ fun AppBar(
                 verticalAlignment = Alignment.CenterVertically,
             ) {
                 showAsActionItems.forEach { action ->
-                    if (action != showAsActionItems.first()) Spacer(
-                        modifier = Modifier.size(
-                            DIMEN_X6
-                        )
-                    )
+                    if (action != showAsActionItems.first())
+                        Spacer(modifier = Modifier.size(DIMEN_X6))
                     Icon(
                         painter = action.icon,
                         contentDescription = action.contentDescription,
-                        tint = action.color ?: Color(palette.elementAccent),
+                        tint = action.color ?: AdmiralTheme.colors.elementAccent,
                         modifier = Modifier
                             .size(DIMEN_X7)
                             .clickable(
@@ -208,7 +200,7 @@ fun AppBar(
                     Icon(
                         painter = overFlowActionsIcon,
                         contentDescription = null,
-                        tint = Color(palette.elementAccent),
+                        tint = AdmiralTheme.colors.elementAccent,
                         modifier = Modifier
                             .size(DIMEN_X7)
                             .clickable(
@@ -258,61 +250,63 @@ private fun AppBarPreview() {
             onClick = { }
         )
     )
-    Scaffold(modifier = Modifier) { padding ->
-        Column(modifier = Modifier.padding(padding)) {
-            AppBar(title = "Дизайн-система «Адмирал»")
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline)
-            )
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                size = AppbarSize.BIG
-            )
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-                actions = actionsList.take(1)
-            )
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-                actions = actionsList.take(2)
-            )
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                isNavigationIconVisible = false,
-                navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-                actions = actionsList.take(3)
-            )
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-                overFlowActionsIcon = painterResource(id = R.drawable.admiral_ic_more_outline),
-                actions = actionsList.take(3)
-            )
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-                overFlowActionsIcon = painterResource(id = R.drawable.admiral_ic_more_outline),
-                titleMaxLines = titleTextMaxLineOne,
-                actions = actionsList.take(3)
-            )
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-                overFlowActionsIcon = painterResource(id = R.drawable.admiral_ic_more_outline),
-                actionText = "Cancel",
-                titleMaxLines = titleTextMaxLineOne,
-                actions = actionsList.take(3)
-            )
-            AppBar(
-                title = "Дизайн-система «Адмирал»",
-                navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
-                overFlowActionsIcon = painterResource(id = R.drawable.admiral_ic_more_outline),
-                actionText = "Cancel",
-                titleMaxLines = titleTextMaxLineOne,
-            )
+    AdmiralTheme {
+        Scaffold(modifier = Modifier) { padding ->
+            Column(modifier = Modifier.padding(padding)) {
+                AppBar(title = "Дизайн-система «Адмирал»")
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline)
+                )
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    size = AppbarSize.BIG
+                )
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
+                    actions = actionsList.take(1)
+                )
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
+                    actions = actionsList.take(2)
+                )
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    isNavigationIconVisible = false,
+                    navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
+                    actions = actionsList.take(3)
+                )
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
+                    overFlowActionsIcon = painterResource(id = R.drawable.admiral_ic_more_outline),
+                    actions = actionsList.take(3)
+                )
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
+                    overFlowActionsIcon = painterResource(id = R.drawable.admiral_ic_more_outline),
+                    titleMaxLines = titleTextMaxLineOne,
+                    actions = actionsList.take(3)
+                )
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
+                    overFlowActionsIcon = painterResource(id = R.drawable.admiral_ic_more_outline),
+                    actionText = "Cancel",
+                    titleMaxLines = titleTextMaxLineOne,
+                    actions = actionsList.take(3)
+                )
+                AppBar(
+                    title = "Дизайн-система «Адмирал»",
+                    navIcon = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
+                    overFlowActionsIcon = painterResource(id = R.drawable.admiral_ic_more_outline),
+                    actionText = "Cancel",
+                    titleMaxLines = titleTextMaxLineOne,
+                )
+            }
         }
     }
 }
