@@ -22,6 +22,8 @@ plugins {
     id("org.jetbrains.kotlin.android") version kotlinVersion apply false
     id("org.jetbrains.kotlin.plugin.parcelize") version kotlinVersion apply false
     id("io.gitlab.arturbosch.detekt") version "1.19.0"
+    id("com.google.gms.google-services") version "4.4.1" apply false
+    id("com.google.firebase.appdistribution") version "4.2.0" apply false
 }
 
 allprojects {

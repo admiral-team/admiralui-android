@@ -1,0 +1,48 @@
+{
+  "project_info": {
+    "project_number": "792224744111",
+    "project_id": "admiral-8e09f",
+    "storage_bucket": "admiral-8e09f.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792224744111:android:2e193034d3823118708a5a",
+        "android_client_info": {
+          "package_name": "com.admiral.demo"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhmV1PjDfkKlaVCNul0XMxcmyL6SfYmh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:792224744111:android:eec44e99b3e88ce3708a5a",
+        "android_client_info": {
+          "package_name": "com.example.example"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAhmV1PjDfkKlaVCNul0XMxcmyL6SfYmh0"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
