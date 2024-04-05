@@ -27,6 +27,7 @@ dependencies {
     implementation(Libs.AndroidX.Compose.constraintlayout)
     implementation(Libs.AndroidX.Compose.foundation)
     implementation(Libs.AndroidX.Compose.material)
+    implementation(Libs.AndroidX.Compose.material3)
 
     coreLibraryDesugaring(Libs.AndroidTools.desugarJdkLibs)
     implementation(Libs.Kotlin.stdLib)

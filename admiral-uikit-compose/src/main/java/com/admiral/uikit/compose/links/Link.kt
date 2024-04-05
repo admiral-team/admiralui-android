@@ -51,6 +51,7 @@ fun Link(
     val iconSize = if (linkSize != LinkSize.SMALL) ICON_BIG_SIZE.dp else ICON_SMALL_SIZE.dp
     val textColor = if (isEnable) textEnableColor else textDisableColor
     val iconColor = if (isEnable) drawableEnableColorTint else drawableDisableColorTint
+    val a = 5 //todo: delete test
 
     ConstraintLayout(
         modifier = modifier

@@ -11,8 +11,8 @@ object Versions {
     val pdfViewer = "3.2.0-beta.1"
 
     object Sdk {
-        val compileSdk = 33
-        val targetSdk = 33
+        val compileSdk = 34
+        val targetSdk = 34
         val minSdk = 21
     }
 
