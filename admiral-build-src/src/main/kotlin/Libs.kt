@@ -69,6 +69,7 @@ object Libs {
                 "androidx.constraintlayout:constraintlayout-compose:${Versions.AndroidX.constraintLayoutCompose}"
             val foundation = "androidx.compose.foundation:foundation:${Versions.AndroidX.compose}"
             val material = "androidx.compose.material:material:${Versions.AndroidX.compose}"
+            val material3 = "androidx.compose.material3:material3-android:${Versions.AndroidX.compose}"
             val navigation = "androidx.navigation:navigation-compose:${Versions.AndroidX.composeNavigation}"
         }
 
