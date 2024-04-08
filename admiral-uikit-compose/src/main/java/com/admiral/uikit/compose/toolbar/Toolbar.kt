@@ -12,6 +12,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.compose.bottom.BottomNavigation
@@ -23,18 +24,16 @@ import com.admiral.uikit.compose.util.DIMEN_X4
 fun toolbar(
     items: List<ToolbarItem>,
     checked: ToolbarItem? = null,
-    backgroundColorState: ColorState? = null
+    backgroundColor: Color = AdmiralTheme.colors.backgroundAccentDark
 ): ToolbarItem? {
     val (value, setValue) = remember { mutableStateOf(checked) }
-
-    val theme = ThemeManagerCompose.theme.value
 
     BottomNavigation(
         modifier = Modifier
             .height(DIMEN_X20)
             .padding(start = DIMEN_X4, end = DIMEN_X4)
             .clip(RoundedCornerShape(DIMEN_X4)),
-        backgroundColor = Color(backgroundColorState?.normalEnabled ?: theme.palette.backgroundAccentDark)
+        backgroundColor = backgroundColor
     ) {
         items.forEach { item ->
             BottomNavigationItem(
@@ -45,8 +44,8 @@ fun toolbar(
                     )
                 },
                 label = { Text(text = item.title) },
-                selectedContentColor = Color(item.selectedContentColor),
-                unselectedContentColor = Color(item.unselectedContentColor),
+                selectedContentColor = item.selectedContentColor ?: AdmiralTheme.colors.elementAccent,
+                unselectedContentColor = item.unselectedContentColor ?: AdmiralTheme.colors.elementStaticWhite,
                 selected = item == value,
                 onClick = {
                     setValue(item)

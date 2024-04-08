@@ -13,8 +13,8 @@ import androidx.compose.foundation.lazy.grid.LazyVerticalGrid
 import androidx.compose.foundation.lazy.grid.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.foundation.text.ClickableText
-import androidx.compose.material.Divider
-import androidx.compose.material.Text
+import androidx.compose.material3.Divider
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.mutableStateListOf
 import androidx.compose.runtime.remember
@@ -31,8 +31,6 @@ import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X5
 import com.admiral.uikit.compose.util.DIMEN_X9
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import java.time.DateTimeException
 import java.time.DayOfWeek
 import java.time.LocalDate
@@ -45,56 +43,9 @@ fun Calendar(
     modifier: Modifier = Modifier,
     firstMonth: LocalDate = LocalDate.now(),
     lastMonth: LocalDate = LocalDate.now().plusMonths(0),
+    colors: CalendarColors = AdmiralCalendarColor.calendarColors(),
     isEnabled: Boolean = true,
-    monthTextColorState: ColorState? = null,
-    weekDayLegendTextColorState: ColorState? = null,
-    daySelectedTextColorState: ColorState? = null,
-    dayDefaultTextColorState: ColorState? = null,
-    dayBackgroundChosenColorState: ColorState? = null,
-    dayBackgroundRangeColorState: ColorState? = null,
-    dayBackgroundDefaultColorState: ColorState? = null,
-    dividerColorState: ColorState? = null,
 ) {
-    val theme = ThemeManagerCompose.theme.value
-
-    val monthColor =
-        if (isEnabled) monthTextColorState?.normalEnabled ?: theme.palette.textPrimary
-        else monthTextColorState?.normalDisabled ?: theme.palette.textPrimary.withAlpha()
-
-    val weekDayLegendColor =
-        if (isEnabled) weekDayLegendTextColorState?.normalEnabled ?: theme.palette.textSecondary
-        else weekDayLegendTextColorState?.normalDisabled ?: theme.palette.textSecondary.withAlpha()
-
-    val daySelectedTextColor =
-        if (isEnabled) daySelectedTextColorState?.normalEnabled ?: theme.palette.textStaticWhite
-        else daySelectedTextColorState?.normalDisabled ?: theme.palette.textStaticWhite.withAlpha()
-
-    val dayDefaultTextColor =
-        if (isEnabled) dayDefaultTextColorState?.normalEnabled ?: theme.palette.textPrimary
-        else dayDefaultTextColorState?.normalDisabled ?: theme.palette.textPrimary.withAlpha()
-
-    val dayBackgroundChosenColor =
-        if (isEnabled) dayBackgroundChosenColorState?.normalEnabled
-            ?: theme.palette.backgroundAccent
-        else dayBackgroundChosenColorState?.normalDisabled
-            ?: theme.palette.backgroundAccent.withAlpha()
-
-    val dayBackgroundRangeColor =
-        if (isEnabled) dayBackgroundRangeColorState?.normalEnabled
-            ?: theme.palette.backgroundSelected
-        else dayBackgroundRangeColorState?.normalDisabled
-            ?: theme.palette.backgroundSelected.withAlpha()
-
-    val dayBackgroundDefaultColor =
-        if (isEnabled) dayBackgroundDefaultColorState?.normalEnabled
-            ?: theme.palette.backgroundBasic
-        else dayBackgroundDefaultColorState?.normalDisabled
-            ?: theme.palette.backgroundBasic.withAlpha()
-
-    val dividerColor =
-        if (isEnabled) dividerColorState?.normalEnabled ?: theme.palette.elementAdditional
-        else dividerColorState?.normalDisabled ?: theme.palette.elementAdditional.withAlpha()
-
     var firstDateChosen: SelectedDay? = null
     var secondDateChosen: SelectedDay? = null
 
@@ -166,7 +117,7 @@ fun Calendar(
                                 it.toString()
                             }
                         },
-                        color = Color(monthColor),
+                        color = colors.getMonthTextColor(isEnabled = isEnabled).value,
                         style = ThemeManagerCompose.typography.subtitle1
                     )
                 }
@@ -179,7 +130,7 @@ fun Calendar(
                         modifier = Modifier.padding(top = DIMEN_X5, bottom = DIMEN_X5),
                         text = DayOfWeek.of(it + 1)
                             .getDisplayName(TextStyle.SHORT, Locale.getDefault()),
-                        color = Color(weekDayLegendColor),
+                        color = colors.getWeekDayLegendTextColor(isEnabled = isEnabled).value,
                         style = ThemeManagerCompose.typography.subhead2
                     )
                 }
@@ -211,9 +162,9 @@ fun Calendar(
                                 color = if (currentDateItem == firstDateChosen?.day ||
                                     currentDateItem == secondDateChosen?.day
                                 ) {
-                                    Color(daySelectedTextColor)
+                                    colors.getDaySelectedTextColor(isEnabled = isEnabled).value
                                 } else {
-                                    Color(dayDefaultTextColor)
+                                    colors.getDayDefaultTextColor(isEnabled = isEnabled).value
                                 }
 
                             ).toSpanStyle()
@@ -235,12 +186,12 @@ fun Calendar(
                                     if (currentDateItem == firstDateChosen?.day ||
                                         currentDateItem == secondDateChosen?.day
                                     ) {
-                                        Color(dayBackgroundChosenColor)
+                                        colors.getDayBackgroundChosenColor(isEnabled = isEnabled).value
                                     } else {
-                                        Color(dayBackgroundRangeColor)
+                                        colors.getDayBackgroundRangeColor(isEnabled = isEnabled).value
                                     }
                                 } else {
-                                    Color(dayBackgroundDefaultColor)
+                                    colors.getDayBackgroundDefaultColor(isEnabled = isEnabled).value
                                 },
                                 shape = RoundedCornerShape(DIMEN_X1)
                             ),
@@ -350,7 +301,7 @@ fun Calendar(
                 Column(horizontalAlignment = Alignment.CenterHorizontally) {
                     Divider(
                         modifier = Modifier.padding(top = DIMEN_X2, bottom = DIMEN_X2),
-                        color = Color(dividerColor),
+                        color = colors.getDividerColor(isEnabled = isEnabled).value,
                         thickness = 1.dp
                     )
                 }

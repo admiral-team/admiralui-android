@@ -33,6 +33,7 @@ import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X2
@@ -125,7 +126,6 @@ private fun Badge(
     val backgroundColor =
         if (isEnable) color.backgroundColorNormal else color.backgroundColorDisable
     val contentColor = if (isEnable) color.contentColorEnable else color.contentColorDisable
-    val textStyle = ThemeManagerCompose.typography.caption2
 
     Row(
         modifier = modifier
@@ -141,7 +141,7 @@ private fun Badge(
                 modifier = Modifier.padding(horizontal = DIMEN_X1 - SpaceBetweenBorder),
                 text = content.toString(),
                 color = contentColor,
-                style = textStyle.copy(
+                style = AdmiralTheme.typography.caption2.copy(
                     platformStyle = PlatformTextStyle(
                         includeFontPadding = false
                     )
@@ -170,117 +170,134 @@ private fun IconWithBackground() {
 @Preview(showBackground = true)
 @Composable
 private fun BadgePreview() {
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color(ThemeManagerCompose.theme.value.palette.backgroundBasic))
-            .verticalScroll(ScrollState(0))
-            .padding(vertical = DIMEN_X4, horizontal = DIMEN_X2),
-    ) {
-        Row {
-            BadgedBox { IconWithBackground() }
+    AdmiralTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = AdmiralTheme.colors.backgroundBasic)
+                .verticalScroll(ScrollState(0))
+                .padding(vertical = DIMEN_X4, horizontal = DIMEN_X2),
+        ) {
+            Row {
+                BadgedBox { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(color = AdmiralBadgeColor.error()) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(color = AdmiralBadgeColor.attention()) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(color = AdmiralBadgeColor.success()) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(color = AdmiralBadgeColor.additional()) { IconWithBackground() }
+            }
             Spacer(modifier = Modifier.size(DIMEN_X4))
 
-            BadgedBox(color = AdmiralBadgeColor.error()) { IconWithBackground() }
+            Row {
+                BadgedBox(content = 9) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(content = 9, color = AdmiralBadgeColor.error()) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 9,
+                    color = AdmiralBadgeColor.attention()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(content = 9, color = AdmiralBadgeColor.success()) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(content = 9, color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 9,
+                    color = AdmiralBadgeColor.additional()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+            }
             Spacer(modifier = Modifier.size(DIMEN_X4))
 
-            BadgedBox(color = AdmiralBadgeColor.attention()) { IconWithBackground() }
+            Row {
+                BadgedBox(content = 9, isEnable = false) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 9,
+                    isEnable = false,
+                    color = AdmiralBadgeColor.error()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 9,
+                    isEnable = false,
+                    color = AdmiralBadgeColor.attention()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 9,
+                    isEnable = false,
+                    color = AdmiralBadgeColor.success()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 9,
+                    isEnable = false,
+                    color = AdmiralBadgeColor.neutral()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 9,
+                    isEnable = false,
+                    color = AdmiralBadgeColor.additional()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+            }
             Spacer(modifier = Modifier.size(DIMEN_X4))
 
-            BadgedBox(color = AdmiralBadgeColor.success()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Row {
+                BadgedBox(content = 111) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
 
-            BadgedBox(color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
+                BadgedBox(content = 111, color = AdmiralBadgeColor.error()) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
 
-            BadgedBox(color = AdmiralBadgeColor.additional()) { IconWithBackground() }
+                BadgedBox(
+                    content = 111,
+                    color = AdmiralBadgeColor.attention()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 111,
+                    color = AdmiralBadgeColor.success()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 111,
+                    color = AdmiralBadgeColor.neutral()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+
+                BadgedBox(
+                    content = 111,
+                    color = AdmiralBadgeColor.additional()
+                ) { IconWithBackground() }
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+            }
+            Spacer(modifier = Modifier.size(DIMEN_X4))
         }
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-
-        Row {
-            BadgedBox(content = 9) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 9, color = AdmiralBadgeColor.error()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 9, color = AdmiralBadgeColor.attention()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 9, color = AdmiralBadgeColor.success()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 9, color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 9, color = AdmiralBadgeColor.additional()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-        }
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-
-        Row {
-            BadgedBox(content = 9, isEnable = false) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(
-                content = 9,
-                isEnable = false,
-                color = AdmiralBadgeColor.error()
-            ) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(
-                content = 9,
-                isEnable = false,
-                color = AdmiralBadgeColor.attention()
-            ) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(
-                content = 9,
-                isEnable = false,
-                color = AdmiralBadgeColor.success()
-            ) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(
-                content = 9,
-                isEnable = false,
-                color = AdmiralBadgeColor.neutral()
-            ) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(
-                content = 9,
-                isEnable = false,
-                color = AdmiralBadgeColor.additional()
-            ) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-        }
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-
-        Row {
-            BadgedBox(content = 111) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 111, color = AdmiralBadgeColor.error()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 111, color = AdmiralBadgeColor.attention()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 111, color = AdmiralBadgeColor.success()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(content = 111, color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-
-            BadgedBox(
-                content = 111,
-                color = AdmiralBadgeColor.additional()
-            ) { IconWithBackground() }
-            Spacer(modifier = Modifier.size(DIMEN_X4))
-        }
-        Spacer(modifier = Modifier.size(DIMEN_X4))
     }
 }

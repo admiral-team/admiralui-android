@@ -16,48 +16,46 @@ import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.PlatformTextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
+import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.cell.base.CellUnit
 import com.admiral.uikit.compose.util.DIMEN_X11
 import com.admiral.uikit.core.components.cell.base.CellUnitType
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 
 data class TextLabelCellUnit(
     override var unitType: CellUnitType,
     @Size(min = TextMinLength, max = TextMaxLength)
     private val text: String,
-    private val textColorState: ColorState? = null,
-    private val backgroundColorState: ColorState? = null,
+    private val textColorEnable: Color? = null,
+    private val textColorDisable: Color? = null,
+    private val backgroundColorEnable: Color? = null,
+    private val backgroundColorDisable: Color? = null,
     private val isEnabled: Boolean = true
 ) : CellUnit {
 
     @OptIn(ExperimentalTextApi::class)
     @Composable
     override fun Create(modifier: Modifier) {
-        val theme = ThemeManagerCompose.theme.value
-        val textStyle = ThemeManagerCompose.typography.subhead2
-
         val textColor =
-            if (isEnabled) textColorState?.normalEnabled ?: theme.palette.textStaticWhite
-            else textColorState?.normalDisabled ?: theme.palette.textStaticWhite.withAlpha()
+            if (isEnabled) textColorEnable ?: AdmiralTheme.colors.textStaticWhite
+            else textColorDisable ?: AdmiralTheme.colors.textStaticWhite.withAlpha()
         val backgroundColor =
-            if (isEnabled) backgroundColorState?.normalEnabled ?: theme.palette.backgroundSecondary
-            else backgroundColorState?.normalDisabled ?: theme.palette.backgroundSecondary.withAlpha()
+            if (isEnabled) backgroundColorEnable ?: AdmiralTheme.colors.backgroundSecondary
+            else backgroundColorDisable ?: AdmiralTheme.colors.backgroundSecondary.withAlpha()
 
         Box(
             modifier = modifier
                 .width(DIMEN_X11)
                 .height(DIMEN_X11)
                 .clip(CircleShape)
-                .background(color = Color(backgroundColor), shape = CircleShape),
+                .background(color = backgroundColor, shape = CircleShape),
             contentAlignment = Alignment.Center
         ) {
             Text(
                 textAlign = TextAlign.Center,
                 text = text,
-                color = Color(textColor),
-                style = textStyle.copy(
+                color = textColor,
+                style = AdmiralTheme.typography.subhead2.copy(
                     platformStyle = PlatformTextStyle(
                         includeFontPadding = false
                     )
@@ -106,7 +104,7 @@ fun TextLabelCellUnitCustomTextColorPreview() {
     TextLabelCellUnit(
         unitType = CellUnitType.LEADING,
         text = "AH",
-        textColorState = ColorState(ThemeManagerCompose.theme.value.palette.textError)
+        textColorEnable = AdmiralTheme.colors.textError
     ).Create(modifier = Modifier)
 }
 
@@ -117,7 +115,7 @@ fun TextLabelCellUnitCustomTextColorDisabledPreview() {
         unitType = CellUnitType.LEADING,
         isEnabled = false,
         text = "AH",
-        textColorState = ColorState(ThemeManagerCompose.theme.value.palette.textError)
+        textColorEnable = AdmiralTheme.colors.textError
     ).Create(modifier = Modifier)
 }
 
@@ -127,6 +125,6 @@ fun TextLabelCellUnitCustomBackgroundColorPreview() {
     TextLabelCellUnit(
         unitType = CellUnitType.LEADING,
         text = "AH",
-        backgroundColorState = ColorState(ThemeManagerCompose.theme.value.palette.backgroundAccentTwo)
+        backgroundColorEnable = AdmiralTheme.colors.backgroundAccentTwo
     ).Create(modifier = Modifier)
 }
