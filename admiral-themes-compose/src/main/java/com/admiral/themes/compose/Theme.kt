@@ -28,8 +28,10 @@ fun ProvideAdmiralResources(
     typography: AdmiralTypography,
     content: @Composable () -> Unit
 ) {
-    val colorPalette = remember { colors }
-    colorPalette.update(colors)
+    val colorPalette = remember {
+        colors.copy()
+    }.apply { updateColorsFrom(colors) }
+
     CompositionLocalProvider(
         LocalAdmiralColors provides colorPalette,
         LocalAdmiralTypographies provides typography,

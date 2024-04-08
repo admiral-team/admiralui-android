@@ -591,7 +591,7 @@ class AdmiralColors constructor(
     )
 
     @Suppress("LongParameterList", "LongMethod")
-    fun update(other: AdmiralColors) {
+    fun updateColorsFrom(other: AdmiralColors) {
         backgroundBasic = other.backgroundBasic
         backgroundAdditionalOne = other.backgroundAdditionalOne
         backgroundAdditionalOnePressed = other.backgroundAdditionalOnePressed
