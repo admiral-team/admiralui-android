@@ -16,22 +16,21 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
 import com.admiral.themes.compose.AdmiralTheme
-import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.appbar.AppBar
 import com.admiral.uikit.compose.cell.BaseCell
-import com.admiral.uikit.compose.cell.unit.CardCellUnit
-import com.admiral.uikit.compose.cell.unit.IconBackgroundCellUnit
 import com.admiral.uikit.compose.cell.unit.IconCellUnit
-import com.admiral.uikit.compose.cell.unit.LabelCellUnit
-import com.admiral.uikit.compose.cell.unit.TextLabelCellUnit
+import com.admiral.uikit.compose.cell.unit.SubtitleTitleCellUnit
+import com.admiral.uikit.compose.cell.unit.TextMessageCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleCellUnit
+import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnit
+import com.admiral.uikit.compose.cell.unit.TitleSubtitleTextbuttonCellUnit
 import com.admiral.uikit.compose.tabs.outline.OutlineSliderTabList
 import com.admiral.uikit.compose.tabs.outline.TabItem
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 
 @Composable
 @Suppress("LongMethod")
-fun CellsLeadingScreen(
+fun CellsCenterScreen(
     onBackClick: () -> Unit = {}
 ) {
     val (isEnabled, setValue) = remember { mutableStateOf(true) }
@@ -41,7 +40,7 @@ fun CellsLeadingScreen(
             AppBar(
                 navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
                 onNavIconClick = onBackClick,
-                title = stringResource(id = R.string.cells_leading_title),
+                title = stringResource(id = R.string.cells_center_title),
                 titleArrangement = Arrangement.Center
             )
         }
@@ -63,15 +62,24 @@ fun CellsLeadingScreen(
             )
             BaseCell(
                 children = listOf(
-                    CardCellUnit(
-                        icon = painterResource(id = R.drawable.test_ic_card_start),
+                    TitleCellUnit(
+                        text = stringResource(id = R.string.cell_title),
                         isEnabled = isEnabled,
                         unitType = CellUnitType.LEADING
                     ),
-                    TitleCellUnit(
-                        text = stringResource(R.string.cells_card_place),
+                    IconCellUnit(
+                        unitType = CellUnitType.TRAILING,
+                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
+                    )
+                )
+            )
+            BaseCell(
+                children = listOf(
+                    TitleSubtitleCellUnit(
+                        titleText = stringResource(id = R.string.cell_title),
+                        subtitleText = stringResource(id = R.string.cell_subtitle),
                         isEnabled = isEnabled,
-                        unitType = CellUnitType.LEADING_TEXT
+                        unitType = CellUnitType.LEADING
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
@@ -81,15 +89,11 @@ fun CellsLeadingScreen(
             )
             BaseCell(
                 children = listOf(
-                    LabelCellUnit(
-                        icon = painterResource(id = R.drawable.ic_rnb_one),
-                        unitType = CellUnitType.LEADING,
-                        isEnabled = isEnabled
-                    ),
-                    TitleCellUnit(
-                        text = stringResource(R.string.cells_card_label),
+                    SubtitleTitleCellUnit(
+                        titleText = stringResource(id = R.string.cell_title),
+                        subtitleText = stringResource(id = R.string.cell_subtitle),
                         isEnabled = isEnabled,
-                        unitType = CellUnitType.LEADING_TEXT
+                        unitType = CellUnitType.LEADING
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
@@ -99,15 +103,17 @@ fun CellsLeadingScreen(
             )
             BaseCell(
                 children = listOf(
-                    TextLabelCellUnit(
-                        text = "IN",
-                        unitType = CellUnitType.LEADING,
-                        isEnabled = isEnabled
-                    ),
-                    TitleCellUnit(
-                        text = stringResource(R.string.cells_icon),
+                    TextMessageCellUnit(
+                        titleText = stringResource(R.string.cell_title),
+                        titleMoreText = stringResource(R.string.cell_more),
+                        sumText = stringResource(R.string.cell_summ),
+                        sumMoreText = stringResource(R.string.cell_more),
+                        subtitleText = stringResource(R.string.cell_subtitle),
+                        percentText = stringResource(R.string.cell_percent),
+                        messageText = stringResource(R.string.cell_message),
+                        icon = painterResource(id = R.drawable.admiral_ic_info_outline),
                         isEnabled = isEnabled,
-                        unitType = CellUnitType.LEADING_TEXT
+                        unitType = CellUnitType.LEADING
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
@@ -117,35 +123,14 @@ fun CellsLeadingScreen(
             )
             BaseCell(
                 children = listOf(
-                    IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_diamond_solid),
-                        unitType = CellUnitType.LEADING,
-                        isEnabled = isEnabled
-                    ),
-                    TitleCellUnit(
-                        text = stringResource(R.string.cells_icon_vs_background),
+                    TitleSubtitleTextbuttonCellUnit(
+                        titleText = stringResource(R.string.cell_title),
+                        subtitleText = stringResource(R.string.cell_subtitle),
+                        percentText = stringResource(R.string.cell_percent),
+                        subtitleSecondText = stringResource(R.string.cell_subtitle_second),
+                        buttonText = stringResource(R.string.cell_button),
                         isEnabled = isEnabled,
-                        unitType = CellUnitType.LEADING_TEXT
-                    ),
-                    IconCellUnit(
-                        unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
-                    )
-                )
-            )
-            BaseCell(
-                children = listOf(
-                    IconCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_diamond_solid),
-                        iconColorEnable = AdmiralTheme.colors.elementAccent,
-                        iconColorDisable = AdmiralTheme.colors.elementAccent.withAlpha(),
-                        unitType = CellUnitType.LEADING,
-                        isEnabled = isEnabled
-                    ),
-                    TitleCellUnit(
-                        text = stringResource(R.string.cells_icon_place),
-                        isEnabled = isEnabled,
-                        unitType = CellUnitType.LEADING_TEXT
+                        unitType = CellUnitType.LEADING
                     ),
                     IconCellUnit(
                         unitType = CellUnitType.TRAILING,
@@ -159,6 +144,6 @@ fun CellsLeadingScreen(
 
 @Preview
 @Composable
-fun CellsLeadingScreenPreview() {
-    CellsLeadingScreen()
+fun CellsCenterScreenPreview() {
+    CellsCenterScreen()
 }

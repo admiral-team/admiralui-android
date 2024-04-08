@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.appbar.AppBar
 import com.admiral.uikit.compose.cell.BaseCell
@@ -31,6 +32,7 @@ fun CellsMainScreen(
     onBackClick: () -> Unit = {},
 ) {
     Scaffold(
+        backgroundColor = AdmiralTheme.colors.backgroundBasic,
         topBar = {
             AppBar(
                 navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
