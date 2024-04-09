@@ -35,10 +35,10 @@ import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.components.imageview.ImageView
 import com.admiral.uikit.components.text.TextView
+import com.admiral.uikit.core.ext.withAlpha
+import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
@@ -555,7 +555,12 @@ class TextField @JvmOverloads constructor(
     }
 
     fun setSelection(index: Int) {
-        editText.setSelection(index)
+        val selection = when {
+            index in 0..inputText.length -> index
+            index > inputText.length -> inputText.length
+            else -> 0
+        }
+        editText.setSelection(selection)
     }
 
     fun addEndView(view: View) {
