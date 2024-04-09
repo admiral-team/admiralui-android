@@ -179,7 +179,7 @@ val admiralDarkColorPalette = AdmiralColors(
 
 /**
  * A Material [Colors] implementation which sets all colors to [debugColor] to discourage usage of
- * [MaterialTheme.colors] in preference to [AdmiralTheme.colors].
+ * [AdmiralTheme.colors] in preference to [AdmiralTheme.colors].
  */
 fun debugColors(
     darkTheme: Boolean,
