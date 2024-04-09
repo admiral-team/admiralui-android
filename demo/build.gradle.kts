@@ -8,6 +8,8 @@ plugins {
     id("org.jetbrains.kotlin.android")
     id("org.jetbrains.kotlin.plugin.parcelize")
     id("shot")
+    id("com.google.gms.google-services")
+    id("com.google.firebase.appdistribution")
 }
 
 android {
@@ -110,6 +112,12 @@ android {
             isMinifyEnabled = false // because we want to use icons by admiral_icons.json file
             signingConfig = signingConfigs.getByName("release")
             setProguard()
+
+            firebaseAppDistribution {
+                artifactType = "APK"
+                releaseNotesFile = "demo/release-notes.txt"
+                groupsFile="demo/tester-groups.txt"
+            }
         }
     }
 
