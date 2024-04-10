@@ -1,1 +1,1 @@
-[FEATURE-65] - added compose number Akhmedov Murad Muslimovich [4097679]* 26.03.2024, 06:51
+[FEATURE-628] - add compose leading text cells components

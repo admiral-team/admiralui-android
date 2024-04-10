@@ -16,6 +16,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.res.painterResource
+import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
@@ -39,12 +40,14 @@ fun Link(
     drawableEnableColorTint: Color = AdmiralTheme.colors.elementAccent,
     drawableDisableColorTint: Color = AdmiralTheme.colors.elementAccent.withAlpha(),
     pressedColor: Color = AdmiralTheme.colors.elementAccentPressed,
+    linkTextStyle: TextStyle? = null,
     iconStart: Painter? = null,
     iconEnd: Painter? = null,
     onClick: () -> Unit = {},
 ) {
     val textStyle =
-        if (linkSize != LinkSize.SMALL) AdmiralTheme.typography.body2 else AdmiralTheme.typography.subhead3
+        linkTextStyle
+            ?: if (linkSize != LinkSize.SMALL) AdmiralTheme.typography.body2 else AdmiralTheme.typography.subhead3
     val iconSize = if (linkSize != LinkSize.SMALL) ICON_BIG_SIZE.dp else ICON_SMALL_SIZE.dp
     val textColor = if (isEnable) textEnableColor else textDisableColor
     val iconColor = if (isEnable) drawableEnableColorTint else drawableDisableColorTint

@@ -38,8 +38,6 @@ fun BaseCell(
         modifier = modifier
             .wrapContentHeight()
             .defaultMinSize(minHeight = DIMEN_X16)
-            .background(color = backgroundColor)
-            .padding(vertical = DIMEN_X3)
             .clickable(
                 onClick = { onClick?.invoke() },
                 indication = rememberRipple(
@@ -50,6 +48,8 @@ fun BaseCell(
                     MutableInteractionSource()
                 }
             )
+            .background(color = backgroundColor)
+            .padding(vertical = DIMEN_X3)
     ) {
         val leadingTextElement = children.find { it.unitType == CellUnitType.LEADING_TEXT }
         if (leadingTextElement == null) {

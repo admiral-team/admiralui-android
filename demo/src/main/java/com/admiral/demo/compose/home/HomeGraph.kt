@@ -12,9 +12,11 @@ import com.admiral.demo.compose.home.button.navigateToSecondaryButtonsScreen
 import com.admiral.demo.compose.home.button.primaryButtonsScreen
 import com.admiral.demo.compose.home.button.secondaryButtonsScreen
 import com.admiral.demo.compose.home.cells.cellsBaseScreen
+import com.admiral.demo.compose.home.cells.cellsCenterScreen
 import com.admiral.demo.compose.home.cells.cellsLeadingScreen
 import com.admiral.demo.compose.home.cells.cellsMainScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsBaseScreen
+import com.admiral.demo.compose.home.cells.navigateToCellsCenterScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsScreen
 import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
@@ -102,9 +104,15 @@ fun NavGraphBuilder.homeGraph(
             onBackClick = { navController.navigateBack() },
             onCellsLeadingClick = {
                 navController.navigateToCellsLeadingScreen()
+            },
+            onCellsCenterClick = {
+                navController.navigateToCellsCenterScreen()
             }
         )
         cellsLeadingScreen(
+            onBackClick = { navController.navigateBack() },
+        )
+        cellsCenterScreen(
             onBackClick = { navController.navigateBack() },
         )
         tabsScreen()
