@@ -2,11 +2,10 @@ package com.admiral.uikit.compose.tag
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.Immutable
-import androidx.compose.runtime.remember
 import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X3
 import com.admiral.uikit.compose.util.DIMEN_X4
@@ -26,40 +25,35 @@ data class TagSize(
 
 object AdmiralTagSize {
     @Composable
-    fun large(): TagSize = remember {
+    fun large(): TagSize =
         TagSize(
             tagHeight = DIMEN_X9,
             iconSize = DIMEN_X7,
             paddingVertical = LARGE_VERTICAL_PADDING.dp,
             paddingHorizontal = DIMEN_X4,
-            textStyle = body1,
+            textStyle = AdmiralTheme.typography.body1,
         )
-    }
 
     @Composable
-    fun medium(): TagSize = remember {
+    fun medium(): TagSize =
         TagSize(
             tagHeight = DIMEN_X7,
             iconSize = DIMEN_X6,
             paddingVertical = VERTICAL_PADDING.dp,
             paddingHorizontal = DIMEN_X3,
-            textStyle = body1,
+            textStyle = AdmiralTheme.typography.body1,
         )
-    }
 
     @Composable
-    fun small(): TagSize = remember {
+    fun small(): TagSize =
         TagSize(
             tagHeight = DIMEN_X5,
             iconSize = DIMEN_X5,
             paddingVertical = VERTICAL_PADDING.dp,
             paddingHorizontal = DIMEN_X2,
-            textStyle = subhead2,
+            textStyle = AdmiralTheme.typography.subhead2,
         )
-    }
 }
 
-private val body1 = ThemeManagerCompose.typography.body1
-private val subhead2 = ThemeManagerCompose.typography.subhead2
 private const val LARGE_VERTICAL_PADDING = 6
 private const val VERTICAL_PADDING = 2

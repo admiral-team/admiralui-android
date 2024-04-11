@@ -8,6 +8,7 @@ import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.demo.R
+import com.admiral.uikit.core.ext.isColorDark
 
 class AppActivity : AppCompatActivity(R.layout.act_app), ThemeObserver {
 
@@ -26,13 +27,22 @@ class AppActivity : AppCompatActivity(R.layout.act_app), ThemeObserver {
         if (isTest) OnboardingStorage(this).setOpened(true)
 
         window.statusBarColor = ThemeManager.theme.palette.backgroundBasic
-        window.navigationBarColor = ThemeManager.theme.palette.backgroundBasic
+        changeNavigationBarColor(ThemeManager.theme)
         ThemeManager.subscribe(this)
     }
 
     override fun onThemeChanged(theme: Theme) {
         window.statusBarColor = ThemeManager.theme.palette.backgroundBasic
-        window.navigationBarColor = ThemeManager.theme.palette.backgroundBasic
+        changeNavigationBarColor(theme)
+    }
+
+    @Suppress("MagicNumber")
+    private fun changeNavigationBarColor(theme: Theme) {
+        if (theme.palette.backgroundAccentDark.isColorDark(0.6f).not()) {
+            window.navigationBarColor = ThemeManager.theme.palette.backgroundAccentDark
+        } else {
+            window.navigationBarColor = ThemeManager.theme.palette.transparent
+        }
     }
 
     companion object {

@@ -108,8 +108,6 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
 
     override fun switchToCompose(isCompose: Boolean) {
         this.compose = isCompose
-
-        binding.bottomNavigationView.selectedItemId = binding.bottomNavigationView.selectedItemId
     }
 
     override fun switchToSystemTheme(isSystem: Boolean) {

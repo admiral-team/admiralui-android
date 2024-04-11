@@ -30,7 +30,6 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.draw.clip
-import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.graphics.toArgb
 import androidx.compose.ui.res.painterResource
@@ -41,7 +40,8 @@ import androidx.compose.ui.unit.Dp
 import androidx.compose.ui.unit.dp
 import androidx.constraintlayout.compose.ConstraintLayout
 import androidx.constraintlayout.compose.Dimension
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
+import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.Spinner
 import com.admiral.uikit.compose.button.AdmiralButtonColor.primary
@@ -51,8 +51,6 @@ import com.admiral.uikit.compose.util.DIMEN_X12
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.core.ext.isColorDark
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 
 @Composable
 @Suppress("LongParameterList")
@@ -69,8 +67,6 @@ fun Button(
     isLoading: Boolean = false,
     onClick: () -> Unit = {},
 ) {
-    val typography = ThemeManagerCompose.typography
-    val palette = ThemeManagerCompose.theme.value.palette
     val roundedCornerShape = RoundedCornerShape(radius)
 
     val iconColor = if (isEnabled) color.iconTintEnable else color.iconTintDisable
@@ -87,20 +83,20 @@ fun Button(
         animationSpec = tween(ANIMATION_ALPHA_DURATION)
     )
 
-    val spinnerColorState =
-        if (backgroundColor.toArgb().isColorDark(threshold = DARKNESS_THRESHOLD)) {
-            ColorState(
-                normalEnabled = palette.elementStaticWhite,
-                normalDisabled = palette.elementStaticWhite.withAlpha(),
-                pressed = palette.elementStaticWhite
-            )
+    val backgroundIsColorDark = backgroundColor.toArgb().isColorDark(threshold = DARKNESS_THRESHOLD)
+
+    val spinnerColorEnable =
+        if (backgroundIsColorDark) {
+            AdmiralTheme.colors.elementStaticWhite
         } else {
-            ColorState(
-                normalEnabled = palette.elementAccent,
-                normalDisabled = palette.elementAccent.withAlpha(),
-                pressed = palette.elementAccent
-            )
+            AdmiralTheme.colors.elementAccent
         }
+
+    val spinnerColorDisable = if (backgroundIsColorDark) {
+        AdmiralTheme.colors.elementStaticWhite.withAlpha()
+    } else {
+        AdmiralTheme.colors.elementAccent.withAlpha()
+    }
 
     ConstraintLayout(
         modifier = modifier
@@ -150,7 +146,7 @@ fun Button(
                     .alpha(contentAlpha),
                 text = it,
                 color = textColor,
-                style = typography.body1,
+                style = AdmiralTheme.typography.body1,
                 textAlign = TextAlign.Start,
                 maxLines = ADDITIONAL_TEXT_MAX_LINES,
                 overflow = TextOverflow.Ellipsis,
@@ -166,7 +162,8 @@ fun Button(
                     bottom.linkTo(parent.bottom)
                 }
                 .alpha(loadingAlpha),
-            spinnerColorState = spinnerColorState,
+            enableColor = spinnerColorEnable,
+            disableColor = spinnerColorDisable,
         )
 
         Row(
@@ -200,7 +197,7 @@ fun Button(
                     text = actionText,
                     textAlign = TextAlign.End,
                     color = textColor,
-                    style = typography.body1
+                    style = AdmiralTheme.typography.body1
                 )
             }
 
@@ -231,65 +228,67 @@ private const val ANIMATION_ALPHA_DURATION = 800
 @Composable
 fun PrimaryButtonPreview() {
     var isLoading by remember { mutableStateOf(false) }
-    Column(
-        modifier = Modifier
-            .fillMaxSize()
-            .background(color = Color(ThemeManagerCompose.theme.value.palette.staticBlack))
-            .verticalScroll(ScrollState(0))
-            .padding(vertical = DIMEN_X4, horizontal = DIMEN_X2),
-    ) {
-        Button(actionText = "Выбрать",
-            additionalText = "08.06.20 — 14.08.20",
-            isLoading = isLoading,
-            onClick = {
-                isLoading = isLoading.not()
-            })
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(
-            actionText = "Big Button",
-            iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
-        )
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(
-            actionText = "Big Button",
-            iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
-        )
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(actionText = "Big Button")
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(
-            size = AdmiralButtonSize.medium(),
-            actionText = "Medium Button",
-            iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
-        )
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(
-            size = AdmiralButtonSize.medium(),
-            actionText = "Medium Button",
-            iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
-        )
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(
-            size = AdmiralButtonSize.medium(),
-            actionText = "Medium Button",
-        )
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(
-            size = AdmiralButtonSize.small(),
-            actionText = "Small Button",
-            iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
-        )
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(
-            size = AdmiralButtonSize.small(),
-            actionText = "Small Button",
-            iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
-        )
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        Button(
-            size = AdmiralButtonSize.small(),
-            actionText = "Small Button",
-        )
-        Spacer(modifier = Modifier.size(DIMEN_X4))
+    AdmiralTheme {
+        Column(
+            modifier = Modifier
+                .fillMaxSize()
+                .background(color = AdmiralTheme.colors.backgroundBasic)
+                .verticalScroll(ScrollState(0))
+                .padding(vertical = DIMEN_X4, horizontal = DIMEN_X2),
+        ) {
+            Button(actionText = "Выбрать",
+                additionalText = "08.06.20 — 14.08.20",
+                isLoading = isLoading,
+                onClick = {
+                    isLoading = isLoading.not()
+                })
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(
+                actionText = "Big Button",
+                iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(
+                actionText = "Big Button",
+                iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(actionText = "Big Button")
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(
+                size = AdmiralButtonSize.medium(),
+                actionText = "Medium Button",
+                iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(
+                size = AdmiralButtonSize.medium(),
+                actionText = "Medium Button",
+                iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(
+                size = AdmiralButtonSize.medium(),
+                actionText = "Medium Button",
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(
+                size = AdmiralButtonSize.small(),
+                actionText = "Small Button",
+                iconStart = painterResource(id = R.drawable.admiral_ic_heart_outline)
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(
+                size = AdmiralButtonSize.small(),
+                actionText = "Small Button",
+                iconEnd = painterResource(id = R.drawable.admiral_ic_maintenance_solid)
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+            Button(
+                size = AdmiralButtonSize.small(),
+                actionText = "Small Button",
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X4))
+        }
     }
 }

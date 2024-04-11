@@ -13,14 +13,13 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
+import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.cell.base.CellUnit
 import com.admiral.uikit.compose.util.DIMEN_X16
 import com.admiral.uikit.compose.util.DIMEN_X3
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.core.components.cell.base.CellUnitType
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 
 @Composable
 @Suppress("LongParameterList")
@@ -30,13 +29,10 @@ fun BaseCell(
     onClick: (() -> Unit)? = null,
     isEnabled: Boolean = true,
     children: List<CellUnit>,
-    backgroundColorState: ColorState? = null
+    backgroundEnableColor: Color = AdmiralTheme.colors.backgroundBasic,
+    backgroundDisableColor: Color = AdmiralTheme.colors.backgroundBasic.withAlpha()
 ) {
-    val theme = ThemeManagerCompose.theme.value
-
-    val backgroundColor =
-        if (isEnabled) backgroundColorState?.normalEnabled ?: theme.palette.backgroundBasic
-        else backgroundColorState?.normalDisabled ?: theme.palette.backgroundBasic.withAlpha()
+    val backgroundColor = if (isEnabled) backgroundEnableColor else backgroundDisableColor
 
     Row(verticalAlignment = verticalAlignment,
         modifier = modifier
@@ -46,15 +42,13 @@ fun BaseCell(
                 onClick = { onClick?.invoke() },
                 indication = rememberRipple(
                     bounded = true,
-                    color = Color(theme.palette.backgroundAccentPressed)
+                    color = AdmiralTheme.colors.backgroundAccentPressed
                 ),
                 interactionSource = remember {
                     MutableInteractionSource()
                 }
             )
-            .background(
-                color = Color(backgroundColor)
-            )
+            .background(color = backgroundColor)
             .padding(vertical = DIMEN_X3)
     ) {
         val leadingTextElement = children.find { it.unitType == CellUnitType.LEADING_TEXT }

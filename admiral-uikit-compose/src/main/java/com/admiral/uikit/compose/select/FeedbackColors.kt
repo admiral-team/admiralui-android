@@ -5,7 +5,9 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
+import com.admiral.themes.compose.AdmiralTheme.colors
+import com.admiral.themes.compose.withAlpha
 
 @Immutable
 data class FeedbackColors(
@@ -15,24 +17,21 @@ data class FeedbackColors(
     val iconTintSelectedDisabled: Color
 ) {
     @Composable
-    fun iconTintNormalColor(enabled: Boolean): State<Color> {
-        return rememberUpdatedState(if (enabled) iconTintNormalEnabled else iconTintNormalDisabled)
-    }
+    fun getIconTintNormalColor(enabled: Boolean): State<Color> =
+        rememberUpdatedState(if (enabled) iconTintNormalEnabled else iconTintNormalDisabled)
 
     @Composable
-    fun iconTintSelectedColor(enabled: Boolean): State<Color> {
-        return rememberUpdatedState(if (enabled) iconTintSelectedEnabled else iconTintSelectedDisabled)
-    }
+    fun getIconTintSelectedColor(enabled: Boolean): State<Color> =
+        rememberUpdatedState(if (enabled) iconTintSelectedEnabled else iconTintSelectedDisabled)
 }
 
 @Suppress("MagicNumber")
 @Composable
 fun feedbackColors(
-    iconTintNormalEnabled: Color = Color(ThemeManagerCompose.theme.value.palette.elementAdditional),
-    iconTintNormalDisabled: Color = Color(ThemeManagerCompose.theme.value.palette.elementAdditional),
-    iconTintSelectedEnabled: Color = Color(ThemeManagerCompose.theme.value.palette.elementAccent),
-    iconTintSelectedDisabled: Color = Color(ThemeManagerCompose.theme.value.palette.elementAccent)
-        .copy(0.6f)
+    iconTintNormalEnabled: Color = colors.elementAdditional,
+    iconTintNormalDisabled: Color = colors.elementAdditional,
+    iconTintSelectedEnabled: Color = colors.elementAccent,
+    iconTintSelectedDisabled: Color = colors.elementAccent.withAlpha()
 ): FeedbackColors = FeedbackColors(
     iconTintNormalEnabled = iconTintNormalEnabled,
     iconTintNormalDisabled = iconTintNormalDisabled,

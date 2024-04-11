@@ -23,9 +23,8 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
-import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.themes.compose.AdmiralTheme
+import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.util.DIMEN_X12
 import com.admiral.uikit.compose.util.DIMEN_X2
 
@@ -33,8 +32,9 @@ import com.admiral.uikit.compose.util.DIMEN_X2
 @Suppress("LongParameterList", "LongMethod")
 fun LogoTabs(
     items: List<Painter>,
-    borderColorState: ColorState? = null,
-    selectedBorderColorState: ColorState? = null,
+    borderColor: Color = AdmiralTheme.colors.elementAdditional,
+    selectedBorderEnableColor: Color = AdmiralTheme.colors.backgroundAccent,
+    selectedBorderDisableColor: Color = AdmiralTheme.colors.backgroundAccent.withAlpha(),
     isEnabled: Boolean = true,
     onCheckedChange: (Int) -> Unit = {}
 ) {
@@ -42,18 +42,14 @@ fun LogoTabs(
         mutableStateOf(-1)
     }
 
-    val theme = ThemeManagerCompose.theme.value
-
-    val borderColor = borderColorState?.normalEnabled ?: theme.palette.elementAdditional
-
     val selectedBorderColor =
-        if (isEnabled) selectedBorderColorState?.normalEnabled ?: theme.palette.backgroundAccent
-        else selectedBorderColorState?.normalDisabled ?: theme.palette.backgroundAccent.withAlpha()
+        if (isEnabled) selectedBorderEnableColor
+        else selectedBorderDisableColor
 
     Surface(
         modifier = Modifier
             .height(DIMEN_X12),
-        color = Color(theme.palette.backgroundBasic),
+        color = AdmiralTheme.colors.backgroundBasic,
         shape = RoundedCornerShape(DIMEN_X2)
     ) {
         Box(
@@ -61,7 +57,7 @@ fun LogoTabs(
                 .fillMaxWidth()
                 .border(
                     width = 1.dp,
-                    color = Color(borderColor),
+                    color = borderColor,
                     shape = RoundedCornerShape(DIMEN_X2)
                 )
         )
@@ -74,7 +70,7 @@ fun LogoTabs(
             items.forEachIndexed { index, item ->
                 Divider(
                     color = if (index != 0 && index != selectedId && index != selectedId + 1) {
-                        Color(borderColor)
+                        borderColor
                     } else {
                         Color.Transparent
                     },
@@ -96,7 +92,7 @@ fun LogoTabs(
                             })
                         .border(
                             width = 2.dp,
-                            color = if (index == selectedId) Color(selectedBorderColor) else Color.Transparent,
+                            color = if (index == selectedId) selectedBorderColor else Color.Transparent,
                             shape = RoundedCornerShape(DIMEN_X2)
                         )
                 ) {

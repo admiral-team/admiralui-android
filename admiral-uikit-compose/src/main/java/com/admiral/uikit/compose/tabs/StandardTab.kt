@@ -1,27 +1,20 @@
 package com.admiral.uikit.compose.tabs
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.clickable
-import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
-import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxHeight
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.width
-import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
-import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
@@ -30,46 +23,40 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
+import com.admiral.themes.compose.withAlpha
 
 @Composable
 @Suppress("LongParameterList")
 fun StandardTab(
     items: List<String>,
-    textColorState: ColorState? = null,
-    borderColorState: ColorState? = null,
-    selectedBorderColorState: ColorState? = null,
+    textEnableColor: Color = AdmiralTheme.colors.textPrimary,
+    textDisableColor: Color = AdmiralTheme.colors.textPrimary.withAlpha(),
+    borderColor: Color = AdmiralTheme.colors.elementAdditional,
+    selectedBorderEnableColor: Color = AdmiralTheme.colors.backgroundAccent,
+    selectedBorderDisableColor: Color = AdmiralTheme.colors.backgroundAccent.withAlpha(),
     isEnabled: Boolean = true,
     onCheckedChange: (String) -> Unit = {}
 ) {
     val (selectedId, setSelectedId) = remember {
         mutableStateOf(-1)
     }
-
-    val theme = ThemeManagerCompose.theme.value
-
-    val textColor = if (isEnabled) textColorState?.normalEnabled ?: theme.palette.textPrimary
-    else textColorState?.normalDisabled ?: theme.palette.textPrimary.withAlpha()
-
-    val borderColor = borderColorState?.normalEnabled ?: theme.palette.elementAdditional
-
+    val textColor = if (isEnabled) textEnableColor else textDisableColor
     val selectedBorderColor =
-        if (isEnabled) selectedBorderColorState?.normalEnabled ?: theme.palette.backgroundAccent
-        else selectedBorderColorState?.normalDisabled ?: theme.palette.backgroundAccent.withAlpha()
+        if (isEnabled) selectedBorderEnableColor else selectedBorderDisableColor
 
     Surface(
         modifier = Modifier
             .height(SURFACE_HEIGHT.dp),
-        color = Color(theme.palette.backgroundBasic)
+        color = AdmiralTheme.colors.backgroundBasic
     ) {
         Box(
             modifier = Modifier
                 .fillMaxWidth()
                 .border(
                     width = 1.dp,
-                    color = Color(borderColor),
+                    color = borderColor,
                     shape = RoundedCornerShape(OUTER_BORDER_RADIUS.dp)
                 )
         )
@@ -82,7 +69,7 @@ fun StandardTab(
             items.forEachIndexed { index, item ->
                 Divider(
                     color = if (index != 0 && index != selectedId && index != selectedId + 1) {
-                        Color(borderColor)
+                        borderColor
                     } else Color.Transparent,
                     modifier = Modifier
                         .fillMaxHeight()
@@ -101,13 +88,13 @@ fun StandardTab(
                             })
                         .border(
                             width = ITEM_BORDER_WIDTH.dp,
-                            color = if (index == selectedId) Color(selectedBorderColor) else Color.Transparent,
+                            color = if (index == selectedId) selectedBorderColor else Color.Transparent,
                             shape = RoundedCornerShape(ITEM_BORDER_RADIUS.dp)
                         )
                 ) {
                     Text(
                         modifier = Modifier.align(Alignment.Center),
-                        color = Color(textColor),
+                        color = textColor,
                         text = item,
                         style = (if (index == selectedId) {
                             ThemeManagerCompose.typography.subhead2
@@ -133,20 +120,22 @@ private const val SURFACE_HEIGHT = 32
 @Preview
 @Composable
 fun StandardTabPreview() {
-    StandardTab(
-        items = listOf(
-            "tab1",
-            "tab2",
-            "tab3",
-            "tab4",
-            "tab5",
-            "tab6",
-            "tab1",
-            "tab2",
-            "tab3",
-            "tab4",
-            "tab5",
-            "tab6"
+    AdmiralTheme {
+        StandardTab(
+            items = listOf(
+                "tab1",
+                "tab2",
+                "tab3",
+                "tab4",
+                "tab5",
+                "tab6",
+                "tab1",
+                "tab2",
+                "tab3",
+                "tab4",
+                "tab5",
+                "tab6"
+            )
         )
-    )
+    }
 }

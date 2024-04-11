@@ -12,7 +12,9 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.cell.base.CellUnit
 import com.admiral.uikit.compose.util.DIMEN_X11
 import com.admiral.uikit.core.components.cell.base.CellUnitType
@@ -23,35 +25,33 @@ data class IconBackgroundCellUnit(
     override var unitType: CellUnitType,
     private val icon: Painter,
     private val contentDescription: String = "",
-    private val iconColorState: ColorState? = null,
-    private val backgroundColorState: ColorState? = null,
+    private val iconColorEnable: Color? = null,
+    private val iconColorDisable: Color? = null,
+    private val backgroundColorEnable: Color? = null,
+    private val backgroundColorDisable: Color? = null,
     private val isEnabled: Boolean = true
 ) : CellUnit {
 
     @Composable
     override fun Create(modifier: Modifier) {
-        val theme = ThemeManagerCompose.theme.value
-
         val iconColor =
-            if (isEnabled) iconColorState?.normalEnabled ?: theme.palette.elementAccent
-            else iconColorState?.normalDisabled ?: theme.palette.elementAccent.withAlpha()
+            if (isEnabled) iconColorEnable ?: AdmiralTheme.colors.elementAccent
+            else iconColorDisable ?: AdmiralTheme.colors.elementAccent.withAlpha()
 
         val backgroundColor =
-            if (isEnabled) backgroundColorState?.normalEnabled
-                ?: theme.palette.backgroundAdditionalOne
-            else backgroundColorState?.normalDisabled
-                ?: theme.palette.backgroundAdditionalOne.withAlpha()
+            if (isEnabled) backgroundColorEnable ?: AdmiralTheme.colors.backgroundAdditionalOne
+            else backgroundColorDisable ?: AdmiralTheme.colors.backgroundAdditionalOne.withAlpha()
 
         Icon(
             modifier = modifier
                 .width(DIMEN_X11)
                 .height(DIMEN_X11)
                 .clip(CircleShape)
-                .background(color = Color(backgroundColor), shape = CircleShape)
+                .background(color = backgroundColor, shape = CircleShape)
                 .padding(IconPadding.dp),
             painter = icon,
             contentDescription = contentDescription,
-            tint = Color(iconColor),
+            tint = iconColor,
         )
     }
 

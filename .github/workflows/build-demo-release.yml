@@ -77,35 +77,10 @@ jobs:
     needs: [ build ]
 
     steps:
-      - name: Setup fastlane environment
-        run: bundle install
-
-      - name: Upload develop release apk to App Center
-        if: ${{ github.event_name == 'pull_request_target' }}
-        env:
-          APPCENTER_API_TOKEN_DEV: ${{ secrets.APPCENTER_API_TOKEN_DEV }}
-        run: bundle exec fastlane deploy_appcenter_dev pull_request_url:"${{ github.event.pull_request.html_url }}" branch_name:"${{ github.head_ref }}"
-
-      - name: Add build-info comment to pull request
-        uses: actions/github-script@v5
-        if: ${{ github.event_name == 'pull_request_target' }}
-        env:
-          BUILD_INFO_MESSAGE: ${{ env.BUILD_INFO_MESSAGE }}
-        with:
-          github-token: ${{ secrets.GITHUB_TOKEN }}
-          script: |
-            github.rest.issues.createComment({
-              issue_number: context.issue.number,
-              owner: context.repo.owner,
-              repo: context.repo.repo,
-              body: process.env.BUILD_INFO_MESSAGE
-            })
-
-      - name: Upload prod release apk to App Center
-        if: ${{ github.event_name == 'push' }}
-        env:
-          APPCENTER_API_TOKEN: ${{ secrets.APPCENTER_API_TOKEN }}
-        run: bundle exec fastlane deploy_appcenter_prod branch_name:"${{ github.head_ref }}"
+      - name: Upload apk to Firebase
+        run: |
+          chmod +x gradlew
+          ./gradlew appDistributionUploadRelease 
 
       - name: Upload release artifacts to Github Packages
         continue-on-error: true

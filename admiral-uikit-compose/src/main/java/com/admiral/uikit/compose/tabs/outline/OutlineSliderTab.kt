@@ -1,6 +1,5 @@
 package com.admiral.uikit.compose.tabs.outline
 
-import androidx.compose.foundation.background
 import androidx.compose.foundation.border
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
@@ -13,6 +12,7 @@ import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.shape.RoundedCornerShape
+import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
@@ -27,7 +27,7 @@ import androidx.compose.ui.text.TextStyle
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.badge.AdmiralBadgeColor
 import com.admiral.uikit.compose.badge.AdmiralBadgePosition
 import com.admiral.uikit.compose.badge.BadgedBox
@@ -46,21 +46,17 @@ fun OutlineSliderTab(
     isSelected: Boolean = false,
     tabText: String,
     color: OutlineSliderTabColor = AdmiralOutlineSliderTabColor.normal(),
-    activeTextStyle: TextStyle = ThemeManagerCompose.typography.subhead2,
-    inactiveTextStyle: TextStyle = ThemeManagerCompose.typography.subhead3,
+    activeTextStyle: TextStyle = AdmiralTheme.typography.subhead2,
+    inactiveTextStyle: TextStyle = AdmiralTheme.typography.subhead3,
     isBadgeVisible: Boolean = false,
     isBadgeEnabled: Boolean = true,
     isEnabled: Boolean = true,
     onClick: () -> Unit = {}
 ) {
-    val borderColor = if (isEnabled) {
-        if (isSelected) color.selectStrokeEnabled
+    val borderColor =
+        if (isSelected) color.getSelectStrokeColor(isEnabled = isEnabled).value
         else color.unSelectStrokeEnable
-    } else {
-        if (isSelected) color.selectStrokeDisable
-        else color.unSelectStrokeDisable
-    }
-    val textColor = if (isEnabled) color.textEnable else color.textDisable
+    val textColor = color.getTextColor(isEnabled = isEnabled).value
     val textStyle = if (isSelected) activeTextStyle else inactiveTextStyle
     val shape = RoundedCornerShape(DIMEN_X2)
     val borderWidth = if (isSelected) BorderActiveWidth else BorderInactiveWidth
@@ -219,27 +215,30 @@ private fun OutlineSliderTabPreview() {
         }.toMutableStateList()
     }
 
-    Column(
-        modifier = Modifier
-            .background(color = Color(ThemeManagerCompose.theme.value.palette.backgroundBasic))
-            .padding(vertical = DIMEN_X4)
-    ) {
-        OutlineSliderTabList(tabList)
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        OutlineSliderTabList(tabList, isEnabled = false)
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        OutlineSliderTabList(tabList, isBadgeVisible = true)
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        OutlineSliderTabList(tabList, isBadgeVisible = true, isEnabled = false)
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        OutlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false)
-        Spacer(modifier = Modifier.size(DIMEN_X4))
-        OutlineSliderTabList(
-            tabList,
-            isBadgeVisible = true,
-            isBadgeEnabled = false,
-            isEnabled = false
-        )
+    AdmiralTheme {
+        Surface(color = AdmiralTheme.colors.backgroundBasic) {
+            Column(
+                modifier = Modifier
+                    .padding(vertical = DIMEN_X4)
+            ) {
+                OutlineSliderTabList(tabList)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                OutlineSliderTabList(tabList, isEnabled = false)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                OutlineSliderTabList(tabList, isBadgeVisible = true)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                OutlineSliderTabList(tabList, isBadgeVisible = true, isEnabled = false)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                OutlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false)
+                Spacer(modifier = Modifier.size(DIMEN_X4))
+                OutlineSliderTabList(
+                    tabList,
+                    isBadgeVisible = true,
+                    isBadgeEnabled = false,
+                    isEnabled = false
+                )
+            }
+        }
     }
 }
 
