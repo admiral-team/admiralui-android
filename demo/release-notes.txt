@@ -1,1 +1,1 @@
-[FEATURE-628] - add compose leading text cells components
+Set release notes by commit message
