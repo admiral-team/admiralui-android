@@ -61,7 +61,7 @@ tasks.register("cleanArtifacts", Delete::class) {
     delete("${rootProject.projectDir}${File.separator}artifacts")
 }
 
-tasks.register<UpdateReleaseNotesTask>("createFileTask")
+tasks.register<UpdateReleaseNotesTask>("updateReleaseNotesTask")
 
 tasks.register("cleanScreenshotsTempFolder", Delete::class) {
     val demoPath = "${rootProject.projectDir}${File.separator}demo${File.separator}"

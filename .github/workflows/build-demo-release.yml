@@ -6,81 +6,45 @@ on:
     types: [ 'opened', 'synchronize', 'reopened', 'edited' ]
     branches: [ 'main', 'develop', 'rc/**' ]
 jobs:
-  approve: # First step
+  release:
     runs-on: [ self-hosted, main, android ]
 
     steps:
-      - name: Approve
-        run: echo For security reasons, all pull requests need to be approved first before running any automated CI.
+      - name: Export one variable
+        uses: UnlyEd/github-action-store-variable@v2.1.0
+        with:
+          variables: FOO=BAR
 
-  prepare:
-    runs-on: [ self-hosted, main, android ]
-    needs: [ approve ]
+      - name: Print variable
+        uses: UnlyEd/github-action-store-variable@v2.1.0
+        with:
+          variables: FOO
+        run: |
+          echo "$FOO" 
 
-    steps:
-      - name: Check out repository code
+      - name: Get repo
         uses: actions/checkout@v3
         with:
           ref: ${{ github.event.pull_request.head.sha }}
-          fetch-depth: 2
+        variables: |
+          MAGIC_NUMBER="$(git show -s --format=%s)" 
 
-      - name: Set up JDK 21
-        uses: actions/setup-java@v3
+      - name: Print head git commit message
+        run: |
+          echo "$(git show -s --format=%s)" 
+
+      - name: Set new value
+        uses: UnlyEd/github-action-store-variable@v2.1.0
         with:
-          distribution: 'temurin'
-          java-version: '21'
-
-      - name: Prepare keystore files
+          variables: FOO
         run: |
-          cp $GITHUB_WORKSPACE/../../setup_files/keystore/keystore_release.properties $GITHUB_WORKSPACE/keystore_release.properties
-          cp $GITHUB_WORKSPACE/../../setup_files/keystore/release.keystore $GITHUB_WORKSPACE/release.keystore
+          echo "$FOO" 
 
-  detect:
-    runs-on: [ self-hosted, main, android ]
-    needs: [ prepare ]
 
-    steps:
-      - name: Detect
-        run: |
-          chmod +x gradlew
-          ./gradlew detekt
-  test:
-    runs-on: [ self-hosted, main, android ]
-    needs: [ detect ]
-
-    steps:
-      - name: Run snapshot tests
-        uses: reactivecircus/android-emulator-runner@v2
-        with:
-          api-level: 30
-          force-avd-creation: false
-          avd-name: Pixel_4_API_30
-          arch: x86_64
-          emulator-options: -no-snapshot-save -no-window -gpu swiftshader_indirect -no-audio -no-boot-anim -camera-back none
-          disable-animations: true
-          script: |
-            chmod +x gradlew
-            ./gradlew demo:executeScreenshotTests
-
-  build:
-    runs-on: [ self-hosted, main, android ]
-    needs: [ test ]
-
-    steps:
-      - name: Build demo release apk
-        run: |
-          chmod +x gradlew
-          ./gradlew assembleRelease
-
-  release:
-    runs-on: [ self-hosted, main, android ]
-    needs: [ build ]
-
-    steps:
       - name: Upload apk to Firebase
         run: |
           chmod +x gradlew
-          ./gradlew updateReleaseNotesTask --releaseNotes='${{ github.event.head_commit.message }}, branch = ${{ github.head_ref || github.ref_name }}'
+          ./gradlew updateReleaseNotesTask --releaseNotes='${{ (git show -s --format=%s) }}" , branch = ${{ github.head_ref || github.ref_name }}'
           ./gradlew appDistributionUploadRelease 
 
       - name: Upload release artifacts to Github Packages
