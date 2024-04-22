@@ -33,5 +33,5 @@
         android:textAllCaps="false"
         app:layout_constraintStart_toEndOf="@id/ruleCheckBox"
         app:layout_constraintTop_toBottomOf="@id/ruleText"
-        tools:text="Открыть" />
+        tools:admiralText="Открыть" />
 </merge>
