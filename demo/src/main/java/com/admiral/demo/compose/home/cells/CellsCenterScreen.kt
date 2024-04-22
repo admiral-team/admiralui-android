@@ -1,6 +1,5 @@
 package com.admiral.demo.compose.home.cells
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
@@ -14,9 +13,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.admiral.demo.R
 import com.admiral.themes.compose.AdmiralTheme
-import com.admiral.uikit.compose.appbar.AppBar
+import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
 import com.admiral.uikit.compose.cell.BaseCell
 import com.admiral.uikit.compose.cell.unit.IconCellUnit
 import com.admiral.uikit.compose.cell.unit.SubtitleTitleCellUnit
@@ -24,8 +24,7 @@ import com.admiral.uikit.compose.cell.unit.TextMessageCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleSubtitleTextbuttonCellUnit
-import com.admiral.uikit.compose.tabs.outline.OutlineSliderTabList
-import com.admiral.uikit.compose.tabs.outline.TabItem
+import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 
 @Composable
@@ -37,11 +36,10 @@ fun CellsCenterScreen(
     Scaffold(
         backgroundColor = AdmiralTheme.colors.backgroundBasic,
         topBar = {
-            AppBar(
+            AdmiralCenterAlignedTopAppBar(
                 navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
                 onNavIconClick = onBackClick,
                 title = stringResource(id = R.string.cells_center_title),
-                titleArrangement = Arrangement.Center
             )
         }
     ) { padding ->
@@ -51,12 +49,14 @@ fun CellsCenterScreen(
                 .padding(padding)
                 .verticalScroll(state = rememberScrollState())
         ) {
-            OutlineSliderTabList(
-                mutableListOf(
-                    TabItem("Default", true),
-                    TabItem("Disabled", false),
+            StandardTab(
+                modifier = Modifier.padding(horizontal = 16.dp),
+                items = mutableListOf(
+                    "Default",
+                    "Disabled",
                 ),
-                onClick = {
+                selectedIndex = 0,
+                onCheckedChange = {
                     setValue(it == 0)
                 }
             )

@@ -30,24 +30,26 @@ import com.admiral.themes.compose.withAlpha
 @Composable
 @Suppress("LongParameterList")
 fun StandardTab(
+    modifier: Modifier = Modifier,
     items: List<String>,
+    selectedIndex: Int? = null,
     textEnableColor: Color = AdmiralTheme.colors.textPrimary,
     textDisableColor: Color = AdmiralTheme.colors.textPrimary.withAlpha(),
     borderColor: Color = AdmiralTheme.colors.elementAdditional,
     selectedBorderEnableColor: Color = AdmiralTheme.colors.backgroundAccent,
     selectedBorderDisableColor: Color = AdmiralTheme.colors.backgroundAccent.withAlpha(),
     isEnabled: Boolean = true,
-    onCheckedChange: (String) -> Unit = {}
+    onCheckedChange: (Int) -> Unit = {}
 ) {
-    val (selectedId, setSelectedId) = remember {
-        mutableStateOf(-1)
+    val (currentSelectedId, setSelectedId) = remember {
+        mutableStateOf(selectedIndex ?: -1)
     }
     val textColor = if (isEnabled) textEnableColor else textDisableColor
     val selectedBorderColor =
         if (isEnabled) selectedBorderEnableColor else selectedBorderDisableColor
 
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .height(SURFACE_HEIGHT.dp),
         color = AdmiralTheme.colors.backgroundBasic
     ) {
@@ -68,7 +70,7 @@ fun StandardTab(
         ) {
             items.forEachIndexed { index, item ->
                 Divider(
-                    color = if (index != 0 && index != selectedId && index != selectedId + 1) {
+                    color = if (index != 0 && index != currentSelectedId && index != currentSelectedId + 1) {
                         borderColor
                     } else Color.Transparent,
                     modifier = Modifier
@@ -84,11 +86,11 @@ fun StandardTab(
                         .clickable(
                             onClick = {
                                 setSelectedId(index)
-                                onCheckedChange.invoke(item)
+                                onCheckedChange.invoke(index)
                             })
                         .border(
                             width = ITEM_BORDER_WIDTH.dp,
-                            color = if (index == selectedId) selectedBorderColor else Color.Transparent,
+                            color = if (index == currentSelectedId) selectedBorderColor else Color.Transparent,
                             shape = RoundedCornerShape(ITEM_BORDER_RADIUS.dp)
                         )
                 ) {
@@ -96,7 +98,7 @@ fun StandardTab(
                         modifier = Modifier.align(Alignment.Center),
                         color = textColor,
                         text = item,
-                        style = (if (index == selectedId) {
+                        style = (if (index == currentSelectedId) {
                             ThemeManagerCompose.typography.subhead2
                         } else {
                             ThemeManagerCompose.typography.subhead3

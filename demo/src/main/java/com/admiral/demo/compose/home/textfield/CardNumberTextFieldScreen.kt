@@ -24,7 +24,6 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.tabs.outline.OutlineSliderTab
-import com.admiral.uikit.compose.tabs.outline.TabItem
 import com.admiral.uikit.compose.textfield.CardNumberTextField
 import com.admiral.uikit.compose.util.DIMEN_X16
 import com.admiral.uikit.compose.util.DIMEN_X2
