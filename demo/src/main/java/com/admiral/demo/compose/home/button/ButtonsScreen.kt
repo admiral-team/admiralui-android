@@ -5,7 +5,7 @@ import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.cell.BaseCell
 import com.admiral.uikit.compose.cell.unit.IconCellUnit
@@ -31,11 +32,12 @@ fun ButtonsScreen(
     onRulesClick: () -> Unit = {},
     onOtherClick: () -> Unit = {},
 ) {
-    Scaffold { padding ->
+    Surface(
+        color = AdmiralTheme.colors.backgroundBasic
+    ) {
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
-                .padding(padding)
                 .verticalScroll(state = rememberScrollState())
         ) {
             Text(
@@ -118,5 +120,7 @@ fun ButtonsScreen(
 @Preview
 @Composable
 fun ButtonsScreenPreview() {
-    ButtonsScreen()
+    AdmiralTheme {
+        ButtonsScreen()
+    }
 }

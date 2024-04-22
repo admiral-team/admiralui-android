@@ -30,6 +30,7 @@ import com.admiral.themes.compose.withAlpha
 @Composable
 @Suppress("LongParameterList")
 fun StandardTab(
+    modifier: Modifier = Modifier,
     items: List<String>,
     textEnableColor: Color = AdmiralTheme.colors.textPrimary,
     textDisableColor: Color = AdmiralTheme.colors.textPrimary.withAlpha(),
@@ -47,7 +48,7 @@ fun StandardTab(
         if (isEnabled) selectedBorderEnableColor else selectedBorderDisableColor
 
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .height(SURFACE_HEIGHT.dp),
         color = AdmiralTheme.colors.backgroundBasic
     ) {
