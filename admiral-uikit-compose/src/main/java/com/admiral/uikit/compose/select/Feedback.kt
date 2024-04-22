@@ -30,8 +30,8 @@ fun Feedback(
     iconSize: Dp = IconSize,
     colors: FeedbackColors = feedbackColors(),
     isAnimationEnabled: Boolean = true,
-    enabled: Boolean = true,
-    onValueChange: (rating: Int) -> Unit
+    isEnabled: Boolean = true,
+    onValueChange: ((rating: Int) -> Unit)? = null
 ) {
     val maxRating = 5
 
@@ -40,16 +40,16 @@ fun Feedback(
         horizontalArrangement = Arrangement.spacedBy(DIMEN_X3)
     ) {
         for (it in 0 until maxRating) {
-            val onClick: (() -> Unit)? = if (enabled) {
-                { onValueChange(it + 1) }
+            val onClick: (() -> Unit)? = if (isEnabled) {
+                { onValueChange?.invoke(it + 1) }
             } else null
 
             StarIcon(
                 icon = icon,
                 selected = it < rating,
                 onClick = onClick,
-                iconTintNormal = colors.getIconTintNormalColor(enabled = enabled).value,
-                iconTintSelected = colors.getIconTintSelectedColor(enabled = enabled).value,
+                iconTintNormal = colors.getIconTintNormalColor(enabled = isEnabled).value,
+                iconTintSelected = colors.getIconTintSelectedColor(enabled = isEnabled).value,
                 modifier = Modifier
                     .size(size = iconSize)
             )
@@ -100,6 +100,6 @@ fun FeedbackPreview() {
     Column {
         Feedback(rating = interact.value, onValueChange = { interact.value = it })
         Spacer(modifier = Modifier.size(DIMEN_X4))
-        Feedback(rating = interact.value, onValueChange = { interact.value = it }, enabled = false)
+        Feedback(rating = interact.value, onValueChange = { interact.value = it }, isEnabled = false)
     }
 }
