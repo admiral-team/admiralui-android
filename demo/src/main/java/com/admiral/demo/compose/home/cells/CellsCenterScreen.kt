@@ -13,7 +13,6 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.admiral.demo.R
 import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
@@ -25,6 +24,7 @@ import com.admiral.uikit.compose.cell.unit.TitleCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleSubtitleCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleSubtitleTextbuttonCellUnit
 import com.admiral.uikit.compose.tabs.StandardTab
+import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.core.components.cell.base.CellUnitType
 
 @Composable
@@ -50,10 +50,10 @@ fun CellsCenterScreen(
                 .verticalScroll(state = rememberScrollState())
         ) {
             StandardTab(
-                modifier = Modifier.padding(horizontal = 16.dp),
+                modifier = Modifier.padding(horizontal = DIMEN_X4),
                 items = mutableListOf(
-                    "Default",
-                    "Disabled",
+                    stringResource(id = R.string.tabs_default),
+                    stringResource(id = R.string.tabs_disabled),
                 ),
                 selectedIndex = 0,
                 onCheckedChange = {

@@ -94,12 +94,13 @@ fun NavGraphBuilder.homeGraph(
         smsCodeTextFieldScreen()
         numbersTextFieldsScreen(
             onDefaultClick = { navController.navigateToNumberDefaultTextFieldScreen() },
-            onSecondaryClick = { navController.navigateToNumberSecondaryTextFieldScreen() }
+            onSecondaryClick = { navController.navigateToNumberSecondaryTextFieldScreen() },
+            onBackClick = { navController.navigateBack() },
         )
         feedbackTextFieldScreen(onBackClick = { navController.navigateBack() })
         pinCodeTextFieldScreen()
-        numberDefaultTextFieldScreen()
-        numberSecondaryTextFieldScreen()
+        numberDefaultTextFieldScreen(onBackClick = { navController.navigateBack() })
+        numberSecondaryTextFieldScreen(onBackClick = { navController.navigateBack() })
         cellsMainScreen(
             onBackClick = { navController.navigateBack() },
             onBaseCellsClick = { navController.navigateToCellsBaseScreen() },

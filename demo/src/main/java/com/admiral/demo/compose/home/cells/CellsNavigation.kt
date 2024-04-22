@@ -26,9 +26,9 @@ internal fun NavController.navigateToCellsCenterScreen() {
 }
 
 internal fun NavGraphBuilder.cellsMainScreen(
-    onBackClick: () -> Unit,
-    onBaseCellsClick: () -> Unit,
-    onActionbarClick: () -> Unit,
+    onBackClick: () -> Unit = {},
+    onBaseCellsClick: () -> Unit = {},
+    onActionbarClick: () -> Unit = {},
 ) {
     composable(route = CELLS_MAIN_SCREEN_ROUTE) {
         CellsMainScreen(
@@ -40,9 +40,9 @@ internal fun NavGraphBuilder.cellsMainScreen(
 }
 
 internal fun NavGraphBuilder.cellsBaseScreen(
-    onBackClick: () -> Unit,
-    onCellsLeadingClick: () -> Unit,
-    onCellsCenterClick: () -> Unit,
+    onBackClick: () -> Unit = {},
+    onCellsLeadingClick: () -> Unit = {},
+    onCellsCenterClick: () -> Unit = {},
 ) {
     composable(route = CELLS_BASE_SCREEN_ROUTE) {
         CellsBaseScreen(

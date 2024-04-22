@@ -210,6 +210,11 @@
     <string name="text_fields_masked">Masked</string>
     <string name="text_fields_multiline">Multiline</string>
     <string name="text_fields_bank_card_placeholder">1111 2222 3333 4444</string>
+    <string name="text_fields_five_symbols">5 symbols</string>
+    <string name="text_fields_six_symbols">6 symbols</string>
+    <string name="text_fields_eight_symbols">8 symbols</string>
+    <string name="text_fields_ten_symbols">10 symbols</string>
+    <string name="text_fields_unlimeted_symbols">Unlimeted</string>
 
     <string name="cells_title">Cells</string>
     <string name="cells_base_title">Base Cells</string>
