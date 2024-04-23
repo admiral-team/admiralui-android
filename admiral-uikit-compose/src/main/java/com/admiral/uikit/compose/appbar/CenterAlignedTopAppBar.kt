@@ -235,7 +235,7 @@ private fun TopAppBarCenterPreview() {
     )
 
     AdmiralTheme {
-        androidx.compose.material3.Surface(color = AdmiralTheme.colors.backgroundBasic) {
+        Surface(color = AdmiralTheme.colors.backgroundBasic) {
             Column(
                 modifier = Modifier.fillMaxSize()
             ) {

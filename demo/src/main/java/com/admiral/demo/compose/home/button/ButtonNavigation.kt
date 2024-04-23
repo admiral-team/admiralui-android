@@ -8,6 +8,7 @@ internal const val BUTTONS_SCREEN_ROUTE = "buttonsScreen"
 internal const val PRIMARY_BUTTONS_SCREEN_ROUTE = "primaryButtonsScreen"
 internal const val SECONDARY_BUTTONS_SCREEN_ROUTE = "secondaryButtonsScreen"
 internal const val GHOST_BUTTONS_SCREEN_ROUTE = "ghostButtonsScreen"
+internal const val RULE_BUTTONS_SCREEN_ROUTE = "ruleButtonsScreen"
 
 internal fun NavController.navigateToButtonsScreen() {
     navigate(BUTTONS_SCREEN_ROUTE)
@@ -23,6 +24,10 @@ internal fun NavController.navigateToSecondaryButtonsScreen() {
 
 internal fun NavController.navigateToGhostButtonsScreen() {
     navigate(GHOST_BUTTONS_SCREEN_ROUTE)
+}
+
+internal fun NavController.navigateToRuleButtonsScreen() {
+    navigate(RULE_BUTTONS_SCREEN_ROUTE)
 }
 
 internal fun NavGraphBuilder.buttonsScreen(
@@ -58,5 +63,11 @@ internal fun NavGraphBuilder.secondaryButtonsScreen() {
 internal fun NavGraphBuilder.ghostButtonsScreen() {
     composable(route = GHOST_BUTTONS_SCREEN_ROUTE) {
         GhostButtonsScreen()
+    }
+}
+
+internal fun NavGraphBuilder.ruleButtonsScreen(onBackClicked: () -> Unit) {
+    composable(route = RULE_BUTTONS_SCREEN_ROUTE) {
+        RuleButtonsScreen(onBackClicked = onBackClicked)
     }
 }
