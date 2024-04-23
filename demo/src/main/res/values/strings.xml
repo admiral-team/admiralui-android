@@ -442,6 +442,8 @@
     <string name="chat_example_text">hello this is text</string>
     <string name="chat_example_text_small">:)</string>
     <string name="chat_example_time">14:52</string>
+    <string name="chat_example_image_name">Название файла длиннее чем вертикальная полоса</string>
+    <string name="chat_example_size_with_extension">17.5 MB PDF</string>
     <string name="chat_uploading_photo_title">Uploading Photo</string>
     <string name="chat_uploading_photo_one">One File</string>
     <string name="chat_uploading_photo_two">Two Files</string>

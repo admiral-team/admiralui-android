@@ -488,7 +488,6 @@
 
     <declare-styleable name="ImageMessage">
         <attr name="admiralTimeText" />
-
         <attr name="admiralMessageStatus" />
     </declare-styleable>
 
