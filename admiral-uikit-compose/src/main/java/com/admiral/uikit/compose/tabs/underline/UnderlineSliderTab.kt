@@ -18,6 +18,7 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.composed
 import androidx.compose.ui.draw.drawBehind
@@ -32,8 +33,8 @@ import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.badge.AdmiralBadgeColor
 import com.admiral.uikit.compose.badge.AdmiralBadgePosition
 import com.admiral.uikit.compose.badge.BadgedBox
-import com.admiral.uikit.compose.tabs.outline.TabItem
-import com.admiral.uikit.compose.tabs.outline.selectNewTab
+import com.admiral.uikit.compose.tabs.TabItem
+import com.admiral.uikit.compose.tabs.selectNewTab
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X8
@@ -88,6 +89,36 @@ fun UnderlineSliderTab(
             }
         }
     )
+}
+
+@Composable
+fun UnderlineSliderTabList(
+    modifier: Modifier = Modifier,
+    tabs: MutableList<TabItem>,
+    onClick: (Int) -> Unit = {},
+) {
+    val tabList = remember {
+        tabs.toMutableStateList()
+    }
+
+    Row(
+        modifier = modifier,
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        tabList.forEachIndexed { index, tabItem ->
+            UnderlineSliderTab(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                isSelected = tabList[index].isSelected,
+                tabText = tabItem.text,
+                onClick = {
+                    tabList.selectNewTab(tabList[index])
+                    onClick.invoke(index)
+                },
+            )
+        }
+    }
 }
 
 @Composable
@@ -181,7 +212,7 @@ private fun UnderlineSliderTabList(
             UnderlineSliderTab(
                 isSelected = tabItem.isSelected,
                 tabText = tabItem.text,
-                onClick = { selectNewTab(list, list[index]) },
+                onClick = { list.selectNewTab(list[index]) },
                 isEnabled = isEnabled,
                 isBadgeVisible = isBadgeVisible,
                 isBadgeEnabled = isBadgeEnabled,
@@ -209,7 +240,7 @@ private fun UnderlineCenterTabList(
                     .weight(1f),
                 isSelected = tabItem.isSelected,
                 tabText = tabItem.text,
-                onClick = { selectNewTab(list, list[index]) },
+                onClick = { list.selectNewTab(list[index]) },
                 isEnabled = isEnabled,
                 isBadgeVisible = isBadgeVisible,
                 isBadgeEnabled = isBadgeEnabled,
@@ -324,5 +355,21 @@ private fun UnderlineCenterTabPreview() {
                 UnderlineCenterTabList(sixList)
             }
         }
+    }
+}
+
+@Preview
+@Composable
+fun UnderlineSliderTabListPreview() {
+    AdmiralTheme {
+        UnderlineSliderTabList(
+            modifier = Modifier.padding(16.dp),
+            tabs = mutableListOf(
+                TabItem("Default", true),
+                TabItem("Disabled", false),
+                TabItem("New", false),
+                TabItem("Last", false),
+            )
+        )
     }
 }

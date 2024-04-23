@@ -1,6 +1,7 @@
 package com.admiral.uikit.compose.tabs.outline
 
 import androidx.compose.foundation.border
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -11,12 +12,12 @@ import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.layout.wrapContentHeight
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
@@ -31,6 +32,8 @@ import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.badge.AdmiralBadgeColor
 import com.admiral.uikit.compose.badge.AdmiralBadgePosition
 import com.admiral.uikit.compose.badge.BadgedBox
+import com.admiral.uikit.compose.tabs.TabItem
+import com.admiral.uikit.compose.tabs.selectNewTab
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 
@@ -89,34 +92,6 @@ fun OutlineSliderTab(
 }
 
 @Composable
-fun OutlineSliderTabList(
-    list: MutableList<TabItem>,
-    onClick: (Int) -> Unit = {}
-) {
-    val tabList = remember {
-        list.toMutableStateList()
-    }
-    Row(
-        modifier = Modifier
-            .padding(horizontal = DIMEN_X4),
-        horizontalArrangement = Arrangement.spacedBy(DIMEN_X2)
-    ) {
-        tabList.forEachIndexed { index, tabItem ->
-            OutlineSliderTab(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                isSelected = tabList[index].isSelected,
-                tabText = tabItem.text,
-                onClick = {
-                    selectNewTab(tabList, tabList[index])
-                    onClick.invoke(index)
-                })
-        }
-    }
-}
-
-@Composable
 private fun OutlineSliderTab(
     text: String,
     textColor: Color,
@@ -172,11 +147,34 @@ private fun OutlineSliderTabWithBadge(
     }
 }
 
-@Immutable
-data class TabItem(
-    val text: String,
-    val isSelected: Boolean = false,
-)
+@Composable
+fun OutlineSliderTabList(
+    modifier: Modifier = Modifier,
+    list: MutableList<TabItem>,
+    onClick: (Int) -> Unit = {}
+) {
+    val tabList = remember {
+        list.toMutableStateList()
+    }
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
+        horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
+    ) {
+        list.forEachIndexed { index, tabItem ->
+            OutlineSliderTab(
+                isSelected = tabList[index].isSelected,
+                tabText = tabItem.text,
+                onClick = {
+                    tabList.selectNewTab(tabList[index])
+                    onClick.invoke(index)
+                },
+            )
+        }
+    }
+}
 
 @Composable
 private fun OutlineSliderTabList(
@@ -194,7 +192,7 @@ private fun OutlineSliderTabList(
             OutlineSliderTab(
                 isSelected = tabItem.isSelected,
                 tabText = tabItem.text,
-                onClick = { selectNewTab(list, list[index]) },
+                onClick = { list.selectNewTab(list[index]) },
                 isEnabled = isEnabled,
                 isBadgeVisible = isBadgeVisible,
                 isBadgeEnabled = isBadgeEnabled,
@@ -245,25 +243,14 @@ private fun OutlineSliderTabPreview() {
 @Preview
 @Composable
 fun OutlineSliderTabListPreview() {
-    OutlineSliderTabList(
-        mutableListOf(
-            TabItem("Default", true),
-            TabItem("Disabled", false),
+    AdmiralTheme {
+        OutlineSliderTabList(
+            mutableListOf(
+                TabItem("Default", true),
+                TabItem("Disabled", false),
+                TabItem("New", false),
+                TabItem("Last", false),
+            )
         )
-    )
-}
-
-fun selectNewTab(list: MutableList<TabItem>, tabItemSelected: TabItem) {
-    val indexOfLastSelected = list.indexOf(list.find { it.isSelected })
-    val indexOfItem = list.indexOf(tabItemSelected)
-
-    if (indexOfItem != indexOfLastSelected) {
-        if (indexOfLastSelected != -1) {
-            list[indexOfLastSelected] = list[indexOfLastSelected].copy(isSelected = false)
-        }
-
-        if (indexOfItem != -1) {
-            list[indexOfItem] = list[indexOfItem].copy(isSelected = true)
-        }
     }
 }
