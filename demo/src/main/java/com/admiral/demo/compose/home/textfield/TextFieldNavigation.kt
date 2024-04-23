@@ -139,9 +139,9 @@ internal fun NavGraphBuilder.numberSecondaryTextFieldScreen() {
     }
 }
 
-internal fun NavGraphBuilder.feedbackTextFieldScreen() {
+internal fun NavGraphBuilder.feedbackTextFieldScreen(onBackClick: () -> Unit) {
     composable(route = FEEDBACK_TEXT_FIELD_SCREEN_ROUTE) {
-
+        FeedbackTextFieldScreen(onBackClick = onBackClick)
     }
 }
 

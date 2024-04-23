@@ -96,7 +96,7 @@ fun NavGraphBuilder.homeGraph(
             onDefaultClick = { navController.navigateToNumberDefaultTextFieldScreen() },
             onSecondaryClick = { navController.navigateToNumberSecondaryTextFieldScreen() }
         )
-        feedbackTextFieldScreen()
+        feedbackTextFieldScreen(onBackClick = { navController.navigateBack() })
         pinCodeTextFieldScreen()
         numberDefaultTextFieldScreen()
         numberSecondaryTextFieldScreen()
