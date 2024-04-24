@@ -8,8 +8,10 @@ import com.admiral.demo.compose.home.button.ghostButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToGhostButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToPrimaryButtonsScreen
+import com.admiral.demo.compose.home.button.navigateToRuleButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToSecondaryButtonsScreen
 import com.admiral.demo.compose.home.button.primaryButtonsScreen
+import com.admiral.demo.compose.home.button.ruleButtonsScreen
 import com.admiral.demo.compose.home.button.secondaryButtonsScreen
 import com.admiral.demo.compose.home.cells.cellsBaseScreen
 import com.admiral.demo.compose.home.cells.cellsCenterScreen
@@ -66,12 +68,15 @@ fun NavGraphBuilder.homeGraph(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
             onSecondaryClick = { navController.navigateToSecondaryButtonsScreen() },
             onGhostClick = { navController.navigateToGhostButtonsScreen() },
-            onRulesClick = { },
+            onRulesClick = { navController.navigateToRuleButtonsScreen() },
             onOtherClick = { },
         )
         primaryButtonsScreen()
         secondaryButtonsScreen()
         ghostButtonsScreen()
+        ruleButtonsScreen(
+            onBackClicked = { navController.popBackStack() }
+        )
         textFieldsScreen(
             onStandardClick = { navController.navigateToStandardTextFieldScreen() },
             onDoubleClick = { navController.navigateToDoubleTextFieldScreen() },
@@ -89,12 +94,13 @@ fun NavGraphBuilder.homeGraph(
         smsCodeTextFieldScreen()
         numbersTextFieldsScreen(
             onDefaultClick = { navController.navigateToNumberDefaultTextFieldScreen() },
-            onSecondaryClick = { navController.navigateToNumberSecondaryTextFieldScreen() }
+            onSecondaryClick = { navController.navigateToNumberSecondaryTextFieldScreen() },
+            onBackClick = { navController.navigateBack() },
         )
-        feedbackTextFieldScreen()
+        feedbackTextFieldScreen(onBackClick = { navController.navigateBack() })
         pinCodeTextFieldScreen()
-        numberDefaultTextFieldScreen()
-        numberSecondaryTextFieldScreen()
+        numberDefaultTextFieldScreen(onBackClick = { navController.navigateBack() })
+        numberSecondaryTextFieldScreen(onBackClick = { navController.navigateBack() })
         cellsMainScreen(
             onBackClick = { navController.navigateBack() },
             onBaseCellsClick = { navController.navigateToCellsBaseScreen() },

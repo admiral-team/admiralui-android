@@ -118,30 +118,32 @@ internal fun NavGraphBuilder.sliderTextFieldScreen() {
 internal fun NavGraphBuilder.numbersTextFieldsScreen(
     onDefaultClick: () -> Unit,
     onSecondaryClick: () -> Unit,
+    onBackClick: () -> Unit
 ) {
     composable(route = NUMBERS_TEXT_FIELDS_SCREEN_ROUTE) {
         NumbersTextFieldsScreen(
             onDefaultClick = onDefaultClick,
-            onSecondaryClick = onSecondaryClick
+            onSecondaryClick = onSecondaryClick,
+            onBackClick = onBackClick,
         )
     }
 }
 
-internal fun NavGraphBuilder.numberDefaultTextFieldScreen() {
+internal fun NavGraphBuilder.numberDefaultTextFieldScreen(onBackClick: () -> Unit) {
     composable(route = NUMBER_DEFAULT_TEXT_FIELD_SCREEN_ROUTE) {
-
+        NumberDefaultTextFieldsScreen(onBackClick = onBackClick)
     }
 }
 
-internal fun NavGraphBuilder.numberSecondaryTextFieldScreen() {
+internal fun NavGraphBuilder.numberSecondaryTextFieldScreen(onBackClick: () -> Unit) {
     composable(route = NUMBER_SECONDARY_TEXT_FIELD_SCREEN_ROUTE) {
-
+        NumberSecondaryTextFieldsScreen(onBackClick = onBackClick)
     }
 }
 
-internal fun NavGraphBuilder.feedbackTextFieldScreen() {
+internal fun NavGraphBuilder.feedbackTextFieldScreen(onBackClick: () -> Unit) {
     composable(route = FEEDBACK_TEXT_FIELD_SCREEN_ROUTE) {
-
+        FeedbackTextFieldScreen(onBackClick = onBackClick)
     }
 }
 

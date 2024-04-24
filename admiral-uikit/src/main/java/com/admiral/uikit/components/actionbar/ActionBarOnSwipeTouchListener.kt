@@ -54,13 +54,13 @@ open class ActionBarOnSwipeTouchListener(
         }
 
         override fun onScroll(
-            e1: MotionEvent,
+            e1: MotionEvent?,
             e2: MotionEvent,
             distanceX: Float,
             distanceY: Float
         ): Boolean {
-            val diffY = e2.y - e1.y
-            diffX = e2.x - e1.x
+            val diffY = e2.y - (e1?.y ?: 0f)
+            diffX = e2.x - (e1?.x ?: 0f)
 
             return if (isHorizontalScrolling) {
                 onHorizontalScroll(swipeableView.x + diffX)

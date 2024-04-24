@@ -86,9 +86,11 @@ class InputNumber @JvmOverloads constructor(
                 value in minValue..maxValue -> {
                     updateValue()
                 }
+
                 value > maxValue -> {
                     autoIncrement = false
                 }
+
                 value < minValue -> {
                     autoDecrement = false
                 }
@@ -232,7 +234,7 @@ class InputNumber @JvmOverloads constructor(
         override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
             if (isChangeable) {
                 val text = s.toString().replace(" ", "")
-                value = if (text != "") {
+                value = if (text != "" && text != "-") {
                     text.toInt()
                 } else {
                     0
@@ -263,12 +265,7 @@ class InputNumber @JvmOverloads constructor(
 
         setupIncrementView()
         setupDecrementView()
-
-        valueEditText.isBottomLineVisible = false
-        valueEditText.editText.gravity = Gravity.CENTER_HORIZONTAL
-        valueEditText.isAdditionalTextVisible = false
-        valueEditText.inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_SIGNED
-        valueEditText.textWatcher = watcher
+        setupValueEditText()
     }
 
     override fun onAttachedToWindow() {
@@ -340,6 +337,7 @@ class InputNumber @JvmOverloads constructor(
 
         incrementImageView.setOnLongClickListener {
             autoIncrement = true
+            valueEditText.editText.clearFocus()
             return@setOnLongClickListener true
         }
 
@@ -359,6 +357,7 @@ class InputNumber @JvmOverloads constructor(
 
         decrementImageView.setOnLongClickListener {
             autoDecrement = true
+            valueEditText.editText.clearFocus()
             return@setOnLongClickListener true
         }
 
@@ -367,6 +366,23 @@ class InputNumber @JvmOverloads constructor(
                 autoDecrement = false
             }
             return@setOnTouchListener false
+        }
+    }
+
+    private fun setupValueEditText() {
+        valueEditText.apply {
+            isBottomLineVisible = false
+            editText.gravity = Gravity.CENTER_HORIZONTAL
+            isAdditionalTextVisible = false
+            inputType = EditorInfo.TYPE_CLASS_NUMBER or EditorInfo.TYPE_NUMBER_FLAG_SIGNED
+            textWatcher = watcher
+
+            editText.setOnFocusChangeListener { _, hasFocus ->
+                if (hasFocus) {
+                    autoDecrement = false
+                    autoIncrement = false
+                }
+            }
         }
     }
 
@@ -504,9 +520,11 @@ class InputNumber @JvmOverloads constructor(
             InputType.OVAL -> {
                 this.setOvalBackgroundShape(isEnabled)
             }
+
             InputType.RECTANGLE -> {
                 this.setRectangleBackgroundShape(isEnabled)
             }
+
             InputType.TEXT_FIELD -> {
                 this.setTextFieldBackgroundShape(isEnabled, isLeft)
             }

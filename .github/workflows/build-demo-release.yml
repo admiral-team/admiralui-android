@@ -80,6 +80,7 @@ jobs:
       - name: Upload apk to Firebase
         run: |
           chmod +x gradlew
+          ./gradlew updateReleaseNotesTask --releaseNotes='commits_url = ${{ toJSON(github.event.pull_request.commits_url) }} , branch = ${{ github.head_ref || github.ref_name }}'
           ./gradlew appDistributionUploadRelease 
 
       - name: Upload release artifacts to Github Packages

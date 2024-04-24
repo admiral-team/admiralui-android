@@ -28,15 +28,23 @@ class ChatImagesFragment : BaseFragment(
 
         var isError = false
 
-        binding.apply {
+        with(binding) {
             imageFirst.setOnClickListener {
                 isError = !isError
                 imageFirst.isError = isError
                 imageSecond.isError = isError
             }
-        }
 
-        binding.apply {
+            imageFirst.views.forEach {
+                it.imageSize = getString(R.string.chat_example_size_with_extension)
+                it.imageName = getString(R.string.chat_example_image_name)
+            }
+
+            imageSecond.views.forEach {
+                it.imageSize = getString(R.string.chat_example_size_with_extension)
+                it.imageName = getString(R.string.chat_example_image_name)
+            }
+
             tabsState.onCheckedChangeListener =
                 object : CheckableGroup.OnCheckedChangeListener {
                     override fun onCheckedChanged(
@@ -73,3 +81,4 @@ class ChatImagesFragment : BaseFragment(
         })
     }
 }
+

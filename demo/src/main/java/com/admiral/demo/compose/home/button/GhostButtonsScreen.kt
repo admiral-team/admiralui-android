@@ -8,7 +8,7 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.Scaffold
+import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableStateOf
@@ -17,6 +17,7 @@ import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.tooling.preview.Preview
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.button.AdmiralButtonColor
 import com.admiral.uikit.compose.button.AdmiralButtonSize
@@ -29,15 +30,13 @@ import com.admiral.uikit.compose.util.DIMEN_X6
 @Suppress("LongMethod")
 fun GhostButtonsScreen() {
     var isLoading by remember { mutableStateOf(false) }
-    Scaffold(
-        modifier = Modifier
-            .fillMaxWidth()
-    ) { padding ->
+    Surface(
+        color = AdmiralTheme.colors.backgroundBasic
+    ) {
         Column(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(padding)
                 .padding(vertical = DIMEN_X4, horizontal = DIMEN_X4),
         ) {
             Spacer(modifier = Modifier.size(DIMEN_X11))
@@ -121,5 +120,7 @@ fun GhostButtonsScreen() {
 @Preview
 @Composable
 fun GhostButtonsScreenPreview() {
-    GhostButtonsScreen()
+    AdmiralTheme {
+        GhostButtonsScreen()
+    }
 }

@@ -210,6 +210,11 @@
     <string name="text_fields_masked">Masked</string>
     <string name="text_fields_multiline">Multiline</string>
     <string name="text_fields_bank_card_placeholder">1111 2222 3333 4444</string>
+    <string name="text_fields_five_symbols">5 symbols</string>
+    <string name="text_fields_six_symbols">6 symbols</string>
+    <string name="text_fields_eight_symbols">8 symbols</string>
+    <string name="text_fields_ten_symbols">10 symbols</string>
+    <string name="text_fields_unlimeted_symbols">Unlimeted</string>
 
     <string name="cells_title">Cells</string>
     <string name="cells_base_title">Base Cells</string>
@@ -442,6 +447,8 @@
     <string name="chat_example_text">hello this is text</string>
     <string name="chat_example_text_small">:)</string>
     <string name="chat_example_time">14:52</string>
+    <string name="chat_example_image_name">Название файла длиннее чем вертикальная полоса</string>
+    <string name="chat_example_size_with_extension">17.5 MB PDF</string>
     <string name="chat_uploading_photo_title">Uploading Photo</string>
     <string name="chat_uploading_photo_one">One File</string>
     <string name="chat_uploading_photo_two">Two Files</string>
