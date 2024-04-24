@@ -14,6 +14,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.cell.BaseCell
 import com.admiral.uikit.compose.cell.unit.IconCellUnit
@@ -34,7 +35,7 @@ fun TextFieldsScreen(
     onFeedbackClick: () -> Unit = {},
     onPinCodeClick: () -> Unit = {},
 ) {
-    Scaffold { padding ->
+    Scaffold(backgroundColor = AdmiralTheme.colors.backgroundBasic) { padding ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
