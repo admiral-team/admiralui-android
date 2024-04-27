@@ -73,12 +73,12 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
             )
             Spacer(modifier = Modifier.size(DIMEN_X5))
             InputNumber(
-                optionalText = stringResource(id = R.string.tabs_disabled),
+                optionalText = stringResource(id = R.string.text_fields_optional_label),
                 isEnabled = isEnabled,
                 modifier = Modifier.fillMaxWidth(),
                 inputType = InputType.OVAL,
                 colors = AdmiralInputNumberColors.oval(),
-                maxValue = 99999,
+                maxValue = 99_999,
                 value = 1,
             )
 
@@ -96,8 +96,8 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
                 modifier = Modifier.fillMaxWidth(),
                 inputType = InputType.OVAL,
                 colors = AdmiralInputNumberColors.oval(),
-                value = 100000,
-                maxValue = 1000000000,
+                value = 100_000,
+                maxValue = 1_000_000_000,
             )
 
             Spacer(modifier = Modifier.size(DIMEN_X9))
@@ -114,8 +114,8 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
                 modifier = Modifier.fillMaxWidth(),
                 inputType = InputType.OVAL,
                 colors = AdmiralInputNumberColors.oval(),
-                value = 10000000,
-                maxValue = 1000000000,
+                value = 10_000_000,
+                maxValue = 1_000_000_000,
             )
 
             Spacer(modifier = Modifier.size(DIMEN_X9))
@@ -132,8 +132,8 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
                 modifier = Modifier.fillMaxWidth(),
                 inputType = InputType.OVAL,
                 colors = AdmiralInputNumberColors.oval(),
-                value = 100000000,
-                maxValue = 1000000000,
+                value = 100_000_000,
+                maxValue = 1_000_000_000,
             )
 
             Spacer(modifier = Modifier.size(DIMEN_X9))
@@ -162,6 +162,6 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
 @Composable
 private fun NumberDefaultTextFieldsScreenPreview() {
     AdmiralTheme {
-        NumberDefaultTextFieldsScreen(onBackClick = {})
+        NumberDefaultTextFieldsScreen()
     }
 }
