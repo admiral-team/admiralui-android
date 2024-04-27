@@ -21,6 +21,8 @@ import com.admiral.demo.compose.home.cells.navigateToCellsBaseScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsCenterScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsScreen
+import com.admiral.demo.compose.home.checkbox.checkBoxScreen
+import com.admiral.demo.compose.home.checkbox.navigateToCheckBoxScreen
 import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
 import com.admiral.demo.compose.home.textfield.doubleTextFieldScreen
 import com.admiral.demo.compose.home.textfield.feedbackTextFieldScreen
@@ -63,6 +65,7 @@ fun NavGraphBuilder.homeGraph(
             onButtonsClick = { navController.navigateToButtonsScreen() },
             onTextFieldsClick = { navController.navigateToTextFieldsScreen() },
             onCellsClick = { navController.navigateToCellsScreen() },
+            onCheckBoxClick = {navController.navigateToCheckBoxScreen()}
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -122,6 +125,7 @@ fun NavGraphBuilder.homeGraph(
             onBackClick = { navController.navigateBack() },
         )
         tabsScreen()
+        checkBoxScreen(onBackClick = { navController.navigateBack() })
     }
 }
 
