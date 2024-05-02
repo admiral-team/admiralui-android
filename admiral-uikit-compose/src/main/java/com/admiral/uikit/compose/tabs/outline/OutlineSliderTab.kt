@@ -18,6 +18,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
@@ -150,11 +151,13 @@ private fun OutlineSliderTabWithBadge(
 @Composable
 fun OutlineSliderTabList(
     modifier: Modifier = Modifier,
-    list: MutableList<TabItem>,
-    onClick: (Int) -> Unit = {}
+    items: MutableList<String>,
+    onCheckedChange: (Int) -> Unit = {},
+    isEnabled: Boolean = true,
+    selectedIndex: Int? = null,
 ) {
-    val tabList = remember {
-        list.toMutableStateList()
+    val (currentSelectedIndex, setSelectedIndex) = remember {
+        mutableIntStateOf(selectedIndex ?: -1)
     }
 
     Row(
@@ -163,14 +166,15 @@ fun OutlineSliderTabList(
             .horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
     ) {
-        list.forEachIndexed { index, tabItem ->
+        items.forEachIndexed { index, tabItem ->
             OutlineSliderTab(
-                isSelected = tabList[index].isSelected,
-                tabText = tabItem.text,
+                isSelected = index == currentSelectedIndex,
+                tabText = tabItem,
                 onClick = {
-                    tabList.selectNewTab(tabList[index])
-                    onClick.invoke(index)
+                    setSelectedIndex(index)
+                    onCheckedChange.invoke(index)
                 },
+                isEnabled = isEnabled
             )
         }
     }

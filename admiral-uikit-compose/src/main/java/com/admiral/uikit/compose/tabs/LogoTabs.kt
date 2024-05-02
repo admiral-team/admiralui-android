@@ -15,23 +15,28 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.withAlpha
+import com.admiral.uikit.compose.util.ALPHA_DISABLED
+import com.admiral.uikit.compose.util.ALPHA_ENABLED
 import com.admiral.uikit.compose.util.DIMEN_X12
 import com.admiral.uikit.compose.util.DIMEN_X2
 
 @Composable
 @Suppress("LongParameterList", "LongMethod")
 fun LogoTabs(
+    modifier: Modifier = Modifier,
     items: List<Painter>,
+    selectedIndex: Int? = null,
     borderColor: Color = AdmiralTheme.colors.elementAdditional,
     selectedBorderEnableColor: Color = AdmiralTheme.colors.backgroundAccent,
     selectedBorderDisableColor: Color = AdmiralTheme.colors.backgroundAccent.withAlpha(),
@@ -39,18 +44,20 @@ fun LogoTabs(
     onCheckedChange: (Int) -> Unit = {}
 ) {
     val (selectedId, setSelectedId) = remember {
-        mutableStateOf(-1)
+        mutableIntStateOf(selectedIndex ?: -1)
     }
 
     val selectedBorderColor =
         if (isEnabled) selectedBorderEnableColor
         else selectedBorderDisableColor
 
+    val roundedCornerShape = RoundedCornerShape(DIMEN_X2)
+
     Surface(
-        modifier = Modifier
+        modifier = modifier
             .height(DIMEN_X12),
         color = AdmiralTheme.colors.backgroundBasic,
-        shape = RoundedCornerShape(DIMEN_X2)
+        shape = roundedCornerShape
     ) {
         Box(
             modifier = Modifier
@@ -58,7 +65,7 @@ fun LogoTabs(
                 .border(
                     width = 1.dp,
                     color = borderColor,
-                    shape = RoundedCornerShape(DIMEN_X2)
+                    shape = roundedCornerShape
                 )
         )
 
@@ -83,24 +90,28 @@ fun LogoTabs(
 
                 Box(
                     Modifier
+                        .clip(roundedCornerShape)
                         .fillMaxHeight()
                         .weight(1F)
                         .clickable(
                             onClick = {
                                 setSelectedId(index)
                                 onCheckedChange.invoke(index)
-                            })
+                            },
+                            enabled = isEnabled
+                        )
                         .border(
                             width = 2.dp,
                             color = if (index == selectedId) selectedBorderColor else Color.Transparent,
-                            shape = RoundedCornerShape(DIMEN_X2)
+                            shape = roundedCornerShape
                         )
                 ) {
                     Image(
                         modifier = Modifier
                             .align(Alignment.Center),
                         painter = item,
-                        contentDescription = null
+                        contentDescription = null,
+                        alpha = if (isEnabled) ALPHA_ENABLED else ALPHA_DISABLED
                     )
                 }
             }

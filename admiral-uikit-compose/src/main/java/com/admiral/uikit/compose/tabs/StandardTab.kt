@@ -15,11 +15,12 @@ import androidx.compose.material.Divider
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Alignment.Companion.CenterVertically
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -42,11 +43,13 @@ fun StandardTab(
     onCheckedChange: (Int) -> Unit = {}
 ) {
     val (currentSelectedId, setSelectedId) = remember {
-        mutableStateOf(selectedIndex ?: -1)
+        mutableIntStateOf(selectedIndex ?: -1)
     }
     val textColor = if (isEnabled) textEnableColor else textDisableColor
     val selectedBorderColor =
         if (isEnabled) selectedBorderEnableColor else selectedBorderDisableColor
+
+    val roundedCornerShape = RoundedCornerShape(ITEM_BORDER_RADIUS.dp)
 
     Surface(
         modifier = modifier
@@ -81,18 +84,21 @@ fun StandardTab(
 
                 Box(
                     Modifier
+                        .clip(roundedCornerShape)
                         .fillMaxHeight()
                         .weight(1F)
                         .clickable(
                             onClick = {
                                 setSelectedId(index)
                                 onCheckedChange.invoke(index)
-                            })
+                            },
+                            enabled = isEnabled,
+                        )
                         .border(
                             width = ITEM_BORDER_WIDTH.dp,
                             color = if (index == currentSelectedId) selectedBorderColor else Color.Transparent,
-                            shape = RoundedCornerShape(ITEM_BORDER_RADIUS.dp)
-                        )
+                            shape = roundedCornerShape
+                        ),
                 ) {
                     Text(
                         modifier = Modifier.align(Alignment.Center),
