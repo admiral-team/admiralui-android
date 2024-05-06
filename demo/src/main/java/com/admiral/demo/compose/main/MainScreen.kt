@@ -4,7 +4,6 @@ import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
@@ -13,6 +12,7 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
+import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.cell.BaseCell
 import com.admiral.uikit.compose.cell.unit.IconBackgroundCellUnit
 import com.admiral.uikit.compose.cell.unit.IconCellUnit
@@ -28,6 +28,7 @@ internal fun MainScreen(
     onButtonsClick: homeItemClick = {},
     onTextFieldsClick: homeItemClick = {},
     onCellsClick: homeItemClick = {},
+    onCheckBoxClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -245,6 +246,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onCheckBoxClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_tasks_solid),
@@ -489,7 +491,7 @@ internal fun MainScreen(
 @Preview
 @Composable
 private fun LoginScreenPreview() {
-    MaterialTheme {
+    AdmiralTheme {
         MainScreen()
     }
 }

@@ -10,6 +10,7 @@ internal fun NavGraphBuilder.mainScreen(
     onButtonsClick: () -> Unit,
     onTextFieldsClick: () -> Unit,
     onCellsClick: () -> Unit,
+    onCheckBoxClick: () -> Unit,
 ) {
     composable(route = MAIN_ROUTE) {
         MainScreen(
@@ -17,6 +18,7 @@ internal fun NavGraphBuilder.mainScreen(
             onButtonsClick = onButtonsClick,
             onTextFieldsClick = onTextFieldsClick,
             onCellsClick = onCellsClick,
+            onCheckBoxClick = onCheckBoxClick,
         )
     }
 }
