@@ -1,0 +1,142 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:scrollbars="none">
+
+    <com.admiral.uikit.layout.LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.admiral.uikit.components.appbar.Appbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:admiralTitleText="@string/text_fields_default_title"
+            app:admiralTitleTextGravity="center"
+            app:contentInsetStartWithNavigation="0dp" />
+
+        <com.admiral.uikit.components.tabs.StandardTabs
+            android:id="@+id/tabs"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x4"
+            app:checkedId="@+id/defaultTab">
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/defaultTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_fields_default" />
+
+            <com.admiral.uikit.components.tabs.StandardTab
+                android:id="@+id/disabledTab"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/text_fields_disabled" />
+        </com.admiral.uikit.components.tabs.StandardTabs>
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/tvFiveSymbols"
+            style="@style/AdmiralTextAppearance.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x6"
+            android:paddingVertical="18dp"
+            android:text="@string/text_fields_five_symbols"
+            tools:textColor="@color/light_textSecondary" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumberFiveSymbols"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="@dimen/module_x3"
+            app:admiralInputMaxValue="99999"
+            app:admiralTextOptional="@string/text_fields_number_optional_label" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/tvSixSymbols"
+            style="@style/AdmiralTextAppearance.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="18dp"
+            android:text="@string/text_fields_six_symbols"
+            tools:textColor="@color/light_textSecondary" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumberSixSymbols"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="@dimen/module_x3"
+            app:admiralInputMaxValue="190000"
+            app:admiralTextOptional="@string/text_fields_number_optional_label" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/tvEightSymbols"
+            style="@style/AdmiralTextAppearance.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="18dp"
+            android:text="@string/text_fields_eight_symbols"
+            tools:textColor="@color/light_textSecondary" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumberEightSymbols"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="@dimen/module_x3"
+            app:admiralInputMaxValue="19000000"
+            app:admiralTextOptional="@string/text_fields_number_optional_label" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/tvTenSymbols"
+            style="@style/AdmiralTextAppearance.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="18dp"
+            android:text="@string/text_fields_ten_symbols"
+            tools:textColor="@color/light_textSecondary" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumberTenSymbols"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="@dimen/module_x3"
+            app:admiralInputMaxValue="1900000000"
+            app:admiralTextOptional="@string/text_fields_number_optional_label" />
+
+        <com.admiral.uikit.components.text.TextView
+            android:id="@+id/tvUnlimitedSymbols"
+            style="@style/AdmiralTextAppearance.Body1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginHorizontal="@dimen/module_x4"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="18dp"
+            android:text="@string/text_fields_unlimeted_symbols"
+            tools:textColor="@color/light_textSecondary" />
+
+        <com.admiral.uikit.components.input.InputNumber
+            android:id="@+id/inputNumberUnlimited"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/module_x1"
+            android:paddingVertical="@dimen/module_x3"
+            app:admiralTextOptional="@string/text_fields_number_optional_label" />
+
+    </com.admiral.uikit.layout.LinearLayout>
+</ScrollView>

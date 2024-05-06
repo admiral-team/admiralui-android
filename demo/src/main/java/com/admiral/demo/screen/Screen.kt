@@ -85,6 +85,8 @@ import com.admiral.demo.features.home.textFields.TextFieldsCardNumberFragment
 import com.admiral.demo.features.home.textFields.TextFieldsStandardFragment
 import com.admiral.demo.features.home.textFields.TextFieldsSmsFragment
 import com.admiral.demo.features.home.textFields.TextFieldsFragment
+import com.admiral.demo.features.home.textFields.TextFieldsNumberDefaultFragment
+import com.admiral.demo.features.home.textFields.TextFieldsNumberSecondaryFragment
 import com.admiral.demo.features.home.theme.ThemeCreateFragment
 import com.admiral.demo.features.home.theme.ThemeFragment
 import com.admiral.demo.features.home.theme.ThemeListFragment
@@ -295,6 +297,16 @@ class TextFieldsSliderScreen : Screen() {
 @Parcelize
 class TextFieldsNumberScreen : Screen() {
     override fun getFragment() = TextFieldsNumberFragment()
+}
+
+@Parcelize
+class TextFieldsNumberDefaultScreen : Screen() {
+    override fun getFragment() = TextFieldsNumberDefaultFragment()
+}
+
+@Parcelize
+class TextFieldsNumberSecondaryScreen : Screen() {
+    override fun getFragment() = TextFieldsNumberSecondaryFragment()
 }
 
 @Parcelize

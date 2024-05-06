@@ -8,7 +8,8 @@ import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtTextFieldsNumberBinding
 import com.admiral.demo.features.main.NavigationViewModel
-import com.admiral.uikit.view.checkable.CheckableGroup
+import com.admiral.demo.screen.TextFieldsNumberDefaultScreen
+import com.admiral.demo.screen.TextFieldsNumberSecondaryScreen
 
 class TextFieldsNumberFragment : BaseFragment(
     layoutId = R.layout.fmt_text_fields_number,
@@ -22,20 +23,13 @@ class TextFieldsNumberFragment : BaseFragment(
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
-        binding.tabs.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
-                when (checkedId) {
-                    binding.defaultTab.id -> {
-                        binding.inputNumberOval.isEnabled = true
-                        binding.inputNumbeRectangle.isEnabled = true
-                        binding.inputNumberTextField.isEnabled = true
-                    }
-                    binding.disabledTab.id -> {
-                        binding.inputNumberOval.isEnabled = false
-                        binding.inputNumbeRectangle.isEnabled = false
-                        binding.inputNumberTextField.isEnabled = false
-                    }
-                }
+        with(binding) {
+            btnDefault.setOnClickListener {
+                navigationViewModel.open(TextFieldsNumberDefaultScreen())
+            }
+
+            btnSecondary.setOnClickListener {
+                navigationViewModel.open(TextFieldsNumberSecondaryScreen())
             }
         }
     }
