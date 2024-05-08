@@ -59,8 +59,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 
 @OptIn(ExperimentalTextApi::class)
 @Suppress("MagicNumber", "LongMethod")
@@ -88,19 +86,12 @@ fun InputNumber(
     val incrementInteractionSource = remember { MutableInteractionSource() }
     val decrementInteractionSource = remember { MutableInteractionSource() }
 
-    val dfs = DecimalFormatSymbols()
-    dfs.groupingSeparator = ' '
-    val df = DecimalFormat(DecimalFormatPattern, dfs)
-    val valueWithSpaceState by remember(currentValue) {
-        mutableStateOf(df.format(currentValue).toString())
-    }
-
     val iconPadding = when (inputType) {
         InputType.OVAL -> DIMEN_X2
         else -> RectangleIconPadding
     }
 
-    val textFieldMargin = when (inputType) {
+    val textFieldPadding = when (inputType) {
         InputType.OVAL -> DIMEN_X1
         InputType.RECTANGLE -> DIMEN_X2
         InputType.TEXT_FIELD -> TextFieldMargin
@@ -111,8 +102,8 @@ fun InputNumber(
         else -> DefaultWidthTextField
     }
 
-    val textFieldPadding = when (inputType) {
-        InputType.TEXT_FIELD -> DIMEN_X2
+    val decorationBoxPadding = when (inputType) {
+        InputType.TEXT_FIELD -> DIMEN_X1
         else -> 0.dp
     }
 
@@ -123,8 +114,8 @@ fun InputNumber(
             }
         }
 
-        incrementEnabled = autoDecrement.not() && currentValue != maxValue
-        decrementEnabled = autoIncrement.not() && currentValue != minValue
+        incrementEnabled = autoDecrement.not() && currentValue < maxValue
+        decrementEnabled = autoIncrement.not() && currentValue > minValue
     }
 
     Row(
@@ -164,15 +155,24 @@ fun InputNumber(
                         detectTapGestures(
                             onPress = { offset: Offset ->
                                 val press = PressInteraction.Press(offset)
-                                decrementInteractionSource.emit(press)
-
-                                previousValue = currentValue
-                                currentValue--
-
                                 val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                                if (isEnabled && decrementEnabled) {
+                                    decrementInteractionSource.emit(press)
+                                    previousValue = currentValue
+                                    currentValue--
+                                }
                                 val heldButtonJob = scope.launch {
                                     while (isEnabled && decrementEnabled) {
                                         delay(DelayAutoChange)
+                                        if (currentValue <= minValue) {
+                                            autoDecrement = false
+                                            decrementInteractionSource.emit(
+                                                PressInteraction.Release(
+                                                    press
+                                                )
+                                            )
+                                            return@launch
+                                        }
                                         autoDecrement = true
                                         previousValue = currentValue
                                         currentValue--
@@ -202,10 +202,26 @@ fun InputNumber(
                         minWidth = textFieldMinWidth,
                         minHeight = DIMEN_X9
                     )
-                    .padding(horizontal = if (inputType == InputType.TEXT_FIELD) TextFieldMargin else DIMEN_X1)
+                    .padding(horizontal = textFieldPadding)
                     .background(color = colors.getTextFieldBackgroundColor(isEnabled = isEnabled).value),
-                value = valueWithSpaceState,
-                onValueChange = {},
+                value = currentValue.toString(),
+                onValueChange = { newString ->
+                    previousValue = currentValue
+                    val newValue = newString.toIntOrNull()
+                    println(newValue)
+                    when {
+                        newValue != null -> {
+                            currentValue = when {
+                                newValue >= maxValue -> maxValue
+                                newValue <= minValue -> minValue
+                                else -> newValue
+                            }
+                        }
+
+                        newString.isEmpty() -> currentValue = 0
+                        newString == "-" -> currentValue = 0
+                    }
+                },
                 enabled = isEnabled,
                 readOnly = inputType != InputType.TEXT_FIELD,
                 maxLines = 1,
@@ -221,10 +237,13 @@ fun InputNumber(
                     autoCorrect = false,
                     keyboardType = KeyboardType.Number
                 ),
+                visualTransformation = { annotatedString ->
+                    numberFormatter(annotatedString.text)
+                },
                 decorationBox = @Composable { innerTextField ->
                     Row(
                         modifier = Modifier
-                            .padding(textFieldPadding),
+                            .padding(decorationBoxPadding),
                         horizontalArrangement = Arrangement.Center,
                         verticalAlignment = Alignment.CenterVertically
                     ) {
@@ -257,22 +276,31 @@ fun InputNumber(
                         detectTapGestures(
                             onPress = { offset: Offset ->
                                 val press = PressInteraction.Press(offset)
-                                incrementInteractionSource.emit(press)
-
-                                previousValue = currentValue
-                                currentValue++
-
                                 val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                                if (isEnabled && incrementEnabled) {
+                                    incrementInteractionSource.emit(press)
+                                    previousValue = currentValue
+                                    currentValue++
+                                }
                                 val heldButtonJob = scope.launch {
                                     while (isEnabled && incrementEnabled) {
                                         delay(DelayAutoChange)
+                                        if (currentValue >= maxValue) {
+                                            autoIncrement = false
+                                            incrementInteractionSource.emit(
+                                                PressInteraction.Release(
+                                                    press
+                                                )
+                                            )
+                                            return@launch
+                                        }
                                         autoIncrement = true
                                         previousValue = currentValue
                                         currentValue++
                                     }
                                 }
                                 tryAwaitRelease()
-                                incrementInteractionSource.emit(PressInteraction.Cancel(press))
+                                incrementInteractionSource.emit(PressInteraction.Release(press))
                                 heldButtonJob.cancel()
                                 autoIncrement = false
                             },
@@ -319,7 +347,6 @@ private const val DefaultMinValue = -99999
 private const val DefaultMaxValue = 99999
 private val DefaultWidthTextField = 48.dp
 private val LargeWidthTextField = 56.dp
-private const val DecimalFormatPattern = "###,###"
 private val RectangleIconPadding = 6.dp
 private val TextFieldMargin = 2.dp
 private val BorderWidth = 2.dp
