@@ -21,6 +21,22 @@ import com.admiral.demo.compose.home.cells.navigateToCellsBaseScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsCenterScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsScreen
+import com.admiral.demo.compose.home.checkbox.checkBoxScreen
+import com.admiral.demo.compose.home.checkbox.navigateToCheckBoxScreen
+import com.admiral.demo.compose.home.tabs.iconTabsScreen
+import com.admiral.demo.compose.home.tabs.informerTabsScreen
+import com.admiral.demo.compose.home.tabs.logoTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToIconTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToInformerTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToLogoTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToOutlineTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToStandardTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToUnderlineTabsScreen
+import com.admiral.demo.compose.home.tabs.outlineTabsScreen
+import com.admiral.demo.compose.home.tabs.standardTabsScreen
+import com.admiral.demo.compose.home.tabs.tabsMainScreen
+import com.admiral.demo.compose.home.tabs.underlineTabsScreen
 import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
 import com.admiral.demo.compose.home.textfield.doubleTextFieldScreen
 import com.admiral.demo.compose.home.textfield.feedbackTextFieldScreen
@@ -45,8 +61,6 @@ import com.admiral.demo.compose.home.textfield.standardTextFieldScreen
 import com.admiral.demo.compose.home.textfield.textFieldsScreen
 import com.admiral.demo.compose.main.MAIN_ROUTE
 import com.admiral.demo.compose.main.mainScreen
-import com.admiral.demo.compose.tabs.navigateToTabs
-import com.admiral.demo.compose.tabs.tabsScreen
 
 internal const val HOME_GRAPH_ROUTE = "home_graph"
 
@@ -59,10 +73,11 @@ fun NavGraphBuilder.homeGraph(
         route = HOME_GRAPH_ROUTE,
     ) {
         mainScreen(
-            onTabsClick = { navController.navigateToTabs() },
+            onTabsClick = { navController.navigateToTabsScreen() },
             onButtonsClick = { navController.navigateToButtonsScreen() },
             onTextFieldsClick = { navController.navigateToTextFieldsScreen() },
             onCellsClick = { navController.navigateToCellsScreen() },
+            onCheckBoxClick = {navController.navigateToCheckBoxScreen()}
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -121,7 +136,34 @@ fun NavGraphBuilder.homeGraph(
         cellsCenterScreen(
             onBackClick = { navController.navigateBack() },
         )
-        tabsScreen()
+        tabsMainScreen(
+            onBackClick = { navController.navigateBack() },
+            onStandardTabsClicked = { navController.navigateToStandardTabsScreen() },
+            onLogoTabsClicked = { navController.navigateToLogoTabsScreen() },
+            onInformerTabsClicked = { navController.navigateToInformerTabsScreen() },
+            onOutlineTabsClicked = { navController.navigateToOutlineTabsScreen() },
+            onUnderlineTabsClicked = { navController.navigateToUnderlineTabsScreen() },
+            onIconTabsClicked = { navController.navigateToIconTabsScreen() },
+        )
+        standardTabsScreen(
+            onBackClick = { navController.navigateBack() }
+        )
+        logoTabsScreen(
+            onBackClick = { navController.navigateBack() }
+        )
+        informerTabsScreen(
+            onBackClick = { navController.navigateBack() }
+        )
+        outlineTabsScreen(
+            onBackClick = { navController.navigateBack() }
+        )
+        underlineTabsScreen(
+            onBackClick = { navController.navigateBack() }
+        )
+        iconTabsScreen(
+            onBackClick = { navController.navigateBack() }
+        )
+        checkBoxScreen(onBackClick = { navController.navigateBack() })
     }
 }
 

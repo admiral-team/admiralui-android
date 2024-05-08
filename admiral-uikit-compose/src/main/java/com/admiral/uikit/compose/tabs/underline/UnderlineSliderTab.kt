@@ -1,6 +1,7 @@
 package com.admiral.uikit.compose.tabs.underline
 
 import android.annotation.SuppressLint
+import androidx.compose.foundation.horizontalScroll
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -12,10 +13,12 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.lazy.LazyRow
 import androidx.compose.foundation.lazy.itemsIndexed
+import androidx.compose.foundation.rememberScrollState
 import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
@@ -94,28 +97,30 @@ fun UnderlineSliderTab(
 @Composable
 fun UnderlineSliderTabList(
     modifier: Modifier = Modifier,
-    tabs: MutableList<TabItem>,
-    onClick: (Int) -> Unit = {},
+    items: MutableList<String>,
+    onCheckedChange: (Int) -> Unit = {},
+    isEnabled: Boolean = true,
+    selectedIndex: Int
 ) {
-    val tabList = remember {
-        tabs.toMutableStateList()
+    val (currentSelectedIndex, setSelectedIndex) = remember {
+        mutableStateOf(selectedIndex ?: -1)
     }
 
     Row(
-        modifier = modifier,
+        modifier = modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
         verticalAlignment = Alignment.CenterVertically
     ) {
-        tabList.forEachIndexed { index, tabItem ->
+        items.forEachIndexed { index, tabItem ->
             UnderlineSliderTab(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                isSelected = tabList[index].isSelected,
-                tabText = tabItem.text,
+                isSelected = index == currentSelectedIndex,
+                tabText = tabItem,
                 onClick = {
-                    tabList.selectNewTab(tabList[index])
-                    onClick.invoke(index)
+                    setSelectedIndex(index)
+                    onCheckedChange.invoke(index)
                 },
+                isEnabled = isEnabled
             )
         }
     }
@@ -364,12 +369,13 @@ fun UnderlineSliderTabListPreview() {
     AdmiralTheme {
         UnderlineSliderTabList(
             modifier = Modifier.padding(16.dp),
-            tabs = mutableListOf(
-                TabItem("Default", true),
-                TabItem("Disabled", false),
-                TabItem("New", false),
-                TabItem("Last", false),
-            )
+            items = mutableListOf(
+                "Default",
+                "Disabled",
+                "New",
+                "Last",
+            ),
+            selectedIndex = 0,
         )
     }
 }

@@ -2,8 +2,10 @@ package com.admiral.uikit.compose.input
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.border
-import androidx.compose.foundation.clickable
+import androidx.compose.foundation.gestures.detectTapGestures
+import androidx.compose.foundation.indication
 import androidx.compose.foundation.interaction.MutableInteractionSource
+import androidx.compose.foundation.interaction.PressInteraction
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
@@ -27,13 +29,17 @@ import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.clip
+import androidx.compose.ui.geometry.Offset
 import androidx.compose.ui.graphics.SolidColor
 import androidx.compose.ui.graphics.painter.Painter
+import androidx.compose.ui.input.pointer.pointerInput
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.text.ExperimentalTextApi
 import androidx.compose.ui.text.PlatformTextStyle
@@ -52,6 +58,11 @@ import com.admiral.uikit.compose.util.DIMEN_X3
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X9
 import com.admiral.uikit.core.components.input.InputType
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import java.text.DecimalFormat
 import java.text.DecimalFormatSymbols
 
@@ -73,10 +84,14 @@ fun InputNumber(
     onValueChange: ((old: Int, new: Int) -> Unit)? = null,
 ) {
 
-    var currentValue by remember(value) { mutableStateOf(value) }
-    var previousValue by remember { mutableStateOf(value) }
+    var currentValue by remember(value) { mutableIntStateOf(value) }
+    var previousValue by remember { mutableIntStateOf(value) }
     var incrementEnabled by remember { mutableStateOf(true) }
     var decrementEnabled by remember { mutableStateOf(true) }
+    var autoDecrement by remember { mutableStateOf(false) }
+    var autoIncrement by remember { mutableStateOf(false) }
+    val incrementInteractionSource = remember { MutableInteractionSource() }
+    val decrementInteractionSource = remember { MutableInteractionSource() }
 
     val dfs = DecimalFormatSymbols()
     dfs.groupingSeparator = ' '
@@ -106,17 +121,15 @@ fun InputNumber(
         else -> 0.dp
     }
 
-    LaunchedEffect(key1 = previousValue, key2 = currentValue) {
+    LaunchedEffect(keys = arrayOf(previousValue, currentValue, autoIncrement, autoDecrement)) {
         when {
             currentValue in (minValue + 1) until maxValue -> {
-                incrementEnabled = true
-                decrementEnabled = true
                 onValueChange?.invoke(previousValue, currentValue)
             }
-
-            currentValue >= maxValue -> incrementEnabled = false
-            currentValue <= minValue -> decrementEnabled = false
         }
+
+        incrementEnabled = autoDecrement.not() && currentValue != maxValue
+        decrementEnabled = autoIncrement.not() && currentValue != minValue
     }
 
     ConstraintLayout(
@@ -144,7 +157,7 @@ fun InputNumber(
                 style = AdmiralTheme.typography.body1,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
-                color = colors.getTextColor(isEnabled = isEnabled),
+                color = colors.getTextColor(isEnabled = isEnabled).value,
             )
         }
 
@@ -156,34 +169,51 @@ fun InputNumber(
                     end.linkTo(anchor = valueTextFieldId.start, margin = textFieldMargin)
                 }
                 .background(
-                    color = colors.getBackgroundColor(isEnabled = isEnabled && decrementEnabled),
+                    color = colors.getBackgroundColor(isEnabled = isEnabled && decrementEnabled).value,
                     shape = getIconShape(true, inputType),
                 )
                 .border(
-                    brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && decrementEnabled)),
+                    brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && decrementEnabled).value),
                     shape = getIconShape(true, inputType),
                     width = BorderWidth,
                 )
-                .clickable(
-                    onClick = {
-                        previousValue = currentValue
-                        currentValue--
-                    },
-                    enabled = decrementEnabled,
-                    indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && decrementEnabled)),
-                    interactionSource = remember { MutableInteractionSource() },
+                .clip(getIconShape(true, inputType))
+                .indication(
+                    interactionSource = decrementInteractionSource,
+                    indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && decrementEnabled).value)
                 )
+                .pointerInput(isEnabled, decrementEnabled) {
+                    detectTapGestures(
+                        onPress = { offset: Offset ->
+                            val press = PressInteraction.Press(offset)
+                            val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                            val heldButtonJob = scope.launch {
+                                while (isEnabled && decrementEnabled) {
+                                    autoDecrement = true
+                                    decrementInteractionSource.emit(press)
+                                    previousValue = currentValue
+                                    currentValue--
+                                    delay(DelayAutoChange)
+                                    decrementInteractionSource.emit(PressInteraction.Release(press))
+                                }
+                            }
+                            tryAwaitRelease()
+                            decrementInteractionSource.emit(PressInteraction.Release(press))
+                            heldButtonJob.cancel()
+                            autoDecrement = false
+                        }
+                    )
+                }
         ) {
             Icon(
                 modifier = Modifier
                     .padding(iconPadding),
                 painter = decrementIcon,
-                tint = colors.getIconTintColor(isEnabled = isEnabled && decrementEnabled),
+                tint = colors.getIconTintColor(isEnabled = isEnabled && decrementEnabled).value,
                 contentDescription = null,
             )
         }
 
-        @Suppress("DEPRECATION")
         BasicTextField(
             modifier = Modifier
                 .width(IntrinsicSize.Min)
@@ -198,15 +228,15 @@ fun InputNumber(
                     width = Dimension.wrapContent
                     height = Dimension.wrapContent
                 }
-                .background(color = colors.getTextFieldBackgroundColor(isEnabled = isEnabled)),
+                .background(color = colors.getTextFieldBackgroundColor(isEnabled = isEnabled).value),
             value = valueWithSpaceState,
             onValueChange = {},
             enabled = isEnabled,
             readOnly = inputType != InputType.TEXT_FIELD,
             maxLines = 1,
-            cursorBrush = SolidColor(colors.getTextFieldCursorColor(isEnabled = isEnabled)),
+            cursorBrush = SolidColor(colors.getTextFieldCursorColor(isEnabled = isEnabled).value),
             textStyle = AdmiralTheme.typography.body1.copy(
-                color = colors.getTextColor(isEnabled = isEnabled),
+                color = colors.getTextColor(isEnabled = isEnabled).value,
                 textAlign = TextAlign.Center,
                 platformStyle = PlatformTextStyle(
                     includeFontPadding = false
@@ -232,36 +262,55 @@ fun InputNumber(
             }
         )
 
-        Box(modifier = Modifier
-            .constrainAs(incrementIconId) {
-                top.linkTo(parent.top)
-                bottom.linkTo(parent.bottom)
-                end.linkTo(anchor = parent.end, margin = DIMEN_X4)
-            }
-            .background(
-                color = colors.getBackgroundColor(isEnabled = isEnabled && incrementEnabled),
-                shape = getIconShape(false, inputType)
-            )
-            .border(
-                brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && incrementEnabled)),
-                shape = getIconShape(false, inputType),
-                width = BorderWidth,
-            )
-            .clickable(
-                onClick = {
-                    previousValue = currentValue
-                    currentValue++
-                },
-                enabled = incrementEnabled,
-                indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && incrementEnabled)),
-                interactionSource = remember { MutableInteractionSource() },
-            )
+        Box(
+            modifier = Modifier
+                .constrainAs(incrementIconId) {
+                    top.linkTo(parent.top)
+                    bottom.linkTo(parent.bottom)
+                    end.linkTo(anchor = parent.end, margin = DIMEN_X4)
+                }
+                .background(
+                    color = colors.getBackgroundColor(isEnabled = isEnabled && incrementEnabled).value,
+                    shape = getIconShape(false, inputType)
+                )
+                .border(
+                    brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && incrementEnabled).value),
+                    shape = getIconShape(false, inputType),
+                    width = BorderWidth,
+                )
+                .clip(getIconShape(false, inputType))
+                .indication(
+                    interactionSource = incrementInteractionSource,
+                    indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && incrementEnabled).value)
+                )
+                .pointerInput(isEnabled, incrementEnabled) {
+                    detectTapGestures(
+                        onPress = { offset: Offset ->
+                            val press = PressInteraction.Press(offset)
+                            val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                            val heldButtonJob = scope.launch {
+                                while (isEnabled && incrementEnabled) {
+                                    autoIncrement = true
+                                    incrementInteractionSource.emit(press)
+                                    previousValue = currentValue
+                                    currentValue++
+                                    delay(DelayAutoChange)
+                                    incrementInteractionSource.emit(PressInteraction.Release(press))
+                                }
+                            }
+                            tryAwaitRelease()
+                            incrementInteractionSource.emit(PressInteraction.Release(press))
+                            heldButtonJob.cancel()
+                            autoIncrement = false
+                        }
+                    )
+                }
         ) {
             Icon(
                 modifier = Modifier
                     .padding(iconPadding),
                 painter = incrementIcon,
-                tint = colors.getIconTintColor(isEnabled = isEnabled && incrementEnabled),
+                tint = colors.getIconTintColor(isEnabled = isEnabled && incrementEnabled).value,
                 contentDescription = null
             )
         }
@@ -300,6 +349,7 @@ private const val DecimalFormatPattern = "###,###"
 private val RectangleIconPadding = 6.dp
 private val TextFieldMargin = 2.dp
 private val BorderWidth = 2.dp
+private const val DelayAutoChange = 300L
 
 @Composable
 private fun InputNumber(

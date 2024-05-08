@@ -111,7 +111,7 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
     }
 
     override fun switchToSystemTheme(isSystem: Boolean) {
-        ThemeManager.theme = if (isSystem) {
+        val newTheme = if (isSystem) {
             when (isNightModeDetect()) {
                 true -> darkTheme()
                 false -> lightTheme()
@@ -119,6 +119,9 @@ class MainFragment : BaseFragment(R.layout.fmt_main), ThemeObserver, ComposeSwit
         } else {
             ThemeStorageDAO.theme
         }
+
+        ThemeManager.theme = newTheme
+        ThemeManagerCompose.setCurrentTheme(newTheme)
     }
 
     fun themePickerVisibility(isVisible: Boolean) {

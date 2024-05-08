@@ -108,6 +108,7 @@
 
     <string name="tabs_title">Tabs</string>
     <string name="tabs_underline_title">Underline Tabs</string>
+    <string name="tabs_underline_slider_title">Underline Slider Tabs</string>
     <string name="tabs_slider_title">Slider</string>
     <string name="tabs_center_title">Center</string>
     <string name="tabs_standard_title">Standard Tabs</string>
