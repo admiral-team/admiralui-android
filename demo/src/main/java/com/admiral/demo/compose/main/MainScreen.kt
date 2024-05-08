@@ -21,7 +21,7 @@ import com.admiral.uikit.core.components.cell.base.CellUnitType
 
 internal typealias homeItemClick = () -> Unit
 
-@Suppress("LongMethod")
+@Suppress("LongMethod", "LongParameterList")
 @Composable
 internal fun MainScreen(
     onTabsClick: homeItemClick = {},
@@ -29,6 +29,7 @@ internal fun MainScreen(
     onTextFieldsClick: homeItemClick = {},
     onCellsClick: homeItemClick = {},
     onCheckBoxClick: homeItemClick = {},
+    onLinkClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -281,6 +282,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onLinkClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_link_solid),
