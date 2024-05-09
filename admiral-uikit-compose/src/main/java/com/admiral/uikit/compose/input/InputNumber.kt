@@ -48,14 +48,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
 import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X2
-import com.admiral.uikit.compose.util.DIMEN_X3
-import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X9
 import com.admiral.uikit.core.components.input.InputType
 import kotlinx.coroutines.CoroutineScope
@@ -131,192 +127,166 @@ fun InputNumber(
         decrementEnabled = autoIncrement.not() && currentValue != minValue
     }
 
-    ConstraintLayout(
+    Row(
         modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-        val (
-            optionalTextId,
-            decrementIconId,
-            valueTextFieldId,
-            incrementIconId,
-        ) = createRefs()
-
         optionalText?.let { text ->
             Text(
-                modifier = Modifier
-                    .constrainAs(optionalTextId) {
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom)
-                        start.linkTo(anchor = parent.start, margin = DIMEN_X4)
-                        end.linkTo(anchor = decrementIconId.start, margin = DIMEN_X3)
-                        width = Dimension.fillToConstraints
-                    },
                 text = text,
                 style = AdmiralTheme.typography.body1,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 color = colors.getTextColor(isEnabled = isEnabled).value,
             )
+            Spacer(modifier = Modifier.width(DIMEN_X1))
         }
-
-        Box(
-            modifier = Modifier
-                .constrainAs(decrementIconId) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    end.linkTo(anchor = valueTextFieldId.start, margin = textFieldMargin)
-                }
-                .background(
-                    color = colors.getBackgroundColor(isEnabled = isEnabled && decrementEnabled).value,
-                    shape = getIconShape(true, inputType),
-                )
-                .border(
-                    brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && decrementEnabled).value),
-                    shape = getIconShape(true, inputType),
-                    width = BorderWidth,
-                )
-                .clip(getIconShape(true, inputType))
-                .indication(
-                    interactionSource = decrementInteractionSource,
-                    indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && decrementEnabled).value)
-                )
-                .pointerInput(isEnabled, decrementEnabled) {
-                    detectTapGestures(
-                        onPress = { offset: Offset ->
-                            val press = PressInteraction.Press(offset)
-                            decrementInteractionSource.emit(press)
-
-                            previousValue = currentValue
-                            currentValue--
-
-                            val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-                            val heldButtonJob = scope.launch {
-                                while (isEnabled && decrementEnabled) {
-                                    delay(DelayAutoChange)
-                                    autoDecrement = true
-                                    previousValue = currentValue
-                                    currentValue--
-                                }
-                            }
-                            tryAwaitRelease()
-                            decrementInteractionSource.emit(PressInteraction.Cancel(press))
-                            heldButtonJob.cancel()
-                            autoDecrement = false
-                        },
-                    )
-                }
-        ) {
-            Icon(
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
                 modifier = Modifier
-                    .padding(iconPadding),
-                painter = decrementIcon,
-                tint = colors.getIconTintColor(isEnabled = isEnabled && decrementEnabled).value,
-                contentDescription = null,
-            )
-        }
+                    .padding(start = DIMEN_X1)
+                    .background(
+                        color = colors.getBackgroundColor(isEnabled = isEnabled && decrementEnabled).value,
+                        shape = getIconShape(true, inputType),
+                    )
+                    .border(
+                        brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && decrementEnabled).value),
+                        shape = getIconShape(true, inputType),
+                        width = BorderWidth,
+                    )
+                    .clip(getIconShape(true, inputType))
+                    .indication(
+                        interactionSource = decrementInteractionSource,
+                        indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && decrementEnabled).value)
+                    )
+                    .pointerInput(isEnabled, decrementEnabled) {
+                        detectTapGestures(
+                            onPress = { offset: Offset ->
+                                val press = PressInteraction.Press(offset)
+                                decrementInteractionSource.emit(press)
 
-        BasicTextField(
-            modifier = Modifier
-                .width(IntrinsicSize.Min)
-                .defaultMinSize(
-                    minWidth = textFieldMinWidth,
-                    minHeight = DIMEN_X9
-                )
-                .constrainAs(valueTextFieldId) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    end.linkTo(anchor = incrementIconId.start, margin = textFieldMargin)
-                    width = Dimension.wrapContent
-                    height = Dimension.wrapContent
-                }
-                .background(color = colors.getTextFieldBackgroundColor(isEnabled = isEnabled).value),
-            value = valueWithSpaceState,
-            onValueChange = {},
-            enabled = isEnabled,
-            readOnly = inputType != InputType.TEXT_FIELD,
-            maxLines = 1,
-            cursorBrush = SolidColor(colors.getTextFieldCursorColor(isEnabled = isEnabled).value),
-            textStyle = AdmiralTheme.typography.body1.copy(
-                color = colors.getTextColor(isEnabled = isEnabled).value,
-                textAlign = TextAlign.Center,
-                platformStyle = PlatformTextStyle(
-                    includeFontPadding = false
-                )
-            ),
-            keyboardOptions = KeyboardOptions(
-                autoCorrect = false,
-                keyboardType = KeyboardType.Number
-            ),
-            decorationBox = @Composable { innerTextField ->
-                Row(
+                                previousValue = currentValue
+                                currentValue--
+
+                                val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                                val heldButtonJob = scope.launch {
+                                    while (isEnabled && decrementEnabled) {
+                                        delay(DelayAutoChange)
+                                        autoDecrement = true
+                                        previousValue = currentValue
+                                        currentValue--
+                                    }
+                                }
+                                tryAwaitRelease()
+                                decrementInteractionSource.emit(PressInteraction.Cancel(press))
+                                heldButtonJob.cancel()
+                                autoDecrement = false
+                            },
+                        )
+                    }
+            ) {
+                Icon(
                     modifier = Modifier
-                        .padding(textFieldPadding),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Box(
-                        contentAlignment = Alignment.Center,
+                        .padding(iconPadding),
+                    painter = decrementIcon,
+                    tint = colors.getIconTintColor(isEnabled = isEnabled && decrementEnabled).value,
+                    contentDescription = null,
+                )
+            }
+
+            BasicTextField(
+                modifier = Modifier
+                    .width(IntrinsicSize.Min)
+                    .defaultMinSize(
+                        minWidth = textFieldMinWidth,
+                        minHeight = DIMEN_X9
+                    )
+                    .padding(horizontal = if (inputType == InputType.TEXT_FIELD) TextFieldMargin else DIMEN_X1)
+                    .background(color = colors.getTextFieldBackgroundColor(isEnabled = isEnabled).value),
+                value = valueWithSpaceState,
+                onValueChange = {},
+                enabled = isEnabled,
+                readOnly = inputType != InputType.TEXT_FIELD,
+                maxLines = 1,
+                cursorBrush = SolidColor(colors.getTextFieldCursorColor(isEnabled = isEnabled).value),
+                textStyle = AdmiralTheme.typography.body1.copy(
+                    color = colors.getTextColor(isEnabled = isEnabled).value,
+                    textAlign = TextAlign.Center,
+                    platformStyle = PlatformTextStyle(
+                        includeFontPadding = false
+                    )
+                ),
+                keyboardOptions = KeyboardOptions(
+                    autoCorrect = false,
+                    keyboardType = KeyboardType.Number
+                ),
+                decorationBox = @Composable { innerTextField ->
+                    Row(
+                        modifier = Modifier
+                            .padding(textFieldPadding),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        innerTextField()
+                        Box(
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            innerTextField()
+                        }
                     }
                 }
-            }
-        )
-
-        Box(
-            modifier = Modifier
-                .constrainAs(incrementIconId) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    end.linkTo(anchor = parent.end, margin = DIMEN_X4)
-                }
-                .background(
-                    color = colors.getBackgroundColor(isEnabled = isEnabled && incrementEnabled).value,
-                    shape = getIconShape(false, inputType)
-                )
-                .border(
-                    brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && incrementEnabled).value),
-                    shape = getIconShape(false, inputType),
-                    width = BorderWidth,
-                )
-                .clip(getIconShape(false, inputType))
-                .indication(
-                    interactionSource = incrementInteractionSource,
-                    indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && incrementEnabled).value)
-                )
-                .pointerInput(isEnabled, incrementEnabled) {
-                    detectTapGestures(
-                        onPress = { offset: Offset ->
-                            val press = PressInteraction.Press(offset)
-                            incrementInteractionSource.emit(press)
-
-                            previousValue = currentValue
-                            currentValue++
-
-                            val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-                            val heldButtonJob = scope.launch {
-                                while (isEnabled && incrementEnabled) {
-                                    delay(DelayAutoChange)
-                                    autoIncrement = true
-                                    previousValue = currentValue
-                                    currentValue++
-                                }
-                            }
-                            tryAwaitRelease()
-                            incrementInteractionSource.emit(PressInteraction.Cancel(press))
-                            heldButtonJob.cancel()
-                            autoIncrement = false
-                        },
-                    )
-                }
-        ) {
-            Icon(
-                modifier = Modifier
-                    .padding(iconPadding),
-                painter = incrementIcon,
-                tint = colors.getIconTintColor(isEnabled = isEnabled && incrementEnabled).value,
-                contentDescription = null
             )
+
+            Box(
+                modifier = Modifier
+                    .background(
+                        color = colors.getBackgroundColor(isEnabled = isEnabled && incrementEnabled).value,
+                        shape = getIconShape(false, inputType)
+                    )
+                    .border(
+                        brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && incrementEnabled).value),
+                        shape = getIconShape(false, inputType),
+                        width = BorderWidth,
+                    )
+                    .clip(getIconShape(false, inputType))
+                    .indication(
+                        interactionSource = incrementInteractionSource,
+                        indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && incrementEnabled).value)
+                    )
+                    .pointerInput(isEnabled, incrementEnabled) {
+                        detectTapGestures(
+                            onPress = { offset: Offset ->
+                                val press = PressInteraction.Press(offset)
+                                incrementInteractionSource.emit(press)
+
+                                previousValue = currentValue
+                                currentValue++
+
+                                val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                                val heldButtonJob = scope.launch {
+                                    while (isEnabled && incrementEnabled) {
+                                        delay(DelayAutoChange)
+                                        autoIncrement = true
+                                        previousValue = currentValue
+                                        currentValue++
+                                    }
+                                }
+                                tryAwaitRelease()
+                                incrementInteractionSource.emit(PressInteraction.Cancel(press))
+                                heldButtonJob.cancel()
+                                autoIncrement = false
+                            },
+                        )
+                    }
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .padding(iconPadding),
+                    painter = incrementIcon,
+                    tint = colors.getIconTintColor(isEnabled = isEnabled && incrementEnabled).value,
+                    contentDescription = null
+                )
+            }
         }
     }
 }
