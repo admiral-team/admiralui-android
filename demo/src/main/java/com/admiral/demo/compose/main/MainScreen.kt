@@ -31,6 +31,7 @@ internal fun MainScreen(
     onCheckBoxClick: homeItemClick = {},
     onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
+    onBadgesClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -214,6 +215,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onBadgesClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_mobile_outline),

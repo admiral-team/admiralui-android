@@ -34,7 +34,6 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.admiral.themes.compose.AdmiralTheme
-import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
@@ -50,7 +49,7 @@ private val BadgeRadius = 5.dp
 fun BadgedBox(
     modifier: Modifier = Modifier,
     content: Int? = null,
-    color: BadgeColor = AdmiralBadgeColor.normal(),
+    color: BadgeColor = AdmiralBadgeColor.default(),
     position: BadgePosition = AdmiralBadgePosition.default(),
     isEnable: Boolean = true,
     anchor: @Composable BoxScope.() -> Unit,
@@ -191,7 +190,7 @@ private fun BadgePreview() {
                 BadgedBox(color = AdmiralBadgeColor.success()) { IconWithBackground() }
                 Spacer(modifier = Modifier.size(DIMEN_X4))
 
-                BadgedBox(color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
+                BadgedBox(color = AdmiralBadgeColor.natural()) { IconWithBackground() }
                 Spacer(modifier = Modifier.size(DIMEN_X4))
 
                 BadgedBox(color = AdmiralBadgeColor.additional()) { IconWithBackground() }
@@ -214,7 +213,7 @@ private fun BadgePreview() {
                 BadgedBox(content = 9, color = AdmiralBadgeColor.success()) { IconWithBackground() }
                 Spacer(modifier = Modifier.size(DIMEN_X4))
 
-                BadgedBox(content = 9, color = AdmiralBadgeColor.neutral()) { IconWithBackground() }
+                BadgedBox(content = 9, color = AdmiralBadgeColor.natural()) { IconWithBackground() }
                 Spacer(modifier = Modifier.size(DIMEN_X4))
 
                 BadgedBox(
@@ -253,7 +252,7 @@ private fun BadgePreview() {
                 BadgedBox(
                     content = 9,
                     isEnable = false,
-                    color = AdmiralBadgeColor.neutral()
+                    color = AdmiralBadgeColor.natural()
                 ) { IconWithBackground() }
                 Spacer(modifier = Modifier.size(DIMEN_X4))
 
@@ -287,7 +286,7 @@ private fun BadgePreview() {
 
                 BadgedBox(
                     content = 111,
-                    color = AdmiralBadgeColor.neutral()
+                    color = AdmiralBadgeColor.natural()
                 ) { IconWithBackground() }
                 Spacer(modifier = Modifier.size(DIMEN_X4))
 

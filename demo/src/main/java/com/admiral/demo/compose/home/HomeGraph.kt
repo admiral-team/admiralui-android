@@ -3,6 +3,12 @@ package com.admiral.demo.compose.home
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.navigation
+import com.admiral.demo.compose.home.badges.badgesScreen
+import com.admiral.demo.compose.home.badges.navigateToBadgesScreen
+import com.admiral.demo.compose.home.badges.navigateToNormalBadgesScreen
+import com.admiral.demo.compose.home.badges.navigateToSmallBadgesScreen
+import com.admiral.demo.compose.home.badges.normalBadgesScreen
+import com.admiral.demo.compose.home.badges.smallBadgesScreen
 import com.admiral.demo.compose.home.button.buttonsScreen
 import com.admiral.demo.compose.home.button.ghostButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToButtonsScreen
@@ -86,8 +92,9 @@ fun NavGraphBuilder.homeGraph(
             onTextFieldsClick = { navController.navigateToTextFieldsScreen() },
             onCellsClick = { navController.navigateToCellsScreen() },
             onCheckBoxClick = { navController.navigateToCheckBoxScreen() },
+            onBadgesClick = { navController.navigateToBadgesScreen() },
             onPageControlClick = { navController.navigateToPageControlScreen() },
-            onLinkClick = { navController.navigateToLinkScreen() }
+            onLinkClick = { navController.navigateToLinkScreen() },
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -183,6 +190,13 @@ fun NavGraphBuilder.homeGraph(
         pageControlLinerScreen(onBackClick = { navController.navigateBack() })
         pageControlCircleScreen(onBackClick = { navController.navigateBack() })
         linkScreen(onBackClick = { navController.navigateBack() })
+        badgesScreen(
+            onBackClick = { navController.navigateBack() },
+            onNormalClick = { navController.navigateToNormalBadgesScreen() },
+            onSmallClick = { navController.navigateToSmallBadgesScreen() }
+        )
+        normalBadgesScreen(onBackClick = { navController.navigateBack() })
+        smallBadgesScreen(onBackClick = { navController.navigateBack() })
     }
 }
 

@@ -12,6 +12,7 @@ internal fun NavGraphBuilder.mainScreen(
     onTextFieldsClick: () -> Unit,
     onCellsClick: () -> Unit,
     onCheckBoxClick: () -> Unit,
+    onBadgesClick: () -> Unit,
     onLinkClick: () -> Unit,
     onPageControlClick: () -> Unit,
 ) {
@@ -22,8 +23,9 @@ internal fun NavGraphBuilder.mainScreen(
             onTextFieldsClick = onTextFieldsClick,
             onCellsClick = onCellsClick,
             onCheckBoxClick = onCheckBoxClick,
+            onBadgesClick = onBadgesClick,
             onLinkClick = onLinkClick,
-            onPageControlClick = onPageControlClick
+            onPageControlClick = onPageControlClick,
         )
     }
 }

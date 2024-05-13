@@ -127,7 +127,7 @@ private fun OutlineSliderTabWithBadge(
             )
     ) {
         BadgedBox(
-            color = AdmiralBadgeColor.normal(),
+            color = AdmiralBadgeColor.default(),
             isEnable = isBadgeEnabled,
             content = null,
             position = AdmiralBadgePosition.default(
