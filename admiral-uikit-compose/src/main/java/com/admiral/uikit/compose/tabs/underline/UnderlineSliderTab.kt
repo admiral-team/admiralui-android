@@ -2,7 +2,6 @@ package com.admiral.uikit.compose.tabs.underline
 
 import android.annotation.SuppressLint
 import androidx.compose.foundation.horizontalScroll
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Row
@@ -18,7 +17,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Tab
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.mutableStateOf
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.toMutableStateList
 import androidx.compose.ui.Alignment
@@ -37,8 +36,6 @@ import com.admiral.uikit.compose.badge.AdmiralBadgeColor
 import com.admiral.uikit.compose.badge.AdmiralBadgePosition
 import com.admiral.uikit.compose.badge.BadgedBox
 import com.admiral.uikit.compose.tabs.TabItem
-import com.admiral.uikit.compose.tabs.selectNewTab
-import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X8
 
@@ -95,38 +92,6 @@ fun UnderlineSliderTab(
 }
 
 @Composable
-fun UnderlineSliderTabList(
-    modifier: Modifier = Modifier,
-    items: MutableList<String>,
-    onCheckedChange: (Int) -> Unit = {},
-    isEnabled: Boolean = true,
-    selectedIndex: Int
-) {
-    val (currentSelectedIndex, setSelectedIndex) = remember {
-        mutableStateOf(selectedIndex ?: -1)
-    }
-
-    Row(
-        modifier = modifier
-            .fillMaxWidth()
-            .horizontalScroll(rememberScrollState()),
-        verticalAlignment = Alignment.CenterVertically
-    ) {
-        items.forEachIndexed { index, tabItem ->
-            UnderlineSliderTab(
-                isSelected = index == currentSelectedIndex,
-                tabText = tabItem,
-                onClick = {
-                    setSelectedIndex(index)
-                    onCheckedChange.invoke(index)
-                },
-                isEnabled = isEnabled
-            )
-        }
-    }
-}
-
-@Composable
 private fun UnderlineSliderTab(
     text: String,
     textColor: Color,
@@ -174,6 +139,135 @@ private fun UnderlineSliderTabWithBadge(
     }
 }
 
+@Composable
+fun UnderlineSliderTabList(
+    modifier: Modifier = Modifier,
+    items: List<String>,
+    onCheckedChange: (Int) -> Unit = {},
+    isEnabled: Boolean = true,
+    selectedIndex: Int
+) {
+    TabsListSlider(
+        selectedIndex,
+        modifier,
+        items.map { text ->
+            TabItem(text = text)
+        },
+        onCheckedChange,
+        isEnabled
+    )
+}
+
+@Composable
+fun UnderlineSliderTabListBadged(
+    modifier: Modifier = Modifier,
+    items: List<TabItem>,
+    onCheckedChange: (Int) -> Unit = {},
+    isEnabled: Boolean = true,
+    selectedIndex: Int
+) {
+    TabsListSlider(selectedIndex, modifier, items, onCheckedChange, isEnabled)
+}
+
+@Composable
+private fun TabsListSlider(
+    selectedIndex: Int,
+    modifier: Modifier,
+    items: List<TabItem>,
+    onCheckedChange: (Int) -> Unit,
+    isEnabled: Boolean
+) {
+    val (currentSelectedIndex, setSelectedIndex) = remember {
+        mutableIntStateOf(selectedIndex)
+    }
+
+    LazyRow(
+        modifier = modifier
+            .fillMaxWidth()
+    ) {
+        itemsIndexed(items) { index, tabItem ->
+            UnderlineSliderTab(
+                isSelected = index == currentSelectedIndex,
+                tabText = tabItem.text,
+                isBadgeEnabled = tabItem.isBadgeEnabled,
+                isBadgeVisible = tabItem.isBadgeVisible,
+                onClick = {
+                    setSelectedIndex(index)
+                    onCheckedChange.invoke(index)
+                },
+                isEnabled = isEnabled
+            )
+        }
+    }
+}
+
+@Composable
+fun UnderlineTabList(
+    modifier: Modifier = Modifier,
+    items: List<String>,
+    onCheckedChange: (Int) -> Unit = {},
+    isEnabled: Boolean = true,
+    selectedIndex: Int
+) {
+    TabsListFullWidth(
+        selectedIndex,
+        modifier,
+        items.map { text ->
+            TabItem(text = text)
+        },
+        onCheckedChange,
+        isEnabled
+    )
+}
+
+@Composable
+fun UnderlineTabListBadged(
+    modifier: Modifier = Modifier,
+    items: List<TabItem>,
+    onCheckedChange: (Int) -> Unit = {},
+    isEnabled: Boolean = true,
+    selectedIndex: Int
+) {
+    TabsListFullWidth(selectedIndex, modifier, items, onCheckedChange, isEnabled)
+}
+
+@Composable
+private fun TabsListFullWidth(
+    selectedIndex: Int,
+    modifier: Modifier,
+    items: List<TabItem>,
+    onCheckedChange: (Int) -> Unit,
+    isEnabled: Boolean
+) {
+    val (currentSelectedIndex, setSelectedIndex) = remember {
+        mutableIntStateOf(selectedIndex)
+    }
+
+    Row(
+        modifier = modifier
+            .fillMaxWidth()
+            .horizontalScroll(rememberScrollState()),
+        verticalAlignment = Alignment.CenterVertically
+    ) {
+        items.forEachIndexed { index, tabItem ->
+            UnderlineSliderTab(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .weight(1f),
+                isSelected = index == currentSelectedIndex,
+                tabText = tabItem.text,
+                isBadgeVisible = tabItem.isBadgeVisible,
+                isBadgeEnabled = tabItem.isBadgeEnabled,
+                onClick = {
+                    setSelectedIndex(index)
+                    onCheckedChange.invoke(index)
+                },
+                isEnabled = isEnabled
+            )
+        }
+    }
+}
+
 @SuppressLint("ModifierFactoryUnreferencedReceiver")
 private fun Modifier.bottomBorder(strokeWidth: Dp, color: Color) = composed(
     factory = {
@@ -200,70 +294,33 @@ private const val BADGE_VERTICAL_OFFSET = -6
 private const val BADGE_HORIZONTAL_OFFSET = 2
 private const val BADGE_TEXT_PADDING_VERTICAL = 6
 
-
-@Composable
-private fun UnderlineSliderTabList(
-    list: MutableList<TabItem>,
-    isBadgeEnabled: Boolean = true,
-    isBadgeVisible: Boolean = false,
-    isEnabled: Boolean = true,
-) {
-    LazyRow(
-        modifier = Modifier
-            .padding(horizontal = DIMEN_X4),
-        horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
-    ) {
-        itemsIndexed(list) { index, tabItem ->
-            UnderlineSliderTab(
-                isSelected = tabItem.isSelected,
-                tabText = tabItem.text,
-                onClick = { list.selectNewTab(list[index]) },
-                isEnabled = isEnabled,
-                isBadgeVisible = isBadgeVisible,
-                isBadgeEnabled = isBadgeEnabled,
-            )
-        }
-    }
-}
-
-@Composable
-private fun UnderlineCenterTabList(
-    list: MutableList<TabItem>,
-    isBadgeEnabled: Boolean = true,
-    isBadgeVisible: Boolean = false,
-    isEnabled: Boolean = true,
-) {
-    Row(
-        modifier = Modifier
-            .padding(horizontal = DIMEN_X4),
-        horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
-    ) {
-        list.forEachIndexed { index, tabItem ->
-            UnderlineSliderTab(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .weight(1f),
-                isSelected = tabItem.isSelected,
-                tabText = tabItem.text,
-                onClick = { list.selectNewTab(list[index]) },
-                isEnabled = isEnabled,
-                isBadgeVisible = isBadgeVisible,
-                isBadgeEnabled = isBadgeEnabled,
-            )
-        }
-    }
-}
-
 @Preview
 @Composable
 private fun UnderlineSliderTabPreview() {
     val tabList = remember {
         (1..22).map {
+            "1".repeat(it)
+        }
+    }
+    val tabListWithBadge = remember {
+        (1..22).map {
             TabItem(
                 text = "1".repeat(it),
                 isSelected = it == 1,
+                isBadgeVisible = true,
+                isBadgeEnabled = true
             )
-        }.toMutableStateList()
+        }
+    }
+    val tabListWithBadgeDisabled = remember {
+        (1..22).map {
+            TabItem(
+                text = "1".repeat(it),
+                isSelected = it == 1,
+                isBadgeVisible = true,
+                isBadgeEnabled = false,
+            )
+        }
     }
 
     AdmiralTheme {
@@ -274,20 +331,26 @@ private fun UnderlineSliderTabPreview() {
                 modifier = Modifier
                     .padding(vertical = DIMEN_X4)
             ) {
-                UnderlineSliderTabList(tabList)
+                UnderlineSliderTabList(items = tabList, selectedIndex = 0)
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineSliderTabList(tabList, isEnabled = false)
+                UnderlineSliderTabList(items = tabList, selectedIndex = 0, isEnabled = false)
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineSliderTabList(tabList, isBadgeVisible = true)
+                UnderlineSliderTabListBadged(items = tabListWithBadge, selectedIndex = 0)
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineSliderTabList(tabList, isBadgeVisible = true, isEnabled = false)
+                UnderlineSliderTabListBadged(
+                    items = tabListWithBadge,
+                    selectedIndex = 0,
+                    isEnabled = false
+                )
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineSliderTabList(tabList, isBadgeVisible = true, isBadgeEnabled = false)
+                UnderlineSliderTabListBadged(
+                    items = tabListWithBadgeDisabled,
+                    selectedIndex = 0,
+                )
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineSliderTabList(
-                    tabList,
-                    isBadgeVisible = true,
-                    isBadgeEnabled = false,
+                UnderlineSliderTabListBadged(
+                    items = tabListWithBadgeDisabled,
+                    selectedIndex = 0,
                     isEnabled = false
                 )
             }
@@ -338,6 +401,16 @@ private fun UnderlineCenterTabPreview() {
             )
         }.toMutableStateList()
     }
+    val sixListBadged = remember {
+        (1..6).map {
+            TabItem(
+                text = "1".repeat(it),
+                isSelected = it == 1,
+                isBadgeVisible = true,
+                isBadgeEnabled = true,
+            )
+        }.toMutableStateList()
+    }
 
     AdmiralTheme {
         Surface(
@@ -348,34 +421,17 @@ private fun UnderlineCenterTabPreview() {
                     .fillMaxWidth()
                     .padding(vertical = DIMEN_X4)
             ) {
-                UnderlineCenterTabList(twoList)
+                UnderlineTabListBadged(items = twoList, selectedIndex = 0)
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineCenterTabList(threeList, isEnabled = false)
+                UnderlineTabListBadged(items = threeList, isEnabled = false, selectedIndex = 0)
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineCenterTabList(fourList, isBadgeVisible = true)
+                UnderlineTabListBadged(items = fourList, selectedIndex = 0)
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineCenterTabList(fiveList, isBadgeVisible = true, isEnabled = false)
+                UnderlineTabListBadged(items = fiveList, selectedIndex = 0, isEnabled = false)
                 Spacer(modifier = Modifier.size(DIMEN_X4))
-                UnderlineCenterTabList(sixList, isBadgeVisible = true, isBadgeEnabled = false)
-                UnderlineCenterTabList(sixList)
+                UnderlineTabListBadged(items = sixList, selectedIndex = 0)
+                UnderlineTabListBadged(items = sixListBadged, selectedIndex = 0)
             }
         }
-    }
-}
-
-@Preview
-@Composable
-fun UnderlineSliderTabListPreview() {
-    AdmiralTheme {
-        UnderlineSliderTabList(
-            modifier = Modifier.padding(16.dp),
-            items = mutableListOf(
-                "Default",
-                "Disabled",
-                "New",
-                "Last",
-            ),
-            selectedIndex = 0,
-        )
     }
 }
