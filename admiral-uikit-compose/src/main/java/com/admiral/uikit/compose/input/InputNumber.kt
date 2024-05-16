@@ -80,7 +80,6 @@ fun InputNumber(
     minValue: Int = DefaultMinValue,
     colors: InputNumberColors = AdmiralInputNumberColors.oval(),
     isEnabled: Boolean = true,
-    isAutoWidth: Boolean = true,
     onValueChange: ((old: Int, new: Int) -> Unit)? = null,
 ) {
 
@@ -135,7 +134,6 @@ fun InputNumber(
     ConstraintLayout(
         modifier = modifier,
     ) {
-
         val (
             optionalTextId,
             decrementIconId,
@@ -186,22 +184,25 @@ fun InputNumber(
                     detectTapGestures(
                         onPress = { offset: Offset ->
                             val press = PressInteraction.Press(offset)
+                            decrementInteractionSource.emit(press)
+
+                            previousValue = currentValue
+                            currentValue--
+
                             val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
                             val heldButtonJob = scope.launch {
                                 while (isEnabled && decrementEnabled) {
+                                    delay(DelayAutoChange)
                                     autoDecrement = true
-                                    decrementInteractionSource.emit(press)
                                     previousValue = currentValue
                                     currentValue--
-                                    delay(DelayAutoChange)
-                                    decrementInteractionSource.emit(PressInteraction.Release(press))
                                 }
                             }
                             tryAwaitRelease()
-                            decrementInteractionSource.emit(PressInteraction.Release(press))
+                            decrementInteractionSource.emit(PressInteraction.Cancel(press))
                             heldButtonJob.cancel()
                             autoDecrement = false
-                        }
+                        },
                     )
                 }
         ) {
@@ -287,22 +288,25 @@ fun InputNumber(
                     detectTapGestures(
                         onPress = { offset: Offset ->
                             val press = PressInteraction.Press(offset)
+                            incrementInteractionSource.emit(press)
+
+                            previousValue = currentValue
+                            currentValue++
+
                             val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
                             val heldButtonJob = scope.launch {
                                 while (isEnabled && incrementEnabled) {
+                                    delay(DelayAutoChange)
                                     autoIncrement = true
-                                    incrementInteractionSource.emit(press)
                                     previousValue = currentValue
                                     currentValue++
-                                    delay(DelayAutoChange)
-                                    incrementInteractionSource.emit(PressInteraction.Release(press))
                                 }
                             }
                             tryAwaitRelease()
-                            incrementInteractionSource.emit(PressInteraction.Release(press))
+                            incrementInteractionSource.emit(PressInteraction.Cancel(press))
                             heldButtonJob.cancel()
                             autoIncrement = false
-                        }
+                        },
                     )
                 }
         ) {
@@ -364,10 +368,10 @@ private fun InputNumber(
     ) {
         InputNumber(
             modifier = Modifier.fillMaxWidth(),
-            inputType = inputType,
-            colors = colors,
             value = defaultValue,
             optionalText = "Optional text",
+            inputType = inputType,
+            colors = colors,
             onValueChange = { old, new ->
                 println("InputNumberPreview old $old, new $new")
             }
