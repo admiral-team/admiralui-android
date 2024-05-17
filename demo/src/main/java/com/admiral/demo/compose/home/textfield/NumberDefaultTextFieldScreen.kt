@@ -151,7 +151,6 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
                 inputType = InputType.OVAL,
                 colors = AdmiralInputNumberColors.oval(),
                 value = 1,
-                isAutoWidth = true
             )
             Spacer(modifier = Modifier.size(DIMEN_X20))
         }
