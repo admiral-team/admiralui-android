@@ -338,7 +338,7 @@
     <string name="page_control_subtitle">Прогресс просмотра страниц</string>
     <string name="page_control_liner">Liner</string>
     <string name="page_control_circle">Circle</string>
-    <string name="page_control_next">Next ➔</string>
+    <string name="page_control_next">Next</string>
 
     <string name="check_box_title">Checkbox</string>
     <string name="check_box_default">Default</string>

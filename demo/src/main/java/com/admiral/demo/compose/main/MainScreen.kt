@@ -29,6 +29,7 @@ internal fun MainScreen(
     onTextFieldsClick: homeItemClick = {},
     onCellsClick: homeItemClick = {},
     onCheckBoxClick: homeItemClick = {},
+    onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
@@ -282,7 +283,6 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
-                onClick = onLinkClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_link_solid),
@@ -317,6 +317,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onPageControlClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_more_solid),
