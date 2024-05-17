@@ -301,8 +301,8 @@ class InputNumber @JvmOverloads constructor(
         while (true) {
             delay(DELAY_AUTO_INCREMENT)
             when {
-                autoIncrement -> increment(isSingleTap = false)
-                autoDecrement -> decrement(isSingleTap = false)
+                autoIncrement -> increment()
+                autoDecrement -> decrement()
             }
         }
     }
@@ -332,7 +332,7 @@ class InputNumber @JvmOverloads constructor(
     @SuppressLint("ClickableViewAccessibility")
     private fun setupIncrementView() {
         incrementImageView.setOnClickListener {
-            increment(isSingleTap = true)
+            increment()
         }
 
         incrementImageView.setOnLongClickListener {
@@ -354,7 +354,7 @@ class InputNumber @JvmOverloads constructor(
     @SuppressLint("ClickableViewAccessibility")
     private fun setupDecrementView() {
         decrementImageView.setOnClickListener {
-            decrement(isSingleTap = true)
+            decrement()
         }
 
         decrementImageView.setOnLongClickListener {
@@ -390,31 +390,17 @@ class InputNumber @JvmOverloads constructor(
         }
     }
 
-    private fun calculateModifier(isSingleTap: Boolean): Int {
-        if (isSingleTap || value == 0) return DEFAULT_MODIFIER
-
-        var tempValue = value
-        var modifier = DEFAULT_MODIFIER
-
-        while (tempValue % DEFAULT_MULTIPLIER == 0) {
-            modifier *= DEFAULT_MULTIPLIER
-            tempValue /= DEFAULT_MULTIPLIER
-        }
-
-        return modifier
-    }
-
     private fun updateIncrementDecrementEnablingState() {
         invalidateImageViews()
     }
 
-    private fun increment(isSingleTap: Boolean = false) {
-        val newValue = value + calculateModifier(isSingleTap)
+    private fun increment() {
+        val newValue = value + DEFAULT_MODIFIER
         value = newValue
     }
 
-    private fun decrement(isSingleTap: Boolean = false) {
-        val newValue = value - calculateModifier(isSingleTap)
+    private fun decrement() {
+        val newValue = value - DEFAULT_MODIFIER
         value = newValue
     }
 
@@ -677,7 +663,6 @@ class InputNumber @JvmOverloads constructor(
         private const val DEFAULT_MIN_VALUE = -99999
         private const val DEFAULT_MAX_VALUE = 99999
         private const val DEFAULT_MODIFIER = 1
-        private const val DEFAULT_MULTIPLIER = 10
         private const val RIPPLE_ALPHA = 0.1f
         private const val SIZE_RECTANGLE = 38
         private const val SIZE_OVAL = 40
