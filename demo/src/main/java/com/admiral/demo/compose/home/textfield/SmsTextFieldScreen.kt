@@ -18,10 +18,12 @@ import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.admiral.demo.R
+import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
 import com.admiral.uikit.compose.tabs.outline.OutlineSliderTab
 import com.admiral.uikit.compose.textfield.SmsTextField
 import com.admiral.uikit.compose.util.DIMEN_X11
@@ -30,7 +32,9 @@ import com.admiral.uikit.compose.util.DIMEN_X4
 
 @Composable
 @Suppress("LongMethod")
-fun SmsTextFieldScreen() {
+fun SmsTextFieldScreen(
+    onBackClick: () -> Unit = {}
+) {
     var tabIndex by remember { mutableStateOf(0) }
     val tabList = listOf(
         stringResource(id = R.string.text_fields_default),
@@ -38,11 +42,17 @@ fun SmsTextFieldScreen() {
         stringResource(id = R.string.text_fields_disabled)
     )
     val isError = tabIndex == ERROR_STATE
-    val isEnabled = tabIndex == DISABLED_STATE
+    val isDisabled = tabIndex == DISABLED_STATE
 
     Scaffold(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        topBar = {
+            AdmiralCenterAlignedTopAppBar(
+                navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
+                onNavIconClick = onBackClick,
+                title = stringResource(id = R.string.text_fields_sms_title),
+            )
+        }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -66,7 +76,7 @@ fun SmsTextFieldScreen() {
             Spacer(modifier = Modifier.height(VERTICAL_PADDING))
             SmsTextField(
                 isError = isError,
-                isEnabled = isEnabled.not(),
+                isEnabled = isDisabled.not(),
                 modifier = Modifier.padding(horizontal = 88.dp),
                 additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
             )
@@ -75,6 +85,8 @@ fun SmsTextFieldScreen() {
 }
 
 private val VERTICAL_PADDING = DIMEN_X11 * 2
+private const val ERROR_STATE = 1
+private const val DISABLED_STATE = 2
 
 @Preview
 @Composable
