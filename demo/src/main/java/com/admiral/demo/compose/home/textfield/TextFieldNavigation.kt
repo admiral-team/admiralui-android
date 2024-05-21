@@ -70,6 +70,7 @@ internal fun NavGraphBuilder.textFieldsScreen(
     onNumberClick: () -> Unit = {},
     onFeedbackClick: () -> Unit = {},
     onPinCodeClick: () -> Unit = {},
+    onBackClick: () -> Unit = {}
 ) {
     composable(route = TEXT_FIELDS_SCREEN_ROUTE) {
         TextFieldsScreen(
@@ -81,37 +82,38 @@ internal fun NavGraphBuilder.textFieldsScreen(
             onNumberClick = onNumberClick,
             onFeedbackClick = onFeedbackClick,
             onPinCodeClick = onPinCodeClick,
+            onBackClick = onBackClick
         )
     }
 }
 
-internal fun NavGraphBuilder.standardTextFieldScreen() {
+internal fun NavGraphBuilder.standardTextFieldScreen(onBackClick: () -> Unit = {}) {
     composable(route = STANDARD_TEXT_FIELD_SCREEN_ROUTE) {
-        StandardTextFieldScreen()
+        StandardTextFieldScreen(onBackClick = onBackClick)
     }
 }
 
-internal fun NavGraphBuilder.cardNumberTextFieldScreen() {
+internal fun NavGraphBuilder.cardNumberTextFieldScreen(onBackClick: () -> Unit = {}) {
     composable(route = CARD_NUMBER_TEXT_FIELD_SCREEN_ROUTE) {
-        CardNumberTextFieldScreen()
+        CardNumberTextFieldScreen(onBackClick = onBackClick)
     }
 }
 
-internal fun NavGraphBuilder.smsCodeTextFieldScreen() {
+internal fun NavGraphBuilder.smsCodeTextFieldScreen(onBackClick: () -> Unit = {}) {
     composable(route = SMS_CODE_TEXT_FIELD_SCREEN_ROUTE) {
-        SmsTextFieldScreen()
+        SmsTextFieldScreen(onBackClick = onBackClick)
     }
 }
 
-internal fun NavGraphBuilder.doubleTextFieldScreen() {
+internal fun NavGraphBuilder.doubleTextFieldScreen(onBackClick: () -> Unit = {}) {
     composable(route = DOUBLE_TEXT_FIELD_SCREEN_ROUTE) {
-        DoubleTextFieldScreen()
+        DoubleTextFieldScreen(onBackClick = onBackClick)
     }
 }
 
-internal fun NavGraphBuilder.sliderTextFieldScreen() {
+internal fun NavGraphBuilder.sliderTextFieldScreen(onBackClick: () -> Unit = {}) {
     composable(route = SLIDER_TEXT_FIELD_SCREEN_ROUTE) {
-
+        SliderTextFieldScreen(onBackClick = onBackClick)
     }
 }
 
@@ -147,7 +149,7 @@ internal fun NavGraphBuilder.feedbackTextFieldScreen(onBackClick: () -> Unit) {
     }
 }
 
-internal fun NavGraphBuilder.pinCodeTextFieldScreen() {
+internal fun NavGraphBuilder.pinCodeTextFieldScreen(onBackClick: () -> Unit = {}) {
     composable(route = PIN_CODE_TEXT_FIELD_SCREEN_ROUTE) {
 
     }

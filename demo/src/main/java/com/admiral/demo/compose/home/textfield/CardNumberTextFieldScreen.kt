@@ -23,6 +23,7 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
 import com.admiral.uikit.compose.tabs.outline.OutlineSliderTab
 import com.admiral.uikit.compose.textfield.CardNumberTextField
 import com.admiral.uikit.compose.util.DIMEN_X16
@@ -33,7 +34,9 @@ import com.admiral.uikit.core.foundation.ColorState
 
 @Composable
 @Suppress("LongMethod")
-fun CardNumberTextFieldScreen() {
+fun CardNumberTextFieldScreen(
+    onBackClick: () -> Unit = {}
+) {
     val palette = ThemeManagerCompose.theme.value.palette
 
     var tabIndex by remember { mutableStateOf(0) }
@@ -43,11 +46,17 @@ fun CardNumberTextFieldScreen() {
         stringResource(id = R.string.text_fields_disabled)
     )
     val isError = tabIndex == ERROR_STATE
-    val isEnabled = tabIndex == DISABLED_STATE
+    val isDisabled = tabIndex == DISABLED_STATE
 
     Scaffold(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        topBar = {
+            AdmiralCenterAlignedTopAppBar(
+                navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
+                onNavIconClick = onBackClick,
+                title = stringResource(id = R.string.text_fields_card_number_title),
+            )
+        }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -78,7 +87,7 @@ fun CardNumberTextFieldScreen() {
                 iconColorState = ColorState(
                     normalEnabled = palette.elementAccent
                 ),
-                isEnabled = isEnabled.not(),
+                isEnabled = isDisabled.not(),
                 isError = isError,
             )
         }
@@ -86,6 +95,8 @@ fun CardNumberTextFieldScreen() {
 }
 
 private val VERTICAL_PADDING = DIMEN_X16 * 2
+private const val ERROR_STATE = 1
+private const val DISABLED_STATE = 2
 
 @Preview
 @Composable

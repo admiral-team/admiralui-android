@@ -104,19 +104,20 @@ fun NavGraphBuilder.homeGraph(
             onNumberClick = { navController.navigateToNumbersTextFieldsScreen() },
             onFeedbackClick = { navController.navigateToFeedbackTextFieldScreen() },
             onPinCodeClick = { navController.navigateToPinCodeTextFieldScreen() },
+            onBackClick = { navController.navigateBack() }
         )
-        standardTextFieldScreen()
-        doubleTextFieldScreen()
-        sliderTextFieldScreen()
-        cardNumberTextFieldScreen()
-        smsCodeTextFieldScreen()
+        standardTextFieldScreen(onBackClick = { navController.navigateBack() })
+        doubleTextFieldScreen(onBackClick = { navController.navigateBack() })
+        sliderTextFieldScreen(onBackClick = { navController.navigateBack() })
+        cardNumberTextFieldScreen(onBackClick = { navController.navigateBack() })
+        smsCodeTextFieldScreen(onBackClick = { navController.navigateBack() })
         numbersTextFieldsScreen(
             onDefaultClick = { navController.navigateToNumberDefaultTextFieldScreen() },
             onSecondaryClick = { navController.navigateToNumberSecondaryTextFieldScreen() },
             onBackClick = { navController.navigateBack() },
         )
         feedbackTextFieldScreen(onBackClick = { navController.navigateBack() })
-        pinCodeTextFieldScreen()
+        pinCodeTextFieldScreen(onBackClick = { navController.navigateBack() })
         numberDefaultTextFieldScreen(onBackClick = { navController.navigateBack() })
         numberSecondaryTextFieldScreen(onBackClick = { navController.navigateBack() })
         cellsMainScreen(
