@@ -9,6 +9,7 @@ internal const val PRIMARY_BUTTONS_SCREEN_ROUTE = "primaryButtonsScreen"
 internal const val SECONDARY_BUTTONS_SCREEN_ROUTE = "secondaryButtonsScreen"
 internal const val GHOST_BUTTONS_SCREEN_ROUTE = "ghostButtonsScreen"
 internal const val RULE_BUTTONS_SCREEN_ROUTE = "ruleButtonsScreen"
+internal const val OTHER_BUTTONS_SCREEN_ROUTE = "otherButtonsScreen"
 
 internal fun NavController.navigateToButtonsScreen() {
     navigate(BUTTONS_SCREEN_ROUTE)
@@ -30,6 +31,10 @@ internal fun NavController.navigateToRuleButtonsScreen() {
     navigate(RULE_BUTTONS_SCREEN_ROUTE)
 }
 
+internal fun NavController.navigateToOtherButtonsScreen() {
+    navigate(OTHER_BUTTONS_SCREEN_ROUTE)
+}
+
 internal fun NavGraphBuilder.buttonsScreen(
     onPrimaryClick: () -> Unit = {},
     onSecondaryClick: () -> Unit = {},
@@ -48,26 +53,32 @@ internal fun NavGraphBuilder.buttonsScreen(
     }
 }
 
-internal fun NavGraphBuilder.primaryButtonsScreen() {
+internal fun NavGraphBuilder.primaryButtonsScreen(onBackClicked: () -> Unit) {
     composable(route = PRIMARY_BUTTONS_SCREEN_ROUTE) {
-        PrimaryButtonsScreen()
+        PrimaryButtonsScreen(onBackClicked = onBackClicked)
     }
 }
 
-internal fun NavGraphBuilder.secondaryButtonsScreen() {
+internal fun NavGraphBuilder.secondaryButtonsScreen(onBackClicked: () -> Unit) {
     composable(route = SECONDARY_BUTTONS_SCREEN_ROUTE) {
-        SecondaryButtonsScreen()
+        SecondaryButtonsScreen(onBackClicked = onBackClicked)
     }
 }
 
-internal fun NavGraphBuilder.ghostButtonsScreen() {
+internal fun NavGraphBuilder.ghostButtonsScreen(onBackClicked: () -> Unit) {
     composable(route = GHOST_BUTTONS_SCREEN_ROUTE) {
-        GhostButtonsScreen()
+        GhostButtonsScreen(onBackClicked = onBackClicked)
     }
 }
 
 internal fun NavGraphBuilder.ruleButtonsScreen(onBackClicked: () -> Unit) {
     composable(route = RULE_BUTTONS_SCREEN_ROUTE) {
         RuleButtonsScreen(onBackClicked = onBackClicked)
+    }
+}
+
+internal fun NavGraphBuilder.otherButtonsScreen(onBackClicked: () -> Unit) {
+    composable(route = OTHER_BUTTONS_SCREEN_ROUTE) {
+        OtherButtonsScreen(onBackClicked = onBackClicked)
     }
 }

@@ -7,9 +7,11 @@ import com.admiral.demo.compose.home.button.buttonsScreen
 import com.admiral.demo.compose.home.button.ghostButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToGhostButtonsScreen
+import com.admiral.demo.compose.home.button.navigateToOtherButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToPrimaryButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToRuleButtonsScreen
 import com.admiral.demo.compose.home.button.navigateToSecondaryButtonsScreen
+import com.admiral.demo.compose.home.button.otherButtonsScreen
 import com.admiral.demo.compose.home.button.primaryButtonsScreen
 import com.admiral.demo.compose.home.button.ruleButtonsScreen
 import com.admiral.demo.compose.home.button.secondaryButtonsScreen
@@ -87,14 +89,13 @@ fun NavGraphBuilder.homeGraph(
             onSecondaryClick = { navController.navigateToSecondaryButtonsScreen() },
             onGhostClick = { navController.navigateToGhostButtonsScreen() },
             onRulesClick = { navController.navigateToRuleButtonsScreen() },
-            onOtherClick = { },
+            onOtherClick = { navController.navigateToOtherButtonsScreen() },
         )
-        primaryButtonsScreen()
-        secondaryButtonsScreen()
-        ghostButtonsScreen()
-        ruleButtonsScreen(
-            onBackClicked = { navController.popBackStack() }
-        )
+        primaryButtonsScreen(onBackClicked = { navController.popBackStack() })
+        secondaryButtonsScreen(onBackClicked = { navController.popBackStack() })
+        ghostButtonsScreen(onBackClicked = { navController.popBackStack() })
+        ruleButtonsScreen(onBackClicked = { navController.popBackStack() })
+        otherButtonsScreen(onBackClicked = { navController.popBackStack() })
         textFieldsScreen(
             onStandardClick = { navController.navigateToStandardTextFieldScreen() },
             onDoubleClick = { navController.navigateToDoubleTextFieldScreen() },
