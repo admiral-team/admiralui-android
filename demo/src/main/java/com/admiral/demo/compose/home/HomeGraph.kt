@@ -23,6 +23,8 @@ import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsScreen
 import com.admiral.demo.compose.home.checkbox.checkBoxScreen
 import com.admiral.demo.compose.home.checkbox.navigateToCheckBoxScreen
+import com.admiral.demo.compose.home.links.linkScreen
+import com.admiral.demo.compose.home.links.navigateToLinkScreen
 import com.admiral.demo.compose.home.tabs.iconTabsScreen
 import com.admiral.demo.compose.home.tabs.informerTabsScreen
 import com.admiral.demo.compose.home.tabs.logoTabsScreen
@@ -77,7 +79,8 @@ fun NavGraphBuilder.homeGraph(
             onButtonsClick = { navController.navigateToButtonsScreen() },
             onTextFieldsClick = { navController.navigateToTextFieldsScreen() },
             onCellsClick = { navController.navigateToCellsScreen() },
-            onCheckBoxClick = {navController.navigateToCheckBoxScreen()}
+            onCheckBoxClick = { navController.navigateToCheckBoxScreen() },
+            onLinkClick = { navController.navigateToLinkScreen() }
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -164,6 +167,7 @@ fun NavGraphBuilder.homeGraph(
             onBackClick = { navController.navigateBack() }
         )
         checkBoxScreen(onBackClick = { navController.navigateBack() })
+        linkScreen(onBackClick = { navController.navigateBack() })
     }
 }
 

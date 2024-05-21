@@ -309,6 +309,7 @@
     <string name="tags_chips_attention">Attention</string>
 
     <string name="links_title">Links</string>
+    <string name="link_text">Link</string>
     <string name="links_size_big">24 Link</string>
     <string name="links_size_small">18 Link</string>
     <string name="links_subtitle">Ссылки</string>
