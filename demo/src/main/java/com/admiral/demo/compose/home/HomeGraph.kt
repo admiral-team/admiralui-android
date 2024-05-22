@@ -23,6 +23,12 @@ import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsScreen
 import com.admiral.demo.compose.home.checkbox.checkBoxScreen
 import com.admiral.demo.compose.home.checkbox.navigateToCheckBoxScreen
+import com.admiral.demo.compose.home.control.navigateToPageControlCircleScreen
+import com.admiral.demo.compose.home.control.navigateToPageControlLinerScreen
+import com.admiral.demo.compose.home.control.navigateToPageControlScreen
+import com.admiral.demo.compose.home.control.pageControlCircleScreen
+import com.admiral.demo.compose.home.control.pageControlLinerScreen
+import com.admiral.demo.compose.home.control.pageControlScreen
 import com.admiral.demo.compose.home.links.linkScreen
 import com.admiral.demo.compose.home.links.navigateToLinkScreen
 import com.admiral.demo.compose.home.tabs.iconTabsScreen
@@ -80,6 +86,7 @@ fun NavGraphBuilder.homeGraph(
             onTextFieldsClick = { navController.navigateToTextFieldsScreen() },
             onCellsClick = { navController.navigateToCellsScreen() },
             onCheckBoxClick = { navController.navigateToCheckBoxScreen() },
+            onPageControlClick = { navController.navigateToPageControlScreen() },
             onLinkClick = { navController.navigateToLinkScreen() }
         )
         buttonsScreen(
@@ -168,6 +175,13 @@ fun NavGraphBuilder.homeGraph(
             onBackClick = { navController.navigateBack() }
         )
         checkBoxScreen(onBackClick = { navController.navigateBack() })
+        pageControlScreen(
+            onBackClick = { navController.navigateBack() },
+            onLinerClick = { navController.navigateToPageControlLinerScreen() },
+            onCircleClick = { navController.navigateToPageControlCircleScreen() },
+        )
+        pageControlLinerScreen(onBackClick = { navController.navigateBack() })
+        pageControlCircleScreen(onBackClick = { navController.navigateBack() })
         linkScreen(onBackClick = { navController.navigateBack() })
     }
 }
