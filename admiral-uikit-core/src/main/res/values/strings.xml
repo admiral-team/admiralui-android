@@ -41,6 +41,7 @@
     <!-- Google play button -->
     <string name="google_play_button_add_into">Добавить в</string>
     <string name="google_play_button_pay">Pay</string>
+    <string name="google_play_button_add_into_apple_wallet">Добавить в Google Pay</string>
 
     <!-- Slider -->
     <string name="admiral_slider_from">от</string>
