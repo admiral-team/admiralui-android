@@ -1,9 +1,8 @@
 package com.admiral.uikit.compose.cell.unit
 
 import androidx.compose.foundation.background
-import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.layout.width
+import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.CircleShape
 import androidx.compose.material.Icon
 import androidx.compose.runtime.Composable
@@ -13,13 +12,10 @@ import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.painter.Painter
 import androidx.compose.ui.unit.dp
 import com.admiral.themes.compose.AdmiralTheme
-import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.cell.base.CellUnit
 import com.admiral.uikit.compose.util.DIMEN_X11
 import com.admiral.uikit.core.components.cell.base.CellUnitType
-import com.admiral.uikit.core.ext.withAlpha
-import com.admiral.uikit.core.foundation.ColorState
 
 data class IconBackgroundCellUnit(
     override var unitType: CellUnitType,
@@ -44,11 +40,10 @@ data class IconBackgroundCellUnit(
 
         Icon(
             modifier = modifier
-                .width(DIMEN_X11)
-                .height(DIMEN_X11)
+                .size(DIMEN_X11)
                 .clip(CircleShape)
                 .background(color = backgroundColor, shape = CircleShape)
-                .padding(IconPadding.dp),
+                .padding(IconPadding),
             painter = icon,
             contentDescription = contentDescription,
             tint = iconColor,
@@ -56,6 +51,6 @@ data class IconBackgroundCellUnit(
     }
 
     private companion object {
-        const val IconPadding = 10
+        val IconPadding = 10.dp
     }
 }

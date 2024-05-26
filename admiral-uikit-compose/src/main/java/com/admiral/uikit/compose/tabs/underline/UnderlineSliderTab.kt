@@ -155,7 +155,7 @@ private fun UnderlineSliderTabWithBadge(
 
     ) {
         BadgedBox(
-            color = AdmiralBadgeColor.normal(),
+            color = AdmiralBadgeColor.default(),
             isEnable = isBadgeEnabled,
             content = null,
             position = AdmiralBadgePosition.default(
