@@ -87,5 +87,7 @@ fun CellsMainScreen(
 @Preview
 @Composable
 fun CellsMainScreenPreview() {
-    CellsMainScreen()
+    AdmiralTheme {
+        CellsMainScreen()
+    }
 }

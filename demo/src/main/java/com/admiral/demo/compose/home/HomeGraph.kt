@@ -25,10 +25,12 @@ import com.admiral.demo.compose.home.cells.cellsBaseScreen
 import com.admiral.demo.compose.home.cells.cellsCenterScreen
 import com.admiral.demo.compose.home.cells.cellsLeadingScreen
 import com.admiral.demo.compose.home.cells.cellsMainScreen
+import com.admiral.demo.compose.home.cells.cellsTrailingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsBaseScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsCenterScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsScreen
+import com.admiral.demo.compose.home.cells.navigateToTrailingCellsScreen
 import com.admiral.demo.compose.home.checkbox.checkBoxScreen
 import com.admiral.demo.compose.home.checkbox.navigateToCheckBoxScreen
 import com.admiral.demo.compose.home.control.navigateToPageControlCircleScreen
@@ -142,19 +144,13 @@ fun NavGraphBuilder.homeGraph(
         )
         cellsBaseScreen(
             onBackClick = { navController.navigateBack() },
-            onCellsLeadingClick = {
-                navController.navigateToCellsLeadingScreen()
-            },
-            onCellsCenterClick = {
-                navController.navigateToCellsCenterScreen()
-            }
+            onCellsLeadingClick = { navController.navigateToCellsLeadingScreen() },
+            onCellsCenterClick = { navController.navigateToCellsCenterScreen() },
+            onCellsTrailingClick = { navController.navigateToTrailingCellsScreen() }
         )
-        cellsLeadingScreen(
-            onBackClick = { navController.navigateBack() },
-        )
-        cellsCenterScreen(
-            onBackClick = { navController.navigateBack() },
-        )
+        cellsLeadingScreen(onBackClick = { navController.navigateBack() })
+        cellsCenterScreen(onBackClick = { navController.navigateBack() })
+        cellsTrailingScreen(onBackClick = { navController.navigateBack() })
         tabsMainScreen(
             onBackClick = { navController.navigateBack() },
             onStandardTabsClicked = { navController.navigateToStandardTabsScreen() },

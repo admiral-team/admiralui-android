@@ -101,5 +101,7 @@ fun CellsBaseScreen(
 @Preview
 @Composable
 fun CellsBaseScreenPreview() {
-    CellsBaseScreen()
+    AdmiralTheme {
+        CellsBaseScreen()
+    }
 }
