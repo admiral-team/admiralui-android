@@ -27,7 +27,7 @@ import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.material.ripple.rememberRipple
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
+import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
@@ -107,9 +107,9 @@ fun InputNumber(
         else -> 0.dp
     }
 
-    LaunchedEffect(keys = arrayOf(previousValue, currentValue, autoIncrement, autoDecrement)) {
+    SideEffect {
         when {
-            currentValue in (minValue + 1) until maxValue -> {
+            currentValue in minValue .. maxValue -> {
                 onValueChange?.invoke(previousValue, currentValue)
             }
         }

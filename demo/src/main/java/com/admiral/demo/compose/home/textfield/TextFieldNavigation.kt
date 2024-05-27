@@ -151,6 +151,6 @@ internal fun NavGraphBuilder.feedbackTextFieldScreen(onBackClick: () -> Unit) {
 
 internal fun NavGraphBuilder.pinCodeTextFieldScreen(onBackClick: () -> Unit = {}) {
     composable(route = PIN_CODE_TEXT_FIELD_SCREEN_ROUTE) {
-
+        PinCodeTextFieldScreen(onBackClick = onBackClick)
     }
 }
