@@ -16,7 +16,7 @@ data class BadgeColor(
 
 object AdmiralBadgeColor {
     @Composable
-    fun normal(
+    fun default(
         backgroundColorNormal: Color = AdmiralTheme.colors.elementAccent,
         backgroundColorDisable: Color = AdmiralTheme.colors.elementAdditional,
         contentColorEnable: Color = AdmiralTheme.colors.textStaticWhite,
@@ -77,7 +77,7 @@ object AdmiralBadgeColor {
     )
 
     @Composable
-    fun neutral(
+    fun natural(
         backgroundColorNormal: Color = AdmiralTheme.colors.elementSecondary,
         backgroundColorDisable: Color = AdmiralTheme.colors.elementAdditional,
         contentColorEnable: Color = AdmiralTheme.colors.textStaticWhite,

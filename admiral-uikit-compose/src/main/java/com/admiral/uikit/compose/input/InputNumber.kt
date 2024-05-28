@@ -48,14 +48,10 @@ import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import androidx.constraintlayout.compose.ConstraintLayout
-import androidx.constraintlayout.compose.Dimension
 import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X2
-import com.admiral.uikit.compose.util.DIMEN_X3
-import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X9
 import com.admiral.uikit.core.components.input.InputType
 import kotlinx.coroutines.CoroutineScope
@@ -63,8 +59,6 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
-import java.text.DecimalFormat
-import java.text.DecimalFormatSymbols
 
 @OptIn(ExperimentalTextApi::class)
 @Suppress("MagicNumber", "LongMethod")
@@ -80,7 +74,6 @@ fun InputNumber(
     minValue: Int = DefaultMinValue,
     colors: InputNumberColors = AdmiralInputNumberColors.oval(),
     isEnabled: Boolean = true,
-    isAutoWidth: Boolean = true,
     onValueChange: ((old: Int, new: Int) -> Unit)? = null,
 ) {
 
@@ -93,19 +86,12 @@ fun InputNumber(
     val incrementInteractionSource = remember { MutableInteractionSource() }
     val decrementInteractionSource = remember { MutableInteractionSource() }
 
-    val dfs = DecimalFormatSymbols()
-    dfs.groupingSeparator = ' '
-    val df = DecimalFormat(DecimalFormatPattern, dfs)
-    val valueWithSpaceState by remember(currentValue) {
-        mutableStateOf(df.format(currentValue).toString())
-    }
-
     val iconPadding = when (inputType) {
         InputType.OVAL -> DIMEN_X2
         else -> RectangleIconPadding
     }
 
-    val textFieldMargin = when (inputType) {
+    val textFieldPadding = when (inputType) {
         InputType.OVAL -> DIMEN_X1
         InputType.RECTANGLE -> DIMEN_X2
         InputType.TEXT_FIELD -> TextFieldMargin
@@ -116,8 +102,8 @@ fun InputNumber(
         else -> DefaultWidthTextField
     }
 
-    val textFieldPadding = when (inputType) {
-        InputType.TEXT_FIELD -> DIMEN_X2
+    val decorationBoxPadding = when (inputType) {
+        InputType.TEXT_FIELD -> DIMEN_X1
         else -> 0.dp
     }
 
@@ -128,191 +114,207 @@ fun InputNumber(
             }
         }
 
-        incrementEnabled = autoDecrement.not() && currentValue != maxValue
-        decrementEnabled = autoIncrement.not() && currentValue != minValue
+        incrementEnabled = autoDecrement.not() && currentValue < maxValue
+        decrementEnabled = autoIncrement.not() && currentValue > minValue
     }
 
-    ConstraintLayout(
+    Row(
         modifier = modifier,
+        horizontalArrangement = Arrangement.SpaceBetween,
+        verticalAlignment = Alignment.CenterVertically
     ) {
-
-        val (
-            optionalTextId,
-            decrementIconId,
-            valueTextFieldId,
-            incrementIconId,
-        ) = createRefs()
-
         optionalText?.let { text ->
             Text(
-                modifier = Modifier
-                    .constrainAs(optionalTextId) {
-                        top.linkTo(parent.top)
-                        bottom.linkTo(parent.bottom)
-                        start.linkTo(anchor = parent.start, margin = DIMEN_X4)
-                        end.linkTo(anchor = decrementIconId.start, margin = DIMEN_X3)
-                        width = Dimension.fillToConstraints
-                    },
                 text = text,
                 style = AdmiralTheme.typography.body1,
                 maxLines = 1,
                 overflow = TextOverflow.Ellipsis,
                 color = colors.getTextColor(isEnabled = isEnabled).value,
             )
+            Spacer(modifier = Modifier.width(DIMEN_X1))
         }
-
-        Box(
-            modifier = Modifier
-                .constrainAs(decrementIconId) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    end.linkTo(anchor = valueTextFieldId.start, margin = textFieldMargin)
-                }
-                .background(
-                    color = colors.getBackgroundColor(isEnabled = isEnabled && decrementEnabled).value,
-                    shape = getIconShape(true, inputType),
-                )
-                .border(
-                    brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && decrementEnabled).value),
-                    shape = getIconShape(true, inputType),
-                    width = BorderWidth,
-                )
-                .clip(getIconShape(true, inputType))
-                .indication(
-                    interactionSource = decrementInteractionSource,
-                    indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && decrementEnabled).value)
-                )
-                .pointerInput(isEnabled, decrementEnabled) {
-                    detectTapGestures(
-                        onPress = { offset: Offset ->
-                            val press = PressInteraction.Press(offset)
-                            val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-                            val heldButtonJob = scope.launch {
-                                while (isEnabled && decrementEnabled) {
-                                    autoDecrement = true
+        Row(verticalAlignment = Alignment.CenterVertically) {
+            Box(
+                modifier = Modifier
+                    .padding(start = DIMEN_X1)
+                    .background(
+                        color = colors.getBackgroundColor(isEnabled = isEnabled && decrementEnabled).value,
+                        shape = getIconShape(true, inputType),
+                    )
+                    .border(
+                        brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && decrementEnabled).value),
+                        shape = getIconShape(true, inputType),
+                        width = BorderWidth,
+                    )
+                    .clip(getIconShape(true, inputType))
+                    .indication(
+                        interactionSource = decrementInteractionSource,
+                        indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && decrementEnabled).value)
+                    )
+                    .pointerInput(isEnabled, decrementEnabled) {
+                        detectTapGestures(
+                            onPress = { offset: Offset ->
+                                val press = PressInteraction.Press(offset)
+                                val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                                if (isEnabled && decrementEnabled) {
                                     decrementInteractionSource.emit(press)
                                     previousValue = currentValue
                                     currentValue--
-                                    delay(DelayAutoChange)
-                                    decrementInteractionSource.emit(PressInteraction.Release(press))
                                 }
-                            }
-                            tryAwaitRelease()
-                            decrementInteractionSource.emit(PressInteraction.Release(press))
-                            heldButtonJob.cancel()
-                            autoDecrement = false
-                        }
-                    )
-                }
-        ) {
-            Icon(
-                modifier = Modifier
-                    .padding(iconPadding),
-                painter = decrementIcon,
-                tint = colors.getIconTintColor(isEnabled = isEnabled && decrementEnabled).value,
-                contentDescription = null,
-            )
-        }
-
-        BasicTextField(
-            modifier = Modifier
-                .width(IntrinsicSize.Min)
-                .defaultMinSize(
-                    minWidth = textFieldMinWidth,
-                    minHeight = DIMEN_X9
-                )
-                .constrainAs(valueTextFieldId) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    end.linkTo(anchor = incrementIconId.start, margin = textFieldMargin)
-                    width = Dimension.wrapContent
-                    height = Dimension.wrapContent
-                }
-                .background(color = colors.getTextFieldBackgroundColor(isEnabled = isEnabled).value),
-            value = valueWithSpaceState,
-            onValueChange = {},
-            enabled = isEnabled,
-            readOnly = inputType != InputType.TEXT_FIELD,
-            maxLines = 1,
-            cursorBrush = SolidColor(colors.getTextFieldCursorColor(isEnabled = isEnabled).value),
-            textStyle = AdmiralTheme.typography.body1.copy(
-                color = colors.getTextColor(isEnabled = isEnabled).value,
-                textAlign = TextAlign.Center,
-                platformStyle = PlatformTextStyle(
-                    includeFontPadding = false
-                )
-            ),
-            keyboardOptions = KeyboardOptions(
-                autoCorrect = false,
-                keyboardType = KeyboardType.Number
-            ),
-            decorationBox = @Composable { innerTextField ->
-                Row(
+                                val heldButtonJob = scope.launch {
+                                    while (isEnabled && decrementEnabled) {
+                                        delay(DelayAutoChange)
+                                        if (currentValue <= minValue) {
+                                            autoDecrement = false
+                                            decrementInteractionSource.emit(
+                                                PressInteraction.Release(
+                                                    press
+                                                )
+                                            )
+                                            return@launch
+                                        }
+                                        autoDecrement = true
+                                        previousValue = currentValue
+                                        currentValue--
+                                    }
+                                }
+                                tryAwaitRelease()
+                                decrementInteractionSource.emit(PressInteraction.Cancel(press))
+                                heldButtonJob.cancel()
+                                autoDecrement = false
+                            },
+                        )
+                    }
+            ) {
+                Icon(
                     modifier = Modifier
-                        .padding(textFieldPadding),
-                    horizontalArrangement = Arrangement.Center,
-                    verticalAlignment = Alignment.CenterVertically
-                ) {
-                    Box(
-                        contentAlignment = Alignment.Center,
+                        .padding(iconPadding),
+                    painter = decrementIcon,
+                    tint = colors.getIconTintColor(isEnabled = isEnabled && decrementEnabled).value,
+                    contentDescription = null,
+                )
+            }
+
+            BasicTextField(
+                modifier = Modifier
+                    .width(IntrinsicSize.Min)
+                    .defaultMinSize(
+                        minWidth = textFieldMinWidth,
+                        minHeight = DIMEN_X9
+                    )
+                    .padding(horizontal = textFieldPadding)
+                    .background(color = colors.getTextFieldBackgroundColor(isEnabled = isEnabled).value),
+                value = currentValue.toString(),
+                onValueChange = { newString ->
+                    previousValue = currentValue
+                    val newValue = newString.toIntOrNull()
+                    println(newValue)
+                    when {
+                        newValue != null -> {
+                            currentValue = when {
+                                newValue >= maxValue -> maxValue
+                                newValue <= minValue -> minValue
+                                else -> newValue
+                            }
+                        }
+
+                        newString.isEmpty() -> currentValue = 0
+                        newString == "-" -> currentValue = 0
+                    }
+                },
+                enabled = isEnabled,
+                readOnly = inputType != InputType.TEXT_FIELD,
+                maxLines = 1,
+                cursorBrush = SolidColor(colors.getTextFieldCursorColor(isEnabled = isEnabled).value),
+                textStyle = AdmiralTheme.typography.body1.copy(
+                    color = colors.getTextColor(isEnabled = isEnabled).value,
+                    textAlign = TextAlign.Center,
+                    platformStyle = PlatformTextStyle(
+                        includeFontPadding = false
+                    )
+                ),
+                keyboardOptions = KeyboardOptions(
+                    autoCorrect = false,
+                    keyboardType = KeyboardType.Number
+                ),
+                visualTransformation = { annotatedString ->
+                    numberFormatter(annotatedString.text)
+                },
+                decorationBox = @Composable { innerTextField ->
+                    Row(
+                        modifier = Modifier
+                            .padding(decorationBoxPadding),
+                        horizontalArrangement = Arrangement.Center,
+                        verticalAlignment = Alignment.CenterVertically
                     ) {
-                        innerTextField()
+                        Box(
+                            contentAlignment = Alignment.Center,
+                        ) {
+                            innerTextField()
+                        }
                     }
                 }
-            }
-        )
+            )
 
-        Box(
-            modifier = Modifier
-                .constrainAs(incrementIconId) {
-                    top.linkTo(parent.top)
-                    bottom.linkTo(parent.bottom)
-                    end.linkTo(anchor = parent.end, margin = DIMEN_X4)
-                }
-                .background(
-                    color = colors.getBackgroundColor(isEnabled = isEnabled && incrementEnabled).value,
-                    shape = getIconShape(false, inputType)
-                )
-                .border(
-                    brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && incrementEnabled).value),
-                    shape = getIconShape(false, inputType),
-                    width = BorderWidth,
-                )
-                .clip(getIconShape(false, inputType))
-                .indication(
-                    interactionSource = incrementInteractionSource,
-                    indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && incrementEnabled).value)
-                )
-                .pointerInput(isEnabled, incrementEnabled) {
-                    detectTapGestures(
-                        onPress = { offset: Offset ->
-                            val press = PressInteraction.Press(offset)
-                            val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-                            val heldButtonJob = scope.launch {
-                                while (isEnabled && incrementEnabled) {
-                                    autoIncrement = true
+            Box(
+                modifier = Modifier
+                    .background(
+                        color = colors.getBackgroundColor(isEnabled = isEnabled && incrementEnabled).value,
+                        shape = getIconShape(false, inputType)
+                    )
+                    .border(
+                        brush = SolidColor(colors.getIconBorderColor(isEnabled = isEnabled && incrementEnabled).value),
+                        shape = getIconShape(false, inputType),
+                        width = BorderWidth,
+                    )
+                    .clip(getIconShape(false, inputType))
+                    .indication(
+                        interactionSource = incrementInteractionSource,
+                        indication = rememberRipple(color = colors.getRippleColor(isEnabled = isEnabled && incrementEnabled).value)
+                    )
+                    .pointerInput(isEnabled, incrementEnabled) {
+                        detectTapGestures(
+                            onPress = { offset: Offset ->
+                                val press = PressInteraction.Press(offset)
+                                val scope = CoroutineScope(Dispatchers.IO + SupervisorJob())
+                                if (isEnabled && incrementEnabled) {
                                     incrementInteractionSource.emit(press)
                                     previousValue = currentValue
                                     currentValue++
-                                    delay(DelayAutoChange)
-                                    incrementInteractionSource.emit(PressInteraction.Release(press))
                                 }
-                            }
-                            tryAwaitRelease()
-                            incrementInteractionSource.emit(PressInteraction.Release(press))
-                            heldButtonJob.cancel()
-                            autoIncrement = false
-                        }
-                    )
-                }
-        ) {
-            Icon(
-                modifier = Modifier
-                    .padding(iconPadding),
-                painter = incrementIcon,
-                tint = colors.getIconTintColor(isEnabled = isEnabled && incrementEnabled).value,
-                contentDescription = null
-            )
+                                val heldButtonJob = scope.launch {
+                                    while (isEnabled && incrementEnabled) {
+                                        delay(DelayAutoChange)
+                                        if (currentValue >= maxValue) {
+                                            autoIncrement = false
+                                            incrementInteractionSource.emit(
+                                                PressInteraction.Release(
+                                                    press
+                                                )
+                                            )
+                                            return@launch
+                                        }
+                                        autoIncrement = true
+                                        previousValue = currentValue
+                                        currentValue++
+                                    }
+                                }
+                                tryAwaitRelease()
+                                incrementInteractionSource.emit(PressInteraction.Release(press))
+                                heldButtonJob.cancel()
+                                autoIncrement = false
+                            },
+                        )
+                    }
+            ) {
+                Icon(
+                    modifier = Modifier
+                        .padding(iconPadding),
+                    painter = incrementIcon,
+                    tint = colors.getIconTintColor(isEnabled = isEnabled && incrementEnabled).value,
+                    contentDescription = null
+                )
+            }
         }
     }
 }
@@ -345,7 +347,6 @@ private const val DefaultMinValue = -99999
 private const val DefaultMaxValue = 99999
 private val DefaultWidthTextField = 48.dp
 private val LargeWidthTextField = 56.dp
-private const val DecimalFormatPattern = "###,###"
 private val RectangleIconPadding = 6.dp
 private val TextFieldMargin = 2.dp
 private val BorderWidth = 2.dp
@@ -364,10 +365,10 @@ private fun InputNumber(
     ) {
         InputNumber(
             modifier = Modifier.fillMaxWidth(),
-            inputType = inputType,
-            colors = colors,
             value = defaultValue,
             optionalText = "Optional text",
+            inputType = inputType,
+            colors = colors,
             onValueChange = { old, new ->
                 println("InputNumberPreview old $old, new $new")
             }

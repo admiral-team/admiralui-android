@@ -104,7 +104,7 @@ fun Link(
         iconEnd?.let {
             Icon(
                 modifier = Modifier
-                    .padding(DIMEN_X2)
+                    .padding(start = DIMEN_X2)
                     .size(iconSize)
                     .constrainAs(iconEndId) {
                         end.linkTo(parent.end)

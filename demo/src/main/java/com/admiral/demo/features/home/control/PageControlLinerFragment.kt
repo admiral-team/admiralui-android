@@ -23,42 +23,55 @@ class PageControlLinerFragment : BaseFragment(
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
-        binding.pageControl.setTabsCount(TWO)
+        with(binding) {
+            pageControl.setTabsCount(TWO)
 
-        binding.btnNext.setOnClickListener {
-            binding.pageControl.selectTab(
-                binding.pageControl.getTabAt(
-                    (binding.pageControl.selectedTabPosition + 1) % binding.pageControl.tabCount
+            btnNext.setOnClickListener {
+                pageControl.selectTab(
+                    pageControl.getTabAt(
+                        (pageControl.selectedTabPosition + 1) % pageControl.tabCount
+                    )
                 )
-            )
-        }
+            }
 
-        binding.tabs.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
-                when (checkedId) {
-                    binding.two.id -> {
-                        binding.pageControl.setTabsCount(TWO)
-                    }
-                    binding.three.id -> {
-                        binding.pageControl.setTabsCount(THREE)
-                    }
-                    binding.four.id -> {
-                        binding.pageControl.setTabsCount(FOUR)
-                    }
-                    binding.five.id -> {
-                        binding.pageControl.setTabsCount(FIVE)
-                    }
-                    binding.six.id -> {
-                        binding.pageControl.setTabsCount(SIX)
-                    }
-                    binding.seven.id -> {
-                        binding.pageControl.setTabsCount(SEVEN)
-                    }
-                    binding.eight.id -> {
-                        binding.pageControl.setTabsCount(EIGHT)
-                    }
-                    binding.nine.id -> {
-                        binding.pageControl.setTabsCount(NINE)
+            tabs.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
+                override fun onCheckedChanged(
+                    radioButton: View?,
+                    isChecked: Boolean,
+                    checkedId: Int
+                ) {
+                    when (checkedId) {
+                        two.id -> {
+                            pageControl.setTabsCount(TWO)
+                        }
+
+                        three.id -> {
+                            pageControl.setTabsCount(THREE)
+                        }
+
+                        four.id -> {
+                            pageControl.setTabsCount(FOUR)
+                        }
+
+                        five.id -> {
+                            pageControl.setTabsCount(FIVE)
+                        }
+
+                        six.id -> {
+                            pageControl.setTabsCount(SIX)
+                        }
+
+                        seven.id -> {
+                            pageControl.setTabsCount(SEVEN)
+                        }
+
+                        eight.id -> {
+                            pageControl.setTabsCount(EIGHT)
+                        }
+
+                        nine.id -> {
+                            pageControl.setTabsCount(NINE)
+                        }
                     }
                 }
             }

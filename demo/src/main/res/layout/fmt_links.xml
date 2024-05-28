@@ -76,7 +76,7 @@
                 android:id="@+id/admiralLink"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                app:admiralText="@string/links_title"
+                app:admiralText="@string/link_text"
                 app:drawableStartCompat="@drawable/admiral_ic_arrow_left_outline" />
 
             <com.admiral.uikit.components.links.Link
@@ -84,7 +84,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/module_x10"
-                app:admiralText="@string/links_title"
+                app:admiralText="@string/link_text"
                 app:drawableEndCompat="@drawable/admiral_ic_arrow_right_outline" />
 
             <com.admiral.uikit.components.links.Link
@@ -92,7 +92,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/module_x10"
-                app:admiralText="@string/links_title" />
+                app:admiralText="@string/link_text" />
 
         </LinearLayout>
 
@@ -132,7 +132,7 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 app:admiralLinkSize="small"
-                app:admiralText="@string/links_title"
+                app:admiralText="@string/link_text"
                 app:drawableStartCompat="@drawable/long_arrow_left"
                 app:layout_constraintVertical_bias="0.0" />
 
@@ -142,7 +142,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/module_x10"
                 app:admiralLinkSize="small"
-                app:admiralText="@string/links_title"
+                app:admiralText="@string/link_text"
                 app:drawableEndCompat="@drawable/long_arrow_right" />
 
             <com.admiral.uikit.components.links.Link
@@ -151,7 +151,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="@dimen/module_x10"
                 app:admiralLinkSize="small"
-                app:admiralText="@string/links_title" />
+                app:admiralText="@string/link_text" />
 
         </LinearLayout>
 

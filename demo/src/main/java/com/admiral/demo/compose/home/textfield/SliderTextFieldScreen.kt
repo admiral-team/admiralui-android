@@ -1,14 +1,11 @@
 package com.admiral.demo.compose.home.textfield
 
-import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.padding
-import androidx.compose.foundation.lazy.LazyRow
-import androidx.compose.foundation.lazy.itemsIndexed
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
@@ -27,29 +24,22 @@ import androidx.compose.ui.unit.dp
 import com.admiral.demo.R
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
-import com.admiral.uikit.compose.tabs.outline.OutlineSliderTab
-import com.admiral.uikit.compose.textfield.TextField
+import com.admiral.uikit.compose.slider.Slider
+import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.util.DIMEN_X1
-import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X5
 import com.admiral.uikit.compose.util.DIMEN_X6
 
 @Composable
-@Suppress("LongMethod", "LongParameterList")
-fun StandardTextFieldScreen(
+@Suppress("LongMethod")
+fun SliderTextFieldScreen(
     onBackClick: () -> Unit = {}
 ) {
     val palette = ThemeManagerCompose.theme.value.palette
     val typography = ThemeManagerCompose.typography
+
     var tabIndex by remember { mutableStateOf(0) }
-    val tabList = listOf(
-        stringResource(id = R.string.text_fields_default),
-        stringResource(id = R.string.text_fields_read_only),
-        stringResource(id = R.string.text_fields_error),
-        stringResource(id = R.string.text_fields_disabled)
-    )
-    val isReadOnly = tabIndex == READ_ONLY_STATE
     val isError = tabIndex == ERROR_STATE
     val isDisabled = tabIndex == DISABLED_STATE
 
@@ -59,7 +49,7 @@ fun StandardTextFieldScreen(
             AdmiralCenterAlignedTopAppBar(
                 navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
                 onNavIconClick = onBackClick,
-                title = stringResource(id = R.string.text_fields_standard_title),
+                title = stringResource(id = R.string.text_fields_slider_title),
             )
         }
     ) { padding ->
@@ -67,85 +57,64 @@ fun StandardTextFieldScreen(
             modifier = Modifier
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
-                .padding(horizontal = DIMEN_X4, vertical = DIMEN_X4),
+                .padding(horizontal = DIMEN_X4),
         ) {
-            LazyRow(
-                horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
-            ) {
-                itemsIndexed(tabList) { index, title ->
-                    OutlineSliderTab(
-                        isSelected = tabIndex == index,
-                        tabText = title,
-                        onClick = { tabIndex = index },
-                        isBadgeVisible = false,
-                    )
+            StandardTab(
+                items = mutableListOf(
+                    stringResource(id = R.string.tabs_default),
+                    stringResource(id = R.string.text_fields_error),
+                    stringResource(id = R.string.tabs_disabled),
+                ),
+                selectedIndex = 0,
+                onCheckedChange = {
+                    tabIndex = it
                 }
-            }
+            )
             Spacer(modifier = Modifier.height(DIMEN_X6))
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = VERTICAL_PADDING.dp),
-                text = stringResource(id = R.string.text_fields_basic),
+                text = stringResource(id = R.string.text_fields_standard_title),
                 color = Color(palette.textSecondary),
                 style = typography.body1,
             )
             Spacer(modifier = Modifier.height(DIMEN_X1))
-            TextField(
-                optionalText = stringResource(id = R.string.text_fields_optional_label),
+            Slider(
+                value = 500f,
+                valueRange = 0f..VALUE_RANGE_MAX,
                 additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
+                optionalText = stringResource(id = R.string.text_fields_optional_label),
                 isError = isError,
-                isReadOnly = isReadOnly,
-                isEnabled = isDisabled.not(),
+                isEnabled = isDisabled.not()
             )
             Spacer(modifier = Modifier.height(DIMEN_X5))
             Text(
                 modifier = Modifier
                     .fillMaxWidth()
                     .padding(vertical = VERTICAL_PADDING.dp),
-                text = stringResource(id = R.string.text_fields_masked),
+                text = stringResource(id = R.string.text_fields_double_title),
                 color = Color(palette.textSecondary),
                 style = typography.body1,
             )
-            TextField(
-                optionalText = stringResource(id = R.string.text_fields_optional_label),
+            Slider(
+                value = 500f,
+                valueRange = 0f..VALUE_RANGE_MAX,
                 additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
-                icon = painterResource(id = R.drawable.admiral_ic_eye_close_outline),
-                isError = isError,
-                isReadOnly = isReadOnly,
-                isEnabled = isDisabled.not(),
-                onIconClick = {}
-            )
-            Spacer(modifier = Modifier.height(DIMEN_X5))
-            Text(
-                modifier = Modifier
-                    .fillMaxWidth()
-                    .padding(vertical = VERTICAL_PADDING.dp),
-                text = stringResource(id = R.string.text_fields_multiline),
-                color = Color(palette.textSecondary),
-                style = typography.body1,
-            )
-            TextField(
                 optionalText = stringResource(id = R.string.text_fields_optional_label),
-                additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
-                icon = painterResource(id = R.drawable.admiral_ic_eye_close_outline),
-                maxLines = Int.MAX_VALUE,
                 isError = isError,
-                isReadOnly = isReadOnly,
-                isEnabled = isDisabled.not(),
-                onIconClick = {}
+                isEnabled = isDisabled.not()
             )
         }
     }
 }
 
 private const val VERTICAL_PADDING = 18
-private const val READ_ONLY_STATE = 1
-private const val ERROR_STATE = 2
-private const val DISABLED_STATE = 3
-
+private const val ERROR_STATE = 1
+private const val DISABLED_STATE = 2
+private const val VALUE_RANGE_MAX = 10_000f
 @Preview
 @Composable
-private fun StandardTextFieldScreenScreenPreview() {
-    StandardTextFieldScreen()
+private fun SliderTextFieldScreenPreview() {
+    SliderTextFieldScreen()
 }

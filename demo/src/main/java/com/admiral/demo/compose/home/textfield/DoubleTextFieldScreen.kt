@@ -26,6 +26,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.admiral.demo.R
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
 import com.admiral.uikit.compose.tabs.outline.OutlineSliderTab
 import com.admiral.uikit.compose.textfield.DoubleTextField
 import com.admiral.uikit.compose.textfield.DoubleTextFieldRatio
@@ -38,7 +39,9 @@ import com.admiral.uikit.compose.util.DIMEN_X6
 
 @Composable
 @Suppress("LongMethod")
-fun DoubleTextFieldScreen() {
+fun DoubleTextFieldScreen(
+    onBackClick: () -> Unit = {}
+) {
     val palette = ThemeManagerCompose.theme.value.palette
     val typography = ThemeManagerCompose.typography
 
@@ -51,11 +54,17 @@ fun DoubleTextFieldScreen() {
     )
     val isReadOnly = tabIndex == READ_ONLY_STATE
     val isError = tabIndex == ERROR_STATE
-    val isEnabled = tabIndex == DISABLED_STATE
+    val isDisabled = tabIndex == DISABLED_STATE
 
     Scaffold(
-        modifier = Modifier
-            .fillMaxWidth()
+        modifier = Modifier.fillMaxWidth(),
+        topBar = {
+            AdmiralCenterAlignedTopAppBar(
+                navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
+                onNavIconClick = onBackClick,
+                title = stringResource(id = R.string.text_fields_double_title),
+            )
+        }
     ) { padding ->
         Column(
             modifier = Modifier
@@ -92,13 +101,13 @@ fun DoubleTextFieldScreen() {
                     optionalText = stringResource(id = R.string.text_fields_optional_label),
                     icon = painterResource(id = R.drawable.admiral_ic_edit_outline),
                     isReadOnly = isReadOnly,
-                    isEnabled = isEnabled.not(),
+                    isEnabled = isDisabled.not(),
                 ),
                 endTextFieldParams = TextFieldParams(
                     optionalText = stringResource(id = R.string.text_fields_optional_label),
                     icon = painterResource(id = R.drawable.admiral_ic_edit_outline),
                     isReadOnly = isReadOnly,
-                    isEnabled = isEnabled.not(),
+                    isEnabled = isDisabled.not(),
                 ),
                 additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
                 isError = isError,
@@ -118,14 +127,14 @@ fun DoubleTextFieldScreen() {
                     optionalText = stringResource(id = R.string.text_fields_optional_label),
                     icon = painterResource(id = R.drawable.admiral_ic_edit_outline),
                     isReadOnly = isReadOnly,
-                    isEnabled = isEnabled.not(),
+                    isEnabled = isDisabled.not(),
 
-                ),
+                    ),
                 endTextFieldParams = TextFieldParams(
                     optionalText = stringResource(id = R.string.text_fields_optional_label),
                     icon = painterResource(id = R.drawable.admiral_ic_edit_outline),
                     isReadOnly = isReadOnly,
-                    isEnabled = isEnabled.not(),
+                    isEnabled = isDisabled.not(),
                 ),
                 additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
                 isError = isError,
@@ -136,6 +145,9 @@ fun DoubleTextFieldScreen() {
 }
 
 private const val VERTICAL_PADDING = 18
+private const val READ_ONLY_STATE = 1
+private const val ERROR_STATE = 2
+private const val DISABLED_STATE = 3
 
 @Preview
 @Composable

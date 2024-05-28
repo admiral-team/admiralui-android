@@ -96,6 +96,8 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal"
             android:layout_marginTop="@dimen/module_x12"
+            android:drawableEnd="@drawable/admiral_ic_arrow_right_outline"
+            android:drawablePadding="@dimen/module_x3"
             android:text="@string/page_control_next"
             app:admiralButtonSize="small" />
     </com.admiral.uikit.layout.LinearLayout>

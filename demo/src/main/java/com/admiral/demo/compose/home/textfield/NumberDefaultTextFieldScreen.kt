@@ -48,12 +48,13 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
     ) { padding ->
         Column(
             modifier = Modifier
+                .padding(horizontal = DIMEN_X4)
                 .padding(padding)
                 .fillMaxSize()
                 .verticalScroll(rememberScrollState())
         ) {
             StandardTab(
-                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                modifier = Modifier,
                 items = mutableListOf(
                     stringResource(id = R.string.tabs_default),
                     stringResource(id = R.string.tabs_disabled),
@@ -66,7 +67,7 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
 
             Spacer(modifier = Modifier.size(DIMEN_X13))
             Text(
-                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                modifier = Modifier,
                 text = stringResource(id = R.string.text_fields_five_symbols),
                 style = ThemeManagerCompose.typography.body1,
                 color = AdmiralTheme.colors.textSecondary
@@ -84,7 +85,7 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
 
             Spacer(modifier = Modifier.size(DIMEN_X9))
             Text(
-                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                modifier = Modifier,
                 text = stringResource(id = R.string.text_fields_six_symbols),
                 style = ThemeManagerCompose.typography.body1,
                 color = AdmiralTheme.colors.textSecondary
@@ -102,7 +103,7 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
 
             Spacer(modifier = Modifier.size(DIMEN_X9))
             Text(
-                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                modifier = Modifier,
                 text = stringResource(id = R.string.text_fields_eight_symbols),
                 style = ThemeManagerCompose.typography.body1,
                 color = AdmiralTheme.colors.textSecondary
@@ -120,7 +121,7 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
 
             Spacer(modifier = Modifier.size(DIMEN_X9))
             Text(
-                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                modifier = Modifier,
                 text = stringResource(id = R.string.text_fields_ten_symbols),
                 style = ThemeManagerCompose.typography.body1,
                 color = AdmiralTheme.colors.textSecondary
@@ -138,7 +139,7 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
 
             Spacer(modifier = Modifier.size(DIMEN_X9))
             Text(
-                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                modifier = Modifier,
                 text = stringResource(id = R.string.text_fields_unlimeted_symbols),
                 style = ThemeManagerCompose.typography.body1,
                 color = AdmiralTheme.colors.textSecondary
@@ -151,7 +152,6 @@ fun NumberDefaultTextFieldsScreen(onBackClick: () -> Unit = {}) {
                 inputType = InputType.OVAL,
                 colors = AdmiralInputNumberColors.oval(),
                 value = 1,
-                isAutoWidth = true
             )
             Spacer(modifier = Modifier.size(DIMEN_X20))
         }

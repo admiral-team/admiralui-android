@@ -16,6 +16,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import com.admiral.demo.R
 import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.uikit.compose.appbar.AppBar
 import com.admiral.uikit.compose.cell.BaseCell
 import com.admiral.uikit.compose.cell.unit.IconCellUnit
 import com.admiral.uikit.compose.cell.unit.TitleCellUnit
@@ -34,8 +35,17 @@ fun TextFieldsScreen(
     onNumberClick: () -> Unit = {},
     onFeedbackClick: () -> Unit = {},
     onPinCodeClick: () -> Unit = {},
+    onBackClick: () -> Unit = {},
 ) {
-    Scaffold(backgroundColor = AdmiralTheme.colors.backgroundBasic) { padding ->
+    Scaffold(
+        backgroundColor = AdmiralTheme.colors.backgroundBasic,
+        topBar = {
+            AppBar(
+                navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
+                onNavIconClick = onBackClick,
+            )
+        }
+    ) { padding ->
         Column(
             horizontalAlignment = Alignment.CenterHorizontally,
             modifier = Modifier
@@ -48,6 +58,7 @@ fun TextFieldsScreen(
                     .padding(top = DIMEN_X5, bottom = DIMEN_X4, start = DIMEN_X4, end = DIMEN_X4),
                 text = stringResource(id = R.string.text_fields_title),
                 style = ThemeManagerCompose.typography.title1,
+                color = AdmiralTheme.colors.textPrimary
             )
             BaseCell(
                 onClick = onStandardClick,

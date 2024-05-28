@@ -309,6 +309,7 @@
     <string name="tags_chips_attention">Attention</string>
 
     <string name="links_title">Links</string>
+    <string name="link_text">Link</string>
     <string name="links_size_big">24 Link</string>
     <string name="links_size_small">18 Link</string>
     <string name="links_subtitle">Ссылки</string>
@@ -323,7 +324,7 @@
     <string name="badges_normal_title">Normal</string>
     <string name="badges_small_title">Small</string>
     <string name="badges_additional">Additional</string>
-    <string name="badges_neutral">Neutral</string>
+    <string name="badges_natural">Natural</string>
     <string name="badges_default">Default</string>
     <string name="badges_success">Success</string>
     <string name="badges_error">Error</string>
@@ -337,7 +338,7 @@
     <string name="page_control_subtitle">Прогресс просмотра страниц</string>
     <string name="page_control_liner">Liner</string>
     <string name="page_control_circle">Circle</string>
-    <string name="page_control_next">Next ➔</string>
+    <string name="page_control_next">Next</string>
 
     <string name="check_box_title">Checkbox</string>
     <string name="check_box_default">Default</string>

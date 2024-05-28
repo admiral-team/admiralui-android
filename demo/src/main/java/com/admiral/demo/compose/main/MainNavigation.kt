@@ -5,12 +5,16 @@ import androidx.navigation.compose.composable
 
 internal const val MAIN_ROUTE = "main"
 
+@Suppress("LongParameterList")
 internal fun NavGraphBuilder.mainScreen(
     onTabsClick: () -> Unit,
     onButtonsClick: () -> Unit,
     onTextFieldsClick: () -> Unit,
     onCellsClick: () -> Unit,
     onCheckBoxClick: () -> Unit,
+    onBadgesClick: () -> Unit,
+    onLinkClick: () -> Unit,
+    onPageControlClick: () -> Unit,
 ) {
     composable(route = MAIN_ROUTE) {
         MainScreen(
@@ -19,6 +23,9 @@ internal fun NavGraphBuilder.mainScreen(
             onTextFieldsClick = onTextFieldsClick,
             onCellsClick = onCellsClick,
             onCheckBoxClick = onCheckBoxClick,
+            onBadgesClick = onBadgesClick,
+            onLinkClick = onLinkClick,
+            onPageControlClick = onPageControlClick,
         )
     }
 }
