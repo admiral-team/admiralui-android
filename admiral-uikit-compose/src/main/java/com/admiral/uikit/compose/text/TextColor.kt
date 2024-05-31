@@ -11,11 +11,11 @@ import com.admiral.themes.compose.withAlpha
 @Immutable
 data class TextColor(
     val textColorNormal: Color,
-    val textColorDisabled: Color,
+    val textColorDisabled: Color? = null,
 ) {
     @Composable
     fun getTextNormalColor(enabled: Boolean): State<Color> =
-        rememberUpdatedState(if (enabled) textColorNormal else textColorDisabled)
+        rememberUpdatedState(if (enabled) textColorNormal else textColorDisabled ?: textColorNormal)
 }
 
 object AdmiralTextColor {
