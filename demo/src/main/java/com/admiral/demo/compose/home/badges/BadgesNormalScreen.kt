@@ -29,7 +29,6 @@ import com.admiral.uikit.compose.badge.AdmiralBadgeColor
 import com.admiral.uikit.compose.badge.AdmiralBadgePosition
 import com.admiral.uikit.compose.badge.BadgedBox
 import com.admiral.uikit.compose.cell.unit.IconBackgroundCellUnit
-import com.admiral.uikit.compose.input.AdmiralInputNumberColors
 import com.admiral.uikit.compose.input.InputNumber
 import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.util.DIMEN_X2
@@ -45,11 +44,11 @@ fun NormalBadgesScreen(
 ) {
     var isEnabled by remember { mutableStateOf(true) }
     var additionalValue by remember { mutableIntStateOf(8) }
-    var naturalValue by remember { mutableIntStateOf(1) }
-    var defaultValue by remember { mutableIntStateOf(1) }
-    var successValue by remember { mutableIntStateOf(1) }
-    var errorValue by remember { mutableIntStateOf(1) }
-    var attentionValue by remember { mutableIntStateOf(1) }
+    var naturalValue by remember { mutableIntStateOf(0) }
+    var defaultValue by remember { mutableIntStateOf(0) }
+    var successValue by remember { mutableIntStateOf(0) }
+    var errorValue by remember { mutableIntStateOf(0) }
+    var attentionValue by remember { mutableIntStateOf(0) }
 
     Scaffold(
         backgroundColor = AdmiralTheme.colors.backgroundBasic,
@@ -57,7 +56,7 @@ fun NormalBadgesScreen(
             AdmiralCenterAlignedTopAppBar(
                 navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
                 onNavIconClick = onBackClick,
-                title = stringResource(id = R.string.badges_small_title)
+                title = stringResource(id = R.string.badges_normal_title)
             )
         }
     ) { padding ->
@@ -108,14 +107,10 @@ fun NormalBadgesScreen(
                     InputNumber(
                         modifier = Modifier.fillMaxWidth(),
                         isEnabled = isEnabled,
-                        value = additionalValue,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
-                        onValueChange = { old, _ ->
-                            additionalValue = old
+                        value = 8,
+                        onValueChange = { _, new ->
+                            additionalValue = new
                         },
                         optionalText = stringResource(id = R.string.badges_additional)
                     )
@@ -142,15 +137,10 @@ fun NormalBadgesScreen(
                     )
                     InputNumber(
                         modifier = Modifier.fillMaxWidth(),
-                        value = naturalValue,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
-                        onValueChange = { old, _ ->
-                            naturalValue = old
+                        onValueChange = { _, new ->
+                            naturalValue = new
                         },
                         optionalText = stringResource(id = R.string.badges_natural)
                     )
@@ -177,15 +167,10 @@ fun NormalBadgesScreen(
                     )
                     InputNumber(
                         modifier = Modifier.fillMaxWidth(),
-                        value = defaultValue,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
-                        onValueChange = { old, _ ->
-                            defaultValue = old
+                        onValueChange = { _, new ->
+                            defaultValue = new
                         },
                         optionalText = stringResource(id = R.string.badges_default)
                     )
@@ -208,15 +193,10 @@ fun NormalBadgesScreen(
                     )
                     InputNumber(
                         modifier = Modifier.fillMaxWidth(),
-                        value = successValue,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
-                        onValueChange = { old, _ ->
-                            successValue = old
+                        onValueChange = { _, new ->
+                            successValue = new
                         },
                         optionalText = stringResource(id = R.string.badges_success)
                     )
@@ -239,15 +219,10 @@ fun NormalBadgesScreen(
                     )
                     InputNumber(
                         modifier = Modifier.fillMaxWidth(),
-                        value = errorValue,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
-                        onValueChange = { old, _ ->
-                            errorValue = old
+                        onValueChange = { _, new ->
+                            errorValue = new
                         },
                         optionalText = stringResource(id = R.string.badges_error)
                     )
@@ -270,15 +245,10 @@ fun NormalBadgesScreen(
                     )
                     InputNumber(
                         modifier = Modifier.fillMaxWidth(),
-                        value = attentionValue,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
-                        onValueChange = { old, _ ->
-                            attentionValue = old
+                        onValueChange = { _, new ->
+                            attentionValue = new
                         },
                         optionalText = stringResource(id = R.string.badges_attention)
                     )
@@ -290,6 +260,7 @@ fun NormalBadgesScreen(
 
 @Suppress("MagicNumber")
 private val VerticalOffset = (-15).dp
+
 @Suppress("MagicNumber")
 private val HorizontalOffset = (-16).dp
 private val IconPadding = 2.dp

@@ -28,7 +28,6 @@ import com.admiral.uikit.compose.badge.AdmiralBadgeColor
 import com.admiral.uikit.compose.badge.AdmiralBadgePosition
 import com.admiral.uikit.compose.badge.BadgedBox
 import com.admiral.uikit.compose.cell.unit.IconBackgroundCellUnit
-import com.admiral.uikit.compose.input.AdmiralInputNumberColors
 import com.admiral.uikit.compose.input.InputNumber
 import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.util.DIMEN_X2
@@ -104,10 +103,6 @@ fun SmallBadgesScreen(
                         isEnabled = isEnabled,
                         value = 8,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
                         optionalText = stringResource(id = R.string.badges_additional)
                     )
                 }
@@ -135,10 +130,6 @@ fun SmallBadgesScreen(
                         value = 1,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
                         optionalText = stringResource(id = R.string.badges_natural)
                     )
                 }
@@ -166,10 +157,6 @@ fun SmallBadgesScreen(
                         value = 1,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
                         optionalText = stringResource(id = R.string.badges_default)
                     )
                 }
@@ -193,10 +180,6 @@ fun SmallBadgesScreen(
                         value = 1,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
                         optionalText = stringResource(id = R.string.badges_success)
                     )
                 }
@@ -220,10 +203,6 @@ fun SmallBadgesScreen(
                         value = 1,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
                         optionalText = stringResource(id = R.string.badges_error)
                     )
                 }
@@ -247,10 +226,6 @@ fun SmallBadgesScreen(
                         value = 1,
                         isEnabled = isEnabled,
                         inputType = InputType.OVAL,
-                        colors = AdmiralInputNumberColors.oval(
-                            textEnable = AdmiralTheme.colors.textSecondary,
-                            textDisable = AdmiralTheme.colors.textSecondary
-                        ),
                         optionalText = stringResource(id = R.string.badges_attention)
                     )
                 }
@@ -261,6 +236,7 @@ fun SmallBadgesScreen(
 
 @Suppress("MagicNumber")
 private val VerticalOffset = (-13).dp
+
 @Suppress("MagicNumber")
 private val HorizontalOffset = (-14).dp
 private val IconPadding = 2.dp
