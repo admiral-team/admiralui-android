@@ -132,6 +132,8 @@
     <string name="tabs_example_eight">Eight</string>
     <string name="tabs_example_nine">Nine</string>
     <string name="tabs_default">Default</string>
+    <string name="tabs_success">Success</string>
+    <string name="tabs_error">Error</string>
     <string name="tabs_disabled">Disabled</string>
     <string name="tabs_two_controls">Two controls</string>
     <string name="tabs_three_controls">Three controls</string>

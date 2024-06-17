@@ -171,5 +171,7 @@ fun TextFieldsScreen(
 @Preview
 @Composable
 private fun TextFieldsScreenPreview() {
-    TextFieldsScreen()
+    AdmiralTheme {
+        TextFieldsScreen()
+    }
 }
