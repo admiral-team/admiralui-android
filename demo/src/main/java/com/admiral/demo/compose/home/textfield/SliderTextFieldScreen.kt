@@ -24,6 +24,7 @@ import androidx.compose.ui.unit.dp
 import com.admiral.demo.R
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
+import com.admiral.uikit.compose.slider.DoubleSlider
 import com.admiral.uikit.compose.slider.Slider
 import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.util.DIMEN_X1
@@ -97,8 +98,9 @@ fun SliderTextFieldScreen(
                 color = Color(palette.textSecondary),
                 style = typography.body1,
             )
-            Slider(
-                value = 500f,
+            DoubleSlider(
+                valueLeft = 500f,
+                valueRight = 10000f,
                 valueRange = 0f..VALUE_RANGE_MAX,
                 additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
                 optionalText = stringResource(id = R.string.text_fields_optional_label),
@@ -113,6 +115,7 @@ private const val VERTICAL_PADDING = 18
 private const val ERROR_STATE = 1
 private const val DISABLED_STATE = 2
 private const val VALUE_RANGE_MAX = 10_000f
+
 @Preview
 @Composable
 private fun SliderTextFieldScreenPreview() {
