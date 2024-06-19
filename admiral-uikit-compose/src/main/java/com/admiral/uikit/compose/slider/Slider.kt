@@ -170,10 +170,30 @@ fun Slider(
                 visualTransformation = visualTransformation,
                 onValueChange = {
                     if (it.text.isDigitsOnly()) {
-                        val v = it.text.toInt()
-                        if (isInRange(valueRange.start.toInt(), valueRange.endInclusive.toInt(), v)) {
-                            textState.value = it
-                            onValueChange.invoke(it.text.toFloat())
+                        val value = if (it.text != "") {
+                            it.text.toInt()
+                        } else {
+                            0
+                        }
+
+                        if (isInRange(
+                                valueRange.start.toInt(),
+                                valueRange.endInclusive.toInt(),
+                                value
+                            )
+                        ) {
+                            textState.value = if (it.text != "") it else TextFieldValue("0")
+                            onValueChange.invoke(value.toFloat())
+                        } else {
+                            if (value > valueRange.endInclusive) {
+                                textState.value =
+                                    TextFieldValue(valueRange.endInclusive.toInt().toString())
+                                onValueChange.invoke(valueRange.endInclusive)
+                            } else {
+                                textState.value =
+                                    TextFieldValue(valueRange.start.toInt().toString())
+                                onValueChange.invoke(valueRange.start)
+                            }
                         }
                     }
                 },
@@ -197,8 +217,10 @@ fun Slider(
             )
 
             val iconColor =
-                if (isEnabled) textColorState?.normalEnabled ?: ThemeManager.theme.palette.elementPrimary
-                else textColorState?.normalDisabled ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
+                if (isEnabled) textColorState?.normalEnabled
+                    ?: ThemeManager.theme.palette.elementPrimary
+                else textColorState?.normalDisabled
+                    ?: ThemeManager.theme.palette.elementPrimary.withAlpha()
 
             icon?.let {
                 Icon(
@@ -221,7 +243,7 @@ fun Slider(
             thumbColor = accent,
             disabledThumbColor = accent.copy(alpha = 0.6f),
             activeTrackColor = track,
-            disabledActiveTrackColor = track.copy(alpha = 0.6f),
+            disabledActiveTrackColor = track.copy(alpha = 0.014f),
             inactiveTrackColor = trackInactive,
             disabledInactiveTrackColor = trackInactive.copy(alpha = 0.6f)
         )
