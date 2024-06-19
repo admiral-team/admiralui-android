@@ -8,6 +8,7 @@ internal const val CELLS_MAIN_SCREEN_ROUTE = "cellsMainScreen"
 internal const val CELLS_BASE_SCREEN_ROUTE = "cellsBaseScreen"
 internal const val CELLS_LEADING_SCREEN_ROUTE = "cellsLeadingScreen"
 internal const val CELLS_CENTER_SCREEN_ROUTE = "cellsCenterScreen"
+internal const val TRAILING_CELLS_SCREEN_ROUTE = "cellsTrailingScreen"
 
 internal fun NavController.navigateToCellsScreen() {
     navigate(CELLS_MAIN_SCREEN_ROUTE)
@@ -23,6 +24,10 @@ internal fun NavController.navigateToCellsLeadingScreen() {
 
 internal fun NavController.navigateToCellsCenterScreen() {
     navigate(CELLS_CENTER_SCREEN_ROUTE)
+}
+
+internal fun NavController.navigateToTrailingCellsScreen() {
+    navigate(TRAILING_CELLS_SCREEN_ROUTE)
 }
 
 internal fun NavGraphBuilder.cellsMainScreen(
@@ -43,12 +48,14 @@ internal fun NavGraphBuilder.cellsBaseScreen(
     onBackClick: () -> Unit = {},
     onCellsLeadingClick: () -> Unit = {},
     onCellsCenterClick: () -> Unit = {},
+    onCellsTrailingClick: () -> Unit = {},
 ) {
     composable(route = CELLS_BASE_SCREEN_ROUTE) {
         CellsBaseScreen(
             onBackClick = onBackClick,
             onCellsLeadingClick = onCellsLeadingClick,
             onCellsCenterClick = onCellsCenterClick,
+            onCellsTrailingClick = onCellsTrailingClick
         )
     }
 }
@@ -64,6 +71,14 @@ internal fun NavGraphBuilder.cellsLeadingScreen(onBackClick: () -> Unit) {
 internal fun NavGraphBuilder.cellsCenterScreen(onBackClick: () -> Unit) {
     composable(route = CELLS_CENTER_SCREEN_ROUTE) {
         CellsCenterScreen(
+            onBackClick = onBackClick
+        )
+    }
+}
+
+internal fun NavGraphBuilder.cellsTrailingScreen(onBackClick: () -> Unit) {
+    composable(route = TRAILING_CELLS_SCREEN_ROUTE) {
+        CellsTrailingScreen(
             onBackClick = onBackClick
         )
     }
