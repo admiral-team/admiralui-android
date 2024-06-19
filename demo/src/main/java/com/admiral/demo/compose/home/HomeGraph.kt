@@ -48,10 +48,14 @@ import com.admiral.demo.compose.home.tabs.navigateToLogoTabsScreen
 import com.admiral.demo.compose.home.tabs.navigateToOutlineTabsScreen
 import com.admiral.demo.compose.home.tabs.navigateToStandardTabsScreen
 import com.admiral.demo.compose.home.tabs.navigateToTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToUnderlineCenterTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToUnderlineSliderTabsScreen
 import com.admiral.demo.compose.home.tabs.navigateToUnderlineTabsScreen
 import com.admiral.demo.compose.home.tabs.outlineTabsScreen
 import com.admiral.demo.compose.home.tabs.standardTabsScreen
 import com.admiral.demo.compose.home.tabs.tabsMainScreen
+import com.admiral.demo.compose.home.tabs.underlineCenterTabsScreen
+import com.admiral.demo.compose.home.tabs.underlineSliderTabsScreen
 import com.admiral.demo.compose.home.tabs.underlineTabsScreen
 import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
 import com.admiral.demo.compose.home.textfield.doubleTextFieldScreen
@@ -177,6 +181,14 @@ fun NavGraphBuilder.homeGraph(
             onBackClick = { navController.navigateBack() }
         )
         underlineTabsScreen(
+            onBackClick = { navController.navigateBack() },
+            onSliderTabsClicked = { navController.navigateToUnderlineSliderTabsScreen() },
+            onCenterTabsClicked = { navController.navigateToUnderlineCenterTabsScreen() }
+        )
+        underlineSliderTabsScreen(
+            onBackClick = { navController.navigateBack() }
+        )
+        underlineCenterTabsScreen(
             onBackClick = { navController.navigateBack() }
         )
         iconTabsScreen(

@@ -21,15 +21,15 @@ import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
 import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.tabs.TabItem
-import com.admiral.uikit.compose.tabs.outline.OutlineSliderTabList
-import com.admiral.uikit.compose.tabs.outline.OutlineSliderTabListBadged
+import com.admiral.uikit.compose.tabs.underline.UnderlineTabList
+import com.admiral.uikit.compose.tabs.underline.UnderlineTabListBadged
 import com.admiral.uikit.compose.util.DIMEN_X10
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X5
 
 @Composable
 @Suppress("LongMethod")
-fun OutlineTabsScreen(
+fun UnderlineCenterTabsScreen(
     onBackClick: () -> Unit = {},
 ) {
     val (isEnabled, setValue) = remember { mutableStateOf(true) }
@@ -40,7 +40,7 @@ fun OutlineTabsScreen(
             AdmiralCenterAlignedTopAppBar(
                 navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
                 onNavIconClick = onBackClick,
-                title = stringResource(id = R.string.tabs_outline_title)
+                title = stringResource(id = R.string.tabs_underline_center_title)
             )
         }
     ) { padding ->
@@ -63,12 +63,29 @@ fun OutlineTabsScreen(
             Spacer(modifier = Modifier.size(DIMEN_X10))
             Text(
                 modifier = Modifier.padding(horizontal = DIMEN_X4),
+                text = stringResource(id = R.string.tabs_two),
+                style = ThemeManagerCompose.typography.body1,
+                color = AdmiralTheme.colors.textSecondary
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X5))
+            UnderlineTabList(
+                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                items = mutableListOf(
+                    stringResource(id = R.string.tabs_one),
+                    stringResource(id = R.string.tabs_two),
+                ),
+                selectedIndex = 0,
+                isEnabled = isEnabled
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X10))
+            Text(
+                modifier = Modifier.padding(horizontal = DIMEN_X4),
                 text = stringResource(id = R.string.tabs_three),
                 style = ThemeManagerCompose.typography.body1,
                 color = AdmiralTheme.colors.textSecondary
             )
             Spacer(modifier = Modifier.size(DIMEN_X5))
-            OutlineSliderTabList(
+            UnderlineTabList(
                 modifier = Modifier.padding(horizontal = DIMEN_X4),
                 items = mutableListOf(
                     stringResource(id = R.string.tabs_one),
@@ -81,12 +98,31 @@ fun OutlineTabsScreen(
             Spacer(modifier = Modifier.size(DIMEN_X10))
             Text(
                 modifier = Modifier.padding(horizontal = DIMEN_X4),
-                text = stringResource(id = R.string.tabs_slider_control),
+                text = stringResource(id = R.string.tabs_four),
                 style = ThemeManagerCompose.typography.body1,
                 color = AdmiralTheme.colors.textSecondary
             )
             Spacer(modifier = Modifier.size(DIMEN_X5))
-            OutlineSliderTabList(
+            UnderlineTabList(
+                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                items = mutableListOf(
+                    stringResource(id = R.string.tabs_one),
+                    stringResource(id = R.string.tabs_two),
+                    stringResource(id = R.string.tabs_three),
+                    stringResource(id = R.string.tabs_four),
+                ),
+                selectedIndex = 0,
+                isEnabled = isEnabled
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X10))
+            Text(
+                modifier = Modifier.padding(horizontal = DIMEN_X4),
+                text = stringResource(id = R.string.tabs_five),
+                style = ThemeManagerCompose.typography.body1,
+                color = AdmiralTheme.colors.textSecondary
+            )
+            Spacer(modifier = Modifier.size(DIMEN_X5))
+            UnderlineTabList(
                 modifier = Modifier.padding(horizontal = DIMEN_X4),
                 items = mutableListOf(
                     stringResource(id = R.string.tabs_one),
@@ -94,10 +130,6 @@ fun OutlineTabsScreen(
                     stringResource(id = R.string.tabs_three),
                     stringResource(id = R.string.tabs_four),
                     stringResource(id = R.string.tabs_five),
-                    stringResource(id = R.string.tabs_example_six),
-                    stringResource(id = R.string.tabs_example_seven),
-                    stringResource(id = R.string.tabs_example_eight),
-                    stringResource(id = R.string.tabs_example_nine),
                 ),
                 selectedIndex = 0,
                 isEnabled = isEnabled
@@ -110,26 +142,23 @@ fun OutlineTabsScreen(
                 color = AdmiralTheme.colors.textSecondary
             )
             Spacer(modifier = Modifier.size(DIMEN_X5))
-            OutlineSliderTabListBadged(
+            UnderlineTabListBadged(
                 modifier = Modifier.padding(horizontal = DIMEN_X4),
                 items = mutableListOf(
                     TabItem(
-                        stringResource(id = R.string.tabs_one),
+                        text = stringResource(id = R.string.tabs_one),
                         isBadgeVisible = true,
                         isBadgeEnabled = isEnabled
                     ),
                     TabItem(
-                        stringResource(id = R.string.tabs_two),
+                        text = stringResource(id = R.string.tabs_two),
                         isBadgeVisible = true,
                         isBadgeEnabled = isEnabled
                     ),
                     TabItem(
-                        stringResource(id = R.string.tabs_three),
+                        text = stringResource(id = R.string.tabs_three),
                         isBadgeVisible = true,
                         isBadgeEnabled = false
-                    ),
-                    TabItem(
-                        stringResource(id = R.string.tabs_four),
                     ),
                 ),
                 selectedIndex = 0,
@@ -141,8 +170,8 @@ fun OutlineTabsScreen(
 
 @Preview
 @Composable
-fun OutlineTabsScreenPreview() {
+fun UnderlineCenterTabsScreenPreview() {
     AdmiralTheme {
-        OutlineTabsScreen()
+        UnderlineCenterTabsScreen()
     }
 }

@@ -9,7 +9,9 @@ internal const val TABS_STANDARD_SCREEN_ROUTE = "tabsStandardScreen"
 internal const val TABS_LOGO_SCREEN_ROUTE = "tabsLogoScreen"
 internal const val TABS_INFORMER_SCREEN_ROUTE = "tabsInformerScreen"
 internal const val TABS_OUTLINE_SCREEN_ROUTE = "tabsOutlineScreen"
-internal const val TABS_UNDERLINE_SCREEN_ROUTE = "tabsUnderlineScreen"
+internal const val TABS_UNDERLINE_MAIN_SCREEN_ROUTE = "tabsUnderlineScreen"
+internal const val TABS_UNDERLINE_SLIDER_SCREEN_ROUTE = "tabsUnderlineSliderScreen"
+internal const val TABS_UNDERLINE_CENTER_SCREEN_ROUTE = "tabsUnderlineCenterScreen"
 internal const val TABS_ICON_SCREEN_ROUTE = "tabsIconScreen"
 
 internal fun NavController.navigateToTabsScreen() {
@@ -33,7 +35,15 @@ internal fun NavController.navigateToOutlineTabsScreen() {
 }
 
 internal fun NavController.navigateToUnderlineTabsScreen() {
-    navigate(TABS_UNDERLINE_SCREEN_ROUTE)
+    navigate(TABS_UNDERLINE_MAIN_SCREEN_ROUTE)
+}
+
+internal fun NavController.navigateToUnderlineSliderTabsScreen() {
+    navigate(TABS_UNDERLINE_SLIDER_SCREEN_ROUTE)
+}
+
+internal fun NavController.navigateToUnderlineCenterTabsScreen() {
+    navigate(TABS_UNDERLINE_CENTER_SCREEN_ROUTE)
 }
 
 internal fun NavController.navigateToIconTabsScreen() {
@@ -105,9 +115,33 @@ internal fun NavGraphBuilder.outlineTabsScreen(
 
 internal fun NavGraphBuilder.underlineTabsScreen(
     onBackClick: () -> Unit = {},
+    onSliderTabsClicked: () -> Unit = {},
+    onCenterTabsClicked: () -> Unit = {},
 ) {
-    composable(route = TABS_UNDERLINE_SCREEN_ROUTE) {
+    composable(route = TABS_UNDERLINE_MAIN_SCREEN_ROUTE) {
+        UnderlineTabsMainScreen(
+            onBackClick = onBackClick,
+            onSliderTabsClicked = onSliderTabsClicked,
+            onCenterTabsClicked = onCenterTabsClicked,
+        )
+    }
+}
+
+internal fun NavGraphBuilder.underlineSliderTabsScreen(
+    onBackClick: () -> Unit = {},
+) {
+    composable(route = TABS_UNDERLINE_SLIDER_SCREEN_ROUTE) {
         UnderlineSliderTabsScreen(
+            onBackClick = onBackClick,
+        )
+    }
+}
+
+internal fun NavGraphBuilder.underlineCenterTabsScreen(
+    onBackClick: () -> Unit = {},
+) {
+    composable(route = TABS_UNDERLINE_CENTER_SCREEN_ROUTE) {
+        UnderlineCenterTabsScreen(
             onBackClick = onBackClick,
         )
     }
