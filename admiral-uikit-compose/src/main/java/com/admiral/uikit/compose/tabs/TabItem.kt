@@ -6,4 +6,6 @@ import androidx.compose.runtime.Immutable
 data class TabItem(
     val text: String,
     val isSelected: Boolean = false,
+    val isBadgeVisible: Boolean = false,
+    val isBadgeEnabled: Boolean = false,
 )

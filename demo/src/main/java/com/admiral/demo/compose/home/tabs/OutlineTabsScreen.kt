@@ -20,7 +20,9 @@ import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
 import com.admiral.uikit.compose.tabs.StandardTab
+import com.admiral.uikit.compose.tabs.TabItem
 import com.admiral.uikit.compose.tabs.outline.OutlineSliderTabList
+import com.admiral.uikit.compose.tabs.outline.OutlineSliderTabListBadged
 import com.admiral.uikit.compose.util.DIMEN_X10
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X5
@@ -108,13 +110,27 @@ fun OutlineTabsScreen(
                 color = AdmiralTheme.colors.textSecondary
             )
             Spacer(modifier = Modifier.size(DIMEN_X5))
-            OutlineSliderTabList(
+            OutlineSliderTabListBadged(
                 modifier = Modifier.padding(horizontal = DIMEN_X4),
                 items = mutableListOf(
-                    stringResource(id = R.string.tabs_one),
-                    stringResource(id = R.string.tabs_two),
-                    stringResource(id = R.string.tabs_three),
-                    stringResource(id = R.string.tabs_four),
+                    TabItem(
+                        stringResource(id = R.string.tabs_one),
+                        isBadgeVisible = true,
+                        isBadgeEnabled = isEnabled
+                    ),
+                    TabItem(
+                        stringResource(id = R.string.tabs_two),
+                        isBadgeVisible = true,
+                        isBadgeEnabled = isEnabled
+                    ),
+                    TabItem(
+                        stringResource(id = R.string.tabs_three),
+                        isBadgeVisible = true,
+                        isBadgeEnabled = false
+                    ),
+                    TabItem(
+                        stringResource(id = R.string.tabs_four),
+                    ),
                 ),
                 selectedIndex = 0,
                 isEnabled = isEnabled

@@ -22,29 +22,31 @@ class BaseCellsTrailingFragment : BaseFragment(
         super.onViewCreated(view, savedInstanceState)
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
-        binding.tabs.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
-            override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
-                when (checkedId) {
-                    binding.defaultTab.id -> {
-                        binding.cardCell.isEnabled = true
-                        binding.checkBoxCell.isEnabled = true
-                        binding.iconCell.isEnabled = true
-                        binding.doubleSubtitleCell.isEnabled = true
-                        binding.labelCell.isEnabled = true
-                        binding.switchCell.isEnabled = true
-                        binding.radioButtonCell.isEnabled = true
-                        binding.subtitlePaymentCell.isEnabled = true
-                    }
+        with(binding) {
+            tabs.onCheckedChangeListener = object : CheckableGroup.OnCheckedChangeListener {
+                override fun onCheckedChanged(radioButton: View?, isChecked: Boolean, checkedId: Int) {
+                    when (checkedId) {
+                        defaultTab.id -> {
+                            cardCell.isEnabled = true
+                            checkBoxCell.isEnabled = true
+                            iconCell.isEnabled = true
+                            doubleSubtitleCell.isEnabled = true
+                            labelCell.isEnabled = true
+                            switchCell.isEnabled = true
+                            radioButtonCell.isEnabled = true
+                            subtitlePaymentCell.isEnabled = true
+                        }
 
-                    binding.disabledTab.id -> {
-                        binding.cardCell.isEnabled = false
-                        binding.checkBoxCell.isEnabled = false
-                        binding.iconCell.isEnabled = false
-                        binding.doubleSubtitleCell.isEnabled = false
-                        binding.labelCell.isEnabled = false
-                        binding.switchCell.isEnabled = false
-                        binding.radioButtonCell.isEnabled = false
-                        binding.subtitlePaymentCell.isEnabled = false
+                        disabledTab.id -> {
+                            cardCell.isEnabled = false
+                            checkBoxCell.isEnabled = false
+                            iconCell.isEnabled = false
+                            doubleSubtitleCell.isEnabled = false
+                            labelCell.isEnabled = false
+                            switchCell.isEnabled = false
+                            radioButtonCell.isEnabled = false
+                            subtitlePaymentCell.isEnabled = false
+                        }
                     }
                 }
             }

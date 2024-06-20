@@ -1,15 +1,14 @@
 package com.admiral.uikit.compose.checkbox
 
+import androidx.compose.foundation.background
 import androidx.compose.foundation.interaction.Interaction
 import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.Spacer
-import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.width
-import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -95,19 +94,16 @@ private fun AdmiralCheckBoxPreview() {
     var checked by remember { mutableStateOf(false) }
 
     AdmiralTheme {
-        Surface(
-            color = AdmiralTheme.colors.backgroundBasic,
-            modifier = Modifier.fillMaxSize()
+        Box(
+            modifier = Modifier
+                .background(color = AdmiralTheme.colors.backgroundBasic)
+                .padding(DIMEN_X2)
         ) {
-            Box(
-                modifier = Modifier.padding(DIMEN_X2)
-            ) {
-                CheckBox(
-                    isChecked = checked,
-                    text = "Text",
-                    onCheckedChange = { isChecked -> checked = isChecked },
-                )
-            }
+            CheckBox(
+                isChecked = checked,
+                text = "Text",
+                onCheckedChange = { isChecked -> checked = isChecked },
+            )
         }
     }
 }

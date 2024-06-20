@@ -149,27 +149,71 @@ private fun OutlineSliderTabWithBadge(
 }
 
 @Composable
-fun OutlineSliderTabList(
+fun OutlineSliderTabListBadged(
     modifier: Modifier = Modifier,
-    items: MutableList<String>,
+    items: List<TabItem>,
     onCheckedChange: (Int) -> Unit = {},
     isEnabled: Boolean = true,
     selectedIndex: Int? = null,
+) {
+    TabsList(
+        selectedIndex,
+        modifier,
+        items.map { item ->
+            TabItem(
+                text = item.text,
+                isBadgeVisible = item.isBadgeVisible,
+                isBadgeEnabled = item.isBadgeEnabled
+            )
+        },
+        onCheckedChange,
+        isEnabled
+    )
+}
+
+@Composable
+fun OutlineSliderTabList(
+    modifier: Modifier = Modifier,
+    items: List<String>,
+    onCheckedChange: (Int) -> Unit = {},
+    isEnabled: Boolean = true,
+    selectedIndex: Int? = null,
+) {
+    TabsList(
+        selectedIndex,
+        modifier,
+        items.map { text ->
+            TabItem(text = text)
+        },
+        onCheckedChange,
+        isEnabled
+    )
+}
+
+@Composable
+private fun TabsList(
+    selectedIndex: Int?,
+    modifier: Modifier,
+    items: List<TabItem>,
+    onCheckedChange: (Int) -> Unit,
+    isEnabled: Boolean
 ) {
     val (currentSelectedIndex, setSelectedIndex) = remember {
         mutableIntStateOf(selectedIndex ?: -1)
     }
 
-    Row(
+    LazyRow(
         modifier = modifier
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
     ) {
-        items.forEachIndexed { index, tabItem ->
+        itemsIndexed(items) { index, tabItem ->
             OutlineSliderTab(
                 isSelected = index == currentSelectedIndex,
-                tabText = tabItem,
+                tabText = tabItem.text,
+                isBadgeVisible = tabItem.isBadgeVisible,
+                isBadgeEnabled = tabItem.isBadgeEnabled,
                 onClick = {
                     setSelectedIndex(index)
                     onCheckedChange.invoke(index)

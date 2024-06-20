@@ -25,10 +25,12 @@ import com.admiral.demo.compose.home.cells.cellsBaseScreen
 import com.admiral.demo.compose.home.cells.cellsCenterScreen
 import com.admiral.demo.compose.home.cells.cellsLeadingScreen
 import com.admiral.demo.compose.home.cells.cellsMainScreen
+import com.admiral.demo.compose.home.cells.cellsTrailingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsBaseScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsCenterScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsScreen
+import com.admiral.demo.compose.home.cells.navigateToTrailingCellsScreen
 import com.admiral.demo.compose.home.checkbox.checkBoxScreen
 import com.admiral.demo.compose.home.checkbox.navigateToCheckBoxScreen
 import com.admiral.demo.compose.home.control.navigateToPageControlCircleScreen
@@ -48,10 +50,14 @@ import com.admiral.demo.compose.home.tabs.navigateToLogoTabsScreen
 import com.admiral.demo.compose.home.tabs.navigateToOutlineTabsScreen
 import com.admiral.demo.compose.home.tabs.navigateToStandardTabsScreen
 import com.admiral.demo.compose.home.tabs.navigateToTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToUnderlineCenterTabsScreen
+import com.admiral.demo.compose.home.tabs.navigateToUnderlineSliderTabsScreen
 import com.admiral.demo.compose.home.tabs.navigateToUnderlineTabsScreen
 import com.admiral.demo.compose.home.tabs.outlineTabsScreen
 import com.admiral.demo.compose.home.tabs.standardTabsScreen
 import com.admiral.demo.compose.home.tabs.tabsMainScreen
+import com.admiral.demo.compose.home.tabs.underlineCenterTabsScreen
+import com.admiral.demo.compose.home.tabs.underlineSliderTabsScreen
 import com.admiral.demo.compose.home.tabs.underlineTabsScreen
 import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
 import com.admiral.demo.compose.home.textfield.doubleTextFieldScreen
@@ -142,19 +148,13 @@ fun NavGraphBuilder.homeGraph(
         )
         cellsBaseScreen(
             onBackClick = { navController.navigateBack() },
-            onCellsLeadingClick = {
-                navController.navigateToCellsLeadingScreen()
-            },
-            onCellsCenterClick = {
-                navController.navigateToCellsCenterScreen()
-            }
+            onCellsLeadingClick = { navController.navigateToCellsLeadingScreen() },
+            onCellsCenterClick = { navController.navigateToCellsCenterScreen() },
+            onCellsTrailingClick = { navController.navigateToTrailingCellsScreen() }
         )
-        cellsLeadingScreen(
-            onBackClick = { navController.navigateBack() },
-        )
-        cellsCenterScreen(
-            onBackClick = { navController.navigateBack() },
-        )
+        cellsLeadingScreen(onBackClick = { navController.navigateBack() })
+        cellsCenterScreen(onBackClick = { navController.navigateBack() })
+        cellsTrailingScreen(onBackClick = { navController.navigateBack() })
         tabsMainScreen(
             onBackClick = { navController.navigateBack() },
             onStandardTabsClicked = { navController.navigateToStandardTabsScreen() },
@@ -177,6 +177,14 @@ fun NavGraphBuilder.homeGraph(
             onBackClick = { navController.navigateBack() }
         )
         underlineTabsScreen(
+            onBackClick = { navController.navigateBack() },
+            onSliderTabsClicked = { navController.navigateToUnderlineSliderTabsScreen() },
+            onCenterTabsClicked = { navController.navigateToUnderlineCenterTabsScreen() }
+        )
+        underlineSliderTabsScreen(
+            onBackClick = { navController.navigateBack() }
+        )
+        underlineCenterTabsScreen(
             onBackClick = { navController.navigateBack() }
         )
         iconTabsScreen(
