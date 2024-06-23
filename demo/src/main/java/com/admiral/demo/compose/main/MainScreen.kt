@@ -32,6 +32,7 @@ internal fun MainScreen(
     onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
     onBadgesClick: homeItemClick = {},
+    onTextBlocksClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -146,6 +147,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onTextBlocksClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_typography_solid),
