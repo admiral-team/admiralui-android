@@ -3,6 +3,13 @@ package com.admiral.demo.compose.home
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.navigation
+import com.admiral.demo.compose.home.alerts.alertsOnboardingScreen
+import com.admiral.demo.compose.home.alerts.errorViewScreen
+import com.admiral.demo.compose.home.alerts.navigateErrorViewScreenRoute
+import com.admiral.demo.compose.home.alerts.navigateToAlertScreenRoute
+import com.admiral.demo.compose.home.alerts.navigateToAlertsOnboardingScreenRoute
+import com.admiral.demo.compose.home.alerts.navigateToZeroScreen
+import com.admiral.demo.compose.home.alerts.zeroScreen
 import com.admiral.demo.compose.home.badges.badgesScreen
 import com.admiral.demo.compose.home.badges.navigateToBadgesScreen
 import com.admiral.demo.compose.home.badges.navigateToNormalBadgesScreen
@@ -117,6 +124,7 @@ fun NavGraphBuilder.homeGraph(
             onBadgesClick = { navController.navigateToBadgesScreen() },
             onPageControlClick = { navController.navigateToPageControlScreen() },
             onLinkClick = { navController.navigateToLinkScreen() },
+            onAlertsClick = { navController.navigateToAlertsOnboardingScreenRoute() }
             onTextBlocksClick = { navController.navigateToTextBlocksScreen() }
         )
         buttonsScreen(
@@ -237,6 +245,21 @@ fun NavGraphBuilder.homeGraph(
         )
         normalBadgesScreen(onBackClick = onBackClick)
         smallBadgesScreen(onBackClick = onBackClick)
+        normalBadgesScreen(onBackClick = { navController.navigateBack() })
+        smallBadgesScreen(onBackClick = { navController.navigateBack() })
+        alertsOnboardingScreen(
+            onAlertClicked = { navController.navigateToAlertScreenRoute() },
+            onOnboardingClick = { navController.navigateToAlertScreenRoute() },
+            onZeroScreenClick = { navController.navigateToZeroScreen() },
+            onErrorViewClick = { navController.navigateErrorViewScreenRoute() },
+            onBackClick = onBackClick,
+        )
+        errorViewScreen {
+            navController.navigateBack()
+        }
+        zeroScreen {
+            navController.navigateBack()
+        }
     }
 }
 
