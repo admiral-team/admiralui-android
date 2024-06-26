@@ -30,10 +30,12 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.SideEffect
 import androidx.compose.runtime.getValue
 import androidx.compose.runtime.mutableIntStateOf
+import androidx.compose.runtime.mutableLongStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
 import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
+import androidx.compose.ui.ExperimentalComposeUiApi
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.geometry.Offset
@@ -85,6 +87,7 @@ fun InputNumber(
     var autoIncrement by remember { mutableStateOf(false) }
     val incrementInteractionSource = remember { MutableInteractionSource() }
     val decrementInteractionSource = remember { MutableInteractionSource() }
+    var runCount by remember { mutableLongStateOf(0L) }
 
     val iconPadding = when (inputType) {
         InputType.OVAL -> DIMEN_X2
@@ -109,14 +112,14 @@ fun InputNumber(
 
     SideEffect {
         when {
-            currentValue in minValue .. maxValue -> {
+            currentValue in minValue..maxValue -> {
                 onValueChange?.invoke(previousValue, currentValue)
             }
         }
-
-        incrementEnabled = autoDecrement.not() && currentValue < maxValue
-        decrementEnabled = autoIncrement.not() && currentValue > minValue
     }
+
+    incrementEnabled = autoDecrement.not() && currentValue < maxValue
+    decrementEnabled = autoIncrement.not() && currentValue > minValue
 
     Row(
         modifier = modifier,
@@ -164,6 +167,7 @@ fun InputNumber(
                                 val heldButtonJob = scope.launch {
                                     while (isEnabled && decrementEnabled) {
                                         delay(DelayAutoChange)
+                                        runCount += DelayAutoChange
                                         if (currentValue <= minValue) {
                                             autoDecrement = false
                                             decrementInteractionSource.emit(
@@ -175,13 +179,30 @@ fun InputNumber(
                                         }
                                         autoDecrement = true
                                         previousValue = currentValue
-                                        currentValue--
+                                        currentValue -= when {
+                                            runCount <= DelayAutoChange * 5 -> {
+                                                OneMultiplier
+                                            }
+
+                                            runCount < DelayAutoChange * 12 -> {
+                                                FiveMultiplier
+                                            }
+
+                                            runCount < DelayAutoChange * 20 -> {
+                                                TenMultiplier
+                                            }
+
+                                            else -> {
+                                                HundredMultiplier
+                                            }
+                                        }
                                     }
                                 }
                                 tryAwaitRelease()
                                 decrementInteractionSource.emit(PressInteraction.Cancel(press))
                                 heldButtonJob.cancel()
                                 autoDecrement = false
+                                runCount = 0L
                             },
                         )
                     }
@@ -285,6 +306,7 @@ fun InputNumber(
                                 val heldButtonJob = scope.launch {
                                     while (isEnabled && incrementEnabled) {
                                         delay(DelayAutoChange)
+                                        runCount += DelayAutoChange
                                         if (currentValue >= maxValue) {
                                             autoIncrement = false
                                             incrementInteractionSource.emit(
@@ -296,13 +318,30 @@ fun InputNumber(
                                         }
                                         autoIncrement = true
                                         previousValue = currentValue
-                                        currentValue++
+                                        currentValue += when {
+                                            runCount <= DelayAutoChange * 5 -> {
+                                                OneMultiplier
+                                            }
+
+                                            runCount < DelayAutoChange * 12 -> {
+                                                FiveMultiplier
+                                            }
+
+                                            runCount < DelayAutoChange * 20 -> {
+                                                TenMultiplier
+                                            }
+
+                                            else -> {
+                                                HundredMultiplier
+                                            }
+                                        }
                                     }
                                 }
                                 tryAwaitRelease()
                                 incrementInteractionSource.emit(PressInteraction.Release(press))
                                 heldButtonJob.cancel()
                                 autoIncrement = false
+                                runCount = 0L
                             },
                         )
                     }
@@ -351,6 +390,10 @@ private val RectangleIconPadding = 6.dp
 private val TextFieldMargin = 2.dp
 private val BorderWidth = 2.dp
 private const val DelayAutoChange = 300L
+private const val OneMultiplier = 1
+private const val FiveMultiplier = 5
+private const val TenMultiplier = 10
+private const val HundredMultiplier = 100
 
 @Composable
 private fun InputNumber(
