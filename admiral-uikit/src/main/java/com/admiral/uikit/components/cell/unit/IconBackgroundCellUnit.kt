@@ -82,16 +82,6 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
         }
 
     /**
-     * Set text for the [badge].
-     * If the value is null, the [badge] will be invisible.
-     */
-    var badgeText: String? = null
-        set(value) {
-            field = value
-            handleBadgeText(value)
-        }
-
-    /**
      * Set a type [BadgeType] for the [badge].
      */
     var badgeType: BadgeType = BadgeType.NORMAL
@@ -102,6 +92,7 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
 
     /**
      * Define if the small type of the [badge] should be shown.
+     * If you want to display badge text, use [Badge].
      */
     var isSmallBadgeShown: Boolean = false
         set(value) {
@@ -165,7 +156,6 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
     }
 
     private fun parseBadgeInfo(typedArray: TypedArray) {
-        badgeText = typedArray.getString(R.styleable.IconBackgroundCellUnit_admiralBadgeText)
         badgeType =
             BadgeType.from(
                 typedArray.getIntOrNull(R.styleable.IconBackgroundCellUnit_admiralBadgeType) ?: 0
@@ -243,31 +233,12 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
         )
     }
 
-    private fun handleBadgeText(value: String?) {
-        badge.text = value
-        badge.isVisible = value != null
-        if (value != null) {
-            badge.badgeSize = BadgeSize.NORMAL
-        }
-    }
-
     private fun handleSmallBadgeVisibility(value: Boolean) {
-        if (value) {
-            badge.isVisible = true
-            badge.badgeSize = BadgeSize.SMALL
-            badgeSpace.updateLayoutParams {
-                width = 0
-                height = 0
-            }
-        } else {
-            if (badgeText == null) {
-                badge.isVisible = false
-            }
-            badge.badgeSize = BadgeSize.NORMAL
-            badgeSpace.updateLayoutParams {
-                width = BADGE_SPACE.dpToPx(context)
-                height = BADGE_SPACE.dpToPx(context)
-            }
+        badge.isVisible = value
+        badge.badgeSize = BadgeSize.SMALL
+        badgeSpace.updateLayoutParams {
+            width = 0
+            height = 0
         }
     }
 
@@ -275,6 +246,5 @@ class IconBackgroundCellUnit @JvmOverloads constructor(
         const val ALPHA_ENABLED = 1f
         const val ALPHA_DISABLED = 0.6f
         const val DEFAULT_SIZE_IMAGE = 44f
-        const val BADGE_SPACE = 8
     }
 }
