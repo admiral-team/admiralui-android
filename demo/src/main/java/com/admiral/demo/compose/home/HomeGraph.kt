@@ -26,6 +26,7 @@ import com.admiral.demo.compose.home.cells.cellsCenterScreen
 import com.admiral.demo.compose.home.cells.cellsLeadingScreen
 import com.admiral.demo.compose.home.cells.cellsMainScreen
 import com.admiral.demo.compose.home.cells.cellsTrailingScreen
+import com.admiral.demo.compose.home.cells.navigateToCellsActionBarScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsBaseScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsCenterScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
@@ -144,7 +145,7 @@ fun NavGraphBuilder.homeGraph(
         cellsMainScreen(
             onBackClick = { navController.navigateBack() },
             onBaseCellsClick = { navController.navigateToCellsBaseScreen() },
-            onActionbarClick = {},
+            onActionbarClick = { navController.navigateToCellsActionBarScreen() },
         )
         cellsBaseScreen(
             onBackClick = { navController.navigateBack() },
@@ -181,12 +182,8 @@ fun NavGraphBuilder.homeGraph(
             onSliderTabsClicked = { navController.navigateToUnderlineSliderTabsScreen() },
             onCenterTabsClicked = { navController.navigateToUnderlineCenterTabsScreen() }
         )
-        underlineSliderTabsScreen(
-            onBackClick = { navController.navigateBack() }
-        )
-        underlineCenterTabsScreen(
-            onBackClick = { navController.navigateBack() }
-        )
+        underlineSliderTabsScreen(onBackClick = { navController.navigateBack() })
+        underlineCenterTabsScreen(onBackClick = { navController.navigateBack() })
         iconTabsScreen(
             onBackClick = { navController.navigateBack() }
         )
