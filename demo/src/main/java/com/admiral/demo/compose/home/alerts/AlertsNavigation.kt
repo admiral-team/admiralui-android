@@ -67,3 +67,19 @@ internal fun NavGraphBuilder.zeroScreen(
         )
     }
 }
+
+internal fun NavGraphBuilder.alertScreen(
+    onBackClick: () -> Unit,
+) {
+    composable(route = ALERTS_SCREEN_ROUTE) {
+
+    }
+}
+
+internal fun NavGraphBuilder.onboardingScreen(
+    onBackClick: () -> Unit,
+) {
+    composable(route = ONBOARDING_SCREEN_ROUTE) {
+
+    }
+}
