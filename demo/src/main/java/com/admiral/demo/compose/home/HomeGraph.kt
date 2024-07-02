@@ -60,6 +60,8 @@ import com.admiral.demo.compose.home.tabs.tabsMainScreen
 import com.admiral.demo.compose.home.tabs.underlineCenterTabsScreen
 import com.admiral.demo.compose.home.tabs.underlineSliderTabsScreen
 import com.admiral.demo.compose.home.tabs.underlineTabsScreen
+import com.admiral.demo.compose.home.tags.navigateToTagsScreen
+import com.admiral.demo.compose.home.tags.tagsScreen
 import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
 import com.admiral.demo.compose.home.textfield.doubleTextFieldScreen
 import com.admiral.demo.compose.home.textfield.feedbackTextFieldScreen
@@ -104,6 +106,7 @@ fun NavGraphBuilder.homeGraph(
             onBadgesClick = { navController.navigateToBadgesScreen() },
             onPageControlClick = { navController.navigateToPageControlScreen() },
             onLinkClick = { navController.navigateToLinkScreen() },
+            onTagsClick = { navController.navigateToTagsScreen() }
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -203,6 +206,7 @@ fun NavGraphBuilder.homeGraph(
         )
         normalBadgesScreen(onBackClick = { navController.navigateBack() })
         smallBadgesScreen(onBackClick = { navController.navigateBack() })
+        tagsScreen(onBackClick = { navController.navigateBack() })
     }
 }
 
