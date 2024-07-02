@@ -236,6 +236,24 @@
     <string name="title_cells_title">Title Cells</string>
     <string name="cells_primary_title">Primary</string>
 
+    <string name="text_blocks_title">Text Blocks</string>
+    <string name="text_blocks_header_title">Header</string>
+    <string name="text_blocks_accordion_title">Accordion</string>
+    <string name="text_blocks_paragraph_title">Paragraph</string>
+    <string name="text_blocks_link_title">Link</string>
+    <string name="text_blocks_padding_title">Padding</string>
+    <string name="text_blocks_link_more_details_on_bank_website">Подробнее на сайте банка</string>
+    <string name="text_blocks_header_title_text">Title</string>
+    <string name="text_blocks_header_subtitle_text">Subtitle</string>
+    <string name="text_blocks_header_headline_text">Headline</string>
+    <string name="text_blocks_header_headline_two_text">Headline 2</string>
+    <string name="text_blocks_paragraph_primary_title">Primary</string>
+    <string name="text_blocks_paragraph_secondary_title">Secondary</string>
+    <string name="text_blocks_paragraph_lorem_small_text">Lorem ipsum dolor sit amet</string>
+    <string name="text_blocks_paragraph_lorem_bix_text">Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</string>
+    <string name="text_blocks_padding_long">Long</string>
+    <string name="text_blocks_padding_short">Short</string>
+
     <string name="actionbar_title">Actionbar</string>
     <string name="actionbar_more_clicked">More clicked</string>
     <string name="actionbar_email">Text</string>

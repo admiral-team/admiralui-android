@@ -124,7 +124,7 @@ data class TitleSubtitleTextbuttonCellUnit(
                 modifier = Modifier.padding(top = DIMEN_X2),
                 linkTextStyle = AdmiralTheme.typography.body1,
                 linkText = buttonText,
-                isEnable = isEnabled
+                isEnabled = isEnabled
             )
         }
     }

@@ -33,7 +33,7 @@ import com.admiral.uikit.core.components.link.LinkSize
 fun Link(
     modifier: Modifier = Modifier,
     linkSize: LinkSize = LinkSize.SMALL,
-    isEnable: Boolean = true,
+    isEnabled: Boolean = true,
     linkText: String? = null,
     textEnableColor: Color = AdmiralTheme.colors.textAccent,
     textDisableColor: Color = AdmiralTheme.colors.textAccent.withAlpha(),
@@ -49,17 +49,18 @@ fun Link(
         linkTextStyle
             ?: if (linkSize != LinkSize.SMALL) AdmiralTheme.typography.body2 else AdmiralTheme.typography.subhead3
     val iconSize = if (linkSize != LinkSize.SMALL) ICON_BIG_SIZE.dp else ICON_SMALL_SIZE.dp
-    val textColor = if (isEnable) textEnableColor else textDisableColor
-    val iconColor = if (isEnable) drawableEnableColorTint else drawableDisableColorTint
+    val textColor = if (isEnabled) textEnableColor else textDisableColor
+    val iconColor = if (isEnabled) drawableEnableColorTint else drawableDisableColorTint
 
     ConstraintLayout(
-        modifier = modifier
+        modifier = Modifier
             .clickable(
                 onClick = onClick,
-                enabled = isEnable,
+                enabled = isEnabled,
                 indication = rememberRipple(color = pressedColor),
                 interactionSource = remember { MutableInteractionSource() }
             )
+            .then(modifier)
     ) {
 
         val (
@@ -134,7 +135,7 @@ private fun LinkPreview() {
                     linkText = "Link",
                     iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
                     iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
-                    isEnable = true,
+                    isEnabled = true,
                     linkSize = LinkSize.BIG
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
@@ -142,17 +143,17 @@ private fun LinkPreview() {
                     linkText = "Link",
                     iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
                     iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
-                    isEnable = true,
+                    isEnabled = true,
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 Link(
                     linkText = "Link",
-                    isEnable = true,
+                    isEnabled = true,
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 Link(
                     linkText = "Link",
-                    isEnable = true,
+                    isEnabled = true,
                     linkSize = LinkSize.BIG
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
@@ -160,7 +161,7 @@ private fun LinkPreview() {
                     linkText = "Link",
                     iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
                     iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
-                    isEnable = false,
+                    isEnabled = false,
                     linkSize = LinkSize.BIG
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
@@ -168,17 +169,17 @@ private fun LinkPreview() {
                     linkText = "Link",
                     iconStart = painterResource(id = R.drawable.admiral_ic_arrow_left_outline),
                     iconEnd = painterResource(id = R.drawable.admiral_ic_arrow_right_outline),
-                    isEnable = false,
+                    isEnabled = false,
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 Link(
                     linkText = "Link",
-                    isEnable = false,
+                    isEnabled = false,
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 Link(
                     linkText = "Link",
-                    isEnable = false,
+                    isEnabled = false,
                     linkSize = LinkSize.BIG
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
