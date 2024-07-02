@@ -43,7 +43,7 @@ fun CellsActionBarScreen(
 ) {
     var isEnabled by remember { mutableStateOf(true) }
 
-    val list = listOf(
+    val list = arrayOf(
         ActionBarSecondaryItem(
             icon = painterResource(id = R.drawable.admiral_ic_email_outline),
             description = stringResource(id = com.admiral.demo.R.string.actionbar_email),
