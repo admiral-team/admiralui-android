@@ -35,6 +35,7 @@ fun Link(
     linkSize: LinkSize = LinkSize.SMALL,
     isEnabled: Boolean = true,
     linkText: String? = null,
+    maxLines: Int = Int.MAX_VALUE,
     textEnableColor: Color = AdmiralTheme.colors.textAccent,
     textDisableColor: Color = AdmiralTheme.colors.textAccent.withAlpha(),
     drawableEnableColorTint: Color = AdmiralTheme.colors.elementAccent,
@@ -99,6 +100,7 @@ fun Link(
                 text = it,
                 color = textColor,
                 style = textStyle,
+                maxLines = maxLines
             )
         }
 
