@@ -299,6 +299,7 @@
     <string name="informers_default">Default</string>
     <string name="informers_example_headline">Headline</string>
     <string name="informers_example_info">At breakpoint boundaries, mini units divide the screen into a fixed master grid, and multiples of mini units map to fluid grid column widths and row heights.</string>
+    <string name="informers_info_text">At breakpoint boundaries, mini units divide the screen into a fixed master.</string>
     <string name="informers_example_link">Link text</string>
     <string name="informers_success">Success</string>
     <string name="informers_attention">Attention</string>

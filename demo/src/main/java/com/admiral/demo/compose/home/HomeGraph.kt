@@ -50,6 +50,16 @@ import com.admiral.demo.compose.home.control.navigateToPageControlScreen
 import com.admiral.demo.compose.home.control.pageControlCircleScreen
 import com.admiral.demo.compose.home.control.pageControlLinerScreen
 import com.admiral.demo.compose.home.control.pageControlScreen
+import com.admiral.demo.compose.home.informers.bigInformersScreen
+import com.admiral.demo.compose.home.informers.informersAndNotificationsScreen
+import com.admiral.demo.compose.home.informers.informersScreen
+import com.admiral.demo.compose.home.informers.navigateToBigInformersScreen
+import com.admiral.demo.compose.home.informers.navigateToInformersAndNotificationsScreen
+import com.admiral.demo.compose.home.informers.navigateToInformersScreen
+import com.admiral.demo.compose.home.informers.navigateToNotificationsScreen
+import com.admiral.demo.compose.home.informers.navigateToSmallInformersScreen
+import com.admiral.demo.compose.home.informers.notificationsScreen
+import com.admiral.demo.compose.home.informers.smallInformersScreen
 import com.admiral.demo.compose.home.links.linkScreen
 import com.admiral.demo.compose.home.links.navigateToLinkScreen
 import com.admiral.demo.compose.home.tabs.iconTabsScreen
@@ -129,6 +139,7 @@ fun NavGraphBuilder.homeGraph(
             onBadgesClick = { navController.navigateToBadgesScreen() },
             onPageControlClick = { navController.navigateToPageControlScreen() },
             onLinkClick = { navController.navigateToLinkScreen() },
+            onInformersAndNotificationsClick = { navController.navigateToInformersAndNotificationsScreen() },
             onTagsClick = { navController.navigateToTagsScreen() },
             onAlertsClick = { navController.navigateToAlertsOnboardingScreenRoute() },
             onTextBlocksClick = { navController.navigateToTextBlocksScreen() },
@@ -235,6 +246,19 @@ fun NavGraphBuilder.homeGraph(
         iconTabsScreen(
             onBackClick = { navController.navigateBack() }
         )
+        informersAndNotificationsScreen(
+            onBackClick = { navController.navigateBack() },
+            onInformersClick = { navController.navigateToInformersScreen() },
+            onNotificationsClick = { navController.navigateToNotificationsScreen() },
+        )
+        informersScreen(
+            onBackClick = { navController.navigateBack() },
+            onInformersBigClick = { navController.navigateToBigInformersScreen() },
+            onInformersSmallClick = { navController.navigateToSmallInformersScreen() },
+        )
+        bigInformersScreen(onBackClick = { navController.navigateBack() })
+        smallInformersScreen(onBackClick = { navController.navigateBack() })
+        notificationsScreen(onBackClick = { navController.navigateBack() })
         checkBoxScreen(onBackClick = { navController.navigateBack() })
         pageControlScreen(
             onBackClick = onBackClick,
