@@ -43,7 +43,8 @@ private const val ANCHOR_LAYOUT_ID = "ANCHOR_LAYOUT_ID"
 private const val MAX_LINES = 1
 private val BorderWidth = 2.dp
 private val SpaceBetweenBorder = 1.dp
-private val BadgeRadius = 5.dp
+private val BadgeRadius = 6.dp
+private val ShapeRadius = 100.dp
 
 @Composable
 fun BadgedBox(
@@ -120,18 +121,18 @@ private fun Badge(
     color: BadgeColor,
     isEnable: Boolean,
 ) {
-    val radius = if (content != null) DIMEN_X2 else BadgeRadius
-    val shape = RoundedCornerShape(radius)
+    val size = if (content != null) DIMEN_X2 else BadgeRadius
+    val shape = RoundedCornerShape(ShapeRadius)
     val backgroundColor =
         if (isEnable) color.backgroundColorNormal else color.backgroundColorDisable
     val contentColor = if (isEnable) color.contentColorEnable else color.contentColorDisable
 
     Row(
         modifier = modifier
-            .defaultMinSize(minWidth = radius * 2, minHeight = radius * 2)
+            .background(color = backgroundColor, shape = shape)
+            .defaultMinSize(minWidth = size * 2, minHeight = size * 2)
             .border(BorderWidth, color = color.borderColor, shape = shape)
-            .padding(SpaceBetweenBorder)
-            .background(color = backgroundColor, shape = shape),
+            .padding(DIMEN_X1),
         verticalAlignment = Alignment.CenterVertically,
         horizontalArrangement = Arrangement.Center
     ) {
