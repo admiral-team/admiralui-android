@@ -55,7 +55,6 @@
         <attr name="admiralIconColorNormalEnabledPalette" />
         <attr name="admiralBackgroundColorNormalEnabledPalette" />
 
-        <attr name="admiralBadgeText" />
         <attr name="admiralBadgeType" />
         <attr name="admiralShowSmallBadge" />
     </declare-styleable>
