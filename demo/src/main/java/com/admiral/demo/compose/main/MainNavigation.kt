@@ -16,6 +16,7 @@ internal fun NavGraphBuilder.mainScreen(
     onLinkClick: () -> Unit,
     onPageControlClick: () -> Unit,
     onTextBlocksClick: () -> Unit,
+    onAlertsClick: () -> Unit,
 ) {
     composable(route = MAIN_ROUTE) {
         MainScreen(
@@ -27,6 +28,7 @@ internal fun NavGraphBuilder.mainScreen(
             onBadgesClick = onBadgesClick,
             onLinkClick = onLinkClick,
             onPageControlClick = onPageControlClick,
+            onAlertsClick = onAlertsClick,
             onTextBlocksClick = onTextBlocksClick,
         )
     }
