@@ -32,6 +32,7 @@ internal fun MainScreen(
     onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
     onBadgesClick: homeItemClick = {},
+    onAlertsClick: homeItemClick = {},
     onTextBlocksClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
@@ -287,6 +288,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onLinkClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_link_solid),
@@ -390,6 +392,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onAlertsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_email_solid),
