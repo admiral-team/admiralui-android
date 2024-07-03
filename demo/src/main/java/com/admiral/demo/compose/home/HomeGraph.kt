@@ -3,12 +3,15 @@ package com.admiral.demo.compose.home
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.navigation
+import com.admiral.demo.compose.home.alerts.alertScreen
 import com.admiral.demo.compose.home.alerts.alertsOnboardingScreen
 import com.admiral.demo.compose.home.alerts.errorViewScreen
 import com.admiral.demo.compose.home.alerts.navigateErrorViewScreenRoute
 import com.admiral.demo.compose.home.alerts.navigateToAlertScreenRoute
 import com.admiral.demo.compose.home.alerts.navigateToAlertsOnboardingScreenRoute
+import com.admiral.demo.compose.home.alerts.navigateToOnboardingScreenRoute
 import com.admiral.demo.compose.home.alerts.navigateToZeroScreen
+import com.admiral.demo.compose.home.alerts.onboardingScreen
 import com.admiral.demo.compose.home.alerts.zeroScreen
 import com.admiral.demo.compose.home.badges.badgesScreen
 import com.admiral.demo.compose.home.badges.navigateToBadgesScreen
@@ -67,6 +70,8 @@ import com.admiral.demo.compose.home.tabs.tabsMainScreen
 import com.admiral.demo.compose.home.tabs.underlineCenterTabsScreen
 import com.admiral.demo.compose.home.tabs.underlineSliderTabsScreen
 import com.admiral.demo.compose.home.tabs.underlineTabsScreen
+import com.admiral.demo.compose.home.tags.navigateToTagsScreen
+import com.admiral.demo.compose.home.tags.tagsScreen
 import com.admiral.demo.compose.home.textblocks.navigateToAccordionTextBlocksScreen
 import com.admiral.demo.compose.home.textblocks.navigateToHeaderTextBlocksScreen
 import com.admiral.demo.compose.home.textblocks.navigateToLinkTextBlocksScreen
@@ -124,6 +129,7 @@ fun NavGraphBuilder.homeGraph(
             onBadgesClick = { navController.navigateToBadgesScreen() },
             onPageControlClick = { navController.navigateToPageControlScreen() },
             onLinkClick = { navController.navigateToLinkScreen() },
+            onTagsClick = { navController.navigateToTagsScreen() },
             onAlertsClick = { navController.navigateToAlertsOnboardingScreenRoute() },
             onTextBlocksClick = { navController.navigateToTextBlocksScreen() },
         )
@@ -249,7 +255,7 @@ fun NavGraphBuilder.homeGraph(
         smallBadgesScreen(onBackClick = { navController.navigateBack() })
         alertsOnboardingScreen(
             onAlertClicked = { navController.navigateToAlertScreenRoute() },
-            onOnboardingClick = { navController.navigateToAlertScreenRoute() },
+            onOnboardingClick = { navController.navigateToOnboardingScreenRoute() },
             onZeroScreenClick = { navController.navigateToZeroScreen() },
             onErrorViewClick = { navController.navigateErrorViewScreenRoute() },
             onBackClick = onBackClick,
@@ -260,6 +266,9 @@ fun NavGraphBuilder.homeGraph(
         zeroScreen {
             navController.navigateBack()
         }
+        alertScreen { navController.navigateBack() }
+        onboardingScreen { navController.navigateBack() }
+        tagsScreen(onBackClick = { navController.navigateBack() })
     }
 }
 

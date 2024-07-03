@@ -15,6 +15,7 @@ internal fun NavGraphBuilder.mainScreen(
     onBadgesClick: () -> Unit,
     onLinkClick: () -> Unit,
     onPageControlClick: () -> Unit,
+    onTagsClick: () -> Unit,
     onTextBlocksClick: () -> Unit,
     onAlertsClick: () -> Unit,
 ) {
@@ -30,6 +31,7 @@ internal fun NavGraphBuilder.mainScreen(
             onPageControlClick = onPageControlClick,
             onAlertsClick = onAlertsClick,
             onTextBlocksClick = onTextBlocksClick,
+            onTagsClick = onTagsClick,
         )
     }
 }
