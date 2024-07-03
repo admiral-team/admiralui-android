@@ -32,6 +32,7 @@ internal fun MainScreen(
     onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
     onBadgesClick: homeItemClick = {},
+    onInformersAndNotificationsClick: homeItemClick = {},
     onTagsClick: homeItemClick = {},
     onAlertsClick: homeItemClick = {},
     onTextBlocksClick: homeItemClick = {},
@@ -87,23 +88,6 @@ internal fun MainScreen(
                     TitleSubtitleCellUnit(
                         titleText = stringResource(R.string.home_section_buttons_title),
                         subtitleText = stringResource(R.string.home_section_buttons_subtitle),
-                        unitType = CellUnitType.LEADING_TEXT
-                    ),
-                    IconCellUnit(
-                        unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
-                    )
-                )
-            )
-            BaseCell(
-                children = listOf(
-                    IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_eyedropper_solid),
-                        unitType = CellUnitType.LEADING
-                    ),
-                    TitleSubtitleCellUnit(
-                        titleText = stringResource(R.string.home_section_themes_title),
-                        subtitleText = stringResource(R.string.home_section_themes_subtitle),
                         unitType = CellUnitType.LEADING_TEXT
                     ),
                     IconCellUnit(
@@ -185,14 +169,15 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onInformersAndNotificationsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_chat_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
-                        titleText = stringResource(R.string.home_section_chat_title),
-                        subtitleText = stringResource(R.string.home_section_chat_subtitle),
+                        titleText = stringResource(R.string.home_section_informers_title),
+                        subtitleText = stringResource(R.string.home_section_informers_subtitle),
                         unitType = CellUnitType.LEADING_TEXT
                     ),
                     IconCellUnit(
