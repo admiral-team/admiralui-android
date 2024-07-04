@@ -3,6 +3,16 @@ package com.admiral.demo.compose.home
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.navigation
+import com.admiral.demo.compose.home.alerts.alertScreen
+import com.admiral.demo.compose.home.alerts.alertsOnboardingScreen
+import com.admiral.demo.compose.home.alerts.errorViewScreen
+import com.admiral.demo.compose.home.alerts.navigateErrorViewScreenRoute
+import com.admiral.demo.compose.home.alerts.navigateToAlertScreenRoute
+import com.admiral.demo.compose.home.alerts.navigateToAlertsOnboardingScreenRoute
+import com.admiral.demo.compose.home.alerts.navigateToOnboardingScreenRoute
+import com.admiral.demo.compose.home.alerts.navigateToZeroScreen
+import com.admiral.demo.compose.home.alerts.onboardingScreen
+import com.admiral.demo.compose.home.alerts.zeroScreen
 import com.admiral.demo.compose.home.badges.badgesScreen
 import com.admiral.demo.compose.home.badges.navigateToBadgesScreen
 import com.admiral.demo.compose.home.badges.navigateToNormalBadgesScreen
@@ -26,6 +36,7 @@ import com.admiral.demo.compose.home.cells.cellsCenterScreen
 import com.admiral.demo.compose.home.cells.cellsLeadingScreen
 import com.admiral.demo.compose.home.cells.cellsMainScreen
 import com.admiral.demo.compose.home.cells.cellsTrailingScreen
+import com.admiral.demo.compose.home.cells.navigateToCellsActionBarScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsBaseScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsCenterScreen
 import com.admiral.demo.compose.home.cells.navigateToCellsLeadingScreen
@@ -39,6 +50,16 @@ import com.admiral.demo.compose.home.control.navigateToPageControlScreen
 import com.admiral.demo.compose.home.control.pageControlCircleScreen
 import com.admiral.demo.compose.home.control.pageControlLinerScreen
 import com.admiral.demo.compose.home.control.pageControlScreen
+import com.admiral.demo.compose.home.informers.bigInformersScreen
+import com.admiral.demo.compose.home.informers.informersAndNotificationsScreen
+import com.admiral.demo.compose.home.informers.informersScreen
+import com.admiral.demo.compose.home.informers.navigateToBigInformersScreen
+import com.admiral.demo.compose.home.informers.navigateToInformersAndNotificationsScreen
+import com.admiral.demo.compose.home.informers.navigateToInformersScreen
+import com.admiral.demo.compose.home.informers.navigateToNotificationsScreen
+import com.admiral.demo.compose.home.informers.navigateToSmallInformersScreen
+import com.admiral.demo.compose.home.informers.notificationsScreen
+import com.admiral.demo.compose.home.informers.smallInformersScreen
 import com.admiral.demo.compose.home.links.linkScreen
 import com.admiral.demo.compose.home.links.navigateToLinkScreen
 import com.admiral.demo.compose.home.tabs.iconTabsScreen
@@ -59,6 +80,20 @@ import com.admiral.demo.compose.home.tabs.tabsMainScreen
 import com.admiral.demo.compose.home.tabs.underlineCenterTabsScreen
 import com.admiral.demo.compose.home.tabs.underlineSliderTabsScreen
 import com.admiral.demo.compose.home.tabs.underlineTabsScreen
+import com.admiral.demo.compose.home.tags.navigateToTagsScreen
+import com.admiral.demo.compose.home.tags.tagsScreen
+import com.admiral.demo.compose.home.textblocks.navigateToAccordionTextBlocksScreen
+import com.admiral.demo.compose.home.textblocks.navigateToHeaderTextBlocksScreen
+import com.admiral.demo.compose.home.textblocks.navigateToLinkTextBlocksScreen
+import com.admiral.demo.compose.home.textblocks.navigateToPaddingTextBlocksScreen
+import com.admiral.demo.compose.home.textblocks.navigateToParagraphTextBlocksScreen
+import com.admiral.demo.compose.home.textblocks.navigateToTextBlocksScreen
+import com.admiral.demo.compose.home.textblocks.textBlocksAccordionScreen
+import com.admiral.demo.compose.home.textblocks.textBlocksHeaderScreen
+import com.admiral.demo.compose.home.textblocks.textBlocksLinkScreen
+import com.admiral.demo.compose.home.textblocks.textBlocksPaddingScreen
+import com.admiral.demo.compose.home.textblocks.textBlocksParagraphScreen
+import com.admiral.demo.compose.home.textblocks.textBlocksScreen
 import com.admiral.demo.compose.home.textfield.cardNumberTextFieldScreen
 import com.admiral.demo.compose.home.textfield.doubleTextFieldScreen
 import com.admiral.demo.compose.home.textfield.feedbackTextFieldScreen
@@ -90,6 +125,7 @@ internal const val HOME_GRAPH_ROUTE = "home_graph"
 fun NavGraphBuilder.homeGraph(
     navController: NavController,
 ) {
+    val onBackClick = { navController.navigateBack() }
     navigation(
         startDestination = MAIN_ROUTE,
         route = HOME_GRAPH_ROUTE,
@@ -103,6 +139,10 @@ fun NavGraphBuilder.homeGraph(
             onBadgesClick = { navController.navigateToBadgesScreen() },
             onPageControlClick = { navController.navigateToPageControlScreen() },
             onLinkClick = { navController.navigateToLinkScreen() },
+            onInformersAndNotificationsClick = { navController.navigateToInformersAndNotificationsScreen() },
+            onTagsClick = { navController.navigateToTagsScreen() },
+            onAlertsClick = { navController.navigateToAlertsOnboardingScreenRoute() },
+            onTextBlocksClick = { navController.navigateToTextBlocksScreen() },
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -125,26 +165,26 @@ fun NavGraphBuilder.homeGraph(
             onNumberClick = { navController.navigateToNumbersTextFieldsScreen() },
             onFeedbackClick = { navController.navigateToFeedbackTextFieldScreen() },
             onPinCodeClick = { navController.navigateToPinCodeTextFieldScreen() },
-            onBackClick = { navController.navigateBack() }
+            onBackClick = onBackClick
         )
-        standardTextFieldScreen(onBackClick = { navController.navigateBack() })
-        doubleTextFieldScreen(onBackClick = { navController.navigateBack() })
-        sliderTextFieldScreen(onBackClick = { navController.navigateBack() })
-        cardNumberTextFieldScreen(onBackClick = { navController.navigateBack() })
-        smsCodeTextFieldScreen(onBackClick = { navController.navigateBack() })
+        standardTextFieldScreen(onBackClick = onBackClick)
+        doubleTextFieldScreen(onBackClick = onBackClick)
+        sliderTextFieldScreen(onBackClick = onBackClick)
+        cardNumberTextFieldScreen(onBackClick = onBackClick)
+        smsCodeTextFieldScreen(onBackClick = onBackClick)
         numbersTextFieldsScreen(
             onDefaultClick = { navController.navigateToNumberDefaultTextFieldScreen() },
             onSecondaryClick = { navController.navigateToNumberSecondaryTextFieldScreen() },
-            onBackClick = { navController.navigateBack() },
+            onBackClick = onBackClick,
         )
-        feedbackTextFieldScreen(onBackClick = { navController.navigateBack() })
-        pinCodeTextFieldScreen(onBackClick = { navController.navigateBack() })
-        numberDefaultTextFieldScreen(onBackClick = { navController.navigateBack() })
-        numberSecondaryTextFieldScreen(onBackClick = { navController.navigateBack() })
+        feedbackTextFieldScreen(onBackClick = onBackClick)
+        pinCodeTextFieldScreen(onBackClick = onBackClick)
+        numberDefaultTextFieldScreen(onBackClick = onBackClick)
+        numberSecondaryTextFieldScreen(onBackClick = onBackClick)
         cellsMainScreen(
-            onBackClick = { navController.navigateBack() },
+            onBackClick = onBackClick,
             onBaseCellsClick = { navController.navigateToCellsBaseScreen() },
-            onActionbarClick = {},
+            onActionbarClick = { navController.navigateToCellsActionBarScreen() },
         )
         cellsBaseScreen(
             onBackClick = { navController.navigateBack() },
@@ -155,8 +195,21 @@ fun NavGraphBuilder.homeGraph(
         cellsLeadingScreen(onBackClick = { navController.navigateBack() })
         cellsCenterScreen(onBackClick = { navController.navigateBack() })
         cellsTrailingScreen(onBackClick = { navController.navigateBack() })
+        textBlocksScreen(
+            onBackClick = onBackClick,
+            onHeaderClick = { navController.navigateToHeaderTextBlocksScreen() },
+            onAccordionClick = { navController.navigateToAccordionTextBlocksScreen() },
+            onParagraphClick = { navController.navigateToParagraphTextBlocksScreen() },
+            onLinkClick = { navController.navigateToLinkTextBlocksScreen() },
+            onPaddingClick = { navController.navigateToPaddingTextBlocksScreen() }
+        )
+        textBlocksHeaderScreen(onBackClick = onBackClick)
+        textBlocksAccordionScreen(onBackClick = onBackClick)
+        textBlocksParagraphScreen(onBackClick = onBackClick)
+        textBlocksLinkScreen(onBackClick = onBackClick)
+        textBlocksPaddingScreen(onBackClick = onBackClick)
         tabsMainScreen(
-            onBackClick = { navController.navigateBack() },
+            onBackClick = onBackClick,
             onStandardTabsClicked = { navController.navigateToStandardTabsScreen() },
             onLogoTabsClicked = { navController.navigateToLogoTabsScreen() },
             onInformerTabsClicked = { navController.navigateToInformerTabsScreen() },
@@ -164,6 +217,13 @@ fun NavGraphBuilder.homeGraph(
             onUnderlineTabsClicked = { navController.navigateToUnderlineTabsScreen() },
             onIconTabsClicked = { navController.navigateToIconTabsScreen() },
         )
+        standardTabsScreen(onBackClick = onBackClick)
+        logoTabsScreen(onBackClick = onBackClick)
+        informerTabsScreen(onBackClick = onBackClick)
+        outlineTabsScreen(onBackClick = onBackClick)
+        underlineTabsScreen(onBackClick = onBackClick)
+        iconTabsScreen(onBackClick = onBackClick)
+        checkBoxScreen(onBackClick = onBackClick)
         standardTabsScreen(
             onBackClick = { navController.navigateBack() }
         )
@@ -181,31 +241,58 @@ fun NavGraphBuilder.homeGraph(
             onSliderTabsClicked = { navController.navigateToUnderlineSliderTabsScreen() },
             onCenterTabsClicked = { navController.navigateToUnderlineCenterTabsScreen() }
         )
-        underlineSliderTabsScreen(
-            onBackClick = { navController.navigateBack() }
-        )
-        underlineCenterTabsScreen(
-            onBackClick = { navController.navigateBack() }
-        )
+        underlineSliderTabsScreen(onBackClick = { navController.navigateBack() })
+        underlineCenterTabsScreen(onBackClick = { navController.navigateBack() })
         iconTabsScreen(
             onBackClick = { navController.navigateBack() }
         )
+        informersAndNotificationsScreen(
+            onBackClick = { navController.navigateBack() },
+            onInformersClick = { navController.navigateToInformersScreen() },
+            onNotificationsClick = { navController.navigateToNotificationsScreen() },
+        )
+        informersScreen(
+            onBackClick = { navController.navigateBack() },
+            onInformersBigClick = { navController.navigateToBigInformersScreen() },
+            onInformersSmallClick = { navController.navigateToSmallInformersScreen() },
+        )
+        bigInformersScreen(onBackClick = { navController.navigateBack() })
+        smallInformersScreen(onBackClick = { navController.navigateBack() })
+        notificationsScreen(onBackClick = { navController.navigateBack() })
         checkBoxScreen(onBackClick = { navController.navigateBack() })
         pageControlScreen(
-            onBackClick = { navController.navigateBack() },
+            onBackClick = onBackClick,
             onLinerClick = { navController.navigateToPageControlLinerScreen() },
             onCircleClick = { navController.navigateToPageControlCircleScreen() },
         )
-        pageControlLinerScreen(onBackClick = { navController.navigateBack() })
-        pageControlCircleScreen(onBackClick = { navController.navigateBack() })
-        linkScreen(onBackClick = { navController.navigateBack() })
+        pageControlLinerScreen(onBackClick = onBackClick)
+        pageControlCircleScreen(onBackClick = onBackClick)
+        linkScreen(onBackClick = onBackClick)
         badgesScreen(
-            onBackClick = { navController.navigateBack() },
+            onBackClick = onBackClick,
             onNormalClick = { navController.navigateToNormalBadgesScreen() },
             onSmallClick = { navController.navigateToSmallBadgesScreen() }
         )
+        normalBadgesScreen(onBackClick = onBackClick)
+        smallBadgesScreen(onBackClick = onBackClick)
         normalBadgesScreen(onBackClick = { navController.navigateBack() })
         smallBadgesScreen(onBackClick = { navController.navigateBack() })
+        alertsOnboardingScreen(
+            onAlertClicked = { navController.navigateToAlertScreenRoute() },
+            onOnboardingClick = { navController.navigateToOnboardingScreenRoute() },
+            onZeroScreenClick = { navController.navigateToZeroScreen() },
+            onErrorViewClick = { navController.navigateErrorViewScreenRoute() },
+            onBackClick = onBackClick,
+        )
+        errorViewScreen {
+            navController.navigateBack()
+        }
+        zeroScreen {
+            navController.navigateBack()
+        }
+        alertScreen { navController.navigateBack() }
+        onboardingScreen { navController.navigateBack() }
+        tagsScreen(onBackClick = { navController.navigateBack() })
     }
 }
 

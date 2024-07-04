@@ -138,7 +138,7 @@ fun StaticNotification(
                         textEnableColor = colors.linkTextEnable,
                         textDisableColor = colors.linkTextDisable,
                         onClick = onLinkClick,
-                        isEnable = isEnable,
+                        isEnabled = isEnable,
                     )
                 }
             }

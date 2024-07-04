@@ -97,7 +97,7 @@ fun LinkScreen(onBackClick: () -> Unit = {}) {
                 Link(
                     linkText = stringResource(id = R.string.links_size_big),
                     iconStart = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_arrow_left_outline),
-                    isEnable = isEnabled,
+                    isEnabled = isEnabled,
                     linkSize = LinkSize.BIG
                 )
 
@@ -106,7 +106,7 @@ fun LinkScreen(onBackClick: () -> Unit = {}) {
                 Link(
                     linkText = stringResource(id = R.string.links_size_big),
                     iconEnd = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_arrow_right_outline),
-                    isEnable = isEnabled,
+                    isEnabled = isEnabled,
                     linkSize = LinkSize.BIG
                 )
 
@@ -114,7 +114,7 @@ fun LinkScreen(onBackClick: () -> Unit = {}) {
 
                 Link(
                     linkText = stringResource(id = R.string.links_size_big),
-                    isEnable = isEnabled,
+                    isEnabled = isEnabled,
                     linkSize = LinkSize.BIG
                 )
             }
@@ -137,7 +137,7 @@ fun LinkScreen(onBackClick: () -> Unit = {}) {
                 Link(
                     linkText = stringResource(id = R.string.links_size_big),
                     iconStart = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_arrow_left_outline),
-                    isEnable = isEnabled,
+                    isEnabled = isEnabled,
                 )
 
                 Spacer(modifier = Modifier.padding(start = DIMEN_X9))
@@ -145,14 +145,14 @@ fun LinkScreen(onBackClick: () -> Unit = {}) {
                 Link(
                     linkText = stringResource(id = R.string.links_size_big),
                     iconEnd = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_arrow_right_outline),
-                    isEnable = isEnabled,
+                    isEnabled = isEnabled,
                 )
 
                 Spacer(modifier = Modifier.padding(start = DIMEN_X9))
 
                 Link(
                     linkText = stringResource(id = R.string.links_size_big),
-                    isEnable = isEnabled,
+                    isEnabled = isEnabled,
                 )
             }
         }

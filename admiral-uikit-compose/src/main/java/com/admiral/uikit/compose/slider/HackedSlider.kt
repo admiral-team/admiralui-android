@@ -59,7 +59,6 @@ import androidx.compose.ui.unit.LayoutDirection
 import androidx.compose.ui.unit.dp
 import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.coroutineScope
-import kotlinx.coroutines.flow.collect
 import kotlinx.coroutines.launch
 import kotlin.math.abs
 
@@ -353,7 +352,7 @@ internal val DefaultSliderConstraints =
 private const val BORDER_WIDTH = 5
 private const val ERROR_DEVISION = 1000
 
-internal fun stepsToTickFractions(steps: Int): List<Float> {
+private fun stepsToTickFractions(steps: Int): List<Float> {
     return if (steps == 0) emptyList() else List(steps + 2) { it.toFloat() / (steps + 1) }
 }
 

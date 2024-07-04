@@ -88,7 +88,7 @@ fun ButtonRule(
                 },
             ) {
                 Link(
-                    isEnable = enabled,
+                    isEnabled = enabled,
                     linkText = actionText
                 )
             }

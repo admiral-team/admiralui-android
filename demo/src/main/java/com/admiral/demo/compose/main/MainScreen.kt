@@ -32,6 +32,10 @@ internal fun MainScreen(
     onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
     onBadgesClick: homeItemClick = {},
+    onInformersAndNotificationsClick: homeItemClick = {},
+    onTagsClick: homeItemClick = {},
+    onAlertsClick: homeItemClick = {},
+    onTextBlocksClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -93,23 +97,6 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
-                children = listOf(
-                    IconBackgroundCellUnit(
-                        icon = painterResource(id = R.drawable.admiral_ic_eyedropper_solid),
-                        unitType = CellUnitType.LEADING
-                    ),
-                    TitleSubtitleCellUnit(
-                        titleText = stringResource(R.string.home_section_themes_title),
-                        subtitleText = stringResource(R.string.home_section_themes_subtitle),
-                        unitType = CellUnitType.LEADING_TEXT
-                    ),
-                    IconCellUnit(
-                        unitType = CellUnitType.TRAILING,
-                        icon = painterResource(id = R.drawable.admiral_ic_chevron_right_outline)
-                    )
-                )
-            )
-            BaseCell(
                 onClick = onTextFieldsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
@@ -146,6 +133,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onTextBlocksClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_typography_solid),
@@ -181,14 +169,15 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onInformersAndNotificationsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_chat_solid),
                         unitType = CellUnitType.LEADING
                     ),
                     TitleSubtitleCellUnit(
-                        titleText = stringResource(R.string.home_section_chat_title),
-                        subtitleText = stringResource(R.string.home_section_chat_subtitle),
+                        titleText = stringResource(R.string.home_section_informers_title),
+                        subtitleText = stringResource(R.string.home_section_informers_subtitle),
                         unitType = CellUnitType.LEADING_TEXT
                     ),
                     IconCellUnit(
@@ -198,6 +187,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onTagsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_pin_solid),
@@ -285,6 +275,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onLinkClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_link_solid),
@@ -388,6 +379,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onAlertsClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_email_solid),
