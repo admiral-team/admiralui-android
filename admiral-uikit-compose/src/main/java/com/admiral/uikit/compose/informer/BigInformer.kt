@@ -2,6 +2,7 @@ package com.admiral.uikit.compose.informer
 
 import androidx.compose.foundation.background
 import androidx.compose.foundation.clickable
+import androidx.compose.foundation.interaction.MutableInteractionSource
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
@@ -12,6 +13,7 @@ import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.tooling.preview.Preview
@@ -25,9 +27,9 @@ import com.admiral.uikit.compose.util.DIMEN_X5
 import com.admiral.uikit.core.components.link.LinkSize
 
 @Composable
-fun InformerBig(
+fun BigInformer(
     modifier: Modifier = Modifier,
-    colors: InformerColor = AdmiralInformerColor.info(),
+    colors: BigInformerColor = AdmiralBigInformerColor.info(),
     headlineText: String? = null,
     headlineMaxLines: Int = Int.MAX_VALUE,
     infoText: String? = null,
@@ -43,7 +45,14 @@ fun InformerBig(
             .wrapContentHeight()
             .clip(RoundedCornerShape(DIMEN_X3))
             .background(color = colors.background)
-            .clickable(onClick = onClick),
+            .clickable(
+                enabled = isEnabled,
+                onClick = onClick,
+                interactionSource = remember {
+                    MutableInteractionSource()
+                },
+                indication = null,
+            ),
     ) {
         Column(
             modifier = Modifier
@@ -93,7 +102,7 @@ private val LinkVerticalPadding = 2.dp
 
 @Preview
 @Composable
-private fun InformerBigPreview() {
+private fun BigInformerPreview() {
     AdmiralTheme {
         Surface(
             modifier = Modifier
@@ -105,33 +114,33 @@ private fun InformerBigPreview() {
                     .padding(horizontal = DIMEN_X4, vertical = DIMEN_X5),
                 verticalArrangement = Arrangement.spacedBy(DIMEN_X2)
             ) {
-                InformerBig(
+                BigInformer(
                     headlineText = "Headline",
                     infoText = "At breakpoint boundaries, mini units divide the screen into a fixed master.",
                     linkText = "Link text"
                 )
 
-                InformerBig(
+                BigInformer(
                     isEnabled = false,
                     headlineText = "Headline",
                     infoText = "At breakpoint boundaries, mini units divide the screen into a fixed master.",
                     linkText = "Link text",
-                    colors = AdmiralInformerColor.attention()
+                    colors = AdmiralBigInformerColor.attention()
                 )
 
-                InformerBig(
+                BigInformer(
                     headlineText = "Headline",
                     infoText = "At breakpoint boundaries, mini units divide the screen into a fixed master.",
                     linkText = "Link text",
-                    colors = AdmiralInformerColor.success()
+                    colors = AdmiralBigInformerColor.success()
                 )
 
-                InformerBig(
+                BigInformer(
                     isEnabled = false,
                     headlineText = "Headline",
                     infoText = "At breakpoint boundaries, mini units divide the screen into a fixed master.",
                     linkText = "Link text",
-                    colors = AdmiralInformerColor.error()
+                    colors = AdmiralBigInformerColor.error()
                 )
             }
         }

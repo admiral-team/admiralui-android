@@ -22,8 +22,8 @@ import com.admiral.demo.R
 import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
-import com.admiral.uikit.compose.informer.AdmiralInformerColor
-import com.admiral.uikit.compose.informer.InformerBig
+import com.admiral.uikit.compose.informer.AdmiralBigInformerColor
+import com.admiral.uikit.compose.informer.BigInformer
 import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X4
@@ -75,7 +75,7 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            InformerBig(
+            BigInformer(
                 headlineText = stringResource(id = R.string.informers_example_headline),
                 infoText = stringResource(id = R.string.informers_info_text),
                 linkText = stringResource(id = R.string.informers_example_link),
@@ -93,11 +93,11 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            InformerBig(
+            BigInformer(
                 headlineText = stringResource(id = R.string.informers_example_headline),
                 infoText = stringResource(id = R.string.informers_info_text),
                 linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralInformerColor.success(),
+                colors = AdmiralBigInformerColor.success(),
                 isEnabled = isEnabled,
             )
 
@@ -112,11 +112,11 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            InformerBig(
+            BigInformer(
                 headlineText = stringResource(id = R.string.informers_example_headline),
                 infoText = stringResource(id = R.string.informers_info_text),
                 linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralInformerColor.attention(),
+                colors = AdmiralBigInformerColor.attention(),
                 isEnabled = isEnabled,
             )
 
@@ -131,11 +131,11 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            InformerBig(
+            BigInformer(
                 headlineText = stringResource(id = R.string.informers_example_headline),
                 infoText = stringResource(id = R.string.informers_info_text),
                 linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralInformerColor.error(),
+                colors = AdmiralBigInformerColor.error(),
                 isEnabled = isEnabled,
             )
         }
