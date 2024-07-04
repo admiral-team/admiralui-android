@@ -72,6 +72,6 @@ internal fun NavGraphBuilder.bigInformersScreen(onBackClick: () -> Unit) {
 
 internal fun NavGraphBuilder.smallInformersScreen(onBackClick: () -> Unit) {
     composable(route = SMALL_INFORMERS_SCREEN) {
-
+        SmallInformersScreen(onBackClick = onBackClick)
     }
 }
