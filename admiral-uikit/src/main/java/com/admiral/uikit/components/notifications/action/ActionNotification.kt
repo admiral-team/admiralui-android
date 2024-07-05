@@ -18,6 +18,7 @@ import androidx.core.view.updateLayoutParams
 import com.google.android.material.snackbar.Snackbar
 import com.admiral.themes.ThemeManager
 import com.admiral.uikit.R
+import com.admiral.uikit.core.components.notification.ActionNotificationCloseType
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 import com.admiral.uikit.databinding.AdmiralNotificationActionBinding
@@ -255,6 +256,7 @@ class ActionNotification {
             return this
         }
 
+        //todo подумать как их задавать кроме модификатора?
         /**
          * Set top and bottom margins
          * @param top top margin in Dp
