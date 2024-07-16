@@ -270,10 +270,9 @@ fun NavGraphBuilder.homeGraph(
             onStaticClick = { navController.navigateToStaticNotificationsScreen() },
             onActionClick = { navController.navigateToActionNotificationsScreen() }
         )
-        toastNotificationsScreen ( onBackClick = onBackClick )
-        staticNotificationsScreen (onBackClick = onBackClick )
-        actionNotificationsScreen ( onBackClick = onBackClick )
-        staticNotificationsScreen(onBackClick = { navController.navigateBack() })
+        toastNotificationsScreen(onBackClick = onBackClick)
+        actionNotificationsScreen(onBackClick = onBackClick)
+        staticNotificationsScreen(onBackClick = onBackClick)
         checkBoxScreen(onBackClick = { navController.navigateBack() })
         pageControlScreen(
             onBackClick = onBackClick,
