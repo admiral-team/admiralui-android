@@ -7,7 +7,7 @@ import androidx.test.platform.app.InstrumentationRegistry
 import com.admiral.demo.R
 import com.admiral.demo.ext.measureUnspecified
 import com.admiral.uikit.components.notifications.action.ActionNotification
-import com.admiral.uikit.components.notifications.action.ActionNotificationCloseType
+import com.admiral.uikit.core.components.notification.ActionNotificationCloseType
 import com.karumi.shot.ScreenshotTest
 import org.junit.Test
 

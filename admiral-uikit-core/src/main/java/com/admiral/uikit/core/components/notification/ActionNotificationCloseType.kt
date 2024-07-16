@@ -1,4 +1,4 @@
-package com.admiral.uikit.components.notifications.action
+package com.admiral.uikit.core.components.notification
 
 /**
  * [ActionNotification] close type

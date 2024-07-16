@@ -9,7 +9,7 @@ import com.admiral.demo.common.BaseFragment
 import com.admiral.demo.databinding.FmtNotificationsActionBinding
 import com.admiral.demo.features.main.NavigationViewModel
 import com.admiral.uikit.components.notifications.action.ActionNotification
-import com.admiral.uikit.components.notifications.action.ActionNotificationCloseType
+import com.admiral.uikit.core.components.notification.ActionNotificationCloseType
 
 class ActionNotificationFragment : BaseFragment(
     layoutId = R.layout.fmt_notifications_action,
