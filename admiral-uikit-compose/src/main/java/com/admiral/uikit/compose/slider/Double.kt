@@ -49,6 +49,7 @@ import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.themes.compose.withAlpha
 import com.admiral.uikit.compose.R
 import com.admiral.uikit.compose.textfield.fakeClickable
+import com.admiral.uikit.compose.util.DIMEN_X2
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
 
@@ -62,7 +63,6 @@ fun DoubleSliderPreview() {
     ) {
         DoubleSlider(
             optionalText = "Optional label 2",
-            placeholderText = "Placeholder text",
             additionalText = "Additional text",
             valueLeft = SliderPreviewValue,
             valueRight = SliderPreviewRightValue,
@@ -76,14 +76,12 @@ fun DoubleSliderPreview() {
 fun DoubleSlider(
     modifier: Modifier = Modifier,
     optionalText: String? = null,
-    placeholderText: String? = null,
     additionalText: String? = null,
     isError: Boolean = false,
     isReadOnly: Boolean = false,
     isEnabled: Boolean = true,
     keyboardOptions: KeyboardOptions = KeyboardOptions.Default,
     keyboardActions: KeyboardActions = KeyboardActions.Default,
-    visualTransformation: VisualTransformation = VisualTransformation.None,
     focusRequester: FocusRequester = FocusRequester(),
     trackColor: Color = AdmiralTheme.colors.elementAccent,
     thumbColor: Color = AdmiralTheme.colors.elementAccent,
@@ -92,7 +90,7 @@ fun DoubleSlider(
     errorColor: Int? = null,
     valueLeft: Float,
     valueRight: Float,
-    valueRange: ClosedFloatingPointRange<Float>,
+    valueRange: IntRange,
     onValueChange: (Pair<Int, Int>) -> Unit = {}
 ) {
     val theme = ThemeManagerCompose.theme.value
@@ -117,11 +115,6 @@ fun DoubleSlider(
 
         val additionalTextColor: Int = when {
             isError -> errorColor ?: theme.palette.textError
-            !isEnabled -> textColorState?.normalDisabled ?: theme.palette.textSecondary.withAlpha()
-            else -> textColorState?.normalEnabled ?: theme.palette.textSecondary
-        }
-
-        val placeholderTextColor: Int = when {
             !isEnabled -> textColorState?.normalDisabled ?: theme.palette.textSecondary.withAlpha()
             else -> textColorState?.normalEnabled ?: theme.palette.textSecondary
         }
@@ -151,22 +144,34 @@ fun DoubleSlider(
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
                 onValueChange = {
+                    val rightValue = textStateRight.value.text
+
+                    val value = if (it != "") {
+                        it.toInt()
+                    } else {
+                        0
+                    }
+
                     if (isInRange(
-                            valueRange.start.toInt(),
-                            valueRange.endInclusive.toInt(),
-                            it.toInt()
-                        )
+                            valueRange.first,
+                            rightValue.toInt(),
+                            value
+                        ).not()
                     ) {
-                        textStateLeft.value = TextFieldValue(it.toString())
+                        if (value < valueRange.first) {
+                            textStateLeft.value = TextFieldValue(valueRange.first.toString())
+                            onValueChange.invoke(valueRange.first to rightValue.toInt())
+                        } else {
+                            textStateLeft.value = TextFieldValue(rightValue)
+                            onValueChange.invoke(rightValue.toInt() to rightValue.toInt())
+                        }
                     }
                 },
                 defaultColor = defaultColor,
                 inputTextColor = inputTextColor,
-                placeholderText = placeholderText,
-                optionalText = optionalText,
-                placeholderTextColor = placeholderTextColor,
                 textAlign = TextAlign.Start,
-                hintText = stringResource(id = R.string.admiral_slider_from_compose)
+                prefixText = stringResource(id = R.string.admiral_slider_from_compose),
+                suffixText = stringResource(id = R.string.admiral_slider_suffix)
             )
 
             TextField(
@@ -178,22 +183,29 @@ fun DoubleSlider(
                 keyboardOptions = keyboardOptions,
                 keyboardActions = keyboardActions,
                 onValueChange = {
-                    if (isInRange(
-                            valueRange.start.toInt(),
-                            valueRange.endInclusive.toInt(),
-                            it.toInt()
-                        )
-                    ) {
-                        textStateRight.value = TextFieldValue(it.toString())
+                    val leftValue = textStateLeft.value.text
+
+                    val value = if (it != "") {
+                        it.toInt()
+                    } else {
+                        0
+                    }
+
+                    if (isInRange(leftValue.toInt(), valueRange.last, value).not()) {
+                        if (value > valueRange.last) {
+                            textStateRight.value = TextFieldValue(valueRange.last.toString())
+                            onValueChange.invoke(leftValue.toInt() to valueRange.last)
+                        } else {
+                            textStateRight.value = TextFieldValue(leftValue)
+                            onValueChange.invoke(leftValue.toInt() to leftValue.toInt())
+                        }
                     }
                 },
                 defaultColor = defaultColor,
                 inputTextColor = inputTextColor,
-                placeholderText = placeholderText,
-                optionalText = optionalText,
-                placeholderTextColor = placeholderTextColor,
                 textAlign = TextAlign.End,
-                hintText = stringResource(id = R.string.admiral_slider_to_compose)
+                prefixText = stringResource(id = R.string.admiral_slider_to_compose),
+                suffixText = stringResource(id = R.string.admiral_slider_suffix)
             )
         }
 
@@ -247,7 +259,7 @@ private fun AdditionalText(
 @Composable
 private fun RangeTexts(
     focusRequester: FocusRequester,
-    valueRange: ClosedFloatingPointRange<Float>,
+    valueRange: IntRange,
     additionalTextColor: Int
 ) {
     Row(
@@ -263,7 +275,7 @@ private fun RangeTexts(
                     indication = null,
                     onClick = focusRequester::requestFocus
                 ),
-            text = valueRange.start.toInt().toString(),
+            text = valueRange.first.toString(),
             style = AdmiralTheme.typography.subhead2,
             color = Color(additionalTextColor),
             fontSize = TextFontSize.sp
@@ -278,7 +290,7 @@ private fun RangeTexts(
                     indication = null,
                     onClick = focusRequester::requestFocus
                 ),
-            text = valueRange.endInclusive.toInt().toString(),
+            text = valueRange.last.toString(),
             style = AdmiralTheme.typography.subhead2,
             color = Color(additionalTextColor),
             textAlign = TextAlign.End,
@@ -289,7 +301,7 @@ private fun RangeTexts(
 
 @Composable
 private fun RangeSlider(
-    valueRange: ClosedFloatingPointRange<Float>,
+    valueRange: IntRange,
     thumbColor: Color = AdmiralTheme.colors.elementAccent,
     trackColor: Color = AdmiralTheme.colors.elementAccent,
     textStateLeft: MutableState<TextFieldValue>,
@@ -309,7 +321,7 @@ private fun RangeSlider(
     HackedDoubleSlider(
         value = textStateLeft.value.text.toFloat()..textStateRight.value.text.toFloat(),
         enabled = isEnabled && !isReadOnly,
-        valueRange = valueRange,
+        valueRange = valueRange.first.toFloat()..valueRange.last.toFloat(),
         onValueChange = {
             textStateLeft.value = TextFieldValue(it.start.toInt().toString())
             textStateRight.value = TextFieldValue(it.endInclusive.toInt().toString())
@@ -327,14 +339,12 @@ private fun TextField(
     textState: MutableState<TextFieldValue>,
     keyboardOptions: KeyboardOptions,
     keyboardActions: KeyboardActions,
-    onValueChange: (Float) -> Unit,
+    onValueChange: (String) -> Unit,
     defaultColor: Int,
     inputTextColor: Int,
-    placeholderText: String?,
-    optionalText: String?,
-    placeholderTextColor: Int,
     textAlign: TextAlign,
-    hintText: String
+    prefixText: String,
+    suffixText: String
 ) {
     BasicTextField(
         modifier = Modifier
@@ -351,33 +361,20 @@ private fun TextField(
         singleLine = true,
         maxLines = 1,
         visualTransformation = PrefixTransformation(
-            prefix = hintText,
+            prefix = prefixText,
             color = AdmiralTheme.colors.textSecondary,
-            textStyle = AdmiralTheme.typography.body1
+            textStyle = AdmiralTheme.typography.body1,
+            suffix = suffixText
         ),
         onValueChange = {
-            onValueChange.invoke(it.text.toFloat())
+            textState.value = if (it.text != "") it else TextFieldValue("0")
+            onValueChange(it.text)
         },
         cursorBrush = SolidColor(Color(defaultColor)),
         textStyle = AdmiralTheme.typography.body1.copy(
             color = Color(inputTextColor),
             textAlign = textAlign
         ),
-        decorationBox = { innerTextField ->
-            Box {
-                if (textState.value.text.isEmpty()) {
-                    val text = if (focusState.value) placeholderText else optionalText
-                    val color = if (focusState.value) placeholderTextColor else defaultColor
-                    Text(
-                        text = text ?: "",
-                        style = AdmiralTheme.typography.body1,
-                        color = Color(color),
-                        maxLines = 1
-                    )
-                }
-                innerTextField()
-            }
-        }
     )
 }
 
@@ -391,6 +388,7 @@ private fun OptionalText(
     Text(
         modifier = Modifier
             .alpha(alpha)
+            .padding(bottom = DIMEN_X2)
             .clickable(
                 interactionSource = remember { MutableInteractionSource() },
                 indication = null,
@@ -406,18 +404,26 @@ private fun OptionalText(
 
 class PrefixTransformation(
     private val prefix: String,
+    private val suffix: String,
     private val color: Color,
     private val textStyle: TextStyle
 ) :
     VisualTransformation {
     override fun filter(text: AnnotatedString): TransformedText {
-        return prefixFilter(number = text, prefix = prefix, colorPrefix = color, style = textStyle)
+        return prefixFilter(
+            number = text,
+            prefix = prefix,
+            suffix = suffix,
+            colorPrefix = color,
+            style = textStyle
+        )
     }
 }
 
 fun prefixFilter(
     number: AnnotatedString,
     prefix: String,
+    suffix: String,
     colorPrefix: Color,
     style: TextStyle
 ): TransformedText {
@@ -429,8 +435,19 @@ fun prefixFilter(
         }
 
         override fun transformedToOriginal(offset: Int): Int {
-            if (offset < prefixOffset) return 0
-            return offset - prefixOffset
+            return when (offset) {
+                in 0..prefixOffset -> {
+                    0
+                }
+
+                in prefixOffset + number.length..Int.MAX_VALUE -> {
+                    prefixOffset + number.length - prefixOffset
+                }
+
+                else -> {
+                    offset - prefixOffset
+                }
+            }
         }
     }
 
@@ -447,7 +464,7 @@ fun prefixFilter(
     ) {
         append(prefix)
     }
-    builder.append(number.text)
+    builder.append(number.text + suffix)
 
     return TransformedText(
         text = builder.toAnnotatedString(),
@@ -459,8 +476,8 @@ private const val SliderBoxPadding = 16
 private const val SliderBoxWidth = 240
 private const val SliderPreviewValue = 200.0f
 private const val SliderPreviewRightValue = 20000.0f
-private const val SliderPreviewRangeStart = 200f
-private const val SliderPreviewRangeEnd = 10000f
+private const val SliderPreviewRangeStart = 200
+private const val SliderPreviewRangeEnd = 10000
 private const val AdditionalTextPadding = 4
 private const val TextFontSize = 14
 private const val AlphaAnimationTime = 300

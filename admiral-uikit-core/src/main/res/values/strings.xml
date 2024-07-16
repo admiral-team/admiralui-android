@@ -48,5 +48,6 @@
     <string name="admiral_slider_to">до</string>
     <string name="admiral_slider_from_compose">"от "</string>
     <string name="admiral_slider_to_compose">"до "</string>
+    <string name="admiral_slider_suffix">" ₽"</string>
 
 </resources>
