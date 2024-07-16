@@ -58,8 +58,10 @@ import com.admiral.demo.compose.home.informers.navigateToInformersAndNotificatio
 import com.admiral.demo.compose.home.informers.navigateToInformersScreen
 import com.admiral.demo.compose.home.informers.navigateToNotificationsScreen
 import com.admiral.demo.compose.home.informers.navigateToSmallInformersScreen
+import com.admiral.demo.compose.home.informers.navigateToStaticNotificationsScreen
 import com.admiral.demo.compose.home.informers.notificationsScreen
 import com.admiral.demo.compose.home.informers.smallInformersScreen
+import com.admiral.demo.compose.home.informers.staticNotificationsScreen
 import com.admiral.demo.compose.home.links.linkScreen
 import com.admiral.demo.compose.home.links.navigateToLinkScreen
 import com.admiral.demo.compose.home.tabs.iconTabsScreen
@@ -258,7 +260,11 @@ fun NavGraphBuilder.homeGraph(
         )
         bigInformersScreen(onBackClick = { navController.navigateBack() })
         smallInformersScreen(onBackClick = { navController.navigateBack() })
-        notificationsScreen(onBackClick = { navController.navigateBack() })
+        staticNotificationsScreen(onBackClick = { navController.navigateBack() })
+        notificationsScreen(
+            onBackClick = { navController.navigateBack() },
+            onStaticClick = { navController.navigateToStaticNotificationsScreen() },
+        )
         checkBoxScreen(onBackClick = { navController.navigateBack() })
         pageControlScreen(
             onBackClick = onBackClick,

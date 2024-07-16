@@ -9,6 +9,7 @@ internal const val NOTIFICATIONS_SCREEN = "notificationsScreen"
 internal const val INFORMERS_SCREEN = "informersScreen"
 internal const val BIG_INFORMERS_SCREEN = "bigInformersScreen"
 internal const val SMALL_INFORMERS_SCREEN = "smallInformersScreen"
+internal const val STATIC_NOTIFICATION_SCREEN = "staticNotificationScreen"
 
 internal fun NavController.navigateToInformersAndNotificationsScreen() {
     navigate(INFORMERS_AND_NOTIFICATIONS_SCREEN)
@@ -28,6 +29,10 @@ internal fun NavController.navigateToBigInformersScreen() {
 
 internal fun NavController.navigateToSmallInformersScreen() {
     navigate(SMALL_INFORMERS_SCREEN)
+}
+
+internal fun NavController.navigateToStaticNotificationsScreen() {
+    navigate(STATIC_NOTIFICATION_SCREEN)
 }
 
 internal fun NavGraphBuilder.informersAndNotificationsScreen(
@@ -58,9 +63,19 @@ internal fun NavGraphBuilder.informersScreen(
     }
 }
 
-internal fun NavGraphBuilder.notificationsScreen(onBackClick: () -> Unit) {
+internal fun NavGraphBuilder.notificationsScreen(
+    onBackClick: () -> Unit,
+    onToastClick: () -> Unit = {},
+    onStaticClick: () -> Unit = {},
+    onActionClick: () -> Unit = {},
+) {
     composable(route = NOTIFICATIONS_SCREEN) {
-
+        NotificationsScreen(
+            onBackClick = onBackClick,
+            onToastClick = onToastClick,
+            onStaticClick = onStaticClick,
+            onActionClick = onActionClick,
+        )
     }
 }
 
@@ -73,5 +88,11 @@ internal fun NavGraphBuilder.bigInformersScreen(onBackClick: () -> Unit) {
 internal fun NavGraphBuilder.smallInformersScreen(onBackClick: () -> Unit) {
     composable(route = SMALL_INFORMERS_SCREEN) {
         SmallInformersScreen(onBackClick = onBackClick)
+    }
+}
+
+internal fun NavGraphBuilder.staticNotificationsScreen(onBackClick: () -> Unit) {
+    composable(route = STATIC_NOTIFICATION_SCREEN) {
+        StaticNotificationScreen(onBackClick = onBackClick)
     }
 }
