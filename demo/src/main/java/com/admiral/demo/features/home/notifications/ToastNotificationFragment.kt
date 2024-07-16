@@ -24,7 +24,7 @@ class ToastNotificationFragment : BaseFragment(
         registerToolbar(binding.toolbar, true, navigationViewModel::close)
 
         binding.btnToast.setOnClickListener {
-            val multipleToastNotification =
+            val toastNotification =
                 ToastNotification.Builder(requireContext(), binding.coordinator)
                     .setLinkText("Link text")
                     .setLinkClickListener {
@@ -35,7 +35,7 @@ class ToastNotificationFragment : BaseFragment(
                     .setText("At breakpoint boundaries, mini units divide the screen into a fixed master grid.")
                     .apply()
 
-            multipleToastNotification.show()
+            toastNotification.show()
         }
     }
 }
