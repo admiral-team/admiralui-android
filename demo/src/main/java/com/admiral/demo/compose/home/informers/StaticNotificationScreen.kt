@@ -22,8 +22,8 @@ import com.admiral.demo.R
 import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
 import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
-import com.admiral.uikit.compose.informer.AdmiralBigInformerColor
-import com.admiral.uikit.compose.informer.BigInformer
+import com.admiral.uikit.compose.notifications.fixed.AdmiralStaticNotificationColors
+import com.admiral.uikit.compose.notifications.fixed.StaticNotification
 import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X4
@@ -32,7 +32,7 @@ import com.admiral.uikit.compose.util.DIMEN_X6
 
 @Suppress("LongMethod")
 @Composable
-fun BigInformersScreen(onBackClick: () -> Unit = {}) {
+fun StaticNotificationScreen(onBackClick: () -> Unit = {}) {
     var isEnabled by remember { mutableStateOf(true) }
 
     Scaffold(
@@ -41,7 +41,7 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
             AdmiralCenterAlignedTopAppBar(
                 navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
                 onNavIconClick = onBackClick,
-                title = stringResource(id = R.string.informers_big_title)
+                title = stringResource(id = R.string.notifications_static_title)
             )
         }
     ) { padding ->
@@ -75,11 +75,24 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            BigInformer(
-                headlineText = stringResource(id = R.string.informers_example_headline),
-                infoText = stringResource(id = R.string.informers_info_text),
+            StaticNotification(
+                notificationText = stringResource(id = R.string.informers_info_text),
                 linkText = stringResource(id = R.string.informers_example_link),
+                icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+                isCloseIconVisible = true,
                 isEnabled = isEnabled,
+                isBackgroundColorDefault = true,
+                colors = AdmiralStaticNotificationColors.info()
+            )
+
+            StaticNotification(
+                modifier = Modifier.padding(top = 8.dp),
+                notificationText = stringResource(id = R.string.informers_info_text),
+                linkText = stringResource(id = R.string.informers_example_link),
+                icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+                isCloseIconVisible = true,
+                isEnabled = isEnabled,
+                colors = AdmiralStaticNotificationColors.info()
             )
 
             Text(
@@ -93,12 +106,24 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            BigInformer(
-                headlineText = stringResource(id = R.string.informers_example_headline),
-                infoText = stringResource(id = R.string.informers_info_text),
+            StaticNotification(
+                notificationText = stringResource(id = R.string.informers_info_text),
                 linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralBigInformerColor.success(),
+                icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+                isCloseIconVisible = true,
                 isEnabled = isEnabled,
+                isBackgroundColorDefault = true,
+                colors = AdmiralStaticNotificationColors.success()
+            )
+
+            StaticNotification(
+                modifier = Modifier.padding(top = 8.dp),
+                notificationText = stringResource(id = R.string.informers_info_text),
+                linkText = stringResource(id = R.string.informers_example_link),
+                icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+                isCloseIconVisible = true,
+                isEnabled = isEnabled,
+                colors = AdmiralStaticNotificationColors.success()
             )
 
             Text(
@@ -112,12 +137,24 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            BigInformer(
-                headlineText = stringResource(id = R.string.informers_example_headline),
-                infoText = stringResource(id = R.string.informers_info_text),
+            StaticNotification(
+                notificationText = stringResource(id = R.string.informers_info_text),
                 linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralBigInformerColor.attention(),
+                icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+                isCloseIconVisible = true,
                 isEnabled = isEnabled,
+                isBackgroundColorDefault = true,
+                colors = AdmiralStaticNotificationColors.attention()
+            )
+
+            StaticNotification(
+                modifier = Modifier.padding(top = 8.dp),
+                notificationText = stringResource(id = R.string.informers_info_text),
+                linkText = stringResource(id = R.string.informers_example_link),
+                icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+                isCloseIconVisible = true,
+                isEnabled = isEnabled,
+                colors = AdmiralStaticNotificationColors.attention()
             )
 
             Text(
@@ -131,12 +168,24 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            BigInformer(
-                headlineText = stringResource(id = R.string.informers_example_headline),
-                infoText = stringResource(id = R.string.informers_info_text),
+            StaticNotification(
+                notificationText = stringResource(id = R.string.informers_info_text),
                 linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralBigInformerColor.error(),
+                icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+                isCloseIconVisible = true,
                 isEnabled = isEnabled,
+                isBackgroundColorDefault = true,
+                colors = AdmiralStaticNotificationColors.error()
+            )
+
+            StaticNotification(
+                modifier = Modifier.padding(top = 8.dp),
+                notificationText = stringResource(id = R.string.informers_info_text),
+                linkText = stringResource(id = R.string.informers_example_link),
+                icon = painterResource(id = R.drawable.admiral_ic_info_solid),
+                isCloseIconVisible = true,
+                isEnabled = isEnabled,
+                colors = AdmiralStaticNotificationColors.error()
             )
         }
     }
@@ -148,6 +197,6 @@ private val TextVerticalPadding = 18.dp
 @Composable
 private fun BigInformersScreenPreview() {
     AdmiralTheme {
-        BigInformersScreen()
+        StaticNotificationScreen()
     }
 }

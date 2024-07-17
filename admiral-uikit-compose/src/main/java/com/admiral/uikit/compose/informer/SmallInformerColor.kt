@@ -8,39 +8,26 @@ import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.withAlpha
 
 @Immutable
-data class InformerColor(
+data class SmallInformerColor(
     val background: Color,
     val textEnabled: Color,
     val textDisabled: Color,
-    val linkEnabled: Color,
-    val linkDisabled: Color,
-    val linkPressed: Color,
 ) {
     @Composable
     fun getTextColor(isEnabled: Boolean) =
         rememberUpdatedState(if (isEnabled) textEnabled else textDisabled)
-
-    @Composable
-    fun getLinkColor(isEnabled: Boolean) =
-        rememberUpdatedState(if (isEnabled) linkEnabled else linkDisabled)
 }
 
-object AdmiralInformerColor {
+object AdmiralSmallInformerColor {
     @Composable
     fun info(
         background: Color = AdmiralTheme.colors.backgroundAdditionalOne,
         textEnable: Color = AdmiralTheme.colors.textPrimary,
         textDisable: Color = AdmiralTheme.colors.textPrimary.withAlpha(),
-        linkEnable: Color = AdmiralTheme.colors.textAccent,
-        linkDisable: Color = AdmiralTheme.colors.textAccent.withAlpha(),
-        linkPressed: Color = AdmiralTheme.colors.textAccentPressed,
-    ) = InformerColor(
+    ) = SmallInformerColor(
         background = background,
         textEnabled = textEnable,
         textDisabled = textDisable,
-        linkEnabled = linkEnable,
-        linkDisabled = linkDisable,
-        linkPressed = linkPressed,
     )
 
     @Composable
@@ -48,16 +35,10 @@ object AdmiralInformerColor {
         background: Color = AdmiralTheme.colors.backgroundAttention,
         textEnable: Color = AdmiralTheme.colors.textPrimary,
         textDisable: Color = AdmiralTheme.colors.textPrimary.withAlpha(),
-        linkEnable: Color = AdmiralTheme.colors.textAccent,
-        linkDisable: Color = AdmiralTheme.colors.textAccent.withAlpha(),
-        linkPressed: Color = AdmiralTheme.colors.textAccentPressed,
-    ) = InformerColor(
+    ) = SmallInformerColor(
         background = background,
         textEnabled = textEnable,
         textDisabled = textDisable,
-        linkEnabled = linkEnable,
-        linkDisabled = linkDisable,
-        linkPressed = linkPressed,
     )
 
     @Composable
@@ -65,16 +46,10 @@ object AdmiralInformerColor {
         background: Color = AdmiralTheme.colors.backgroundSuccess,
         textEnable: Color = AdmiralTheme.colors.textPrimary,
         textDisable: Color = AdmiralTheme.colors.textPrimary.withAlpha(),
-        linkEnable: Color = AdmiralTheme.colors.textAccent,
-        linkDisable: Color = AdmiralTheme.colors.textAccent.withAlpha(),
-        linkPressed: Color = AdmiralTheme.colors.textAccentPressed,
-    ) = InformerColor(
+    ) = SmallInformerColor(
         background = background,
         textEnabled = textEnable,
         textDisabled = textDisable,
-        linkEnabled = linkEnable,
-        linkDisabled = linkDisable,
-        linkPressed = linkPressed,
     )
 
     @Composable
@@ -82,15 +57,9 @@ object AdmiralInformerColor {
         background: Color = AdmiralTheme.colors.backgroundError,
         textEnable: Color = AdmiralTheme.colors.textPrimary,
         textDisable: Color = AdmiralTheme.colors.textPrimary.withAlpha(),
-        linkEnable: Color = AdmiralTheme.colors.textAccent,
-        linkDisable: Color = AdmiralTheme.colors.textAccent.withAlpha(),
-        linkPressed: Color = AdmiralTheme.colors.textAccentPressed,
-    ) = InformerColor(
+    ) = SmallInformerColor(
         background = background,
         textEnabled = textEnable,
         textDisabled = textDisable,
-        linkEnabled = linkEnable,
-        linkDisabled = linkDisable,
-        linkPressed = linkPressed,
     )
 }

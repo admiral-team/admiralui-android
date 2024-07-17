@@ -38,7 +38,6 @@ import com.admiral.uikit.compose.util.DIMEN_X3
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.core.components.notification.StaticNotificationStyle
 
-
 @Composable
 fun StaticNotification(
     modifier: Modifier = Modifier,
@@ -51,16 +50,18 @@ fun StaticNotification(
     isBackgroundColorDefault: Boolean = false,
     isIconVisible: Boolean = true,
     isCloseIconVisible: Boolean = true,
-    isEnable: Boolean = true,
+    isEnabled: Boolean = true,
     colors: StaticNotificationColor = AdmiralStaticNotificationColors.info(),
     onLinkClick: () -> Unit = {},
     onCloseIconClick: () -> Unit = {},
 ) {
-    val backgroundColor =
-        if (isBackgroundColorDefault) colors.getBackgroundEnable(isEnable).value
-        else AdmiralTheme.colors.backgroundAdditionalOne
+    val backgroundColor = if (isBackgroundColorDefault) {
+        AdmiralTheme.colors.backgroundAdditionalOne
+    } else {
+        colors.getBackgroundEnable(isEnabled).value
+    }
 
-    val iconCloseColor = if (isEnable) AdmiralTheme.colors.elementPrimary
+    val iconCloseColor = if (isEnabled) AdmiralTheme.colors.elementPrimary
     else AdmiralTheme.colors.elementPrimary.withAlpha()
 
     val closeIcon = painterResource(id = R.drawable.admiral_ic_close_outline)
@@ -94,7 +95,7 @@ fun StaticNotification(
                 Icon(
                     painter = icon ?: iconDefault,
                     contentDescription = null,
-                    tint = colors.getIconColor(isEnable).value,
+                    tint = colors.getIconColor(isEnabled).value,
                     modifier = Modifier
                         .size(ICON_SIZE.dp)
                         .constrainAs(iconId) {
@@ -124,7 +125,7 @@ fun StaticNotification(
                         text = it,
                         maxLines = maxLines,
                         overflow = ellipsize,
-                        color = colors.getNotificationTextColor(isEnable).value,
+                        color = colors.getNotificationTextColor(isEnabled).value,
                         style = AdmiralTheme.typography.body2,
                         modifier = Modifier.wrapContentWidth(),
                     )
@@ -138,7 +139,7 @@ fun StaticNotification(
                         textEnableColor = colors.linkTextEnable,
                         textDisableColor = colors.linkTextDisable,
                         onClick = onLinkClick,
-                        isEnabled = isEnable,
+                        isEnabled = isEnabled,
                     )
                 }
             }
@@ -155,7 +156,7 @@ fun StaticNotification(
                             top.linkTo(parent.top)
                         }
                         .clickable(
-                            enabled = isEnable,
+                            enabled = isEnabled,
                             onClick = onCloseIconClick,
                             indication = null,
                             interactionSource = remember { MutableInteractionSource() }
@@ -185,7 +186,7 @@ private fun StaticNotificationPreview() {
                     linkText = "Link",
                     notificationStyle = StaticNotificationStyle.Error,
                     colors = AdmiralStaticNotificationColors.error(),
-                    isEnable = true
+                    isEnabled = true
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
@@ -193,7 +194,7 @@ private fun StaticNotificationPreview() {
                     linkText = "Link",
                     notificationStyle = StaticNotificationStyle.Error,
                     colors = AdmiralStaticNotificationColors.error(),
-                    isEnable = false
+                    isEnabled = false
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
@@ -201,7 +202,7 @@ private fun StaticNotificationPreview() {
                     linkText = "Link",
                     notificationStyle = StaticNotificationStyle.Attention,
                     colors = AdmiralStaticNotificationColors.attention(),
-                    isEnable = true
+                    isEnabled = true
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
@@ -209,21 +210,21 @@ private fun StaticNotificationPreview() {
                     linkText = "Link",
                     notificationStyle = StaticNotificationStyle.Attention,
                     colors = AdmiralStaticNotificationColors.attention(),
-                    isEnable = false
+                    isEnabled = false
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
                     notificationText = "At breakpoint boundaries, mini units divide the screen into a fixed master grid.",
                     linkText = "Link",
                     notificationStyle = StaticNotificationStyle.Info,
-                    isEnable = true
+                    isEnabled = true
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
                     notificationText = "At breakpoint boundaries, mini units divide the screen into a fixed master grid.",
                     linkText = "Link",
                     notificationStyle = StaticNotificationStyle.Info,
-                    isEnable = false
+                    isEnabled = false
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
@@ -231,7 +232,7 @@ private fun StaticNotificationPreview() {
                     linkText = "Link",
                     notificationStyle = StaticNotificationStyle.Success,
                     colors = AdmiralStaticNotificationColors.success(),
-                    isEnable = true
+                    isEnabled = true
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
@@ -239,29 +240,29 @@ private fun StaticNotificationPreview() {
                     linkText = "Link",
                     notificationStyle = StaticNotificationStyle.Success,
                     colors = AdmiralStaticNotificationColors.success(),
-                    isEnable = true
+                    isEnabled = true
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
                     notificationText = "At breakpoint boundaries, mini units divide the screen into a fixed master grid.",
                     icon = painterResource(id = R.drawable.admiral_ic_info_solid),
-                    isEnable = true
+                    isEnabled = true
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
                     linkText = "Link",
-                    isEnable = true
+                    isEnabled = true
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
                     linkText = "Link",
-                    isEnable = true,
+                    isEnabled = true,
                     isIconVisible = false,
                 )
                 Spacer(modifier = Modifier.size(DIMEN_X1))
                 StaticNotification(
                     linkText = "Link",
-                    isEnable = true,
+                    isEnabled = true,
                     isIconVisible = false,
                     isCloseIconVisible = false,
                 )

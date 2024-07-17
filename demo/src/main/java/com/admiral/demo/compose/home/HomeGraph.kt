@@ -56,12 +56,18 @@ import com.admiral.demo.compose.home.informers.informersScreen
 import com.admiral.demo.compose.home.informers.navigateToBigInformersScreen
 import com.admiral.demo.compose.home.informers.navigateToInformersAndNotificationsScreen
 import com.admiral.demo.compose.home.informers.navigateToInformersScreen
-import com.admiral.demo.compose.home.informers.navigateToNotificationsScreen
 import com.admiral.demo.compose.home.informers.navigateToSmallInformersScreen
-import com.admiral.demo.compose.home.informers.notificationsScreen
 import com.admiral.demo.compose.home.informers.smallInformersScreen
 import com.admiral.demo.compose.home.links.linkScreen
 import com.admiral.demo.compose.home.links.navigateToLinkScreen
+import com.admiral.demo.compose.home.notifications.actionNotificationsScreen
+import com.admiral.demo.compose.home.notifications.navigateToActionNotificationsScreen
+import com.admiral.demo.compose.home.notifications.navigateToNotificationsScreen
+import com.admiral.demo.compose.home.notifications.navigateToStaticNotificationsScreen
+import com.admiral.demo.compose.home.notifications.navigateToToastNotificationsScreen
+import com.admiral.demo.compose.home.notifications.notificationsScreen
+import com.admiral.demo.compose.home.notifications.staticNotificationsScreen
+import com.admiral.demo.compose.home.notifications.toastNotificationsScreen
 import com.admiral.demo.compose.home.tabs.iconTabsScreen
 import com.admiral.demo.compose.home.tabs.informerTabsScreen
 import com.admiral.demo.compose.home.tabs.logoTabsScreen
@@ -258,7 +264,15 @@ fun NavGraphBuilder.homeGraph(
         )
         bigInformersScreen(onBackClick = { navController.navigateBack() })
         smallInformersScreen(onBackClick = { navController.navigateBack() })
-        notificationsScreen(onBackClick = { navController.navigateBack() })
+        notificationsScreen(
+            onBackClick = { navController.navigateBack() },
+            onToastClick = { navController.navigateToToastNotificationsScreen() },
+            onStaticClick = { navController.navigateToStaticNotificationsScreen() },
+            onActionClick = { navController.navigateToActionNotificationsScreen() }
+        )
+        toastNotificationsScreen(onBackClick = onBackClick)
+        actionNotificationsScreen(onBackClick = onBackClick)
+        staticNotificationsScreen(onBackClick = onBackClick)
         checkBoxScreen(onBackClick = { navController.navigateBack() })
         pageControlScreen(
             onBackClick = onBackClick,

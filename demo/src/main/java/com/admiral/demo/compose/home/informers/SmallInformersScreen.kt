@@ -18,12 +18,13 @@ import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.admiral.demo.R
 import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.ThemeManagerCompose
+import com.admiral.uikit.compose.R
+import com.admiral.demo.R as demoR
 import com.admiral.uikit.compose.appbar.AdmiralCenterAlignedTopAppBar
-import com.admiral.uikit.compose.informer.AdmiralBigInformerColor
-import com.admiral.uikit.compose.informer.BigInformer
+import com.admiral.uikit.compose.informer.AdmiralSmallInformerColor
+import com.admiral.uikit.compose.informer.SmallInformer
 import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.util.DIMEN_X1
 import com.admiral.uikit.compose.util.DIMEN_X4
@@ -32,16 +33,16 @@ import com.admiral.uikit.compose.util.DIMEN_X6
 
 @Suppress("LongMethod")
 @Composable
-fun BigInformersScreen(onBackClick: () -> Unit = {}) {
+fun SmallInformersScreen(onBackClick: () -> Unit = {}) {
     var isEnabled by remember { mutableStateOf(true) }
 
     Scaffold(
         backgroundColor = AdmiralTheme.colors.backgroundBasic,
         topBar = {
             AdmiralCenterAlignedTopAppBar(
-                navIcon = painterResource(id = com.admiral.uikit.compose.R.drawable.admiral_ic_chevron_left_outline),
+                navIcon = painterResource(id = R.drawable.admiral_ic_chevron_left_outline),
                 onNavIconClick = onBackClick,
-                title = stringResource(id = R.string.informers_big_title)
+                title = stringResource(id = com.admiral.demo.R.string.informers_small_title)
             )
         }
     ) { padding ->
@@ -55,8 +56,8 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
             StandardTab(
                 modifier = Modifier,
                 items = mutableListOf(
-                    stringResource(id = R.string.tabs_default),
-                    stringResource(id = R.string.tabs_disabled),
+                    stringResource(id = com.admiral.demo.R.string.tabs_default),
+                    stringResource(id = com.admiral.demo.R.string.tabs_disabled),
                 ),
                 selectedIndex = 0,
                 onCheckedChange = {
@@ -70,15 +71,13 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                     .padding(vertical = TextVerticalPadding)
                     .padding(top = DIMEN_X6, bottom = DIMEN_X1)
                     .align(Alignment.CenterHorizontally),
-                text = stringResource(id = R.string.informers_default),
+                text = stringResource(id = com.admiral.demo.R.string.informers_default),
                 color = AdmiralTheme.colors.textSecondary,
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            BigInformer(
-                headlineText = stringResource(id = R.string.informers_example_headline),
-                infoText = stringResource(id = R.string.informers_info_text),
-                linkText = stringResource(id = R.string.informers_example_link),
+            SmallInformer(
+                infoText = stringResource(id = demoR.string.informers_example_text),
                 isEnabled = isEnabled,
             )
 
@@ -88,16 +87,14 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                     .padding(vertical = TextVerticalPadding)
                     .padding(top = DIMEN_X5, bottom = DIMEN_X1)
                     .align(Alignment.CenterHorizontally),
-                text = stringResource(id = R.string.informers_success),
+                text = stringResource(id = com.admiral.demo.R.string.informers_success),
                 color = AdmiralTheme.colors.textSecondary,
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            BigInformer(
-                headlineText = stringResource(id = R.string.informers_example_headline),
-                infoText = stringResource(id = R.string.informers_info_text),
-                linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralBigInformerColor.success(),
+            SmallInformer(
+                infoText = stringResource(id = demoR.string.informers_example_text),
+                colors = AdmiralSmallInformerColor.success(),
                 isEnabled = isEnabled,
             )
 
@@ -107,16 +104,14 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                     .padding(vertical = TextVerticalPadding)
                     .padding(top = DIMEN_X5, bottom = DIMEN_X1)
                     .align(Alignment.CenterHorizontally),
-                text = stringResource(id = R.string.informers_attention),
+                text = stringResource(id = com.admiral.demo.R.string.informers_attention),
                 color = AdmiralTheme.colors.textSecondary,
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            BigInformer(
-                headlineText = stringResource(id = R.string.informers_example_headline),
-                infoText = stringResource(id = R.string.informers_info_text),
-                linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralBigInformerColor.attention(),
+            SmallInformer(
+                infoText = stringResource(id = demoR.string.informers_example_text),
+                colors = AdmiralSmallInformerColor.attention(),
                 isEnabled = isEnabled,
             )
 
@@ -126,16 +121,14 @@ fun BigInformersScreen(onBackClick: () -> Unit = {}) {
                     .padding(vertical = TextVerticalPadding)
                     .padding(top = DIMEN_X5, bottom = DIMEN_X1)
                     .align(Alignment.CenterHorizontally),
-                text = stringResource(id = R.string.informers_error),
+                text = stringResource(id = com.admiral.demo.R.string.informers_error),
                 color = AdmiralTheme.colors.textSecondary,
                 style = ThemeManagerCompose.typography.body1,
             )
 
-            BigInformer(
-                headlineText = stringResource(id = R.string.informers_example_headline),
-                infoText = stringResource(id = R.string.informers_info_text),
-                linkText = stringResource(id = R.string.informers_example_link),
-                colors = AdmiralBigInformerColor.error(),
+            SmallInformer(
+                infoText = stringResource(id = demoR.string.informers_example_text),
+                colors = AdmiralSmallInformerColor.error(),
                 isEnabled = isEnabled,
             )
         }
@@ -146,8 +139,8 @@ private val TextVerticalPadding = 18.dp
 
 @Preview
 @Composable
-private fun BigInformersScreenPreview() {
+private fun SmallInformersScreenPreview() {
     AdmiralTheme {
-        BigInformersScreen()
+        SmallInformersScreen()
     }
 }

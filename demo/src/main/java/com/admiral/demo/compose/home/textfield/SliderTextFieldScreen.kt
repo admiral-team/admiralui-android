@@ -83,7 +83,7 @@ fun SliderTextFieldScreen(
             Spacer(modifier = Modifier.height(DIMEN_X1))
             Slider(
                 value = 500f,
-                valueRange = 0f..VALUE_RANGE_MAX,
+                valueRange = 0f..VALUE_RANGE_MAX.toFloat(),
                 additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
                 optionalText = stringResource(id = R.string.text_fields_optional_label),
                 isError = isError,
@@ -101,7 +101,7 @@ fun SliderTextFieldScreen(
             DoubleSlider(
                 valueLeft = 500f,
                 valueRight = 10000f,
-                valueRange = 0f..VALUE_RANGE_MAX,
+                valueRange = 0..VALUE_RANGE_MAX,
                 additionalText = stringResource(id = R.string.text_fields_example_slider_additional),
                 optionalText = stringResource(id = R.string.text_fields_optional_label),
                 isError = isError,
@@ -114,7 +114,7 @@ fun SliderTextFieldScreen(
 private const val VERTICAL_PADDING = 18
 private const val ERROR_STATE = 1
 private const val DISABLED_STATE = 2
-private const val VALUE_RANGE_MAX = 10_000f
+private const val VALUE_RANGE_MAX = 10_000
 
 @Preview
 @Composable
