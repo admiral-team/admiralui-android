@@ -3,6 +3,7 @@ package com.admiral.demo.compose.home.notifications
 import androidx.navigation.NavController
 import androidx.navigation.NavGraphBuilder
 import androidx.navigation.compose.composable
+import com.admiral.demo.compose.home.informers.NotificationsScreen
 import com.admiral.demo.compose.home.informers.StaticNotificationScreen
 
 internal const val NOTIFICATIONS_SCREEN = "notificationsScreen"
@@ -14,12 +15,12 @@ internal fun NavController.navigateToNotificationsScreen() {
     navigate(NOTIFICATIONS_SCREEN)
 }
 
-internal fun NavController.navigateToToastNotificationsScreen() {
-    navigate(TOAST_NOTIFICATIONS_SCREEN)
-}
-
 internal fun NavController.navigateToStaticNotificationsScreen() {
     navigate(STATIC_NOTIFICATIONS_SCREEN)
+}
+
+internal fun NavController.navigateToToastNotificationsScreen() {
+    navigate(TOAST_NOTIFICATIONS_SCREEN)
 }
 
 internal fun NavController.navigateToActionNotificationsScreen() {
@@ -44,7 +45,7 @@ internal fun NavGraphBuilder.notificationsScreen(
 
 internal fun NavGraphBuilder.toastNotificationsScreen(onBackClick: () -> Unit) {
     composable(route = TOAST_NOTIFICATIONS_SCREEN) {
-
+        ToastNotificationsScreen(onBackClick = onBackClick)
     }
 }
 
