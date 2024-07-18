@@ -32,6 +32,7 @@ internal fun MainScreen(
     onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
     onBadgesClick: homeItemClick = {},
+    onRadioButtonClick: homeItemClick = {},
     onInformersAndNotificationsClick: homeItemClick = {},
     onTagsClick: homeItemClick = {},
     onAlertsClick: homeItemClick = {},
@@ -223,6 +224,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onRadioButtonClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_tune_solid),
