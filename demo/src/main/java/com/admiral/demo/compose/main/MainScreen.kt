@@ -29,6 +29,7 @@ internal fun MainScreen(
     onTextFieldsClick: homeItemClick = {},
     onCellsClick: homeItemClick = {},
     onCheckBoxClick: homeItemClick = {},
+    onSwitcherClick: homeItemClick = {},
     onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
     onBadgesClick: homeItemClick = {},
@@ -261,6 +262,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onSwitcherClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_tune_solid),
