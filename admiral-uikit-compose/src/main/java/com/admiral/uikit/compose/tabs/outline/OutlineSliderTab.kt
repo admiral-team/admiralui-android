@@ -202,13 +202,13 @@ private fun TabsList(
         mutableIntStateOf(selectedIndex ?: -1)
     }
 
-    LazyRow(
+    Row(
         modifier = modifier
             .fillMaxWidth()
             .horizontalScroll(rememberScrollState()),
         horizontalArrangement = Arrangement.spacedBy(DIMEN_X2),
     ) {
-        itemsIndexed(items) { index, tabItem ->
+        items.forEachIndexed { index, tabItem ->
             OutlineSliderTab(
                 isSelected = index == currentSelectedIndex,
                 tabText = tabItem.text,
