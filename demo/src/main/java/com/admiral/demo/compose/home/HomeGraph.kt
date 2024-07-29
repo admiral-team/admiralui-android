@@ -60,6 +60,8 @@ import com.admiral.demo.compose.home.informers.navigateToSmallInformersScreen
 import com.admiral.demo.compose.home.informers.smallInformersScreen
 import com.admiral.demo.compose.home.links.linkScreen
 import com.admiral.demo.compose.home.links.navigateToLinkScreen
+import com.admiral.demo.compose.home.radiobutton.navigateToRadioButtonScreen
+import com.admiral.demo.compose.home.radiobutton.radioButtonScreen
 import com.admiral.demo.compose.home.notifications.actionNotificationsScreen
 import com.admiral.demo.compose.home.notifications.navigateToActionNotificationsScreen
 import com.admiral.demo.compose.home.notifications.navigateToNotificationsScreen
@@ -143,6 +145,7 @@ fun NavGraphBuilder.homeGraph(
             onCellsClick = { navController.navigateToCellsScreen() },
             onCheckBoxClick = { navController.navigateToCheckBoxScreen() },
             onBadgesClick = { navController.navigateToBadgesScreen() },
+            onRadioButtonClick = { navController.navigateToRadioButtonScreen() },
             onPageControlClick = { navController.navigateToPageControlScreen() },
             onLinkClick = { navController.navigateToLinkScreen() },
             onInformersAndNotificationsClick = { navController.navigateToInformersAndNotificationsScreen() },
@@ -291,6 +294,7 @@ fun NavGraphBuilder.homeGraph(
         smallBadgesScreen(onBackClick = onBackClick)
         normalBadgesScreen(onBackClick = { navController.navigateBack() })
         smallBadgesScreen(onBackClick = { navController.navigateBack() })
+        radioButtonScreen(onBackClick = onBackClick)
         alertsOnboardingScreen(
             onAlertClicked = { navController.navigateToAlertScreenRoute() },
             onOnboardingClick = { navController.navigateToOnboardingScreenRoute() },
