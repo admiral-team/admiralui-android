@@ -36,6 +36,7 @@ internal fun MainScreen(
     onTagsClick: homeItemClick = {},
     onAlertsClick: homeItemClick = {},
     onTextBlocksClick: homeItemClick = {},
+    onSpinnerClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -293,6 +294,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onSpinnerClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_loader_solid),

@@ -68,6 +68,9 @@ import com.admiral.demo.compose.home.notifications.navigateToToastNotificationsS
 import com.admiral.demo.compose.home.notifications.notificationsScreen
 import com.admiral.demo.compose.home.notifications.staticNotificationsScreen
 import com.admiral.demo.compose.home.notifications.toastNotificationsScreen
+import com.admiral.demo.compose.home.spinner.SPINNER_SCREEN_ROUTE
+import com.admiral.demo.compose.home.spinner.navigateToSpinnerScreen
+import com.admiral.demo.compose.home.spinner.spinnerScreen
 import com.admiral.demo.compose.home.tabs.iconTabsScreen
 import com.admiral.demo.compose.home.tabs.informerTabsScreen
 import com.admiral.demo.compose.home.tabs.logoTabsScreen
@@ -149,6 +152,7 @@ fun NavGraphBuilder.homeGraph(
             onTagsClick = { navController.navigateToTagsScreen() },
             onAlertsClick = { navController.navigateToAlertsOnboardingScreenRoute() },
             onTextBlocksClick = { navController.navigateToTextBlocksScreen() },
+            onSpinnerClick = navController::navigateToSpinnerScreen
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -307,6 +311,7 @@ fun NavGraphBuilder.homeGraph(
         alertScreen { navController.navigateBack() }
         onboardingScreen { navController.navigateBack() }
         tagsScreen(onBackClick = { navController.navigateBack() })
+        spinnerScreen { navController.navigateBack() }
     }
 }
 
