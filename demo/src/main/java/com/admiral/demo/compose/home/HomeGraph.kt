@@ -60,6 +60,8 @@ import com.admiral.demo.compose.home.informers.navigateToSmallInformersScreen
 import com.admiral.demo.compose.home.informers.smallInformersScreen
 import com.admiral.demo.compose.home.links.linkScreen
 import com.admiral.demo.compose.home.links.navigateToLinkScreen
+import com.admiral.demo.compose.home.radiobutton.navigateToRadioButtonScreen
+import com.admiral.demo.compose.home.radiobutton.radioButtonScreen
 import com.admiral.demo.compose.home.notifications.actionNotificationsScreen
 import com.admiral.demo.compose.home.notifications.navigateToActionNotificationsScreen
 import com.admiral.demo.compose.home.notifications.navigateToNotificationsScreen
@@ -68,6 +70,10 @@ import com.admiral.demo.compose.home.notifications.navigateToToastNotificationsS
 import com.admiral.demo.compose.home.notifications.notificationsScreen
 import com.admiral.demo.compose.home.notifications.staticNotificationsScreen
 import com.admiral.demo.compose.home.notifications.toastNotificationsScreen
+import com.admiral.demo.compose.home.spinner.navigateToSpinnerScreen
+import com.admiral.demo.compose.home.spinner.spinnerScreen
+import com.admiral.demo.compose.home.switcher.navigateToSwitcherScreen
+import com.admiral.demo.compose.home.switcher.switcherScreen
 import com.admiral.demo.compose.home.tabs.iconTabsScreen
 import com.admiral.demo.compose.home.tabs.informerTabsScreen
 import com.admiral.demo.compose.home.tabs.logoTabsScreen
@@ -142,13 +148,16 @@ fun NavGraphBuilder.homeGraph(
             onTextFieldsClick = { navController.navigateToTextFieldsScreen() },
             onCellsClick = { navController.navigateToCellsScreen() },
             onCheckBoxClick = { navController.navigateToCheckBoxScreen() },
+            onSwitcherClick = { navController.navigateToSwitcherScreen() },
             onBadgesClick = { navController.navigateToBadgesScreen() },
+            onRadioButtonClick = { navController.navigateToRadioButtonScreen() },
             onPageControlClick = { navController.navigateToPageControlScreen() },
             onLinkClick = { navController.navigateToLinkScreen() },
             onInformersAndNotificationsClick = { navController.navigateToInformersAndNotificationsScreen() },
             onTagsClick = { navController.navigateToTagsScreen() },
             onAlertsClick = { navController.navigateToAlertsOnboardingScreenRoute() },
             onTextBlocksClick = { navController.navigateToTextBlocksScreen() },
+            onSpinnerClick = navController::navigateToSpinnerScreen
         )
         buttonsScreen(
             onPrimaryClick = { navController.navigateToPrimaryButtonsScreen() },
@@ -230,6 +239,7 @@ fun NavGraphBuilder.homeGraph(
         underlineTabsScreen(onBackClick = onBackClick)
         iconTabsScreen(onBackClick = onBackClick)
         checkBoxScreen(onBackClick = onBackClick)
+        switcherScreen(onBackClick = onBackClick)
         standardTabsScreen(
             onBackClick = { navController.navigateBack() }
         )
@@ -291,6 +301,7 @@ fun NavGraphBuilder.homeGraph(
         smallBadgesScreen(onBackClick = onBackClick)
         normalBadgesScreen(onBackClick = { navController.navigateBack() })
         smallBadgesScreen(onBackClick = { navController.navigateBack() })
+        radioButtonScreen(onBackClick = onBackClick)
         alertsOnboardingScreen(
             onAlertClicked = { navController.navigateToAlertScreenRoute() },
             onOnboardingClick = { navController.navigateToOnboardingScreenRoute() },
@@ -307,6 +318,7 @@ fun NavGraphBuilder.homeGraph(
         alertScreen { navController.navigateBack() }
         onboardingScreen { navController.navigateBack() }
         tagsScreen(onBackClick = { navController.navigateBack() })
+        spinnerScreen { navController.navigateBack() }
     }
 }
 

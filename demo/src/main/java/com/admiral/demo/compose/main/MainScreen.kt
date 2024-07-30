@@ -29,13 +29,16 @@ internal fun MainScreen(
     onTextFieldsClick: homeItemClick = {},
     onCellsClick: homeItemClick = {},
     onCheckBoxClick: homeItemClick = {},
+    onSwitcherClick: homeItemClick = {},
     onPageControlClick: homeItemClick = {},
     onLinkClick: homeItemClick = {},
     onBadgesClick: homeItemClick = {},
+    onRadioButtonClick: homeItemClick = {},
     onInformersAndNotificationsClick: homeItemClick = {},
     onTagsClick: homeItemClick = {},
     onAlertsClick: homeItemClick = {},
     onTextBlocksClick: homeItemClick = {},
+    onSpinnerClick: homeItemClick = {},
 ) {
     Scaffold { padding ->
         Column(
@@ -223,6 +226,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onRadioButtonClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_tune_solid),
@@ -258,6 +262,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onSwitcherClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_tune_solid),
@@ -293,6 +298,7 @@ internal fun MainScreen(
                 )
             )
             BaseCell(
+                onClick = onSpinnerClick,
                 children = listOf(
                     IconBackgroundCellUnit(
                         icon = painterResource(id = R.drawable.admiral_ic_loader_solid),

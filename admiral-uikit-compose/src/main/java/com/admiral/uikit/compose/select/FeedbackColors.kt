@@ -5,7 +5,6 @@ import androidx.compose.runtime.Immutable
 import androidx.compose.runtime.State
 import androidx.compose.runtime.rememberUpdatedState
 import androidx.compose.ui.graphics.Color
-import com.admiral.themes.compose.AdmiralTheme
 import com.admiral.themes.compose.AdmiralTheme.colors
 import com.admiral.themes.compose.withAlpha
 
@@ -25,16 +24,18 @@ data class FeedbackColors(
         rememberUpdatedState(if (enabled) iconTintSelectedEnabled else iconTintSelectedDisabled)
 }
 
-@Suppress("MagicNumber")
-@Composable
-fun feedbackColors(
-    iconTintNormalEnabled: Color = colors.elementAdditional,
-    iconTintNormalDisabled: Color = colors.elementAdditional,
-    iconTintSelectedEnabled: Color = colors.elementAccent,
-    iconTintSelectedDisabled: Color = colors.elementAccent.withAlpha()
-): FeedbackColors = FeedbackColors(
-    iconTintNormalEnabled = iconTintNormalEnabled,
-    iconTintNormalDisabled = iconTintNormalDisabled,
-    iconTintSelectedEnabled = iconTintSelectedEnabled,
-    iconTintSelectedDisabled = iconTintSelectedDisabled
-)
+object AdmiralFeedbackColors {
+    @Suppress("MagicNumber")
+    @Composable
+    fun default(
+        iconTintNormalEnabled: Color = colors.elementAdditional,
+        iconTintNormalDisabled: Color = colors.elementAdditional,
+        iconTintSelectedEnabled: Color = colors.elementAccent,
+        iconTintSelectedDisabled: Color = colors.elementAccent.withAlpha()
+    ): FeedbackColors = FeedbackColors(
+        iconTintNormalEnabled = iconTintNormalEnabled,
+        iconTintNormalDisabled = iconTintNormalDisabled,
+        iconTintSelectedEnabled = iconTintSelectedEnabled,
+        iconTintSelectedDisabled = iconTintSelectedDisabled
+    )
+}

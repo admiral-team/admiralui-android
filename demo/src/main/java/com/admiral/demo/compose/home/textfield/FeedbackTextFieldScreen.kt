@@ -8,8 +8,11 @@ import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.mutableIntStateOf
 import androidx.compose.runtime.mutableStateOf
 import androidx.compose.runtime.remember
+import androidx.compose.runtime.setValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.res.painterResource
@@ -22,14 +25,16 @@ import com.admiral.uikit.compose.select.Feedback
 import com.admiral.uikit.compose.tabs.StandardTab
 import com.admiral.uikit.compose.util.DIMEN_X4
 import com.admiral.uikit.compose.util.DIMEN_X6
+import com.admiral.uikit.compose.util.DIMEN_X7
 
 @Composable
 @Suppress("LongMethod")
 fun FeedbackTextFieldScreen(
     onBackClick: () -> Unit = {}
 ) {
-    val (isEnabled, setValue) = remember { mutableStateOf(true) }
-    val (rating, setRating) = remember { mutableStateOf(1) }
+    var isEnabled by remember { mutableStateOf(true) }
+    var rating by remember { mutableIntStateOf(1) }
+
     Scaffold(
         backgroundColor = AdmiralTheme.colors.backgroundBasic,
         topBar = {
@@ -54,14 +59,18 @@ fun FeedbackTextFieldScreen(
                 ),
                 selectedIndex = 0,
                 onCheckedChange = {
-                    setValue(it == 0)
+                    isEnabled = it == 0
                 }
             )
             Spacer(modifier = Modifier.size(DIMEN_X6))
             Feedback(
                 isEnabled = isEnabled,
                 rating = rating,
-                onValueChange = { newValue -> setRating(newValue) })
+                iconSize = DIMEN_X7,
+                onValueChanged = { newValue ->
+                    rating = newValue
+                }
+            )
         }
     }
 }
@@ -69,5 +78,7 @@ fun FeedbackTextFieldScreen(
 @Preview
 @Composable
 fun FeedbackTextFieldScreenPreview() {
-    FeedbackTextFieldScreen()
+    AdmiralTheme {
+        FeedbackTextFieldScreen()
+    }
 }

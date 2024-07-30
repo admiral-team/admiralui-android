@@ -12,13 +12,16 @@ internal fun NavGraphBuilder.mainScreen(
     onTextFieldsClick: () -> Unit,
     onCellsClick: () -> Unit,
     onCheckBoxClick: () -> Unit,
+    onSwitcherClick: () -> Unit,
     onBadgesClick: () -> Unit,
+    onRadioButtonClick: () -> Unit,
     onLinkClick: () -> Unit,
     onPageControlClick: () -> Unit,
     onInformersAndNotificationsClick: () -> Unit,
     onTagsClick: () -> Unit,
     onTextBlocksClick: () -> Unit,
     onAlertsClick: () -> Unit,
+    onSpinnerClick: () -> Unit,
 ) {
     composable(route = MAIN_ROUTE) {
         MainScreen(
@@ -27,13 +30,16 @@ internal fun NavGraphBuilder.mainScreen(
             onTextFieldsClick = onTextFieldsClick,
             onCellsClick = onCellsClick,
             onCheckBoxClick = onCheckBoxClick,
+            onSwitcherClick = onSwitcherClick,
             onBadgesClick = onBadgesClick,
+            onRadioButtonClick = onRadioButtonClick,
             onLinkClick = onLinkClick,
             onPageControlClick = onPageControlClick,
             onInformersAndNotificationsClick = onInformersAndNotificationsClick,
             onAlertsClick = onAlertsClick,
             onTextBlocksClick = onTextBlocksClick,
             onTagsClick = onTagsClick,
+            onSpinnerClick = onSpinnerClick
         )
     }
 }
