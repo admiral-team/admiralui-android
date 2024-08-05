@@ -43,6 +43,7 @@ import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.doOnPreDrawOnce
+import com.admiral.uikit.ext.dpToPx
 import com.admiral.uikit.ext.drawable
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
@@ -63,6 +64,7 @@ import android.widget.LinearLayout.LayoutParams as LinearLayoutParams
 /**
  * Replacement of TextFieldInputLayout and TextInputEditText.
  */
+@Suppress("LargeClass")
 class TextField @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -257,6 +259,7 @@ class TextField @JvmOverloads constructor(
      */
     var isEditEnabled: Boolean = true
         set(value) {
+            field = value
             handleEditStatus(value)
         }
 
@@ -667,13 +670,7 @@ class TextField @JvmOverloads constructor(
         editText.isLongClickable = isEditEnabled
         editText.isCursorVisible = isEditEnabled
 
-        currentUnderlineDrawable = if (isEditEnabled) {
-            ContextCompat.getDrawable(context, R.drawable.admiral_line)
-        } else {
-            ContextCompat.getDrawable(context, R.drawable.admiral_dotted_line)
-        }
-        dividerView.background = currentUnderlineDrawable
-
+        invalidateDividerShape()
         ellipsize(isEditEnabled)
     }
 
@@ -811,6 +808,29 @@ class TextField @JvmOverloads constructor(
         dividerView.backgroundTintList = ColorStateList.valueOf(dividerColor)
     }
 
+    private fun invalidateDividerShape() {
+        val layoutParams = dividerView.layoutParams.apply {
+            height = textFieldStyle.dividerHeight.dpToPx(context)
+        }
+        dividerView.layoutParams = layoutParams
+
+        currentUnderlineDrawable = if (isEditEnabled) {
+            if (textFieldStyle == TextFieldStyle.Extended) {
+                ContextCompat.getDrawable(context, R.drawable.admiral_line)
+            } else {
+                ContextCompat.getDrawable(context, R.drawable.admiral_line_2dp)
+            }
+        } else {
+            if (textFieldStyle == TextFieldStyle.Clipped) {
+                ContextCompat.getDrawable(context, R.drawable.admiral_dotted_line)
+
+            } else {
+                ContextCompat.getDrawable(context, R.drawable.admiral_dotted_line_2dp)
+            }
+        }
+        dividerView.background = currentUnderlineDrawable
+    }
+
     private fun invalidateCursorColor() {
         editText.highlightColor = ThemeManager.theme.palette.backgroundAccent.withAlpha()
 
@@ -838,14 +858,6 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun invalidateIcon() {
-        val topMargin = pixels(
-            when {
-                textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x3
-                iconBackgroundColor == Color.TRANSPARENT -> R.dimen.module_x4
-                else -> R.dimen.module_x4
-            }
-        )
-
         val size = pixels(
             when {
                 textFieldStyle == TextFieldStyle.Clipped -> R.dimen.module_x7
@@ -868,10 +880,6 @@ class TextField @JvmOverloads constructor(
             width = size
             height = size
         }
-
-        mainContentContainer.updateLayoutParams<LayoutParams> {
-            setMargins(0, topMargin, 0, 0)
-        }
     }
 
     private fun invalidateStyle() {
@@ -889,8 +897,7 @@ class TextField @JvmOverloads constructor(
     }
 
     private fun invalidateTextHint() {
-        inputLayout.isHintEnabled =
-            textFieldStyle != TextFieldStyle.Clipped && !optionalText.isNullOrEmpty()
+        inputLayout.isHintEnabled = !optionalText.isNullOrEmpty()
         inputLayout.hint = optionalText
     }
 
