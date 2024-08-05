@@ -14,7 +14,7 @@ sealed class TextFieldStyle(
     @DimenRes val paddingLeft: Int,
     @DimenRes val paddingRight: Int,
     @DimenRes val additionalTextPadding: Int,
-    @DimenRes val dividerHeight: Int,
+    val dividerHeight: Double,
     val textStyle: Font,
     val additionalTextGravity: TextGravity
 ) {
@@ -28,7 +28,7 @@ sealed class TextFieldStyle(
         paddingLeft = R.dimen.module_x4,
         paddingRight = R.dimen.module_x4,
         additionalTextPadding = R.dimen.module_x2,
-        dividerHeight = R.dimen.admiral_text_field_divider_height_extended,
+        dividerHeight = 1.0,
         textStyle = ThemeManager.theme.typography.body1,
         additionalTextGravity = TextGravity.Start
     )
@@ -42,7 +42,7 @@ sealed class TextFieldStyle(
         paddingLeft = R.dimen.module_x10,
         paddingRight = R.dimen.module_x10,
         additionalTextPadding = R.dimen.module_x1,
-        dividerHeight = R.dimen.admiral_text_field_divider_height_clipped,
+        dividerHeight = 3.0,
         textStyle = ThemeManager.theme.typography.title2,
         additionalTextGravity = TextGravity.Center
     )
