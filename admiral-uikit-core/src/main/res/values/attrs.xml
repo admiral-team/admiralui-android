@@ -400,6 +400,7 @@
         <attr name="admiralImageTintColorNormalDisabled" format="color|reference" />
 
         <attr name="admiralIconColorNormalEnabledPalette" />
+        <attr name="admiralIconIsColored" format="boolean" />
     </declare-styleable>
 
     <declare-styleable name="LinearLayout">

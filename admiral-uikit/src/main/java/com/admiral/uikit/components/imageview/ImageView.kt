@@ -64,6 +64,7 @@ open class ImageView @JvmOverloads constructor(
             imageColorNormalEnabledPalette = ColorPaletteEnum.from(
                 it.getIntOrNull(R.styleable.ImageView_admiralIconColorNormalEnabledPalette)
             )
+            isColored = it.getBoolean(R.styleable.ImageView_admiralIconIsColored, true)
         }
     }
 
