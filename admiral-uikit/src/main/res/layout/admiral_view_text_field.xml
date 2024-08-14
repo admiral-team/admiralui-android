@@ -40,11 +40,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
+        android:layout_marginBottom="@dimen/module_x1"
         android:gravity="bottom"
         app:admiralBackgroundIsTransparent="true"
+        app:layout_constraintBottom_toTopOf="@id/dividerView"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@id/inputLayout"
-        app:layout_constraintTop_toTopOf="parent">
+        app:layout_constraintStart_toEndOf="@id/inputLayout">
 
         <com.admiral.uikit.components.imageview.ImageView
             android:id="@+id/iconCloseImageView"
