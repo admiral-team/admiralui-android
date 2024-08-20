@@ -248,6 +248,8 @@
         <attr name="admiralTitleColorNormalEnabled" />
 
         <attr name="admiralMenuText" format="string|reference" />
+        <attr name="admiralIsMenuEnabled" format="boolean" />
+        <attr name="admiralIsMenuVisible" format="boolean" />
         <attr name="admiralMenuTextColorNormalEnabled" format="string|reference" />
 
         <attr name="admiralIsBackButtonEnabled" format="boolean" />
