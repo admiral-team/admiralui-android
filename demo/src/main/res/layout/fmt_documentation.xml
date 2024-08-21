@@ -4,11 +4,6 @@
     android:layout_height="match_parent"
     android:orientation="vertical">
 
-    <com.github.barteksc.pdfviewer.PDFView
-        android:id="@+id/pdfView"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent" />
-
     <com.admiral.uikit.components.spinner.Spinner
         android:id="@+id/spinnerDocumentation"
         android:layout_width="wrap_content"

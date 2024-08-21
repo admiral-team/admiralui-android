@@ -2,7 +2,6 @@ package com.admiral.demo.features.info
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.view.isVisible
 import by.kirich1409.viewbindingdelegate.viewBinding
 import com.admiral.demo.R
 import com.admiral.demo.common.BaseFragment
@@ -16,11 +15,7 @@ class DocumentationFragment : BaseFragment(R.layout.fmt_documentation) {
         super.onViewCreated(view, savedInstanceState)
 
         with(binding) {
-            pdfView.fromAsset(DOCUMENTATION_NAME)
-                .onLoad {
-                    spinnerDocumentation.isVisible = false
-                }
-                .load()
+
         }
     }
 

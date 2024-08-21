@@ -30,6 +30,8 @@ import com.admiral.uikit.components.button.Button
 import com.admiral.uikit.components.cell.unit.IconCellUnit
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.components.textfield.TextFieldSearch
+import com.admiral.uikit.core.components.appbar.AppbarSize
+import com.admiral.uikit.core.components.appbar.AppbarType
 import com.admiral.uikit.core.components.button.ButtonSize
 import com.admiral.uikit.core.components.button.ButtonStyle
 import com.admiral.uikit.core.ext.withAlpha
@@ -43,8 +45,6 @@ import com.admiral.uikit.ext.getIntOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.setMargins
 import kotlinx.coroutines.flow.StateFlow
-import com.admiral.uikit.core.components.appbar.AppbarSize
-import com.admiral.uikit.core.components.appbar.AppbarType
 
 class Appbar @JvmOverloads constructor(
     context: Context,
@@ -113,7 +113,7 @@ class Appbar @JvmOverloads constructor(
     /**
      * TextView shown at the right of the app bar.
      */
-    private val buttonMenu = Button(context).apply {
+    val buttonMenu = Button(context).apply {
         buttonSize = ButtonSize.Small
         buttonStyle = ButtonStyle.Ghost
         layoutParams =
@@ -184,6 +184,26 @@ class Appbar @JvmOverloads constructor(
         }
         get() {
             return buttonMenu.text.toString()
+        }
+
+    /**
+     * Handle is [buttonMenu] enabled or not.
+     * Can be set via xml attribute.
+     */
+    var isMenuEnabled: Boolean = true
+        set(value) {
+            field = value
+            buttonMenu.isEnabled = value
+        }
+
+    /**
+     * Handle is [buttonMenu] visibility.
+     * Can be set via xml attribute.
+     */
+    var isMenuVisible: Boolean = true
+        set(value) {
+            field = value
+            buttonMenu.isVisible = value
         }
 
     /**
@@ -363,6 +383,8 @@ class Appbar @JvmOverloads constructor(
 
             titleText = it.getString(R.styleable.Appbar_admiralTitleText) ?: " "
             menuText = it.getString(R.styleable.Appbar_admiralMenuText) ?: ""
+            isMenuEnabled = it.getBoolean(R.styleable.Appbar_admiralIsMenuEnabled, true)
+            isMenuVisible = it.getBoolean(R.styleable.Appbar_admiralIsMenuVisible, true)
 
             isBackButtonEnabled = it.getBoolean(R.styleable.Appbar_admiralIsBackButtonEnabled, true)
             backButtonIcon = it.getDrawable(R.styleable.Appbar_admiralBackButtonIcon)
