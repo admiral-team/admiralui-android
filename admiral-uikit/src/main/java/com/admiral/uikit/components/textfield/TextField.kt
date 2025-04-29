@@ -578,9 +578,7 @@ class TextField @JvmOverloads constructor(
     }
 
     fun addBottomView(view: View) {
-        val params = LayoutParams(
-            LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT
-        )
+        val params = LayoutParams(LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT)
         view.layoutParams = params
 
         bottomContentContainer.isVisible = true

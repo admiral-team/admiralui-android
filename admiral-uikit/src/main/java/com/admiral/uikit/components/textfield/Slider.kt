@@ -28,11 +28,14 @@ import com.admiral.uikit.databinding.AdmiralViewSliderBinding
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.dpToPx
+import com.admiral.uikit.ext.formatMoney
+import com.admiral.uikit.ext.formatStringToFloat
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.showKeyboard
 import com.admiral.uikit.ext.setSelectionEnd
+import java.util.Locale
 import com.google.android.material.slider.Slider as MaterialSlider
 
 /**
@@ -47,6 +50,7 @@ class Slider @JvmOverloads constructor(
 
     private val focusChangeListeners = mutableListOf<OnFocusChangeListener>()
     private var isNowFocused = false
+    private val localeDefault = Locale.getDefault()
 
     // region public fields
     /**
@@ -363,7 +367,7 @@ class Slider @JvmOverloads constructor(
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         val text = editText.text.toString()
-                        val newValue = if (text.isNotBlank()) text.toFloat() else null
+                        val newValue = if (text.isNotBlank()) text.formatStringToFloat() else null
                         with(materialSlider) {
                             if (newValue != null && newValue in valueFrom..valueTo) {
                                 value = newValue
@@ -386,9 +390,12 @@ class Slider @JvmOverloads constructor(
 
     private fun updateEditTextValue() {
         val value = binding.materialSlider.value.toInt().toString()
+        val formatValue = formatMoney(
+            money = binding.materialSlider.value,
+            locale = Pair(localeDefault.language, localeDefault.country)
+        )
         if (editText.text.toString() != value) {
-            editText.setText(value)
-            editText.requestFocus()
+            editText.setText(formatValue)
             editText.setSelectionEnd()
         }
     }
@@ -463,6 +470,7 @@ class Slider @JvmOverloads constructor(
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         binding.additionalTextView.textColor = ColorState(additionalTextColor)
@@ -474,6 +482,7 @@ class Slider @JvmOverloads constructor(
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
 
@@ -486,8 +495,9 @@ class Slider @JvmOverloads constructor(
     }
 
     private fun invalidateRangeTextsColor() {
-        val colorStateList: ColorStateList = ColorStateList.valueOf((textColors?.normalEnabled
-            ?: ThemeManager.theme.palette.textSecondary).let { if (isEnabled) it else it.withAlpha() })
+        val colorStateList: ColorStateList = ColorStateList.valueOf(
+            (textColors?.normalEnabled
+                ?: ThemeManager.theme.palette.textSecondary).let { if (isEnabled) it else it.withAlpha() })
 
         binding.leftTextView.setTextColor(colorStateList)
         binding.rightTextView.setTextColor(colorStateList)
@@ -510,19 +520,25 @@ class Slider @JvmOverloads constructor(
     }
 
     private fun invalidateValueFrom() {
-        if (binding.materialSlider.value < valueFrom) {
-            binding.materialSlider.value = valueFrom
-        }
-        binding.materialSlider.valueFrom = valueFrom
-        leftText = valueFrom.toInt().toString()
+        invalidateValues()
+        leftText = formatMoney(
+            money = valueFrom,
+            locale = Pair(localeDefault.language, localeDefault.country)
+        )
     }
 
     private fun invalidateValueTo() {
-        if (binding.materialSlider.value > valueTo) {
-            binding.materialSlider.value = valueFrom
-        }
+        invalidateValues()
+        rightText = formatMoney(
+            money = valueTo,
+            locale = Pair(localeDefault.language, localeDefault.country)
+        )
+    }
+
+    private fun invalidateValues() {
+        binding.materialSlider.value = valueFrom
         binding.materialSlider.valueTo = valueTo
-        rightText = valueTo.toInt().toString()
+        binding.materialSlider.valueFrom = valueFrom
     }
     // endregion
 
