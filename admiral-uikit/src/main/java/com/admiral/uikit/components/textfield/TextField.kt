@@ -36,6 +36,7 @@ import com.admiral.themes.ThemeObserver
 import com.admiral.themes.Typography
 import com.admiral.uikit.R
 import com.admiral.uikit.components.imageview.ImageView
+import com.admiral.uikit.components.informer.InformerSmall
 import com.admiral.uikit.components.text.TextView
 import com.admiral.uikit.core.ext.withAlpha
 import com.admiral.uikit.core.foundation.ColorState
@@ -224,6 +225,10 @@ class TextField @JvmOverloads constructor(
             invalidateIconColors()
         }
 
+    /** Standard [InformerSmall] for showing hint text */
+    val informer: InformerSmall
+        get() = admiralTextFieldInformer
+
     /**
      * Enable or disable error state.
      */
@@ -281,6 +286,12 @@ class TextField @JvmOverloads constructor(
         set(value) {
             field = value
             invalidatePasswordIcon()
+        }
+
+    /** Variable that holds if [InformerSmall] is visible */
+    val isInformerVisible: Boolean
+        get() {
+            return informer.isVisible
         }
 
     /**
@@ -412,6 +423,7 @@ class TextField @JvmOverloads constructor(
     private val iconCloseImageView: ImageView by lazy { findViewById(R.id.iconCloseImageView) }
     private val additionalTextView: TextView by lazy { findViewById(R.id.additionalTextView) }
     private val dividerView: View by lazy { findViewById(R.id.dividerView) }
+    private val admiralTextFieldInformer: InformerSmall by lazy { findViewById(R.id.admiralTextFieldInformer) }
 
     private val focusChangeListeners = mutableListOf<OnFocusChangeListener>()
     private var isNowFocused = false
@@ -475,6 +487,17 @@ class TextField @JvmOverloads constructor(
 
         this.inputText = inputText
         shouldEmitFlow = true
+    }
+
+    /** Show an informer with given text */
+    fun showInformer(informerText: String) {
+        informer.info = informerText
+        informer.isVisible = true
+    }
+
+    /**  Hide the informer  */
+    fun hideInformer() {
+        informer.isVisible = false
     }
 
     override fun onAttachedToWindow() {
