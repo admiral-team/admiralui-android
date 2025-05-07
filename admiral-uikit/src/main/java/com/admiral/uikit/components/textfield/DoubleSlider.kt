@@ -26,12 +26,15 @@ import com.admiral.uikit.databinding.AdmiralViewSliderDoubleBinding
 import com.admiral.uikit.ext.applyStyle
 import com.admiral.uikit.ext.colorStateList
 import com.admiral.uikit.ext.dpToPx
+import com.admiral.uikit.ext.formatMoney
+import com.admiral.uikit.ext.formatStringToFloat
 import com.admiral.uikit.ext.getColorOrNull
 import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.ext.setSelectionEnd
 import com.admiral.uikit.ext.showKeyboard
 import com.google.android.material.slider.RangeSlider
+import java.util.Locale
 
 /**
  * Slider view with two inputs.
@@ -47,6 +50,7 @@ class DoubleSlider @JvmOverloads constructor(
 
     private val focusChangeListeners = mutableListOf<OnFocusChangeListener>()
     private var isNowFocused = false
+    private val localeDefault = Locale.getDefault()
 
     // region public fields
     /**
@@ -194,6 +198,9 @@ class DoubleSlider @JvmOverloads constructor(
             field = value
             invalidateColors()
         }
+
+    /** Enabled default formatter for money */
+    var isDefaultFormatter: Boolean = false
 
     /**
      * Standard [EditText] for settings filters, formatter, etc.
@@ -373,7 +380,7 @@ class DoubleSlider @JvmOverloads constructor(
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         val text = editText.text.toString()
-                        val newValue = if (text.isNotBlank()) text.toFloat() else null
+                        val newValue = if (text.isNotBlank()) text.formatStringToFloat() else null
                         with(rangeSlider) {
                             val second = values.last()
                             if (newValue != null && newValue in valueFrom..valueTo && newValue <= second) {
@@ -400,7 +407,7 @@ class DoubleSlider @JvmOverloads constructor(
                 setOnEditorActionListener { _, actionId, _ ->
                     if (actionId == EditorInfo.IME_ACTION_DONE) {
                         val text = editTextTo.text.toString()
-                        val newValue = if (text.isNotBlank()) text.toFloat() else null
+                        val newValue = if (text.isNotBlank()) text.formatStringToFloat() else null
                         with(rangeSlider) {
                             val first = values.first()
                             if (newValue != null && newValue in valueFrom..valueTo && newValue >= first) {
@@ -426,11 +433,21 @@ class DoubleSlider @JvmOverloads constructor(
         val first = binding.rangeSlider.values.first().toInt().toString()
         val second = binding.rangeSlider.values.last().toInt().toString()
         if (editText.text.toString() != first) {
-            editText.setText(first)
+            editText.setText(
+                formatMoney(
+                    money = binding.rangeSlider.values.first(),
+                    locale = Pair(localeDefault.language, localeDefault.country)
+                )
+            )
             editText.setSelectionEnd()
         }
         if (editTextTo.text.toString() != second) {
-            editTextTo.setText(second)
+            editTextTo.setText(
+                formatMoney(
+                    money = binding.rangeSlider.values.last(),
+                    locale = Pair(localeDefault.language, localeDefault.country)
+                )
+            )
             editTextTo.setSelectionEnd()
         }
     }
@@ -470,7 +487,8 @@ class DoubleSlider @JvmOverloads constructor(
         icon = a.getDrawable(R.styleable.DoubleSlider_admiralIcon)
 
         if (a.hasValue(R.styleable.DoubleSlider_admiralIconTintColor)) {
-            iconTintColor = a.getColor(R.styleable.DoubleSlider_admiralIconTintColor, Color.TRANSPARENT)
+            iconTintColor =
+                a.getColor(R.styleable.DoubleSlider_admiralIconTintColor, Color.TRANSPARENT)
         }
     }
 
@@ -514,6 +532,7 @@ class DoubleSlider @JvmOverloads constructor(
             isNowFocused -> textColors?.focused ?: ThemeManager.theme.palette.textAccent
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         val placeholderTextColorStateList =
@@ -525,6 +544,7 @@ class DoubleSlider @JvmOverloads constructor(
             isError -> errorColor ?: ThemeManager.theme.palette.textError
             !isEnabled -> textColors?.normalDisabled
                 ?: ThemeManager.theme.palette.textSecondary.withAlpha()
+
             else -> textColors?.normalEnabled ?: ThemeManager.theme.palette.textSecondary
         }
         binding.additionalTextView.setTextColor(additionalTextColor)
@@ -551,7 +571,10 @@ class DoubleSlider @JvmOverloads constructor(
         with(binding) {
             rangeSlider.values = listOf(valueFrom, valueTo)
             rangeSlider.valueFrom = valueFrom
-            leftText = valueFrom.toInt().toString()
+            leftText = formatMoney(
+                money = valueFrom,
+                locale = Pair(localeDefault.language, localeDefault.country)
+            )
         }
     }
 
@@ -559,10 +582,12 @@ class DoubleSlider @JvmOverloads constructor(
         with(binding) {
             rangeSlider.values = listOf(valueFrom, valueTo)
             rangeSlider.valueTo = valueTo
-            rightText = valueTo.toInt().toString()
+            rightText = formatMoney(
+                money = valueTo,
+                locale = Pair(localeDefault.language, localeDefault.country)
+            )
         }
     }
-    // endregion
 
     interface OnValueChangeListener {
         fun onValueChange(slider: RangeSlider, value: Float, fromUser: Boolean)
