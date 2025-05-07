@@ -61,6 +61,19 @@
             android:src="@drawable/admiral_ic_archive_solid" />
     </com.admiral.uikit.layout.LinearLayout>
 
+    <com.admiral.uikit.components.informer.InformerSmall
+        android:id="@+id/admiralTextFieldInformer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:elevation="@dimen/module_x1"
+        android:visibility="gone"
+        app:admiralPointerBias="0.95"
+        app:layout_constraintEnd_toEndOf="@id/admiralViewTextFieldRightViews"
+        app:layout_constraintTop_toBottomOf="@id/admiralViewTextFieldRightViews"
+        tools:admiralInfoText="Text Informer About Krokodilo"
+        tools:admiralInformerStyle="attention"
+        tools:visibility="visible" />
+
     <View
         android:id="@+id/dividerView"
         android:layout_width="match_parent"
