@@ -5,6 +5,9 @@ import android.database.DataSetObserver
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
+import android.graphics.drawable.GradientDrawable
+import android.os.Build
+import androidx.annotation.RequiresApi
 import androidx.core.view.children
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
@@ -18,9 +21,12 @@ import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
+import com.admiral.uikit.ext.getColorOrNull
+import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
 
+@RequiresApi(Build.VERSION_CODES.S)
 class StandardTabs @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
@@ -28,17 +34,16 @@ class StandardTabs @JvmOverloads constructor(
 ) : CheckableGroup(context, attrs, defStyleAttr), ThemeObserver {
 
     private var tabConfigurationStrategy: TabConfigurationStrategy? = null
+    private var customBackgroundColor: Int? = null
 
     init {
-        updatePadding(
-            left = context.pixels(R.dimen.module_x4),
-            top = context.pixels(R.dimen.module_x2),
-            right = context.pixels(R.dimen.module_x4),
-            bottom = context.pixels(R.dimen.module_x2)
-        )
+        updatePadding(left = 0, top = 0, right = 0, bottom = 0)
 
         orientation = HORIZONTAL
 
+        parseAttrs(attrs, R.styleable.StandardTabs).use { typedArray ->
+            customBackgroundColor = typedArray.getColorOrNull(R.styleable.StandardTabs_admiralBackgroundColor)
+        }
         onThemeChanged(ThemeManager.theme)
     }
 
@@ -74,8 +79,26 @@ class StandardTabs @JvmOverloads constructor(
     }
 
     override fun onThemeChanged(theme: Theme) {
-        background =
-            drawable(R.drawable.admiral_bg_checkable_group)?.colored(theme.palette.elementAdditional)
+        applyBackground(theme)
+    }
+
+    private fun applyBackground(theme: Theme) {
+        val bgColor = customBackgroundColor
+        if (bgColor != null) {
+            val density = resources.displayMetrics.density
+            val cornerRadiusPx = 8f * density
+            val strokeWidthPx = (1f * density).toInt()
+
+            background = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = cornerRadiusPx
+                setColor(bgColor)
+                setStroke(strokeWidthPx, theme.palette.elementAdditional)
+            }
+        } else {
+            background =
+                drawable(R.drawable.admiral_bg_checkable_group)?.colored(theme.palette.elementAdditional)
+        }
     }
 
     override fun setCheckedId(id: Int, isChecked: Boolean) {
