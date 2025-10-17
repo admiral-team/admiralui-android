@@ -17,9 +17,9 @@ open class TextFieldInputLayout @JvmOverloads constructor(
         return if (editText != null) {
             editText?.let {
                 measuredHeight - (it.measuredHeight - it.baseline - it.paddingTop)
-            } ?: super.baseline
+            } ?: super.getBaseline()
         } else {
-            super.baseline
+            super.getBaseline()
         }
     }
 }

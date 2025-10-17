@@ -6,8 +6,6 @@ import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
 import android.graphics.drawable.GradientDrawable
-import android.os.Build
-import androidx.annotation.RequiresApi
 import androidx.core.view.children
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
@@ -26,7 +24,6 @@ import com.admiral.uikit.ext.parseAttrs
 import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
 
-@RequiresApi(Build.VERSION_CODES.S)
 class StandardTabs @JvmOverloads constructor(
     context: Context,
     attrs: AttributeSet? = null,
