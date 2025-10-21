@@ -145,6 +145,10 @@
         <attr name="admiralIsBadgeEnabled" />
     </declare-styleable>
 
+    <declare-styleable name="StandardTabs" parent="GlobalAttrDeclare">
+        <attr name="admiralBackgroundColor" format="reference|color" />
+    </declare-styleable>
+
     <declare-styleable name="Stepper" parent="Tab">
         <attr name="admiralTitleText" />
         <attr name="admiralSubtitleText" />
