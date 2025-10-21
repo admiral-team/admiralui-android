@@ -13,15 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
+import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
-import com.admiral.uikit.ext.getColorOrNull
-import com.admiral.uikit.ext.parseAttrs
-import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
 
 class StandardTabs @JvmOverloads constructor(
@@ -31,16 +29,11 @@ class StandardTabs @JvmOverloads constructor(
 ) : CheckableGroup(context, attrs, defStyleAttr), ThemeObserver {
 
     private var tabConfigurationStrategy: TabConfigurationStrategy? = null
-    private var customBackgroundColor: Int? = null
 
     init {
         updatePadding(left = 0, top = 0, right = 0, bottom = 0)
-
         orientation = HORIZONTAL
 
-        parseAttrs(attrs, R.styleable.StandardTabs).use { typedArray ->
-            customBackgroundColor = typedArray.getColorOrNull(R.styleable.StandardTabs_admiralBackgroundColor)
-        }
         onThemeChanged(ThemeManager.theme)
     }
 
@@ -80,7 +73,7 @@ class StandardTabs @JvmOverloads constructor(
     }
 
     private fun applyBackground(theme: Theme) {
-        val bgColor = customBackgroundColor
+        val bgColor = backgroundColorNormalEnabledPalette.colorResToToken()
         if (bgColor != null) {
             val density = resources.displayMetrics.density
             val cornerRadiusPx = 8f * density

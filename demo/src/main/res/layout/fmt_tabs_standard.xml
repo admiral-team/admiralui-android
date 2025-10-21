@@ -201,7 +201,7 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="@dimen/module_x4"
             android:layout_marginTop="@dimen/module_x10"
-            android:text="Background color"
+            android:text="Background color (palette)"
             app:admiralTextColorNormalEnabled="@color/grey_40"
             app:admiralTextStyle="headline" />
 
@@ -210,7 +210,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginTop="@dimen/module_x5"
-            app:admiralBackgroundColor="#FFF0D9"
+            app:admiralBackgroundColorNormalEnabledPalette="backgroundAdditionalTwo"
             app:checkedId="@+id/tabsColoredOne">
 
             <com.admiral.uikit.components.tabs.StandardTab
