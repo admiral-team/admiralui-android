@@ -30,12 +30,14 @@ class StandardTabsFragment : BaseFragment(
                         binding.tabsThree.isEnabled = true
                         binding.tabsFour.isEnabled = true
                         binding.tabsFive.isEnabled = true
+                        binding.tabsColored.isEnabled = true
                     }
                     R.id.disabledTab -> {
                         binding.tabsTwo.isEnabled = false
                         binding.tabsThree.isEnabled = false
                         binding.tabsFour.isEnabled = false
                         binding.tabsFive.isEnabled = false
+                        binding.tabsColored.isEnabled = false
                     }
                 }
             }

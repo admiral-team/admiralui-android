@@ -5,6 +5,7 @@ import android.database.DataSetObserver
 import android.util.AttributeSet
 import android.view.View
 import android.view.ViewGroup
+import android.graphics.drawable.GradientDrawable
 import androidx.core.view.children
 import androidx.core.view.updateLayoutParams
 import androidx.core.view.updatePadding
@@ -12,13 +13,13 @@ import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.PagerAdapter
 import androidx.viewpager.widget.ViewPager
 import androidx.viewpager2.widget.ViewPager2
+import com.admiral.themes.ColorPaletteEnum.Companion.colorResToToken
 import com.admiral.themes.Theme
 import com.admiral.themes.ThemeManager
 import com.admiral.themes.ThemeObserver
 import com.admiral.uikit.R
 import com.admiral.uikit.ext.colored
 import com.admiral.uikit.ext.drawable
-import com.admiral.uikit.ext.pixels
 import com.admiral.uikit.view.checkable.CheckableGroup
 
 class StandardTabs @JvmOverloads constructor(
@@ -30,13 +31,7 @@ class StandardTabs @JvmOverloads constructor(
     private var tabConfigurationStrategy: TabConfigurationStrategy? = null
 
     init {
-        updatePadding(
-            left = context.pixels(R.dimen.module_x4),
-            top = context.pixels(R.dimen.module_x2),
-            right = context.pixels(R.dimen.module_x4),
-            bottom = context.pixels(R.dimen.module_x2)
-        )
-
+        updatePadding(left = 0, top = 0, right = 0, bottom = 0)
         orientation = HORIZONTAL
 
         onThemeChanged(ThemeManager.theme)
@@ -74,8 +69,26 @@ class StandardTabs @JvmOverloads constructor(
     }
 
     override fun onThemeChanged(theme: Theme) {
-        background =
-            drawable(R.drawable.admiral_bg_checkable_group)?.colored(theme.palette.elementAdditional)
+        applyBackground(theme)
+    }
+
+    private fun applyBackground(theme: Theme) {
+        val bgColor = backgroundColorNormalEnabledPalette.colorResToToken()
+        if (bgColor != null) {
+            val density = resources.displayMetrics.density
+            val cornerRadiusPx = 8f * density
+            val strokeWidthPx = (1f * density).toInt()
+
+            background = GradientDrawable().apply {
+                shape = GradientDrawable.RECTANGLE
+                cornerRadius = cornerRadiusPx
+                setColor(bgColor)
+                setStroke(strokeWidthPx, theme.palette.elementAdditional)
+            }
+        } else {
+            background =
+                drawable(R.drawable.admiral_bg_checkable_group)?.colored(theme.palette.elementAdditional)
+        }
     }
 
     override fun setCheckedId(id: Int, isChecked: Boolean) {
