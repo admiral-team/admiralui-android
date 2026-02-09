@@ -179,11 +179,25 @@ class Appbar @JvmOverloads constructor(
     var menuText: String? = null
         set(value) {
             field = value
-            buttonMenu.text = value
-            buttonMenu.isVisible = value?.isEmpty() == false
+            val hasText = value?.isEmpty() == false
+            if (hasText) {
+                buttonMenu.text = value
+                if (buttonMenu.parent == null) {
+                    endContainer.addView(buttonMenu)
+                }
+                buttonMenu.isVisible = true
+            } else {
+                if (buttonMenu.parent != null) {
+                    endContainer.removeView(buttonMenu)
+                }
+            }
         }
         get() {
-            return buttonMenu.text.toString()
+            return if (buttonMenu.parent != null) {
+                buttonMenu.text.toString()
+            } else {
+                ""
+            }
         }
 
     /**
@@ -403,7 +417,6 @@ class Appbar @JvmOverloads constructor(
             )
         }
 
-        endContainer.addView(buttonMenu)
         addView(endContainer)
         addView(startContainer)
         addView(searchContainer)
@@ -505,12 +518,14 @@ class Appbar @JvmOverloads constructor(
     }
 
     private fun invalidateMenuTextColor() {
-        buttonMenu.textColor = ColorState(
-            normalEnabled = menuTextColor ?: ThemeManager.theme.palette.textAccent,
-            normalDisabled = menuTextColor?.withAlpha()
-                ?: ThemeManager.theme.palette.textAccent.withAlpha(),
-            pressed = menuTextColor ?: ThemeManager.theme.palette.textAccent
-        )
+        if (buttonMenu.parent != null) {
+            buttonMenu.textColor = ColorState(
+                normalEnabled = menuTextColor ?: ThemeManager.theme.palette.textAccent,
+                normalDisabled = menuTextColor?.withAlpha()
+                    ?: ThemeManager.theme.palette.textAccent.withAlpha(),
+                pressed = menuTextColor ?: ThemeManager.theme.palette.textAccent
+            )
+        }
     }
 
     private fun invalidateEditTextColors() {
