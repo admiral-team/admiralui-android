@@ -260,6 +260,11 @@ class AppbarSearch @JvmOverloads constructor(
         invalidateBackground()
     }
 
+    /**
+     * Returns true if the [textFieldSearch] currently has focus.
+     */
+    fun isNowFocused(): Boolean = textFieldSearch.isNowFocused()
+
     private fun parseIconsColors(a: TypedArray) {
         iconsTintColor = ColorState(
             normalEnabled = a.getColorOrNull(

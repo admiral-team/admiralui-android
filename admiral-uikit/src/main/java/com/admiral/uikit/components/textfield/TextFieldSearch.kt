@@ -43,6 +43,8 @@ class TextFieldSearch @JvmOverloads constructor(
 
     private var textFlowField = MutableStateFlow<String?>(null)
 
+    private var isNowFocused = false
+
     /**
      * StateFlow for text input changes
      */
@@ -153,7 +155,19 @@ class TextFieldSearch @JvmOverloads constructor(
         binding.editText.doAfterTextChanged { text ->
             textFlowField.value = text.toString()
         }
+
+        // Preserve the focus listener set internally by TextInputLayout (e.g. for the clear icon).
+        val defaultFocusChangeListener = binding.editText.onFocusChangeListener
+        binding.editText.setOnFocusChangeListener { view, hasFocus ->
+            isNowFocused = hasFocus
+            defaultFocusChangeListener?.onFocusChange(view, hasFocus)
+        }
     }
+
+    /**
+     * Returns true if this view has focus.
+     */
+    fun isNowFocused(): Boolean = isNowFocused
 
     override fun onAttachedToWindow() {
         super.onAttachedToWindow()
