@@ -177,6 +177,13 @@ class AppbarSearch @JvmOverloads constructor(
         get() = textFieldSearch.textFlow
 
     /**
+     * Returns true if [textFieldSearch] has focus.
+     */
+    fun isNowFocused(): Boolean {
+        return textFieldSearch.isNowFocused()
+    }
+
+    /**
      * Color state for icons.
      * States: normal, disabled, pressed.
      * In case state is null, the selected color theme will be used.

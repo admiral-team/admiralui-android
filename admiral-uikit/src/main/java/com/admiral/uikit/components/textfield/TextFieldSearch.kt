@@ -133,6 +133,8 @@ class TextFieldSearch @JvmOverloads constructor(
             return editText?.text.toString()
         }
 
+    private var isNowFocused = false
+
     init {
         background = drawable(R.drawable.admiral_bg_rectangle_10dp)
         endIconMode = END_ICON_CLEAR_TEXT
@@ -153,6 +155,17 @@ class TextFieldSearch @JvmOverloads constructor(
         binding.editText.doAfterTextChanged { text ->
             textFlowField.value = text.toString()
         }
+
+        binding.editText.setOnFocusChangeListener { _, hasFocus ->
+            isNowFocused = hasFocus
+        }
+    }
+
+    /**
+     * Returns true if this view has focus.
+     */
+    fun isNowFocused(): Boolean {
+        return isNowFocused
     }
 
     override fun onAttachedToWindow() {

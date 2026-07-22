@@ -318,6 +318,8 @@
             <enum name="ghost" value="2" />
         </attr>
 
+        <attr name="admiralIsDisabledLighten" format="boolean" />
+
         <attr name="admiralTextAdditional" />
 
         <attr name="android:text" />
