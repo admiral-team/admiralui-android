@@ -166,7 +166,6 @@ dependencies {
     implementation(Libs.colorPickerView)
     implementation(Libs.expandableLayout)
     implementation(Libs.inputMask)
-    implementation(Libs.pdfViewer)
 
     testImplementation(Libs.Kotlin.coroutinesTest)
     androidTestImplementation(Libs.Kotlin.coroutinesTest)
